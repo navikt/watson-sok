@@ -1,3 +1,6 @@
 .limeButton {
   background-color: var(--a-surface-alt-2);
 }
+.blueButton {
+  background-color: blue;
+}
