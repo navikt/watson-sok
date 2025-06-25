@@ -5,6 +5,7 @@ import { fetchDecoratorReact } from "@navikt/nav-dekoratoren-moduler/ssr";
 
 import "./page.module.css";
 import { Page } from "@navikt/ds-react";
+import HolmesHeader from "./components/header/holmesHeader";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,8 +25,8 @@ const RootLayout = async ({
         <Decorator.HeadAssets />
       </head>
       <body>
-      <Page footer={<Decorator.Footer />}>
-        <Decorator.Header />
+      <Page>
+        <HolmesHeader/>
         {children}
         <Decorator.Scripts loader={Script} />
       </Page>
