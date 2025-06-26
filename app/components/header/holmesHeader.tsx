@@ -9,20 +9,7 @@ export default function HolmesHeader() {
     return (
         <InternalHeader>
             <InternalHeader.Title as="h1">Oppslag bruker 1.0</InternalHeader.Title>
-            <form
-                className="self-center px-5"
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    console.info("Search!");
-                }}
-            >
-                <Search
-                    label="InternalHeader søk"
-                    size="medium"
-                    variant="simple"
-                    placeholder="fnr/dnr"
-                />
-            </form>
+
             <Spacer />
             <ActionMenu>
                 <ActionMenu.Trigger>

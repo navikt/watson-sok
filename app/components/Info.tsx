@@ -3,7 +3,7 @@
 
 
 import React  from "react";
-import { Alert, AlertProps, VStack } from "@navikt/ds-react";
+import { Alert, VStack ,Search} from "@navikt/ds-react";
 import { FileIcon } from '@navikt/aksel-icons';
 import {
     Bleed,
@@ -20,6 +20,7 @@ export default function Info() {
                 <VStack as="main" gap="8">
                     <Bleed
                         marginInline={{ lg: "24" }}
+
                         data-aksel-template="form-intropage-v2"
                     >
                         <Stack
@@ -38,6 +39,25 @@ export default function Info() {
                                 <Alert variant="info" closeButton={true}>
                                     Melding til saksbehandler . En informasjon om at man ikke må bruke tjenesten dersom det ikke ligger tjenestelig behov til grunn. Her kan det også oppgis hvilke lover og referanse til hvilke paragrafer som gjelder.
                                 </Alert>
+
+                                <VStack>
+                                    <p>Fødselsnummer/D-nummer</p>
+                                    <form
+                                        className="self-center px-5"
+                                        onSubmit={(e) => {
+                                            e.preventDefault();
+                                            console.info("Search!");
+                                        }}
+                                    >
+                                        <Search
+                                            label="InternalHeader søk"
+                                            size="medium"
+                                            variant="primary"
+                                            placeholder="11 siffer"
+                                        />
+                                    </form>
+                                </VStack>
+
                             </VStack>
                         </Stack>
                     </Bleed>
