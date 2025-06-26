@@ -1,9 +1,11 @@
 'use client'
 import { PersonIcon, PersonGroupIcon, MenuGridIcon,Buildings3Icon,BarChartIcon,ExternalLinkIcon } from "@navikt/aksel-icons";
 import { ActionMenu, Search, InternalHeader, Spacer } from "@navikt/ds-react";
+import { useFeature } from "../../context/FeatureContext"; // tilpass sti
 
 
 export default function HolmesHeader() {
+    const { setValgtFeature } = useFeature();
     return (
         <InternalHeader>
             <InternalHeader.Title as="h1">Holmes</InternalHeader.Title>
@@ -33,13 +35,10 @@ export default function HolmesHeader() {
                 </ActionMenu.Trigger>
                 <ActionMenu.Content>
                     <ActionMenu.Group label="Interne flater">
-                        <ActionMenu.Item onSelect={console.info} icon={<PersonIcon />}>
+                        <ActionMenu.Item onSelect={() => setValgtFeature("oppslag-bruker")} icon={<PersonIcon />}>
                             Oppslag bruker
                         </ActionMenu.Item>
-                        <ActionMenu.Item
-                            onSelect={console.info}
-                            icon={<PersonGroupIcon />}
-                        >
+                        <ActionMenu.Item onSelect={() => setValgtFeature("arbeidsgiveroversikt")} icon={<PersonGroupIcon />}>
                             Arbeidsgiveroversikt
                         </ActionMenu.Item>
 

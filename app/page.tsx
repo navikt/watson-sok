@@ -1,19 +1,18 @@
-import { Button } from "@navikt/ds-react";
-import { PageBlock } from "@navikt/ds-react/Page";
-import styles from "./page.module.css";
-import { ThumbUpIcon } from "@navikt/aksel-icons";
+"use client";
+import { useFeature } from "./context/FeatureContext";
+import OppslagBruker from "./components/OppslagBruker";
+import ArbeidsgiverOversikt from "./components/ArbeidsgiverOversikt";
 
-export default function Home() {
+
+export default function HomePage() {
+    const { valgtFeature } = useFeature();
+
     return (
-        <main>
-            <PageBlock width="md" gutters>
-                <Button
-                    icon={<ThumbUpIcon title="a11y tittel" />}
-                    className={styles.limeButton}
-                >
-                    Knapp
-                </Button>
-            </PageBlock>
-        </main>
+        <div>
+            {!valgtFeature && <p>Velg et verktøy fra menyen.</p>}
+            {valgtFeature === "oppslag-bruker" && <OppslagBruker />}
+            {valgtFeature === "arbeidsgiveroversikt" && <ArbeidsgiverOversikt />}
+            {valgtFeature === "statistikk" && <p>Statistikk kommer snart</p>}
+        </div>
     );
 }

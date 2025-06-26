@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "@navikt/ds-css";
+import { FeatureProvider } from "./context/FeatureContext";
 import { fetchDecoratorReact } from "@navikt/nav-dekoratoren-moduler/ssr";
 
 import "./page.module.css";
@@ -26,8 +27,10 @@ const RootLayout = async ({
       </head>
       <body>
       <Page>
+          <FeatureProvider>
         <HolmesHeader/>
         {children}
+          </FeatureProvider>
         <Decorator.Scripts loader={Script} />
       </Page>
       </body>
