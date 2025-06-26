@@ -1,6 +1,6 @@
 'use client'
 import { PersonIcon, PersonGroupIcon, MenuGridIcon,Buildings3Icon,BarChartIcon,ExternalLinkIcon } from "@navikt/aksel-icons";
-import { ActionMenu, Search, InternalHeader, Spacer } from "@navikt/ds-react";
+import { ActionMenu, InternalHeader, Spacer } from "@navikt/ds-react";
 import { useFeature } from "../../context/FeatureContext"; // tilpass sti
 
 
