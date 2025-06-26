@@ -8,7 +8,7 @@ export default function HolmesHeader() {
     const { setValgtFeature } = useFeature();
     return (
         <InternalHeader>
-            <InternalHeader.Title as="h1">Holmes</InternalHeader.Title>
+            <InternalHeader.Title as="h1">Oppslag bruker 1.0</InternalHeader.Title>
             <form
                 className="self-center px-5"
                 onSubmit={(e) => {
