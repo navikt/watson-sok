@@ -12,3 +12,14 @@ spec:
     - https://oppslag-bruker.intern.dev.nav.no
   image: {{image}}
   port: 3000
+  azure:
+    application:
+      enabled: true
+      tenant: { { tenant } }
+      allowAllUsers: true
+    sidecar:
+      enabled: true
+      autoLogin: true
+      autoLoginIgnorePaths:
+        - /api/health
+        - /assets/logos/*
