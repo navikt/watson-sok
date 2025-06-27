@@ -15,8 +15,11 @@ spec:
   azure:
     application:
       enabled: true
-      tenant: { { tenant } }
+      tenant: trygdeetaten.no
       allowAllUsers: true
+      claims:
+        extra:
+          - 'NAVident'
     sidecar:
       enabled: true
       autoLogin: true
