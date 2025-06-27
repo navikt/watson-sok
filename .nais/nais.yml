@@ -1,0 +1,14 @@
+apiVersion: nais.io/v1alpha1
+kind: Application
+
+metadata:
+  labels:
+    team: holmes
+  name: oppslag-bruker-frontend
+  namespace: holmes
+
+spec:
+  ingresses:
+    - https://oppslag-bruker.intern.dev.nav.no
+  image: {{image}}
+  port: 3000
