@@ -9,7 +9,7 @@ import {
 import { isDevOrTest } from "@/app/utils/is-dev-or-test";
 
 const REPR_FULLMAKT_CLUSTER = process.env.REPR_FULLMAKT_CLUSTER!;
-const PDL_CLUSTER = process.env.PDL_CLUSTER!;
+
 
 interface LoggedInUserResponse {
     preferredUsername: string;
@@ -42,10 +42,6 @@ export async function getReprFullmaktOboToken(): Promise<string> {
     return getOboToken(
         `api://${REPR_FULLMAKT_CLUSTER}.repr.repr-fullmakt/.default`,
     );
-}
-
-export async function getPdlOboToken(): Promise<string> {
-    return getOboToken(`api://${PDL_CLUSTER}.pdl.pdl-api/.default`);
 }
 
 async function getOboToken(audience: string): Promise<string> {
