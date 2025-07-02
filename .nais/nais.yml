@@ -26,3 +26,6 @@ spec:
       autoLoginIgnorePaths:
         - /api/health
         - /assets/logos/*
+  env:
+    - name: NEXT_PUBLIC_BASE_URL
+      value: https://oppslag-bruker.intern.dev.nav.no/
