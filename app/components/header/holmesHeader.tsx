@@ -4,8 +4,12 @@ import { ActionMenu, InternalHeader, Spacer } from "@navikt/ds-react";
 import { useFeature } from "../../context/FeatureContext"; // tilpass sti
 
 
+import { useUser } from '@/app/context/UserContext'
 export default function HolmesHeader() {
     const { setValgtFeature } = useFeature();
+
+
+    const user = useUser()
     return (
         <InternalHeader>
             <InternalHeader.Title as="h1">Oppslag bruker 1.0</InternalHeader.Title>
@@ -49,7 +53,7 @@ export default function HolmesHeader() {
                     </ActionMenu.Group>
                 </ActionMenu.Content>
             </ActionMenu>
-            <InternalHeader.User name="Saksbehandler Kari" />
+            <InternalHeader.User name={user?.name ?? 'Saksbehandler'} />
         </InternalHeader>
     )
 }
