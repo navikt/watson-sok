@@ -4,7 +4,7 @@ import "@navikt/ds-css";
 import { FeatureProvider } from "./context/FeatureContext";
 import { UserProvider } from "./context/UserContext";
 import { fetchDecoratorReact } from "@navikt/nav-dekoratoren-moduler/ssr";
-import { User} from "@/app/types/user";
+import {LoggedInUserResponse, User} from "@/app/types/user";
 import "./page.module.css";
 import { Page } from "@navikt/ds-react";
 import HolmesHeader from "./components/header/holmesHeader";
@@ -53,9 +53,35 @@ const RootLayout = async ({
         }
     }
 
-    const user = await getUser()
-    console.log("user -> "+user)
-    const loggedInUser = getLoggedInUser()
+    async function getLoggedInUser(): Promise<LoggedInUserResponse | null> {
+        const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/logged-in-user`
+
+
+        try {
+            console.log(`[logged-in-user] Henter bruker fra: ${url}`)
+
+            const res = await fetch(url, {
+                cache: 'no-store', // unngå caching i dev
+            })
+
+            console.log(`[logged-in-user] Statuskode: ${res.status}`)
+
+            if (!res.ok) {
+                console.warn(`[logged-in-user] Feil ved henting av bruker: ${res.statusText}`)
+                return null
+            }
+
+            const user = await res.json()
+            console.log(`[logged-in-user] Brukerdata mottatt:`, user)
+
+            return user
+        } catch (error) {
+            console.error(`[logged-in-user] Uventet feil:`, error)
+            return null
+        }
+    }
+
+    const loggedInUser = await getLoggedInUser()
     console.log("loggedInUser -> "+loggedInUser)
 
   return (
@@ -65,7 +91,7 @@ const RootLayout = async ({
       </head>
       <body>
       <Page>
-          <UserProvider user={user}>
+          <UserProvider user={loggedInUser}>
           <FeatureProvider>
         <HolmesHeader/>
         {children}
