@@ -19,9 +19,10 @@ interface LoggedInUserResponse {
 
 export async function getLoggedInUser(): Promise<LoggedInUserResponse> {
     if (isDevOrTest()) {
+        console.log("DEVELOPMENT.. returning mock username");
         return MOCKED_LOGGED_IN_USER_RESPONSE;
     }
-
+    console.log("GCP DEV.. returning real username");
     const token = await getValidToken();
 
     const parseResult = parseAzureUserToken(token);
