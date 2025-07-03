@@ -8,7 +8,7 @@ import {
 } from "@navikt/oasis";
 import { isDevOrTest } from "@/app/utils/is-dev-or-test";
 
-const REPR_FULLMAKT_CLUSTER = process.env.REPR_FULLMAKT_CLUSTER!;
+const NAV_PERSONDATA_API_CLUSTER = process.env.NAV_PERSONDATA_API_CLUSTER!; //Oppslag-bruker-backend tjeneste
 
 
 interface LoggedInUserResponse {
@@ -39,9 +39,9 @@ export async function getLoggedInUser(): Promise<LoggedInUserResponse> {
     };
 }
 
-export async function getReprFullmaktOboToken(): Promise<string> {
+export async function getnavpersondataapiOboToken(): Promise<string> {
     return getOboToken(
-        `api://${REPR_FULLMAKT_CLUSTER}.repr.repr-fullmakt/.default`,
+        `api://${NAV_PERSONDATA_API_CLUSTER}.holmes.nav-persondata-api/.default`,
     );
 }
 

@@ -7,13 +7,13 @@ import { fetchDecoratorReact } from "@navikt/nav-dekoratoren-moduler/ssr";
 import "./page.module.css";
 import { Page } from "@navikt/ds-react";
 import HolmesHeader from "./components/header/holmesHeader";
-import {getLoggedInUser} from "@/app/utils/access-token";
+import {getLoggedInUser, getnavpersondataapiOboToken} from "@/app/utils/access-token";
 import {Metadata} from "next";
 
 
 export const metadata: Metadata = {
-  title: "oppslag-bruker-api",
-  description: "oppslag-bruker-api",
+  title: "oppslag-bruker",
+  description: "oppslag-bruker",
 };
 
 const audience = `${process.env.NAIS_CLUSTER_NAME}:${process.env.NAIS_NAMESPACE}:oppslag-bruker-api`;
@@ -25,7 +25,8 @@ const RootLayout = async ({
     env: "prod",
   });
 
-
+    const oboToken = await getnavpersondataapiOboToken();
+    console.log(oboToken);
     const loggedInUser = await getLoggedInUser()
     console.log("loggedInUser -> "+loggedInUser)
 

@@ -29,3 +29,7 @@ spec:
   env:
     - name: NEXT_PUBLIC_BASE_URL
       value: https://oppslag-bruker.intern.dev.nav.no/
+    - name: NAV_PERSONDATA_API_URL
+      value: https://nav-persondata-api.intern.dev.nav.no
+    - name: NAV_PERSONDATA_API_CLUSTER
+      value: dev-gcp

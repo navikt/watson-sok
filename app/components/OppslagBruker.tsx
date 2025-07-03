@@ -8,6 +8,9 @@ export default function OppslagBruker() {
     <div>
         <Heading size="medium">Her kommer oppslag-bruker</Heading>
         <Loader size="3xlarge" title="Her kommer Oppslag Bruker..." />
+        <p>
+
+        </p>
     </div>
     );
 }
