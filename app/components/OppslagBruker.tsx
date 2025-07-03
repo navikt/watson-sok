@@ -1,16 +1,44 @@
-
 "use client";
 
-import { Loader ,Heading} from "@navikt/ds-react";
+import { useEffect, useState } from "react";
+import { useUserSearch } from "@/app/context/UserSearchContext";
+import { Alert, Heading } from "@navikt/ds-react";
 
 export default function OppslagBruker() {
-    return (
-    <div>
-        <Heading size="medium">Her kommer oppslag-bruker</Heading>
-        <Loader size="3xlarge" title="Her kommer Oppslag Bruker..." />
-        <p>
+    const { fnr } = useUserSearch();
+    const [data, setData] = useState<any | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-        </p>
-    </div>
+    useEffect(() => {
+        if (!fnr) return;
+
+        const fetchData = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const res = await fetch(`/api/oppslag?fnr=${fnr}`);
+                if (!res.ok) throw new Error("Feil ved henting av data");
+                const json = await res.json();
+                setData(json);
+            } catch (err: any) {
+                setError(err.message || "Ukjent feil");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [fnr]);
+
+    if (!fnr) return <Alert variant="warning">Ingen fødselsnummer valgt.</Alert>;
+    if (loading) return <p>Laster data...</p>;
+    if (error) return <Alert variant="error">{error}</Alert>;
+
+    return (
+        <div className="p-4 mt-4">
+            <Heading size="small">Resultat fra tjeneste</Heading>
+            <pre className="whitespace-pre-wrap">{JSON.stringify(data, null, 2)}</pre>
+        </div>
     );
 }
