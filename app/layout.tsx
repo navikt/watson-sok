@@ -33,7 +33,6 @@ const RootLayout = async ({
   return (
       <html lang="no">
       <head>
-        <Decorator.HeadAssets />
       </head>
       <body>
       <Page>
@@ -42,9 +41,7 @@ const RootLayout = async ({
         <HolmesHeader/>
         {children}
           </FeatureProvider>
-          </UserProvider>
-        <Decorator.Scripts loader={Script} />
-
+          </UserProvider>ß
       </Page>
       </body>
       </html>
