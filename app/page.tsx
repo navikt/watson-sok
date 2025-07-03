@@ -1,19 +1,32 @@
 "use client";
+
 import { useFeature } from "./context/FeatureContext";
 import OppslagBruker from "./components/OppslagBruker";
 import ArbeidsgiverOversikt from "./components/ArbeidsgiverOversikt";
 import Info from "./components/Info";
-
+import { Alert } from "@navikt/ds-react";
 
 export default function HomePage() {
     const { valgtFeature } = useFeature();
 
-    return (
-        <div>
-            {!valgtFeature && <Info/>}
-            {valgtFeature === "oppslag-bruker" && <OppslagBruker />}
-            {valgtFeature === "arbeidsgiveroversikt" && <ArbeidsgiverOversikt />}
-            {valgtFeature === "statistikk" && <p>Statistikk kommer snart</p>}
-        </div>
-    );
+    switch (valgtFeature) {
+        case null:
+            return <Info />;
+        case "oppslag-bruker":
+            return <OppslagBruker />;
+        case "arbeidsgiveroversikt":
+            return <ArbeidsgiverOversikt />;
+        case "statistikk":
+            return (
+                <Alert variant="info" className="m-4">
+                    Statistikk kommer snart.
+                </Alert>
+            );
+        default:
+            return (
+                <Alert variant="error" className="m-4">
+                    Ugyldig visning valgt. Gå tilbake til menyen.
+                </Alert>
+            );
+    }
 }
