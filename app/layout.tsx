@@ -21,9 +21,6 @@ console.log(audience);
 const RootLayout = async ({
                             children,
                           }: Readonly<{ children: React.ReactNode }>) => {
-  const Decorator = await fetchDecoratorReact({
-    env: "prod",
-  });
 
     const oboToken = await getnavpersondataapiOboToken();
     console.log(oboToken);
