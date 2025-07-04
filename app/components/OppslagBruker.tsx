@@ -43,7 +43,7 @@ export default function OppslagBruker() {
             <pre className="whitespace-pre-wrap">{JSON.stringify(data, null, 2)}</pre>
 
             <div className="mt-4">
-                <Button onClick={() => setModalOpen(true)}>Vis detaljer</Button>
+                <Button onClick={() => setModalOpen(true)}>Hent Familie Forhold</Button>
             </div>
 
             {modalOpen && (
