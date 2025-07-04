@@ -2,13 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { useUserSearch } from "@/app/context/UserSearchContext";
-import { Alert, Heading } from "@navikt/ds-react";
+import { Alert, Heading, Button } from "@navikt/ds-react";
+import DetaljModal from "@/app/components/DetaljModal";
 
 export default function OppslagBruker() {
     const { fnr } = useUserSearch();
     const [data, setData] = useState<any | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [modalOpen, setModalOpen] = useState(false); // 👈 modal state
 
     useEffect(() => {
         if (!fnr) return;
@@ -39,6 +41,14 @@ export default function OppslagBruker() {
         <div className="p-4 mt-4">
             <Heading size="small">Resultat fra tjeneste</Heading>
             <pre className="whitespace-pre-wrap">{JSON.stringify(data, null, 2)}</pre>
+
+            <div className="mt-4">
+                <Button onClick={() => setModalOpen(true)}>Vis detaljer</Button>
+            </div>
+
+            {modalOpen && (
+                <DetaljModal fnr={fnr} onClose={() => setModalOpen(false)} />
+            )}
         </div>
     );
 }
