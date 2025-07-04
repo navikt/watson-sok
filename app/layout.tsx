@@ -1,9 +1,8 @@
-import Script from "next/script";
+;
 import "@navikt/ds-css";
 import { FeatureProvider } from "./context/FeatureContext";
 import { UserProvider } from "./context/UserContext";
 import { UserSearchProvider } from "./context/UserSearchContext"; // 👈 LEGG TIL DENNE
-import { fetchDecoratorReact } from "@navikt/nav-dekoratoren-moduler/ssr";
 import "./page.module.css";
 import { Page } from "@navikt/ds-react";
 import HolmesHeader from "./components/header/holmesHeader";

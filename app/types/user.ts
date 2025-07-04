@@ -7,3 +7,9 @@ export interface LoggedInUserResponse {
     name: string;
     navIdent: string;
 }
+export interface OppslagResponse {
+    fnr: string;
+    navn: string;
+    status: string;
+    [key: string]: unknown; // valgfritt for utvidbarhet
+}

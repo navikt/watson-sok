@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { useUserSearch } from "@/app/context/UserSearchContext";
 import { Alert, Heading, Button } from "@navikt/ds-react";
 import DetaljModal from "@/app/components/DetaljModal";
+import {OppslagResponse} from "@/app/types/user";
 
 export default function OppslagBruker() {
     const { fnr } = useUserSearch();
-    const [data, setData] = useState<any | null>(null);
+    const [data, setData] = useState<OppslagResponse | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [modalOpen, setModalOpen] = useState(false); // 👈 modal state
@@ -23,9 +24,13 @@ export default function OppslagBruker() {
                 if (!res.ok) throw new Error("Feil ved henting av data");
                 const json = await res.json();
                 setData(json);
-            } catch (err: any) {
-                setError(err.message || "Ukjent feil");
-            } finally {
+            }  catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("Ukjent feil");
+            }
+        } finally {
                 setLoading(false);
             }
         };

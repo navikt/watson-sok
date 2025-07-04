@@ -21,8 +21,12 @@ export default function DetaljModal({
                 if (!res.ok) throw new Error("Kunne ikke hente detaljer");
                 const json = await res.json();
                 setData(json);
-            } catch (err: any) {
-                setError(err.message || "Ukjent feil");
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError("Ukjent feil");
+                }
             } finally {
                 setLoading(false);
             }
