@@ -28,6 +28,7 @@ async function getDataFromBackEnd(oboToken: string, fnr: string) {
 
     const targetUrl = `${baseUrl}oppslag-bruker`;
     console.log("Kaller URL:", targetUrl);
+    console.log({oboToken});
 
     try {
         const res = await fetch(targetUrl, {
