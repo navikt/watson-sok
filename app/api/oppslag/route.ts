@@ -34,8 +34,9 @@ async function getDataFromBackEnd(fnr: string, oboToken: string) {
     if (!baseUrl) {
         throw new Error("NAV_PERSONDATA_API_URL er ikke satt");
     }
-
-    const res = await fetch(`${baseUrl}oppslag-bruker`, {
+    const targetUrl = `${baseUrl}/oppslag-bruker`;
+    console.log("henter data fra : "+targetUrl);
+    const res = await fetch(`${targetUrl}`, {
         headers: {
             Authorization: `Bearer ${oboToken}`,
             "Content-Type": "application/json",
