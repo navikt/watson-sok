@@ -11,6 +11,11 @@ spec:
   ingresses:
     - https://oppslag-bruker.intern.dev.nav.no
     - https://oppslag-bruker.ansatt.dev.nav.no
+  accessPolicy:
+    outbound:
+      rules:
+        - application: nav-persondata-api
+          namespace: holmes
   image: {{image}}
   port: 3000
   azure:
