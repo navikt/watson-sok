@@ -1,6 +1,5 @@
-// app/api/oppslag/route.ts
-import {getnavpersondataapiOboToken} from "@/app/utils/access-token";
-import {isDevOrTest} from "@/app/utils/is-dev-or-test";
+import { getnavpersondataapiOboToken } from "@/app/utils/access-token";
+import { isDevOrTest } from "@/app/utils/is-dev-or-test";
 
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
@@ -9,53 +8,52 @@ export async function GET(req: Request) {
     if (!fnr || fnr.length !== 11) {
         return new Response("Ugyldig fnr", { status: 400 });
     }
+
     const oboToken = await getnavpersondataapiOboToken();
+
     if (isDevOrTest()) {
-        console.log("DEVELOPMENT.. returning mock username");
-        return await getMockedResponse()
+        console.log("DEVELOPMENT: returnerer mock-respons");
+        return await getMockedResponse();
     }
 
-
-    console.log("henter data fra baksystem")
+    console.log("Henter data fra baksystem ...");
     return await getDataFromBackEnd(oboToken, fnr);
-
-    // TODO: autentisering med TokenX/Azure + kall til ekte tjeneste
-
-    return Response.json({
-        fnr,
-        navn: "Ola Nordmann",
-        status: "Aktiv i NAV",
-        mock: true,
-    });
 }
 
-async function getDataFromBackEnd(fnr: string, oboToken: string) {
+async function getDataFromBackEnd(oboToken: string, fnr: string) {
     const baseUrl = process.env.NAV_PERSONDATA_API_URL;
     if (!baseUrl) {
         throw new Error("NAV_PERSONDATA_API_URL er ikke satt");
     }
-    const targetUrl = `${baseUrl}/oppslag-bruker`;
-    console.log("henter data fra : "+targetUrl);
-    const res = await fetch(`${targetUrl}`, {
-        headers: {
-            Authorization: `Bearer ${oboToken}`,
-            "Content-Type": "application/json",
-            "fnr": fnr
+
+    const targetUrl = `${baseUrl}oppslag-bruker`;
+    console.log("Kaller URL:", targetUrl);
+
+    try {
+        const res = await fetch(targetUrl, {
+            method: "GET", // 👈 eksplisitt
+            headers: {
+                Authorization: `Bearer ${oboToken}`,
+                "Content-Type": "application/json",
+                "fnr": fnr,
+            },
+        });
+
+        if (!res.ok) {
+            const errorText = await res.text();
+            console.error(`Feil fra baksystem: ${res.status} - ${errorText}`);
+            return new Response("Feil ved henting av grunnlagsdata", { status: res.status });
         }
-    });
 
-    if (!res.ok) {
-        const errorText = await res.text();
-        console.error(`Feil fra baksystem: ${res.status} - ${errorText}`);
-        return new Response("Feil ved henting av grunnlagsdata", { status: res.status });
+        const data = await res.json();
+        return Response.json(data);
+    } catch (err: unknown) {
+        console.error("⛔ Nettverksfeil mot baksystem:", err);
+        return new Response("Tilkoblingsfeil mot baksystem", { status: 502 });
     }
-
-    const data = await res.json();
-    return Response.json(data);
 }
 
-
-function getMockedResponse() {
+async function getMockedResponse() {
     return Response.json({
         utreksTidspunkt: "2025-07-07T12:55:08.828773+02:00",
         ident: "12345678901",
