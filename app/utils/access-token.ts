@@ -26,6 +26,7 @@ export async function getLoggedInUser(): Promise<LoggedInUserResponse> {
     const token = await getValidToken();
 
     const parseResult = parseAzureUserToken(token);
+    console.log("TOKEN RESPONSE", parseResult);
 
     if (!parseResult.ok) {
         console.log("Token parse result not ok");
