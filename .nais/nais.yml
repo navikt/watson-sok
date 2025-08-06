@@ -16,6 +16,8 @@ spec:
       rules:
         - application: nav-persondata-api
           namespace: holmes
+        - application: populasjonstilgangskontroll
+          namespace: tilgangsmaskin
   image: {{image}}
   port: 3000
   azure:
