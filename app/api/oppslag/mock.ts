@@ -16,8 +16,209 @@ export async function getMockedResponse(): Promise<Response> {
             }
         },
         "arbeidsgiverInformasjon": {
-            "lopendeArbeidsforhold": [],
-            "historikk": []
+            "lopendeArbeidsforhold": [
+                {
+                    "arbeidsgiver": "SAUEFABRIKK",
+                    "organisasjonsnummer": "986929150",
+                    "adresse": "TEST GATA 75, 5252 SØREIDGREND",
+                    "ansettelsesDetaljer": [
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2025-07",
+                                "tom": null
+                            }
+                        }
+                    ]
+                }
+            ],
+            "historikk": [
+                {
+                    "arbeidsgiver": "KAST LANGT",
+                    "organisasjonsnummer": "984886519",
+                    "adresse": "LANGVEKKISTAN GATA 75, 1350 BEKKESTUA",
+                    "ansettelsesDetaljer": [
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2015-04",
+                                "tom": null
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2015-01",
+                                "tom": "2015-03"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "arbeidsgiver": "SAUEFABRIKK",
+                    "organisasjonsnummer": "986929150",
+                    "adresse": "TEST GATA 75, 5252 SØREIDGREND",
+                    "ansettelsesDetaljer": [
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2024-07",
+                                "tom": null
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2015-04",
+                                "tom": "2016-06"
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2016-07",
+                                "tom": "2017-06"
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2017-07",
+                                "tom": "2018-06"
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2018-07",
+                                "tom": "2018-12"
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2019-01",
+                                "tom": "2019-06"
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2019-07",
+                                "tom": "2020-11"
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2020-12",
+                                "tom": "2020-12"
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2021-01",
+                                "tom": "2021-06"
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2021-07",
+                                "tom": "2021-12"
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2022-01",
+                                "tom": "2022-06"
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2022-07",
+                                "tom": "2023-04"
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2023-05",
+                                "tom": "2023-06"
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2023-07",
+                                "tom": "2024-06"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "arbeidsgiver": "SAUEFABRIKK",
+                    "organisasjonsnummer": "986929150",
+                    "adresse": "TEST GATA 75, 5252 SØREIDGREND",
+                    "ansettelsesDetaljer": [
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2025-03",
+                                "tom": null
+                            }
+                        },
+                        {
+                            "type": "Ordinaer",
+                            "stillingsprosent": 100,
+                            "antallTimerPrUke": 37.5,
+                            "periode": {
+                                "fom": "2025-01",
+                                "tom": "2025-02"
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         "ytelserOgStonaderInformasjon": null,
         "utbetalingInfo": null,

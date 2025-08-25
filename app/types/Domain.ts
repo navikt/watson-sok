@@ -9,12 +9,37 @@ export interface OppslagBrukerRespons {
     utbetalingInfo: null
 }
 
+export interface Periode {
+    fom: string;      // f.eks. "2025-07"
+    tom: string | null;
+}
+
+
+export interface NotNullPeriode {
+    fom: string;      // f.eks. "2025-07"
+    tom: string;
+}
+
+export interface AnsettelsesDetalj {
+    type: string;           // f.eks. "Ordinaer"
+    stillingsprosent: number;
+    antallTimerPrUke: number;
+    periode: Periode;
+}
+
+export interface Arbeidsforhold {
+    arbeidsgiver: string;
+    organisasjonsnummer: string;
+    adresse: string;
+    ansettelsesDetaljer: AnsettelsesDetalj[];
+}
 
 export interface ArbeidsgiverInformasjon {
-    lopendeArbeidsforhold: string[];
-    historikk: string[]
-
+    lopendeArbeidsforhold: Arbeidsforhold[];
+    historikk: Arbeidsforhold[];
 }
+
+
 export interface PersonInformasjon {
     navn: string;
     aktorId: string;
@@ -29,7 +54,7 @@ export interface Stonad {
     perioder: StonadPeriode[];
 }
 export interface StonadPeriode {
-    periode: Periode;
+    periode: NotNullPeriode;
     beløp: number;
     kilde: string;
     info: string;
@@ -70,7 +95,7 @@ export interface Konto {
 
 export interface Ytelse {
     ytelsestype: string;
-    ytelsesperiode: Periode;
+    ytelsesperiode: NotNullPeriode;
     ytelseNettobeloep: number;
     rettighetshaver: Person;
     skattsum: number;
@@ -82,12 +107,6 @@ export interface Ytelse {
     bilagsnummer: string;
     refundertForOrg: Person;
 }
-
-export interface Periode {
-    fom: string;
-    tom: string;
-}
-
 export interface Skatt {
     skattebeloep: number;
 }
