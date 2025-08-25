@@ -2,9 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { useUserSearch } from "@/app/context/UserSearchContext";
-import { Alert, Heading, Button } from "@navikt/ds-react";
+import {Alert, Heading, Button, HGrid, Box} from "@navikt/ds-react";
 import DetaljModal from "@/app/components/DetaljModal";
 import {OppslagBrukerRespons} from "@/app/types/Domain";
+import PersonDetaljer from "@/app/components/PersonDetaljer";
+
+import StonadOversikt from "@/app/components/StonadOversikt";
+import ArbeidsDetaljer from "@/app/components/ArbedsDetaljer";
+
 
 export default function OppslagBruker() {
     const { fnr } = useUserSearch();
@@ -24,6 +29,7 @@ export default function OppslagBruker() {
                 if (!res.ok) throw new Error("Feil ved henting av data");
                 const json: OppslagBrukerRespons = await res.json();
                 setData(json);
+
             }  catch (err: unknown) {
             if (err instanceof Error) {
                 setError(err.message);
@@ -44,8 +50,28 @@ export default function OppslagBruker() {
 
     return (
         <div className="p-4 mt-4">
-            <Heading size="small">Resultat fra tjeneste</Heading>
-            <pre className="whitespace-pre-wrap">{JSON.stringify(data, null, 2)}</pre>
+            <Box>
+                <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
+                    <div>
+                        {data?.personInformasjon && (
+                            <PersonDetaljer personInformasjon={data.personInformasjon} />
+                        )}
+                    </div>
+                    <div>
+                        <div>
+                            {data?.personInformasjon && (
+                                <ArbeidsDetaljer personInformasjon={data.personInformasjon} />
+                            )}
+                        </div>
+                    </div>
+                </HGrid>
+            </Box>
+            <div>
+                {data?.stonadOversikt && (
+                    <StonadOversikt stonadOversikt={data.stonadOversikt} />
+                )}
+            </div>
+
 
             <div className="mt-4">
                 <Button onClick={() => setModalOpen(true)}>Hent Familie Forhold</Button>

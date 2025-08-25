@@ -2,9 +2,29 @@ export interface OppslagBrukerRespons {
     utreksTidspunkt: string;
     ident: string;
     saksbehandlerId: string;
-    utbetalingRespons: UtbetalingRespons;
+    personInformasjon: PersonInformasjon;
+    stonadOversikt : Stonad[];
 }
 
+export interface PersonInformasjon {
+    navn: string;
+    aktorId: string;
+    adresse: string;
+    familemedlemmer: {
+        [personId: string]: "BARN" | "GIFT" | string; // nøkkel = id, verdi = relasjon
+    };
+}
+
+export interface Stonad {
+    stonadType: string;
+    perioder: StonadPeriode[];
+}
+export interface StonadPeriode {
+    periode: Periode;
+    beløp: number;
+    kilde: string;
+    info: string;
+}
 export interface UtbetalingRespons {
     type: string;
     data: {
