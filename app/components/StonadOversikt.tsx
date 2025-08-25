@@ -2,13 +2,8 @@
 
 import {
     NokIcon,
-    ParasolBeachIcon,
-    PencilIcon,
-    PersonIcon,
-    PiggybankIcon,
-    VirusIcon,
 } from "@navikt/aksel-icons";
-import {Box, ExpansionCard, Timeline, TimelinePeriodProps} from "@navikt/ds-react";
+import {Box, ExpansionCard, Timeline} from "@navikt/ds-react";
 
 import {Stonad} from "@/app/types/Domain";
 import {toDate} from "date-fns";

@@ -1,11 +1,20 @@
 export interface OppslagBrukerRespons {
-    utreksTidspunkt: string;
-    ident: string;
-    saksbehandlerId: string;
+    utrekkstidspunkt: string;
+    fodselsnr: string;
+    saksbehandlerIdent: string;
     personInformasjon: PersonInformasjon;
     stonadOversikt : Stonad[];
+    arbeidsgiverInformasjon: ArbeidsgiverInformasjon;
+    ytelserOgStonaderInformasjon : null;
+    utbetalingInfo: null
 }
 
+
+export interface ArbeidsgiverInformasjon {
+    lopendeArbeidsforhold: string[];
+    historikk: string[]
+
+}
 export interface PersonInformasjon {
     navn: string;
     aktorId: string;
