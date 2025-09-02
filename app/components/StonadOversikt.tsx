@@ -36,11 +36,11 @@ export default function StonadOversikt({
                                     key={`${s.stonadType}-${pIdx}-${p.info}`}
                                     start={toDate(p.periode.fom)}
                                     end={toDate(p.periode.tom)}
-                                    status={p.beløp === 0 ? "warning" : "success"}
+                                    status={p.beløp === "0" ? "warning" : "success"}
                                     icon=<NokIcon/>
                                 >
                                     <p className="font-medium">
-                                        {p.beløp.toLocaleString("no-NO")} kr
+                                        {p.beløp.toLocaleString()} kr
                                     </p>
                                     <p className="text-sm opacity-20">
                                         Kilde: {p.kilde}{p.info}

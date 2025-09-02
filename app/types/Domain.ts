@@ -5,8 +5,27 @@ export interface OppslagBrukerRespons {
     personInformasjon: PersonInformasjon;
     stonadOversikt : Stonad[];
     arbeidsgiverInformasjon: ArbeidsgiverInformasjon;
-    ytelserOgStonaderInformasjon : null;
-    utbetalingInfo: null
+    inntektInformasjon :InntektInformasjon
+}
+
+
+export interface InntektInformasjon {
+    loennsinntekt: Inntekt[]
+    naringsInntekt: Inntekt[]
+    pensjonEllerTrygd: Inntekt[]
+    ytelseFraOffentlige: Inntekt[]
+}
+
+
+export interface Inntekt {
+    arbeidsgiver: string
+    periode: string,
+    arbeidsforhold: string
+    stillingsprosent: string
+    lonnstype: string,
+    antall: string | null
+    belop: string
+    harFlereVersjoner: boolean
 }
 
 export interface Periode {
@@ -55,10 +74,11 @@ export interface Stonad {
 }
 export interface StonadPeriode {
     periode: NotNullPeriode;
-    beløp: number;
+    beløp: string;
     kilde: string;
     info: string;
 }
+
 export interface UtbetalingRespons {
     type: string;
     data: {
