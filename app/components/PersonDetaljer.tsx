@@ -25,9 +25,19 @@ export default function PersonDetaljer({
 
                 <HStack gap="2">
                     <BodyLong>
-                        {personInformasjon.navn}
+                         {personInformasjon.navn}
                     </BodyLong>
                     <Link href="/personHistorikk">Navnehistorikk</Link>
+                </HStack>
+                <HStack gap="2">
+                    <BodyLong>
+                        {Array.isArray(personInformasjon.statsborgerskap)
+                            ? personInformasjon.statsborgerskap
+                                .map((s) => (s ?? "").trim())
+                                .filter((s) => s.length > 0)
+                                .join(", ")
+                            : (personInformasjon.navn ?? "–")}
+                    </BodyLong>
                 </HStack>
                 <HStack gap="2">
                     <BodyLong>
