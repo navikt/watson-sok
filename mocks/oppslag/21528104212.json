@@ -817,7 +817,7 @@
         "lonnstype": "fastloenn",
         "antall": null,
         "belop": 100000,
-        "harFlereVersjoner": false
+        "harFlereVersjoner": true
       }
     ],
     "naringsInntekt": [],
