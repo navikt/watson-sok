@@ -1,0 +1,828 @@
+{
+  "utrekkstidspunkt": "2025-09-02T14:38:26.056778056",
+  "saksbehandlerIdent": "",
+  "fodselsnr": "",
+  "personInformasjon": {
+    "navn": "KONKURRANSEDYKTIG null GJØRME",
+    "aktorId": "21528104212",
+    "adresse": "Gamle Mosvegen 389, 2960",
+    "familemedlemmer": {
+
+    }
+  },
+  "arbeidsgiverInformasjon": {
+    "lopendeArbeidsforhold": [
+      {
+        "arbeidsgiver": "SAUEFABRIKK",
+        "organisasjonsnummer": "896929119",
+        "adresse": "OPALV 75, 5252 SØREIDGREND",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 70,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2000-08",
+              "tom": null
+            }
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "SJOKKERENDE ELEKTRIKER",
+        "organisasjonsnummer": "947064649",
+        "adresse": "DRIVHUSVEGEN 40, 9027 RAMFJORDBOTN",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 50,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2020-08",
+              "tom": null
+            }
+          }
+        ]
+      }
+    ],
+    "historikk": []
+  },
+  "inntektInformasjon": {
+    "loennsinntekt": [
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2020-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2020-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2021-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 30000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2022-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2023-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2023-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2024-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2024-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2024-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2024-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2024-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2025-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2025-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2025-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2025-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2025-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2025-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "BESK KAFFE",
+        "periode": "2025-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lonnstype": "fastloenn",
+        "antall": null,
+        "belop": 100000,
+        "harFlereVersjoner": false
+      }
+    ],
+    "naringsInntekt": [],
+    "pensjonEllerTrygd": [],
+    "ytelseFraOffentlige": []
+  },
+  "stonadOversikt": []
+}
