@@ -59,8 +59,8 @@ export default function OppslagBruker() {
                     </div>
                     <div>
                         <div>
-                            {data?.personInformasjon && (
-                                <ArbeidsDetaljer personInformasjon={data.personInformasjon} />
+                            {data?.arbeidsgiverInformasjon && (
+                                <ArbeidsDetaljer arbeidsgiverInformasjon={data.arbeidsgiverInformasjon} />
                             )}
                         </div>
                     </div>
