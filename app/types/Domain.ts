@@ -65,7 +65,8 @@ export interface PersonInformasjon {
     adresse: string;
     familemedlemmer: {
         [personId: string]: "BARN" | "GIFT" | string; // nøkkel = id, verdi = relasjon
-    };
+    },
+    statsborgerskap: string[];
 }
 
 export interface Stonad {
