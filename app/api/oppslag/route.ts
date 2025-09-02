@@ -2,7 +2,7 @@
 import { getnavpersondataapiOboToken } from "@/app/utils/access-token";
 import { isDevOrTest } from "@/app/utils/is-dev-or-test";
 import { OppslagBrukerRespons } from "@/app/types/Domain";
-import { getMockedResponse } from "./mock"; // 👈 importér, ikke eksportér
+import {getMockedResponseByFnr} from "./mock"; // 👈 importér, ikke eksportér
 
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
@@ -16,7 +16,7 @@ export async function GET(req: Request) {
 
     if (isDevOrTest()) {
         console.log("DEVELOPMENT: returnerer mock-respons");
-        return await getMockedResponse();
+        return await getMockedResponseByFnr(fnr);
     }
 
     return await getDataFromBackEnd(oboToken, fnr);
