@@ -23,11 +23,11 @@ export async function getMockedResponseByFnr(fnr: string): Promise<Response> {
             const raw = await fs.readFile(file, "utf-8");
             const data = JSON.parse(raw) as OppslagBrukerRespons;
             return Response.json(data, { status: 200 });
-        } catch (err: any) {
+        } catch (err: unknown) {
             // prøv neste kandidat ved ENOENT, ellers kast videre
-            if (err?.code !== "ENOENT") {
+            if (err instanceof Error && (err as NodeJS.ErrnoException).code !== "ENOENT") {
                 return new Response(
-                    JSON.stringify({ error: `Kunne ikke lese mock: ${err?.message ?? "ukjent feil"}` }),
+                    JSON.stringify({ error: `Kunne ikke lese mock: ${err.message ?? "ukjent feil"}` }),
                     { status: 500, headers: { "content-type": "application/json" } }
                 );
             }

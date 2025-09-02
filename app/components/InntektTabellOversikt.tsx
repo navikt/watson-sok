@@ -1,13 +1,13 @@
 "use client";
 
 import { Box, ExpansionCard, Alert, Table } from "@navikt/ds-react";
+import { ExclamationmarkTriangleFillIcon } from "@navikt/aksel-icons";
+import type { CSSProperties } from "react";
 import { InntektInformasjon } from "@/app/types/Domain";
 import { parse, format, isValid as isValidDate } from "date-fns";
 import { nb } from "date-fns/locale";
 
-type Props = {
-    inntektInformasjon: InntektInformasjon;
-};
+type Props = { inntektInformasjon: InntektInformasjon };
 
 const fmtNOK = new Intl.NumberFormat("nb-NO", {
     style: "currency",
@@ -21,36 +21,34 @@ function toNumber(val: unknown): number | null {
     const n = typeof val === "number" ? val : Number(String(val).replace(",", "."));
     return Number.isFinite(n) ? n : null;
 }
-
 function formatYM(ym: string | null | undefined): string {
     if (!ym) return "–";
     const d = parse(ym, "yyyy-MM", new Date());
     return isValidDate(d) ? format(d, "MMM yyyy", { locale: nb }) : ym;
 }
-
 function mapLonnstype(raw?: string | null): string {
     if (!raw) return "–";
     const x = raw.toLowerCase();
     switch (x) {
-        case "timeloenn":
-            return "Timelønn";
-        case "fastloenn":
-            return "Fastlønn";
-        case "overtidsgodtgjoerelse":
-            return "Overtidsgodtgjørelse";
-        case "feriepenger":
-            return "Feriepenger";
-        case "tips":
-            return "Tips";
-        default:
-            return raw;
+        case "timeloenn": return "Timelønn";
+        case "fastloenn": return "Fastlønn";
+        case "overtidsgodtgjoerelse": return "Overtidsgodtgjørelse";
+        case "feriepenger": return "Feriepenger";
+        case "tips": return "Tips";
+        default: return raw;
     }
 }
+
+// Highlight-stil for celler i rad med flere versjoner
+const warnStyle: CSSProperties = {
+    backgroundColor: "var(--a-surface-warning-subtle)",
+    boxShadow: "inset 0 0 0 1px var(--a-border-warning-subtle)",
+};
 
 export default function InntektTabellOversikt({ inntektInformasjon }: Props) {
     const alle = inntektInformasjon?.loennsinntekt ?? [];
 
-    // Siste 3 år (36 mnd) fra i dag
+    // Siste 3 år (36 mnd)
     const now = new Date();
     const cutoff = new Date(now.getFullYear(), now.getMonth() - 36, 1);
 
@@ -60,7 +58,7 @@ export default function InntektTabellOversikt({ inntektInformasjon }: Props) {
             return isValidDate(d) && d >= cutoff;
         })
         .sort((a, b) => (a.periode ?? "").localeCompare(b.periode ?? "", "nb", { numeric: true }))
-        .reverse(); // nyest først
+        .reverse();
 
     const isEmpty = rows.length === 0;
 
@@ -72,43 +70,87 @@ export default function InntektTabellOversikt({ inntektInformasjon }: Props) {
                 {isEmpty ? (
                     <Alert variant="info">Ingen lønnsutbetalinger funnet for de siste 3 årene.</Alert>
                 ) : (
-                    <Table className="mt-2" zebraStripes>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell scope="col">Arbeidsgiver</Table.HeaderCell>
-                                <Table.HeaderCell scope="col">Periode</Table.HeaderCell>
-                                <Table.HeaderCell scope="col">Arbeidsforhold</Table.HeaderCell>
-                                <Table.HeaderCell scope="col">Stilling %</Table.HeaderCell>
-                                <Table.HeaderCell scope="col">Lønnstype</Table.HeaderCell>
-                                <Table.HeaderCell scope="col">Timer</Table.HeaderCell>
-                                <Table.HeaderCell scope="col" align="right">
-                                    Beløp
-                                </Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
-                            {rows.map((r, i) => {
-                                const stilling = toNumber(r.stillingsprosent);
-                                const timer = toNumber(r.antall);
-                                const belop = toNumber(r.belop);
-                                return (
-                                    <Table.Row key={`${r.arbeidsgiver}-${r.periode}-${i}`}>
-                                        <Table.HeaderCell scope="row">{r.arbeidsgiver || "–"}</Table.HeaderCell>
-                                        <Table.DataCell>{formatYM(r.periode)}</Table.DataCell>
-                                        <Table.DataCell>{r.arbeidsforhold?.trim() || "–"}</Table.DataCell>
-                                        <Table.DataCell>
-                                            {stilling !== null ? `${fmtDec.format(stilling)} %` : "–"}
-                                        </Table.DataCell>
-                                        <Table.DataCell>{mapLonnstype(r.lonnstype)}</Table.DataCell>
-                                        <Table.DataCell>{timer !== null ? fmtDec.format(timer) : "–"}</Table.DataCell>
-                                        <Table.DataCell align="right">
-                                            {belop !== null ? fmtNOK.format(belop) : "–"}
-                                        </Table.DataCell>
-                                    </Table.Row>
-                                );
-                            })}
-                        </Table.Body>
-                    </Table>
+                    <>
+                        {/* Legend */}
+                        <div className="text-sm text-gray-600 mb-2 flex items-center gap-2">
+              <span
+                  aria-hidden
+                  style={{
+                      width: 14, height: 14, display: "inline-block", borderRadius: 3,
+                      backgroundColor: "var(--a-surface-warning-subtle)",
+                      boxShadow: "inset 0 0 0 1px var(--a-border-warning-subtle)",
+                  }}
+              />
+                            <span>
+                                 <ExclamationmarkTriangleFillIcon
+                                     aria-label="Flere versjoner"
+                                     title="Flere versjoner"
+                                     style={{ color: "var(--a-icon-warning)" }}
+                                     fontSize="1.125rem"
+                                 />
+                                Rader markert i gult og med varselikon har flere versjoner i A-ordningen.
+                            </span>
+                        </div>
+
+                        <Table className="mt-2" zebraStripes>
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell scope="col">Arbeidsgiver</Table.HeaderCell>
+                                    <Table.HeaderCell scope="col">Periode</Table.HeaderCell>
+                                    <Table.HeaderCell scope="col">Arbeidsforhold</Table.HeaderCell>
+                                    <Table.HeaderCell scope="col">Stilling %</Table.HeaderCell>
+                                    <Table.HeaderCell scope="col">Lønnstype</Table.HeaderCell>
+                                    <Table.HeaderCell scope="col">Timer</Table.HeaderCell>
+                                    <Table.HeaderCell scope="col" align="right">Beløp</Table.HeaderCell>
+                                </Table.Row>
+                            </Table.Header>
+
+                            <Table.Body>
+                                {rows.map((r, i) => {
+                                    const stilling = toNumber(r.stillingsprosent);
+                                    const timer = toNumber(r.antall);
+                                    const belop = toNumber(r.belop);
+                                    const hasVersions = !!r.harFlereVersjoner;
+                                    const cellStyle = hasVersions ? warnStyle : undefined;
+
+                                    return (
+                                        <Table.Row
+                                            key={`${r.arbeidsgiver}-${r.periode}-${i}`}
+                                            aria-label={hasVersions ? "Har flere versjoner" : undefined}
+                                        >
+                                            <Table.HeaderCell scope="row" style={cellStyle}>
+                        <span className="inline-flex items-center gap-2">
+                          {hasVersions && (
+                              <ExclamationmarkTriangleFillIcon
+                                  aria-label="Flere versjoner"
+                                  title="Flere versjoner"
+                                  style={{ color: "var(--a-icon-warning)" }}
+                                  fontSize="1.125rem"
+                              />
+                          )}
+                            <span>{r.arbeidsgiver || "–"}</span>
+                        </span>
+                                                {hasVersions && <span className="sr-only"> (flere versjoner)</span>}
+                                            </Table.HeaderCell>
+
+                                            <Table.DataCell style={cellStyle}>{formatYM(r.periode)}</Table.DataCell>
+                                            <Table.DataCell style={cellStyle}>{r.arbeidsforhold?.trim() || "–"}</Table.DataCell>
+                                            <Table.DataCell style={cellStyle}>
+                                                {stilling !== null ? `${fmtDec.format(stilling)} %` : "–"}
+                                            </Table.DataCell>
+                                            <Table.DataCell style={cellStyle}>{mapLonnstype(r.lonnstype)}</Table.DataCell>
+                                            <Table.DataCell style={cellStyle}>
+                                                {timer !== null ? fmtDec.format(timer) : "–"}
+                                            </Table.DataCell>
+                                            <Table.DataCell style={{ ...cellStyle, textAlign: "right" }}>
+                                                {belop !== null ? fmtNOK.format(belop) : "–"}
+                                            </Table.DataCell>
+                                        </Table.Row>
+                                    );
+                                })}
+                            </Table.Body>
+                        </Table>
+                    </>
                 )}
             </Box>
 

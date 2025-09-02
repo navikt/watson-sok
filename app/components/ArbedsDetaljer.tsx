@@ -41,7 +41,7 @@ function formatMonth(ym: string | null | undefined) {
 
 export default function ArbeidsgivereTable({ arbeidsgiverInformasjon, fnr = "" }: Props) {
     const løpende = arbeidsgiverInformasjon?.lopendeArbeidsforhold ?? [];
-    const historikk = arbeidsgiverInformasjon?.historikk ?? [];
+
 
     // Flater ut alle (arbeidsgiver x ansettelsesDetalj) til rad-objekter
     const rows = [...løpende].flatMap((ag) =>
