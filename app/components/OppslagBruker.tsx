@@ -9,6 +9,7 @@ import PersonDetaljer from "@/app/components/PersonDetaljer";
 
 import StonadOversikt from "@/app/components/StonadOversikt";
 import ArbeidsDetaljer from "@/app/components/ArbedsDetaljer";
+import InntektTabellOversikt from "@/app/components/InntektTabellOversikt";
 
 
 export default function OppslagBruker() {
@@ -69,6 +70,11 @@ export default function OppslagBruker() {
             <div>
                 {data?.stonadOversikt && (
                     <StonadOversikt stonadOversikt={data.stonadOversikt} />
+                )}
+            </div>
+            <div>
+                {data?.inntektInformasjon && (
+                    <InntektTabellOversikt inntektInformasjon={data.inntektInformasjon} />
                 )}
             </div>
 
