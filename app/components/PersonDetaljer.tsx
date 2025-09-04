@@ -3,7 +3,8 @@
 
 
 import {PersonInformasjon} from "@/app/types/Domain";
-import {BodyLong, Box, ExpansionCard, Heading, HStack, Link} from "@navikt/ds-react";
+import {BodyLong, Box, CopyButton, ExpansionCard, Heading, HStack, Link} from "@navikt/ds-react";
+import {FilesIcon} from "@navikt/aksel-icons";
 
 export default function PersonDetaljer({
                                             personInformasjon,
@@ -39,12 +40,16 @@ export default function PersonDetaljer({
                             : (personInformasjon.navn ?? "–")}
                     </BodyLong>
                 </HStack>
-                <HStack gap="2">
-                    <BodyLong>
-                        {personInformasjon.aktorId}
-                    </BodyLong>
+                <HStack gap="0" align="center">
+                    <BodyLong as="span">{personInformasjon.aktorId}</BodyLong>
+                    <CopyButton size="small"
+                        copyText={personInformasjon.aktorId}
+                        icon={<FilesIcon aria-hidden style={{ verticalAlign: "middle" }} />}
+                        activeIcon={<FilesIcon aria-hidden style={{ verticalAlign: "middle" }} />}
+                    />
                     <Link href="/personHistorikk">Fødselsnummerhistorikk</Link>
                 </HStack>
+
                 <HStack gap="2">
                     <BodyLong>
                         {personInformasjon.adresse}

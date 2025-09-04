@@ -73,23 +73,10 @@ export default function InntektTabellOversikt({ inntektInformasjon }: Props) {
                     <>
                         {/* Legend */}
                         <div className="text-sm text-gray-600 mb-2 flex items-center gap-2">
-              <span
-                  aria-hidden
-                  style={{
-                      width: 14, height: 14, display: "inline-block", borderRadius: 3,
-                      backgroundColor: "var(--a-surface-warning-subtle)",
-                      boxShadow: "inset 0 0 0 1px var(--a-border-warning-subtle)",
-                  }}
-              />
-                            <span>
-                                 <ExclamationmarkTriangleFillIcon
-                                     aria-label="Flere versjoner"
-                                     title="Flere versjoner"
-                                     style={{ color: "var(--a-icon-warning)" }}
-                                     fontSize="1.125rem"
-                                 />
+
+                            <Alert variant="warning">
                                 Rader markert i gult og med varselikon har flere versjoner i A-ordningen.
-                            </span>
+                            </Alert>
                         </div>
 
                         <Table className="mt-2" zebraStripes>
