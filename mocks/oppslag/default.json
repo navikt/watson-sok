@@ -47,7 +47,8 @@
             "periode": {
               "fom": "2023-08",
               "tom": "2024-11"
-            }
+            },
+            "yrke": "RESTAURANTMEDARBEIDER (SERVITØR)"
           },
           {
             "type": "Ordinaer",
@@ -1150,7 +1151,7 @@
         "lonnstype": "tips",
         "antall": null,
         "belop": "6122.0",
-        "harFlereVersjoner": false
+        "harFlereVersjoner": true
       }
     ],
     "naringsInntekt": [],

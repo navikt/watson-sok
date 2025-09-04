@@ -9,6 +9,8 @@ type AnsettelsesDetalj = {
     stillingsprosent?: number | null;
     antallTimerPrUke?: number | null;
     periode: { fom: string; tom: string | null }; // "YYYY-MM"
+    yrke?: string | null;
+
 };
 
 type ArbeidsgiverPost = {
@@ -52,7 +54,7 @@ export default function ArbeidsgivereTable({ arbeidsgiverInformasjon, fnr = "" }
             slutt: det.periode.tom,
             stillingsprosent: det.stillingsprosent ?? null,
             arbeidsforholdType: det.type ?? null,
-            yrke: null as string | null, // finnes ikke i datasettet ditt
+            yrke: det.yrke,
             løpende: !det.periode.tom,
         }))
     );

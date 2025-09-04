@@ -44,6 +44,7 @@ export interface AnsettelsesDetalj {
     stillingsprosent: number;
     antallTimerPrUke: number;
     periode: Periode;
+    ytrke: string
 }
 
 export interface Arbeidsforhold {
