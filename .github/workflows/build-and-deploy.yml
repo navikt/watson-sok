@@ -42,9 +42,15 @@ jobs:
           # are provided as organization secret/variables.
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-      - name: Deploy to nais
+      - name: Deploy to gcp-dev
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: dev-gcp
           IMAGE: ${{ steps.docker-push.outputs.image }}
           RESOURCE: .nais/nais.yml
+      - name: Deploy to gcp-prod
+        uses: nais/deploy/actions/deploy@v2
+        env:
+          CLUSTER: prod-gcp
+          IMAGE: ${{ steps.docker-push.outputs.image }}
+          RESOURCE: .nais/prod.yml
