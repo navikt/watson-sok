@@ -19,6 +19,15 @@ export default function PersonDetaljer({
     ]
         .filter(Boolean) // fjerner null, undefined, ""
         .join(" ");
+
+        const adresse =  [personInformasjon.adresse_?.norskAdresse?.adressenavn,
+                                personInformasjon.adresse_?.norskAdresse?.husnummer,
+                                personInformasjon.adresse_?.norskAdresse?.husbokstav,
+                                ",",
+                                personInformasjon.adresse_?.norskAdresse?.postnummer]
+            .filter(Boolean) // fjerner null, undefined, ""
+            .join(" ");
+
     return (
 
         <div className="p-6">
@@ -59,6 +68,8 @@ export default function PersonDetaljer({
 
                     <dt>Folkeregistrert adresse</dt>
                     <dd>
+                        <HStack gap="0" align="center">
+                            <BodyLong as="span">
                         {personInformasjon.adresse_
                             ? (
                                 <>
@@ -78,6 +89,13 @@ export default function PersonDetaljer({
                                 </>
                             )
                             : "–"}
+                            </BodyLong>
+                            <CopyButton size="small"
+                                        copyText={adresse}
+                                        icon={<FilesIcon aria-hidden style={{verticalAlign: "middle"}}/>}
+                                        activeIcon={<FilesIcon aria-hidden style={{verticalAlign: "middle"}}/>}
+                            />
+                        </HStack>
                     </dd>
                     <dt>statsborgerskap</dt>
                     <dd> <BodyLong>
