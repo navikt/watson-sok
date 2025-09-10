@@ -54,10 +54,10 @@ export default function PersonDetaljer({
                         </HStack>
                     </dd>
                     <dt>Fødselsnummer eller Dnr :</dt>
-                    <dd>
+                    <dd aria-label={personInformasjon.aktorId}>
                         <HStack gap="0" align="center">
 
-                            <BodyLong as="span">{personInformasjon.aktorId}</BodyLong>
+                            <BodyLong as="span">{formatFnr(personInformasjon.aktorId)}</BodyLong>
                             <CopyButton size="small"
                                         copyText={personInformasjon.aktorId}
                                         icon={<FilesIcon aria-hidden style={{verticalAlign: "middle"}}/>}
@@ -128,3 +128,10 @@ export default function PersonDetaljer({
 
     );
 }
+
+export function formatFnr(fnr: string | null | undefined): string {
+    if (!fnr || fnr.length !== 11) return fnr ?? "–";
+
+    return fnr.slice(0, 6) + " " + fnr.slice(6);
+}
+

@@ -12,3 +12,16 @@
 .keyValueLayout dd {
     margin: 0;
 }
+.keyValueLayout dt,
+.keyValueLayout dd {
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0;
+}
+
+.header{
+    margin-top: 30px;
+}
+

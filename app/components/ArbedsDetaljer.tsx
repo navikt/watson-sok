@@ -1,6 +1,6 @@
 "use client";
 
-import { Table, Tag, Alert } from "@navikt/ds-react";
+import {Table, Tag, Alert, Heading} from "@navikt/ds-react";
 import { parse, format } from "date-fns";
 import { nb } from "date-fns/locale";
 
@@ -71,6 +71,10 @@ export default function ArbeidsgivereTable({ arbeidsgiverInformasjon, fnr = "" }
     }
 
     return (
+        <div>
+            <Heading level="2" size="medium" spacing>
+                Arbeidsforhold
+            </Heading>
         <Table className="mt-4">
             <Table.Header>
                 <Table.Row>
@@ -104,5 +108,6 @@ export default function ArbeidsgivereTable({ arbeidsgiverInformasjon, fnr = "" }
                 ))}
             </Table.Body>
         </Table>
+        </div>
     );
 }
