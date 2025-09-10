@@ -8,6 +8,16 @@ metadata:
   namespace: holmes
 
 spec:
+  liveness:
+    path: /api/health
+    initialDelay: 5
+  readiness:
+    path: /api/health
+    initialDelay: 5
+  observability:
+    logging:
+      destinations:
+        - id: loki
   ingresses:
     - https://oppslag-bruker.intern.dev.nav.no
     - https://oppslag-bruker.ansatt.dev.nav.no
