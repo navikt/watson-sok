@@ -12,6 +12,13 @@ export default function PersonDetaljer({
     personInformasjon: PersonInformasjon;
 }) {
 
+    const fulltnavn = [
+        personInformasjon.navn_?.fornavn,
+        personInformasjon.navn_?.mellomnavn,
+        personInformasjon.navn_?.etternavn
+    ]
+        .filter(Boolean) // fjerner null, undefined, ""
+        .join(" ");
     return (
 
         <div className="p-6">
@@ -26,7 +33,17 @@ export default function PersonDetaljer({
                 </Heading>
                 <dl className={styles.keyValueLayout}>
                     <dt>Navn</dt>
-                    <dd>{personInformasjon.navn_.fornavn} {personInformasjon.navn_.mellomnavn} {personInformasjon.navn_.etternavn}</dd>
+                    <dd>
+                        <HStack gap="0" align="center">
+
+                            <BodyLong as="span">{fulltnavn}</BodyLong>
+                            <CopyButton size="small"
+                                        copyText={fulltnavn}
+                                        icon={<FilesIcon aria-hidden style={{verticalAlign: "middle"}}/>}
+                                        activeIcon={<FilesIcon aria-hidden style={{verticalAlign: "middle"}}/>}
+                            />
+                        </HStack>
+                    </dd>
                     <dt>Fødselsnummer eller Dnr :</dt>
                     <dd>
                         <HStack gap="0" align="center">
