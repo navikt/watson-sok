@@ -3,17 +3,30 @@
   "saksbehandlerIdent": "",
   "fodselsnr": "",
   "personInformasjon": {
-    "navn": "ETT  NAVN",
-    "aktorId": "12345678901",
-    "adresse": "SMAL VEI 2001, 1480",
-    "familemedlemmer": {
-      "222222222222": "BARN",
-      "33333333333": "FAR",
-      "4444444444": "MOR"
-    },
+    "navn": "KONKURRANSEDYKTIG null GJØRME",
+    "aktorId": "21528104212",
+    "adresse": "Gamle Mosvegen 389, 2960",
+    "familemedlemmer": {},
     "statsborgerskap": [
-      "NOR","SWE"
-    ]
+      "NOR"
+    ],
+    "navn_": {
+      "fornavn": "KONKURRANSEDYKTIG",
+      "mellomnavn": null,
+      "etternavn": "GJØRME"
+    },
+    "adresse_": {
+      "norskAdresse": {
+        "adressenavn": "Gamle Mosvegen",
+        "husnummer": "389",
+        "husbokstav": null,
+        "postnummer": "2960",
+        "kommunenummer": "3452",
+        "poststed": "2960"
+      },
+      "utenlandskAdresse": null
+    },
+    "sivilstand": "UGIFT"
   },
   "arbeidsgiverInformasjon": {
     "lopendeArbeidsforhold": [

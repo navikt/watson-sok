@@ -1,0 +1,14 @@
+.keyValueLayout {
+    display: grid;
+    grid-template-columns: max-content auto;
+    column-gap: 1.5rem;
+    row-gap: 0.5rem;
+}
+
+.keyValueLayout dt {
+    font-weight: 600;
+}
+
+.keyValueLayout dd {
+    margin: 0;
+}

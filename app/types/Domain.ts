@@ -62,12 +62,43 @@ export interface ArbeidsgiverInformasjon {
 
 export interface PersonInformasjon {
     navn: string;
+    navn_:Navn;
     aktorId: string;
     adresse: string;
+    adresse_:BostedsAdresse;
     familemedlemmer: {
         [personId: string]: "BARN" | "GIFT" | string; // nøkkel = id, verdi = relasjon
     },
     statsborgerskap: string[];
+    sivilstand: string;
+}
+
+export interface Navn {
+    fornavn: string;
+    mellomnavn: string;
+    etternavn: string;
+}
+
+export interface BostedsAdresse{
+    norskAdresse:NorskAdresse,
+    utenlandskAdresse:UtlandsAdresse
+}
+export interface NorskAdresse{
+    adressenavn: string;
+    husnummer : string;
+    husbokstav: string;
+    postnummer: string;
+    kommunenummer: string;
+    poststed: string;
+}
+export interface UtlandsAdresse{
+    adressenavnNummer:string;
+    bygningEtasjeLeilighet:string;
+    postboksNummerNavn:string;
+    postkode:string;
+    bySted:string
+
+
 }
 
 export interface Stonad {
