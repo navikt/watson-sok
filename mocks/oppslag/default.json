@@ -11,9 +11,7 @@
       "33333333333": "FAR",
       "4444444444": "MOR"
     },
-    "statsborgerskap": [
-      "NOR","SWE"
-    ]
+    "statsborgerskap": ["NOR", "SWE"]
   },
   "arbeidsgiverInformasjon": {
     "lopendeArbeidsforhold": [

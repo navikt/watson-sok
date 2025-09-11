@@ -24,7 +24,7 @@ export async function GET(req: Request) {
 
 async function getDataFromBackEnd(
   oboToken: string,
-  fnr: string
+  fnr: string,
 ): Promise<Response> {
   const targetUrl = `${env.NAV_PERSONDATA_API_URL}oppslag-bruker`;
 

@@ -28,7 +28,7 @@ spec:
           namespace: holmes
         - application: populasjonstilgangskontroll
           namespace: tilgangsmaskin
-  image: {{image}}
+  image: { { image } }
   port: 3000
   azure:
     application:
@@ -40,7 +40,7 @@ spec:
           - id: "a1d74637-a6fc-41a9-9277-f368ee6745b3" # 0000-GA-kontroll-Oppslag-Bruker-Utvidet
           - id: "206f49eb-51fb-4afe-b1b1-33cf2165aa23" # 0000-GA-kontroll-Oppslag-Bruker-Basic
         extra:
-          - 'NAVident'
+          - "NAVident"
     sidecar:
       enabled: true
       autoLogin: true
