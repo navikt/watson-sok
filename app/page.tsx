@@ -1,32 +1,82 @@
 "use client";
 
-import { Alert } from "@navikt/ds-react";
-import ArbeidsgiverOversikt from "../components/ArbeidsgiverOversikt";
-import Info from "../components/Info";
-import OppslagBruker from "../components/OppslagBruker";
-import { useFeature } from "../context/FeatureContext";
+import { FileIcon } from "@navikt/aksel-icons";
+import {
+  Alert,
+  Bleed,
+  BodyLong,
+  Heading,
+  Page,
+  Search,
+  Stack,
+  VStack,
+} from "@navikt/ds-react";
+import React from "react";
 
-export default function HomePage() {
-  const { valgtFeature } = useFeature();
+import { useUserSearch } from "@/context/UserSearchContext";
+import { useRouter } from "next/navigation";
 
-  switch (valgtFeature) {
-    case null:
-      return <Info />;
-    case "oppslag-bruker":
-      return <OppslagBruker />;
-    case "arbeidsgiveroversikt":
-      return <ArbeidsgiverOversikt />;
-    case "statistikk":
-      return (
-        <Alert variant="info" className="m-4">
-          Statistikk kommer snart.
-        </Alert>
-      );
-    default:
-      return (
-        <Alert variant="error" className="m-4">
-          Ugyldig visning valgt. Gå tilbake til menyen.
-        </Alert>
-      );
-  }
+export default function Info() {
+  const { setFnr } = useUserSearch();
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const fnr = formData.get("fnr")?.toString().trim();
+    if (fnr && fnr.length === 11) {
+      setFnr(fnr);
+      router.push(`/oppslag/${fnr}`);
+    } else {
+      alert("Ugyldig fødselsnummer");
+    }
+  };
+
+  return (
+    <Page>
+      <Page.Block width="text" gutters>
+        <VStack as="main" gap="8">
+          <Bleed marginInline={{ lg: "24" }}>
+            <Stack
+              gap="6"
+              direction={{ sm: "row-reverse", lg: "row" }}
+              justify={{ sm: "space-between", lg: "start" }}
+              wrap={false}
+            >
+              <VStack gap="1">
+                <Heading level="1" size="medium" align="start" className="mt-4">
+                  <FileIcon title="a11y-title" className="inline-block mr-2" />
+                  Oppslag på bruker i Nav
+                </Heading>
+                <BodyLong>
+                  Ved å søke på fødselsnummer eller D-nummer i søkefeltet
+                  nedenfor får du en enkel oversikt over en Nav bruker sine
+                  forhold i Nav
+                </BodyLong>
+                <Alert variant="info" closeButton={true}>
+                  Melding til saksbehandler. En informasjon om at man ikke må
+                  bruke tjenesten dersom det ikke ligger tjenstlig behov til
+                  grunn. Her kan det også oppgis hvilke lover og paragrafer som
+                  gjelder.
+                </Alert>
+
+                <form className="px-5 mt-12" onSubmit={handleSubmit}>
+                  <VStack>
+                    <label htmlFor="fnr">Fødselsnummer/D-nummer</label>
+                    <Search
+                      name="fnr"
+                      size="medium"
+                      variant="primary"
+                      placeholder="11 siffer"
+                      label="Søk på fødselsnummer"
+                    />
+                  </VStack>
+                </form>
+              </VStack>
+            </Stack>
+          </Bleed>
+        </VStack>
+      </Page.Block>
+    </Page>
+  );
 }
