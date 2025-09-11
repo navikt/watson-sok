@@ -1,12 +1,10 @@
-import "@navikt/ds-css";
+import { getLoggedInUser } from "@/app/utils/access-token";
+import { Metadata } from "next";
+import HolmesHeader from "./components/header/holmesHeader";
 import { FeatureProvider } from "./context/FeatureContext";
 import { UserProvider } from "./context/UserContext";
 import { UserSearchProvider } from "./context/UserSearchContext"; // 👈 LEGG TIL DENNE
-import "./page.module.css";
-import { Page } from "@navikt/ds-react";
-import HolmesHeader from "./components/header/holmesHeader";
-import { getLoggedInUser } from "@/app/utils/access-token";
-import { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "oppslag-bruker",
@@ -21,18 +19,14 @@ const RootLayout = async ({
     <html lang="no">
       <head />
       <body>
-        <Page>
-          <UserProvider user={loggedInUser}>
-            <UserSearchProvider>
-              {" "}
-              {/* 👈 NÅ ER DEN PÅ PLASS */}
-              <FeatureProvider>
-                <HolmesHeader />
-                {children}
-              </FeatureProvider>
-            </UserSearchProvider>
-          </UserProvider>
-        </Page>
+        <UserProvider user={loggedInUser}>
+          <UserSearchProvider>
+            <FeatureProvider>
+              <HolmesHeader />
+              {children}
+            </FeatureProvider>
+          </UserSearchProvider>
+        </UserProvider>
       </body>
     </html>
   );
