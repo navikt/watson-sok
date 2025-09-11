@@ -2,7 +2,7 @@
 
 import DetaljModal from "@/app/components/DetaljModal";
 import PersonDetaljer from "@/app/components/PersonDetaljer";
-import { useUserSearch } from "@/app/context/UserSearchContext";
+import { useUserSearch } from "@/context/UserSearchContext";
 import { OppslagBrukerRespons } from "@/types/Domain";
 import { Alert, Box, Button, HGrid } from "@navikt/ds-react";
 import { useEffect, useState } from "react";

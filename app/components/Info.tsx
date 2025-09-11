@@ -13,8 +13,8 @@ import {
 } from "@navikt/ds-react";
 import React from "react";
 
-import { useFeature } from "@/app/context/FeatureContext";
-import { useUserSearch } from "@/app/context/UserSearchContext";
+import { useFeature } from "@/context/FeatureContext";
+import { useUserSearch } from "@/context/UserSearchContext";
 
 export default function Info() {
   const { setFnr } = useUserSearch();

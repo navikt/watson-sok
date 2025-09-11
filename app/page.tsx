@@ -1,10 +1,10 @@
 "use client";
 
-import { useFeature } from "./context/FeatureContext";
-import OppslagBruker from "./components/OppslagBruker";
+import { Alert } from "@navikt/ds-react";
+import { useFeature } from "../context/FeatureContext";
 import ArbeidsgiverOversikt from "./components/ArbeidsgiverOversikt";
 import Info from "./components/Info";
-import { Alert } from "@navikt/ds-react";
+import OppslagBruker from "./components/OppslagBruker";
 
 export default function HomePage() {
   const { valgtFeature } = useFeature();
