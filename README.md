@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Holmes Oppslag Bruker
 
-## Getting Started
+En Next.js-applikasjon for å søke opp brukere i Nav-systemet ved hjelp av fødselsnummer eller D-nummer.
 
-First, run the development server:
+## Funksjonalitet
+
+- Søk på brukere ved hjelp av fødselsnummer eller D-nummer
+- Viser oversikt over brukerens forhold i Nav
+
+## Teknisk stack
+
+- **Frontend**: Next.js 15 med React 19
+- **Styling**: Tailwind CSS med Navs designsystem (Aksel)
+- **Autentisering**: Azure AD via Oasis
+- **Deployment**: NAIS på GCP
+
+## Kom i gang
+
+### Forutsetninger
+
+- Node.js 20 eller høyere
+- npm
+
+### Installasjon
+
+1. Klon repositoriet:
+
+```bash
+git clone <repository-url>
+cd holmes-oppslag-bruker
+```
+
+2. Installer avhengigheter:
+
+```bash
+npm install
+```
+
+3. Start utviklingsserveren:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Åpne [http://localhost:3000](http://localhost:3000) i nettleseren
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Tilgjengelige scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` - Starter utviklingsserveren
+- `npm run build` - Bygger applikasjonen for produksjon
+- `npm run start` - Starter produksjonsserveren
+- `npm run lint` - Kjører ESLint
+- `npm run typecheck` - Kjører TypeScript type-sjekk
+- `npm run prettier` - Sjekker Prettier formatering
+- `npm run prettier:fix` - Fikser Prettier formatering
 
-## Learn More
+## Utvikling
 
-To learn more about Next.js, take a look at the following resources:
+### Kodekvalitet
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Prosjektet bruker:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **ESLint** for kodekvalitet
+- **Prettier** for kodeformatering
+- **TypeScript** for type-sikkerhet
 
-## Deploy on Vercel
+Alle endringer må passere:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- TypeScript type-sjekk
+- ESLint sjekk
+- Prettier formatering
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+Applikasjonen deployes automatisk til NAIS på GCP via GitHub Actions.
+
+### Miljøer
+
+- **Produksjon**: https://oppslag-bruker.intern.nav.no
+- **Dev**: https://oppslag-bruker.intern.dev.nav.no
+- **Utvikling**: Lokal utvikling på localhost:3000
+
+## Lisens
+
+Nav sin egen versjon av MIT. Se [LICENSE](LICENSE) filen for detaljer.
