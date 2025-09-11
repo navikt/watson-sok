@@ -10,11 +10,11 @@ import {
 } from "@navikt/aksel-icons";
 import { ActionMenu, InternalHeader, Spacer } from "@navikt/ds-react";
 
-import { useFeature } from "@/context/FeatureContext";
 import { useUser } from "@/context/UserContext";
+import { useRouter } from "next/navigation";
 
 export default function HolmesHeader() {
-  const { setValgtFeature } = useFeature();
+  const router = useRouter();
   const user = useUser();
 
   return (
@@ -31,20 +31,19 @@ export default function HolmesHeader() {
         <ActionMenu.Content>
           <ActionMenu.Group label="Interne flater">
             <ActionMenu.Item
-              onSelect={() => setValgtFeature("oppslag-bruker")}
+              onSelect={() => router.push("/")}
               icon={<PersonIcon />}
             >
               Oppslag bruker
             </ActionMenu.Item>
             <ActionMenu.Item
-              onSelect={() => setValgtFeature("arbeidsgiveroversikt")}
+              onSelect={() => router.push("/arbeidsgivere")}
               icon={<PersonGroupIcon />}
             >
               Arbeidsgiveroversikt
             </ActionMenu.Item>
             <ActionMenu.Item
-              onSelect={console.info}
-              disabled
+              onSelect={() => router.push("/statistikk")}
               icon={<BarChartIcon />}
             >
               Statistikk og innsikt

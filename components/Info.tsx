@@ -13,12 +13,12 @@ import {
 } from "@navikt/ds-react";
 import React from "react";
 
-import { useFeature } from "@/context/FeatureContext";
 import { useUserSearch } from "@/context/UserSearchContext";
+import { useRouter } from "next/navigation";
 
 export default function Info() {
   const { setFnr } = useUserSearch();
-  const { setValgtFeature } = useFeature();
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ export default function Info() {
     const fnr = formData.get("fnr")?.toString().trim();
     if (fnr && fnr.length === 11) {
       setFnr(fnr);
-      setValgtFeature("oppslag-bruker");
+      router.push(`/oppslag/${fnr}`);
     } else {
       alert("Ugyldig fødselsnummer");
     }
