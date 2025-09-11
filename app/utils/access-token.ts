@@ -37,7 +37,7 @@ export async function getLoggedInUser(): Promise<LoggedInUserResponse> {
 
 export async function getnavpersondataapiOboToken(): Promise<string> {
   return getOboToken(
-    `api://${env.NAV_PERSONDATA_API_CLUSTER}.holmes.nav-persondata-api/.default`
+    `api://${env.NAV_PERSONDATA_API_CLUSTER}.holmes.nav-persondata-api/.default`,
   );
 }
 

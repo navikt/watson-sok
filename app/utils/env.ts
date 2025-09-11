@@ -15,7 +15,7 @@ const envResult = envSchema.safeParse(process.env);
 if (!envResult.success) {
   console.error("Missing or invalid environment variables", envResult.error);
   throw new Error(
-    "Invalid environment variables. Check console for more information."
+    "Invalid environment variables. Check console for more information.",
   );
 }
 
