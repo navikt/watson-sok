@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import { isProd } from "./app/utils/env";
+import { isProd } from "./utils/env";
 
 const nextConfig: NextConfig = {
   output: "standalone",

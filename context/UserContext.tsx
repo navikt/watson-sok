@@ -1,7 +1,7 @@
 "use client";
 
+import type { LoggedInUserResponse } from "@/types/user";
 import { createContext, useContext } from "react";
-import type { LoggedInUserResponse } from "@/app/types/user";
 
 export const UserContext = createContext<LoggedInUserResponse | null>(null);
 export const useUser = () => useContext(UserContext);

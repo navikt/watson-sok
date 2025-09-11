@@ -1,5 +1,5 @@
 // lib/getMockedResponse.ts (server-side util)
-import { OppslagBrukerRespons } from "@/app/types/Domain";
+import { OppslagBrukerRespons } from "@/types/Domain";
 import fs from "fs/promises";
 import path from "path";
 

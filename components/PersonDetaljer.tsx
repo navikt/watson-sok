@@ -1,6 +1,7 @@
 "use client";
 
-import { PersonInformasjon } from "@/app/types/Domain";
+import { PersonInformasjon } from "@/types/Domain";
+import { FilesIcon } from "@navikt/aksel-icons";
 import {
   BodyLong,
   Box,
@@ -10,7 +11,6 @@ import {
   HStack,
   Link,
 } from "@navikt/ds-react";
-import { FilesIcon } from "@navikt/aksel-icons";
 
 export default function PersonDetaljer({
   personInformasjon,

@@ -1,17 +1,17 @@
 "use client";
 
 import {
-  PersonIcon,
-  PersonGroupIcon,
-  MenuGridIcon,
-  Buildings3Icon,
   BarChartIcon,
+  Buildings3Icon,
   ExternalLinkIcon,
+  MenuGridIcon,
+  PersonGroupIcon,
+  PersonIcon,
 } from "@navikt/aksel-icons";
 import { ActionMenu, InternalHeader, Spacer } from "@navikt/ds-react";
 
-import { useFeature } from "@/app/context/FeatureContext";
-import { useUser } from "@/app/context/UserContext";
+import { useFeature } from "@/context/FeatureContext";
+import { useUser } from "@/context/UserContext";
 
 export default function HolmesHeader() {
   const { setValgtFeature } = useFeature();
