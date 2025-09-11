@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import ArbeidsDetaljer from "@/components/ArbedsDetaljer";
 import InntektTabellOversikt from "@/components/InntektTabellOversikt";
 import StonadOversikt from "@/components/StonadOversikt";
+import { PageBlock } from "@navikt/ds-react/Page";
 
 export default function OppslagBruker() {
   const { fnr } = useUserSearch();
@@ -48,7 +49,7 @@ export default function OppslagBruker() {
   if (error) return <Alert variant="error">{error}</Alert>;
 
   return (
-    <div>
+    <PageBlock width="2xl" gutters>
       <Box>
         <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
           <div>
@@ -85,6 +86,6 @@ export default function OppslagBruker() {
       {modalOpen && (
         <DetaljModal fnr={fnr} onClose={() => setModalOpen(false)} />
       )}
-    </div>
+    </PageBlock>
   );
 }

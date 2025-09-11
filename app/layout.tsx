@@ -1,4 +1,5 @@
 import { getLoggedInUser } from "@/utils/access-token";
+import { Page } from "@navikt/ds-react";
 import { Metadata } from "next";
 import HolmesHeader from "../components/header/Header";
 import { UserProvider } from "../context/UserContext";
@@ -21,7 +22,7 @@ const RootLayout = async ({
         <UserProvider user={loggedInUser}>
           <UserSearchProvider>
             <HolmesHeader />
-            {children}
+            <Page>{children}</Page>
           </UserSearchProvider>
         </UserProvider>
       </body>
