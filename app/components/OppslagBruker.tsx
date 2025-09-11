@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useUserSearch } from "@/app/context/UserSearchContext";
-import { Alert, Button, HGrid, Box } from "@navikt/ds-react";
 import DetaljModal from "@/app/components/DetaljModal";
-import { OppslagBrukerRespons } from "@/app/types/Domain";
 import PersonDetaljer from "@/app/components/PersonDetaljer";
+import { useUserSearch } from "@/app/context/UserSearchContext";
+import { OppslagBrukerRespons } from "@/app/types/Domain";
+import { Alert, Box, Button, HGrid } from "@navikt/ds-react";
+import { useEffect, useState } from "react";
 
-import StonadOversikt from "@/app/components/StonadOversikt";
 import ArbeidsDetaljer from "@/app/components/ArbedsDetaljer";
 import InntektTabellOversikt from "@/app/components/InntektTabellOversikt";
+import StonadOversikt from "@/app/components/StonadOversikt";
 
 export default function OppslagBruker() {
   const { fnr } = useUserSearch();
@@ -48,7 +48,7 @@ export default function OppslagBruker() {
   if (error) return <Alert variant="error">{error}</Alert>;
 
   return (
-    <div className="p-4 mt-4">
+    <div>
       <Box>
         <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
           <div>

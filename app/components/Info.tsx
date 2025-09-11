@@ -1,19 +1,20 @@
 "use client";
 
-import React from "react";
+import { FileIcon } from "@navikt/aksel-icons";
 import {
   Alert,
-  VStack,
-  Search,
   Bleed,
+  BodyLong,
   Heading,
   Page,
+  Search,
   Stack,
+  VStack,
 } from "@navikt/ds-react";
-import { FileIcon } from "@navikt/aksel-icons";
+import React from "react";
 
-import { useUserSearch } from "@/app/context/UserSearchContext";
 import { useFeature } from "@/app/context/FeatureContext";
+import { useUserSearch } from "@/app/context/UserSearchContext";
 
 export default function Info() {
   const { setFnr } = useUserSearch();
@@ -35,10 +36,7 @@ export default function Info() {
     <Page>
       <Page.Block width="text" gutters>
         <VStack as="main" gap="8">
-          <Bleed
-            marginInline={{ lg: "24" }}
-            data-aksel-template="form-intropage-v2"
-          >
+          <Bleed marginInline={{ lg: "24" }}>
             <Stack
               gap="6"
               direction={{ sm: "row-reverse", lg: "row" }}
@@ -46,15 +44,15 @@ export default function Info() {
               wrap={false}
             >
               <VStack gap="1">
-                <Heading level="1" size="medium" align={"start"}>
-                  <FileIcon title="a11y-title" fontSize="1.0rem" />
+                <Heading level="1" size="medium" align="start" className="mt-4">
+                  <FileIcon title="a11y-title" className="inline-block mr-2" />
                   Oppslag på bruker i Nav
                 </Heading>
-                <p>
+                <BodyLong>
                   Ved å søke på fødselsnummer eller D-nummer i søkefeltet
                   nedenfor får du en enkel oversikt over en Nav bruker sine
                   forhold i Nav
-                </p>
+                </BodyLong>
                 <Alert variant="info" closeButton={true}>
                   Melding til saksbehandler. En informasjon om at man ikke må
                   bruke tjenesten dersom det ikke ligger tjenstlig behov til
@@ -62,7 +60,7 @@ export default function Info() {
                   gjelder.
                 </Alert>
 
-                <form className="self-center px-5" onSubmit={handleSubmit}>
+                <form className="px-5 mt-12" onSubmit={handleSubmit}>
                   <VStack>
                     <label htmlFor="fnr">Fødselsnummer/D-nummer</label>
                     <Search
