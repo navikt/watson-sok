@@ -1,11 +1,11 @@
 "use client";
 
-import { Box, ExpansionCard, Alert, Table } from "@navikt/ds-react";
+import { InntektInformasjon } from "@/types/Domain";
 import { ExclamationmarkTriangleFillIcon } from "@navikt/aksel-icons";
-import type { CSSProperties } from "react";
-import { InntektInformasjon } from "@/app/types/Domain";
-import { parse, format, isValid as isValidDate } from "date-fns";
+import { Alert, Box, ExpansionCard, Table } from "@navikt/ds-react";
+import { format, isValid as isValidDate, parse } from "date-fns";
 import { nb } from "date-fns/locale";
+import type { CSSProperties } from "react";
 
 type Props = { inntektInformasjon: InntektInformasjon };
 

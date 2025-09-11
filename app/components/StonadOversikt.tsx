@@ -1,9 +1,9 @@
 "use client";
 
 import { NokIcon } from "@navikt/aksel-icons";
-import { Box, ExpansionCard, Timeline, Alert } from "@navikt/ds-react";
+import { Alert, Box, ExpansionCard, Timeline } from "@navikt/ds-react";
 
-import { Stonad } from "@/app/types/Domain";
+import { Stonad } from "@/types/Domain";
 import { toDate } from "date-fns";
 
 export default function StonadOversikt({

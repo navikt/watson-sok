@@ -1,5 +1,5 @@
 // app/api/oppslag/route.ts
-import { OppslagBrukerRespons } from "@/app/types/Domain";
+import { OppslagBrukerRespons } from "@/types/Domain";
 import { getnavpersondataapiOboToken } from "@/utils/access-token";
 import { env, isProd } from "@/utils/env";
 import { getMockedResponseByFnr } from "./mock"; // 👈 importér, ikke eksportér
