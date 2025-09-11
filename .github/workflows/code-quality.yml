@@ -1,0 +1,43 @@
+name: Code quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-typecheck:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    env:
+      NAV_PERSONDATA_API_URL: ${{ vars.NAV_PERSONDATA_API_URL }}
+      NAV_PERSONDATA_API_CLUSTER: ${{ vars.NAV_PERSONDATA_API_CLUSTER }}
+    
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "23"
+          cache: "npm"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@navikt"
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run Prettier
+        run: npm run prettier
+
+      - name: Run TypeScript type checking
+        run: npm run typecheck
