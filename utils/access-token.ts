@@ -1,4 +1,4 @@
-import { env, isDev, isProd } from "@/app/utils/env";
+import { env, isDev, isProd } from "@/utils/env";
 import {
   getToken,
   parseAzureUserToken,

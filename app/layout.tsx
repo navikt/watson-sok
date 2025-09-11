@@ -1,4 +1,4 @@
-import { getLoggedInUser } from "@/app/utils/access-token";
+import { getLoggedInUser } from "@/utils/access-token";
 import { Metadata } from "next";
 import HolmesHeader from "./components/header/holmesHeader";
 import { FeatureProvider } from "./context/FeatureContext";

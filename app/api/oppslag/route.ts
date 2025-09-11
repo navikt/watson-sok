@@ -1,7 +1,7 @@
 // app/api/oppslag/route.ts
 import { OppslagBrukerRespons } from "@/app/types/Domain";
-import { getnavpersondataapiOboToken } from "@/app/utils/access-token";
-import { env, isProd } from "@/app/utils/env";
+import { getnavpersondataapiOboToken } from "@/utils/access-token";
+import { env, isProd } from "@/utils/env";
 import { getMockedResponseByFnr } from "./mock"; // 👈 importér, ikke eksportér
 
 export async function GET(req: Request) {
