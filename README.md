@@ -24,17 +24,20 @@ En Next.js-applikasjon for å søke opp brukere i Nav-systemet ved hjelp av fød
 ### Installasjon
 
 1. Klon repositoriet:
+
 ```bash
 git clone <repository-url>
 cd holmes-oppslag-bruker
 ```
 
 2. Installer avhengigheter:
+
 ```bash
 npm install
 ```
 
 3. Start utviklingsserveren:
+
 ```bash
 npm run dev
 ```
@@ -56,15 +59,16 @@ npm run dev
 ### Kodekvalitet
 
 Prosjektet bruker:
+
 - **ESLint** for kodekvalitet
 - **Prettier** for kodeformatering
 - **TypeScript** for type-sikkerhet
 
 Alle endringer må passere:
+
 - TypeScript type-sjekk
 - ESLint sjekk
 - Prettier formatering
-
 
 ## Deployment
 
