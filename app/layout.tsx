@@ -1,9 +1,9 @@
 import { getLoggedInUser } from "@/utils/access-token";
 import { Metadata } from "next";
+import HolmesHeader from "../components/header/holmesHeader";
 import { FeatureProvider } from "../context/FeatureContext";
 import { UserProvider } from "../context/UserContext";
 import { UserSearchProvider } from "../context/UserSearchContext"; // 👈 LEGG TIL DENNE
-import HolmesHeader from "./components/header/holmesHeader";
 import "./globals.css";
 
 export const metadata: Metadata = {

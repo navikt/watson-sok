@@ -1,15 +1,15 @@
 "use client";
 
-import DetaljModal from "@/app/components/DetaljModal";
-import PersonDetaljer from "@/app/components/PersonDetaljer";
+import DetaljModal from "@/components/DetaljModal";
+import PersonDetaljer from "@/components/PersonDetaljer";
 import { useUserSearch } from "@/context/UserSearchContext";
 import { OppslagBrukerRespons } from "@/types/Domain";
 import { Alert, Box, Button, HGrid } from "@navikt/ds-react";
 import { useEffect, useState } from "react";
 
-import ArbeidsDetaljer from "@/app/components/ArbedsDetaljer";
-import InntektTabellOversikt from "@/app/components/InntektTabellOversikt";
-import StonadOversikt from "@/app/components/StonadOversikt";
+import ArbeidsDetaljer from "@/components/ArbedsDetaljer";
+import InntektTabellOversikt from "@/components/InntektTabellOversikt";
+import StonadOversikt from "@/components/StonadOversikt";
 
 export default function OppslagBruker() {
   const { fnr } = useUserSearch();
