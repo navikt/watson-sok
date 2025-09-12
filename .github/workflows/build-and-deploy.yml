@@ -40,6 +40,9 @@ jobs:
           target: export
           outputs: type=local,dest=static
           secrets: NODE_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
+          build-args: |
+            NAV_PERSONDATA_API_URL=${{ vars.NAV_PERSONDATA_API_URL }}
+            NAV_PERSONDATA_API_CLUSTER=${{ vars.NAV_PERSONDATA_API_CLUSTER }}
       - name: Upload static files to NAV CDN
         uses: nais/deploy/actions/cdn-upload/v2@master
         with:
