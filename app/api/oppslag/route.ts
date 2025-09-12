@@ -30,12 +30,12 @@ async function getDataFromBackEnd(
 
   try {
     const res = await fetch(targetUrl, {
-      method: "GET",
+      method: "POST",
       headers: {
         Authorization: `Bearer ${oboToken}`,
         "Content-Type": "application/json",
-        fnr,
       },
+      body: JSON.stringify({ fnr }),
     });
 
     if (!res.ok) {
