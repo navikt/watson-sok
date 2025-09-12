@@ -31,6 +31,9 @@ jobs:
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           build_secrets: NODE_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
+          build_args: |
+            NAV_PERSONDATA_API_URL=${{ vars.NAV_PERSONDATA_API_URL }}
+            NAV_PERSONDATA_API_CLUSTER=${{ vars.NAV_PERSONDATA_API_CLUSTER }}
       - name: Build static files
         uses: docker/build-push-action@v5
         with:
