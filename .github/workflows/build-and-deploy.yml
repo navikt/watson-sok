@@ -13,6 +13,11 @@ jobs:
       contents: read
       id-token: write
       packages: write
+
+    env:
+      NAV_PERSONDATA_API_URL: ${{ vars.NAV_PERSONDATA_API_URL }}
+      NAV_PERSONDATA_API_CLUSTER: ${{ vars.NAV_PERSONDATA_API_CLUSTER }}
+      
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
         with:
