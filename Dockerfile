@@ -9,7 +9,7 @@ RUN npm config set @navikt:registry=https://npm.pkg.github.com
 COPY package.json package-lock.json ./
 RUN npm ci
 
-COPY next.config.ts tsconfig.json tailwind.config.js postcss.config.js eslint.config.mjs ./
+COPY next.config.ts tsconfig.json tailwind.config.js postcss.config.mjs eslint.config.mjs ./
 COPY app app
 COPY public public
 COPY components components
