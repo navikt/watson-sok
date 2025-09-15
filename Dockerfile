@@ -1,45 +1,26 @@
-FROM node:20@sha256:fd0115473b293460df5b217ea73ff216928f2b0bb7650c5e7aa56aae4c028426 AS builder
-
-# Accept build arguments
-ARG NAV_PERSONDATA_API_URL
-ARG NAV_PERSONDATA_API_CLUSTER
-
-# Set as environment variables for the build
-ENV NAV_PERSONDATA_API_URL=$NAV_PERSONDATA_API_URL
-ENV NAV_PERSONDATA_API_CLUSTER=$NAV_PERSONDATA_API_CLUSTER
-
+FROM node:24-alpine AS dependencies
 WORKDIR /app
+COPY package*.json ./
 
+# Set up npm configuration once
 RUN --mount=type=secret,id=NODE_AUTH_TOKEN sh -c \
-    'npm config set //npm.pkg.github.com/:_authToken=$(cat /run/secrets/NODE_AUTH_TOKEN)'
-RUN npm config set @navikt:registry=https://npm.pkg.github.com
+    'npm config set //npm.pkg.github.com/:_authToken=$(cat /run/secrets/NODE_AUTH_TOKEN) && \
+    npm config set @navikt:registry=https://npm.pkg.github.com && \
+    npm ci'
 
-COPY package.json package-lock.json ./
-RUN npm ci
-
-COPY next.config.ts tsconfig.json tailwind.config.js postcss.config.mjs eslint.config.mjs ./
-COPY app app
-COPY public public
-COPY components components
-COPY context context
-COPY types types
-COPY utils utils
-
+FROM node:24-alpine AS builder
+WORKDIR /app
+COPY . .
+COPY --from=dependencies /app/node_modules ./node_modules
 RUN npm run build
 
-FROM gcr.io/distroless/nodejs20-debian11@sha256:8cf9967ae9ba1e64089f853abac42b41f2af95ff3aa00d08c26e5f75714605d4 AS runtime
-
+FROM node:24-alpine
 WORKDIR /app
-
-COPY --from=builder /app/.next/standalone /app
-
-COPY --from=builder /app/public /app/public
-
-EXPOSE 3000
+COPY package*.json ./
+COPY --from=dependencies /app/node_modules ./node_modules
+COPY --from=builder /app/build ./build
 
 ENV NODE_ENV=production
+EXPOSE 3000
+CMD ["npm", "run", "start"]
 
-CMD ["server.js"]
-
-FROM scratch AS export
-COPY --from=builder /app/.next/static /

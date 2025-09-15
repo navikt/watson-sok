@@ -1,6 +1,0 @@
-import { getLoggedInUser } from "@/utils/access-token";
-import { NextResponse } from "next/server";
-
-export async function GET(): Promise<NextResponse> {
-  return NextResponse.json(await getLoggedInUser());
-}
