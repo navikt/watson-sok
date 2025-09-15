@@ -104,4 +104,5 @@ const MOCKED_LOGGED_IN_USER_RESPONSE: LoggedInUserResponse = {
   preferredUsername: "some-username@trygdeetaten.no",
   name: "Some name",
   navIdent: "S123456",
+  token: "fake-local-token",
 };
