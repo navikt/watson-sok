@@ -1,6 +1,6 @@
 # Holmes Oppslag Bruker
 
-En Next.js-applikasjon for å søke opp brukere i Nav-systemet ved hjelp av fødselsnummer eller D-nummer.
+En React Router-applikasjon for å søke opp brukere i Nav-systemet ved hjelp av fødselsnummer eller D-nummer.
 
 ## Funksjonalitet
 
@@ -9,7 +9,7 @@ En Next.js-applikasjon for å søke opp brukere i Nav-systemet ved hjelp av fød
 
 ## Teknisk stack
 
-- **Frontend**: Next.js 15 med React 19
+- **Frontend**: React Router v7 Framework Mode med React 19
 - **Styling**: Tailwind CSS med Navs designsystem (Aksel)
 - **Autentisering**: Azure AD via Oasis
 - **Deployment**: NAIS på GCP
@@ -50,9 +50,9 @@ npm run dev
 - `npm run build` - Bygger applikasjonen for produksjon
 - `npm run start` - Starter produksjonsserveren
 - `npm run lint` - Kjører ESLint
-- `npm run typecheck` - Kjører TypeScript type-sjekk
-- `npm run prettier` - Sjekker Prettier formatering
-- `npm run prettier:fix` - Fikser Prettier formatering
+- `npm run typecheck` - Kjører TypeScript typesjekk
+- `npm run prettier` - Sjekker Prettier formattering
+- `npm run prettier:fix` - Fikser Prettier formattering
 
 ## Utvikling
 
@@ -61,14 +61,8 @@ npm run dev
 Prosjektet bruker:
 
 - **ESLint** for kodekvalitet
-- **Prettier** for kodeformatering
-- **TypeScript** for type-sikkerhet
-
-Alle endringer må passere:
-
-- TypeScript typesjekk
-- ESLint
-- Prettier formattering
+- **Prettier** for kodeformattering
+- **TypeScript** for typesikkerhet
 
 ## Deployment
 
