@@ -50,7 +50,5 @@ spec:
         - /api/health
         - /assets/logos/*
   env:
-    - name: NAV_PERSONDATA_API_URL
-      value: http://nav-persondata-api/
-    - name: NAV_PERSONDATA_API_CLUSTER
-      value: dev-gcp
+    - name: CLUSTER
+      value: {{CLUSTER}}

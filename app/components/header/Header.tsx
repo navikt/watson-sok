@@ -8,6 +8,7 @@ import {
 } from "@navikt/aksel-icons";
 import { ActionMenu, InternalHeader, Spacer } from "@navikt/ds-react";
 import { useNavigate } from "react-router";
+import { RouteConfig } from "~/config/routeConfig";
 import { useUser } from "~/features/auth/useUser";
 
 export function AppHeader() {
@@ -27,19 +28,19 @@ export function AppHeader() {
         <ActionMenu.Content>
           <ActionMenu.Group label="Interne flater">
             <ActionMenu.Item
-              onSelect={() => navigate("/")}
+              onSelect={() => navigate(RouteConfig.INDEX)}
               icon={<PersonIcon />}
             >
               Oppslag bruker
             </ActionMenu.Item>
             <ActionMenu.Item
-              onSelect={() => navigate("/arbeidsgivere")}
+              onSelect={() => navigate(RouteConfig.ARBEIDSGIVERE)}
               icon={<PersonGroupIcon />}
             >
               Arbeidsgiveroversikt
             </ActionMenu.Item>
             <ActionMenu.Item
-              onSelect={() => navigate("/statistikk")}
+              onSelect={() => navigate(RouteConfig.STATISTIKK)}
               icon={<BarChartIcon />}
             >
               Statistikk og innsikt
