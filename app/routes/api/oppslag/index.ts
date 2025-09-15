@@ -1,26 +1,31 @@
 // app/api/oppslag/route.ts
-import type { LoaderFunctionArgs } from "react-router";
+import type { ActionFunctionArgs } from "react-router";
+import z from "zod";
 import { isProd } from "~/config/env.server";
 import type { OppslagBrukerRespons } from "~/types/Domain";
 import { getnavpersondataapiOboToken } from "~/utils/access-token";
 import { getMockedResponseByFnr } from "./mock";
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const { searchParams } = new URL(request.url);
-  const fnr = searchParams.get("fnr");
+const requestSchema = z.object({
+  ident: z.string().min(11).max(11),
+});
 
-  if (!fnr || fnr.length !== 11) {
-    return new Response("Ugyldig fnr", { status: 400 });
+export async function action({ request }: ActionFunctionArgs) {
+  const body = await request.json();
+  const parsedBody = requestSchema.safeParse(body);
+  if (!parsedBody.success) {
+    return new Response("Ugyldig request", { status: 400 });
   }
+  const { ident } = parsedBody.data;
 
   const oboToken = await getnavpersondataapiOboToken(request);
 
   if (!isProd) {
     console.log("DEVELOPMENT: returnerer mock-respons");
-    return await getMockedResponseByFnr(fnr);
+    return await getMockedResponseByFnr(ident);
   }
 
-  return await getDataFromBackEnd(oboToken, fnr);
+  return await getDataFromBackEnd(oboToken, ident);
 }
 
 async function getDataFromBackEnd(
@@ -28,7 +33,6 @@ async function getDataFromBackEnd(
   ident: string,
 ): Promise<Response> {
   const targetUrl = "http://nav-persondata-api/oppslag-bruker";
-
   try {
     const res = await fetch(targetUrl, {
       method: "POST",

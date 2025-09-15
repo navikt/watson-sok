@@ -22,7 +22,13 @@ export default function OppslagBruker() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`/api/oppslag?fnr=${ident}`);
+        const res = await fetch(`/api/oppslag`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ident }),
+        });
         if (!res.ok) throw new Error("Feil ved henting av data");
         const json: OppslagBrukerRespons = await res.json();
         setData(json);
