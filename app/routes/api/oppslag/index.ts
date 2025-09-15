@@ -7,7 +7,9 @@ import { getnavpersondataapiOboToken } from "~/utils/access-token";
 import { getMockedResponseByFnr } from "./mock";
 
 const requestSchema = z.object({
-  ident: z.string().min(11).max(11),
+  ident: z.string().min(11).max(11).regex(/^\d{11}$/, {
+    message: "Ident må være 11 sifre",
+  }),
 });
 
 export async function action({ request }: ActionFunctionArgs) {
