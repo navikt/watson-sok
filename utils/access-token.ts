@@ -12,6 +12,7 @@ interface LoggedInUserResponse {
   preferredUsername: string;
   name: string;
   navIdent: string;
+  token: string;
 }
 
 export async function getLoggedInUser(): Promise<LoggedInUserResponse> {
@@ -32,6 +33,7 @@ export async function getLoggedInUser(): Promise<LoggedInUserResponse> {
     preferredUsername: parseResult.preferred_username,
     name: parseResult.name,
     navIdent: parseResult.NAVident,
+    token,
   };
 }
 
