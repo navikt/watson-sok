@@ -1,5 +1,4 @@
 import { Alert, Button, HGrid } from "@navikt/ds-react";
-import { useState } from "react";
 import {
   data,
   useLoaderData,
@@ -11,13 +10,14 @@ import DetaljModal from "~/components/DetaljModal";
 import InntektTabellOversikt from "~/components/InntektTabellOversikt";
 import PersonDetaljer from "~/components/PersonDetaljer";
 import StonadOversikt from "~/components/StonadOversikt";
+import { useDisclosure } from "~/utils/useDisclosure";
 import { fetchIdent } from "./fetchIdent.server";
 
 export default function OppslagBruker() {
   const { ident } = useParams();
   const data = useLoaderData<typeof loader>();
 
-  const [modalOpen, setModalOpen] = useState(false); // 👈 modal state
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   if (!ident) {
     return (
@@ -61,12 +61,10 @@ export default function OppslagBruker() {
       </div>
 
       <div className="mt-4">
-        <Button onClick={() => setModalOpen(true)}>Hent Familieforhold</Button>
+        <Button onClick={onOpen}>Hent familieforhold</Button>
       </div>
 
-      {modalOpen && (
-        <DetaljModal fnr={ident} onClose={() => setModalOpen(false)} />
-      )}
+      {isOpen && <DetaljModal fnr={ident} onClose={onClose} />}
     </div>
   );
 }
