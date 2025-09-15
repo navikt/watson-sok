@@ -32,35 +32,25 @@ export default function OppslagBruker() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
-        <div>
-          {data.personInformasjon && (
-            <PersonDetaljer personInformasjon={data.personInformasjon} />
-          )}
-        </div>
-        <div>
-          <div>
-            {data.arbeidsgiverInformasjon && (
-              <ArbeidsforholdDetaljer
-                arbeidsgiverInformasjon={data.arbeidsgiverInformasjon}
-              />
-            )}
-          </div>
-        </div>
+        {data.personInformasjon && (
+          <PersonDetaljer personInformasjon={data.personInformasjon} />
+        )}
+        {data.arbeidsgiverInformasjon && (
+          <ArbeidsforholdDetaljer
+            arbeidsgiverInformasjon={data.arbeidsgiverInformasjon}
+          />
+        )}
       </HGrid>
-      <div>
-        {data.stonadOversikt && (
-          <StonadOversikt stonadOversikt={data.stonadOversikt} />
-        )}
-      </div>
-      <div>
-        {data.inntektInformasjon && (
-          <InntektTabellOversikt inntektInformasjon={data.inntektInformasjon} />
-        )}
-      </div>
+      {data.stonadOversikt && (
+        <StonadOversikt stonadOversikt={data.stonadOversikt} />
+      )}
+      {data.inntektInformasjon && (
+        <InntektTabellOversikt inntektInformasjon={data.inntektInformasjon} />
+      )}
 
-      <div className="mt-4">
+      <div>
         <Button onClick={onOpen}>Hent familieforhold</Button>
       </div>
 
