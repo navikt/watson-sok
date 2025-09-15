@@ -46,7 +46,7 @@ export async function getnavpersondataapiOboToken(
 ): Promise<string> {
   return getOboToken({
     request,
-    audience: `api://${env.NAV_PERSONDATA_API_CLUSTER}.holmes.nav-persondata-api/.default`,
+    audience: `api://${env.CLUSTER}.holmes.nav-persondata-api/.default`,
   });
 }
 

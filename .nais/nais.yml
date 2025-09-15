@@ -19,8 +19,9 @@ spec:
       destinations:
         - id: loki
   ingresses:
-    - https://oppslag-bruker.intern.dev.nav.no
-    - https://oppslag-bruker.ansatt.dev.nav.no
+    {{#each INGRESS_URLS}}
+    - {{this}}
+    {{/each}}
   accessPolicy:
     outbound:
       rules:
@@ -37,8 +38,9 @@ spec:
       allowAllUsers: false
       claims:
         groups:
-          - id: "b734a20d-63e3-4b44-bb77-87f7f0b7f48a" # 0000-GA-kontroll-Oppslag-Bruker-Utvidet
-          - id: "222dedb1-a80d-48c9-b8d3-1e8149be9063" # 0000-GA-kontroll-Oppslag-Bruker-Basic
+          {{#each CLAIM_GROUPS}}
+          - id: {{this}}
+          {{/each}}
         extra:
           - "NAVident"
     sidecar:
@@ -48,8 +50,6 @@ spec:
         - /api/health
         - /assets/logos/*
   env:
-    - name: NEXT_PUBLIC_BASE_URL
-      value: https://oppslag-bruker.intern.dev.nav.no/
     - name: NAV_PERSONDATA_API_URL
       value: http://nav-persondata-api/
     - name: NAV_PERSONDATA_API_CLUSTER

@@ -1,6 +1,6 @@
 // app/api/oppslag/route.ts
-import { env, isProd } from "~/config/env.server";
 import type { LoaderFunctionArgs } from "react-router";
+import { isProd } from "~/config/env.server";
 import type { OppslagBrukerRespons } from "~/types/Domain";
 import { getnavpersondataapiOboToken } from "~/utils/access-token";
 import { getMockedResponseByFnr } from "./mock";
@@ -27,7 +27,7 @@ async function getDataFromBackEnd(
   oboToken: string,
   ident: string,
 ): Promise<Response> {
-  const targetUrl = `${env.NAV_PERSONDATA_API_URL}oppslag-bruker`;
+  const targetUrl = "http://nav-persondata-api/oppslag-bruker";
 
   try {
     const res = await fetch(targetUrl, {

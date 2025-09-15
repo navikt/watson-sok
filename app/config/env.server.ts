@@ -4,10 +4,7 @@ const envSchema = z.object({
   NODE_ENV: z
     .enum(["development", "test", "production"])
     .describe("The mode the app is running in"),
-  NAV_PERSONDATA_API_URL: z.url().describe("The URL of the backend API"),
-  NAV_PERSONDATA_API_CLUSTER: z
-    .string()
-    .describe("The cluster name of the backend API"),
+  CLUSTER: z.string().describe("The cluster the app is running in"),
 });
 
 const envResult = envSchema.safeParse(process.env);
