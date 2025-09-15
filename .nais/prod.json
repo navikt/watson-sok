@@ -7,5 +7,6 @@
     "a1d74637-a6fc-41a9-9277-f368ee6745b3",
     "206f49eb-51fb-4afe-b1b1-33cf2165aa23"
   ],
-  "CLUSTER": "prod-gcp"
+  "CLUSTER": "prod-gcp",
+  "TENANT": "nav.no"
 }
