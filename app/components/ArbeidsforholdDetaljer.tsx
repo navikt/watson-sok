@@ -38,7 +38,7 @@ function formatMonth(ym: string | null | undefined) {
   }
 }
 
-export default function ArbeidsgivereTable({
+export function ArbeidsforholdDetaljer({
   arbeidsgiverInformasjon,
   fnr = "",
 }: Props) {

@@ -6,7 +6,7 @@ import {
   useParams,
   type LoaderFunctionArgs,
 } from "react-router";
-import ArbedsDetaljer from "~/components/ArbedsDetaljer";
+import { ArbeidsforholdDetaljer } from "~/components/ArbeidsforholdDetaljer";
 import DetaljModal from "~/components/DetaljModal";
 import InntektTabellOversikt from "~/components/InntektTabellOversikt";
 import PersonDetaljer from "~/components/PersonDetaljer";
@@ -35,14 +35,14 @@ export default function OppslagBruker() {
     <div>
       <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
         <div>
-          {data?.personInformasjon && (
+          {data.personInformasjon && (
             <PersonDetaljer personInformasjon={data.personInformasjon} />
           )}
         </div>
         <div>
           <div>
-            {data?.arbeidsgiverInformasjon && (
-              <ArbedsDetaljer
+            {data.arbeidsgiverInformasjon && (
+              <ArbeidsforholdDetaljer
                 arbeidsgiverInformasjon={data.arbeidsgiverInformasjon}
               />
             )}
@@ -50,12 +50,12 @@ export default function OppslagBruker() {
         </div>
       </HGrid>
       <div>
-        {data?.stonadOversikt && (
+        {data.stonadOversikt && (
           <StonadOversikt stonadOversikt={data.stonadOversikt} />
         )}
       </div>
       <div>
-        {data?.inntektInformasjon && (
+        {data.inntektInformasjon && (
           <InntektTabellOversikt inntektInformasjon={data.inntektInformasjon} />
         )}
       </div>
