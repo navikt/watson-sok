@@ -52,7 +52,7 @@ async function getDataFromBackEnd(
     if (!res.ok) {
       const errorText = await res.text();
       console.error(`Feil fra baksystem: ${res.status} - ${errorText}`);
-      return new Response("Feil ved henting av grunnlagsdata", {
+      return new Response("Feil ved henting av grunnlagsdata: " + errorText, {
         status: res.status,
       });
     }
