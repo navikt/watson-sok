@@ -42,7 +42,7 @@ npm install
 npm run dev
 ```
 
-4. Åpne [http://localhost:3000](http://localhost:3000) i nettleseren
+4. Åpne [http://localhost:5173](http://localhost:5173) i nettleseren
 
 ### Tilgjengelige scripts
 
@@ -66,19 +66,25 @@ Prosjektet bruker:
 
 Alle endringer må passere:
 
-- TypeScript type-sjekk
-- ESLint sjekk
-- Prettier formatering
+- TypeScript typesjekk
+- ESLint
+- Prettier formattering
 
 ## Deployment
 
 Applikasjonen deployes automatisk til NAIS på GCP via GitHub Actions.
 
+For deployment til dev-miljøet, kan du kjøre actionen [Deploy manuelt til dev](https://github.com/navikt/holmes-oppslag-bruker/actions/workflows/manual-deploy-to-dev.yml) med den branchen du ønsker å deploye.
+
+For deployment til produksjon, lag en [ny release](https://github.com/navikt/holmes-oppslag-bruker/releases/new).
+
 ### Miljøer
 
 - **Produksjon**: https://oppslag-bruker.intern.nav.no
 - **Dev**: https://oppslag-bruker.intern.dev.nav.no
-- **Utvikling**: Lokal utvikling på localhost:3000
+- **Utvikling**: Lokal utvikling på localhost:5173
+
+For testbrukere i dev, sjekk [Confluence](https://confluence.adeo.no/spaces/THLMS/pages/675780711/Testmilj%C3%B8er).
 
 ## Lisens
 
