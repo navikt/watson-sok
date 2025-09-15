@@ -14,12 +14,12 @@ export default function StonadOversikt({
   return (
     <div className="p-6">
       <h2 className="text-4xl font-bold mb-6">
-        Ytelser og stønder i nav siste 3 år
+        Ytelser og stønder i Nav siste 3 år
       </h2>
       <Box>
         {isEmpty ? (
           <Alert variant="info">
-            Ingen ytelser eller stønader registrert for de siste 3 årene.
+            Ingen ytelser eller stønader registrert de siste 3 årene.
           </Alert>
         ) : (
           <Timeline>

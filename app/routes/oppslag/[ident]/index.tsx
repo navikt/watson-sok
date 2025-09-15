@@ -1,97 +1,73 @@
 import { Alert, Button, HGrid } from "@navikt/ds-react";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import ArbedsDetaljer from "~/components/ArbedsDetaljer";
+import {
+  data,
+  useLoaderData,
+  useParams,
+  type LoaderFunctionArgs,
+} from "react-router";
+import { ArbeidsforholdDetaljer } from "~/components/ArbeidsforholdDetaljer";
 import DetaljModal from "~/components/DetaljModal";
 import InntektTabellOversikt from "~/components/InntektTabellOversikt";
 import PersonDetaljer from "~/components/PersonDetaljer";
 import StonadOversikt from "~/components/StonadOversikt";
-import type { OppslagBrukerRespons } from "~/types/Domain";
+import { useDisclosure } from "~/utils/useDisclosure";
+import { fetchIdent } from "./fetchIdent.server";
 
 export default function OppslagBruker() {
   const { ident } = useParams();
-  const [data, setData] = useState<OppslagBrukerRespons | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [modalOpen, setModalOpen] = useState(false); // 👈 modal state
+  const data = useLoaderData<typeof loader>();
 
-  useEffect(() => {
-    if (!ident) return;
-
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const res = await fetch(`/api/oppslag`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ ident }),
-        });
-        if (!res.ok) throw new Error("Feil ved henting av data");
-        const json: OppslagBrukerRespons = await res.json();
-        setData(json);
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("Ukjent feil");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [ident]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   if (!ident) {
-    return <Alert variant="warning">Ingen fødselsnummer valgt.</Alert>;
+    return (
+      <Alert variant="error">
+        Fant ingen ident i URLen. Sjekk at URLen er korrekt formattert.
+      </Alert>
+    );
   }
-  if (loading) {
-    return <p>Laster data...</p>;
-  }
-  if (error) {
-    return <Alert variant="error">{error}</Alert>;
+
+  if ("error" in data) {
+    return <Alert variant="error">{data.error}</Alert>;
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
-        <div>
-          {data?.personInformasjon && (
-            <PersonDetaljer personInformasjon={data.personInformasjon} />
-          )}
-        </div>
-        <div>
-          <div>
-            {data?.arbeidsgiverInformasjon && (
-              <ArbedsDetaljer
-                arbeidsgiverInformasjon={data.arbeidsgiverInformasjon}
-              />
-            )}
-          </div>
-        </div>
+        {data.personInformasjon && (
+          <PersonDetaljer personInformasjon={data.personInformasjon} />
+        )}
+        {data.arbeidsgiverInformasjon && (
+          <ArbeidsforholdDetaljer
+            arbeidsgiverInformasjon={data.arbeidsgiverInformasjon}
+          />
+        )}
       </HGrid>
-      <div>
-        {data?.stonadOversikt && (
-          <StonadOversikt stonadOversikt={data.stonadOversikt} />
-        )}
-      </div>
-      <div>
-        {data?.inntektInformasjon && (
-          <InntektTabellOversikt inntektInformasjon={data.inntektInformasjon} />
-        )}
-      </div>
-
-      <div className="mt-4">
-        <Button onClick={() => setModalOpen(true)}>Hent Familie Forhold</Button>
-      </div>
-
-      {modalOpen && (
-        <DetaljModal fnr={ident} onClose={() => setModalOpen(false)} />
+      {data.stonadOversikt && (
+        <StonadOversikt stonadOversikt={data.stonadOversikt} />
       )}
+      {data.inntektInformasjon && (
+        <InntektTabellOversikt inntektInformasjon={data.inntektInformasjon} />
+      )}
+
+      <div>
+        <Button onClick={onOpen}>Hent familieforhold</Button>
+      </div>
+
+      {isOpen && <DetaljModal fnr={ident} onClose={onClose} />}
     </div>
   );
+}
+
+export async function loader({ request, params }: LoaderFunctionArgs) {
+  if (!params.ident) {
+    throw new Error(
+      "Fant ingen ident i URLen. Sjekk at URLen er korrekt formattert.",
+    );
+  }
+  const response = await fetchIdent({ ident: params.ident, request });
+  if ("error" in response) {
+    return data({ error: response.error }, { status: response.status });
+  }
+  return response;
 }

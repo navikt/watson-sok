@@ -18,7 +18,6 @@ export const RouteConfig = {
   API: {
     HEALTH: "/api/health",
     LOGGED_IN_USER: "/api/logged-in-user",
-    OPPSLAG: "/api/oppslag",
     OPPSLAG_DETALJER: "/api/oppslag/detaljer",
   },
 };
