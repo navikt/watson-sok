@@ -61,7 +61,7 @@ export default function OppslagBruker() {
       </div>
 
       <div className="mt-4">
-        <Button onClick={() => setModalOpen(true)}>Hent Familie Forhold</Button>
+        <Button onClick={() => setModalOpen(true)}>Hent Familieforhold</Button>
       </div>
 
       {modalOpen && (
