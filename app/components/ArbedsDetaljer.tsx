@@ -1,5 +1,5 @@
-import { Table, Tag, Alert } from "@navikt/ds-react";
-import { parse, format } from "date-fns";
+import { Alert, Table, Tag } from "@navikt/ds-react";
+import { format, parse } from "date-fns";
 import { nb } from "date-fns/locale";
 
 type AnsettelsesDetalj = {
