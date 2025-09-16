@@ -1,6 +1,4 @@
 import { Alert, Table, Tag } from "@navikt/ds-react";
-import { format, parse } from "date-fns";
-import { nb } from "date-fns/locale";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/[ident]/schemas";
 
 type Props = {
@@ -8,14 +6,18 @@ type Props = {
   fnr?: string; // brukes kun i key-generering hvis du vil
 };
 
-function formatMonth(ym: string | null | undefined) {
-  if (!ym) return "–";
-  // ym kommer som "YYYY-MM"
+function formatÅrMåned(årMåned: string | null | undefined) {
+  if (!årMåned || !årMåned.match(/^\d{4}-\d{2}$/)) {
+    return "–";
+  }
   try {
-    const d = parse(ym, "yyyy-MM", new Date());
-    return format(d, "MMM yyyy", { locale: nb });
+    const formatter = new Intl.DateTimeFormat("nb-NO", {
+      month: "short",
+      year: "numeric",
+    });
+    return formatter.format(new Date(`${årMåned}-01`));
   } catch {
-    return ym;
+    return årMåned;
   }
 }
 
@@ -27,15 +29,15 @@ export function ArbeidsforholdDetaljer({
 
   // Flater ut alle (arbeidsgiver x ansettelsesDetalj) til rad-objekter
   const rows = [...løpende].flatMap((ag) =>
-    (ag.ansettelsesDetaljer ?? []).map((det, idx) => ({
-      key: `${ag.organisasjonsnummer ?? ag.arbeidsgiver}-${det.periode.fom}-${det.periode.tom ?? "pågår"}-${idx}-${fnr}`,
+    (ag.ansettelsesDetaljer ?? []).map((detalj, idx) => ({
+      key: `${ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}-${fnr}`,
       arbeidsgiver: ag.arbeidsgiver,
-      start: det.periode.fom,
-      slutt: det.periode.tom,
-      stillingsprosent: det.stillingsprosent ?? null,
-      arbeidsforholdType: det.type ?? null,
-      yrke: det.yrke,
-      løpende: !det.periode.tom,
+      start: detalj.periode.fom,
+      slutt: detalj.periode.tom,
+      stillingsprosent: detalj.stillingsprosent ?? null,
+      arbeidsforholdType: detalj.type ?? null,
+      yrke: detalj.yrke,
+      løpende: !detalj.periode.tom,
     })),
   );
 
@@ -57,7 +59,7 @@ export function ArbeidsforholdDetaljer({
           <Table.HeaderCell scope="col">Arbeidsgiver</Table.HeaderCell>
           <Table.HeaderCell scope="col">Start</Table.HeaderCell>
           <Table.HeaderCell scope="col">Slutt</Table.HeaderCell>
-          <Table.HeaderCell scope="col">Stilling %</Table.HeaderCell>
+          <Table.HeaderCell scope="col">Stilling&nbsp;%</Table.HeaderCell>
           <Table.HeaderCell scope="col">Arbeidsforhold</Table.HeaderCell>
           <Table.HeaderCell scope="col">Yrke</Table.HeaderCell>
         </Table.Row>
@@ -73,20 +75,48 @@ export function ArbeidsforholdDetaljer({
                 </Tag>
               )}
             </Table.HeaderCell>
-            <Table.DataCell>{formatMonth(r.start)}</Table.DataCell>
+            <Table.DataCell>{formatÅrMåned(r.start)}</Table.DataCell>
             <Table.DataCell>
-              {r.slutt ? formatMonth(r.slutt) : "–"}
+              {r.slutt ? formatÅrMåned(r.slutt) : "–"}
             </Table.DataCell>
             <Table.DataCell>
-              {typeof r.stillingsprosent === "number"
-                ? `${r.stillingsprosent}%`
-                : "–"}
+              {mapStillingsprosent(r.stillingsprosent ?? "-")}
             </Table.DataCell>
-            <Table.DataCell>{r.arbeidsforholdType ?? "–"}</Table.DataCell>
-            <Table.DataCell>{r.yrke ?? "–"}</Table.DataCell>
+            <Table.DataCell>
+              {mapArbeidsforholdType(r.arbeidsforholdType ?? "–")}
+            </Table.DataCell>
+            <Table.DataCell>{mapYrke(r.yrke ?? "–")}</Table.DataCell>
           </Table.Row>
         ))}
       </Table.Body>
     </Table>
   );
+}
+
+function mapArbeidsforholdType(type: string) {
+  switch (type) {
+    case "Ordinaer":
+      return "Ordinær";
+    case "Frilanser":
+      return "Frilanser";
+    default:
+      return type;
+  }
+}
+
+function mapYrke(yrke: string) {
+  switch (yrke) {
+    case "IT-KONSULENT":
+      // We special
+      return "IT-konsulent";
+    default:
+      return yrke.charAt(0).toUpperCase() + yrke.slice(1).toLowerCase();
+  }
+}
+
+function mapStillingsprosent(prosent: string | number) {
+  if (typeof prosent === "number") {
+    return `${prosent} %`;
+  }
+  return prosent;
 }
