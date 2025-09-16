@@ -3,9 +3,21 @@
   "saksbehandlerIdent": "",
   "fødselsnummer": "",
   "personInformasjon": {
-    "navn": "ETT  NAVN",
-    "aktorId": "12345678901",
-    "adresse": "SMAL VEI 2001, 1480",
+    "navn": {
+      "fornavn": "ETT",
+      "mellomnavn": null,
+      "etternavn": "NAVN"
+    },
+    "aktørId": "12345678901",
+    "adresse": {
+      "norskAdresse": {
+        "adressenavn": "SMAL VEI",
+        "husnummer": "2001",
+        "husbokstav": null,
+        "postnummer": "1480",
+        "poststed": "SØREIDGREND"
+      }
+    },
     "familemedlemmer": {
       "222222222222": "BARN",
       "33333333333": "FAR",

@@ -18,9 +18,37 @@ const StonadPeriodeSchema = z.object({
 });
 
 const PersonInformasjonSchema = z.object({
-  navn: z.string(),
-  aktorId: z.string().nullable(),
-  adresse: z.string().nullable(),
+  navn: z.object({
+    fornavn: z.string(),
+    mellomnavn: z.string().nullable(),
+    etternavn: z.string(),
+  }),
+  aktørId: z.string().nullable(),
+  adresse: z
+    .object({
+      norskAdresse: z
+        .object({
+          adressenavn: z.string().nullish(),
+          husnummer: z.string().nullish(),
+          husbokstav: z.string().nullish(),
+          postnummer: z.string().nullish(),
+          kommunenummer: z.string().nullish(),
+          poststed: z.string().nullish(),
+        })
+        .nullish(),
+      utenlandskAdresse: z
+        .object({
+          adressenavnNummer: z.string().nullish(),
+          bygningEtasjeLeilighet: z.string().nullish(),
+          postboksNummerNavn: z.string().nullish(),
+          postkode: z.string().nullish(),
+          bySted: z.string().nullish(),
+          regionDistriktOmråde: z.string().nullish(),
+          landkode: z.string(),
+        })
+        .nullish(),
+    })
+    .nullable(),
   familemedlemmer: z.record(z.string(), z.enum(["BARN", "GIFT", "FAR", "MOR"])),
   statsborgerskap: z.array(z.string()),
   sivilstand: z.string().nullable(),

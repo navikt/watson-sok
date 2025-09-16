@@ -3,9 +3,21 @@
   "saksbehandlerIdent": "",
   "fødselsnummer": "",
   "personInformasjon": {
-    "navn": "KONKURRANSEDYKTIG null GJØRME",
-    "aktorId": "21528104212",
-    "adresse": "Gamle Mosvegen 389, 2960",
+    "navn": {
+      "fornavn": "KONKURRANSEDYKTIG",
+      "mellomnavn": null,
+      "etternavn": "GJØRME"
+    },
+    "aktørId": "21528104212",
+    "adresse": {
+      "norskAdresse": {
+        "adressenavn": "Gamle Mosvegen",
+        "husnummer": "389",
+        "husbokstav": null,
+        "postnummer": "2960",
+        "poststed": "SØREIDGREND"
+      }
+    },
     "familemedlemmer": {},
     "statsborgerskap": ["NOR"],
     "sivilstand": null
