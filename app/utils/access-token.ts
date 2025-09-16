@@ -37,7 +37,7 @@ export async function getLoggedInUser({
     preferredUsername: parseResult.preferred_username,
     name: parseResult.name,
     navIdent: parseResult.NAVident,
-    token,
+    token: await getnavpersondataapiOboToken(request),
   };
 }
 
