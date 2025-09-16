@@ -10,8 +10,6 @@ export default [
   layout("routes/layout.tsx", [
     route(RouteConfig.INDEX, "routes/index.tsx"),
     route(RouteConfig.OPPSLAG.route, "routes/oppslag/[ident]/index.tsx"),
-    route(RouteConfig.STATISTIKK, "routes/statistikk/index.tsx"),
-    route(RouteConfig.ARBEIDSGIVERE, "routes/arbeidsgivere/index.tsx"),
   ]),
 
   // API routes

@@ -8,8 +8,6 @@ export const RouteConfig = {
     route: "/oppslag/:ident",
     link: (ident: string) => `/oppslag/${ident}`,
   },
-  STATISTIKK: "/statistikk",
-  ARBEIDSGIVERE: "/arbeidsgiver",
 
   WELL_KNOWN: {
     SECURITY_TXT: "/.well-known/security.txt",
