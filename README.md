@@ -68,7 +68,7 @@ Prosjektet bruker:
 
 Applikasjonen deployes automatisk til NAIS på GCP via GitHub Actions.
 
-For deployment til dev-miljøet, kan du kjøre actionen [Deploy manuelt til dev](https://github.com/navikt/holmes-oppslag-bruker/actions/workflows/manual-deploy-to-dev.yml) med den branchen du ønsker å deploye.
+For deployment til dev-miljøet, kan du kjøre actionen [Deploy manuelt til dev](https://github.com/navikt/holmes-oppslag-bruker/actions/workflows/manual-deploy-to-dev.yml) med den branchen du ønsker å deploye. `main`-branchen deployes også til dev hver gang man merger en pull request til `main`.
 
 For deployment til produksjon, lag en [ny release](https://github.com/navikt/holmes-oppslag-bruker/releases/new).
 
