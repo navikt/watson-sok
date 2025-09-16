@@ -40,43 +40,47 @@ export function ArbeidsforholdDetaljer({
   }
 
   return (
-    <Table className="mt-4">
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell scope="col">Arbeidsgiver</Table.HeaderCell>
-          <Table.HeaderCell scope="col">Start</Table.HeaderCell>
-          <Table.HeaderCell scope="col">Slutt</Table.HeaderCell>
-          <Table.HeaderCell scope="col">Stilling&nbsp;%</Table.HeaderCell>
-          <Table.HeaderCell scope="col">Arbeidsforhold</Table.HeaderCell>
-          <Table.HeaderCell scope="col">Yrke</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {rows.map((r) => (
-          <Table.Row key={r.key}>
-            <Table.HeaderCell scope="row">
-              {r.arbeidsgiver}{" "}
-              {r.løpende && (
-                <Tag size="small" variant="success" className="ml-2">
-                  Løpende
-                </Tag>
-              )}
-            </Table.HeaderCell>
-            <Table.DataCell>{formatÅrMåned(r.start)}</Table.DataCell>
-            <Table.DataCell>
-              {r.slutt ? formatÅrMåned(r.slutt) : "–"}
-            </Table.DataCell>
-            <Table.DataCell>
-              {formatterProsent(r.stillingsprosent ?? "-")}
-            </Table.DataCell>
-            <Table.DataCell>
-              {mapArbeidsforholdType(r.arbeidsforholdType ?? "–")}
-            </Table.DataCell>
-            <Table.DataCell>{mapYrke(r.yrke ?? "–")}</Table.DataCell>
+    <div className="mt-4 max-h-[500px] overflow-y-scroll">
+      <Table>
+        <Table.Header className="sticky top-0 bg-white">
+          <Table.Row>
+            <Table.HeaderCell scope="col">Arbeidsgiver</Table.HeaderCell>
+            <Table.HeaderCell scope="col">Start</Table.HeaderCell>
+            <Table.HeaderCell scope="col">Slutt</Table.HeaderCell>
+            <Table.HeaderCell scope="col">Stilling&nbsp;%</Table.HeaderCell>
+            <Table.HeaderCell scope="col">Arbeidsforhold</Table.HeaderCell>
+            <Table.HeaderCell scope="col">Yrke</Table.HeaderCell>
           </Table.Row>
-        ))}
-      </Table.Body>
-    </Table>
+        </Table.Header>
+        <Table.Body>
+          {rows.map((r) => (
+            <Table.Row key={r.key}>
+              <Table.HeaderCell scope="row">
+                {r.arbeidsgiver}{" "}
+                {r.løpende && (
+                  <Tag size="small" variant="success" className="ml-2">
+                    Løpende
+                  </Tag>
+                )}
+              </Table.HeaderCell>
+              <Table.DataCell className="whitespace-nowrap">
+                {formatÅrMåned(r.start)}
+              </Table.DataCell>
+              <Table.DataCell className="whitespace-nowrap">
+                {r.slutt ? formatÅrMåned(r.slutt) : "–"}
+              </Table.DataCell>
+              <Table.DataCell>
+                {formatterProsent(r.stillingsprosent ?? "-")}
+              </Table.DataCell>
+              <Table.DataCell>
+                {mapArbeidsforholdType(r.arbeidsforholdType ?? "–")}
+              </Table.DataCell>
+              <Table.DataCell>{mapYrke(r.yrke ?? "–")}</Table.DataCell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    </div>
   );
 }
 
