@@ -14,7 +14,7 @@ jobs:
         uses: actions/github-script@v8
         with:
           script: |
-            const workflowId = 'manual-deploy-dev.yml';
+            const workflowId = 'manual-deploy-to-dev.yml';
 
             // Fetch existing comments
             const comments = await github.rest.issues.listComments({
