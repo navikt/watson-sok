@@ -33,16 +33,10 @@ export function AppHeader() {
             >
               Oppslag bruker
             </ActionMenu.Item>
-            <ActionMenu.Item
-              onSelect={() => navigate(RouteConfig.ARBEIDSGIVERE)}
-              icon={<PersonGroupIcon />}
-            >
+            <ActionMenu.Item disabled icon={<PersonGroupIcon />}>
               Arbeidsgiveroversikt
             </ActionMenu.Item>
-            <ActionMenu.Item
-              onSelect={() => navigate(RouteConfig.STATISTIKK)}
-              icon={<BarChartIcon />}
-            >
+            <ActionMenu.Item disabled icon={<BarChartIcon />}>
               Statistikk og innsikt
             </ActionMenu.Item>
           </ActionMenu.Group>
