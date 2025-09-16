@@ -1,23 +1,13 @@
 import { Alert, Table, Tag } from "@navikt/ds-react";
-import { format, parse } from "date-fns";
-import { nb } from "date-fns/locale";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/[ident]/schemas";
+import { formatÅrMåned } from "~/utils/date-utils";
+import { formatterProsent } from "~/utils/number-utils";
+import { storFørsteBokstav } from "~/utils/string-utils";
 
 type Props = {
   arbeidsgiverInformasjon?: ArbeidsgiverInformasjon | null;
   fnr?: string; // brukes kun i key-generering hvis du vil
 };
-
-function formatMonth(ym: string | null | undefined) {
-  if (!ym) return "–";
-  // ym kommer som "YYYY-MM"
-  try {
-    const d = parse(ym, "yyyy-MM", new Date());
-    return format(d, "MMM yyyy", { locale: nb });
-  } catch {
-    return ym;
-  }
-}
 
 export function ArbeidsforholdDetaljer({
   arbeidsgiverInformasjon,
@@ -27,15 +17,15 @@ export function ArbeidsforholdDetaljer({
 
   // Flater ut alle (arbeidsgiver x ansettelsesDetalj) til rad-objekter
   const rows = [...løpende].flatMap((ag) =>
-    (ag.ansettelsesDetaljer ?? []).map((det, idx) => ({
-      key: `${ag.organisasjonsnummer ?? ag.arbeidsgiver}-${det.periode.fom}-${det.periode.tom ?? "pågår"}-${idx}-${fnr}`,
+    (ag.ansettelsesDetaljer ?? []).map((detalj, idx) => ({
+      key: `${ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}-${fnr}`,
       arbeidsgiver: ag.arbeidsgiver,
-      start: det.periode.fom,
-      slutt: det.periode.tom,
-      stillingsprosent: det.stillingsprosent ?? null,
-      arbeidsforholdType: det.type ?? null,
-      yrke: det.yrke,
-      løpende: !det.periode.tom,
+      start: detalj.periode.fom,
+      slutt: detalj.periode.tom,
+      stillingsprosent: detalj.stillingsprosent ?? null,
+      arbeidsforholdType: detalj.type ?? null,
+      yrke: detalj.yrke,
+      løpende: !detalj.periode.tom,
     })),
   );
 
@@ -51,42 +41,67 @@ export function ArbeidsforholdDetaljer({
   }
 
   return (
-    <Table className="mt-4">
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell scope="col">Arbeidsgiver</Table.HeaderCell>
-          <Table.HeaderCell scope="col">Start</Table.HeaderCell>
-          <Table.HeaderCell scope="col">Slutt</Table.HeaderCell>
-          <Table.HeaderCell scope="col">Stilling %</Table.HeaderCell>
-          <Table.HeaderCell scope="col">Arbeidsforhold</Table.HeaderCell>
-          <Table.HeaderCell scope="col">Yrke</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {rows.map((r) => (
-          <Table.Row key={r.key}>
-            <Table.HeaderCell scope="row">
-              {r.arbeidsgiver}{" "}
-              {r.løpende && (
-                <Tag size="small" variant="success" className="ml-2">
-                  Løpende
-                </Tag>
-              )}
-            </Table.HeaderCell>
-            <Table.DataCell>{formatMonth(r.start)}</Table.DataCell>
-            <Table.DataCell>
-              {r.slutt ? formatMonth(r.slutt) : "–"}
-            </Table.DataCell>
-            <Table.DataCell>
-              {typeof r.stillingsprosent === "number"
-                ? `${r.stillingsprosent}%`
-                : "–"}
-            </Table.DataCell>
-            <Table.DataCell>{r.arbeidsforholdType ?? "–"}</Table.DataCell>
-            <Table.DataCell>{r.yrke ?? "–"}</Table.DataCell>
+    <div className="mt-4 max-h-[500px] overflow-y-scroll">
+      <Table>
+        <Table.Header className="sticky top-0 bg-white">
+          <Table.Row>
+            <Table.HeaderCell scope="col">Arbeidsgiver</Table.HeaderCell>
+            <Table.HeaderCell scope="col">Start</Table.HeaderCell>
+            <Table.HeaderCell scope="col">Slutt</Table.HeaderCell>
+            <Table.HeaderCell scope="col">Stilling&nbsp;%</Table.HeaderCell>
+            <Table.HeaderCell scope="col">Arbeidsforhold</Table.HeaderCell>
+            <Table.HeaderCell scope="col">Yrke</Table.HeaderCell>
           </Table.Row>
-        ))}
-      </Table.Body>
-    </Table>
+        </Table.Header>
+        <Table.Body>
+          {rows.map((r) => (
+            <Table.Row key={r.key}>
+              <Table.HeaderCell scope="row">
+                {r.arbeidsgiver}{" "}
+                {r.løpende && (
+                  <Tag size="small" variant="success" className="ml-2">
+                    Løpende
+                  </Tag>
+                )}
+              </Table.HeaderCell>
+              <Table.DataCell className="whitespace-nowrap">
+                {formatÅrMåned(r.start)}
+              </Table.DataCell>
+              <Table.DataCell className="whitespace-nowrap">
+                {r.slutt ? formatÅrMåned(r.slutt) : "–"}
+              </Table.DataCell>
+              <Table.DataCell>
+                {formatterProsent(r.stillingsprosent ?? "-")}
+              </Table.DataCell>
+              <Table.DataCell>
+                {mapArbeidsforholdType(r.arbeidsforholdType ?? "–")}
+              </Table.DataCell>
+              <Table.DataCell>{mapYrke(r.yrke ?? "–")}</Table.DataCell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    </div>
   );
+}
+
+function mapArbeidsforholdType(type: string) {
+  switch (type) {
+    case "Ordinaer":
+      return "Ordinær";
+    case "Frilanser":
+      return "Frilanser";
+    default:
+      return type;
+  }
+}
+
+function mapYrke(yrke: string) {
+  switch (yrke) {
+    case "IT-KONSULENT":
+      // We special
+      return "IT-konsulent";
+    default:
+      return storFørsteBokstav(yrke);
+  }
 }
