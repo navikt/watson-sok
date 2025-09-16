@@ -15,7 +15,7 @@ type InntektTabellOversiktProps = { inntektInformasjon: InntektInformasjon };
 export default function InntektTabellOversikt({
   inntektInformasjon,
 }: InntektTabellOversiktProps) {
-  const alle = inntektInformasjon?.loennsinntekt ?? [];
+  const alle = inntektInformasjon?.lønnsinntekt ?? [];
 
   // Siste 3 år (36 mnd)
   const now = new Date();
@@ -73,7 +73,7 @@ export default function InntektTabellOversikt({
                 {rows.map((r, i) => {
                   const stilling = toNumber(r.stillingsprosent);
                   const timer = toNumber(r.antall);
-                  const belop = toNumber(r.belop);
+                  const belop = toNumber(r.beløp);
                   const hasVersions = !!r.harFlereVersjoner;
                   const cellStyle = hasVersions ? warnStyle : undefined;
 
@@ -113,7 +113,7 @@ export default function InntektTabellOversikt({
                           : "–"}
                       </Table.DataCell>
                       <Table.DataCell style={cellStyle}>
-                        {mapLonnstype(r.lonnstype)}
+                        {mapLonnstype(r.lønnstype)}
                       </Table.DataCell>
                       <Table.DataCell style={cellStyle}>
                         {timer !== null ? fmtDec.format(timer) : "–"}

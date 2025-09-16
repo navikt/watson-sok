@@ -1,26 +1,7 @@
 import { Alert, Table, Tag } from "@navikt/ds-react";
 import { format, parse } from "date-fns";
 import { nb } from "date-fns/locale";
-
-type AnsettelsesDetalj = {
-  type?: string | null; // f.eks. "Ordinaer"
-  stillingsprosent?: number | null;
-  antallTimerPrUke?: number | null;
-  periode: { fom: string; tom: string | null }; // "YYYY-MM"
-  yrke?: string | null;
-};
-
-type ArbeidsgiverPost = {
-  arbeidsgiver: string; // "orgnr - navn"
-  organisasjonsnummer?: string;
-  adresse?: string | null;
-  ansettelsesDetaljer: AnsettelsesDetalj[];
-};
-
-type ArbeidsgiverInformasjon = {
-  lopendeArbeidsforhold?: ArbeidsgiverPost[] | null;
-  historikk?: ArbeidsgiverPost[] | null;
-};
+import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/[ident]/schemas";
 
 type Props = {
   arbeidsgiverInformasjon?: ArbeidsgiverInformasjon | null;
@@ -42,7 +23,7 @@ export function ArbeidsforholdDetaljer({
   arbeidsgiverInformasjon,
   fnr = "",
 }: Props) {
-  const løpende = arbeidsgiverInformasjon?.lopendeArbeidsforhold ?? [];
+  const løpende = arbeidsgiverInformasjon?.løpendeArbeidsforhold ?? [];
 
   // Flater ut alle (arbeidsgiver x ansettelsesDetalj) til rad-objekter
   const rows = [...løpende].flatMap((ag) =>

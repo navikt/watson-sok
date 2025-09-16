@@ -23,7 +23,12 @@ export default function PersonDetaljer({
         </Heading>
 
         <HStack gap="2">
-          <BodyLong>{personInformasjon.navn}</BodyLong>
+          <BodyLong>
+            {personInformasjon.navn.fornavn}{" "}
+            {personInformasjon.navn.mellomnavn &&
+              `${personInformasjon.navn.mellomnavn} `}
+            {personInformasjon.navn.etternavn}
+          </BodyLong>
           <Link href="/personHistorikk">Navnehistorikk</Link>
         </HStack>
         <HStack gap="2">
@@ -33,15 +38,15 @@ export default function PersonDetaljer({
                   .map((s) => (s ?? "").trim())
                   .filter((s) => s.length > 0)
                   .join(", ")
-              : (personInformasjon.navn ?? "–")}
+              : "–"}
           </BodyLong>
         </HStack>
-        {personInformasjon.aktorId && (
+        {personInformasjon.aktørId && (
           <HStack gap="0" align="center">
-            <BodyLong as="span">{personInformasjon.aktorId}</BodyLong>
+            <BodyLong as="span">{personInformasjon.aktørId}</BodyLong>
             <CopyButton
               size="small"
-              copyText={personInformasjon.aktorId}
+              copyText={personInformasjon.aktørId}
               icon={
                 <FilesIcon aria-hidden style={{ verticalAlign: "middle" }} />
               }
@@ -54,7 +59,14 @@ export default function PersonDetaljer({
         )}
 
         <HStack gap="2">
-          <BodyLong>{personInformasjon.adresse}</BodyLong>
+          <BodyLong>
+            {personInformasjon.adresse?.norskAdresse?.adressenavn}{" "}
+            {personInformasjon.adresse?.norskAdresse?.husnummer}{" "}
+            {personInformasjon.adresse?.norskAdresse?.husbokstav}
+            {", "}
+            {personInformasjon.adresse?.norskAdresse?.postnummer}{" "}
+            {personInformasjon.adresse?.norskAdresse?.poststed}
+          </BodyLong>
           <Link href="/personHistorikk">Adressehistorikk</Link>
         </HStack>
         <HStack gap="2">

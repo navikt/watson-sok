@@ -18,9 +18,37 @@ const StonadPeriodeSchema = z.object({
 });
 
 const PersonInformasjonSchema = z.object({
-  navn: z.string(),
-  aktorId: z.string().nullable(),
-  adresse: z.string().nullable(),
+  navn: z.object({
+    fornavn: z.string(),
+    mellomnavn: z.string().nullable(),
+    etternavn: z.string(),
+  }),
+  aktørId: z.string().nullable(),
+  adresse: z
+    .object({
+      norskAdresse: z
+        .object({
+          adressenavn: z.string().nullish(),
+          husnummer: z.string().nullish(),
+          husbokstav: z.string().nullish(),
+          postnummer: z.string().nullish(),
+          kommunenummer: z.string().nullish(),
+          poststed: z.string().nullish(),
+        })
+        .nullish(),
+      utenlandskAdresse: z
+        .object({
+          adressenavnNummer: z.string().nullish(),
+          bygningEtasjeLeilighet: z.string().nullish(),
+          postboksNummerNavn: z.string().nullish(),
+          postkode: z.string().nullish(),
+          bySted: z.string().nullish(),
+          regionDistriktOmråde: z.string().nullish(),
+          landkode: z.string(),
+        })
+        .nullish(),
+    })
+    .nullable(),
   familemedlemmer: z.record(z.string(), z.enum(["BARN", "GIFT", "FAR", "MOR"])),
   statsborgerskap: z.array(z.string()),
   sivilstand: z.string().nullable(),
@@ -51,26 +79,30 @@ const ArbeidsforholdSchema = z.object({
 });
 
 const ArbeidsgiverInformasjonSchema = z.object({
-  lopendeArbeidsforhold: z.array(ArbeidsforholdSchema),
+  løpendeArbeidsforhold: z.array(ArbeidsforholdSchema),
   historikk: z.array(ArbeidsforholdSchema),
 });
+
+export type ArbeidsgiverInformasjon = z.infer<
+  typeof ArbeidsgiverInformasjonSchema
+>;
 
 const InntektSchema = z.object({
   arbeidsgiver: z.string().nullable(),
   periode: z.string(),
   arbeidsforhold: z.string(),
   stillingsprosent: z.string().nullable(),
-  lonnstype: z.string().nullable(),
+  lønnstype: z.string().nullable(),
   antall: z.number().nullable(),
-  belop: z.number().nullable(),
+  beløp: z.number().nullable(),
   harFlereVersjoner: z.boolean(),
 });
 
 const InntektInformasjonSchema = z.object({
-  loennsinntekt: z.array(InntektSchema),
-  naringsInntekt: z.array(InntektSchema),
-  PensjonEllerTrygd: z.array(InntektSchema),
-  YtelseFraOffentlige: z.array(InntektSchema),
+  lønnsinntekt: z.array(InntektSchema),
+  næringsinntekt: z.array(InntektSchema),
+  pensjonEllerTrygd: z.array(InntektSchema),
+  ytelseFraOffentlige: z.array(InntektSchema),
 });
 
 export type InntektInformasjon = z.infer<typeof InntektInformasjonSchema>;
@@ -78,11 +110,11 @@ export type InntektInformasjon = z.infer<typeof InntektInformasjonSchema>;
 export const OppslagBrukerResponsSchema = z.object({
   utrekkstidspunkt: z.string(),
   saksbehandlerIdent: z.string(),
-  fodselsnr: z.string(),
+  fødselsnummer: z.string(),
   personInformasjon: PersonInformasjonSchema.nullable(),
   arbeidsgiverInformasjon: ArbeidsgiverInformasjonSchema.nullable(),
   inntektInformasjon: InntektInformasjonSchema.nullable(),
-  stonadOversikt: z.array(StonadSchema),
+  stønader: z.array(StonadSchema),
 });
 
 export type OppslagBrukerRespons = z.infer<typeof OppslagBrukerResponsSchema>;
