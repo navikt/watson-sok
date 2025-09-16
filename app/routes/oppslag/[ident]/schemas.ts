@@ -78,7 +78,7 @@ export type InntektInformasjon = z.infer<typeof InntektInformasjonSchema>;
 export const OppslagBrukerResponsSchema = z.object({
   utrekkstidspunkt: z.string(),
   saksbehandlerIdent: z.string(),
-  fodselsnr: z.string(),
+  fødselsnummer: z.string(),
   personInformasjon: PersonInformasjonSchema.nullable(),
   arbeidsgiverInformasjon: ArbeidsgiverInformasjonSchema.nullable(),
   inntektInformasjon: InntektInformasjonSchema.nullable(),
