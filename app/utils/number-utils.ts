@@ -16,7 +16,7 @@ export function formatterDesimaltall(
 /**
  * Formatter prosent
  *
- * @param tall - Tallen som skal formatteres (mellom 0 og 1)
+ * @param tall - Tallen som skal formatteres som prosent (mellom 0 og 100)
  * @returns Formattert prosent
  */
 export function formatterProsent(tall: number | unknown): string {
@@ -29,4 +29,35 @@ export function formatterProsent(tall: number | unknown): string {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   });
+}
+
+/**
+ * Formatter beløp
+ *
+ * @param tall - Tallen som skal formatteres
+ * @returns Formattert beløp
+ */
+export function formatterBeløp(
+  tall: number | unknown,
+  maximumFractionDigits = 2,
+): string {
+  if (typeof tall !== "number") {
+    return tall as string;
+  }
+
+  return tall.toLocaleString("nb-NO", {
+    style: "currency",
+    currency: "NOK",
+    maximumFractionDigits,
+  });
+}
+
+export function konverterTilTall(verdi: unknown): number | null {
+  if (verdi === null || verdi === undefined || verdi === "") {
+    return null;
+  }
+
+  const tall =
+    typeof verdi === "number" ? verdi : Number(String(verdi).replace(",", "."));
+  return Number.isFinite(tall) ? tall : null;
 }

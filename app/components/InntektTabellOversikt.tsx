@@ -4,8 +4,13 @@ import { isValid as isValidDate, parse } from "date-fns";
 import type { CSSProperties } from "react";
 import type { InntektInformasjon } from "~/routes/oppslag/[ident]/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
-import { formatterDesimaltall, formatterProsent } from "~/utils/number-utils";
-import { storFørsteBokstav } from "~/utils/string-utils";
+import {
+  formatterBeløp,
+  formatterDesimaltall,
+  formatterProsent,
+  konverterTilTall,
+} from "~/utils/number-utils";
+import { camelCaseTilNorsk } from "~/utils/string-utils";
 
 // Highlight-stil for celler i rad med flere versjoner
 const warnStyle: CSSProperties = {
@@ -72,9 +77,9 @@ export default function InntektTabellOversikt({
 
               <Table.Body>
                 {rows.map((r, i) => {
-                  const stilling = toNumber(r.stillingsprosent);
-                  const timer = toNumber(r.antall);
-                  const beløp = toNumber(r.beløp);
+                  const stilling = konverterTilTall(r.stillingsprosent);
+                  const timer = konverterTilTall(r.antall);
+                  const beløp = konverterTilTall(r.beløp);
                   const harFlereVersjoner = Boolean(r.harFlereVersjoner);
                   const cellStyle = harFlereVersjoner ? warnStyle : undefined;
 
@@ -122,7 +127,7 @@ export default function InntektTabellOversikt({
                       <Table.DataCell
                         style={{ ...cellStyle, textAlign: "right" }}
                       >
-                        {beløp !== null ? fmtNOK.format(beløp) : "–"}
+                        {beløp !== null ? formatterBeløp(beløp) : "–"}
                       </Table.DataCell>
                     </Table.Row>
                   );
@@ -145,35 +150,4 @@ export default function InntektTabellOversikt({
       </ExpansionCard>
     </div>
   );
-}
-
-const fmtNOK = new Intl.NumberFormat("nb-NO", {
-  style: "currency",
-  currency: "NOK",
-  maximumFractionDigits: 2,
-});
-
-function toNumber(val: unknown): number | null {
-  if (val === null || val === undefined || val === "") return null;
-  const n =
-    typeof val === "number" ? val : Number(String(val).replace(",", "."));
-  return Number.isFinite(n) ? n : null;
-}
-
-function camelCaseTilNorsk(camelCaseStr: string | null) {
-  if (!camelCaseStr) {
-    return "";
-  }
-
-  const ord = camelCaseStr
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
-    .toLowerCase()
-    .split(" ");
-
-  // Bytt ut ae, aa og oe med æ, å og ø
-  const norskeOrd = ord.map((hvertOrd) =>
-    hvertOrd.replace(/oe/g, "ø").replace(/aa/g, "å").replace(/ae/g, "æ"),
-  );
-
-  return storFørsteBokstav(norskeOrd.join(" "));
 }

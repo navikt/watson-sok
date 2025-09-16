@@ -2,6 +2,7 @@ import { Alert, Table, Tag } from "@navikt/ds-react";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/[ident]/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterProsent } from "~/utils/number-utils";
+import { storFørsteBokstav } from "~/utils/string-utils";
 
 type Props = {
   arbeidsgiverInformasjon?: ArbeidsgiverInformasjon | null;
@@ -101,6 +102,6 @@ function mapYrke(yrke: string) {
       // We special
       return "IT-konsulent";
     default:
-      return yrke.charAt(0).toUpperCase() + yrke.slice(1).toLowerCase();
+      return storFørsteBokstav(yrke);
   }
 }
