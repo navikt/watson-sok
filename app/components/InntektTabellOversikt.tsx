@@ -3,46 +3,7 @@ import { Alert, Box, ExpansionCard, Table } from "@navikt/ds-react";
 import { format, isValid as isValidDate, parse } from "date-fns";
 import { nb } from "date-fns/locale";
 import type { CSSProperties } from "react";
-import type { InntektInformasjon } from "~/types/Domain";
-
-type Props = { inntektInformasjon: InntektInformasjon };
-
-const fmtNOK = new Intl.NumberFormat("nb-NO", {
-  style: "currency",
-  currency: "NOK",
-  maximumFractionDigits: 2,
-});
-const fmtDec = new Intl.NumberFormat("nb-NO", { maximumFractionDigits: 2 });
-
-function toNumber(val: unknown): number | null {
-  if (val === null || val === undefined || val === "") return null;
-  const n =
-    typeof val === "number" ? val : Number(String(val).replace(",", "."));
-  return Number.isFinite(n) ? n : null;
-}
-function formatYM(ym: string | null | undefined): string {
-  if (!ym) return "–";
-  const d = parse(ym, "yyyy-MM", new Date());
-  return isValidDate(d) ? format(d, "MMM yyyy", { locale: nb }) : ym;
-}
-function mapLonnstype(raw?: string | null): string {
-  if (!raw) return "–";
-  const x = raw.toLowerCase();
-  switch (x) {
-    case "timeloenn":
-      return "Timelønn";
-    case "fastloenn":
-      return "Fastlønn";
-    case "overtidsgodtgjoerelse":
-      return "Overtidsgodtgjørelse";
-    case "feriepenger":
-      return "Feriepenger";
-    case "tips":
-      return "Tips";
-    default:
-      return raw;
-  }
-}
+import type { InntektInformasjon } from "~/routes/oppslag/[ident]/schemas";
 
 // Highlight-stil for celler i rad med flere versjoner
 const warnStyle: CSSProperties = {
@@ -50,7 +11,10 @@ const warnStyle: CSSProperties = {
   boxShadow: "inset 0 0 0 1px var(--a-border-warning-subtle)",
 };
 
-export default function InntektTabellOversikt({ inntektInformasjon }: Props) {
+type InntektTabellOversiktProps = { inntektInformasjon: InntektInformasjon };
+export default function InntektTabellOversikt({
+  inntektInformasjon,
+}: InntektTabellOversiktProps) {
   const alle = inntektInformasjon?.loennsinntekt ?? [];
 
   // Siste 3 år (36 mnd)
@@ -180,4 +144,41 @@ export default function InntektTabellOversikt({ inntektInformasjon }: Props) {
       </ExpansionCard>
     </div>
   );
+}
+
+const fmtNOK = new Intl.NumberFormat("nb-NO", {
+  style: "currency",
+  currency: "NOK",
+  maximumFractionDigits: 2,
+});
+const fmtDec = new Intl.NumberFormat("nb-NO", { maximumFractionDigits: 2 });
+
+function toNumber(val: unknown): number | null {
+  if (val === null || val === undefined || val === "") return null;
+  const n =
+    typeof val === "number" ? val : Number(String(val).replace(",", "."));
+  return Number.isFinite(n) ? n : null;
+}
+function formatYM(ym: string | null | undefined): string {
+  if (!ym) return "–";
+  const d = parse(ym, "yyyy-MM", new Date());
+  return isValidDate(d) ? format(d, "MMM yyyy", { locale: nb }) : ym;
+}
+function mapLonnstype(raw?: string | null): string {
+  if (!raw) return "–";
+  const x = raw.toLowerCase();
+  switch (x) {
+    case "timeloenn":
+      return "Timelønn";
+    case "fastloenn":
+      return "Fastlønn";
+    case "overtidsgodtgjoerelse":
+      return "Overtidsgodtgjørelse";
+    case "feriepenger":
+      return "Feriepenger";
+    case "tips":
+      return "Tips";
+    default:
+      return raw;
+  }
 }

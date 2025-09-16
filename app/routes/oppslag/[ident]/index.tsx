@@ -43,9 +43,7 @@ export default function OppslagBruker() {
           />
         )}
       </HGrid>
-      {data.stonadOversikt && (
-        <StonadOversikt stonadOversikt={data.stonadOversikt} />
-      )}
+      {data.stonadOversikt && <StonadOversikt stønader={data.stonadOversikt} />}
       {data.inntektInformasjon && (
         <InntektTabellOversikt inntektInformasjon={data.inntektInformasjon} />
       )}

@@ -2,14 +2,14 @@ import { NokIcon } from "@navikt/aksel-icons";
 import { Alert, Box, ExpansionCard, Timeline } from "@navikt/ds-react";
 
 import { toDate } from "date-fns";
-import type { Stonad } from "~/types/Domain";
+import type { Stonad } from "~/routes/oppslag/[ident]/schemas";
 
-export default function StonadOversikt({
-  stonadOversikt,
-}: {
-  stonadOversikt: Stonad[];
-}) {
-  const isEmpty = !stonadOversikt || stonadOversikt.length === 0;
+type StonadOversiktProps = {
+  stønader: Stonad[];
+};
+
+export default function StonadOversikt({ stønader }: StonadOversiktProps) {
+  const isEmpty = !stønader || stønader.length === 0;
 
   return (
     <div className="p-6">
@@ -23,7 +23,7 @@ export default function StonadOversikt({
           </Alert>
         ) : (
           <Timeline>
-            {stonadOversikt.map((s, sIdx) => (
+            {stønader.map((s, sIdx) => (
               <Timeline.Row
                 key={`${s.stonadType}-${sIdx}`}
                 label={s.stonadType}
@@ -34,7 +34,7 @@ export default function StonadOversikt({
                     key={`${s.stonadType}-${pIdx}-${p.info}`}
                     start={toDate(p.periode.fom)}
                     end={toDate(p.periode.tom)}
-                    status={p.beløp === "0.00" ? "warning" : "success"}
+                    status={p.beløp === 0.0 ? "warning" : "success"}
                     icon={<NokIcon />}
                   >
                     <p className="font-medium">{p.beløp.toLocaleString()} kr</p>
@@ -56,7 +56,7 @@ export default function StonadOversikt({
         </ExpansionCard.Header>
         <ExpansionCard.Content>
           <pre className="whitespace-pre-wrap">
-            {JSON.stringify(stonadOversikt, null, 2)}
+            {JSON.stringify(stønader, null, 2)}
           </pre>
         </ExpansionCard.Content>
       </ExpansionCard>
