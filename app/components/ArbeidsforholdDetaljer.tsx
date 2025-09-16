@@ -1,25 +1,11 @@
 import { Alert, Table, Tag } from "@navikt/ds-react";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/[ident]/schemas";
+import { formatÅrMåned } from "~/utils/date-utils";
 
 type Props = {
   arbeidsgiverInformasjon?: ArbeidsgiverInformasjon | null;
   fnr?: string; // brukes kun i key-generering hvis du vil
 };
-
-function formatÅrMåned(årMåned: string | null | undefined) {
-  if (!årMåned || !årMåned.match(/^\d{4}-\d{2}$/)) {
-    return "–";
-  }
-  try {
-    const formatter = new Intl.DateTimeFormat("nb-NO", {
-      month: "short",
-      year: "numeric",
-    });
-    return formatter.format(new Date(`${årMåned}-01`));
-  } catch {
-    return årMåned;
-  }
-}
 
 export function ArbeidsforholdDetaljer({
   arbeidsgiverInformasjon,
