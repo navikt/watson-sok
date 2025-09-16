@@ -1,6 +1,7 @@
 import { Alert, Table, Tag } from "@navikt/ds-react";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/[ident]/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
+import { formatterProsent } from "~/utils/number-utils";
 
 type Props = {
   arbeidsgiverInformasjon?: ArbeidsgiverInformasjon | null;
@@ -66,7 +67,7 @@ export function ArbeidsforholdDetaljer({
               {r.slutt ? formatÅrMåned(r.slutt) : "–"}
             </Table.DataCell>
             <Table.DataCell>
-              {mapStillingsprosent(r.stillingsprosent ?? "-")}
+              {formatterProsent(r.stillingsprosent ?? "-")}
             </Table.DataCell>
             <Table.DataCell>
               {mapArbeidsforholdType(r.arbeidsforholdType ?? "–")}
@@ -98,11 +99,4 @@ function mapYrke(yrke: string) {
     default:
       return yrke.charAt(0).toUpperCase() + yrke.slice(1).toLowerCase();
   }
-}
-
-function mapStillingsprosent(prosent: string | number) {
-  if (typeof prosent === "number") {
-    return `${prosent} %`;
-  }
-  return prosent;
 }

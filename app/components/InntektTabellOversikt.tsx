@@ -1,9 +1,11 @@
 import { ExclamationmarkTriangleFillIcon } from "@navikt/aksel-icons";
 import { Alert, Box, ExpansionCard, Table } from "@navikt/ds-react";
-import { format, isValid as isValidDate, parse } from "date-fns";
-import { nb } from "date-fns/locale";
+import { isValid as isValidDate, parse } from "date-fns";
 import type { CSSProperties } from "react";
 import type { InntektInformasjon } from "~/routes/oppslag/[ident]/schemas";
+import { formatÅrMåned } from "~/utils/date-utils";
+import { formatterDesimaltall, formatterProsent } from "~/utils/number-utils";
+import { storFørsteBokstav } from "~/utils/string-utils";
 
 // Highlight-stil for celler i rad med flere versjoner
 const warnStyle: CSSProperties = {
@@ -18,8 +20,8 @@ export default function InntektTabellOversikt({
   const alle = inntektInformasjon?.lønnsinntekt ?? [];
 
   // Siste 3 år (36 mnd)
-  const now = new Date();
-  const cutoff = new Date(now.getFullYear(), now.getMonth() - 36, 1);
+  const nå = new Date();
+  const cutoff = new Date(nå.getFullYear(), nå.getMonth() - 36, 1);
 
   const rows = alle
     .filter((r) => {
@@ -44,13 +46,10 @@ export default function InntektTabellOversikt({
           </Alert>
         ) : (
           <>
-            {/* Legend */}
-            <div className="text-sm text-gray-600 mb-2 flex items-center gap-2">
-              <Alert variant="warning">
-                Rader markert i gult og med varselikon har flere versjoner i
-                A-ordningen.
-              </Alert>
-            </div>
+            <Alert variant="warning" className="mb-2 w-fit">
+              Rader markert i gult og med varselikon har flere versjoner i
+              A-ordningen.
+            </Alert>
 
             <Table className="mt-2" zebraStripes>
               <Table.Header>
@@ -60,7 +59,9 @@ export default function InntektTabellOversikt({
                   <Table.HeaderCell scope="col">
                     Arbeidsforhold
                   </Table.HeaderCell>
-                  <Table.HeaderCell scope="col">Stilling %</Table.HeaderCell>
+                  <Table.HeaderCell scope="col">
+                    Stilling&nbsp;%
+                  </Table.HeaderCell>
                   <Table.HeaderCell scope="col">Lønnstype</Table.HeaderCell>
                   <Table.HeaderCell scope="col">Timer</Table.HeaderCell>
                   <Table.HeaderCell scope="col" align="right">
@@ -73,20 +74,20 @@ export default function InntektTabellOversikt({
                 {rows.map((r, i) => {
                   const stilling = toNumber(r.stillingsprosent);
                   const timer = toNumber(r.antall);
-                  const belop = toNumber(r.beløp);
-                  const hasVersions = !!r.harFlereVersjoner;
-                  const cellStyle = hasVersions ? warnStyle : undefined;
+                  const beløp = toNumber(r.beløp);
+                  const harFlereVersjoner = Boolean(r.harFlereVersjoner);
+                  const cellStyle = harFlereVersjoner ? warnStyle : undefined;
 
                   return (
                     <Table.Row
                       key={`${r.arbeidsgiver}-${r.periode}-${i}`}
                       aria-label={
-                        hasVersions ? "Har flere versjoner" : undefined
+                        harFlereVersjoner ? "Har flere versjoner" : undefined
                       }
                     >
                       <Table.HeaderCell scope="row" style={cellStyle}>
                         <span className="inline-flex items-center gap-2">
-                          {hasVersions && (
+                          {harFlereVersjoner && (
                             <ExclamationmarkTriangleFillIcon
                               aria-label="Flere versjoner"
                               title="Flere versjoner"
@@ -96,32 +97,32 @@ export default function InntektTabellOversikt({
                           )}
                           <span>{r.arbeidsgiver || "–"}</span>
                         </span>
-                        {hasVersions && (
+                        {harFlereVersjoner && (
                           <span className="sr-only"> (flere versjoner)</span>
                         )}
                       </Table.HeaderCell>
 
                       <Table.DataCell style={cellStyle}>
-                        {formatYM(r.periode)}
+                        {formatÅrMåned(r.periode)}
                       </Table.DataCell>
                       <Table.DataCell style={cellStyle}>
                         {r.arbeidsforhold?.trim() || "–"}
                       </Table.DataCell>
                       <Table.DataCell style={cellStyle}>
-                        {stilling !== null
-                          ? `${fmtDec.format(stilling)} %`
+                        {stilling !== null ? formatterProsent(stilling) : "–"}
+                      </Table.DataCell>
+                      <Table.DataCell style={cellStyle}>
+                        {camelCaseTilNorsk(r.lønnstype)}
+                      </Table.DataCell>
+                      <Table.DataCell style={cellStyle}>
+                        {timer !== null
+                          ? formatterDesimaltall(timer, 0, 2)
                           : "–"}
-                      </Table.DataCell>
-                      <Table.DataCell style={cellStyle}>
-                        {mapLonnstype(r.lønnstype)}
-                      </Table.DataCell>
-                      <Table.DataCell style={cellStyle}>
-                        {timer !== null ? fmtDec.format(timer) : "–"}
                       </Table.DataCell>
                       <Table.DataCell
                         style={{ ...cellStyle, textAlign: "right" }}
                       >
-                        {belop !== null ? fmtNOK.format(belop) : "–"}
+                        {beløp !== null ? fmtNOK.format(beløp) : "–"}
                       </Table.DataCell>
                     </Table.Row>
                   );
@@ -151,7 +152,6 @@ const fmtNOK = new Intl.NumberFormat("nb-NO", {
   currency: "NOK",
   maximumFractionDigits: 2,
 });
-const fmtDec = new Intl.NumberFormat("nb-NO", { maximumFractionDigits: 2 });
 
 function toNumber(val: unknown): number | null {
   if (val === null || val === undefined || val === "") return null;
@@ -159,26 +159,21 @@ function toNumber(val: unknown): number | null {
     typeof val === "number" ? val : Number(String(val).replace(",", "."));
   return Number.isFinite(n) ? n : null;
 }
-function formatYM(ym: string | null | undefined): string {
-  if (!ym) return "–";
-  const d = parse(ym, "yyyy-MM", new Date());
-  return isValidDate(d) ? format(d, "MMM yyyy", { locale: nb }) : ym;
-}
-function mapLonnstype(raw?: string | null): string {
-  if (!raw) return "–";
-  const x = raw.toLowerCase();
-  switch (x) {
-    case "timeloenn":
-      return "Timelønn";
-    case "fastloenn":
-      return "Fastlønn";
-    case "overtidsgodtgjoerelse":
-      return "Overtidsgodtgjørelse";
-    case "feriepenger":
-      return "Feriepenger";
-    case "tips":
-      return "Tips";
-    default:
-      return raw;
+
+function camelCaseTilNorsk(camelCaseStr: string | null) {
+  if (!camelCaseStr) {
+    return "";
   }
+
+  const ord = camelCaseStr
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .toLowerCase()
+    .split(" ");
+
+  // Bytt ut ae, aa og oe med æ, å og ø
+  const norskeOrd = ord.map((hvertOrd) =>
+    hvertOrd.replace(/oe/g, "ø").replace(/aa/g, "å").replace(/ae/g, "æ"),
+  );
+
+  return storFørsteBokstav(norskeOrd.join(" "));
 }
