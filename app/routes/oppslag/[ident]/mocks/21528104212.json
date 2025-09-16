@@ -6,7 +6,9 @@
     "navn": "KONKURRANSEDYKTIG null GJØRME",
     "aktorId": "21528104212",
     "adresse": "Gamle Mosvegen 389, 2960",
-    "familemedlemmer": {}
+    "familemedlemmer": {},
+    "statsborgerskap": ["NOR"],
+    "sivilstand": null
   },
   "arbeidsgiverInformasjon": {
     "lopendeArbeidsforhold": [
@@ -19,6 +21,7 @@
             "type": "Ordinaer",
             "stillingsprosent": 70,
             "antallTimerPrUke": 37.5,
+            "yrke": null,
             "periode": {
               "fom": "2000-08",
               "tom": null
@@ -35,6 +38,7 @@
             "type": "Ordinaer",
             "stillingsprosent": 50,
             "antallTimerPrUke": 37.5,
+            "yrke": null,
             "periode": {
               "fom": "2020-08",
               "tom": null
@@ -819,8 +823,8 @@
       }
     ],
     "naringsInntekt": [],
-    "pensjonEllerTrygd": [],
-    "ytelseFraOffentlige": []
+    "PensjonEllerTrygd": [],
+    "YtelseFraOffentlige": []
   },
   "stonadOversikt": []
 }

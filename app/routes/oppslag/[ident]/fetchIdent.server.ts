@@ -1,7 +1,10 @@
-import z from "zod";
 import { isProd } from "~/config/env.server";
-import { getMockedResponseByFnr } from "~/routes/api/oppslag/mock";
-import { getnavpersondataapiOboToken } from "~/utils/access-token";
+import { getMockedResponseByFødselsnummer } from "~/routes/oppslag/[ident]/mock.server";
+import { getnavpersondataapiOboToken as getOboToken } from "~/utils/access-token";
+import {
+  OppslagBrukerResponsSchema,
+  type OppslagBrukerRespons,
+} from "./schemas";
 
 type FetchIdentArgs = {
   ident: string;
@@ -15,17 +18,17 @@ type FetchIdentArgs = {
  * If the method is called locally (in development), a mock response is returned
  */
 export async function fetchIdent({ ident, request }: FetchIdentArgs) {
-  const oboToken = await getnavpersondataapiOboToken(request);
+  const oboToken = await getOboToken(request);
 
   if (!isProd) {
     console.log("[UTVIKLING]: Returnerer mock-respons");
-    return getMockedResponseByFnr(ident);
+    return getMockedResponseByFødselsnummer(ident);
   }
 
-  return fetchInfoFromBackend(oboToken, ident);
+  return getInfoFromBackend(oboToken, ident);
 }
 
-async function fetchInfoFromBackend(
+async function getInfoFromBackend(
   oboToken: string,
   ident: string,
 ): Promise<OppslagBrukerRespons | { error: string; status: number }> {
@@ -65,78 +68,3 @@ async function fetchInfoFromBackend(
     };
   }
 }
-
-const NotNullPeriodeSchema = z.object({
-  fom: z.string(),
-  tom: z.string(),
-});
-
-const StonadPeriodeSchema = z.object({
-  periode: NotNullPeriodeSchema,
-  beløp: z.string(),
-  kilde: z.string(),
-  info: z.string(),
-});
-
-const PersonInformasjonSchema = z.object({
-  navn: z.string(),
-  aktorId: z.string(),
-  adresse: z.string(),
-  familemedlemmer: z.record(z.string(), z.enum(["BARN", "GIFT"])),
-  statsborgerskap: z.array(z.string()),
-});
-
-const StonadSchema = z.object({
-  stonadType: z.string(),
-  perioder: z.array(StonadPeriodeSchema),
-});
-
-const AnsettelsesDetaljSchema = z.object({
-  type: z.string(),
-  stillingsprosent: z.number(),
-  antallTimerPrUke: z.number(),
-  periode: NotNullPeriodeSchema,
-  ytrke: z.string(),
-});
-
-const ArbeidsforholdSchema = z.object({
-  arbeidsgiver: z.string(),
-  organisasjonsnummer: z.string(),
-  adresse: z.string(),
-  ansettelsesDetaljer: z.array(AnsettelsesDetaljSchema),
-});
-
-const ArbeidsgiverInformasjonSchema = z.object({
-  lopendeArbeidsforhold: z.array(ArbeidsforholdSchema),
-  historikk: z.array(ArbeidsforholdSchema),
-});
-
-const InntektSchema = z.object({
-  arbeidsgiver: z.string(),
-  periode: z.string(),
-  arbeidsforhold: z.string(),
-  stillingsprosent: z.string(),
-  lonnstype: z.string(),
-  antall: z.string().nullable(),
-  belop: z.string(),
-  harFlereVersjoner: z.boolean(),
-});
-
-const InntektInformasjonSchema = z.object({
-  loennsinntekt: z.array(InntektSchema),
-  naringsInntekt: z.array(InntektSchema),
-  pensjonEllerTrygd: z.array(InntektSchema),
-  ytelseFraOffentlige: z.array(InntektSchema),
-});
-
-const OppslagBrukerResponsSchema = z.object({
-  utrekkstidspunkt: z.string(),
-  fodselsnr: z.string(),
-  saksbehandlerIdent: z.string(),
-  personInformasjon: PersonInformasjonSchema,
-  stonadOversikt: z.array(StonadSchema),
-  arbeidsgiverInformasjon: ArbeidsgiverInformasjonSchema,
-  inntektInformasjon: InntektInformasjonSchema,
-});
-
-export type OppslagBrukerRespons = z.infer<typeof OppslagBrukerResponsSchema>;
