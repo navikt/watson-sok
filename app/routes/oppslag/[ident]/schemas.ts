@@ -83,24 +83,26 @@ const ArbeidsgiverInformasjonSchema = z.object({
   historikk: z.array(ArbeidsforholdSchema),
 });
 
-export type ArbeidsgiverInformasjon = z.infer<typeof ArbeidsgiverInformasjonSchema>;
+export type ArbeidsgiverInformasjon = z.infer<
+  typeof ArbeidsgiverInformasjonSchema
+>;
 
 const InntektSchema = z.object({
   arbeidsgiver: z.string().nullable(),
   periode: z.string(),
   arbeidsforhold: z.string(),
   stillingsprosent: z.string().nullable(),
-  lonnstype: z.string().nullable(),
+  lønnstype: z.string().nullable(),
   antall: z.number().nullable(),
-  belop: z.number().nullable(),
+  beløp: z.number().nullable(),
   harFlereVersjoner: z.boolean(),
 });
 
 const InntektInformasjonSchema = z.object({
-  loennsinntekt: z.array(InntektSchema),
-  naringsInntekt: z.array(InntektSchema),
-  PensjonEllerTrygd: z.array(InntektSchema),
-  YtelseFraOffentlige: z.array(InntektSchema),
+  lønnsinntekt: z.array(InntektSchema),
+  næringsinntekt: z.array(InntektSchema),
+  pensjonEllerTrygd: z.array(InntektSchema),
+  ytelseFraOffentlige: z.array(InntektSchema),
 });
 
 export type InntektInformasjon = z.infer<typeof InntektInformasjonSchema>;

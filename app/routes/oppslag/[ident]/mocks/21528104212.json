@@ -62,15 +62,15 @@
     "historikk": []
   },
   "inntektInformasjon": {
-    "loennsinntekt": [
+    "lønnsinntekt": [
       {
         "arbeidsgiver": "BESK KAFFE",
         "periode": "2020-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -78,9 +78,9 @@
         "periode": "2020-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -88,9 +88,9 @@
         "periode": "2020-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -98,9 +98,9 @@
         "periode": "2020-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -108,9 +108,9 @@
         "periode": "2020-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -118,9 +118,9 @@
         "periode": "2020-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -128,9 +128,9 @@
         "periode": "2020-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -138,9 +138,9 @@
         "periode": "2020-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -148,9 +148,9 @@
         "periode": "2021-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -158,9 +158,9 @@
         "periode": "2021-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -168,9 +168,9 @@
         "periode": "2021-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -178,9 +178,9 @@
         "periode": "2021-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -188,9 +188,9 @@
         "periode": "2021-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -198,9 +198,9 @@
         "periode": "2021-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -208,9 +208,9 @@
         "periode": "2021-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -218,9 +218,9 @@
         "periode": "2021-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -228,9 +228,9 @@
         "periode": "2021-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -238,9 +238,9 @@
         "periode": "2021-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -248,9 +248,9 @@
         "periode": "2021-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -258,9 +258,9 @@
         "periode": "2021-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -268,9 +268,9 @@
         "periode": "2021-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -278,9 +278,9 @@
         "periode": "2021-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -288,9 +288,9 @@
         "periode": "2021-08",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -298,9 +298,9 @@
         "periode": "2021-08",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -308,9 +308,9 @@
         "periode": "2021-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -318,9 +318,9 @@
         "periode": "2021-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -328,9 +328,9 @@
         "periode": "2021-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -338,9 +338,9 @@
         "periode": "2021-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -348,9 +348,9 @@
         "periode": "2021-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -358,9 +358,9 @@
         "periode": "2021-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -368,9 +368,9 @@
         "periode": "2021-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -378,9 +378,9 @@
         "periode": "2021-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -388,9 +388,9 @@
         "periode": "2022-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -398,9 +398,9 @@
         "periode": "2022-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 30000,
+        "beløp": 30000,
         "harFlereVersjoner": false
       },
       {
@@ -408,9 +408,9 @@
         "periode": "2022-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -418,9 +418,9 @@
         "periode": "2022-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -428,9 +428,9 @@
         "periode": "2022-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -438,9 +438,9 @@
         "periode": "2022-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -448,9 +448,9 @@
         "periode": "2022-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -458,9 +458,9 @@
         "periode": "2022-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -468,9 +468,9 @@
         "periode": "2022-08",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -478,9 +478,9 @@
         "periode": "2022-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -488,9 +488,9 @@
         "periode": "2022-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -498,9 +498,9 @@
         "periode": "2022-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -508,9 +508,9 @@
         "periode": "2022-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -518,9 +518,9 @@
         "periode": "2023-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -528,9 +528,9 @@
         "periode": "2023-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -538,9 +538,9 @@
         "periode": "2023-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -548,9 +548,9 @@
         "periode": "2023-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -558,9 +558,9 @@
         "periode": "2023-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -568,9 +568,9 @@
         "periode": "2023-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -578,9 +578,9 @@
         "periode": "2023-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -588,9 +588,9 @@
         "periode": "2023-08",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -598,9 +598,9 @@
         "periode": "2023-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -608,9 +608,9 @@
         "periode": "2023-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -618,9 +618,9 @@
         "periode": "2023-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -628,9 +628,9 @@
         "periode": "2023-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -638,9 +638,9 @@
         "periode": "2024-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -648,9 +648,9 @@
         "periode": "2024-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -658,9 +658,9 @@
         "periode": "2024-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -668,9 +668,9 @@
         "periode": "2024-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -678,9 +678,9 @@
         "periode": "2024-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -688,9 +688,9 @@
         "periode": "2024-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -698,9 +698,9 @@
         "periode": "2024-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -708,9 +708,9 @@
         "periode": "2024-08",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -718,9 +718,9 @@
         "periode": "2024-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -728,9 +728,9 @@
         "periode": "2024-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -738,9 +738,9 @@
         "periode": "2024-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -748,9 +748,9 @@
         "periode": "2024-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -758,9 +758,9 @@
         "periode": "2025-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -768,9 +768,9 @@
         "periode": "2025-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -778,9 +778,9 @@
         "periode": "2025-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -788,9 +788,9 @@
         "periode": "2025-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -798,9 +798,9 @@
         "periode": "2025-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -808,9 +808,9 @@
         "periode": "2025-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -818,9 +818,9 @@
         "periode": "2025-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": false
       },
       {
@@ -828,15 +828,15 @@
         "periode": "2025-08",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 100000,
+        "beløp": 100000,
         "harFlereVersjoner": true
       }
     ],
-    "naringsInntekt": [],
-    "PensjonEllerTrygd": [],
-    "YtelseFraOffentlige": []
+    "næringsinntekt": [],
+    "pensjonEllerTrygd": [],
+    "ytelseFraOffentlige": []
   },
   "stønader": []
 }

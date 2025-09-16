@@ -259,15 +259,15 @@
     ]
   },
   "inntektInformasjon": {
-    "loennsinntekt": [
+    "lønnsinntekt": [
       {
         "arbeidsgiver": "924373296 - Ukjent organisasjon",
         "periode": "2020-08",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 117.0,
-        "belop": 19890.0,
+        "beløp": 19890.0,
         "harFlereVersjoner": false
       },
       {
@@ -275,9 +275,9 @@
         "periode": "2020-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 98.5,
-        "belop": 16745.0,
+        "beløp": 16745.0,
         "harFlereVersjoner": false
       },
       {
@@ -285,9 +285,9 @@
         "periode": "2020-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 92.0,
-        "belop": 15640.0,
+        "beløp": 15640.0,
         "harFlereVersjoner": false
       },
       {
@@ -295,9 +295,9 @@
         "periode": "2020-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 88.0,
-        "belop": 14960.0,
+        "beløp": 14960.0,
         "harFlereVersjoner": false
       },
       {
@@ -305,9 +305,9 @@
         "periode": "2021-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 60.0,
-        "belop": 10200.0,
+        "beløp": 10200.0,
         "harFlereVersjoner": false
       },
       {
@@ -315,9 +315,9 @@
         "periode": "2021-08",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 99.0,
-        "belop": 16830.0,
+        "beløp": 16830.0,
         "harFlereVersjoner": false
       },
       {
@@ -325,9 +325,9 @@
         "periode": "2021-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 94.0,
-        "belop": 15980.0,
+        "beløp": 15980.0,
         "harFlereVersjoner": false
       },
       {
@@ -335,9 +335,9 @@
         "periode": "2021-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 96.5,
-        "belop": 16405.0,
+        "beløp": 16405.0,
         "harFlereVersjoner": false
       },
       {
@@ -345,9 +345,9 @@
         "periode": "2021-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 105.0,
-        "belop": 17850.0,
+        "beløp": 17850.0,
         "harFlereVersjoner": false
       },
       {
@@ -355,9 +355,9 @@
         "periode": "2021-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 97.5,
-        "belop": 16575.0,
+        "beløp": 16575.0,
         "harFlereVersjoner": false
       },
       {
@@ -365,9 +365,9 @@
         "periode": "2022-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 57.5,
-        "belop": 9775.0,
+        "beløp": 9775.0,
         "harFlereVersjoner": false
       },
       {
@@ -375,9 +375,9 @@
         "periode": "2022-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 2317.0,
+        "beløp": 2317.0,
         "harFlereVersjoner": false
       },
       {
@@ -385,9 +385,9 @@
         "periode": "2022-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 69.5,
-        "belop": 11815.0,
+        "beløp": 11815.0,
         "harFlereVersjoner": false
       },
       {
@@ -395,9 +395,9 @@
         "periode": "2022-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 76.0,
-        "belop": 16393.0,
+        "beløp": 16393.0,
         "harFlereVersjoner": false
       },
       {
@@ -405,9 +405,9 @@
         "periode": "2022-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 4225.0,
+        "beløp": 4225.0,
         "harFlereVersjoner": false
       },
       {
@@ -415,9 +415,9 @@
         "periode": "2022-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 109.0,
-        "belop": 18530.0,
+        "beløp": 18530.0,
         "harFlereVersjoner": false
       },
       {
@@ -425,9 +425,9 @@
         "periode": "2022-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 5711.0,
+        "beløp": 5711.0,
         "harFlereVersjoner": false
       },
       {
@@ -435,9 +435,9 @@
         "periode": "2022-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 118.0,
-        "belop": 20060.0,
+        "beløp": 20060.0,
         "harFlereVersjoner": false
       },
       {
@@ -445,9 +445,9 @@
         "periode": "2022-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 6339.0,
+        "beløp": 6339.0,
         "harFlereVersjoner": false
       },
       {
@@ -455,9 +455,9 @@
         "periode": "2022-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 154.0,
-        "belop": 26180.0,
+        "beløp": 26180.0,
         "harFlereVersjoner": false
       },
       {
@@ -465,9 +465,9 @@
         "periode": "2022-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 9135.0,
+        "beløp": 9135.0,
         "harFlereVersjoner": false
       },
       {
@@ -475,9 +475,9 @@
         "periode": "2022-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 120.5,
-        "belop": 21690.0,
+        "beløp": 21690.0,
         "harFlereVersjoner": false
       },
       {
@@ -485,9 +485,9 @@
         "periode": "2022-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 6753.0,
+        "beløp": 6753.0,
         "harFlereVersjoner": false
       },
       {
@@ -495,9 +495,9 @@
         "periode": "2022-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 90.0,
-        "belop": 16200.0,
+        "beløp": 16200.0,
         "harFlereVersjoner": false
       },
       {
@@ -505,9 +505,9 @@
         "periode": "2022-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 8692.0,
+        "beløp": 8692.0,
         "harFlereVersjoner": false
       },
       {
@@ -515,9 +515,9 @@
         "periode": "2022-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 125.0,
-        "belop": 22500.0,
+        "beløp": 22500.0,
         "harFlereVersjoner": false
       },
       {
@@ -525,9 +525,9 @@
         "periode": "2023-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 10414.0,
+        "beløp": 10414.0,
         "harFlereVersjoner": false
       },
       {
@@ -535,9 +535,9 @@
         "periode": "2023-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 103.5,
-        "belop": 18630.0,
+        "beløp": 18630.0,
         "harFlereVersjoner": false
       },
       {
@@ -545,9 +545,9 @@
         "periode": "2023-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 6679.0,
+        "beløp": 6679.0,
         "harFlereVersjoner": false
       },
       {
@@ -555,9 +555,9 @@
         "periode": "2023-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 100.0,
-        "belop": 18000.0,
+        "beløp": 18000.0,
         "harFlereVersjoner": false
       },
       {
@@ -565,9 +565,9 @@
         "periode": "2023-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 6732.0,
+        "beløp": 6732.0,
         "harFlereVersjoner": false
       },
       {
@@ -575,9 +575,9 @@
         "periode": "2023-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 90.0,
-        "belop": 16200.0,
+        "beløp": 16200.0,
         "harFlereVersjoner": false
       },
       {
@@ -585,9 +585,9 @@
         "periode": "2023-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 9741.0,
+        "beløp": 9741.0,
         "harFlereVersjoner": false
       },
       {
@@ -595,9 +595,9 @@
         "periode": "2023-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 177.0,
-        "belop": 31860.0,
+        "beløp": 31860.0,
         "harFlereVersjoner": false
       },
       {
@@ -605,9 +605,9 @@
         "periode": "2023-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 12500.0,
+        "beløp": 12500.0,
         "harFlereVersjoner": false
       },
       {
@@ -615,9 +615,9 @@
         "periode": "2023-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 193.0,
-        "belop": 34740.0,
+        "beløp": 34740.0,
         "harFlereVersjoner": false
       },
       {
@@ -625,9 +625,9 @@
         "periode": "2023-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 9886.0,
+        "beløp": 9886.0,
         "harFlereVersjoner": false
       },
       {
@@ -635,9 +635,9 @@
         "periode": "2023-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "feriepenger",
+        "lønnstype": "feriepenger",
         "antall": null,
-        "belop": 21044.13,
+        "beløp": 21044.13,
         "harFlereVersjoner": false
       },
       {
@@ -645,9 +645,9 @@
         "periode": "2023-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 164.45,
-        "belop": 29601.0,
+        "beløp": 29601.0,
         "harFlereVersjoner": false
       },
       {
@@ -655,9 +655,9 @@
         "periode": "2023-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "fastloenn",
+        "lønnstype": "fastloenn",
         "antall": null,
-        "belop": 12515.0,
+        "beløp": 12515.0,
         "harFlereVersjoner": false
       },
       {
@@ -665,9 +665,9 @@
         "periode": "2023-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 231.0,
-        "belop": 41580.0,
+        "beløp": 41580.0,
         "harFlereVersjoner": false
       },
       {
@@ -675,9 +675,9 @@
         "periode": "2023-08",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 191.0,
-        "belop": 34380.0,
+        "beløp": 34380.0,
         "harFlereVersjoner": false
       },
       {
@@ -685,9 +685,9 @@
         "periode": "2023-08",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 8275.0,
+        "beløp": 8275.0,
         "harFlereVersjoner": false
       },
       {
@@ -695,9 +695,9 @@
         "periode": "2023-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 150.15,
-        "belop": 27027.0,
+        "beløp": 27027.0,
         "harFlereVersjoner": false
       },
       {
@@ -705,9 +705,9 @@
         "periode": "2023-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 8654.0,
+        "beløp": 8654.0,
         "harFlereVersjoner": false
       },
       {
@@ -715,9 +715,9 @@
         "periode": "2023-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 117.45,
-        "belop": 21141.0,
+        "beløp": 21141.0,
         "harFlereVersjoner": false
       },
       {
@@ -725,9 +725,9 @@
         "periode": "2023-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 7405.0,
+        "beløp": 7405.0,
         "harFlereVersjoner": false
       },
       {
@@ -735,9 +735,9 @@
         "periode": "2023-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 135.0,
-        "belop": 24300.0,
+        "beløp": 24300.0,
         "harFlereVersjoner": false
       },
       {
@@ -745,9 +745,9 @@
         "periode": "2023-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 8257.0,
+        "beløp": 8257.0,
         "harFlereVersjoner": false
       },
       {
@@ -755,9 +755,9 @@
         "periode": "2023-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 117.0,
-        "belop": 21060.0,
+        "beløp": 21060.0,
         "harFlereVersjoner": false
       },
       {
@@ -765,9 +765,9 @@
         "periode": "2023-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 9337.0,
+        "beløp": 9337.0,
         "harFlereVersjoner": false
       },
       {
@@ -775,9 +775,9 @@
         "periode": "2024-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 104.3,
-        "belop": 18774.0,
+        "beløp": 18774.0,
         "harFlereVersjoner": false
       },
       {
@@ -785,9 +785,9 @@
         "periode": "2024-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 10639.0,
+        "beløp": 10639.0,
         "harFlereVersjoner": false
       },
       {
@@ -795,9 +795,9 @@
         "periode": "2024-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 180.0,
-        "belop": 19134.0,
+        "beløp": 19134.0,
         "harFlereVersjoner": false
       },
       {
@@ -805,9 +805,9 @@
         "periode": "2024-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 9746.0,
+        "beløp": 9746.0,
         "harFlereVersjoner": false
       },
       {
@@ -815,9 +815,9 @@
         "periode": "2024-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 41.0,
-        "belop": 7822.39,
+        "beløp": 7822.39,
         "harFlereVersjoner": false
       },
       {
@@ -825,9 +825,9 @@
         "periode": "2024-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 4603.0,
+        "beløp": 4603.0,
         "harFlereVersjoner": false
       },
       {
@@ -835,9 +835,9 @@
         "periode": "2024-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 91.5,
-        "belop": 17457.28,
+        "beløp": 17457.28,
         "harFlereVersjoner": false
       },
       {
@@ -845,9 +845,9 @@
         "periode": "2024-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 8371.0,
+        "beløp": 8371.0,
         "harFlereVersjoner": false
       },
       {
@@ -855,9 +855,9 @@
         "periode": "2024-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 113.5,
-        "belop": 21654.66,
+        "beløp": 21654.66,
         "harFlereVersjoner": false
       },
       {
@@ -865,9 +865,9 @@
         "periode": "2024-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 10599.0,
+        "beløp": 10599.0,
         "harFlereVersjoner": false
       },
       {
@@ -875,9 +875,9 @@
         "periode": "2024-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "feriepenger",
+        "lønnstype": "feriepenger",
         "antall": null,
-        "belop": 63308.94,
+        "beløp": 63308.94,
         "harFlereVersjoner": false
       },
       {
@@ -885,9 +885,9 @@
         "periode": "2024-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 99.3,
-        "belop": 18945.44,
+        "beløp": 18945.44,
         "harFlereVersjoner": false
       },
       {
@@ -895,9 +895,9 @@
         "periode": "2024-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 11648.0,
+        "beløp": 11648.0,
         "harFlereVersjoner": false
       },
       {
@@ -905,9 +905,9 @@
         "periode": "2024-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 176.45,
-        "belop": 33664.89,
+        "beløp": 33664.89,
         "harFlereVersjoner": false
       },
       {
@@ -915,9 +915,9 @@
         "periode": "2024-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 9405.0,
+        "beløp": 9405.0,
         "harFlereVersjoner": false
       },
       {
@@ -925,9 +925,9 @@
         "periode": "2024-08",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 64.3,
-        "belop": 12267.79,
+        "beløp": 12267.79,
         "harFlereVersjoner": false
       },
       {
@@ -935,9 +935,9 @@
         "periode": "2024-08",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 2927.0,
+        "beløp": 2927.0,
         "harFlereVersjoner": false
       },
       {
@@ -945,9 +945,9 @@
         "periode": "2024-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 57.95,
-        "belop": 11056.28,
+        "beløp": 11056.28,
         "harFlereVersjoner": false
       },
       {
@@ -955,9 +955,9 @@
         "periode": "2024-09",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 3851.0,
+        "beløp": 3851.0,
         "harFlereVersjoner": false
       },
       {
@@ -965,9 +965,9 @@
         "periode": "2024-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 86.4,
-        "belop": 16484.25,
+        "beløp": 16484.25,
         "harFlereVersjoner": false
       },
       {
@@ -975,9 +975,9 @@
         "periode": "2024-10",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 4383.0,
+        "beløp": 4383.0,
         "harFlereVersjoner": false
       },
       {
@@ -985,9 +985,9 @@
         "periode": "2024-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "overtidsgodtgjoerelse",
+        "lønnstype": "overtidsgodtgjoerelse",
         "antall": 4.0,
-        "belop": 305.26,
+        "beløp": 305.26,
         "harFlereVersjoner": false
       },
       {
@@ -995,9 +995,9 @@
         "periode": "2024-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 101.0,
-        "belop": 19269.79,
+        "beløp": 19269.79,
         "harFlereVersjoner": false
       },
       {
@@ -1005,9 +1005,9 @@
         "periode": "2024-11",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 5632.0,
+        "beløp": 5632.0,
         "harFlereVersjoner": false
       },
       {
@@ -1015,9 +1015,9 @@
         "periode": "2024-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 100.3,
-        "belop": 19838.33,
+        "beløp": 19838.33,
         "harFlereVersjoner": false
       },
       {
@@ -1025,9 +1025,9 @@
         "periode": "2024-12",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 6309.0,
+        "beløp": 6309.0,
         "harFlereVersjoner": false
       },
       {
@@ -1035,9 +1035,9 @@
         "periode": "2025-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 81.0,
-        "belop": 16020.99,
+        "beløp": 16020.99,
         "harFlereVersjoner": false
       },
       {
@@ -1045,9 +1045,9 @@
         "periode": "2025-01",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 4000.0,
+        "beløp": 4000.0,
         "harFlereVersjoner": false
       },
       {
@@ -1055,9 +1055,9 @@
         "periode": "2025-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 104.0,
-        "belop": 20570.16,
+        "beløp": 20570.16,
         "harFlereVersjoner": false
       },
       {
@@ -1065,9 +1065,9 @@
         "periode": "2025-02",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 4421.0,
+        "beløp": 4421.0,
         "harFlereVersjoner": false
       },
       {
@@ -1075,9 +1075,9 @@
         "periode": "2025-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 85.0,
-        "belop": 16812.15,
+        "beløp": 16812.15,
         "harFlereVersjoner": false
       },
       {
@@ -1085,9 +1085,9 @@
         "periode": "2025-03",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 4767.0,
+        "beløp": 4767.0,
         "harFlereVersjoner": false
       },
       {
@@ -1095,9 +1095,9 @@
         "periode": "2025-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 90.2,
-        "belop": 17840.65,
+        "beløp": 17840.65,
         "harFlereVersjoner": false
       },
       {
@@ -1105,9 +1105,9 @@
         "periode": "2025-04",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 5169.0,
+        "beløp": 5169.0,
         "harFlereVersjoner": false
       },
       {
@@ -1115,9 +1115,9 @@
         "periode": "2025-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 79.0,
-        "belop": 15625.41,
+        "beløp": 15625.41,
         "harFlereVersjoner": false
       },
       {
@@ -1125,9 +1125,9 @@
         "periode": "2025-05",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 4852.0,
+        "beløp": 4852.0,
         "harFlereVersjoner": false
       },
       {
@@ -1135,9 +1135,9 @@
         "periode": "2025-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "overtidsgodtgjoerelse",
+        "lønnstype": "overtidsgodtgjoerelse",
         "antall": 4.5,
-        "belop": 356.04,
+        "beløp": 356.04,
         "harFlereVersjoner": false
       },
       {
@@ -1145,9 +1145,9 @@
         "periode": "2025-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 98.3,
-        "belop": 19442.75,
+        "beløp": 19442.75,
         "harFlereVersjoner": false
       },
       {
@@ -1155,9 +1155,9 @@
         "periode": "2025-06",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 5606.0,
+        "beløp": 5606.0,
         "harFlereVersjoner": false
       },
       {
@@ -1165,9 +1165,9 @@
         "periode": "2025-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "timeloenn",
+        "lønnstype": "timeloenn",
         "antall": 110.0,
-        "belop": 22526.9,
+        "beløp": 22526.9,
         "harFlereVersjoner": false
       },
       {
@@ -1175,15 +1175,15 @@
         "periode": "2025-07",
         "arbeidsforhold": "",
         "stillingsprosent": "",
-        "lonnstype": "tips",
+        "lønnstype": "tips",
         "antall": null,
-        "belop": 6122.0,
+        "beløp": 6122.0,
         "harFlereVersjoner": true
       }
     ],
-    "naringsInntekt": [],
-    "PensjonEllerTrygd": [],
-    "YtelseFraOffentlige": []
+    "næringsinntekt": [],
+    "pensjonEllerTrygd": [],
+    "ytelseFraOffentlige": []
   },
   "stønader": [
     {
