@@ -4,7 +4,6 @@ import {
   Bleed,
   BodyLong,
   Heading,
-  Label,
   Page,
   Search,
   Stack,
@@ -17,11 +16,14 @@ import {
   Form,
   redirect,
   useActionData,
+  useNavigation,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 
 export default function LandingPage() {
   const actionData = useActionData<typeof action>();
+
+  const navigation = useNavigation();
 
   return (
     <Page.Block width="text" gutters>
@@ -50,18 +52,23 @@ export default function LandingPage() {
                 gjelder.
               </Alert>
 
-              <Form className="px-5 mt-12" method="post">
-                <VStack>
-                  <Label htmlFor="ident">Fødselsnummer/D-nummer</Label>
-                  <Search
-                    name="ident"
-                    size="medium"
-                    variant="primary"
-                    placeholder="11 siffer"
-                    label="Søk på fødselsnummer"
-                    error={actionData?.error}
+              <Form className="px-5 mt-12" method="post" role="search">
+                <Search
+                  name="ident"
+                  size="medium"
+                  variant="primary"
+                  placeholder="11 siffer"
+                  label="Slå opp person"
+                  description="Du kan søke på fødselsnummer eller D-nummer"
+                  hideLabel={false}
+                  error={actionData?.error}
+                  autoComplete="off"
+                >
+                  <Search.Button
+                    type="submit"
+                    loading={navigation.state === "submitting"}
                   />
-                </VStack>
+                </Search>
               </Form>
             </VStack>
           </Stack>
