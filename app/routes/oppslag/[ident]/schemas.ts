@@ -65,8 +65,8 @@ export type Stonad = z.infer<typeof StonadSchema>;
 
 const AnsettelsesDetaljSchema = z.object({
   type: z.string(),
-  stillingsprosent: z.number(),
-  antallTimerPrUke: z.number(),
+  stillingsprosent: z.number().nullable(),
+  antallTimerPrUke: z.number().nullable(),
   periode: ÅpenPeriodeSchema,
   yrke: z.string().nullable(),
 });
