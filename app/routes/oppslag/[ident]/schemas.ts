@@ -79,9 +79,11 @@ const ArbeidsforholdSchema = z.object({
 });
 
 const ArbeidsgiverInformasjonSchema = z.object({
-  lopendeArbeidsforhold: z.array(ArbeidsforholdSchema),
+  løpendeArbeidsforhold: z.array(ArbeidsforholdSchema),
   historikk: z.array(ArbeidsforholdSchema),
 });
+
+export type ArbeidsgiverInformasjon = z.infer<typeof ArbeidsgiverInformasjonSchema>;
 
 const InntektSchema = z.object({
   arbeidsgiver: z.string().nullable(),
