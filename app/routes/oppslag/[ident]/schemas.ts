@@ -82,7 +82,7 @@ export const OppslagBrukerResponsSchema = z.object({
   personInformasjon: PersonInformasjonSchema.nullable(),
   arbeidsgiverInformasjon: ArbeidsgiverInformasjonSchema.nullable(),
   inntektInformasjon: InntektInformasjonSchema.nullable(),
-  stonadOversikt: z.array(StonadSchema),
+  stønader: z.array(StonadSchema),
 });
 
 export type OppslagBrukerRespons = z.infer<typeof OppslagBrukerResponsSchema>;
