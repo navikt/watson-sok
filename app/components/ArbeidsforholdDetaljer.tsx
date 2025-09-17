@@ -47,7 +47,7 @@ export function ArbeidsforholdDetaljer({
       link={{ href: "https://aareg.nav.no", beskrivelse: "Historikk" }}
     >
       <div className="mt-4 max-h-[500px] overflow-y-scroll">
-        <Table>
+        <Table size="small">
           <Table.Header className="sticky top-0 bg-white">
             <Table.Row>
               <Table.HeaderCell scope="col">Arbeidsgiver</Table.HeaderCell>
