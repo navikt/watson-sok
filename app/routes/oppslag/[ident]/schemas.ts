@@ -1,5 +1,13 @@
 import z from "zod";
 
+const NavnSchema = z.object({
+  fornavn: z.string(),
+  mellomnavn: z.string().nullable(),
+  etternavn: z.string(),
+});
+
+export type Navn = z.infer<typeof NavnSchema>;
+
 const ÅpenPeriodeSchema = z.object({
   fom: z.string(),
   tom: z.string().nullable(),
@@ -17,38 +25,37 @@ const StonadPeriodeSchema = z.object({
   info: z.string().nullable(),
 });
 
+const NorskAdresseSchema = z.object({
+  adressenavn: z.string().nullish(),
+  husnummer: z.string().nullish(),
+  husbokstav: z.string().nullish(),
+  postnummer: z.string().nullish(),
+  kommunenummer: z.string().nullish(),
+  poststed: z.string().nullish(),
+});
+export type NorskAdresse = z.infer<typeof NorskAdresseSchema>;
+
+const UtenlandskAdresseSchema = z.object({
+  adressenavnNummer: z.string().nullish(),
+  bygningEtasjeLeilighet: z.string().nullish(),
+  postboksNummerNavn: z.string().nullish(),
+  postkode: z.string().nullish(),
+  bySted: z.string().nullish(),
+  regionDistriktOmråde: z.string().nullish(),
+  landkode: z.string(),
+});
+export type UtenlandskAdresse = z.infer<typeof UtenlandskAdresseSchema>;
+
+const AdresseSchema = z.object({
+  norskAdresse: NorskAdresseSchema.nullish(),
+  utenlandskAdresse: UtenlandskAdresseSchema.nullish(),
+});
+export type Adresse = z.infer<typeof AdresseSchema>;
+
 const PersonInformasjonSchema = z.object({
-  navn: z.object({
-    fornavn: z.string(),
-    mellomnavn: z.string().nullable(),
-    etternavn: z.string(),
-  }),
+  navn: NavnSchema,
   aktørId: z.string().nullable(),
-  adresse: z
-    .object({
-      norskAdresse: z
-        .object({
-          adressenavn: z.string().nullish(),
-          husnummer: z.string().nullish(),
-          husbokstav: z.string().nullish(),
-          postnummer: z.string().nullish(),
-          kommunenummer: z.string().nullish(),
-          poststed: z.string().nullish(),
-        })
-        .nullish(),
-      utenlandskAdresse: z
-        .object({
-          adressenavnNummer: z.string().nullish(),
-          bygningEtasjeLeilighet: z.string().nullish(),
-          postboksNummerNavn: z.string().nullish(),
-          postkode: z.string().nullish(),
-          bySted: z.string().nullish(),
-          regionDistriktOmråde: z.string().nullish(),
-          landkode: z.string(),
-        })
-        .nullish(),
-    })
-    .nullable(),
+  adresse: AdresseSchema.nullable(),
   familemedlemmer: z.record(z.string(), z.enum(["BARN", "GIFT", "FAR", "MOR"])),
   statsborgerskap: z.array(z.string()),
   sivilstand: z.string().nullable(),
