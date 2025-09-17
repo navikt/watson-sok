@@ -14,7 +14,7 @@ type PanelContainerProps = {
  */
 export function PanelContainer({ children, title, link }: PanelContainerProps) {
   return (
-    <div className="bg-primary rounded-sm border-1 border-gray-200 p-4 h-fit relative">
+    <section className="bg-primary rounded-sm border-1 border-gray-200 p-4 h-fit relative">
       {title && (
         <Heading level="2" size="medium" spacing>
           {title}
@@ -26,6 +26,6 @@ export function PanelContainer({ children, title, link }: PanelContainerProps) {
         </div>
       )}
       {children}
-    </div>
+    </section>
   );
 }
