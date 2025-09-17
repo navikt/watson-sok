@@ -1,0 +1,2512 @@
+{
+  "utrekkstidspunkt": "2025-09-16T13:27:48.036660876",
+  "saksbehandlerIdent": "prod-gcp:holmes:nav-persondata-api",
+  "fødselsnummer": "12345678902",
+  "personInformasjon": {
+    "aktørId": "12345678902",
+    "familemedlemmer": {
+      "12345678903": "BARN",
+      "12345678904": "FAR",
+      "12345678905": "MOR",
+      "12345678906": "BARN",
+      "12345678907": "GIFT"
+    },
+    "statsborgerskap": ["NOR"],
+    "navn": {
+      "fornavn": "SNEDIG",
+      "mellomnavn": "MOTVEKT",
+      "etternavn": "SPRETT"
+    },
+    "adresse": {
+      "norskAdresse": {
+        "adressenavn": "Gateveien",
+        "husnummer": "69",
+        "husbokstav": "A",
+        "postnummer": "1177",
+        "kommunenummer": "0301",
+        "poststed": "1177"
+      },
+      "utenlandskAdresse": null
+    },
+    "sivilstand": "GIFT"
+  },
+  "arbeidsgiverInformasjon": {
+    "løpendeArbeidsforhold": [
+      {
+        "arbeidsgiver": "BORETTSLAGET AS",
+        "organisasjonsnummer": "911922933",
+        "adresse": "c/o Enqvist Boligforvaltning AS, 0569",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Frilanser",
+            "stillingsprosent": null,
+            "antallTimerPrUke": null,
+            "periode": {
+              "fom": "2020-08",
+              "tom": null
+            },
+            "yrke": "STYRELEDER (ANNEN VIRKSOMHET - FÆRRE ENN 10 ANSATTE-PRIVAT VIRKSOMHET)"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "organisasjonsnummer": "919293918",
+        "adresse": "Shedden , 0150",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2025-01",
+              "tom": null
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2015-01",
+              "tom": "2015-06"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2015-07",
+              "tom": "2015-12"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2016-01",
+              "tom": "2016-05"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2016-06",
+              "tom": "2016-12"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2017-01",
+              "tom": "2017-06"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2017-07",
+              "tom": "2017-12"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2018-01",
+              "tom": "2018-06"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2018-07",
+              "tom": "2018-12"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2019-01",
+              "tom": "2019-06"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2019-07",
+              "tom": "2019-12"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2020-01",
+              "tom": "2020-12"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2021-01",
+              "tom": "2021-06"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2021-07",
+              "tom": "2021-12"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2022-01",
+              "tom": "2022-05"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2022-06",
+              "tom": "2022-06"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2022-07",
+              "tom": "2022-12"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-01",
+              "tom": "2023-12"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2024-01",
+              "tom": "2024-12"
+            },
+            "yrke": "IT-KONSULENT"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "RABATTO AS",
+        "organisasjonsnummer": "987654321",
+        "adresse": "Bryggekaia 1, 4014",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 20.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2025-08",
+              "tom": null
+            },
+            "yrke": "SYSTEMUTVIKLER"
+          }
+        ]
+      }
+    ],
+    "historikk": [
+      {
+        "arbeidsgiver": "ARBEIDS- OG VELFERDSDIREKTORATET AVD FYRSTIKKALLÉEN",
+        "organisasjonsnummer": "912998827",
+        "adresse": "Fyrstikkalléen 1, 0661",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Frilanser",
+            "stillingsprosent": 0.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2024-05",
+              "tom": null
+            },
+            "yrke": "SAKSBEHANDLER (OFFENTLIG ADMINISTRASJON - USPESIFISERT)"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "RABATTO AS",
+        "organisasjonsnummer": "987654321",
+        "adresse": "Bryggekaia 1, 4014",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 10.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-11",
+              "tom": null
+            },
+            "yrke": "SYSTEMUTVIKLER"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 10.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-03",
+              "tom": "2023-10"
+            },
+            "yrke": "SYSTEMUTVIKLER"
+          }
+        ]
+      }
+    ]
+  },
+  "inntektInformasjon": {
+    "lønnsinntekt": [
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 120.64,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 62500.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 646.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 107.23,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 45761.13,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 1098.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 62500.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 646.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 1032.17,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 62500.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 646.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 5000.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 62500.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 646.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": -107.23,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 14080.35,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 66667.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 694.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 66667.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 694.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 66667.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 694.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 7040.17,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 66666.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 694.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 78205.13,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 694.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 66666.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 88606.46,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 694.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "trekkILoennForFerie",
+        "antall": null,
+        "beløp": -64605.45,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 45761.13,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 85000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 694.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 85000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 694.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 85000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 694.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 138.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 33483.75,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 1098.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 85000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 694.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 85000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 694.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 85000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2021-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 1943.75,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 33483.75,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 88750.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 835.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 88750.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 835.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 88750.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 835.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 33483.75,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 88750.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 835.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 1314.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 88750.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 835.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 88750.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 96436.13,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 835.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "trekkILoennForFerie",
+        "antall": null,
+        "beløp": -102388.09,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 39064.38,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 92916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 835.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 157.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 92916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 835.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 92916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 835.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 39064.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 732.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 92916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 835.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 92916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 835.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 92916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2022-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": -798.2,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 39064.37,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 97083.33,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 866.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 97083.33,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 866.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "RABATTO AS",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 10000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 97083.33,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 866.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "RABATTO AS",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 10000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 105325.64,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 97083.33,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 866.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 97083.33,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 866.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 97083.33,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 135924.94,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 866.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "trekkILoennForFerie",
+        "antall": null,
+        "beløp": -112002.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 44645.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 97083.33,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 866.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 97083.33,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 866.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 1098.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 97083.33,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 866.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 44645.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 97083.33,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 866.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 97083.33,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 866.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 97083.33,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 1968.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 44645.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 102916.66,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 958.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 102916.66,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 958.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 102916.66,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 958.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 44645.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 102916.66,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 958.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 102916.66,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 958.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "RABATTO AS",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 2040.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 34181.82,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 102916.66,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 147119.68,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 958.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "trekkILoennForFerie",
+        "antall": null,
+        "beløp": -118731.73,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 44645.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 102916.66,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 958.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 102916.66,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 958.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 1098.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 102916.66,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 958.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 44645.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 102916.66,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 958.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 102916.66,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 958.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 102916.66,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2024-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 2267.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 44645.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 107916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 1176.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 107916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 1176.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 107916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 1176.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 44645.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 107916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 1176.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 36226.1,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 107916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "kilometergodtgjoerelseBil",
+        "antall": 125.1,
+        "beløp": 187.65,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "kilometergodtgjoerelseBil",
+        "antall": 125.1,
+        "beløp": 437.85,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "kilometergodtgjoerelsePassasjertillegg",
+        "antall": 250.0,
+        "beløp": 250.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 1176.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 107916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 155381.79,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 1176.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "trekkILoennForFerie",
+        "antall": null,
+        "beløp": -124500.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "bonus",
+        "antall": null,
+        "beløp": 44643.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 107916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 1176.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "RABATTO AS",
+        "periode": "2025-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 107916.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "PREMIUM KONSULENTER AS",
+        "periode": "2025-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 1176.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "RABATTO AS",
+        "periode": "2025-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      }
+    ],
+    "næringsinntekt": [],
+    "pensjonEllerTrygd": [],
+    "ytelseFraOffentlige": []
+  },
+  "stønader": []
+}
