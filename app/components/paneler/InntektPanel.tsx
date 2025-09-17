@@ -50,14 +50,22 @@ export function InntektPanel({ inntektInformasjon }: InntektPanelProps) {
             Rader markert i gult og med varselikon har flere versjoner i
             A-ordningen.
           </Alert>
-          <Table size="small">
+          <Table size="medium">
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell scope="col">Periode</Table.HeaderCell>
-                <Table.HeaderCell scope="col">Arbeidsgiver</Table.HeaderCell>
-                <Table.HeaderCell scope="col">Lønnstype</Table.HeaderCell>
-                <Table.HeaderCell scope="col">Timer</Table.HeaderCell>
-                <Table.HeaderCell scope="col" align="right">
+                <Table.HeaderCell scope="col" textSize="small">
+                  Periode
+                </Table.HeaderCell>
+                <Table.HeaderCell scope="col" textSize="small">
+                  Arbeidsgiver
+                </Table.HeaderCell>
+                <Table.HeaderCell scope="col" textSize="small">
+                  Lønnstype
+                </Table.HeaderCell>
+                <Table.HeaderCell scope="col" textSize="small">
+                  Timer
+                </Table.HeaderCell>
+                <Table.HeaderCell scope="col" align="right" textSize="small">
                   Beløp
                 </Table.HeaderCell>
               </Table.Row>
@@ -77,7 +85,11 @@ export function InntektPanel({ inntektInformasjon }: InntektPanelProps) {
                       harFlereVersjoner ? "Har flere versjoner" : undefined
                     }
                   >
-                    <Table.HeaderCell scope="row" style={cellStyle}>
+                    <Table.HeaderCell
+                      scope="row"
+                      style={cellStyle}
+                      textSize="small"
+                    >
                       <span className="inline-flex items-center gap-2">
                         {harFlereVersjoner && (
                           <ExclamationmarkTriangleFillIcon
@@ -95,17 +107,18 @@ export function InntektPanel({ inntektInformasjon }: InntektPanelProps) {
                         )}
                       </span>
                     </Table.HeaderCell>
-                    <Table.DataCell style={cellStyle}>
+                    <Table.DataCell style={cellStyle} textSize="small">
                       {r.arbeidsgiver || "–"}
                     </Table.DataCell>
-                    <Table.DataCell style={cellStyle}>
+                    <Table.DataCell style={cellStyle} textSize="small">
                       {camelCaseTilNorsk(r.lønnstype)}
                     </Table.DataCell>
-                    <Table.DataCell style={cellStyle}>
+                    <Table.DataCell style={cellStyle} textSize="small">
                       {timer !== null ? formatterDesimaltall(timer, 0, 2) : "–"}
                     </Table.DataCell>
                     <Table.DataCell
                       style={{ ...cellStyle, textAlign: "right" }}
+                      textSize="small"
                     >
                       {beløp !== null ? formatterBeløp(beløp) : "–"}
                     </Table.DataCell>
