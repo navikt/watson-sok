@@ -1,4 +1,4 @@
-import { Alert, Table, Tag } from "@navikt/ds-react";
+import { Alert, Table } from "@navikt/ds-react";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/[ident]/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterProsent } from "~/utils/number-utils";
@@ -73,12 +73,16 @@ export function ArbeidsforholdDetaljer({
           <Table.Body>
             {rows.map((r) => (
               <Table.Row key={r.key}>
-                <Table.HeaderCell scope="row" textSize="small">
-                  {r.løpende && (
-                    <Tag size="xsmall" variant="success" className="mr-2">
-                      Løpende
-                    </Tag>
-                  )}
+                <Table.HeaderCell
+                  scope="row"
+                  textSize="small"
+                  title={
+                    r.løpende ? "Dette er et løpende arbeidsforhold" : undefined
+                  }
+                  className={
+                    r.løpende ? "border-l-6 border-l-green-500" : undefined
+                  }
+                >
                   {r.arbeidsgiver}
                 </Table.HeaderCell>
                 <Table.DataCell className="whitespace-nowrap" textSize="small">
