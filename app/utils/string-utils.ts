@@ -4,9 +4,9 @@
  * @param tekst - Teksten som skal ha stor første bokstav
  * @returns Tekst med stor første bokstav
  */
-export function storFørsteBokstav(tekst: string): string {
+export function storFørsteBokstav(tekst: string | null | undefined): string {
   if (!tekst) {
-    return tekst;
+    return "";
   }
 
   const førsteBokstav = tekst.charAt(0).toUpperCase();
@@ -37,4 +37,18 @@ export function camelCaseTilNorsk(camelCaseStr: string | null) {
   );
 
   return storFørsteBokstav(norskeOrd.join(" "));
+}
+
+/**
+ * Formaterer fødselsnummer til å ha mellomrom mellom de seks første og de fem siste sifrene
+ *
+ * @param fødselsnummer - Fødselsnummer som skal formateres
+ * @returns Formatert fødselsnummer
+ */
+export function formatterFødselsnummer(fødselsnummer: string | null): string {
+  if (!fødselsnummer || fødselsnummer.length !== 11) {
+    return fødselsnummer ?? "";
+  }
+
+  return fødselsnummer.slice(0, 6) + " " + fødselsnummer.slice(6);
 }

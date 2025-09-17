@@ -1,4 +1,4 @@
-import { Alert, Button, HGrid } from "@navikt/ds-react";
+import { Alert, Button, Heading, HGrid } from "@navikt/ds-react";
 import {
   data,
   useLoaderData,
@@ -8,8 +8,9 @@ import {
 import { ArbeidsforholdDetaljer } from "~/components/ArbeidsforholdDetaljer";
 import DetaljModal from "~/components/DetaljModal";
 import InntektTabellOversikt from "~/components/InntektTabellOversikt";
-import PersonDetaljer from "~/components/PersonDetaljer";
+import { Brukerinformasjon } from "~/components/paneler/Brukerinformasjon";
 import StonadOversikt from "~/components/StonadOversikt";
+import { tilFulltNavn } from "~/utils/navn-utils";
 import { useDisclosure } from "~/utils/useDisclosure";
 import { fetchIdent } from "./fetchIdent.server";
 
@@ -32,10 +33,13 @@ export default function OppslagBruker() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 px-4">
+      <Heading level="1" size="large" spacing className="mt-8">
+        Brukeroppslag på {tilFulltNavn(data.personInformasjon?.navn)}
+      </Heading>
       <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
         {data.personInformasjon && (
-          <PersonDetaljer personInformasjon={data.personInformasjon} />
+          <Brukerinformasjon personInformasjon={data.personInformasjon} />
         )}
         {data.arbeidsgiverInformasjon && (
           <ArbeidsforholdDetaljer
