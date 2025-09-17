@@ -1,4 +1,4 @@
-import { Alert, Table, Tag } from "@navikt/ds-react";
+import { Alert, Table } from "@navikt/ds-react";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/[ident]/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterProsent } from "~/utils/number-utils";
@@ -47,41 +47,59 @@ export function ArbeidsforholdDetaljer({
       link={{ href: "https://aareg.nav.no", beskrivelse: "Historikk" }}
     >
       <div className="mt-4 max-h-[500px] overflow-y-scroll">
-        <Table size="small">
-          <Table.Header className="sticky top-0 bg-white">
+        <Table size="small" stickyHeader={true}>
+          <Table.Header>
             <Table.Row>
-              <Table.HeaderCell scope="col">Arbeidsgiver</Table.HeaderCell>
-              <Table.HeaderCell scope="col">Start</Table.HeaderCell>
-              <Table.HeaderCell scope="col">Slutt</Table.HeaderCell>
-              <Table.HeaderCell scope="col">Stilling&nbsp;%</Table.HeaderCell>
-              <Table.HeaderCell scope="col">Arbeidsforhold</Table.HeaderCell>
-              <Table.HeaderCell scope="col">Yrke</Table.HeaderCell>
+              <Table.HeaderCell textSize="small" scope="col">
+                Arbeidsgiver
+              </Table.HeaderCell>
+              <Table.HeaderCell textSize="small" scope="col">
+                Start
+              </Table.HeaderCell>
+              <Table.HeaderCell textSize="small" scope="col">
+                Slutt
+              </Table.HeaderCell>
+              <Table.HeaderCell textSize="small" scope="col">
+                Stilling&nbsp;%
+              </Table.HeaderCell>
+              <Table.HeaderCell textSize="small" scope="col">
+                Arbeidsforhold
+              </Table.HeaderCell>
+              <Table.HeaderCell textSize="small" scope="col">
+                Yrke
+              </Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
             {rows.map((r) => (
               <Table.Row key={r.key}>
-                <Table.HeaderCell scope="row">
-                  {r.arbeidsgiver}{" "}
-                  {r.løpende && (
-                    <Tag size="small" variant="success" className="ml-2">
-                      Løpende
-                    </Tag>
-                  )}
+                <Table.HeaderCell
+                  scope="row"
+                  textSize="small"
+                  title={
+                    r.løpende ? "Dette er et løpende arbeidsforhold" : undefined
+                  }
+                  className={
+                    r.løpende ? "border-l-6 border-l-green-500" : undefined
+                  }
+                >
+                  {r.arbeidsgiver}
                 </Table.HeaderCell>
-                <Table.DataCell className="whitespace-nowrap">
+                <Table.DataCell className="whitespace-nowrap" textSize="small">
                   {formatÅrMåned(r.start)}
                 </Table.DataCell>
-                <Table.DataCell className="whitespace-nowrap">
+                <Table.DataCell className="whitespace-nowrap" textSize="small">
                   {r.slutt ? formatÅrMåned(r.slutt) : "–"}
                 </Table.DataCell>
-                <Table.DataCell>
+                <Table.DataCell align="right" textSize="small">
                   {formatterProsent(r.stillingsprosent ?? "-")}
                 </Table.DataCell>
-                <Table.DataCell>
+                <Table.DataCell textSize="small">
                   {mapArbeidsforholdType(r.arbeidsforholdType ?? "–")}
                 </Table.DataCell>
-                <Table.DataCell>{mapYrke(r.yrke ?? "–")}</Table.DataCell>
+                <Table.DataCell textSize="small">
+                  {mapYrke(r.yrke ?? "–")}
+                </Table.DataCell>
               </Table.Row>
             ))}
           </Table.Body>
