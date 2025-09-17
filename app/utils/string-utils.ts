@@ -18,7 +18,7 @@ export function storFørsteBokstav(tekst: string): string {
 /**
  * Konverterer camelCase til en norsk setning med stor første bokstav
  *
- * @param camelCaseStr - CamelCase-teksten som skal konverteres
+ * @param camelCaseStr - camelCase-teksten som skal konverteres
  * @returns Norsk tekst med stor første bokstav
  */
 export function camelCaseTilNorsk(camelCaseStr: string | null) {
