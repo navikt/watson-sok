@@ -14,7 +14,7 @@ type BrukerinformasjonProps = {
 /**
  * Komponent som viser personlig informasjon om en bruker
  */
-export function Brukerinformasjon({
+export function BrukerinformasjonPanel({
   personInformasjon,
 }: BrukerinformasjonProps) {
   const erDNummer = Number(personInformasjon.aktørId?.charAt(0)) > 3;

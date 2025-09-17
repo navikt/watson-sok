@@ -3,17 +3,17 @@ import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/[ident]/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterProsent } from "~/utils/number-utils";
 import { storFørsteBokstav } from "~/utils/string-utils";
-import { PanelContainer } from "./paneler/PanelContainer";
+import { PanelContainer } from "./PanelContainer";
 
-type Props = {
+type ArbeidsforholdPanelProps = {
   arbeidsgiverInformasjon?: ArbeidsgiverInformasjon | null;
   fnr?: string; // brukes kun i key-generering hvis du vil
 };
 
-export function ArbeidsforholdDetaljer({
+export function ArbeidsforholdPanel({
   arbeidsgiverInformasjon,
   fnr = "",
-}: Props) {
+}: ArbeidsforholdPanelProps) {
   const løpende = arbeidsgiverInformasjon?.løpendeArbeidsforhold ?? [];
 
   // Flater ut alle (arbeidsgiver x ansettelsesDetalj) til rad-objekter
