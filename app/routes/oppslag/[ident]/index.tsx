@@ -9,7 +9,7 @@ import DetaljModal from "~/components/DetaljModal";
 import { ArbeidsforholdPanel } from "~/components/paneler/ArbeidsforholdPanel";
 import { BrukerinformasjonPanel } from "~/components/paneler/BrukerinformasjonPanel";
 import { InntektPanel } from "~/components/paneler/InntektPanel";
-import StonadOversikt from "~/components/StonadOversikt";
+import { StønaderPanel } from "~/components/paneler/StønaderPanel";
 import { tilFulltNavn } from "~/utils/navn-utils";
 import { useDisclosure } from "~/utils/useDisclosure";
 import { fetchIdent } from "./fetchIdent.server";
@@ -47,7 +47,7 @@ export default function OppslagBruker() {
           />
         )}
       </HGrid>
-      {data.stønader && <StonadOversikt stønader={data.stønader} />}
+      {data.stønader && <StønaderPanel stønader={data.stønader} />}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {data.inntektInformasjon && (
           <InntektPanel inntektInformasjon={data.inntektInformasjon} />

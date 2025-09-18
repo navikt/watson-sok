@@ -39,7 +39,10 @@ export function InntektPanel({ inntektInformasjon }: InntektPanelProps) {
   const erTom = rader.length === 0;
 
   return (
-    <PanelContainer title="Inntekt">
+    <PanelContainer
+      title="Inntekt"
+      link={{ href: "https://aareg.nav.no", beskrivelse: "Historikk" }}
+    >
       {erTom ? (
         <Alert variant="info">
           Ingen lønnsutbetalinger funnet for de siste 3 årene.
