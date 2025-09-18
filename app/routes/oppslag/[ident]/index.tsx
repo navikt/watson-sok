@@ -5,11 +5,11 @@ import {
   useParams,
   type LoaderFunctionArgs,
 } from "react-router";
-import { ArbeidsforholdDetaljer } from "~/components/ArbeidsforholdDetaljer";
 import DetaljModal from "~/components/DetaljModal";
-import InntektTabellOversikt from "~/components/InntektTabellOversikt";
-import { Brukerinformasjon } from "~/components/paneler/Brukerinformasjon";
-import StonadOversikt from "~/components/StonadOversikt";
+import { ArbeidsforholdPanel } from "~/components/paneler/ArbeidsforholdPanel";
+import { BrukerinformasjonPanel } from "~/components/paneler/BrukerinformasjonPanel";
+import { InntektPanel } from "~/components/paneler/InntektPanel";
+import { StønaderPanel } from "~/components/paneler/StønaderPanel";
 import { tilFulltNavn } from "~/utils/navn-utils";
 import { useDisclosure } from "~/utils/useDisclosure";
 import { fetchIdent } from "./fetchIdent.server";
@@ -39,18 +39,20 @@ export default function OppslagBruker() {
       </Heading>
       <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
         {data.personInformasjon && (
-          <Brukerinformasjon personInformasjon={data.personInformasjon} />
+          <BrukerinformasjonPanel personInformasjon={data.personInformasjon} />
         )}
         {data.arbeidsgiverInformasjon && (
-          <ArbeidsforholdDetaljer
+          <ArbeidsforholdPanel
             arbeidsgiverInformasjon={data.arbeidsgiverInformasjon}
           />
         )}
       </HGrid>
-      {data.stønader && <StonadOversikt stønader={data.stønader} />}
-      {data.inntektInformasjon && (
-        <InntektTabellOversikt inntektInformasjon={data.inntektInformasjon} />
-      )}
+      {data.stønader && <StønaderPanel stønader={data.stønader} />}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {data.inntektInformasjon && (
+          <InntektPanel inntektInformasjon={data.inntektInformasjon} />
+        )}
+      </div>
 
       <div>
         <Button onClick={onOpen}>Hent familieforhold</Button>
