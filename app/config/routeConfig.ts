@@ -4,6 +4,7 @@
  */
 export const RouteConfig = {
   INDEX: "/",
+  PERSONVERN: "/personvern",
   OPPSLAG: {
     route: "/oppslag/:ident",
     link: (ident: string) => `/oppslag/${ident}`,
