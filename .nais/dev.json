@@ -8,5 +8,6 @@
     "222dedb1-a80d-48c9-b8d3-1e8149be9063"
   ],
   "CLUSTER": "dev-gcp",
-  "TENANT": "trygdeetaten.no"
+  "TENANT": "trygdeetaten.no",
+  "FARO_URL": "https://telemetry.ekstern.dev.nav.no/collect"
 }

@@ -52,3 +52,5 @@ spec:
   env:
     - name: CLUSTER
       value: {{CLUSTER}}
+    - name: FARO_URL
+      value: {{FARO_URL}}

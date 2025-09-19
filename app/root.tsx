@@ -1,3 +1,5 @@
+import { FaroErrorBoundary } from "@grafana/faro-react";
+import { useEffect } from "react";
 import {
   isRouteErrorResponse,
   Links,
@@ -6,12 +8,21 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "react-router";
 import "~/globals.css";
 import { getLoggedInUser } from "~/utils/access-token";
 import type { Route } from "./+types/root";
+import { env, isProd } from "./config/env.server";
+import { initFaro } from "./utils/observability";
 
 export default function Root() {
+  const { envs } = useLoaderData<typeof loader>();
+  useEffect(() => {
+    if (envs.isProd) {
+      initFaro(envs.faroUrl);
+    }
+  }, [envs.isProd, envs.faroUrl]);
   return (
     <html lang="nb-no">
       <head>
@@ -21,7 +32,9 @@ export default function Root() {
         <Links />
       </head>
       <body className="flex flex-col min-h-screen">
-        <Outlet />
+        <FaroErrorBoundary>
+          <Outlet />
+        </FaroErrorBoundary>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -31,11 +44,11 @@ export default function Root() {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = await getLoggedInUser({ request });
-  return { user };
+  return { user, envs: { isProd, faroUrl: env.FARO_URL } };
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  console.log(error);
+  console.error(error);
   if (isRouteErrorResponse(error) && error.status === 404) {
     return <div>404</div>;
   }

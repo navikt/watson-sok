@@ -8,5 +8,6 @@
     "206f49eb-51fb-4afe-b1b1-33cf2165aa23"
   ],
   "CLUSTER": "prod-gcp",
-  "TENANT": "nav.no"
+  "TENANT": "nav.no",
+  "FARO_URL": "https://telemetry.nav.no/collect"
 }
