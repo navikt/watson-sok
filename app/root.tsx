@@ -31,7 +31,7 @@ export default function Root() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        <AnalyticsTag sporingId={envs.umamiSiteId} />
+        {envs.isProd && <AnalyticsTag sporingId={envs.umamiSiteId} />}
       </head>
       <body className="flex flex-col min-h-screen">
         <FaroErrorBoundary>
