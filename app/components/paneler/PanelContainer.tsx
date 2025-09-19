@@ -7,14 +7,22 @@ type PanelContainerProps = {
     href: string;
     beskrivelse: string;
   };
+  className?: string;
 };
 
 /**
  * Komponent som viser en panel med en border og padding
  */
-export function PanelContainer({ children, title, link }: PanelContainerProps) {
+export function PanelContainer({
+  children,
+  title,
+  link,
+  className = "",
+}: PanelContainerProps) {
   return (
-    <section className="bg-primary rounded-sm border-1 border-gray-200 p-4 relative">
+    <section
+      className={`bg-primary rounded-sm border-1 border-gray-200 p-4 relative h-fit ${className}`}
+    >
       {title && (
         <Heading level="2" size="medium" spacing>
           {title}
