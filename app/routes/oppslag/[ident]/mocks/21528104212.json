@@ -19,8 +19,9 @@
       }
     },
     "familemedlemmer": {},
-    "statsborgerskap": ["NOR"],
-    "sivilstand": null
+    "statsborgerskap": ["NORGE"],
+    "sivilstand": null,
+    "alder": 51
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [

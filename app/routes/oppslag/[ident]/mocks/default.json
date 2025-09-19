@@ -23,8 +23,9 @@
       "33333333333": "FAR",
       "4444444444": "MOR"
     },
-    "statsborgerskap": ["NOR", "SWE"],
-    "sivilstand": null
+    "statsborgerskap": ["NORGE", "SVERIGE"],
+    "sivilstand": null,
+    "alder": 70
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [

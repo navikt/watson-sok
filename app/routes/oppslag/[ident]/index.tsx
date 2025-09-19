@@ -35,7 +35,8 @@ export default function OppslagBruker() {
   return (
     <div className="flex flex-col gap-4 px-4">
       <Heading level="1" size="large" spacing className="mt-8">
-        Brukeroppslag på {tilFulltNavn(data.personInformasjon?.navn)}
+        Brukeroppslag på {tilFulltNavn(data.personInformasjon?.navn)} (
+        {data.personInformasjon?.alder})
       </Heading>
       <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
         {data.personInformasjon && (

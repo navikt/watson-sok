@@ -11,7 +11,7 @@
       "12345678906": "BARN",
       "12345678907": "GIFT"
     },
-    "statsborgerskap": ["NOR"],
+    "statsborgerskap": ["NORGE"],
     "navn": {
       "fornavn": "SNEDIG",
       "mellomnavn": "MOTVEKT",
@@ -28,7 +28,8 @@
       },
       "utenlandskAdresse": null
     },
-    "sivilstand": "GIFT"
+    "sivilstand": "GIFT",
+    "alder": 38
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [

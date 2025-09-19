@@ -59,6 +59,7 @@ const PersonInformasjonSchema = z.object({
   familemedlemmer: z.record(z.string(), z.enum(["BARN", "GIFT", "FAR", "MOR"])),
   statsborgerskap: z.array(z.string()),
   sivilstand: z.string().nullable(),
+  alder: z.number(),
 });
 
 export type PersonInformasjon = z.infer<typeof PersonInformasjonSchema>;
