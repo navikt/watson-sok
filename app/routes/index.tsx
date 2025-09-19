@@ -19,6 +19,7 @@ import {
   useNavigation,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
+import { sporHendelse } from "~/utils/analytics";
 
 export default function LandingPage() {
   const actionData = useActionData<typeof action>();
@@ -52,7 +53,12 @@ export default function LandingPage() {
                 gjelder.
               </Alert>
 
-              <Form className="px-5 mt-12" method="post" role="search">
+              <Form
+                className="px-5 mt-12"
+                method="post"
+                role="search"
+                onSubmit={() => sporHendelse("søk landingsside", {})}
+              >
                 <Search
                   name="ident"
                   size="medium"

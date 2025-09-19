@@ -14,6 +14,7 @@ import "~/globals.css";
 import { getLoggedInUser } from "~/utils/access-token";
 import type { Route } from "./+types/root";
 import { env, isProd } from "./config/env.server";
+import { AnalyticsTag } from "./utils/analytics";
 import { initFaro } from "./utils/observability";
 
 export default function Root() {
@@ -30,6 +31,7 @@ export default function Root() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {envs.isProd && <AnalyticsTag sporingId={envs.umamiSiteId} />}
       </head>
       <body className="flex flex-col min-h-screen">
         <FaroErrorBoundary>
@@ -44,7 +46,10 @@ export default function Root() {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = await getLoggedInUser({ request });
-  return { user, envs: { isProd, faroUrl: env.FARO_URL } };
+  return {
+    user,
+    envs: { isProd, faroUrl: env.FARO_URL, umamiSiteId: env.UMAMI_SITE_ID },
+  };
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

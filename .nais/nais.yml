@@ -54,3 +54,5 @@ spec:
       value: {{CLUSTER}}
     - name: FARO_URL
       value: {{FARO_URL}}
+    - name: UMAMI_SITE_ID
+      value: {{UMAMI_SITE_ID}}
