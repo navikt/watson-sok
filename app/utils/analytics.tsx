@@ -19,8 +19,12 @@ export function AnalyticsTag({ sporingId }: AnalyticsTagProps) {
  */
 export function sporHendelse(
   hendelse: Hendelse,
-  data: Record<string, unknown>,
+  data: Record<string, unknown> = {},
 ) {
+  if (process.env.NODE_ENV === "development") {
+    console.info(`📊 [Analytics] ${hendelse}`, data);
+    return;
+  }
   if (typeof window !== "undefined" && window.umami) {
     window.umami.track(hendelse, data);
   }
