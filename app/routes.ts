@@ -10,6 +10,7 @@ export default [
   layout("routes/layout.tsx", [
     route(RouteConfig.INDEX, "routes/index.tsx"),
     route(RouteConfig.OPPSLAG.route, "routes/oppslag/[ident]/index.tsx"),
+    route(RouteConfig.PERSONVERN, "routes/personvern.tsx"),
   ]),
 
   // API routes
