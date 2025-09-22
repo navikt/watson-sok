@@ -3,3 +3,5 @@
 @plugin "tailwindcss-animate";
 
 @import "@navikt/ds-css" layer(components);
+
+@config '../tailwind.config.js';
