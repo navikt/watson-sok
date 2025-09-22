@@ -6,10 +6,10 @@ import {
   type LoaderFunctionArgs,
 } from "react-router";
 import DetaljModal from "~/components/DetaljModal";
-import { ArbeidsforholdPanel } from "~/components/paneler/ArbeidsforholdPanel";
-import { BrukerinformasjonPanel } from "~/components/paneler/BrukerinformasjonPanel";
-import { InntektPanel } from "~/components/paneler/InntektPanel";
-import { StønaderPanel } from "~/components/paneler/StønaderPanel";
+import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
+import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
+import { InntektPanel } from "~/features/paneler/InntektPanel";
+import { StønaderPanel } from "~/features/paneler/StønaderPanel";
 import { tilFulltNavn } from "~/utils/navn-utils";
 import { useDisclosure } from "~/utils/useDisclosure";
 import { fetchIdent } from "./fetchIdent.server";
