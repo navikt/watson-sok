@@ -80,7 +80,7 @@ export function ArbeidsforholdPanel({
                     r.løpende ? "Dette er et løpende arbeidsforhold" : undefined
                   }
                   className={
-                    r.løpende ? "border-l-6 border-l-green-500" : undefined
+                    r.løpende ? "border-l-6 border-l-ax-success-500" : undefined
                   }
                 >
                   {r.arbeidsgiver}
