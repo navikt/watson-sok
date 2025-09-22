@@ -14,6 +14,7 @@ import "~/globals.css";
 import { getLoggedInUser } from "~/utils/access-token";
 import type { Route } from "./+types/root";
 import { env, isProd } from "./config/env.server";
+import { ThemeProvider } from "./features/darkside/ThemeContext";
 import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { AnalyticsTag } from "./utils/analytics";
@@ -37,7 +38,9 @@ export default function Root() {
       </head>
       <body className="flex flex-col min-h-screen">
         <FaroErrorBoundary>
-          <Outlet />
+          <ThemeProvider>
+            <Outlet />
+          </ThemeProvider>
         </FaroErrorBoundary>
         <ScrollRestoration />
         <Scripts />

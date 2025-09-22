@@ -3,21 +3,25 @@ import {
   Buildings3Icon,
   ExternalLinkIcon,
   MenuGridIcon,
+  MoonIcon,
   PersonGroupIcon,
   PersonIcon,
+  SunIcon,
 } from "@navikt/aksel-icons";
 import { ActionMenu, InternalHeader, Spacer } from "@navikt/ds-react";
 import { Link, useNavigate } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { useUser } from "~/features/auth/useUser";
+import { useTheme } from "~/features/darkside/ThemeContext";
 
 export function AppHeader() {
   const user = useUser();
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
   return (
     <InternalHeader>
       <InternalHeader.Title as="h1">
-        <Link to={RouteConfig.INDEX} className="text-white">
+        <Link to={RouteConfig.INDEX} className="">
           Oppslag bruker 1.0
         </Link>
       </InternalHeader.Title>
@@ -64,6 +68,15 @@ export function AppHeader() {
               Argus
             </ActionMenu.Item>
           </ActionMenu.Group>
+
+          <ActionMenu.Divider />
+
+          <ActionMenu.Item
+            onSelect={toggleTheme}
+            icon={theme === "light" ? <MoonIcon /> : <SunIcon />}
+          >
+            Bruk {theme === "light" ? "mørke" : "lyse"} farger
+          </ActionMenu.Item>
         </ActionMenu.Content>
       </ActionMenu>
 

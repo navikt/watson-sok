@@ -2,4 +2,6 @@
 
 @plugin "tailwindcss-animate";
 
-@import "@navikt/ds-css" layer(components);
+@import "@navikt/ds-css/darkside" layer(components);
+
+@config '../tailwind.config.cjs';

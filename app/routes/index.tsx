@@ -29,7 +29,7 @@ export default function LandingPage() {
   return (
     <Page.Block width="text" gutters>
       <title>Oppslag Bruker 1.0</title>
-      <VStack as="main" gap="8">
+      <VStack as="main" gap="space-8">
         <Bleed marginInline={{ lg: "24" }}>
           <Stack
             gap="6"
@@ -37,7 +37,7 @@ export default function LandingPage() {
             justify={{ sm: "space-between", lg: "start" }}
             wrap={false}
           >
-            <VStack gap="1">
+            <VStack gap="space-4">
               <Heading level="1" size="medium" align="start" className="mt-4">
                 <FileIcon title="a11y-title" className="inline-block mr-2" />
                 Oppslag på bruker i Nav
