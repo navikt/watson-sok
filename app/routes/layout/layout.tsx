@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
-import { AppFooter } from "~/components/footer/AppFooter";
-import { AppHeader } from "~/components/header/Header";
+import { AppFooter } from "./AppFooter";
+import { AppHeader } from "./AppHeader";
 
 export default function RootLayout() {
   return (
