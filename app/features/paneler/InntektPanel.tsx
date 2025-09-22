@@ -98,7 +98,9 @@ export function InntektPanel({ inntektInformasjon }: InntektPanelProps) {
                           <ExclamationmarkTriangleFillIcon
                             aria-label="Flere versjoner"
                             title="Flere versjoner"
-                            style={{ color: "var(--ax-text-warning-decoration)" }}
+                            style={{
+                              color: "var(--ax-text-warning-decoration)",
+                            }}
                             fontSize="1.125rem"
                           />
                         )}

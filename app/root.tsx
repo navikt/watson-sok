@@ -1,5 +1,4 @@
 import { FaroErrorBoundary } from "@grafana/faro-react";
-import { Theme } from "@navikt/ds-react";
 import { useEffect } from "react";
 import {
   isRouteErrorResponse,
@@ -15,6 +14,7 @@ import "~/globals.css";
 import { getLoggedInUser } from "~/utils/access-token";
 import type { Route } from "./+types/root";
 import { env, isProd } from "./config/env.server";
+import { ThemeProvider } from "./features/darkside/ThemeContext";
 import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { AnalyticsTag } from "./utils/analytics";
@@ -38,9 +38,9 @@ export default function Root() {
       </head>
       <body className="flex flex-col min-h-screen">
         <FaroErrorBoundary>
-          <Theme theme="light">
+          <ThemeProvider>
             <Outlet />
-          </Theme>
+          </ThemeProvider>
         </FaroErrorBoundary>
         <ScrollRestoration />
         <Scripts />
