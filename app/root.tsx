@@ -14,6 +14,8 @@ import "~/globals.css";
 import { getLoggedInUser } from "~/utils/access-token";
 import type { Route } from "./+types/root";
 import { env, isProd } from "./config/env.server";
+import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
+import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { AnalyticsTag } from "./utils/analytics";
 import { initFaro } from "./utils/observability";
 
@@ -55,7 +57,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   console.error(error);
   if (isRouteErrorResponse(error) && error.status === 404) {
-    return <div>404</div>;
+    return <PageNotFound />;
   }
-  return <div>Error</div>;
+  return <InternalServerError />;
 }
