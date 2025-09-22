@@ -17,7 +17,7 @@ export function AppHeader() {
   return (
     <InternalHeader>
       <InternalHeader.Title as="h1">
-        <Link to={RouteConfig.INDEX} className="text-white">
+        <Link to={RouteConfig.INDEX} className="">
           Oppslag bruker 1.0
         </Link>
       </InternalHeader.Title>

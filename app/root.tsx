@@ -1,4 +1,5 @@
 import { FaroErrorBoundary } from "@grafana/faro-react";
+import { Theme } from "@navikt/ds-react";
 import { useEffect } from "react";
 import {
   isRouteErrorResponse,
@@ -37,7 +38,9 @@ export default function Root() {
       </head>
       <body className="flex flex-col min-h-screen">
         <FaroErrorBoundary>
-          <Outlet />
+          <Theme theme="light">
+            <Outlet />
+          </Theme>
         </FaroErrorBoundary>
         <ScrollRestoration />
         <Scripts />

@@ -14,7 +14,7 @@ import { PanelContainer } from "./PanelContainer";
 
 // Highlight-stil for celler i rad med flere versjoner
 const warnStyle: CSSProperties = {
-  backgroundColor: "var(--a-surface-warning-subtle)",
+  backgroundColor: "var(--ax-bg-warning-soft)",
   boxShadow: "inset 0 0 0 1px var(--a-border-warning-subtle)",
 };
 
@@ -98,7 +98,7 @@ export function InntektPanel({ inntektInformasjon }: InntektPanelProps) {
                           <ExclamationmarkTriangleFillIcon
                             aria-label="Flere versjoner"
                             title="Flere versjoner"
-                            style={{ color: "var(--a-icon-warning)" }}
+                            style={{ color: "var(--ax-text-warning-decoration)" }}
                             fontSize="1.125rem"
                           />
                         )}
