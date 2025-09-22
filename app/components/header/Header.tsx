@@ -7,7 +7,7 @@ import {
   PersonIcon,
 } from "@navikt/aksel-icons";
 import { ActionMenu, InternalHeader, Spacer } from "@navikt/ds-react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { useUser } from "~/features/auth/useUser";
 
@@ -16,7 +16,11 @@ export function AppHeader() {
   const navigate = useNavigate();
   return (
     <InternalHeader>
-      <InternalHeader.Title as="h1">Oppslag bruker 1.0</InternalHeader.Title>
+      <InternalHeader.Title as="h1">
+        <Link to={RouteConfig.INDEX} className="text-white">
+          Oppslag bruker 1.0
+        </Link>
+      </InternalHeader.Title>
       <Spacer />
       <ActionMenu>
         <ActionMenu.Trigger>
