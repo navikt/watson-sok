@@ -1,14 +1,13 @@
 import { Theme } from "@navikt/ds-react";
 import { createContext, useContext, useState } from "react";
-
-type Themes = "light" | "dark";
+import { type Theme as ThemeType } from "./ThemeCookie";
 
 const ThemeContext = createContext<{
-  theme: Themes;
-  toggleTheme: () => void;
+  theme: ThemeType;
+  toggleTheme: () => Promise<void>;
 }>({
   theme: "light",
-  toggleTheme: () => {},
+  toggleTheme: async () => {},
 });
 
 export function useTheme() {
@@ -21,17 +20,33 @@ export function useTheme() {
 
 type ThemeProviderProps = {
   children: React.ReactNode;
-  defaultTheme?: "light" | "dark";
+  defaultTheme?: ThemeType;
 };
 
 export function ThemeProvider({
   children,
   defaultTheme = "light",
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Themes>(defaultTheme);
+  const [theme, setTheme] = useState<ThemeType>(defaultTheme);
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+  const toggleTheme = async () => {
+    const oldTheme = theme;
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+
+    // Save theme via resource route action
+    try {
+      const formData = new FormData();
+      formData.append("theme", newTheme);
+
+      await fetch("/api/theme", {
+        method: "POST",
+        body: formData,
+      });
+    } catch (error) {
+      console.error("Failed to save theme preference:", error);
+      setTheme(oldTheme);
+    }
   };
 
   return (
