@@ -22,14 +22,14 @@ export default function Personvern() {
       </BodyLong>
       <BodyLong spacing>
         I tillegg til å journalføre alle søk, lagrer vi også informasjon om
-        hvordan du bruker tjenesten. Dette gjøres for å kvanitativt analysere
+        hvordan du bruker tjenesten. Dette gjøres for å kvantitativt analysere
         bruk av tjenesten, slik at vi kan videreutvikle og forbedre den.
         Eksempler på hva vi samler inn er:
       </BodyLong>
       <List className="mb-4">
-        <ListItem>Hvor du slår opp personer fra</ListItem>
+        <ListItem>Hvor i løsningen du slår opp personer fra</ListItem>
         <ListItem>Om du trykker på hjelpetekster</ListItem>
-        <ListItem>Hvilke lenker du trykker på</ListItem>
+        <ListItem>Hvilke lenker i løsningen du trykker på</ListItem>
         <ListItem>Hvilke sider du er inne på</ListItem>
       </List>
 
