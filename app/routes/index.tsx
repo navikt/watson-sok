@@ -2,7 +2,7 @@ import { FileIcon } from "@navikt/aksel-icons";
 import {
   Alert,
   Bleed,
-  BodyLong,
+  BodyShort,
   Heading,
   Page,
   Search,
@@ -38,24 +38,33 @@ export default function LandingPage() {
             wrap={false}
           >
             <VStack gap="space-4">
-              <Heading level="1" size="medium" align="start" className="mt-4">
+              <Heading
+                level="1"
+                size="medium"
+                align="start"
+                className="mt-4"
+                spacing
+              >
                 <FileIcon title="a11y-title" className="inline-block mr-2" />
                 Oppslag på bruker i Nav
               </Heading>
-              <BodyLong>
+              <BodyShort spacing>
                 Ved å søke på fødselsnummer eller D-nummer i søkefeltet nedenfor
-                får du en enkel oversikt over en Nav bruker sine forhold i Nav
-              </BodyLong>
+                får du en enkel oversikt over en Nav bruker sine relasjoner til
+                Nav
+              </BodyShort>
 
-              <Alert variant="info" closeButton={true}>
-                Melding til saksbehandler. En informasjon om at man ikke må
-                bruke tjenesten dersom det ikke ligger tjenstlig behov til
-                grunn. Her kan det også oppgis hvilke lover og paragrafer som
-                gjelder.
+              <Alert
+                variant="info"
+                closeButton={true}
+                title="Tjenestelig behov"
+              >
+                Det forutsettes at man har tjenestelig behov til grunn for å
+                gjøre oppslaget.
               </Alert>
 
               <Form
-                className="px-5 mt-12"
+                className="mt-12"
                 method="post"
                 role="search"
                 onSubmit={() => sporHendelse("søk landingsside", {})}
@@ -65,11 +74,11 @@ export default function LandingPage() {
                   size="medium"
                   variant="primary"
                   placeholder="11 siffer"
-                  label="Slå opp person"
-                  description="Du kan søke på fødselsnummer eller D-nummer"
+                  label="Fødselsnummer eller D-nummer på bruker"
                   hideLabel={false}
                   error={actionData?.error}
                   autoComplete="off"
+                  htmlSize={15}
                 >
                   <Search.Button
                     type="submit"
