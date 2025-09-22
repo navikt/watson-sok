@@ -16,6 +16,7 @@ import { AppFooter } from "~/routes/layout/AppFooter";
 export function PageNotFound() {
   return (
     <Page footer={<AppFooter />}>
+      <title>Fant ikke side – Oppslag Bruker</title>
       <Page.Block as="main" width="xl" gutters>
         <Box paddingBlock="20 16" data-aksel-template="404-v2">
           <VStack gap="16">

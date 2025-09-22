@@ -14,6 +14,7 @@ import { AppFooter } from "~/routes/layout/AppFooter";
 export function InternalServerError() {
   return (
     <Page footer={<AppFooter />}>
+      <title>Feil – Oppslag Bruker</title>
       <Page.Block as="main" width="xl" gutters>
         <Box paddingBlock="20 8">
           <HGrid columns="minmax(auto,600px)" data-aksel-template="500-v2">

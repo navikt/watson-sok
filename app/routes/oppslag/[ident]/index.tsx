@@ -4,6 +4,7 @@ import {
   useLoaderData,
   useParams,
   type LoaderFunctionArgs,
+  type MetaArgs,
 } from "react-router";
 import DetaljModal from "~/components/DetaljModal";
 import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
@@ -22,14 +23,22 @@ export default function OppslagBruker() {
 
   if (!ident) {
     return (
-      <Alert variant="error">
-        Fant ingen ident i URLen. Sjekk at URLen er korrekt formattert.
-      </Alert>
+      <>
+        <title>Fant ikke bruker – Oppslag Bruker</title>
+        <Alert variant="error">
+          Fant ingen ident i URLen. Sjekk at URLen er korrekt formattert.
+        </Alert>
+      </>
     );
   }
 
   if ("error" in data) {
-    return <Alert variant="error">{data.error}</Alert>;
+    return (
+      <>
+        <title>Feil – Oppslag Bruker</title>
+        <Alert variant="error">{data.error}</Alert>
+      </>
+    );
   }
 
   return (
@@ -75,4 +84,15 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
     return data({ error: response.error }, { status: response.status });
   }
   return response;
+}
+
+export function meta({ loaderData }: MetaArgs<typeof loader>) {
+  if (!loaderData || "error" in loaderData) {
+    return [];
+  }
+  return [
+    {
+      title: `${tilFulltNavn(loaderData.personInformasjon?.navn)} (${loaderData.personInformasjon?.alder}) – Oppslag Bruker`,
+    },
+  ];
 }

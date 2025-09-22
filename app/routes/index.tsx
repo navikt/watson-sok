@@ -28,6 +28,7 @@ export default function LandingPage() {
 
   return (
     <Page.Block width="text" gutters>
+      <title>Oppslag Bruker 1.0</title>
       <VStack as="main" gap="8">
         <Bleed marginInline={{ lg: "24" }}>
           <Stack

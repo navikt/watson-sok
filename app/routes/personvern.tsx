@@ -4,6 +4,7 @@ import { ListItem } from "@navikt/ds-react/List";
 export default function Personvern() {
   return (
     <Page.Block width="text" gutters>
+      <title>Personvern – Oppslag Bruker</title>
       <Heading level="1" size="large" spacing className="mt-4">
         Personvern
       </Heading>
