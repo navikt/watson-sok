@@ -15,13 +15,14 @@ import { getLoggedInUser } from "~/utils/access-token";
 import type { Route } from "./+types/root";
 import { env, isProd } from "./config/env.server";
 import { ThemeProvider } from "./features/darkside/ThemeContext";
+import { parseTheme, themeCookie } from "./features/darkside/ThemeCookie";
 import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { AnalyticsTag } from "./utils/analytics";
 import { initFaro } from "./utils/observability";
 
 export default function Root() {
-  const { envs } = useLoaderData<typeof loader>();
+  const { envs, initialTheme } = useLoaderData<typeof loader>();
   useEffect(() => {
     if (envs.isProd) {
       initFaro(envs.faroUrl);
@@ -38,7 +39,7 @@ export default function Root() {
       </head>
       <body className="flex flex-col min-h-screen">
         <FaroErrorBoundary>
-          <ThemeProvider>
+          <ThemeProvider defaultTheme={initialTheme}>
             <Outlet />
           </ThemeProvider>
         </FaroErrorBoundary>
@@ -51,8 +52,11 @@ export default function Root() {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = await getLoggedInUser({ request });
+  const cookieValue = await themeCookie.parse(request.headers.get("Cookie"));
+  const initialTheme = parseTheme(cookieValue);
   return {
     user,
+    initialTheme,
     envs: { isProd, faroUrl: env.FARO_URL, umamiSiteId: env.UMAMI_SITE_ID },
   };
 }
