@@ -17,10 +17,6 @@ export default [
   route(RouteConfig.API.HEALTH, "routes/api/health/index.ts"),
   route(RouteConfig.API.LOGGED_IN_USER, "routes/api/logged-in-user/index.ts"),
   route(RouteConfig.API.THEME, "routes/api/theme/index.ts"),
-  route(
-    RouteConfig.API.OPPSLAG_DETALJER,
-    "routes/api/oppslag/detaljer/index.ts",
-  ),
 
   // Well-known routes
   route(
