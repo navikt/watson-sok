@@ -1,5 +1,6 @@
 import { Theme } from "@navikt/ds-react";
 import { createContext, useContext, useState } from "react";
+import { RouteConfig } from "~/config/routeConfig";
 import { type Theme as ThemeType } from "./ThemeCookie";
 
 const ThemeContext = createContext<{
@@ -34,12 +35,11 @@ export function ThemeProvider({
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
 
-    // Save theme via resource route action
     try {
       const formData = new FormData();
       formData.append("theme", newTheme);
 
-      await fetch("/api/theme", {
+      await fetch(RouteConfig.API.THEME, {
         method: "POST",
         body: formData,
       });

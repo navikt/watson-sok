@@ -39,6 +39,14 @@ export default function Personvern() {
         på innstillingen &quot;Ikke spor meg&quot; i nettleseren din.
       </BodyLong>
       <Heading level="2" size="medium" spacing>
+        Cookies
+      </Heading>
+      <BodyLong spacing>
+        Løsningen bruker cookies for å holde styr på hvilket tema du har valgt
+        som bruker. Denne cookien lagres i opptil et år, gitt at du velger et
+        tema eksplisitt.
+      </BodyLong>
+      <Heading level="2" size="medium" spacing>
         Spørsmål?
       </Heading>
       <BodyLong spacing>
