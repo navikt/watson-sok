@@ -1,0 +1,1743 @@
+{
+  "utrekkstidspunkt": "2025-09-23T09:07:36.871281071",
+  "saksbehandlerIdent": "prod-gcp:holmes:nav-persondata-api",
+  "fødselsnummer": "67890123456",
+  "personInformasjon": {
+    "aktørId": "67890123456",
+    "familemedlemmer": {
+      "15122300000": "BARN",
+      "01031400000": "BARN",
+      "29021600000": "BARN",
+      "26051800000": "BARN",
+      "18021200000": "BARN",
+      "20029100000": "SKILT"
+    },
+    "statsborgerskap": [
+      "SYRIA"
+    ],
+    "navn": {
+      "fornavn": ".",
+      "mellomnavn": "..",
+      "etternavn": "ETTERNAVN"
+    },
+    "adresse": {
+      "norskAdresse": {
+        "adressenavn": "SA#",
+        "husnummer": "18",
+        "husbokstav": "A",
+        "postnummer": "3937",
+        "kommunenummer": "4001",
+        "poststed": "3937"
+      },
+      "utenlandskAdresse": null
+    },
+    "sivilstand": "SKILT",
+    "alder": 35
+  },
+  "arbeidsgiverInformasjon": {
+    "løpendeArbeidsforhold": [
+      {
+        "arbeidsgiver": "BEDRIFT",
+        "organisasjonsnummer": "666666666",
+        "adresse": "VEG 666666666",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Frilanser",
+            "stillingsprosent": 27.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-02",
+              "tom": null
+            },
+            "yrke": "BUD"
+          }
+        ]
+      }
+    ],
+    "historikk": [
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "organisasjonsnummer": "5555",
+        "adresse": "5555, 5555",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2024-09",
+              "tom": null
+            },
+            "yrke": "BILRENSER"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-06",
+              "tom": "2024-08"
+            },
+            "yrke": "BILRENSER"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 10.0,
+            "antallTimerPrUke": 4.0,
+            "periode": {
+              "fom": "2023-05",
+              "tom": "2023-05"
+            },
+            "yrke": "BILRENSER"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 10.0,
+            "antallTimerPrUke": 4.0,
+            "periode": {
+              "fom": "2022-07",
+              "tom": "2023-04"
+            },
+            "yrke": "BILRENSER"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": " AS",
+        "organisasjonsnummer": "927345374",
+        "adresse": "Olafiagangen 5, 0188",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Frilanser",
+            "stillingsprosent": null,
+            "antallTimerPrUke": null,
+            "periode": {
+              "fom": "2022-09",
+              "tom": null
+            },
+            "yrke": "ADMINISTRASJONSKONSULENT"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": " NORGE AS",
+        "organisasjonsnummer": "923231668",
+        "adresse": "Olafiagangen 5, 0188",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Frilanser",
+            "stillingsprosent": null,
+            "antallTimerPrUke": null,
+            "periode": {
+              "fom": "2023-02",
+              "tom": null
+            },
+            "yrke": "ADMINISTRASJONSKONSULENT"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": " AS",
+        "organisasjonsnummer": "927345374",
+        "adresse": "Olafiagangen 5, 0188",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 5.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2022-08",
+              "tom": null
+            },
+            "yrke": "ADMINISTRASJONSKONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 5.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2022-07",
+              "tom": "2022-07"
+            },
+            "yrke": "ADMINISTRASJONSKONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 5.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2022-06",
+              "tom": "2022-06"
+            },
+            "yrke": "ADMINISTRASJONSKONSULENT"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "AS AVD OFFICE",
+        "organisasjonsnummer": "920729738",
+        "adresse": "Kongens gate 4, 0153",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Frilanser",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2025-01",
+              "tom": null
+            },
+            "yrke": "BUD"
+          },
+          {
+            "type": "Frilanser",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2022-12",
+              "tom": "2024-12"
+            },
+            "yrke": "BUD"
+          }
+        ]
+      }
+    ]
+  },
+  "inntektInformasjon": {
+    "lønnsinntekt": [
+      {
+        "arbeidsgiver": " AS",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 1714.65,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " AS",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 16810.37,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " AS",
+        "periode": "2022-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 1484.27,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " AS",
+        "periode": "2022-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 14551.69,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2022-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 3030.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " AS",
+        "periode": "2022-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 1327.74,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": " AS",
+        "periode": "2022-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 13017.09,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": " AS",
+        "periode": "2022-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 972.99,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " AS",
+        "periode": "2022-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 9539.11,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " AS",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 997.88,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " AS",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 9783.09,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2022-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 23809.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " AS",
+        "periode": "2022-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 46.71,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": " AS",
+        "periode": "2022-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 457.9,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2022-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 23809.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2023-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 23809.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2023-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 17857.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 4739.91,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 23809.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 3588.65,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 6965.42,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 15000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 7388.46,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 11969.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 260.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 5166.1,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 97.0,
+        "beløp": 8840.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 12068.44,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 12948.46,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 7635.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 180.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 74.5,
+        "beløp": 12665.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 8110.67,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 10437.76,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 3762.7,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 292.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 141.0,
+        "beløp": 23970.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 7150.43,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 9731.73,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 3230.1,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 10.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 136.5,
+        "beløp": 23205.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 6393.06,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 13303.42,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 1865.6,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 23375.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 11106.08,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 180.5,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 145.0,
+        "beløp": 24650.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 2530.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 2285.7,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 60.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 30.0,
+        "beløp": 5400.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 28704.28,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 221.09,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 10.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 9128.72,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 2388.69,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 30.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 17789.05,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 877.55,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 15706.77,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 1626.25,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 10.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 20663.16,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "NOK ET STED",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 15.0,
+        "beløp": 2700.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 12265.7,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "NORWAY AS",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 1581.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " NORWAY AS 2",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "honorarAkkordProsentProvisjon",
+        "antall": null,
+        "beløp": 808.87,
+        "harFlereVersjoner": false
+      }
+    ],
+    "næringsinntekt": [],
+    "pensjonEllerTrygd": [],
+    "ytelseFraOffentlige": []
+  },
+  "stønader": [
+    {
+      "stonadType": "Barnetrygd",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2022-12-01",
+            "tom": "2022-12-31"
+          },
+          "beløp": 4838.00,
+          "kilde": "SOKOS",
+          "info": "737406645"
+        },
+        {
+          "periode": {
+            "fom": "2023-01-01",
+            "tom": "2023-01-31"
+          },
+          "beløp": 4838.00,
+          "kilde": "SOKOS",
+          "info": "737406645"
+        },
+        {
+          "periode": {
+            "fom": "2023-02-01",
+            "tom": "2023-02-28"
+          },
+          "beløp": 4838.00,
+          "kilde": "SOKOS",
+          "info": "737406645"
+        },
+        {
+          "periode": {
+            "fom": "2023-03-01",
+            "tom": "2023-03-31"
+          },
+          "beløp": 4972.00,
+          "kilde": "SOKOS",
+          "info": "737406645"
+        },
+        {
+          "periode": {
+            "fom": "2023-04-01",
+            "tom": "2023-04-30"
+          },
+          "beløp": 4972.00,
+          "kilde": "SOKOS",
+          "info": "737406645"
+        },
+        {
+          "periode": {
+            "fom": "2023-05-01",
+            "tom": "2023-05-31"
+          },
+          "beløp": 4972.00,
+          "kilde": "SOKOS",
+          "info": "737406645"
+        },
+        {
+          "periode": {
+            "fom": "2023-06-01",
+            "tom": "2023-06-30"
+          },
+          "beløp": 4972.00,
+          "kilde": "SOKOS",
+          "info": "737406646"
+        },
+        {
+          "periode": {
+            "fom": "2023-07-01",
+            "tom": "2023-07-31"
+          },
+          "beløp": 5696.00,
+          "kilde": "SOKOS",
+          "info": "740373321"
+        },
+        {
+          "periode": {
+            "fom": "2023-08-01",
+            "tom": "2023-08-31"
+          },
+          "beløp": 5696.00,
+          "kilde": "SOKOS",
+          "info": "743340148"
+        },
+        {
+          "periode": {
+            "fom": "2023-09-01",
+            "tom": "2023-09-30"
+          },
+          "beløp": 5696.00,
+          "kilde": "SOKOS",
+          "info": "746303168"
+        },
+        {
+          "periode": {
+            "fom": "2023-10-01",
+            "tom": "2023-10-31"
+          },
+          "beløp": 5696.00,
+          "kilde": "SOKOS",
+          "info": "749354192"
+        },
+        {
+          "periode": {
+            "fom": "2023-11-01",
+            "tom": "2023-11-30"
+          },
+          "beløp": 5696.00,
+          "kilde": "SOKOS",
+          "info": "752375173"
+        },
+        {
+          "periode": {
+            "fom": "2023-12-01",
+            "tom": "2023-12-31"
+          },
+          "beløp": 5696.00,
+          "kilde": "SOKOS",
+          "info": "755060003"
+        },
+        {
+          "periode": {
+            "fom": "2024-01-01",
+            "tom": "2024-01-31"
+          },
+          "beløp": 6296.00,
+          "kilde": "SOKOS",
+          "info": "758560250"
+        },
+        {
+          "periode": {
+            "fom": "2024-02-01",
+            "tom": "2024-02-29"
+          },
+          "beløp": 6296.00,
+          "kilde": "SOKOS",
+          "info": "761629545"
+        },
+        {
+          "periode": {
+            "fom": "2023-07-01",
+            "tom": "2023-07-31"
+          },
+          "beløp": 0.00,
+          "kilde": "SOKOS",
+          "info": "13633170"
+        },
+        {
+          "periode": {
+            "fom": "2023-08-01",
+            "tom": "2023-08-31"
+          },
+          "beløp": 0.00,
+          "kilde": "SOKOS",
+          "info": "13633170"
+        },
+        {
+          "periode": {
+            "fom": "2023-09-01",
+            "tom": "2023-09-30"
+          },
+          "beløp": 0.00,
+          "kilde": "SOKOS",
+          "info": "13633170"
+        },
+        {
+          "periode": {
+            "fom": "2023-10-01",
+            "tom": "2023-10-31"
+          },
+          "beløp": 0.00,
+          "kilde": "SOKOS",
+          "info": "13633170"
+        },
+        {
+          "periode": {
+            "fom": "2023-11-01",
+            "tom": "2023-11-30"
+          },
+          "beløp": 0.00,
+          "kilde": "SOKOS",
+          "info": "13633170"
+        },
+        {
+          "periode": {
+            "fom": "2023-12-01",
+            "tom": "2023-12-31"
+          },
+          "beløp": 0.00,
+          "kilde": "SOKOS",
+          "info": "13633170"
+        },
+        {
+          "periode": {
+            "fom": "2024-01-01",
+            "tom": "2024-01-31"
+          },
+          "beløp": 0.00,
+          "kilde": "SOKOS",
+          "info": "13633170"
+        },
+        {
+          "periode": {
+            "fom": "2024-02-01",
+            "tom": "2024-02-29"
+          },
+          "beløp": 0.00,
+          "kilde": "SOKOS",
+          "info": "13633170"
+        }
+      ]
+    },
+    {
+      "stonadType": "Sykepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2023-10-09",
+            "tom": "2023-10-31"
+          },
+          "beløp": 13309.00,
+          "kilde": "SOKOS",
+          "info": "751760726"
+        },
+        {
+          "periode": {
+            "fom": "2023-11-01",
+            "tom": "2023-11-13"
+          },
+          "beløp": 7046.00,
+          "kilde": "SOKOS",
+          "info": "751923715"
+        },
+        {
+          "periode": {
+            "fom": "2023-11-14",
+            "tom": "2023-11-30"
+          },
+          "beløp": 10178.00,
+          "kilde": "SOKOS",
+          "info": "755602189"
+        },
+        {
+          "periode": {
+            "fom": "2023-12-01",
+            "tom": "2023-12-18"
+          },
+          "beløp": 8481.00,
+          "kilde": "SOKOS",
+          "info": "755602189"
+        },
+        {
+          "periode": {
+            "fom": "2023-12-19",
+            "tom": "2023-12-31"
+          },
+          "beløp": 7248.00,
+          "kilde": "SOKOS",
+          "info": "757797295"
+        },
+        {
+          "periode": {
+            "fom": "2024-01-01",
+            "tom": "2024-01-07"
+          },
+          "beløp": 3933.00,
+          "kilde": "SOKOS",
+          "info": "758093914"
+        },
+        {
+          "periode": {
+            "fom": "2024-01-08",
+            "tom": "2024-01-21"
+          },
+          "beløp": 7866.00,
+          "kilde": "SOKOS",
+          "info": "758826786"
+        },
+        {
+          "periode": {
+            "fom": "2024-01-22",
+            "tom": "2024-01-31"
+          },
+          "beløp": 6015.00,
+          "kilde": "SOKOS",
+          "info": "760807810"
+        },
+        {
+          "periode": {
+            "fom": "2024-02-01",
+            "tom": "2024-02-04"
+          },
+          "beløp": 1677.00,
+          "kilde": "SOKOS",
+          "info": "761178602"
+        },
+        {
+          "periode": {
+            "fom": "2024-02-05",
+            "tom": "2024-02-18"
+          },
+          "beløp": 6816.00,
+          "kilde": "SOKOS",
+          "info": "762020509"
+        },
+        {
+          "periode": {
+            "fom": "2024-02-19",
+            "tom": "2024-02-29"
+          },
+          "beløp": 6134.00,
+          "kilde": "SOKOS",
+          "info": "763880494"
+        },
+        {
+          "periode": {
+            "fom": "2024-03-01",
+            "tom": "2024-03-17"
+          },
+          "beløp": 7497.00,
+          "kilde": "SOKOS",
+          "info": "764912013"
+        },
+        {
+          "periode": {
+            "fom": "2024-03-18",
+            "tom": "2024-03-28"
+          },
+          "beløp": 6134.00,
+          "kilde": "SOKOS",
+          "info": "765256791"
+        }
+      ]
+    },
+    {
+      "stonadType": "Dagpenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2024-04-01",
+            "tom": "2024-04-30"
+          },
+          "beløp": 20291.00,
+          "kilde": "SOKOS",
+          "info": "770370676"
+        },
+        {
+          "periode": {
+            "fom": "2024-05-01",
+            "tom": "2024-05-10"
+          },
+          "beløp": 8117.00,
+          "kilde": "SOKOS",
+          "info": "770370676"
+        },
+        {
+          "periode": {
+            "fom": "2024-05-13",
+            "tom": "2024-05-24"
+          },
+          "beløp": 10146.00,
+          "kilde": "SOKOS",
+          "info": "771381096"
+        },
+        {
+          "periode": {
+            "fom": "2024-05-27",
+            "tom": "2024-05-31"
+          },
+          "beløp": 5073.00,
+          "kilde": "SOKOS",
+          "info": "771932018"
+        },
+        {
+          "periode": {
+            "fom": "2024-06-03",
+            "tom": "2024-06-07"
+          },
+          "beløp": 5073.00,
+          "kilde": "SOKOS",
+          "info": "771932018"
+        },
+        {
+          "periode": {
+            "fom": "2024-06-10",
+            "tom": "2024-06-21"
+          },
+          "beløp": 10146.00,
+          "kilde": "SOKOS",
+          "info": "773994759"
+        },
+        {
+          "periode": {
+            "fom": "2024-06-24",
+            "tom": "2024-06-28"
+          },
+          "beløp": 5073.00,
+          "kilde": "SOKOS",
+          "info": "775008887"
+        },
+        {
+          "periode": {
+            "fom": "2024-07-01",
+            "tom": "2024-07-05"
+          },
+          "beløp": 5073.00,
+          "kilde": "SOKOS",
+          "info": "775008887"
+        },
+        {
+          "periode": {
+            "fom": "2024-07-08",
+            "tom": "2024-07-19"
+          },
+          "beløp": 10146.00,
+          "kilde": "SOKOS",
+          "info": "777224802"
+        },
+        {
+          "periode": {
+            "fom": "2024-07-22",
+            "tom": "2024-07-31"
+          },
+          "beløp": 8117.00,
+          "kilde": "SOKOS",
+          "info": "778262594"
+        },
+        {
+          "periode": {
+            "fom": "2024-08-01",
+            "tom": "2024-08-02"
+          },
+          "beløp": 2030.00,
+          "kilde": "SOKOS",
+          "info": "778262594"
+        },
+        {
+          "periode": {
+            "fom": "2024-08-05",
+            "tom": "2024-08-16"
+          },
+          "beløp": 10146.00,
+          "kilde": "SOKOS",
+          "info": "780210218"
+        },
+        {
+          "periode": {
+            "fom": "2024-08-19",
+            "tom": "2024-08-31"
+          },
+          "beløp": 10146.00,
+          "kilde": "SOKOS",
+          "info": "781271746"
+        },
+        {
+          "periode": {
+            "fom": "2024-09-01",
+            "tom": "2024-09-01"
+          },
+          "beløp": 0.00,
+          "kilde": "SOKOS",
+          "info": "781271746"
+        },
+        {
+          "periode": {
+            "fom": "2024-09-02",
+            "tom": "2024-09-15"
+          },
+          "beløp": 10146.00,
+          "kilde": "SOKOS",
+          "info": "783234115"
+        },
+        {
+          "periode": {
+            "fom": "2024-09-16",
+            "tom": "2024-09-29"
+          },
+          "beløp": 10694.00,
+          "kilde": "SOKOS",
+          "info": "784237709"
+        },
+        {
+          "periode": {
+            "fom": "2024-09-30",
+            "tom": "2024-09-30"
+          },
+          "beløp": 1070.00,
+          "kilde": "SOKOS",
+          "info": "786258988"
+        },
+        {
+          "periode": {
+            "fom": "2024-10-01",
+            "tom": "2024-10-13"
+          },
+          "beløp": 9625.00,
+          "kilde": "SOKOS",
+          "info": "786258988"
+        },
+        {
+          "periode": {
+            "fom": "2024-10-14",
+            "tom": "2024-10-27"
+          },
+          "beløp": 10694.00,
+          "kilde": "SOKOS",
+          "info": "787294678"
+        },
+        {
+          "periode": {
+            "fom": "2024-10-28",
+            "tom": "2024-10-31"
+          },
+          "beløp": 4278.00,
+          "kilde": "SOKOS",
+          "info": "789325752"
+        },
+        {
+          "periode": {
+            "fom": "2024-11-01",
+            "tom": "2024-11-10"
+          },
+          "beløp": 6417.00,
+          "kilde": "SOKOS",
+          "info": "789325752"
+        },
+        {
+          "periode": {
+            "fom": "2024-11-11",
+            "tom": "2024-11-24"
+          },
+          "beløp": 10694.00,
+          "kilde": "SOKOS",
+          "info": "790424547"
+        },
+        {
+          "periode": {
+            "fom": "2024-11-25",
+            "tom": "2024-11-30"
+          },
+          "beløp": 6855.00,
+          "kilde": "SOKOS",
+          "info": "792428473"
+        },
+        {
+          "periode": {
+            "fom": "2024-12-01",
+            "tom": "2024-12-08"
+          },
+          "beløp": 6855.00,
+          "kilde": "SOKOS",
+          "info": "792428473"
+        },
+        {
+          "periode": {
+            "fom": "2024-12-09",
+            "tom": "2024-12-22"
+          },
+          "beløp": 10694.00,
+          "kilde": "SOKOS",
+          "info": "793464145"
+        },
+        {
+          "periode": {
+            "fom": "2024-12-23",
+            "tom": "2024-12-31"
+          },
+          "beløp": 7198.00,
+          "kilde": "SOKOS",
+          "info": "793715600"
+        },
+        {
+          "periode": {
+            "fom": "2025-01-01",
+            "tom": "2025-01-05"
+          },
+          "beløp": 3096.00,
+          "kilde": "SOKOS",
+          "info": "793715600"
+        },
+        {
+          "periode": {
+            "fom": "2025-01-06",
+            "tom": "2025-01-19"
+          },
+          "beløp": 10320.00,
+          "kilde": "SOKOS",
+          "info": "795729426"
+        },
+        {
+          "periode": {
+            "fom": "2025-01-20",
+            "tom": "2025-01-31"
+          },
+          "beløp": 10320.00,
+          "kilde": "SOKOS",
+          "info": "796764034"
+        },
+        {
+          "periode": {
+            "fom": "2025-02-01",
+            "tom": "2025-02-02"
+          },
+          "beløp": 0.00,
+          "kilde": "SOKOS",
+          "info": "796764034"
+        },
+        {
+          "periode": {
+            "fom": "2025-02-03",
+            "tom": "2025-02-16"
+          },
+          "beløp": 10320.00,
+          "kilde": "SOKOS",
+          "info": "798806679"
+        },
+        {
+          "periode": {
+            "fom": "2025-02-17",
+            "tom": "2025-02-28"
+          },
+          "beløp": 10320.00,
+          "kilde": "SOKOS",
+          "info": "799863765"
+        },
+        {
+          "periode": {
+            "fom": "2025-03-01",
+            "tom": "2025-03-02"
+          },
+          "beløp": 0.00,
+          "kilde": "SOKOS",
+          "info": "799863765"
+        },
+        {
+          "periode": {
+            "fom": "2025-03-03",
+            "tom": "2025-03-16"
+          },
+          "beløp": 10320.00,
+          "kilde": "SOKOS",
+          "info": "801970456"
+        },
+        {
+          "periode": {
+            "fom": "2025-03-17",
+            "tom": "2025-03-30"
+          },
+          "beløp": 10320.00,
+          "kilde": "SOKOS",
+          "info": "802998326"
+        },
+        {
+          "periode": {
+            "fom": "2025-03-31",
+            "tom": "2025-03-31"
+          },
+          "beløp": 1032.00,
+          "kilde": "SOKOS",
+          "info": "805094428"
+        },
+        {
+          "periode": {
+            "fom": "2025-04-01",
+            "tom": "2025-04-13"
+          },
+          "beløp": 9288.00,
+          "kilde": "SOKOS",
+          "info": "805094428"
+        },
+        {
+          "periode": {
+            "fom": "2025-04-14",
+            "tom": "2025-04-27"
+          },
+          "beløp": 10320.00,
+          "kilde": "SOKOS",
+          "info": "806106559"
+        },
+        {
+          "periode": {
+            "fom": "2025-04-28",
+            "tom": "2025-04-30"
+          },
+          "beløp": 3096.00,
+          "kilde": "SOKOS",
+          "info": "808173489"
+        },
+        {
+          "periode": {
+            "fom": "2025-05-01",
+            "tom": "2025-05-11"
+          },
+          "beløp": 7224.00,
+          "kilde": "SOKOS",
+          "info": "808173489"
+        },
+        {
+          "periode": {
+            "fom": "2025-05-12",
+            "tom": "2025-05-25"
+          },
+          "beløp": 10320.00,
+          "kilde": "SOKOS",
+          "info": "809430065"
+        },
+        {
+          "periode": {
+            "fom": "2025-05-26",
+            "tom": "2025-05-31"
+          },
+          "beløp": 5160.00,
+          "kilde": "SOKOS",
+          "info": "809911265"
+        },
+        {
+          "periode": {
+            "fom": "2025-06-01",
+            "tom": "2025-06-08"
+          },
+          "beløp": 5160.00,
+          "kilde": "SOKOS",
+          "info": "809911265"
+        },
+        {
+          "periode": {
+            "fom": "2025-06-16",
+            "tom": "2025-06-16"
+          },
+          "beløp": 24486.00,
+          "kilde": "SOKOS",
+          "info": "811814593"
+        },
+        {
+          "periode": {
+            "fom": "2025-06-09",
+            "tom": "2025-06-22"
+          },
+          "beløp": 10320.00,
+          "kilde": "SOKOS",
+          "info": "812109491"
+        },
+        {
+          "periode": {
+            "fom": "2025-06-23",
+            "tom": "2025-06-30"
+          },
+          "beløp": 6192.00,
+          "kilde": "SOKOS",
+          "info": "813137806"
+        },
+        {
+          "periode": {
+            "fom": "2025-07-01",
+            "tom": "2025-07-06"
+          },
+          "beløp": 4128.00,
+          "kilde": "SOKOS",
+          "info": "813137806"
+        },
+        {
+          "periode": {
+            "fom": "2025-07-07",
+            "tom": "2025-07-20"
+          },
+          "beløp": 10320.00,
+          "kilde": "SOKOS",
+          "info": "815148149"
+        },
+        {
+          "periode": {
+            "fom": "2025-07-21",
+            "tom": "2025-07-31"
+          },
+          "beløp": 9288.00,
+          "kilde": "SOKOS",
+          "info": "816211270"
+        },
+        {
+          "periode": {
+            "fom": "2025-08-01",
+            "tom": "2025-08-03"
+          },
+          "beløp": 1032.00,
+          "kilde": "SOKOS",
+          "info": "816211270"
+        },
+        {
+          "periode": {
+            "fom": "2025-08-04",
+            "tom": "2025-08-17"
+          },
+          "beløp": 10320.00,
+          "kilde": "SOKOS",
+          "info": "818215477"
+        },
+        {
+          "periode": {
+            "fom": "2025-08-18",
+            "tom": "2025-08-31"
+          },
+          "beløp": 10320.00,
+          "kilde": "SOKOS",
+          "info": "819245655"
+        },
+        {
+          "periode": {
+            "fom": "2025-09-01",
+            "tom": "2025-09-14"
+          },
+          "beløp": 7170.00,
+          "kilde": "SOKOS",
+          "info": "821365359"
+        }
+      ]
+    },
+    {
+      "stonadType": "Feriepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2024-05-01",
+            "tom": "2024-05-31"
+          },
+          "beløp": 4365.00,
+          "kilde": "SOKOS",
+          "info": "770532772"
+        },
+        {
+          "periode": {
+            "fom": "2025-05-01",
+            "tom": "2025-05-31"
+          },
+          "beløp": 4509.00,
+          "kilde": "SOKOS",
+          "info": "808578858"
+        }
+      ]
+    }
+  ]
+}

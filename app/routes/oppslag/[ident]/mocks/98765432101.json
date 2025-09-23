@@ -1,0 +1,2321 @@
+{
+  "utrekkstidspunkt": "2025-09-23T12:03:21.295056658",
+  "saksbehandlerIdent": "prod-gcp:holmes:nav-persondata-api",
+  "fødselsnummer": "98765432101",
+  "personInformasjon": {
+    "aktørId": "98765432101",
+    "familemedlemmer": {
+      "01014900000": "FAR",
+      "01025500000": "MOR",
+      "11082000000": "BARN",
+      "04052200000": "BARN",
+      "20028700000": "SEPARERT"
+    },
+    "statsborgerskap": [
+      "NORGE"
+    ],
+    "navn": {
+      "fornavn": "HEISAN",
+      "mellomnavn": null,
+      "etternavn": "SVEISAN"
+    },
+    "adresse": {
+      "norskAdresse": {
+        "adressenavn": "VEI",
+        "husnummer": "34",
+        "husbokstav": null,
+        "postnummer": "1423",
+        "kommunenummer": "3207",
+        "poststed": "1423"
+      },
+      "utenlandskAdresse": null
+    },
+    "sivilstand": "SEPARERT",
+    "alder": 39
+  },
+  "arbeidsgiverInformasjon": {
+    "løpendeArbeidsforhold": [
+      {
+        "arbeidsgiver": "SELSKAP COMPANY AS",
+        "organisasjonsnummer": "99999999",
+        "adresse": "SVEI  6, 0581",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2025-03",
+              "tom": null
+            },
+            "yrke": "ØKONOMISJEF"
+          }
+        ]
+      }
+    ],
+    "historikk": [
+      {
+        "arbeidsgiver": " TOTAL RENOVERIG",
+        "organisasjonsnummer": "912873420",
+        "adresse": "LITEN VEI 77, 1263",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2018-01",
+              "tom": null
+            },
+            "yrke": "FRISØR"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2017-01",
+              "tom": "2017-12"
+            },
+            "yrke": "FRISØR"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": " AVD OSLO",
+        "organisasjonsnummer": "992856386",
+        "adresse": " 13, 0164",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2015-11",
+              "tom": null
+            },
+            "yrke": "KUNDESERVICEMEDARBEIDER (SALG)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2015-09",
+              "tom": "2015-10"
+            },
+            "yrke": "KUNDESERVICEMEDARBEIDER (SALG)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2015-03",
+              "tom": "2015-08"
+            },
+            "yrke": "KUNDESERVICEMEDARBEIDER (SALG)"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "ARBEIDSGIVER",
+        "organisasjonsnummer": "974553376",
+        "adresse": " 2, 1337",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2019-01",
+              "tom": null
+            },
+            "yrke": "SAKSBEHANDLER 2 (KONSULENT OFF.ADM.)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2018-01",
+              "tom": "2018-12"
+            },
+            "yrke": "SAKSBEHANDLER 2 (KONSULENT OFF.ADM.)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2017-12",
+              "tom": "2017-12"
+            },
+            "yrke": "SAKSBEHANDLER 2 (KONSULENT OFF.ADM.)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2015-09",
+              "tom": "2017-11"
+            },
+            "yrke": "SAKSBEHANDLER 2 (KONSULENT OFF.ADM.)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2015-06",
+              "tom": "2015-08"
+            },
+            "yrke": "SAKSBEHANDLER 2 (KONSULENT OFF.ADM.)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2015-01",
+              "tom": "2015-05"
+            },
+            "yrke": "SAKSBEHANDLER 2 (KONSULENT OFF.ADM.)"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": " HOVEDKONTOR",
+        "organisasjonsnummer": "973092367",
+        "adresse": "Lakkegata 23, 0187",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2019-03",
+              "tom": null
+            },
+            "yrke": "KONSULENT (ØKONOMI - PRIVAT VIRKSOMHET)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2015-10",
+              "tom": "2016-03"
+            },
+            "yrke": "KONSULENT (ØKONOMI - PRIVAT VIRKSOMHET)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2016-04",
+              "tom": "2017-02"
+            },
+            "yrke": "KONSULENT (ØKONOMI - PRIVAT VIRKSOMHET)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2017-03",
+              "tom": "2017-12"
+            },
+            "yrke": "KONSULENT (ØKONOMI - PRIVAT VIRKSOMHET)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2018-01",
+              "tom": "2018-02"
+            },
+            "yrke": "KONSULENT (ØKONOMI - PRIVAT VIRKSOMHET)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2018-03",
+              "tom": "2019-02"
+            },
+            "yrke": "KONSULENT (ØKONOMI - PRIVAT VIRKSOMHET)"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": " HOVEDKONTOR",
+        "organisasjonsnummer": "973092367",
+        "adresse": "Lakkegata 23, 0187",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2024-01",
+              "tom": null
+            },
+            "yrke": "RÅDGIVER (ØKONOMI)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2022-05",
+              "tom": "2022-12"
+            },
+            "yrke": "RÅDGIVER (ØKONOMI)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2023-01",
+              "tom": "2023-12"
+            },
+            "yrke": "RÅDGIVER (ØKONOMI)"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": " HOVEDKONTOR",
+        "organisasjonsnummer": "973092367",
+        "adresse": "Lakkegata 23, 0187",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2022-01",
+              "tom": null
+            },
+            "yrke": "RÅDGIVER (ØKONOMI)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2019-04",
+              "tom": "2019-11"
+            },
+            "yrke": "RÅDGIVER (ØKONOMI)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2019-12",
+              "tom": "2020-12"
+            },
+            "yrke": "RÅDGIVER (ØKONOMI)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 35.0,
+            "periode": {
+              "fom": "2021-01",
+              "tom": "2021-12"
+            },
+            "yrke": "RÅDGIVER (ØKONOMI)"
+          }
+        ]
+      }
+    ]
+  },
+  "inntektInformasjon": {
+    "lønnsinntekt": [
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 51158.25,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 571.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 51158.25,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 571.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 51158.25,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 571.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 51158.25,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 639.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 51158.25,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.84,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 52897.92,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 515.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 0.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 52027.92,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 515.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 52027.92,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 515.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 52027.92,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 515.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 66585.52,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 515.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "trekkILoennForFerie",
+        "antall": null,
+        "beløp": -7995.06,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 52027.92,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 515.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 52027.92,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 515.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 52027.92,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 515.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 52027.92,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 515.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 2439.2,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 52027.92,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "kilometergodtgjoerelseBil",
+        "antall": 180.4,
+        "beløp": 95.61,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "kilometergodtgjoerelseBil",
+        "antall": 180.4,
+        "beløp": 631.4,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 515.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": -732.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 52027.92,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2021-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 514.86,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 52027.92,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 544.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 54961.92,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 53495.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 53495.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 53495.08,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 53495.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 67717.48,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "trekkILoennForFerie",
+        "antall": null,
+        "beløp": -61715.6,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 53495.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 53495.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 53495.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 53495.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 53495.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 53495.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2022-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 53495.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 57496.52,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 55495.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 55495.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 55495.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 55495.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 69627.01,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "trekkILoennForFerie",
+        "antall": null,
+        "beløp": -64023.77,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 100.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 55495.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 55495.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 55495.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 55495.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 55495.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 55495.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 570.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 58437.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 603.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 58437.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 603.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 58437.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 653.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 58437.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 653.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 58437.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 653.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 58437.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 72231.13,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 653.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "trekkILoennForFerie",
+        "antall": null,
+        "beløp": -67417.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 58437.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 653.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 4753.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 29218.54,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 29218.54,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 653.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 58437.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 58437.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 58437.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2024-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 58437.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2025-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 58437.08,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2025-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 76059.36,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2025-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 29218.54,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SELSKAP COMPANY AS",
+        "periode": "2025-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 60000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": " DALE",
+        "periode": "2025-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 10518.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SELSKAP COMPANY AS",
+        "periode": "2025-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 60000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SELSKAP COMPANY AS",
+        "periode": "2025-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 60000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SELSKAP COMPANY AS",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 60000.0,
+        "harFlereVersjoner": true
+      }
+    ],
+    "næringsinntekt": [],
+    "pensjonEllerTrygd": [],
+    "ytelseFraOffentlige": []
+  },
+  "stønader": [
+    {
+      "stonadType": "Foreldrepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2022-08-17",
+            "tom": "2022-08-31"
+          },
+          "beløp": -7407.00,
+          "kilde": "SOKOS",
+          "info": "712317634"
+        },
+        {
+          "periode": {
+            "fom": "2022-12-07",
+            "tom": "2022-12-31"
+          },
+          "beløp": 1872.00,
+          "kilde": "SOKOS",
+          "info": "719794700"
+        },
+        {
+          "periode": {
+            "fom": "2022-12-12",
+            "tom": "2022-12-31"
+          },
+          "beløp": 22215.00,
+          "kilde": "SOKOS",
+          "info": "719923582"
+        },
+        {
+          "periode": {
+            "fom": "2023-01-01",
+            "tom": "2023-01-31"
+          },
+          "beløp": 1976.00,
+          "kilde": "SOKOS",
+          "info": "721694981"
+        },
+        {
+          "periode": {
+            "fom": "2023-01-01",
+            "tom": "2023-01-31"
+          },
+          "beløp": 32582.00,
+          "kilde": "SOKOS",
+          "info": "722466945"
+        },
+        {
+          "periode": {
+            "fom": "2023-02-01",
+            "tom": "2023-02-28"
+          },
+          "beløp": 1040.00,
+          "kilde": "SOKOS",
+          "info": "725001093"
+        },
+        {
+          "periode": {
+            "fom": "2023-01-01",
+            "tom": "2023-01-31"
+          },
+          "beløp": -14810.00,
+          "kilde": "SOKOS",
+          "info": "725147519"
+        },
+        {
+          "periode": {
+            "fom": "2023-02-01",
+            "tom": "2023-02-28"
+          },
+          "beløp": 29620.00,
+          "kilde": "SOKOS",
+          "info": "725147519"
+        },
+        {
+          "periode": {
+            "fom": "2023-03-01",
+            "tom": "2023-03-31"
+          },
+          "beløp": 2392.00,
+          "kilde": "SOKOS",
+          "info": "727175400"
+        },
+        {
+          "periode": {
+            "fom": "2023-03-01",
+            "tom": "2023-03-31"
+          },
+          "beløp": 34063.00,
+          "kilde": "SOKOS",
+          "info": "728065743"
+        },
+        {
+          "periode": {
+            "fom": "2023-04-01",
+            "tom": "2023-04-09"
+          },
+          "beløp": 520.00,
+          "kilde": "SOKOS",
+          "info": "730149664"
+        },
+        {
+          "periode": {
+            "fom": "2023-04-01",
+            "tom": "2023-04-30"
+          },
+          "beløp": 29620.00,
+          "kilde": "SOKOS",
+          "info": "731028775"
+        },
+        {
+          "periode": {
+            "fom": "2023-04-10",
+            "tom": "2023-04-30"
+          },
+          "beløp": -2962.00,
+          "kilde": "SOKOS",
+          "info": "734379986"
+        },
+        {
+          "periode": {
+            "fom": "2025-01-20",
+            "tom": "2025-01-31"
+          },
+          "beløp": 24690.00,
+          "kilde": "SOKOS",
+          "info": "796704785"
+        },
+        {
+          "periode": {
+            "fom": "2025-01-20",
+            "tom": "2025-01-31"
+          },
+          "beløp": 15308.00,
+          "kilde": "SOKOS",
+          "info": "798718440"
+        },
+        {
+          "periode": {
+            "fom": "2025-02-01",
+            "tom": "2025-02-19"
+          },
+          "beløp": 19901.00,
+          "kilde": "SOKOS",
+          "info": "798918794"
+        },
+        {
+          "periode": {
+            "fom": "2025-01-20",
+            "tom": "2025-01-31"
+          },
+          "beløp": -24690.00,
+          "kilde": "SOKOS",
+          "info": "799805060"
+        }
+      ]
+    },
+    {
+      "stonadType": "Feriepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2023-05-01",
+            "tom": "2023-05-31"
+          },
+          "beløp": 22342.00,
+          "kilde": "SOKOS",
+          "info": "734379986"
+        },
+        {
+          "periode": {
+            "fom": "2024-05-01",
+            "tom": "2024-05-31"
+          },
+          "beløp": 14805.00,
+          "kilde": "SOKOS",
+          "info": "771487679"
+        },
+        {
+          "periode": {
+            "fom": "2025-05-01",
+            "tom": "2025-05-31"
+          },
+          "beløp": 12539.00,
+          "kilde": "SOKOS",
+          "info": "809538134"
+        }
+      ]
+    },
+    {
+      "stonadType": "Sykepenger refusjon arbeidsgiver",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2023-05-15",
+            "tom": "2023-05-31"
+          },
+          "beløp": 33293.00,
+          "kilde": "SOKOS",
+          "info": "743730594"
+        },
+        {
+          "periode": {
+            "fom": "2023-06-01",
+            "tom": "2023-06-30"
+          },
+          "beløp": 56342.00,
+          "kilde": "SOKOS",
+          "info": "743730594"
+        },
+        {
+          "periode": {
+            "fom": "2023-07-01",
+            "tom": "2023-07-31"
+          },
+          "beløp": 15366.00,
+          "kilde": "SOKOS",
+          "info": "746690352"
+        },
+        {
+          "periode": {
+            "fom": "2023-08-01",
+            "tom": "2023-08-20"
+          },
+          "beløp": 35854.00,
+          "kilde": "SOKOS",
+          "info": "746690352"
+        },
+        {
+          "periode": {
+            "fom": "2023-08-21",
+            "tom": "2023-08-31"
+          },
+          "beløp": 23049.00,
+          "kilde": "SOKOS",
+          "info": "749767483"
+        },
+        {
+          "periode": {
+            "fom": "2023-09-01",
+            "tom": "2023-09-10"
+          },
+          "beløp": 15366.00,
+          "kilde": "SOKOS",
+          "info": "749767483"
+        },
+        {
+          "periode": {
+            "fom": "2023-09-11",
+            "tom": "2023-09-30"
+          },
+          "beløp": 38415.00,
+          "kilde": "SOKOS",
+          "info": "752772527"
+        },
+        {
+          "periode": {
+            "fom": "2023-10-01",
+            "tom": "2023-10-31"
+          },
+          "beløp": 56342.00,
+          "kilde": "SOKOS",
+          "info": "752772527"
+        },
+        {
+          "periode": {
+            "fom": "2023-11-01",
+            "tom": "2023-11-30"
+          },
+          "beløp": 56342.00,
+          "kilde": "SOKOS",
+          "info": "755760548"
+        },
+        {
+          "periode": {
+            "fom": "2023-12-01",
+            "tom": "2023-12-31"
+          },
+          "beløp": 53781.00,
+          "kilde": "SOKOS",
+          "info": "762034487"
+        },
+        {
+          "periode": {
+            "fom": "2024-01-01",
+            "tom": "2024-01-30"
+          },
+          "beløp": 56342.00,
+          "kilde": "SOKOS",
+          "info": "762034487"
+        },
+        {
+          "periode": {
+            "fom": "2024-01-31",
+            "tom": "2024-01-31"
+          },
+          "beløp": 2561.00,
+          "kilde": "SOKOS",
+          "info": "765078034"
+        },
+        {
+          "periode": {
+            "fom": "2024-02-01",
+            "tom": "2024-02-16"
+          },
+          "beløp": 30732.00,
+          "kilde": "SOKOS",
+          "info": "765078034"
+        },
+        {
+          "periode": {
+            "fom": "2024-02-17",
+            "tom": "2024-02-29"
+          },
+          "beløp": 23049.00,
+          "kilde": "SOKOS",
+          "info": "768231150"
+        },
+        {
+          "periode": {
+            "fom": "2024-03-01",
+            "tom": "2024-03-31"
+          },
+          "beløp": 53781.00,
+          "kilde": "SOKOS",
+          "info": "768231150"
+        },
+        {
+          "periode": {
+            "fom": "2024-04-01",
+            "tom": "2024-04-08"
+          },
+          "beløp": 15366.00,
+          "kilde": "SOKOS",
+          "info": "768231150"
+        },
+        {
+          "periode": {
+            "fom": "2024-04-09",
+            "tom": "2024-04-30"
+          },
+          "beløp": 40976.00,
+          "kilde": "SOKOS",
+          "info": "771487679"
+        }
+      ]
+    },
+    {
+      "stonadType": "Sykepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2025-06-18",
+            "tom": "2025-06-30"
+          },
+          "beløp": 25367.00,
+          "kilde": "SOKOS",
+          "info": "816285420"
+        },
+        {
+          "periode": {
+            "fom": "2025-07-01",
+            "tom": "2025-07-31"
+          },
+          "beløp": 64827.00,
+          "kilde": "SOKOS",
+          "info": "816285420"
+        }
+      ]
+    }
+  ]
+}
