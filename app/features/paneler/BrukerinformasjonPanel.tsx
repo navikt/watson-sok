@@ -5,6 +5,7 @@ import { tilFulltNavn } from "~/utils/navn-utils";
 import {
   formatterFødselsnummer,
   storFørsteBokstav,
+  storFørsteBokstavPerOrd,
 } from "~/utils/string-utils";
 import { PanelContainer } from "./PanelContainer";
 
@@ -54,7 +55,11 @@ export function BrukerinformasjonPanel({
           </>
         )}
         <dt>Statsborgerskap</dt>
-        <dd>{personInformasjon.statsborgerskap.join(", ")}</dd>
+        <dd>
+          {personInformasjon.statsborgerskap
+            .map(storFørsteBokstavPerOrd)
+            .join(", ")}
+        </dd>
         <dt>Sivilstand</dt>
         <dd>{storFørsteBokstav(personInformasjon.sivilstand ?? "Ukjent")}</dd>
         <dt>Familemedlemmer</dt>
