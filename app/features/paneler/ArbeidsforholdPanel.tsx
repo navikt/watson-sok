@@ -47,7 +47,7 @@ export function ArbeidsforholdPanel({
       link={{ href: "https://aareg.nav.no", beskrivelse: "Historikk" }}
     >
       <div className="mt-4 max-h-[500px] overflow-y-scroll">
-        <Table size="small" stickyHeader={true}>
+        <Table size="medium" stickyHeader={true}>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell textSize="small" scope="col">

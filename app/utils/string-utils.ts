@@ -15,6 +15,14 @@ export function storFørsteBokstav(tekst: string | null | undefined): string {
   return førsteBokstav + restAvTeksten;
 }
 
+export function storFørsteBokstavPerOrd(tekst: string | null | undefined) {
+  if (!tekst) {
+    return "";
+  }
+
+  return tekst.split(" ").map(storFørsteBokstav).join(" ");
+}
+
 /**
  * Konverterer camelCase til en norsk setning med stor første bokstav
  *
