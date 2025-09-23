@@ -1,4 +1,4 @@
-import { Alert, Button, Heading, HGrid } from "@navikt/ds-react";
+import { Alert, Heading, HGrid } from "@navikt/ds-react";
 import {
   data,
   useLoaderData,
@@ -6,20 +6,16 @@ import {
   type LoaderFunctionArgs,
   type MetaArgs,
 } from "react-router";
-import DetaljModal from "~/components/DetaljModal";
 import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
 import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
 import { InntektPanel } from "~/features/paneler/InntektPanel";
 import { StønaderPanel } from "~/features/paneler/StønaderPanel";
 import { tilFulltNavn } from "~/utils/navn-utils";
-import { useDisclosure } from "~/utils/useDisclosure";
 import { fetchIdent } from "./fetchIdent.server";
 
 export default function OppslagBruker() {
   const { ident } = useParams();
   const data = useLoaderData<typeof loader>();
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   if (!ident) {
     return (
@@ -63,12 +59,6 @@ export default function OppslagBruker() {
           <InntektPanel inntektInformasjon={data.inntektInformasjon} />
         )}
       </div>
-
-      <div>
-        <Button onClick={onOpen}>Hent familieforhold</Button>
-      </div>
-
-      {isOpen && <DetaljModal fnr={ident} onClose={onClose} />}
     </div>
   );
 }

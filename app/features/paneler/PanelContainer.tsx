@@ -21,7 +21,7 @@ export function PanelContainer({
 }: PanelContainerProps) {
   return (
     <section
-      className={`bg-primary rounded-sm border-1 border-gray-200 p-4 relative h-fit ${className}`}
+      className={`border-1 border-ax-neutral-400 rounded-xl p-4 relative h-fit ${className}`}
     >
       {title && (
         <Heading level="2" size="medium" spacing>
