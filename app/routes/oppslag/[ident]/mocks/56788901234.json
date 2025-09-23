@@ -1,0 +1,620 @@
+{
+  "utrekkstidspunkt": "2025-09-23T09:03:00.025381656",
+  "saksbehandlerIdent": "prod-gcp:holmes:nav-persondata-api",
+  "fødselsnummer": "56788901234",
+  "personInformasjon": {
+    "aktørId": "56788901234",
+    "familemedlemmer": {
+      "14082400000": "BARN",
+      "08109600000": "GIFT"
+    },
+    "statsborgerskap": ["PAKISTAN"],
+    "navn": {
+      "fornavn": "KULT",
+      "mellomnavn": null,
+      "etternavn": "NAVN"
+    },
+    "adresse": {
+      "norskAdresse": {
+        "adressenavn": "a",
+        "husnummer": "1",
+        "husbokstav": null,
+        "postnummer": "1481",
+        "kommunenummer": "3232",
+        "poststed": "1481"
+      },
+      "utenlandskAdresse": null
+    },
+    "sivilstand": "GIFT",
+    "alder": 29
+  },
+  "arbeidsgiverInformasjon": {
+    "løpendeArbeidsforhold": [
+      {
+        "arbeidsgiver": "litrn",
+        "organisasjonsnummer": "932590883",
+        "adresse": "Svennebyveien 1B, 2019",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2025-07",
+              "tom": null
+            },
+            "yrke": "ADMINISTRASJONSKONSULENT (KONTORARBEID)"
+          }
+        ]
+      }
+    ],
+    "historikk": [
+      {
+        "arbeidsgiver": "TRANSPORT AS",
+        "organisasjonsnummer": "22222222",
+        "adresse": "7b, 2020",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2024-01",
+              "tom": null
+            },
+            "yrke": "SJÅFØR (BUDBIL)"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "organisasjonsnummer": "927900483",
+        "adresse": "Gamleveien 88, 1461",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 50.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2024-11",
+              "tom": null
+            },
+            "yrke": "SERVITØR"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 10.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-12",
+              "tom": "2024-05"
+            },
+            "yrke": "SERVITØR"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 10.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2024-06",
+              "tom": "2024-06"
+            },
+            "yrke": "SERVITØR"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 40.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2024-07",
+              "tom": "2024-08"
+            },
+            "yrke": "SERVITØR"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 50.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2024-09",
+              "tom": "2024-10"
+            },
+            "yrke": "SERVITØR"
+          }
+        ]
+      }
+    ]
+  },
+  "inntektInformasjon": {
+    "lønnsinntekt": [
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 78.78,
+        "beløp": 15031.07,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "uregelmessigeTilleggKnyttetTilArbeidetTid",
+        "antall": null,
+        "beløp": 146.47,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 5.25,
+        "beløp": 500.82,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 85.4,
+        "beløp": 16293.47,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "uregelmessigeTilleggKnyttetTilArbeidetTid",
+        "antall": null,
+        "beløp": 644.68,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "TRANSPORT AS",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 160.0,
+        "beløp": 29920.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 49.4,
+        "beløp": 9425.03,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "uregelmessigeTilleggKnyttetTilArbeidetTid",
+        "antall": null,
+        "beløp": 281.67,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "TRANSPORT AS",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 160.0,
+        "beløp": 29920.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 12000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "TRANSPORT AS",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 160.0,
+        "beløp": 29920.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "helligdagstillegg",
+        "antall": null,
+        "beløp": 1949.24,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 71.85,
+        "beløp": 13708.26,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "uregelmessigeTilleggKnyttetTilArbeidetTid",
+        "antall": null,
+        "beløp": 525.12,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "TRANSPORT AS",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 14400.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 63.0,
+        "beløp": 12019.77,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "uregelmessigeTilleggKnyttetTilArbeidetTid",
+        "antall": null,
+        "beløp": 824.84,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 1548.11,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 0.0,
+        "beløp": 441.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG STOR2",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 6998.62,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "litrn",
+        "periode": "2025-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 61666.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "LITEN OG ST",
+        "periode": "2025-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 61666.0,
+        "harFlereVersjoner": false
+      }
+    ],
+    "næringsinntekt": [],
+    "pensjonEllerTrygd": [],
+    "ytelseFraOffentlige": []
+  },
+  "stønader": [
+    {
+      "stonadType": "Sykepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2024-06-01",
+            "tom": "2024-06-14"
+          },
+          "beløp": 9875.0,
+          "kilde": "SOKOS",
+          "info": "774728736"
+        },
+        {
+          "periode": {
+            "fom": "2024-05-06",
+            "tom": "2024-05-31"
+          },
+          "beløp": 19750.0,
+          "kilde": "SOKOS",
+          "info": "774728735"
+        },
+        {
+          "periode": {
+            "fom": "2024-06-15",
+            "tom": "2024-06-30"
+          },
+          "beløp": 15998.0,
+          "kilde": "SOKOS",
+          "info": "778123894"
+        },
+        {
+          "periode": {
+            "fom": "2024-07-01",
+            "tom": "2024-07-12"
+          },
+          "beløp": 15998.0,
+          "kilde": "SOKOS",
+          "info": "778123894"
+        },
+        {
+          "periode": {
+            "fom": "2024-07-13",
+            "tom": "2024-07-31"
+          },
+          "beløp": 20797.0,
+          "kilde": "SOKOS",
+          "info": "780163085"
+        }
+      ]
+    },
+    {
+      "stonadType": "Barnetrygd",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2024-09-01",
+            "tom": "2024-09-30"
+          },
+          "beløp": 1766.0,
+          "kilde": "SOKOS",
+          "info": "783606486"
+        },
+        {
+          "periode": {
+            "fom": "2024-10-01",
+            "tom": "2024-10-31"
+          },
+          "beløp": 1766.0,
+          "kilde": "SOKOS",
+          "info": "786678579"
+        },
+        {
+          "periode": {
+            "fom": "2024-11-01",
+            "tom": "2024-11-30"
+          },
+          "beløp": 1766.0,
+          "kilde": "SOKOS",
+          "info": "789758906"
+        },
+        {
+          "periode": {
+            "fom": "2024-12-01",
+            "tom": "2024-12-31"
+          },
+          "beløp": 1766.0,
+          "kilde": "SOKOS",
+          "info": "792567496"
+        },
+        {
+          "periode": {
+            "fom": "2025-01-01",
+            "tom": "2025-01-31"
+          },
+          "beløp": 1766.0,
+          "kilde": "SOKOS",
+          "info": "796008681"
+        },
+        {
+          "periode": {
+            "fom": "2025-02-01",
+            "tom": "2025-02-28"
+          },
+          "beløp": 1766.0,
+          "kilde": "SOKOS",
+          "info": "799104609"
+        },
+        {
+          "periode": {
+            "fom": "2025-03-01",
+            "tom": "2025-03-31"
+          },
+          "beløp": 1766.0,
+          "kilde": "SOKOS",
+          "info": "802357643"
+        },
+        {
+          "periode": {
+            "fom": "2025-04-01",
+            "tom": "2025-04-30"
+          },
+          "beløp": 1766.0,
+          "kilde": "SOKOS",
+          "info": "805487809"
+        },
+        {
+          "periode": {
+            "fom": "2025-05-01",
+            "tom": "2025-05-31"
+          },
+          "beløp": 1968.0,
+          "kilde": "SOKOS",
+          "info": "808830404"
+        },
+        {
+          "periode": {
+            "fom": "2025-06-01",
+            "tom": "2025-06-30"
+          },
+          "beløp": 1968.0,
+          "kilde": "SOKOS",
+          "info": "812275345"
+        },
+        {
+          "periode": {
+            "fom": "2025-07-01",
+            "tom": "2025-07-31"
+          },
+          "beløp": 1968.0,
+          "kilde": "SOKOS",
+          "info": "815400112"
+        },
+        {
+          "periode": {
+            "fom": "2025-08-01",
+            "tom": "2025-08-31"
+          },
+          "beløp": 1968.0,
+          "kilde": "SOKOS",
+          "info": "818492558"
+        }
+      ]
+    },
+    {
+      "stonadType": "Foreldrepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2024-07-29",
+            "tom": "2024-07-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "787561800"
+        },
+        {
+          "periode": {
+            "fom": "2024-08-01",
+            "tom": "2024-08-31"
+          },
+          "beløp": 35175.0,
+          "kilde": "SOKOS",
+          "info": "787561800"
+        },
+        {
+          "periode": {
+            "fom": "2024-09-01",
+            "tom": "2024-09-30"
+          },
+          "beløp": 33578.0,
+          "kilde": "SOKOS",
+          "info": "787561800"
+        },
+        {
+          "periode": {
+            "fom": "2024-10-01",
+            "tom": "2024-10-31"
+          },
+          "beløp": 36776.0,
+          "kilde": "SOKOS",
+          "info": "787561800"
+        },
+        {
+          "periode": {
+            "fom": "2024-11-01",
+            "tom": "2024-11-30"
+          },
+          "beløp": 37329.0,
+          "kilde": "SOKOS",
+          "info": "789571269"
+        },
+        {
+          "periode": {
+            "fom": "2024-12-01",
+            "tom": "2024-12-31"
+          },
+          "beløp": 35177.0,
+          "kilde": "SOKOS",
+          "info": "793139293"
+        },
+        {
+          "periode": {
+            "fom": "2025-01-01",
+            "tom": "2025-01-31"
+          },
+          "beløp": 39954.0,
+          "kilde": "SOKOS",
+          "info": "795806551"
+        },
+        {
+          "periode": {
+            "fom": "2025-02-01",
+            "tom": "2025-02-28"
+          },
+          "beløp": 34743.0,
+          "kilde": "SOKOS",
+          "info": "798922574"
+        },
+        {
+          "periode": {
+            "fom": "2025-03-01",
+            "tom": "2025-03-18"
+          },
+          "beløp": 20846.0,
+          "kilde": "SOKOS",
+          "info": "802071579"
+        }
+      ]
+    },
+    {
+      "stonadType": "Feriepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2025-05-01",
+            "tom": "2025-05-31"
+          },
+          "beløp": 21751.0,
+          "kilde": "SOKOS",
+          "info": "808461726"
+        }
+      ]
+    }
+  ]
+}

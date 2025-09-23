@@ -1,0 +1,2976 @@
+{
+  "utrekkstidspunkt": "2025-09-23T09:09:04.03552438",
+  "saksbehandlerIdent": "prod-gcp:holmes:nav-persondata-api",
+  "fødselsnummer": "22345678901",
+  "personInformasjon": {
+    "aktørId": "22345678901",
+    "familemedlemmer": {
+      "22116500000": "MOR",
+      "10076300000": "FAR",
+      "09021300000": "BARN",
+      "20091400000": "BARN",
+      "06048200000": "SKILT"
+    },
+    "statsborgerskap": ["NORGE"],
+    "navn": {
+      "fornavn": "HEISAN",
+      "mellomnavn": null,
+      "etternavn": "SVEISAN"
+    },
+    "adresse": {
+      "norskAdresse": {
+        "adressenavn": "GUL VEG",
+        "husnummer": "29",
+        "husbokstav": null,
+        "postnummer": "1642",
+        "kommunenummer": "3112",
+        "poststed": "1642"
+      },
+      "utenlandskAdresse": null
+    },
+    "sivilstand": "SKILT",
+    "alder": 38
+  },
+  "arbeidsgiverInformasjon": {
+    "løpendeArbeidsforhold": [
+      {
+        "arbeidsgiver": "KULT STED",
+        "organisasjonsnummer": "11111111111",
+        "adresse": "ETT STED",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-01",
+              "tom": null
+            },
+            "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2015-01",
+              "tom": "2018-12"
+            },
+            "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2019-01",
+              "tom": "2020-12"
+            },
+            "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2021-01",
+              "tom": "2021-12"
+            },
+            "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 80.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2022-01",
+              "tom": "2022-12"
+            },
+            "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
+          }
+        ]
+      }
+    ],
+    "historikk": [
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "organisasjonsnummer": "222222222",
+        "adresse": "LITEN VEI",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2021-01",
+              "tom": null
+            },
+            "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2020-06",
+              "tom": "2020-12"
+            },
+            "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2019-01",
+              "tom": "2020-05"
+            },
+            "yrke": "FRISØR"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2017-01",
+              "tom": "2018-12"
+            },
+            "yrke": "FRISØR"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "organisasjonsnummer": "222222222",
+        "adresse": "LITEN VEI",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 50.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2022-01",
+              "tom": null
+            },
+            "yrke": "LEDER (FRISØRSALONG - FÆRRE ENN 10 ANSATTE- PRIVAT VIRKSOMHET)"
+          }
+        ]
+      }
+    ]
+  },
+  "inntektInformasjon": {
+    "lønnsinntekt": [
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2020-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 18360.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 26520.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2020-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2020-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2020-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 4392.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 25000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 766.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2020-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 25000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 10000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 35000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 15000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 30000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 15000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 10000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 30000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 10000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 21420.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 30000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 10000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 30000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 10000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 12728.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 17272.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2021-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 788.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 4392.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 20000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2021-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 23842.5,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2022-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 5000.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 15000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2022-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 5000.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 15000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2022-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 5000.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 15000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2022-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 2000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 7000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 8000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 8000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 31620.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 8000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 8000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 8000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 8000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2022-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 16320.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2022-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 8500.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED 2",
+        "periode": "2023-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 1734.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 8000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 18000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 8000.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 8000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 11067.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 8000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 12000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 10000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 2672.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 11016.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2024-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "skattepliktigDelForsikringer",
+        "antall": null,
+        "beløp": 3163.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 8000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 3016.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "elektroniskKommunikasjon",
+        "antall": null,
+        "beløp": 366.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "KULT STED",
+        "periode": "2025-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 9000.0,
+        "harFlereVersjoner": false
+      }
+    ],
+    "næringsinntekt": [],
+    "pensjonEllerTrygd": [],
+    "ytelseFraOffentlige": []
+  },
+  "stønader": [
+    {
+      "stonadType": "Pleiepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2025-09-01",
+            "tom": "2025-09-30"
+          },
+          "beløp": 26692.0,
+          "kilde": "SOKOS",
+          "info": "821531960"
+        },
+        {
+          "periode": {
+            "fom": "2022-10-01",
+            "tom": "2022-10-31"
+          },
+          "beløp": 24186.0,
+          "kilde": "SOKOS",
+          "info": "714101374"
+        },
+        {
+          "periode": {
+            "fom": "2022-11-01",
+            "tom": "2022-11-30"
+          },
+          "beløp": 25071.0,
+          "kilde": "SOKOS",
+          "info": "716650928"
+        },
+        {
+          "periode": {
+            "fom": "2022-12-01",
+            "tom": "2022-12-30"
+          },
+          "beløp": 28739.0,
+          "kilde": "SOKOS",
+          "info": "719120361"
+        },
+        {
+          "periode": {
+            "fom": "2023-01-05",
+            "tom": "2023-01-31"
+          },
+          "beløp": 26273.0,
+          "kilde": "SOKOS",
+          "info": "724314461"
+        },
+        {
+          "periode": {
+            "fom": "2023-02-01",
+            "tom": "2023-02-28"
+          },
+          "beløp": 27270.0,
+          "kilde": "SOKOS",
+          "info": "725037627"
+        },
+        {
+          "periode": {
+            "fom": "2023-03-01",
+            "tom": "2023-03-31"
+          },
+          "beløp": 30299.0,
+          "kilde": "SOKOS",
+          "info": "727212042"
+        },
+        {
+          "periode": {
+            "fom": "2023-04-01",
+            "tom": "2023-04-30"
+          },
+          "beløp": 27270.0,
+          "kilde": "SOKOS",
+          "info": "730180481"
+        },
+        {
+          "periode": {
+            "fom": "2023-05-01",
+            "tom": "2023-05-31"
+          },
+          "beløp": 30299.0,
+          "kilde": "SOKOS",
+          "info": "733379236"
+        },
+        {
+          "periode": {
+            "fom": "2023-06-01",
+            "tom": "2023-06-30"
+          },
+          "beløp": 29302.0,
+          "kilde": "SOKOS",
+          "info": "736656528"
+        },
+        {
+          "periode": {
+            "fom": "2023-07-01",
+            "tom": "2023-07-31"
+          },
+          "beløp": 28266.0,
+          "kilde": "SOKOS",
+          "info": "739852633"
+        },
+        {
+          "periode": {
+            "fom": "2023-08-01",
+            "tom": "2023-08-31"
+          },
+          "beløp": 30299.0,
+          "kilde": "SOKOS",
+          "info": "742882975"
+        },
+        {
+          "periode": {
+            "fom": "2023-09-01",
+            "tom": "2023-09-30"
+          },
+          "beløp": 28266.0,
+          "kilde": "SOKOS",
+          "info": "745859787"
+        },
+        {
+          "periode": {
+            "fom": "2023-10-01",
+            "tom": "2023-10-31"
+          },
+          "beløp": 29302.0,
+          "kilde": "SOKOS",
+          "info": "748825619"
+        },
+        {
+          "periode": {
+            "fom": "2023-11-01",
+            "tom": "2023-11-30"
+          },
+          "beløp": 29302.0,
+          "kilde": "SOKOS",
+          "info": "751931272"
+        },
+        {
+          "periode": {
+            "fom": "2023-12-01",
+            "tom": "2023-12-29"
+          },
+          "beløp": 31584.0,
+          "kilde": "SOKOS",
+          "info": "755434126"
+        },
+        {
+          "periode": {
+            "fom": "2024-01-01",
+            "tom": "2024-01-31"
+          },
+          "beløp": 26376.0,
+          "kilde": "SOKOS",
+          "info": "758837662"
+        },
+        {
+          "periode": {
+            "fom": "2024-02-01",
+            "tom": "2024-02-29"
+          },
+          "beløp": 24083.0,
+          "kilde": "SOKOS",
+          "info": "761186198"
+        },
+        {
+          "periode": {
+            "fom": "2024-03-01",
+            "tom": "2024-03-31"
+          },
+          "beløp": 24083.0,
+          "kilde": "SOKOS",
+          "info": "764919616"
+        },
+        {
+          "periode": {
+            "fom": "2024-04-01",
+            "tom": "2024-04-30"
+          },
+          "beløp": 25230.0,
+          "kilde": "SOKOS",
+          "info": "767378009"
+        },
+        {
+          "periode": {
+            "fom": "2024-05-01",
+            "tom": "2024-05-31"
+          },
+          "beløp": 26376.0,
+          "kilde": "SOKOS",
+          "info": "770563939"
+        },
+        {
+          "periode": {
+            "fom": "2024-06-01",
+            "tom": "2024-06-30"
+          },
+          "beløp": 22936.0,
+          "kilde": "SOKOS",
+          "info": "773939126"
+        },
+        {
+          "periode": {
+            "fom": "2024-07-01",
+            "tom": "2024-07-31"
+          },
+          "beløp": 26376.0,
+          "kilde": "SOKOS",
+          "info": "777309583"
+        },
+        {
+          "periode": {
+            "fom": "2024-08-01",
+            "tom": "2024-08-30"
+          },
+          "beløp": 25230.0,
+          "kilde": "SOKOS",
+          "info": "780327993"
+        },
+        {
+          "periode": {
+            "fom": "2024-09-01",
+            "tom": "2024-09-30"
+          },
+          "beløp": 24083.0,
+          "kilde": "SOKOS",
+          "info": "783375347"
+        },
+        {
+          "periode": {
+            "fom": "2024-10-01",
+            "tom": "2024-10-31"
+          },
+          "beløp": 26376.0,
+          "kilde": "SOKOS",
+          "info": "786509707"
+        },
+        {
+          "periode": {
+            "fom": "2024-11-01",
+            "tom": "2024-11-30"
+          },
+          "beløp": 29235.0,
+          "kilde": "SOKOS",
+          "info": "789604340"
+        },
+        {
+          "periode": {
+            "fom": "2024-12-01",
+            "tom": "2024-12-31"
+          },
+          "beløp": 25230.0,
+          "kilde": "SOKOS",
+          "info": "793164961"
+        },
+        {
+          "periode": {
+            "fom": "2025-01-01",
+            "tom": "2025-01-31"
+          },
+          "beløp": 27905.0,
+          "kilde": "SOKOS",
+          "info": "795841763"
+        },
+        {
+          "periode": {
+            "fom": "2025-02-01",
+            "tom": "2025-02-28"
+          },
+          "beløp": 24266.0,
+          "kilde": "SOKOS",
+          "info": "798951036"
+        },
+        {
+          "periode": {
+            "fom": "2025-03-01",
+            "tom": "2025-03-31"
+          },
+          "beløp": 25479.0,
+          "kilde": "SOKOS",
+          "info": "802100576"
+        },
+        {
+          "periode": {
+            "fom": "2025-04-01",
+            "tom": "2025-04-30"
+          },
+          "beløp": 26692.0,
+          "kilde": "SOKOS",
+          "info": "805325427"
+        },
+        {
+          "periode": {
+            "fom": "2025-05-01",
+            "tom": "2025-05-31"
+          },
+          "beløp": 26692.0,
+          "kilde": "SOKOS",
+          "info": "808612360"
+        },
+        {
+          "periode": {
+            "fom": "2025-06-01",
+            "tom": "2025-06-30"
+          },
+          "beløp": 25479.0,
+          "kilde": "SOKOS",
+          "info": "812038498"
+        },
+        {
+          "periode": {
+            "fom": "2025-07-01",
+            "tom": "2025-07-31"
+          },
+          "beløp": 27905.0,
+          "kilde": "SOKOS",
+          "info": "815234305"
+        },
+        {
+          "periode": {
+            "fom": "2025-08-01",
+            "tom": "2025-08-31"
+          },
+          "beløp": 25479.0,
+          "kilde": "SOKOS",
+          "info": "818338743"
+        }
+      ]
+    },
+    {
+      "stonadType": "Barnetrygd",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2022-09-01",
+            "tom": "2022-09-30"
+          },
+          "beløp": 2108.0,
+          "kilde": "SOKOS",
+          "info": "712110810"
+        },
+        {
+          "periode": {
+            "fom": "2022-10-01",
+            "tom": "2022-10-31"
+          },
+          "beløp": 2108.0,
+          "kilde": "SOKOS",
+          "info": "714640455"
+        },
+        {
+          "periode": {
+            "fom": "2022-11-01",
+            "tom": "2022-11-30"
+          },
+          "beløp": 2108.0,
+          "kilde": "SOKOS",
+          "info": "717167424"
+        },
+        {
+          "periode": {
+            "fom": "2022-12-01",
+            "tom": "2022-12-31"
+          },
+          "beløp": 2108.0,
+          "kilde": "SOKOS",
+          "info": "719635147"
+        },
+        {
+          "periode": {
+            "fom": "2023-01-01",
+            "tom": "2023-01-31"
+          },
+          "beløp": 2108.0,
+          "kilde": "SOKOS",
+          "info": "722262692"
+        },
+        {
+          "periode": {
+            "fom": "2023-02-01",
+            "tom": "2023-02-28"
+          },
+          "beløp": 2108.0,
+          "kilde": "SOKOS",
+          "info": "724796706"
+        },
+        {
+          "periode": {
+            "fom": "2022-02-01",
+            "tom": "2022-02-28"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2022-03-01",
+            "tom": "2022-03-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2022-04-01",
+            "tom": "2022-04-30"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2022-05-01",
+            "tom": "2022-05-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2022-06-01",
+            "tom": "2022-06-30"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2022-07-01",
+            "tom": "2022-07-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2022-08-01",
+            "tom": "2022-08-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2022-09-01",
+            "tom": "2022-09-30"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2022-10-01",
+            "tom": "2022-10-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2022-11-01",
+            "tom": "2022-11-30"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2022-12-01",
+            "tom": "2022-12-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2023-01-01",
+            "tom": "2023-01-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2023-02-01",
+            "tom": "2023-02-28"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11346042"
+        },
+        {
+          "periode": {
+            "fom": "2023-03-01",
+            "tom": "2023-03-31"
+          },
+          "beløp": 2166.0,
+          "kilde": "SOKOS",
+          "info": "728009567"
+        },
+        {
+          "periode": {
+            "fom": "2023-04-01",
+            "tom": "2023-04-30"
+          },
+          "beløp": 2166.0,
+          "kilde": "SOKOS",
+          "info": "730701647"
+        },
+        {
+          "periode": {
+            "fom": "2023-05-01",
+            "tom": "2023-05-31"
+          },
+          "beløp": 2166.0,
+          "kilde": "SOKOS",
+          "info": "733950226"
+        },
+        {
+          "periode": {
+            "fom": "2023-02-01",
+            "tom": "2023-02-28"
+          },
+          "beløp": 1054.0,
+          "kilde": "SOKOS",
+          "info": "736397223"
+        },
+        {
+          "periode": {
+            "fom": "2023-03-01",
+            "tom": "2023-03-31"
+          },
+          "beløp": 2489.0,
+          "kilde": "SOKOS",
+          "info": "736397223"
+        },
+        {
+          "periode": {
+            "fom": "2023-04-01",
+            "tom": "2023-04-30"
+          },
+          "beløp": 2489.0,
+          "kilde": "SOKOS",
+          "info": "736397223"
+        },
+        {
+          "periode": {
+            "fom": "2023-05-01",
+            "tom": "2023-05-31"
+          },
+          "beløp": 2489.0,
+          "kilde": "SOKOS",
+          "info": "736397223"
+        },
+        {
+          "periode": {
+            "fom": "2023-03-01",
+            "tom": "2023-03-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11667694"
+        },
+        {
+          "periode": {
+            "fom": "2023-04-01",
+            "tom": "2023-04-30"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11667694"
+        },
+        {
+          "periode": {
+            "fom": "2023-05-01",
+            "tom": "2023-05-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "11667694"
+        },
+        {
+          "periode": {
+            "fom": "2023-06-01",
+            "tom": "2023-06-30"
+          },
+          "beløp": 4655.0,
+          "kilde": "SOKOS",
+          "info": "736989721"
+        },
+        {
+          "periode": {
+            "fom": "2023-07-01",
+            "tom": "2023-07-31"
+          },
+          "beløp": 5136.0,
+          "kilde": "SOKOS",
+          "info": "740455449"
+        },
+        {
+          "periode": {
+            "fom": "2023-08-01",
+            "tom": "2023-08-31"
+          },
+          "beløp": 5136.0,
+          "kilde": "SOKOS",
+          "info": "743422300"
+        },
+        {
+          "periode": {
+            "fom": "2023-09-01",
+            "tom": "2023-09-30"
+          },
+          "beløp": 5136.0,
+          "kilde": "SOKOS",
+          "info": "746385456"
+        },
+        {
+          "periode": {
+            "fom": "2023-10-01",
+            "tom": "2023-10-31"
+          },
+          "beløp": 5136.0,
+          "kilde": "SOKOS",
+          "info": "749436561"
+        },
+        {
+          "periode": {
+            "fom": "2023-11-01",
+            "tom": "2023-11-30"
+          },
+          "beløp": 5136.0,
+          "kilde": "SOKOS",
+          "info": "752457702"
+        },
+        {
+          "periode": {
+            "fom": "2023-12-01",
+            "tom": "2023-12-31"
+          },
+          "beløp": 5136.0,
+          "kilde": "SOKOS",
+          "info": "755142492"
+        },
+        {
+          "periode": {
+            "fom": "2024-01-01",
+            "tom": "2024-01-31"
+          },
+          "beløp": 5536.0,
+          "kilde": "SOKOS",
+          "info": "758642828"
+        },
+        {
+          "periode": {
+            "fom": "2024-02-01",
+            "tom": "2024-02-29"
+          },
+          "beløp": 5536.0,
+          "kilde": "SOKOS",
+          "info": "761711962"
+        },
+        {
+          "periode": {
+            "fom": "2024-03-01",
+            "tom": "2024-03-31"
+          },
+          "beløp": 5536.0,
+          "kilde": "SOKOS",
+          "info": "764694765"
+        },
+        {
+          "periode": {
+            "fom": "2024-04-01",
+            "tom": "2024-04-30"
+          },
+          "beløp": 5536.0,
+          "kilde": "SOKOS",
+          "info": "767904921"
+        },
+        {
+          "periode": {
+            "fom": "2024-05-01",
+            "tom": "2024-05-31"
+          },
+          "beløp": 5536.0,
+          "kilde": "SOKOS",
+          "info": "771158819"
+        },
+        {
+          "periode": {
+            "fom": "2024-06-01",
+            "tom": "2024-06-30"
+          },
+          "beløp": 5536.0,
+          "kilde": "SOKOS",
+          "info": "774541475"
+        },
+        {
+          "periode": {
+            "fom": "2024-07-01",
+            "tom": "2024-07-31"
+          },
+          "beløp": 5536.0,
+          "kilde": "SOKOS",
+          "info": "777846440"
+        },
+        {
+          "periode": {
+            "fom": "2024-08-01",
+            "tom": "2024-08-31"
+          },
+          "beløp": 5536.0,
+          "kilde": "SOKOS",
+          "info": "780826981"
+        },
+        {
+          "periode": {
+            "fom": "2024-09-01",
+            "tom": "2024-09-30"
+          },
+          "beløp": 6048.0,
+          "kilde": "SOKOS",
+          "info": "783980694"
+        },
+        {
+          "periode": {
+            "fom": "2024-10-01",
+            "tom": "2024-10-31"
+          },
+          "beløp": 6048.0,
+          "kilde": "SOKOS",
+          "info": "787053410"
+        },
+        {
+          "periode": {
+            "fom": "2024-11-01",
+            "tom": "2024-11-30"
+          },
+          "beløp": 6048.0,
+          "kilde": "SOKOS",
+          "info": "790134229"
+        },
+        {
+          "periode": {
+            "fom": "2024-12-01",
+            "tom": "2024-12-31"
+          },
+          "beløp": 6048.0,
+          "kilde": "SOKOS",
+          "info": "792942649"
+        },
+        {
+          "periode": {
+            "fom": "2025-01-01",
+            "tom": "2025-01-31"
+          },
+          "beløp": 6048.0,
+          "kilde": "SOKOS",
+          "info": "796383873"
+        },
+        {
+          "periode": {
+            "fom": "2025-02-01",
+            "tom": "2025-02-28"
+          },
+          "beløp": 6048.0,
+          "kilde": "SOKOS",
+          "info": "799480336"
+        },
+        {
+          "periode": {
+            "fom": "2025-03-01",
+            "tom": "2025-03-31"
+          },
+          "beløp": 6048.0,
+          "kilde": "SOKOS",
+          "info": "802733128"
+        },
+        {
+          "periode": {
+            "fom": "2025-04-01",
+            "tom": "2025-04-30"
+          },
+          "beløp": 6048.0,
+          "kilde": "SOKOS",
+          "info": "805863309"
+        },
+        {
+          "periode": {
+            "fom": "2023-07-01",
+            "tom": "2023-07-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2023-08-01",
+            "tom": "2023-08-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2023-09-01",
+            "tom": "2023-09-30"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2023-10-01",
+            "tom": "2023-10-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2023-11-01",
+            "tom": "2023-11-30"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2023-12-01",
+            "tom": "2023-12-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2024-01-01",
+            "tom": "2024-01-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2024-02-01",
+            "tom": "2024-02-29"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2024-03-01",
+            "tom": "2024-03-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2024-04-01",
+            "tom": "2024-04-30"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2024-05-01",
+            "tom": "2024-05-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2024-06-01",
+            "tom": "2024-06-30"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2024-07-01",
+            "tom": "2024-07-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2024-08-01",
+            "tom": "2024-08-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2024-09-01",
+            "tom": "2024-09-30"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2024-10-01",
+            "tom": "2024-10-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2024-11-01",
+            "tom": "2024-11-30"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2024-12-01",
+            "tom": "2024-12-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2025-01-01",
+            "tom": "2025-01-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2025-02-01",
+            "tom": "2025-02-28"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2025-03-01",
+            "tom": "2025-03-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2025-04-01",
+            "tom": "2025-04-30"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13971737"
+        },
+        {
+          "periode": {
+            "fom": "2025-05-01",
+            "tom": "2025-05-31"
+          },
+          "beløp": 6452.0,
+          "kilde": "SOKOS",
+          "info": "809205924"
+        },
+        {
+          "periode": {
+            "fom": "2025-06-01",
+            "tom": "2025-06-30"
+          },
+          "beløp": 6452.0,
+          "kilde": "SOKOS",
+          "info": "812650726"
+        },
+        {
+          "periode": {
+            "fom": "2025-07-01",
+            "tom": "2025-07-31"
+          },
+          "beløp": 6452.0,
+          "kilde": "SOKOS",
+          "info": "815775472"
+        },
+        {
+          "periode": {
+            "fom": "2025-08-01",
+            "tom": "2025-08-31"
+          },
+          "beløp": 6452.0,
+          "kilde": "SOKOS",
+          "info": "818867861"
+        }
+      ]
+    },
+    {
+      "stonadType": "Grunn- og hjelpestønad",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2022-10-01",
+            "tom": "2022-10-31"
+          },
+          "beløp": 686.0,
+          "kilde": "SOKOS",
+          "info": "713954208"
+        },
+        {
+          "periode": {
+            "fom": "2022-11-01",
+            "tom": "2022-11-30"
+          },
+          "beløp": 686.0,
+          "kilde": "SOKOS",
+          "info": "716493185"
+        },
+        {
+          "periode": {
+            "fom": "2022-12-01",
+            "tom": "2022-12-31"
+          },
+          "beløp": 686.0,
+          "kilde": "SOKOS",
+          "info": "718998268"
+        },
+        {
+          "periode": {
+            "fom": "2023-01-01",
+            "tom": "2023-01-31"
+          },
+          "beløp": 705.0,
+          "kilde": "SOKOS",
+          "info": "721552784"
+        },
+        {
+          "periode": {
+            "fom": "2023-02-01",
+            "tom": "2023-02-28"
+          },
+          "beløp": 705.0,
+          "kilde": "SOKOS",
+          "info": "724196417"
+        },
+        {
+          "periode": {
+            "fom": "2023-03-01",
+            "tom": "2023-03-31"
+          },
+          "beløp": 705.0,
+          "kilde": "SOKOS",
+          "info": "726699734"
+        },
+        {
+          "periode": {
+            "fom": "2023-04-01",
+            "tom": "2023-04-30"
+          },
+          "beløp": 705.0,
+          "kilde": "SOKOS",
+          "info": "729907948"
+        },
+        {
+          "periode": {
+            "fom": "2023-05-01",
+            "tom": "2023-05-31"
+          },
+          "beløp": 705.0,
+          "kilde": "SOKOS",
+          "info": "732761458"
+        },
+        {
+          "periode": {
+            "fom": "2023-06-01",
+            "tom": "2023-06-30"
+          },
+          "beløp": 705.0,
+          "kilde": "SOKOS",
+          "info": "736161943"
+        },
+        {
+          "periode": {
+            "fom": "2023-07-01",
+            "tom": "2023-07-31"
+          },
+          "beløp": 724.0,
+          "kilde": "SOKOS",
+          "info": "739592141"
+        },
+        {
+          "periode": {
+            "fom": "2023-08-01",
+            "tom": "2023-08-31"
+          },
+          "beløp": 724.0,
+          "kilde": "SOKOS",
+          "info": "742521848"
+        },
+        {
+          "periode": {
+            "fom": "2023-09-01",
+            "tom": "2023-09-30"
+          },
+          "beløp": 724.0,
+          "kilde": "SOKOS",
+          "info": "745501119"
+        },
+        {
+          "periode": {
+            "fom": "2023-10-01",
+            "tom": "2023-10-31"
+          },
+          "beløp": 724.0,
+          "kilde": "SOKOS",
+          "info": "748550961"
+        },
+        {
+          "periode": {
+            "fom": "2023-11-01",
+            "tom": "2023-11-30"
+          },
+          "beløp": 724.0,
+          "kilde": "SOKOS",
+          "info": "751545334"
+        },
+        {
+          "periode": {
+            "fom": "2023-12-01",
+            "tom": "2023-12-31"
+          },
+          "beløp": 724.0,
+          "kilde": "SOKOS",
+          "info": "754415540"
+        },
+        {
+          "periode": {
+            "fom": "2024-01-01",
+            "tom": "2024-01-31"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "757677115"
+        },
+        {
+          "periode": {
+            "fom": "2024-02-01",
+            "tom": "2024-02-29"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "760762815"
+        },
+        {
+          "periode": {
+            "fom": "2024-03-01",
+            "tom": "2024-03-31"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "763836034"
+        },
+        {
+          "periode": {
+            "fom": "2024-04-01",
+            "tom": "2024-04-30"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "766979395"
+        },
+        {
+          "periode": {
+            "fom": "2024-05-01",
+            "tom": "2024-05-31"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "770008473"
+        },
+        {
+          "periode": {
+            "fom": "2024-06-01",
+            "tom": "2024-06-30"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "773598447"
+        },
+        {
+          "periode": {
+            "fom": "2024-07-01",
+            "tom": "2024-07-31"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "776945994"
+        },
+        {
+          "periode": {
+            "fom": "2024-08-01",
+            "tom": "2024-08-31"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "779953833"
+        },
+        {
+          "periode": {
+            "fom": "2024-09-01",
+            "tom": "2024-09-30"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "783089857"
+        },
+        {
+          "periode": {
+            "fom": "2024-10-01",
+            "tom": "2024-10-31"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "786112014"
+        },
+        {
+          "periode": {
+            "fom": "2024-11-01",
+            "tom": "2024-11-30"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "789213605"
+        },
+        {
+          "periode": {
+            "fom": "2024-12-01",
+            "tom": "2024-12-31"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "792244149"
+        },
+        {
+          "periode": {
+            "fom": "2025-01-01",
+            "tom": "2025-01-31"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "795417462"
+        },
+        {
+          "periode": {
+            "fom": "2025-02-01",
+            "tom": "2025-02-28"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "798644846"
+        },
+        {
+          "periode": {
+            "fom": "2025-03-01",
+            "tom": "2025-03-31"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "801799492"
+        },
+        {
+          "periode": {
+            "fom": "2025-04-01",
+            "tom": "2025-04-30"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "804904004"
+        },
+        {
+          "periode": {
+            "fom": "2025-05-01",
+            "tom": "2025-05-31"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "808044271"
+        },
+        {
+          "periode": {
+            "fom": "2025-06-01",
+            "tom": "2025-06-30"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "811627653"
+        },
+        {
+          "periode": {
+            "fom": "2025-07-01",
+            "tom": "2025-07-31"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "814847811"
+        },
+        {
+          "periode": {
+            "fom": "2025-08-01",
+            "tom": "2025-08-31"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "817957605"
+        },
+        {
+          "periode": {
+            "fom": "2025-09-01",
+            "tom": "2025-09-30"
+          },
+          "beløp": 752.0,
+          "kilde": "SOKOS",
+          "info": "821157022"
+        }
+      ]
+    },
+    {
+      "stonadType": "Feriepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2023-05-01",
+            "tom": "2023-05-31"
+          },
+          "beløp": 14127.0,
+          "kilde": "SOKOS",
+          "info": "733379236"
+        },
+        {
+          "periode": {
+            "fom": "2024-05-01",
+            "tom": "2024-05-31"
+          },
+          "beløp": 10171.0,
+          "kilde": "SOKOS",
+          "info": "770563939"
+        },
+        {
+          "periode": {
+            "fom": "2024-05-01",
+            "tom": "2024-05-31"
+          },
+          "beløp": 0.0,
+          "kilde": "SOKOS",
+          "info": "13577950"
+        },
+        {
+          "periode": {
+            "fom": "2025-05-01",
+            "tom": "2025-05-31"
+          },
+          "beløp": 10171.0,
+          "kilde": "SOKOS",
+          "info": "808612360"
+        }
+      ]
+    }
+  ]
+}
