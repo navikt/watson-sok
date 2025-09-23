@@ -8,8 +8,8 @@ import {
   PersonIcon,
   SunIcon,
 } from "@navikt/aksel-icons";
-import { ActionMenu, InternalHeader, Spacer } from "@navikt/ds-react";
-import { Link, useNavigate } from "react-router";
+import { ActionMenu, InternalHeader, Search, Spacer } from "@navikt/ds-react";
+import { Link, useFetcher, useNavigate } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { useUser } from "~/features/auth/useUser";
 import { useTheme } from "~/features/darkside/ThemeContext";
@@ -18,13 +18,33 @@ export function AppHeader() {
   const user = useUser();
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
+  const fetcher = useFetcher();
   return (
     <InternalHeader>
       <InternalHeader.Title as="h1">
-        <Link to={RouteConfig.INDEX} className="">
-          Oppslag bruker 1.0
-        </Link>
+        <Link to={RouteConfig.INDEX}>Oppslag bruker 1.0</Link>
       </InternalHeader.Title>
+      <fetcher.Form
+        role="search"
+        method="post"
+        action={RouteConfig.INDEX}
+        className="flex items-center"
+      >
+        <Search
+          name="ident"
+          size="small"
+          placeholder="Søk på bruker"
+          label="Fødselsnummer eller D-nummer på bruker"
+          autoComplete="off"
+          htmlSize={15}
+          variant="secondary"
+        >
+          <Search.Button
+            type="submit"
+            loading={fetcher.state === "submitting"}
+          />
+        </Search>
+      </fetcher.Form>
       <Spacer />
       <ActionMenu>
         <ActionMenu.Trigger>
