@@ -43,6 +43,12 @@ async function getInfoFromBackend(
     });
 
     if (!res.ok) {
+      if (res.status === 404) {
+        return {
+          error: "Fødselsnummer ikke funnet",
+          status: 404,
+        };
+      }
       throw new Error(
         `Feil fra baksystem. Status: ${res.status} – ${await res.text()}`,
       );

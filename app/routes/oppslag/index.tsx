@@ -22,7 +22,9 @@ export default function OppslagBruker() {
     return (
       <>
         <title>Feil – Oppslag Bruker</title>
-        <Alert variant="error">{data.error}</Alert>
+        <Alert variant="error" className="px-4">
+          {data.error}
+        </Alert>
       </>
     );
   }
