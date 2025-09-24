@@ -43,12 +43,9 @@ async function getInfoFromBackend(
     });
 
     if (!res.ok) {
-      const errorText = await res.text();
-      console.error(`Feil fra baksystem: ${res.status} - ${errorText}`);
-      return {
-        error: errorText,
-        status: res.status,
-      };
+      throw new Error(
+        `Feil fra baksystem. Status: ${res.status} – ${await res.text()}`,
+      );
     }
 
     const parsedData = OppslagBrukerResponsSchema.safeParse(await res.json());
