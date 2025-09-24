@@ -39,10 +39,7 @@ export function AppHeader() {
           htmlSize={15}
           variant="secondary"
         >
-          <Search.Button
-            type="submit"
-            loading={fetcher.state === "submitting"}
-          />
+          <Search.Button type="submit" loading={fetcher.state !== "idle"} />
         </Search>
       </fetcher.Form>
       <Spacer />
