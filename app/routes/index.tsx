@@ -59,7 +59,7 @@ export default function LandingPage() {
           >
             <Search.Button
               type="submit"
-              loading={navigation.state === "submitting"}
+              loading={navigation.state !== "idle"}
             />
           </Search>
         </Form>
