@@ -2,14 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import { OppslagBrukerResponsSchema } from "./schemas";
 
-const MOCK_DIR = path.join(
-  process.cwd(),
-  "app",
-  "routes",
-  "oppslag",
-  "[ident]",
-  "mocks",
-);
+const MOCK_DIR = path.join(process.cwd(), "app", "routes", "oppslag", "mocks");
 
 /**
  * Returns a mocked response by fødselsnummer, or a fallback response if no

@@ -6,11 +6,12 @@ import { PageBlock } from "@navikt/ds-react/Page";
 import {
   type ActionFunctionArgs,
   Form,
-  redirect,
+  redirectDocument,
   useActionData,
   useNavigation,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
+import { lagreIdentPåSession } from "~/features/oppslag/oppslagSession.server";
 import { sporHendelse } from "~/utils/analytics";
 
 export default function LandingPage() {
@@ -71,7 +72,11 @@ export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const ident = formData.get("ident")?.toString().trim();
   if (ident && ident.length === 11 && ident.match(/^\d+$/)) {
-    return redirect(RouteConfig.OPPSLAG.link(ident));
+    return redirectDocument(RouteConfig.OPPSLAG, {
+      headers: {
+        "Set-Cookie": await lagreIdentPåSession(ident, request),
+      },
+    });
   }
   return { error: "Ugyldig fødselsnummer" };
 }

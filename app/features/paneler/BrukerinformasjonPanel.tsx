@@ -1,5 +1,5 @@
 import { CopyButton } from "@navikt/ds-react";
-import type { PersonInformasjon } from "~/routes/oppslag/[ident]/schemas";
+import type { PersonInformasjon } from "~/routes/oppslag/schemas";
 import { formatterAdresse } from "~/utils/adresse-utils";
 import { tilFulltNavn } from "~/utils/navn-utils";
 import {

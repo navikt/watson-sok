@@ -1,8 +1,8 @@
-import type { UtenlandskAdresse } from "~/routes/oppslag/[ident]/schemas";
+import type { UtenlandskAdresse } from "~/routes/oppslag/schemas";
 
-import type { NorskAdresse } from "~/routes/oppslag/[ident]/schemas";
+import type { NorskAdresse } from "~/routes/oppslag/schemas";
 
-import type { Adresse } from "~/routes/oppslag/[ident]/schemas";
+import type { Adresse } from "~/routes/oppslag/schemas";
 import { storFørsteBokstav, storFørsteBokstavPerOrd } from "./string-utils";
 
 /**

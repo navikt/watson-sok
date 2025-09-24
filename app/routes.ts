@@ -9,7 +9,7 @@ export default [
   // App routes
   layout("routes/layout/layout.tsx", [
     route(RouteConfig.INDEX, "routes/index.tsx"),
-    route(RouteConfig.OPPSLAG.route, "routes/oppslag/[ident]/index.tsx"),
+    route(RouteConfig.OPPSLAG, "routes/oppslag/index.tsx"),
     route(RouteConfig.PERSONVERN, "routes/personvern.tsx"),
   ]),
 

@@ -49,6 +49,8 @@ spec:
       autoLoginIgnorePaths:
         - /api/health
         - /assets/logos/*
+  envFrom:
+    - secret: oppslag-bruker-frontend
   env:
     - name: CLUSTER
       value: {{CLUSTER}}

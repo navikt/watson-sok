@@ -2,7 +2,7 @@ import { ExclamationmarkTriangleFillIcon } from "@navikt/aksel-icons";
 import { Alert, Table } from "@navikt/ds-react";
 import { isValid as isValidDate, parse } from "date-fns";
 import type { CSSProperties } from "react";
-import type { InntektInformasjon } from "~/routes/oppslag/[ident]/schemas";
+import type { InntektInformasjon } from "~/routes/oppslag/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
 import {
   formatterBeløp,
