@@ -43,12 +43,20 @@ async function getInfoFromBackend(
     });
 
     if (!res.ok) {
-      const errorText = await res.text();
-      console.error(`Feil fra baksystem: ${res.status} - ${errorText}`);
-      return {
-        error: errorText,
-        status: res.status,
-      };
+      if (res.status === 404) {
+        return {
+          error: "Ingen match på fødsels- eller D-nummer",
+          status: 404,
+        };
+      } else if (res.status === 403) {
+        return {
+          error: "Du har ikke tilgang til å se denne personen",
+          status: 403,
+        };
+      }
+      throw new Error(
+        `Feil fra baksystem. Status: ${res.status} – ${await res.text()}`,
+      );
     }
 
     const parsedData = OppslagBrukerResponsSchema.safeParse(await res.json());

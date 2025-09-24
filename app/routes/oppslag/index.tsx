@@ -1,4 +1,4 @@
-import { Alert, Heading, HGrid } from "@navikt/ds-react";
+import { Alert, BodyShort, Heading, HGrid } from "@navikt/ds-react";
 import {
   data,
   redirect,
@@ -20,10 +20,12 @@ export default function OppslagBruker() {
 
   if ("error" in data) {
     return (
-      <>
+      <div className="flex flex-col gap-4 px-4 items-center">
         <title>Feil – Oppslag Bruker</title>
-        <Alert variant="error">{data.error}</Alert>
-      </>
+        <Alert variant="error" className="m-4 w-fit">
+          <BodyShort>{data.error}</BodyShort>
+        </Alert>
+      </div>
     );
   }
 
