@@ -35,7 +35,7 @@ export function ArbeidsforholdPanel({
 
   if (rows.length === 0) {
     return (
-      <Alert variant="info" className="mt-4">
+      <Alert variant="info" className="h-fit">
         Ingen arbeidsforhold funnet.
       </Alert>
     );
