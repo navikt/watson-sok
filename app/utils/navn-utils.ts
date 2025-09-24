@@ -1,4 +1,4 @@
-import type { Navn } from "~/routes/oppslag/[ident]/schemas";
+import type { Navn } from "~/routes/oppslag/schemas";
 import { storFørsteBokstav } from "./string-utils";
 
 /** Tar et navneobjekt og returnerer et fullt navn som en string */

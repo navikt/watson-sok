@@ -1,5 +1,5 @@
 import { Alert, Table } from "@navikt/ds-react";
-import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/[ident]/schemas";
+import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterProsent } from "~/utils/number-utils";
 import { storFørsteBokstav } from "~/utils/string-utils";

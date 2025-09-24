@@ -5,10 +5,7 @@
 export const RouteConfig = {
   INDEX: "/",
   PERSONVERN: "/personvern",
-  OPPSLAG: {
-    route: "/oppslag/:ident",
-    link: (ident: string) => `/oppslag/${ident}`,
-  },
+  OPPSLAG: "/oppslag",
 
   WELL_KNOWN: {
     SECURITY_TXT: "/.well-known/security.txt",

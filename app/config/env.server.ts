@@ -7,6 +7,7 @@ const envSchema = z.object({
   CLUSTER: z.string().describe("The cluster the app is running in"),
   FARO_URL: z.string().describe("The URL of the Faro instance"),
   UMAMI_SITE_ID: z.string().describe("The ID of the Umami instance"),
+  IDENT_SESSION_SECRET: z.string().describe("The secret for the ident session"),
 });
 
 const envResult = envSchema.safeParse(process.env);

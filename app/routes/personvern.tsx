@@ -46,6 +46,11 @@ export default function Personvern() {
         som bruker. Denne cookien lagres i opptil et år, gitt at du velger et
         tema eksplisitt.
       </BodyLong>
+      <BodyLong spacing>
+        Løsningen bruker også cookies for å holde styr på hvilket fødselsnummer
+        du har søkt opp sist. Denne cookien lagres i opptil en time, til du
+        lukker nettleseren din, eller logger ut.
+      </BodyLong>
       <Heading level="2" size="medium" spacing>
         Spørsmål?
       </Heading>

@@ -1,11 +1,13 @@
 import { Alert, Heading, HGrid } from "@navikt/ds-react";
 import {
   data,
+  redirect,
   useLoaderData,
-  useParams,
   type LoaderFunctionArgs,
   type MetaArgs,
 } from "react-router";
+import { RouteConfig } from "~/config/routeConfig";
+import { hentIdentFraSession } from "~/features/oppslag/oppslagSession.server";
 import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
 import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
 import { InntektPanel } from "~/features/paneler/InntektPanel";
@@ -14,19 +16,7 @@ import { tilFulltNavn } from "~/utils/navn-utils";
 import { fetchIdent } from "./fetchIdent.server";
 
 export default function OppslagBruker() {
-  const { ident } = useParams();
   const data = useLoaderData<typeof loader>();
-
-  if (!ident) {
-    return (
-      <>
-        <title>Fant ikke bruker – Oppslag Bruker</title>
-        <Alert variant="error">
-          Fant ingen ident i URLen. Sjekk at URLen er korrekt formattert.
-        </Alert>
-      </>
-    );
-  }
 
   if ("error" in data) {
     return (
@@ -63,17 +53,17 @@ export default function OppslagBruker() {
   );
 }
 
-export async function loader({ request, params }: LoaderFunctionArgs) {
-  if (!params.ident) {
-    throw new Error(
-      "Fant ingen ident i URLen. Sjekk at URLen er korrekt formattert.",
-    );
+export async function loader({ request }: LoaderFunctionArgs) {
+  const ident = await hentIdentFraSession(request);
+  if (!ident) {
+    return redirect(RouteConfig.INDEX);
   }
-  const response = await fetchIdent({ ident: params.ident, request });
+
+  const response = await fetchIdent({ ident, request });
   if ("error" in response) {
     return data({ error: response.error }, { status: response.status });
   }
-  return response;
+  return data(response);
 }
 
 export function meta({ loaderData }: MetaArgs<typeof loader>) {

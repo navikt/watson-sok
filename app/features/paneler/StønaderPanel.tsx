@@ -9,7 +9,7 @@ import {
 import { Alert, BodyShort, Timeline } from "@navikt/ds-react";
 
 import { toDate } from "date-fns";
-import type { Stonad } from "~/routes/oppslag/[ident]/schemas";
+import type { Stonad } from "~/routes/oppslag/schemas";
 import { PanelContainer } from "./PanelContainer";
 
 type StonadOversiktProps = {

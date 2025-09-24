@@ -1,5 +1,5 @@
 import { isProd } from "~/config/env.server";
-import { getMockedResponseByFødselsnummer } from "~/routes/oppslag/[ident]/mock.server";
+import { getMockedResponseByFødselsnummer } from "~/routes/oppslag/mock.server";
 import { getnavpersondataapiOboToken as getOboToken } from "~/utils/access-token";
 import {
   OppslagBrukerResponsSchema,
