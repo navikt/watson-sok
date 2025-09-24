@@ -45,8 +45,13 @@ async function getInfoFromBackend(
     if (!res.ok) {
       if (res.status === 404) {
         return {
-          error: "Fødselsnummer ikke funnet",
+          error: "Ingen match på fødsels- eller D-nummer",
           status: 404,
+        };
+      } else if (res.status === 403) {
+        return {
+          error: "Du har ikke tilgang til å se denne personen",
+          status: 403,
         };
       }
       throw new Error(
