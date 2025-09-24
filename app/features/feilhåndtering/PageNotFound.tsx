@@ -12,10 +12,12 @@ import { ListItem } from "@navikt/ds-react/List";
 import { Link } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { AppFooter } from "~/routes/layout/AppFooter";
+import { AppHeader } from "~/routes/layout/AppHeader";
 
 export function PageNotFound() {
   return (
     <Page footer={<AppFooter />}>
+      <AppHeader />
       <title>Fant ikke side – Oppslag Bruker</title>
       <Page.Block as="main" width="xl" gutters>
         <Box paddingBlock="20 16" data-aksel-template="404-v2">
