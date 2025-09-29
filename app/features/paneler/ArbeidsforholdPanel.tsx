@@ -1,25 +1,23 @@
-import { Alert, Table } from "@navikt/ds-react";
+import { Alert, Skeleton, Table } from "@navikt/ds-react";
+import { use } from "react";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterProsent } from "~/utils/number-utils";
 import { storFørsteBokstav } from "~/utils/string-utils";
-import { PanelContainer } from "./PanelContainer";
+import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 type ArbeidsforholdPanelProps = {
-  arbeidsgiverInformasjon?: ArbeidsgiverInformasjon | null;
-  fnr?: string; // brukes kun i key-generering hvis du vil
+  promise: Promise<ArbeidsgiverInformasjon | null>;
 };
 
-export function ArbeidsforholdPanel({
-  arbeidsgiverInformasjon,
-  fnr = "",
-}: ArbeidsforholdPanelProps) {
+export function ArbeidsforholdPanel({ promise }: ArbeidsforholdPanelProps) {
+  const arbeidsgiverInformasjon = use(promise);
   const løpende = arbeidsgiverInformasjon?.løpendeArbeidsforhold ?? [];
 
   // Flater ut alle (arbeidsgiver x ansettelsesDetalj) til rad-objekter
   const rows = [...løpende].flatMap((ag) =>
     (ag.ansettelsesDetaljer ?? []).map((detalj, idx) => ({
-      key: `${ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}-${fnr}`,
+      key: `${ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}`,
       arbeidsgiver: ag.arbeidsgiver,
       start: detalj.periode.fom,
       slutt: detalj.periode.tom,
@@ -108,6 +106,40 @@ export function ArbeidsforholdPanel({
     </PanelContainer>
   );
 }
+
+export const ArbeidsforholdPanelSkeleton = () => {
+  const kolonner = Array.from({ length: 6 }, (_, index) => index);
+  const rader = Array.from({ length: 8 }, (_, index) => index);
+  return (
+    <PanelContainerSkeleton
+      title="Arbeidsforhold"
+      link={{ href: "https://aareg.nav.no", beskrivelse: "Historikk" }}
+    >
+      <Table size="medium" stickyHeader={true}>
+        <Table.Header>
+          <Table.Row>
+            {kolonner.map((_, idx) => (
+              <Table.HeaderCell key={idx} textSize="small" scope="col">
+                <Skeleton variant="text" width="60%" />
+              </Table.HeaderCell>
+            ))}
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {rader.map((_, idx) => (
+            <Table.Row key={idx}>
+              {kolonner.map((_, idx) => (
+                <Table.DataCell key={idx} textSize="small">
+                  <Skeleton variant="text" width="100%" />
+                </Table.DataCell>
+              ))}
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    </PanelContainerSkeleton>
+  );
+};
 
 function mapArbeidsforholdType(type: string) {
   switch (type) {

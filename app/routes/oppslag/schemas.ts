@@ -52,7 +52,7 @@ const AdresseSchema = z.object({
 });
 export type Adresse = z.infer<typeof AdresseSchema>;
 
-const PersonInformasjonSchema = z.object({
+export const PersonInformasjonSchema = z.object({
   navn: NavnSchema,
   aktørId: z.string().nullable(),
   adresse: AdresseSchema.nullable(),
@@ -84,6 +84,8 @@ const StonadSchema = z.object({
 
 export type Stonad = z.infer<typeof StonadSchema>;
 
+export const StønaderInformasjonSchema = z.array(StonadSchema);
+
 const AnsettelsesDetaljSchema = z.object({
   type: z.string(),
   stillingsprosent: z.number().nullable(),
@@ -99,7 +101,7 @@ const ArbeidsforholdSchema = z.object({
   ansettelsesDetaljer: z.array(AnsettelsesDetaljSchema),
 });
 
-const ArbeidsgiverInformasjonSchema = z.object({
+export const ArbeidsgiverInformasjonSchema = z.object({
   løpendeArbeidsforhold: z.array(ArbeidsforholdSchema),
   historikk: z.array(ArbeidsforholdSchema),
 });
@@ -119,7 +121,7 @@ const InntektSchema = z.object({
   harFlereVersjoner: z.boolean(),
 });
 
-const InntektInformasjonSchema = z.object({
+export const InntektInformasjonSchema = z.object({
   lønnsinntekt: z.array(InntektSchema),
   næringsinntekt: z.array(InntektSchema),
   pensjonEllerTrygd: z.array(InntektSchema),
@@ -135,7 +137,7 @@ export const OppslagBrukerResponsSchema = z.object({
   personInformasjon: PersonInformasjonSchema.nullable(),
   arbeidsgiverInformasjon: ArbeidsgiverInformasjonSchema.nullable(),
   inntektInformasjon: InntektInformasjonSchema.nullable(),
-  stønader: z.array(StonadSchema),
+  stønader: StønaderInformasjonSchema.nullable(),
 });
 
 export type OppslagBrukerRespons = z.infer<typeof OppslagBrukerResponsSchema>;

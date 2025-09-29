@@ -1,55 +1,77 @@
-import { Alert, BodyShort, Heading, HGrid } from "@navikt/ds-react";
+import { Heading, HGrid, Skeleton } from "@navikt/ds-react";
+import { use } from "react";
 import {
-  data,
   redirect,
   useLoaderData,
   type LoaderFunctionArgs,
   type MetaArgs,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
+import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import { hentIdentFraSession } from "~/features/oppslag/oppslagSession.server";
-import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
-import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
-import { InntektPanel } from "~/features/paneler/InntektPanel";
-import { StønaderPanel } from "~/features/paneler/StønaderPanel";
+import {
+  ArbeidsforholdPanel,
+  ArbeidsforholdPanelSkeleton,
+} from "~/features/paneler/ArbeidsforholdPanel";
+import {
+  BrukerinformasjonPanel,
+  BrukerinformasjonPanelSkeleton,
+} from "~/features/paneler/BrukerinformasjonPanel";
+import {
+  InntektPanel,
+  InntektPanelSkeleton,
+} from "~/features/paneler/InntektPanel";
+import {
+  StønaderPanel,
+  StønaderPanelSkeleton,
+} from "~/features/paneler/StønaderPanel";
 import { tilFulltNavn } from "~/utils/navn-utils";
-import { fetchIdent } from "./fetchIdent.server";
+import {
+  hentArbeidsgivere,
+  hentInntekter,
+  hentPersonopplysninger,
+  hentStønader,
+} from "./api.server";
+import type { PersonInformasjon } from "./schemas";
 
 export default function OppslagBruker() {
   const data = useLoaderData<typeof loader>();
 
-  if ("error" in data) {
-    return (
-      <div className="flex flex-col gap-4 px-4 items-center">
-        <title>Feil – Oppslag Bruker</title>
-        <Alert variant="error" className="m-4 w-fit">
-          <BodyShort>{data.error}</BodyShort>
-        </Alert>
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col gap-4 px-4">
-      <Heading level="1" size="large" spacing className="mt-8">
-        Brukeroppslag på {tilFulltNavn(data.personInformasjon?.navn)} (
-        {data.personInformasjon?.alder})
-      </Heading>
+      <div className="mt-8 mb-4">
+        <ResolvingComponent
+          loadingFallback={
+            <Heading level="1" size="large" as={Skeleton}>
+              Navn Navnesen (xx)
+            </Heading>
+          }
+          errorFallback={
+            <Heading level="1" size="large">
+              Feil ved henting av bruker
+            </Heading>
+          }
+        >
+          <OverskriftPanel promise={data.personopplysninger} />
+        </ResolvingComponent>
+      </div>
       <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
-        {data.personInformasjon && (
-          <BrukerinformasjonPanel personInformasjon={data.personInformasjon} />
-        )}
-        {data.arbeidsgiverInformasjon && (
-          <ArbeidsforholdPanel
-            arbeidsgiverInformasjon={data.arbeidsgiverInformasjon}
-          />
-        )}
+        <ResolvingComponent
+          loadingFallback={<BrukerinformasjonPanelSkeleton />}
+        >
+          <BrukerinformasjonPanel promise={data.personopplysninger} />
+        </ResolvingComponent>
+        <ResolvingComponent loadingFallback={<ArbeidsforholdPanelSkeleton />}>
+          <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
+        </ResolvingComponent>
       </HGrid>
-      {data.stønader && <StønaderPanel stønader={data.stønader} />}
+      <ResolvingComponent loadingFallback={<StønaderPanelSkeleton />}>
+        <StønaderPanel promise={data.stønader} />
+      </ResolvingComponent>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {data.inntektInformasjon && (
-          <InntektPanel inntektInformasjon={data.inntektInformasjon} />
-        )}
+        <ResolvingComponent loadingFallback={<InntektPanelSkeleton />}>
+          <InntektPanel promise={data.inntektInformasjon} />
+        </ResolvingComponent>
       </div>
     </div>
   );
@@ -61,11 +83,15 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return redirect(RouteConfig.INDEX);
   }
 
-  const response = await fetchIdent({ ident, request });
-  if ("error" in response) {
-    return data({ error: response.error }, { status: response.status });
-  }
-  return data(response);
+  // TODO: Sjekk om personen finnes / at man har tilgang til å se dem
+  // gjennom et eget endepunkt, før resten returneres
+
+  return {
+    personopplysninger: hentPersonopplysninger(ident, request),
+    arbeidsgiverInformasjon: hentArbeidsgivere(ident, request),
+    inntektInformasjon: hentInntekter(ident, request),
+    stønader: hentStønader(ident, request),
+  };
 }
 
 export function meta({ loaderData }: MetaArgs<typeof loader>) {
@@ -74,7 +100,27 @@ export function meta({ loaderData }: MetaArgs<typeof loader>) {
   }
   return [
     {
-      title: `${tilFulltNavn(loaderData.personInformasjon?.navn)} (${loaderData.personInformasjon?.alder}) – Oppslag Bruker`,
+      title: `Oppslag Bruker`,
     },
   ];
 }
+
+type OverskriftPanelProps = {
+  promise: Promise<PersonInformasjon | null>;
+};
+
+const OverskriftPanel = ({ promise }: OverskriftPanelProps) => {
+  const personopplysninger = use(promise);
+  if (!personopplysninger) {
+    return (
+      <Heading level="1" size="large">
+        Fant ikke bruker
+      </Heading>
+    );
+  }
+  return (
+    <Heading level="1" size="large">
+      {tilFulltNavn(personopplysninger.navn)} ({personopplysninger.alder})
+    </Heading>
+  );
+};
