@@ -7,7 +7,7 @@ import { storFørsteBokstav } from "~/utils/string-utils";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 type ArbeidsforholdPanelProps = {
-  promise: Promise<ArbeidsgiverInformasjon>;
+  promise: Promise<ArbeidsgiverInformasjon | null>;
 };
 
 export function ArbeidsforholdPanel({ promise }: ArbeidsforholdPanelProps) {

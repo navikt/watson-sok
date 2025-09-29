@@ -1,4 +1,4 @@
-import { CopyButton, Skeleton } from "@navikt/ds-react";
+import { Alert, CopyButton, Skeleton } from "@navikt/ds-react";
 import { Fragment, use } from "react";
 import type { PersonInformasjon } from "~/routes/oppslag/schemas";
 import { formatterAdresse } from "~/utils/adresse-utils";
@@ -11,13 +11,26 @@ import {
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 type BrukerinformasjonProps = {
-  promise: Promise<PersonInformasjon>;
+  promise: Promise<PersonInformasjon | null>;
 };
 /**
  * Komponent som viser personlig informasjon om en bruker
  */
 export function BrukerinformasjonPanel({ promise }: BrukerinformasjonProps) {
   const personopplysninger = use(promise);
+
+  if (!personopplysninger) {
+    return (
+      <PanelContainer
+        title="Brukerinformasjon"
+        link={{ href: "https://modia.nav.no", beskrivelse: "Historikk" }}
+      >
+        <Alert variant="warning" className="w-fit">
+          Fant ikke brukerinformasjon
+        </Alert>
+      </PanelContainer>
+    );
+  }
 
   const erDNummer = Number(personopplysninger.aktørId?.charAt(0)) > 3;
   const fulltNavn = tilFulltNavn(personopplysninger.navn);

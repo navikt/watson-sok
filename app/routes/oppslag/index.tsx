@@ -52,25 +52,25 @@ export default function OppslagBruker() {
             </Heading>
           }
         >
-          <OverskriftPanel promise={data.personopplysninger as any} />
+          <OverskriftPanel promise={data.personopplysninger} />
         </ResolvingComponent>
       </div>
       <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
         <ResolvingComponent
           loadingFallback={<BrukerinformasjonPanelSkeleton />}
         >
-          <BrukerinformasjonPanel promise={data.personopplysninger as any} />
+          <BrukerinformasjonPanel promise={data.personopplysninger} />
         </ResolvingComponent>
         <ResolvingComponent loadingFallback={<ArbeidsforholdPanelSkeleton />}>
-          <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon as any} />
+          <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
         </ResolvingComponent>
       </HGrid>
       <ResolvingComponent loadingFallback={<StønaderPanelSkeleton />}>
-        <StønaderPanel promise={data.stønader as any} />
+        <StønaderPanel promise={data.stønader} />
       </ResolvingComponent>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ResolvingComponent loadingFallback={<InntektPanelSkeleton />}>
-          <InntektPanel promise={data.inntektInformasjon as any} />
+          <InntektPanel promise={data.inntektInformasjon} />
         </ResolvingComponent>
       </div>
     </div>

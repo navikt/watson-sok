@@ -14,7 +14,7 @@ import type { Stonad } from "~/routes/oppslag/schemas";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 type StonadOversiktProps = {
-  promise: Promise<Stonad[]>;
+  promise: Promise<Stonad[] | null>;
 };
 
 export function StønaderPanel({ promise }: StonadOversiktProps) {

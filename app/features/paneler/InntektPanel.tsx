@@ -18,10 +18,10 @@ const warnStyle: CSSProperties = {
   boxShadow: "inset 0 0 0 1px var(--a-border-warning-subtle)",
 };
 
-type InntektPanelProps = { promise: Promise<InntektInformasjon> };
+type InntektPanelProps = { promise: Promise<InntektInformasjon | null> };
 export function InntektPanel({ promise }: InntektPanelProps) {
   const inntektInformasjon = use(promise);
-  const alle = inntektInformasjon.lønnsinntekt ?? [];
+  const alle = inntektInformasjon?.lønnsinntekt ?? [];
 
   // Siste 3 år (36 mnd)
   const nå = new Date();

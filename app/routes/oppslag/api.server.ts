@@ -67,7 +67,7 @@ async function gjørOppslagApiRequest<T>(
   ident: string,
   request: Request,
   config: ApiRequestConfig<T>,
-): Promise<T | { error: string; status: number }> {
+): Promise<T> {
   const { endepunkt, schema, ekstraherFraMock } = config;
 
   if (!isProd) {
@@ -76,10 +76,7 @@ async function gjørOppslagApiRequest<T>(
       return ekstraherFraMock(mockedResponse) as z.infer<typeof schema>;
     } catch (error) {
       console.error("Mock data error:", error);
-      return {
-        error: "Feil ved henting av mock data",
-        status: 500,
-      };
+      throw error;
     }
   }
 
@@ -97,15 +94,9 @@ async function gjørOppslagApiRequest<T>(
 
     if (!response.ok) {
       if (response.status === 404) {
-        return {
-          error: "Ingen match på fødsels- eller D-nummer",
-          status: 404,
-        };
+        throw new Error("Ingen match på fødsels- eller D-nummer");
       } else if (response.status === 403) {
-        return {
-          error: "Du har ikke tilgang til å se denne personen",
-          status: 403,
-        };
+        throw new Error("Du har ikke tilgang til å se denne personen");
       }
       throw new Error(
         `Feil fra baksystem. Status: ${response.status} – ${await response.text()}`,
@@ -117,18 +108,12 @@ async function gjørOppslagApiRequest<T>(
 
     if (!parsedData.success) {
       console.error("Ugyldig data fra baksystem", parsedData.error.flatten());
-      return {
-        error: "Ugyldig data fra baksystem",
-        status: 500,
-      };
+      throw new Error("Ugyldig data fra baksystem");
     }
 
     return parsedData.data;
   } catch (err: unknown) {
     console.error("⛔ Nettverksfeil mot baksystem:", err);
-    return {
-      error: "Tilkoblingsfeil mot baksystem",
-      status: 502,
-    };
+    throw err;
   }
 }
