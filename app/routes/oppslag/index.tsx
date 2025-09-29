@@ -83,6 +83,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return redirect(RouteConfig.INDEX);
   }
 
+  // TODO: Sjekk om personen finnes / at man har tilgang til å se dem
+  // gjennom et eget endepunkt, før resten returneres
+
   return {
     personopplysninger: hentPersonopplysninger(ident, request),
     arbeidsgiverInformasjon: hentArbeidsgivere(ident, request),
