@@ -11,8 +11,6 @@ type ApiRequestConfig<T> = {
   schema: z.ZodSchema<T>;
   /** En funksjon som returnerer riktig del av mock-datagrunnlaget */
   ekstraherFraMock: (mockData: OppslagBrukerRespons) => T;
-  /** Override av body (default er { ident }) */
-  body?: Record<string, unknown>;
 };
 
 /**
