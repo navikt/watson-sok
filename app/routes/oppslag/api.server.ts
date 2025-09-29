@@ -73,7 +73,7 @@ async function gjørOppslagApiRequest<T>(
   if (!isProd) {
     try {
       const mockedResponse = await getMockedResponseByFødselsnummer(ident);
-      return ekstraherFraMock(mockedResponse) as z.infer<typeof schema>;
+      return ekstraherFraMock(mockedResponse);
     } catch (error) {
       console.error("Mock data error:", error);
       throw error;
