@@ -1,7 +1,7 @@
 import { ExclamationmarkTriangleFillIcon } from "@navikt/aksel-icons";
-import { Alert, Table } from "@navikt/ds-react";
+import { Alert, Skeleton, Table } from "@navikt/ds-react";
 import { isValid as isValidDate, parse } from "date-fns";
-import type { CSSProperties } from "react";
+import { use, type CSSProperties } from "react";
 import type { InntektInformasjon } from "~/routes/oppslag/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
 import {
@@ -10,7 +10,7 @@ import {
   konverterTilTall,
 } from "~/utils/number-utils";
 import { camelCaseTilNorsk, storFørsteBokstav } from "~/utils/string-utils";
-import { PanelContainer } from "./PanelContainer";
+import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 // Highlight-stil for celler i rad med flere versjoner
 const warnStyle: CSSProperties = {
@@ -18,8 +18,9 @@ const warnStyle: CSSProperties = {
   boxShadow: "inset 0 0 0 1px var(--a-border-warning-subtle)",
 };
 
-type InntektPanelProps = { inntektInformasjon: InntektInformasjon };
-export function InntektPanel({ inntektInformasjon }: InntektPanelProps) {
+type InntektPanelProps = { promise: Promise<InntektInformasjon> };
+export function InntektPanel({ promise }: InntektPanelProps) {
+  const inntektInformasjon = use(promise);
   const alle = inntektInformasjon.lønnsinntekt ?? [];
 
   // Siste 3 år (36 mnd)
@@ -137,3 +138,38 @@ export function InntektPanel({ inntektInformasjon }: InntektPanelProps) {
     </PanelContainer>
   );
 }
+
+export const InntektPanelSkeleton = () => {
+  const kolonner = Array.from({ length: 5 }, (_, index) => index);
+  const rader = Array.from({ length: 4 }, (_, index) => index);
+  return (
+    <PanelContainerSkeleton
+      title="Inntekt"
+      link={{ href: "https://aareg.nav.no", beskrivelse: "Historikk" }}
+    >
+      <Skeleton variant="rounded" width="100%" height="4rem" />
+      <Table size="medium">
+        <Table.Header>
+          <Table.Row>
+            {kolonner.map((_, idx) => (
+              <Table.HeaderCell key={idx} textSize="small" scope="col">
+                <Skeleton variant="text" width="60%" />
+              </Table.HeaderCell>
+            ))}
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {rader.map((_, idx) => (
+            <Table.Row key={idx}>
+              {kolonner.map((_, idx) => (
+                <Table.DataCell key={idx} textSize="small">
+                  <Skeleton variant="text" width="100%" />
+                </Table.DataCell>
+              ))}
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    </PanelContainerSkeleton>
+  );
+};

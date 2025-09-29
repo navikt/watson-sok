@@ -6,23 +6,25 @@ import {
   HouseHeartIcon,
   NokIcon,
 } from "@navikt/aksel-icons";
-import { Alert, BodyShort, Timeline } from "@navikt/ds-react";
+import { Alert, BodyShort, Skeleton, Timeline } from "@navikt/ds-react";
 
 import { toDate } from "date-fns";
+import { use } from "react";
 import type { Stonad } from "~/routes/oppslag/schemas";
-import { PanelContainer } from "./PanelContainer";
+import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 type StonadOversiktProps = {
-  stønader: Stonad[];
+  promise: Promise<Stonad[]>;
 };
 
-export function StønaderPanel({ stønader }: StonadOversiktProps) {
+export function StønaderPanel({ promise }: StonadOversiktProps) {
+  const stønader = use(promise);
   const harIngenStønader = !stønader || stønader.length === 0;
 
   return (
     <PanelContainer title="Stønader">
       {harIngenStønader ? (
-        <Alert variant="info">
+        <Alert variant="info" className="w-fit">
           Ingen ytelser eller stønader registrert de siste 3 årene.
         </Alert>
       ) : (
@@ -64,6 +66,26 @@ export function StønaderPanel({ stønader }: StonadOversiktProps) {
     </PanelContainer>
   );
 }
+
+export const StønaderPanelSkeleton = () => {
+  const stønader = Array.from({ length: 3 }, (_, index) => index);
+  return (
+    <PanelContainerSkeleton title="Stønader">
+      <div className="flex flex-col gap-4 mt-2">
+        <div className="flex gap-2">
+          <div className="w-[15%]" />
+          <Skeleton variant="text" width="85%" className="self-end" />
+        </div>
+        {stønader.map((_, idx) => (
+          <div className="flex gap-2" key={idx}>
+            <Skeleton variant="text" width="15%" />
+            <Skeleton variant="rounded" width="85%" />
+          </div>
+        ))}
+      </div>
+    </PanelContainerSkeleton>
+  );
+};
 
 const mapStønadtypeTilIkon = (stønadtype: string) => {
   switch (stønadtype) {

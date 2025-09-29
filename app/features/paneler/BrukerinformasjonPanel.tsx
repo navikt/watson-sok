@@ -1,4 +1,5 @@
-import { CopyButton } from "@navikt/ds-react";
+import { CopyButton, Skeleton } from "@navikt/ds-react";
+import { Fragment, use } from "react";
 import type { PersonInformasjon } from "~/routes/oppslag/schemas";
 import { formatterAdresse } from "~/utils/adresse-utils";
 import { tilFulltNavn } from "~/utils/navn-utils";
@@ -7,22 +8,22 @@ import {
   storFørsteBokstav,
   storFørsteBokstavPerOrd,
 } from "~/utils/string-utils";
-import { PanelContainer } from "./PanelContainer";
+import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 type BrukerinformasjonProps = {
-  personInformasjon: PersonInformasjon;
+  promise: Promise<PersonInformasjon>;
 };
 /**
  * Komponent som viser personlig informasjon om en bruker
  */
-export function BrukerinformasjonPanel({
-  personInformasjon,
-}: BrukerinformasjonProps) {
-  const erDNummer = Number(personInformasjon.aktørId?.charAt(0)) > 3;
-  const fulltNavn = tilFulltNavn(personInformasjon.navn);
-  const folkeregistrertAdresse = formatterAdresse(personInformasjon.adresse);
+export function BrukerinformasjonPanel({ promise }: BrukerinformasjonProps) {
+  const personopplysninger = use(promise);
+
+  const erDNummer = Number(personopplysninger.aktørId?.charAt(0)) > 3;
+  const fulltNavn = tilFulltNavn(personopplysninger.navn);
+  const folkeregistrertAdresse = formatterAdresse(personopplysninger.adresse);
   const antallFamilemedlemmer = Object.keys(
-    personInformasjon.familemedlemmer ?? {},
+    personopplysninger.familemedlemmer ?? {},
   ).length;
 
   return (
@@ -33,15 +34,15 @@ export function BrukerinformasjonPanel({
       <dl className="grid sm:grid-cols-1 md:grid-cols-[1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7">
         <dt>Navn</dt>
         <dd>
-          {tilFulltNavn(personInformasjon.navn)}{" "}
+          {tilFulltNavn(personopplysninger.navn)}{" "}
           <KopiKnapp copyText={fulltNavn} />
         </dd>
-        {personInformasjon.aktørId && (
+        {personopplysninger.aktørId && (
           <>
             <dt>{erDNummer ? "D-nummer" : "Fødselsnummer"}</dt>
             <dd>
-              {formatterFødselsnummer(personInformasjon.aktørId)}&nbsp;
-              <KopiKnapp copyText={personInformasjon.aktørId} />
+              {formatterFødselsnummer(personopplysninger.aktørId)}&nbsp;
+              <KopiKnapp copyText={personopplysninger.aktørId} />
             </dd>
           </>
         )}
@@ -56,12 +57,12 @@ export function BrukerinformasjonPanel({
         )}
         <dt>Statsborgerskap</dt>
         <dd>
-          {personInformasjon.statsborgerskap
+          {personopplysninger.statsborgerskap
             .map(storFørsteBokstavPerOrd)
             .join(", ")}
         </dd>
         <dt>Sivilstand</dt>
-        <dd>{storFørsteBokstav(personInformasjon.sivilstand ?? "Ukjent")}</dd>
+        <dd>{storFørsteBokstav(personopplysninger.sivilstand ?? "Ukjent")}</dd>
         <dt>Familemedlemmer</dt>
         <dd>
           {antallFamilemedlemmer}{" "}
@@ -71,6 +72,29 @@ export function BrukerinformasjonPanel({
     </PanelContainer>
   );
 }
+
+export const BrukerinformasjonPanelSkeleton = () => {
+  const linjer = Array.from({ length: 6 }, (_, index) => index);
+  return (
+    <PanelContainerSkeleton
+      title="Brukerinformasjon"
+      link={{ href: "https://modia.nav.no", beskrivelse: "Historikk" }}
+    >
+      <dl className="grid sm:grid-cols-1 md:grid-cols-[1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7">
+        {linjer.map((_, idx) => (
+          <Fragment key={idx}>
+            <dt>
+              <Skeleton variant="text" width="70%" />
+            </dt>
+            <dd>
+              <Skeleton variant="text" width="100%" />
+            </dd>
+          </Fragment>
+        ))}
+      </dl>
+    </PanelContainerSkeleton>
+  );
+};
 
 type KopiKnappProps = {
   copyText: string;

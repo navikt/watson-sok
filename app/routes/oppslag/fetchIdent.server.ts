@@ -1,6 +1,4 @@
-import { isProd } from "~/config/env.server";
-import { getMockedResponseByFødselsnummer } from "~/routes/oppslag/mock.server";
-import { getnavpersondataapiOboToken as getOboToken } from "~/utils/access-token";
+import { gjørOppslagApiRequest } from "~/utils/oppslag-api-utils";
 import {
   OppslagBrukerResponsSchema,
   type OppslagBrukerRespons,
@@ -10,69 +8,19 @@ type FetchIdentArgs = {
   ident: string;
   request: Request;
 };
+
 /**
- * Fetches information about a person
+ * Henter all informasjon om en bruker
  *
- * Returns the information requested, or a generic error.
+ * Returnerer informasjonen som er spesifisert i skjemaet, eller en feil
  *
- * If the method is called locally (in development), a mock response is returned
+ * Hvis metoden kalles lokalt (i utvikling), returneres en mock-respons
  */
 export async function fetchIdent({ ident, request }: FetchIdentArgs) {
-  const oboToken = await getOboToken(request);
-
-  if (!isProd) {
-    console.log("[UTVIKLING]: Returnerer mock-respons");
-    return getMockedResponseByFødselsnummer(ident);
-  }
-
-  return getInfoFromBackend(oboToken, ident);
-}
-
-async function getInfoFromBackend(
-  oboToken: string,
-  ident: string,
-): Promise<OppslagBrukerRespons | { error: string; status: number }> {
-  try {
-    const res = await fetch("http://nav-persondata-api/oppslag-bruker", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${oboToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ fnr: ident }),
-    });
-
-    if (!res.ok) {
-      if (res.status === 404) {
-        return {
-          error: "Ingen match på fødsels- eller D-nummer",
-          status: 404,
-        };
-      } else if (res.status === 403) {
-        return {
-          error: "Du har ikke tilgang til å se denne personen",
-          status: 403,
-        };
-      }
-      throw new Error(
-        `Feil fra baksystem. Status: ${res.status} – ${await res.text()}`,
-      );
-    }
-
-    const parsedData = OppslagBrukerResponsSchema.safeParse(await res.json());
-    if (!parsedData.success) {
-      return {
-        error: "Ugyldig data fra baksystem",
-        status: 500,
-      };
-    }
-
-    return parsedData.data;
-  } catch (err: unknown) {
-    console.error("⛔ Nettverksfeil mot baksystem:", err);
-    return {
-      error: "Tilkoblingsfeil mot baksystem",
-      status: 502,
-    };
-  }
+  return gjørOppslagApiRequest<OppslagBrukerRespons>(ident, request, {
+    endepunkt: "http://nav-persondata-api/oppslag-bruker",
+    schema: OppslagBrukerResponsSchema,
+    ekstraherFraMock: (mockData) => mockData,
+    body: { fnr: ident },
+  });
 }

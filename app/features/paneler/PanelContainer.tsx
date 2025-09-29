@@ -1,4 +1,4 @@
-import { Heading, Link } from "@navikt/ds-react";
+import { Heading, Link, Skeleton } from "@navikt/ds-react";
 
 type PanelContainerProps = {
   children: React.ReactNode;
@@ -31,6 +31,35 @@ export function PanelContainer({
       {link && (
         <div className="md:absolute top-4 right-4 mb-4">
           <Link href={link.href}>{link.beskrivelse}</Link>
+        </div>
+      )}
+      {children}
+    </section>
+  );
+}
+/** En skeleton-versjon av PanelContainer
+ *
+ * Fin å bruke når man venter på data
+ **/
+export function PanelContainerSkeleton({
+  title,
+  link,
+  children,
+}: PanelContainerProps) {
+  return (
+    <section
+      className={`border-1 border-ax-neutral-400 rounded-xl p-4 relative h-fit`}
+    >
+      {title && (
+        <Heading level="2" size="medium" spacing as={Skeleton}>
+          {title}
+        </Heading>
+      )}
+      {link && (
+        <div className="md:absolute top-4 right-4 mb-4">
+          <Link href={link.href} as={Skeleton}>
+            {link.beskrivelse}
+          </Link>
         </div>
       )}
       {children}

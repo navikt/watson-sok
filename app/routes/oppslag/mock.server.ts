@@ -5,13 +5,13 @@ import { OppslagBrukerResponsSchema } from "./schemas";
 const MOCK_DIR = path.join(process.cwd(), "app", "routes", "oppslag", "mocks");
 
 /**
- * Returns a mocked response by fødselsnummer, or a fallback response if no
- * mock is given for a given fødselsnummer.
+ * Returnerer mock-data basert på fødselsnummer, eller en fallback-bruker om ingen mock matchet fødselsnummeret.
  *
- * If, for some reason, the default mock is also invalid or not found, an error
- * is thrown.
+ * Hvis mock-dataen ikke følger skjemaet, kastes en feil.
  */
 export async function getMockedResponseByFødselsnummer(fødselsnummer: string) {
+  await new Promise((resolve) => setTimeout(resolve, Math.random() * 3000));
+
   if (!fødselsnummer?.trim()) {
     throw new Error("Fødselsnummer er påkrevd");
   }
