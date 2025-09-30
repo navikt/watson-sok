@@ -8,6 +8,7 @@ import {
   storFørsteBokstav,
   storFørsteBokstavPerOrd,
 } from "~/utils/string-utils";
+import { ResolvingComponent } from "../async/ResolvingComponent";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 type BrukerinformasjonProps = {
@@ -17,6 +18,19 @@ type BrukerinformasjonProps = {
  * Komponent som viser personlig informasjon om en bruker
  */
 export function BrukerinformasjonPanel({ promise }: BrukerinformasjonProps) {
+  return (
+    <ResolvingComponent loadingFallback={<BrukerinformasjonPanelSkeleton />}>
+      <BrukerinformasjonPanelMedData promise={promise} />
+    </ResolvingComponent>
+  );
+}
+
+type BrukerinformasjonPanelMedDataProps = {
+  promise: Promise<PersonInformasjon | null>;
+};
+const BrukerinformasjonPanelMedData = ({
+  promise,
+}: BrukerinformasjonPanelMedDataProps) => {
   const personopplysninger = use(promise);
 
   if (!personopplysninger) {
@@ -31,7 +45,6 @@ export function BrukerinformasjonPanel({ promise }: BrukerinformasjonProps) {
       </PanelContainer>
     );
   }
-
   const erDNummer = Number(personopplysninger.aktørId?.charAt(0)) > 3;
   const fulltNavn = tilFulltNavn(personopplysninger.navn);
   const folkeregistrertAdresse = formatterAdresse(personopplysninger.adresse);
@@ -84,9 +97,9 @@ export function BrukerinformasjonPanel({ promise }: BrukerinformasjonProps) {
       </dl>
     </PanelContainer>
   );
-}
+};
 
-export const BrukerinformasjonPanelSkeleton = () => {
+const BrukerinformasjonPanelSkeleton = () => {
   const linjer = Array.from({ length: 6 }, (_, index) => index);
   return (
     <PanelContainerSkeleton

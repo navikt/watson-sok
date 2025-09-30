@@ -1,5 +1,4 @@
-import { Alert, Button, Heading, HGrid, Skeleton } from "@navikt/ds-react";
-import { use } from "react";
+import { Alert, BodyShort, Button, Heading, HGrid } from "@navikt/ds-react";
 import {
   redirect,
   useLoaderData,
@@ -8,25 +7,12 @@ import {
   type MetaArgs,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
-import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import { hentIdentFraSession } from "~/features/oppslag/oppslagSession.server";
-import {
-  ArbeidsforholdPanel,
-  ArbeidsforholdPanelSkeleton,
-} from "~/features/paneler/ArbeidsforholdPanel";
-import {
-  BrukerinformasjonPanel,
-  BrukerinformasjonPanelSkeleton,
-} from "~/features/paneler/BrukerinformasjonPanel";
-import {
-  InntektPanel,
-  InntektPanelSkeleton,
-} from "~/features/paneler/InntektPanel";
-import {
-  StønaderPanel,
-  StønaderPanelSkeleton,
-} from "~/features/paneler/StønaderPanel";
-import { tilFulltNavn } from "~/utils/navn-utils";
+import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
+import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
+import { InntektPanel } from "~/features/paneler/InntektPanel";
+import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
+import { StønaderPanel } from "~/features/paneler/StønaderPanel";
 import {
   hentArbeidsgivere,
   hentInntekter,
@@ -34,24 +20,29 @@ import {
   hentStønader,
   sjekkEksistensOgTilgang,
 } from "./api.server";
-import type { PersonInformasjon } from "./schemas";
 
 export default function OppslagBruker() {
   const data = useLoaderData<typeof loader>();
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col gap-4 px-4">
+    <div className="flex flex-col gap-4 px-4 mt-8">
       {data.eksistensOgTilgang === "forbidden" ? (
         <Alert variant="warning" className="w-fit">
           Du har ikke tilgang til å se denne personen
         </Alert>
       ) : data.eksistensOgTilgang === "not found" ? (
         <Alert variant="warning" className="w-fit">
-          Ingen treff på fødsels- eller D-nummer
+          <Heading level="2" size="small">
+            Ingen treff på fødsels- eller D-nummer
+          </Heading>
+          <BodyShort>
+            Det finnes ingen bruker med dette fødselsnummeret eller D-nummeret.
+            Vennligst prøv igjen med et annet fødselsnummer eller D-nummer.
+          </BodyShort>
         </Alert>
       ) : data.eksistensOgTilgang === "error" ? (
-        <Alert variant="warning" className="w-fit">
+        <Alert variant="error" className="w-fit">
           En feil oppstod ved henting av bruker
           <Button onClick={() => navigate(RouteConfig.INDEX)}>
             Gå til forsiden
@@ -59,41 +50,18 @@ export default function OppslagBruker() {
         </Alert>
       ) : data.eksistensOgTilgang === "ok" ? (
         <>
-          <div className="mt-8 mb-4">
-            <ResolvingComponent
-              loadingFallback={
-                <Heading level="1" size="large" as={Skeleton}>
-                  Navn Navnesen (xx)
-                </Heading>
-              }
-              errorFallback={
-                <Heading level="1" size="large">
-                  Feil ved henting av bruker
-                </Heading>
-              }
-            >
-              <OverskriftPanel promise={data.personopplysninger} />
-            </ResolvingComponent>
+          <div className="mb-4">
+            <OverskriftPanel promise={data.personopplysninger} />
           </div>
           <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
-            <ResolvingComponent
-              loadingFallback={<BrukerinformasjonPanelSkeleton />}
-            >
-              <BrukerinformasjonPanel promise={data.personopplysninger} />
-            </ResolvingComponent>
-            <ResolvingComponent
-              loadingFallback={<ArbeidsforholdPanelSkeleton />}
-            >
-              <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
-            </ResolvingComponent>
+            <BrukerinformasjonPanel promise={data.personopplysninger} />
+            <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
           </HGrid>
-          <ResolvingComponent loadingFallback={<StønaderPanelSkeleton />}>
-            <StønaderPanel promise={data.stønader} />
-          </ResolvingComponent>
+
+          <StønaderPanel promise={data.stønader} />
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <ResolvingComponent loadingFallback={<InntektPanelSkeleton />}>
-              <InntektPanel promise={data.inntektInformasjon} />
-            </ResolvingComponent>
+            <InntektPanel promise={data.inntektInformasjon} />
           </div>
         </>
       ) : null}
@@ -132,23 +100,3 @@ export function meta({ loaderData }: MetaArgs<typeof loader>) {
     },
   ];
 }
-
-type OverskriftPanelProps = {
-  promise: Promise<PersonInformasjon | null>;
-};
-
-const OverskriftPanel = ({ promise }: OverskriftPanelProps) => {
-  const personopplysninger = use(promise);
-  if (!personopplysninger) {
-    return (
-      <Heading level="1" size="large">
-        Fant ikke bruker
-      </Heading>
-    );
-  }
-  return (
-    <Heading level="1" size="large">
-      {tilFulltNavn(personopplysninger.navn)} ({personopplysninger.alder})
-    </Heading>
-  );
-};
