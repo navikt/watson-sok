@@ -142,7 +142,10 @@ async function gjørOppslagApiRequest<T>(
     }
 
     const rawData = await response.json();
-    const parsedData = schema.safeParse(rawData);
+    if (!rawData.data) {
+      throw new Error(rawData.error);
+    }
+    const parsedData = schema.safeParse(rawData.data);
 
     if (!parsedData.success) {
       console.error("Ugyldig data fra baksystem", parsedData.error.flatten());
