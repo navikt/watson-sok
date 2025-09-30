@@ -17,6 +17,10 @@ export async function sjekkEksistensOgTilgang(
   ident: string,
   request: Request,
 ): Promise<EksistensOgTilgangResponse> {
+  if (!isProd) {
+    return "ok";
+  }
+
   const oboToken = await getnavpersondataapiOboToken(request);
 
   try {
