@@ -11,9 +11,11 @@ spec:
   liveness:
     path: /api/health
     initialDelay: 5
+    periodSeconds: 60
   readiness:
     path: /api/health
     initialDelay: 5
+    periodSeconds: 5
   observability:
     logging:
       destinations:
