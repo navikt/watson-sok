@@ -25,7 +25,7 @@ export async function sjekkEksistensOgTilgang(
 
   try {
     const response = await fetch(
-      "http://nav-persondata-api/oppslag/eksistens-og-tilgang",
+      "http://nav-persondata-api/oppslag/personbruker",
       {
         method: "POST",
         headers: {
