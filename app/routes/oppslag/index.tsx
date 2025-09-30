@@ -108,13 +108,17 @@ export async function loader({ request }: LoaderFunctionArgs) {
   }
 
   const eksistensOgTilgang = await sjekkEksistensOgTilgang(ident, request);
-
+  if (eksistensOgTilgang === "ok") {
+    return {
+      eksistensOgTilgang,
+      personopplysninger: hentPersonopplysninger(ident, request),
+      arbeidsgiverInformasjon: hentArbeidsgivere(ident, request),
+      inntektInformasjon: hentInntekter(ident, request),
+      stønader: hentStønader(ident, request),
+    };
+  }
   return {
     eksistensOgTilgang,
-    personopplysninger: hentPersonopplysninger(ident, request),
-    arbeidsgiverInformasjon: hentArbeidsgivere(ident, request),
-    inntektInformasjon: hentInntekter(ident, request),
-    stønader: hentStønader(ident, request),
   };
 }
 
