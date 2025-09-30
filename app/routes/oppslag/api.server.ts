@@ -36,6 +36,10 @@ export async function sjekkEksistensOgTilgang(
       },
     );
 
+    console.info(
+      `Bruker med ident ${ident.substring(0, 6)}xxxxx slått opp med status ${response.status}`,
+    );
+
     switch (response.status) {
       case 200:
         return "ok";
