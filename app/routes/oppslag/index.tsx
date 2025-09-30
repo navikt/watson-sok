@@ -1,5 +1,4 @@
-import { Alert, Button, Heading, HGrid, Skeleton } from "@navikt/ds-react";
-import { use } from "react";
+import { Alert, Button, HGrid } from "@navikt/ds-react";
 import {
   redirect,
   useLoaderData,
@@ -8,13 +7,12 @@ import {
   type MetaArgs,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
-import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import { hentIdentFraSession } from "~/features/oppslag/oppslagSession.server";
 import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
 import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
 import { InntektPanel } from "~/features/paneler/InntektPanel";
+import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
 import { StønaderPanel } from "~/features/paneler/StønaderPanel";
-import { tilFulltNavn } from "~/utils/navn-utils";
 import {
   hentArbeidsgivere,
   hentInntekter,
@@ -22,7 +20,6 @@ import {
   hentStønader,
   sjekkEksistensOgTilgang,
 } from "./api.server";
-import type { PersonInformasjon } from "./schemas";
 
 export default function OppslagBruker() {
   const data = useLoaderData<typeof loader>();
@@ -48,20 +45,7 @@ export default function OppslagBruker() {
       ) : data.eksistensOgTilgang === "ok" ? (
         <>
           <div className="mt-8 mb-4">
-            <ResolvingComponent
-              loadingFallback={
-                <Heading level="1" size="large" as={Skeleton}>
-                  Navn Navnesen (xx)
-                </Heading>
-              }
-              errorFallback={
-                <Heading level="1" size="large">
-                  Feil ved henting av bruker
-                </Heading>
-              }
-            >
-              <OverskriftPanel promise={data.personopplysninger} />
-            </ResolvingComponent>
+            <OverskriftPanel promise={data.personopplysninger} />
           </div>
           <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
             <BrukerinformasjonPanel promise={data.personopplysninger} />
@@ -110,23 +94,3 @@ export function meta({ loaderData }: MetaArgs<typeof loader>) {
     },
   ];
 }
-
-type OverskriftPanelProps = {
-  promise: Promise<PersonInformasjon | null>;
-};
-
-const OverskriftPanel = ({ promise }: OverskriftPanelProps) => {
-  const personopplysninger = use(promise);
-  if (!personopplysninger) {
-    return (
-      <Heading level="1" size="large">
-        Fant ikke bruker
-      </Heading>
-    );
-  }
-  return (
-    <Heading level="1" size="large">
-      {tilFulltNavn(personopplysninger.navn)} ({personopplysninger.alder})
-    </Heading>
-  );
-};
