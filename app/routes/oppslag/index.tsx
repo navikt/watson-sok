@@ -1,4 +1,4 @@
-import { Alert, Button, HGrid } from "@navikt/ds-react";
+import { Alert, BodyShort, Button, Heading, HGrid } from "@navikt/ds-react";
 import {
   redirect,
   useLoaderData,
@@ -26,14 +26,20 @@ export default function OppslagBruker() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col gap-4 px-4">
+    <div className="flex flex-col gap-4 px-4 mt-8">
       {data.eksistensOgTilgang === "forbidden" ? (
         <Alert variant="warning" className="w-fit">
           Du har ikke tilgang til å se denne personen
         </Alert>
       ) : data.eksistensOgTilgang === "not found" ? (
         <Alert variant="warning" className="w-fit">
-          Ingen treff på fødsels- eller D-nummer
+          <Heading level="2" size="small">
+            Ingen treff på fødsels- eller D-nummer
+          </Heading>
+          <BodyShort>
+            Det finnes ingen bruker med dette fødselsnummeret eller D-nummeret.
+            Vennligst prøv igjen med et annet fødselsnummer eller D-nummer.
+          </BodyShort>
         </Alert>
       ) : data.eksistensOgTilgang === "error" ? (
         <Alert variant="error" className="w-fit">
@@ -44,7 +50,7 @@ export default function OppslagBruker() {
         </Alert>
       ) : data.eksistensOgTilgang === "ok" ? (
         <>
-          <div className="mt-8 mb-4">
+          <div className="mb-4">
             <OverskriftPanel promise={data.personopplysninger} />
           </div>
           <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
