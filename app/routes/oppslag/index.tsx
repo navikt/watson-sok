@@ -36,7 +36,7 @@ export default function OppslagBruker() {
           Ingen treff på fødsels- eller D-nummer
         </Alert>
       ) : data.eksistensOgTilgang === "error" ? (
-        <Alert variant="warning" className="w-fit">
+        <Alert variant="error" className="w-fit">
           En feil oppstod ved henting av bruker
           <Button onClick={() => navigate(RouteConfig.INDEX)}>
             Gå til forsiden
