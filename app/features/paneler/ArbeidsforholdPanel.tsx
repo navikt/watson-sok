@@ -4,6 +4,7 @@ import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterProsent } from "~/utils/number-utils";
 import { storFørsteBokstav } from "~/utils/string-utils";
+import { ResolvingComponent } from "../async/ResolvingComponent";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 type ArbeidsforholdPanelProps = {
@@ -11,6 +12,19 @@ type ArbeidsforholdPanelProps = {
 };
 
 export function ArbeidsforholdPanel({ promise }: ArbeidsforholdPanelProps) {
+  return (
+    <ResolvingComponent loadingFallback={<ArbeidsforholdPanelSkeleton />}>
+      <ArbeidsforholdPanelMedData promise={promise} />
+    </ResolvingComponent>
+  );
+}
+
+type ArbeidsforholdPanelMedDataProps = {
+  promise: Promise<ArbeidsgiverInformasjon | null>;
+};
+const ArbeidsforholdPanelMedData = ({
+  promise,
+}: ArbeidsforholdPanelMedDataProps) => {
   const arbeidsgiverInformasjon = use(promise);
   const løpende = arbeidsgiverInformasjon?.løpendeArbeidsforhold ?? [];
 
@@ -105,9 +119,9 @@ export function ArbeidsforholdPanel({ promise }: ArbeidsforholdPanelProps) {
       </div>
     </PanelContainer>
   );
-}
+};
 
-export const ArbeidsforholdPanelSkeleton = () => {
+const ArbeidsforholdPanelSkeleton = () => {
   const kolonner = Array.from({ length: 6 }, (_, index) => index);
   const rader = Array.from({ length: 8 }, (_, index) => index);
   return (

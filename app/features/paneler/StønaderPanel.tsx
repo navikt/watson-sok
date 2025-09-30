@@ -10,6 +10,7 @@ import { Alert, BodyShort, Skeleton, Timeline } from "@navikt/ds-react";
 
 import { toDate } from "date-fns";
 import { use } from "react";
+import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import type { Stonad } from "~/routes/oppslag/schemas";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
@@ -18,6 +19,17 @@ type StonadOversiktProps = {
 };
 
 export function StønaderPanel({ promise }: StonadOversiktProps) {
+  return (
+    <ResolvingComponent loadingFallback={<StønaderPanelSkeleton />}>
+      <StønaderPanelMedData promise={promise} />
+    </ResolvingComponent>
+  );
+}
+
+type StønaderPanelMedDataProps = {
+  promise: Promise<Stonad[] | null>;
+};
+const StønaderPanelMedData = ({ promise }: StønaderPanelMedDataProps) => {
   const stønader = use(promise);
   const harIngenStønader = !stønader || stønader.length === 0;
 
@@ -65,9 +77,9 @@ export function StønaderPanel({ promise }: StonadOversiktProps) {
       )}
     </PanelContainer>
   );
-}
+};
 
-export const StønaderPanelSkeleton = () => {
+const StønaderPanelSkeleton = () => {
   const stønader = Array.from({ length: 3 }, (_, index) => index);
   return (
     <PanelContainerSkeleton title="Stønader">

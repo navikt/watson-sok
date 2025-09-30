@@ -10,22 +10,10 @@ import {
 import { RouteConfig } from "~/config/routeConfig";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import { hentIdentFraSession } from "~/features/oppslag/oppslagSession.server";
-import {
-  ArbeidsforholdPanel,
-  ArbeidsforholdPanelSkeleton,
-} from "~/features/paneler/ArbeidsforholdPanel";
-import {
-  BrukerinformasjonPanel,
-  BrukerinformasjonPanelSkeleton,
-} from "~/features/paneler/BrukerinformasjonPanel";
-import {
-  InntektPanel,
-  InntektPanelSkeleton,
-} from "~/features/paneler/InntektPanel";
-import {
-  StønaderPanel,
-  StønaderPanelSkeleton,
-} from "~/features/paneler/StønaderPanel";
+import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
+import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
+import { InntektPanel } from "~/features/paneler/InntektPanel";
+import { StønaderPanel } from "~/features/paneler/StønaderPanel";
 import { tilFulltNavn } from "~/utils/navn-utils";
 import {
   hentArbeidsgivere,
@@ -76,24 +64,14 @@ export default function OppslagBruker() {
             </ResolvingComponent>
           </div>
           <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
-            <ResolvingComponent
-              loadingFallback={<BrukerinformasjonPanelSkeleton />}
-            >
-              <BrukerinformasjonPanel promise={data.personopplysninger} />
-            </ResolvingComponent>
-            <ResolvingComponent
-              loadingFallback={<ArbeidsforholdPanelSkeleton />}
-            >
-              <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
-            </ResolvingComponent>
+            <BrukerinformasjonPanel promise={data.personopplysninger} />
+            <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
           </HGrid>
-          <ResolvingComponent loadingFallback={<StønaderPanelSkeleton />}>
-            <StønaderPanel promise={data.stønader} />
-          </ResolvingComponent>
+
+          <StønaderPanel promise={data.stønader} />
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <ResolvingComponent loadingFallback={<InntektPanelSkeleton />}>
-              <InntektPanel promise={data.inntektInformasjon} />
-            </ResolvingComponent>
+            <InntektPanel promise={data.inntektInformasjon} />
           </div>
         </>
       ) : null}

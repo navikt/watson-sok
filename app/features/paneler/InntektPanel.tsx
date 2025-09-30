@@ -10,6 +10,7 @@ import {
   konverterTilTall,
 } from "~/utils/number-utils";
 import { camelCaseTilNorsk, storFørsteBokstav } from "~/utils/string-utils";
+import { ResolvingComponent } from "../async/ResolvingComponent";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 // Highlight-stil for celler i rad med flere versjoner
@@ -20,6 +21,17 @@ const warnStyle: CSSProperties = {
 
 type InntektPanelProps = { promise: Promise<InntektInformasjon | null> };
 export function InntektPanel({ promise }: InntektPanelProps) {
+  return (
+    <ResolvingComponent loadingFallback={<InntektPanelSkeleton />}>
+      <InntektPanelMedData promise={promise} />
+    </ResolvingComponent>
+  );
+}
+
+type InntektPanelMedDataProps = {
+  promise: Promise<InntektInformasjon | null>;
+};
+const InntektPanelMedData = ({ promise }: InntektPanelMedDataProps) => {
   const inntektInformasjon = use(promise);
   const alle = inntektInformasjon?.lønnsinntekt ?? [];
 
@@ -137,9 +149,9 @@ export function InntektPanel({ promise }: InntektPanelProps) {
       )}
     </PanelContainer>
   );
-}
+};
 
-export const InntektPanelSkeleton = () => {
+const InntektPanelSkeleton = () => {
   const kolonner = Array.from({ length: 5 }, (_, index) => index);
   const rader = Array.from({ length: 4 }, (_, index) => index);
   return (
