@@ -10,6 +10,44 @@ import {
   type OppslagBrukerRespons,
 } from "./schemas";
 
+type EksistensOgTilgangResponse = "ok" | "forbidden" | "not found" | "error";
+
+/** Sjekker eksistens og tilgang til en gitt personident */
+export async function sjekkEksistensOgTilgang(
+  ident: string,
+  request: Request,
+): Promise<EksistensOgTilgangResponse> {
+  const oboToken = await getnavpersondataapiOboToken(request);
+
+  try {
+    const response = await fetch(
+      "http://nav-persondata-api/oppslag/eksistens-og-tilgang",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${oboToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ident }),
+      },
+    );
+
+    switch (response.status) {
+      case 200:
+        return "ok";
+      case 403:
+        return "forbidden";
+      case 404:
+        return "not found";
+      default:
+        return "error";
+    }
+  } catch (error) {
+    console.error("⛔ Nettverksfeil mot baksystem:", error);
+    return "error";
+  }
+}
+
 /** Henter personopplysninger for en gitt ident */
 export async function hentPersonopplysninger(ident: string, request: Request) {
   return gjørOppslagApiRequest(ident, request, {
