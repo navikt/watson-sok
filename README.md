@@ -47,6 +47,7 @@ npm run dev
 ### Tilgjengelige scripts
 
 - `npm run dev` - Starter utviklingsserveren
+- `npm run dev:local` - Starter utviklingsserveren, men kjører mot lokal backend
 - `npm run build` - Bygger applikasjonen for produksjon
 - `npm run start` - Starter produksjonsserveren
 - `npm run lint` - Kjører ESLint

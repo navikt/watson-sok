@@ -1,5 +1,5 @@
 import type z from "zod";
-import { isProd } from "~/config/env.server";
+import { env, shouldUseMockData } from "~/config/env.server";
 import { getMockedResponseByFødselsnummer } from "~/routes/oppslag/mock.server";
 import { getnavpersondataapiOboToken } from "~/utils/access-token";
 import {
@@ -17,7 +17,7 @@ export async function sjekkEksistensOgTilgang(
   ident: string,
   request: Request,
 ): Promise<EksistensOgTilgangResponse> {
-  if (!isProd) {
+  if (shouldUseMockData) {
     return "ok";
   }
 
@@ -25,7 +25,7 @@ export async function sjekkEksistensOgTilgang(
 
   try {
     const response = await fetch(
-      "http://nav-persondata-api/oppslag/personbruker",
+      `${env.BACKEND_API_URL}/oppslag/personbruker`,
       {
         method: "POST",
         headers: {
@@ -37,7 +37,7 @@ export async function sjekkEksistensOgTilgang(
     );
 
     console.info(
-      `Bruker med ident ${ident.substring(0, 6)}xxxxx slått opp med status ${response.status}`,
+      `Bruker med ident ${ident.substring(0, 6)} ***** slått opp med status ${response.status}`,
     );
 
     switch (response.status) {
@@ -59,7 +59,7 @@ export async function sjekkEksistensOgTilgang(
 /** Henter personopplysninger for en gitt ident */
 export async function hentPersonopplysninger(ident: string, request: Request) {
   return gjørOppslagApiRequest(ident, request, {
-    endepunkt: "http://nav-persondata-api/oppslag/personopplysninger",
+    endepunkt: "/oppslag/personopplysninger",
     schema: PersonInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.personInformasjon,
   });
@@ -68,7 +68,7 @@ export async function hentPersonopplysninger(ident: string, request: Request) {
 /** Henter arbeidsgivere for en gitt ident */
 export async function hentArbeidsforhold(ident: string, request: Request) {
   return gjørOppslagApiRequest(ident, request, {
-    endepunkt: "http://nav-persondata-api/oppslag/arbeidsforhold",
+    endepunkt: "/oppslag/arbeidsforhold",
     schema: ArbeidsgiverInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.arbeidsgiverInformasjon,
   });
@@ -77,7 +77,7 @@ export async function hentArbeidsforhold(ident: string, request: Request) {
 /** Henter inntekter for en gitt ident */
 export async function hentInntekter(ident: string, request: Request) {
   return gjørOppslagApiRequest(ident, request, {
-    endepunkt: "http://nav-persondata-api/oppslag/inntekt",
+    endepunkt: "/oppslag/inntekt",
     schema: InntektInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.inntektInformasjon,
   });
@@ -86,7 +86,7 @@ export async function hentInntekter(ident: string, request: Request) {
 /** Henter ytelser for en gitt ident */
 export async function hentYtelser(ident: string, request: Request) {
   return gjørOppslagApiRequest(ident, request, {
-    endepunkt: "http://nav-persondata-api/oppslag/stønad",
+    endepunkt: "/oppslag/stønad",
     schema: YtelserInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.stønader,
   });
@@ -94,7 +94,7 @@ export async function hentYtelser(ident: string, request: Request) {
 
 type ApiRequestConfig<T> = {
   /** API endepunkt-URL */
-  endepunkt: string;
+  endepunkt: `/${string}`;
   /** Zod schema for å parse responsen */
   schema: z.ZodSchema<T>;
   /** En funksjon som returnerer riktig del av mock-datagrunnlaget */
@@ -116,7 +116,7 @@ async function gjørOppslagApiRequest<T>(
 ): Promise<T> {
   const { endepunkt, schema, ekstraherFraMock } = config;
 
-  if (!isProd) {
+  if (shouldUseMockData) {
     try {
       const mockedResponse = await getMockedResponseByFødselsnummer(ident);
       return ekstraherFraMock(mockedResponse);
@@ -129,7 +129,7 @@ async function gjørOppslagApiRequest<T>(
   try {
     const oboToken = await getnavpersondataapiOboToken(request);
 
-    const response = await fetch(endepunkt, {
+    const response = await fetch(`${env.BACKEND_API_URL}${endepunkt}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${oboToken}`,
