@@ -142,7 +142,9 @@ async function gjørOppslagApiRequest<T>(
       if (response.status === 404) {
         throw new OppslagApiError("Ingen match på fødsels- eller D-nummer");
       } else if (response.status === 403) {
-        throw new OppslagApiError("Du har ikke tilgang til å se denne personen");
+        throw new OppslagApiError(
+          "Du har ikke tilgang til å se denne personen",
+        );
       }
       throw new OppslagApiError(
         `Feil fra baksystem. Status: ${response.status} – ${await response.text()}`,
