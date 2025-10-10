@@ -14,7 +14,7 @@ import { InntektPanel } from "~/features/paneler/InntektPanel";
 import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
 import { StønaderPanel } from "~/features/paneler/StønaderPanel";
 import {
-  hentArbeidsgivere,
+  hentArbeidsforhold,
   hentInntekter,
   hentPersonopplysninger,
   hentStønader,
@@ -80,7 +80,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return {
       eksistensOgTilgang,
       personopplysninger: hentPersonopplysninger(ident, request),
-      arbeidsgiverInformasjon: hentArbeidsgivere(ident, request),
+      arbeidsgiverInformasjon: hentArbeidsforhold(ident, request),
       inntektInformasjon: hentInntekter(ident, request),
       stønader: hentStønader(ident, request),
     };
