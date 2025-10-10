@@ -66,9 +66,9 @@ export async function hentPersonopplysninger(ident: string, request: Request) {
 }
 
 /** Henter arbeidsgivere for en gitt ident */
-export async function hentArbeidsgivere(ident: string, request: Request) {
+export async function hentArbeidsforhold(ident: string, request: Request) {
   return gjørOppslagApiRequest(ident, request, {
-    endepunkt: "http://nav-persondata-api/oppslag/arbeidsgiver",
+    endepunkt: "http://nav-persondata-api/oppslag/arbeidsforhold",
     schema: ArbeidsgiverInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.arbeidsgiverInformasjon,
   });
@@ -86,7 +86,7 @@ export async function hentInntekter(ident: string, request: Request) {
 /** Henter stønader for en gitt ident */
 export async function hentStønader(ident: string, request: Request) {
   return gjørOppslagApiRequest(ident, request, {
-    endepunkt: "http://nav-persondata-api/oppslag/stonad",
+    endepunkt: "http://nav-persondata-api/oppslag/stønad",
     schema: StønaderInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.stønader,
   });
@@ -140,11 +140,11 @@ async function gjørOppslagApiRequest<T>(
 
     if (!response.ok) {
       if (response.status === 404) {
-        throw new Error("Ingen match på fødsels- eller D-nummer");
+        throw new OppslagApiError("Ingen match på fødsels- eller D-nummer");
       } else if (response.status === 403) {
-        throw new Error("Du har ikke tilgang til å se denne personen");
+        throw new OppslagApiError("Du har ikke tilgang til å se denne personen");
       }
-      throw new Error(
+      throw new OppslagApiError(
         `Feil fra baksystem. Status: ${response.status} – ${await response.text()}`,
       );
     }
@@ -162,7 +162,17 @@ async function gjørOppslagApiRequest<T>(
 
     return parsedData.data;
   } catch (err: unknown) {
+    if (err instanceof OppslagApiError) {
+      throw err;
+    }
     console.error("⛔ Nettverksfeil mot baksystem:", err);
     throw err;
+  }
+}
+
+class OppslagApiError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "OppslagApiError";
   }
 }
