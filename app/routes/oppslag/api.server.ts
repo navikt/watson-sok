@@ -6,7 +6,7 @@ import {
   ArbeidsgiverInformasjonSchema,
   InntektInformasjonSchema,
   PersonInformasjonSchema,
-  StønaderInformasjonSchema,
+  YtelserInformasjonSchema,
   type OppslagBrukerRespons,
 } from "./schemas";
 
@@ -83,11 +83,11 @@ export async function hentInntekter(ident: string, request: Request) {
   });
 }
 
-/** Henter stønader for en gitt ident */
-export async function hentStønader(ident: string, request: Request) {
+/** Henter ytelser for en gitt ident */
+export async function hentYtelser(ident: string, request: Request) {
   return gjørOppslagApiRequest(ident, request, {
     endepunkt: "http://nav-persondata-api/oppslag/stønad",
-    schema: StønaderInformasjonSchema,
+    schema: YtelserInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.stønader,
   });
 }

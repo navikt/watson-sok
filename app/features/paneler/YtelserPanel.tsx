@@ -11,62 +11,62 @@ import { Alert, BodyShort, Skeleton, Timeline } from "@navikt/ds-react";
 import { toDate } from "date-fns";
 import { use } from "react";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
-import type { Stonad } from "~/routes/oppslag/schemas";
+import type { Ytelse } from "~/routes/oppslag/schemas";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 type StonadOversiktProps = {
-  promise: Promise<Stonad[] | null>;
+  promise: Promise<Ytelse[] | null>;
 };
 
-export function StønaderPanel({ promise }: StonadOversiktProps) {
+export function YtelserPanel({ promise }: StonadOversiktProps) {
   return (
-    <ResolvingComponent loadingFallback={<StønaderPanelSkeleton />}>
-      <StønaderPanelMedData promise={promise} />
+    <ResolvingComponent loadingFallback={<YtelserPanelSkeleton />}>
+      <YtelserPanelMedData promise={promise} />
     </ResolvingComponent>
   );
 }
 
 type StønaderPanelMedDataProps = {
-  promise: Promise<Stonad[] | null>;
+  promise: Promise<Ytelse[] | null>;
 };
-const StønaderPanelMedData = ({ promise }: StønaderPanelMedDataProps) => {
-  const stønader = use(promise);
-  const harIngenStønader = !stønader || stønader.length === 0;
+const YtelserPanelMedData = ({ promise }: StønaderPanelMedDataProps) => {
+  const ytelser = use(promise);
+  const harIngenYtelser = !ytelser || ytelser.length === 0;
 
   return (
-    <PanelContainer title="Stønader">
-      {harIngenStønader ? (
+    <PanelContainer title="Ytelser">
+      {harIngenYtelser ? (
         <Alert variant="info" className="w-fit">
-          Ingen ytelser eller stønader registrert de siste 3 årene.
+          Ingen ytelser registrert de siste 3 årene.
         </Alert>
       ) : (
         <Timeline>
-          {stønader.map((stønad) => {
+          {ytelser.map((ytelse) => {
             return (
               <Timeline.Row
-                key={stønad.stonadType}
-                label={stønad.stonadType}
-                icon={mapStønadtypeTilIkon(stønad.stonadType)}
+                key={ytelse.stonadType}
+                label={ytelse.stonadType}
+                icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
               >
-                {stønad.perioder.map((stønadsperiode) => (
+                {ytelse.perioder.map((ytelsesperiode) => (
                   <Timeline.Period
-                    key={stønadsperiode.info}
-                    start={toDate(stønadsperiode.periode.fom)}
-                    end={toDate(stønadsperiode.periode.tom)}
+                    key={ytelsesperiode.info}
+                    start={toDate(ytelsesperiode.periode.fom)}
+                    end={toDate(ytelsesperiode.periode.tom)}
                     status={
-                      stønadsperiode.beløp === 0.0 ? "warning" : "success"
+                      ytelsesperiode.beløp === 0.0 ? "warning" : "success"
                     }
-                    icon={mapStønadtypeTilIkon(stønad.stonadType)}
+                    icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
                   >
                     <BodyShort className="font-medium">
-                      {stønadsperiode.beløp.toLocaleString()} kr
+                      {ytelsesperiode.beløp.toLocaleString()} kr
                     </BodyShort>
                     <BodyShort className="text-sm text-muted-foreground">
-                      Kilde: {stønadsperiode.kilde}
-                      {stønadsperiode.info}
+                      Kilde: {ytelsesperiode.kilde}
+                      {ytelsesperiode.info}
                     </BodyShort>
                     <BodyShort className="text-sm text-muted-foreground">
-                      Bilag: {stønadsperiode.info}
+                      Bilag: {ytelsesperiode.info}
                     </BodyShort>
                   </Timeline.Period>
                 ))}
@@ -79,16 +79,16 @@ const StønaderPanelMedData = ({ promise }: StønaderPanelMedDataProps) => {
   );
 };
 
-const StønaderPanelSkeleton = () => {
-  const stønader = Array.from({ length: 3 }, (_, index) => index);
+const YtelserPanelSkeleton = () => {
+  const ytelser = Array.from({ length: 3 }, (_, index) => index);
   return (
-    <PanelContainerSkeleton title="Stønader">
+    <PanelContainerSkeleton title="Ytelser">
       <div className="flex flex-col gap-4 mt-2">
         <div className="flex gap-2">
           <div className="w-[15%]" />
           <Skeleton variant="text" width="85%" className="self-end" />
         </div>
-        {stønader.map((_, idx) => (
+        {ytelser.map((_, idx) => (
           <div className="flex gap-2" key={idx}>
             <Skeleton variant="text" width="15%" />
             <Skeleton variant="rounded" width="85%" />
@@ -99,7 +99,7 @@ const StønaderPanelSkeleton = () => {
   );
 };
 
-const mapStønadtypeTilIkon = (stønadtype: string) => {
+const mapYtelsestypeTilIkon = (stønadtype: string) => {
   switch (stønadtype) {
     case "Sykepenger":
       return <HospitalIcon />;

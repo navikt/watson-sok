@@ -12,12 +12,12 @@ import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
 import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
 import { InntektPanel } from "~/features/paneler/InntektPanel";
 import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
-import { StønaderPanel } from "~/features/paneler/StønaderPanel";
+import { YtelserPanel } from "~/features/paneler/YtelserPanel";
 import {
   hentArbeidsforhold,
   hentInntekter,
   hentPersonopplysninger,
-  hentStønader,
+  hentYtelser,
   sjekkEksistensOgTilgang,
 } from "./api.server";
 
@@ -58,7 +58,7 @@ export default function OppslagBruker() {
             <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
           </HGrid>
 
-          <StønaderPanel promise={data.stønader} />
+          <YtelserPanel promise={data.ytelser} />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <InntektPanel promise={data.inntektInformasjon} />
@@ -82,7 +82,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       personopplysninger: hentPersonopplysninger(ident, request),
       arbeidsgiverInformasjon: hentArbeidsforhold(ident, request),
       inntektInformasjon: hentInntekter(ident, request),
-      stønader: hentStønader(ident, request),
+      ytelser: hentYtelser(ident, request),
     };
   }
   return {

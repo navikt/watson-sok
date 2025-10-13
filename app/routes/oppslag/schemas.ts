@@ -77,14 +77,14 @@ export const PersonInformasjonSchema = z.object({
 
 export type PersonInformasjon = z.infer<typeof PersonInformasjonSchema>;
 
-const StonadSchema = z.object({
+const YtelseSchema = z.object({
   stonadType: z.string(),
   perioder: z.array(StonadPeriodeSchema),
 });
 
-export type Stonad = z.infer<typeof StonadSchema>;
+export type Ytelse = z.infer<typeof YtelseSchema>;
 
-export const StønaderInformasjonSchema = z.array(StonadSchema);
+export const YtelserInformasjonSchema = z.array(YtelseSchema);
 
 const AnsettelsesDetaljSchema = z.object({
   type: z.string(),
@@ -137,7 +137,7 @@ export const OppslagBrukerResponsSchema = z.object({
   personInformasjon: PersonInformasjonSchema.nullable(),
   arbeidsgiverInformasjon: ArbeidsgiverInformasjonSchema.nullable(),
   inntektInformasjon: InntektInformasjonSchema.nullable(),
-  stønader: StønaderInformasjonSchema.nullable(),
+  stønader: YtelserInformasjonSchema.nullable(),
 });
 
 export type OppslagBrukerRespons = z.infer<typeof OppslagBrukerResponsSchema>;
