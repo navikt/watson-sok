@@ -5,7 +5,7 @@ import {
   validateToken,
 } from "@navikt/oasis";
 import { redirect } from "react-router";
-import { env, isDev, isProd } from "~/config/env.server";
+import { env, isDev } from "~/config/env.server";
 
 interface LoggedInUserResponse {
   preferredUsername: string;
@@ -17,19 +17,17 @@ interface LoggedInUserResponse {
 type GetLoggedInUserProps = {
   request: Request;
 };
+/**
+ * Returnerer den innloggede brukeren, eller redirecter brukeren til innlogging
+ */
 export async function getLoggedInUser({
   request,
 }: GetLoggedInUserProps): Promise<LoggedInUserResponse> {
-  if (!isProd) {
-    console.log("DEVELOPMENT.. returning mock username");
-    return MOCKED_LOGGED_IN_USER_RESPONSE;
-  }
-  console.log("GCP DEV.. returning real username");
   const token = await getValidToken(request);
 
   const parseResult = parseAzureUserToken(token);
   if (!parseResult.ok) {
-    console.log("Token parse result not ok");
+    console.error("Token parse result not ok", parseResult.error);
     throw redirect(`/oauth2/login`);
   }
 
@@ -37,13 +35,14 @@ export async function getLoggedInUser({
     preferredUsername: parseResult.preferred_username,
     name: parseResult.name,
     navIdent: parseResult.NAVident,
-    token: await getnavpersondataapiOboToken(request),
+    token: await getBackendOboToken(request),
   };
 }
 
-export async function getnavpersondataapiOboToken(
-  request: Request,
-): Promise<string> {
+/**
+ * Returnerer et OBO-token for å kalle backend-APIene
+ */
+export async function getBackendOboToken(request: Request): Promise<string> {
   return getOboToken({
     request,
     audience: `api://${env.CLUSTER}.holmes.nav-persondata-api/.default`,
@@ -59,14 +58,15 @@ async function getOboToken({
   audience,
 }: GetOboTokenArgs): Promise<string> {
   if (isDev) {
-    return "fake-local-token";
+    if (!env.DEVELOPMENT_OAUTH_TOKEN) {
+      throw new Error("Du må sette DEVELOPMENT_OAUTH_TOKEN i .env");
+    }
+    return Promise.resolve(env.DEVELOPMENT_OAUTH_TOKEN);
   }
-
   const token = await getValidToken(request);
 
   const obo = await requestOboToken(token, audience);
   if (!obo.ok) {
-    console.log("OBO token not ok", obo.error);
     throw redirect(`/oauth2/login`);
   }
 
@@ -74,35 +74,39 @@ async function getOboToken({
 }
 
 async function getValidToken(request: Request): Promise<string> {
-  const authHeader = request.headers.get("Authorization");
-
   if (isDev) {
-    return "fake-local-token";
+    if (!env.DEVELOPMENT_OAUTH_TOKEN) {
+      throw new Error("Du må sette DEVELOPMENT_OAUTH_TOKEN i .env");
+    }
+    return Promise.resolve(env.DEVELOPMENT_OAUTH_TOKEN);
   }
-
+  const authHeader = request.headers.get("Authorization");
   if (authHeader == null) {
-    console.log("No Authorization header");
     throw redirect(`/oauth2/login`);
   }
 
   const token: string | null | undefined = getToken(authHeader);
   if (!token) {
-    console.log("No token");
+    if (isDev) {
+      console.error("Du må sette DEVELOPMENT_OAUTH_TOKEN i .env");
+      throw new Error("Du må sette DEVELOPMENT_OAUTH_TOKEN i .env");
+    }
     throw redirect(`/oauth2/login`);
   }
 
   const validationResult = await validateToken(token);
   if (!validationResult.ok) {
-    console.log("Validation result not ok");
+    if (isDev) {
+      console.error(
+        "DEVELOPMENT_OAUTH_TOKEN er ikke gyldig. Generer et nytt token og sett det i .env",
+        validationResult.error,
+      );
+      throw new Error(
+        "DEVELOPMENT_OAUTH_TOKEN er ikke gyldig. Generer et nytt token og sett det i .env",
+      );
+    }
     throw redirect(`/oauth2/login`);
   }
 
   return token;
 }
-
-const MOCKED_LOGGED_IN_USER_RESPONSE: LoggedInUserResponse = {
-  preferredUsername: "some-username@trygdeetaten.no",
-  name: "Some name",
-  navIdent: "S123456",
-  token: "fake-local-token",
-};

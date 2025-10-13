@@ -9,6 +9,12 @@ const envSchema = z.object({
   UMAMI_SITE_ID: z.string().describe("The ID of the Umami instance"),
   IDENT_SESSION_SECRET: z.string().describe("The secret for the ident session"),
   BACKEND_API_URL: z.string().describe("The URL of the backend API"),
+  DEVELOPMENT_OAUTH_TOKEN: z
+    .string()
+    .optional()
+    .describe(
+      "The OAuth token for the development environment. Is not set in production.",
+    ),
 });
 
 const envResult = envSchema.safeParse(process.env);

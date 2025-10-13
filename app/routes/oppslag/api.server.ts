@@ -1,7 +1,7 @@
 import type z from "zod";
 import { env, shouldUseMockData } from "~/config/env.server";
 import { getMockedResponseByFødselsnummer } from "~/routes/oppslag/mock.server";
-import { getnavpersondataapiOboToken } from "~/utils/access-token";
+import { getBackendOboToken } from "~/utils/access-token";
 import {
   ArbeidsgiverInformasjonSchema,
   InntektInformasjonSchema,
@@ -21,7 +21,7 @@ export async function sjekkEksistensOgTilgang(
     return "ok";
   }
 
-  const oboToken = await getnavpersondataapiOboToken(request);
+  const oboToken = await getBackendOboToken(request);
 
   try {
     const response = await fetch(
@@ -127,7 +127,7 @@ async function gjørOppslagApiRequest<T>(
   }
 
   try {
-    const oboToken = await getnavpersondataapiOboToken(request);
+    const oboToken = await getBackendOboToken(request);
 
     const response = await fetch(`${env.BACKEND_API_URL}${endepunkt}`, {
       method: "POST",
