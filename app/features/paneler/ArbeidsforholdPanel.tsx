@@ -1,5 +1,5 @@
 import { Alert, Skeleton, Table } from "@navikt/ds-react";
-import { use } from "react";
+import { use, useMemo } from "react";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterProsent } from "~/utils/number-utils";
@@ -29,10 +29,11 @@ const ArbeidsforholdPanelMedData = ({
   const løpende = arbeidsgiverInformasjon?.løpendeArbeidsforhold ?? [];
 
   // Flater ut alle (arbeidsgiver x ansettelsesDetalj) til rad-objekter
-  const rows = [...løpende].flatMap((ag) =>
+  const arbeidsforhold = [...løpende].flatMap((ag) =>
     (ag.ansettelsesDetaljer ?? []).map((detalj, idx) => ({
       key: `${ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}`,
       arbeidsgiver: ag.arbeidsgiver,
+      organisasjonsnummer: ag.organisasjonsnummer,
       start: detalj.periode.fom,
       slutt: detalj.periode.tom,
       stillingsprosent: detalj.stillingsprosent ?? null,
@@ -42,10 +43,17 @@ const ArbeidsforholdPanelMedData = ({
     })),
   );
 
-  // Sortér nyeste start først
-  rows.sort((a, b) => (a.start > b.start ? -1 : a.start < b.start ? 1 : 0));
+  const sammenslåtteArbeidsforhold = useMemo(
+    () => slåSammenTilstøtendePerioder(arbeidsforhold),
+    [arbeidsforhold],
+  );
 
-  if (rows.length === 0) {
+  // Sortér nyeste start først
+  sammenslåtteArbeidsforhold.sort((a, b) =>
+    a.start > b.start ? -1 : a.start < b.start ? 1 : 0,
+  );
+
+  if (sammenslåtteArbeidsforhold.length === 0) {
     return (
       <Alert variant="info" className="h-fit">
         Ingen arbeidsforhold funnet.
@@ -83,7 +91,7 @@ const ArbeidsforholdPanelMedData = ({
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {rows.map((r) => (
+            {sammenslåtteArbeidsforhold.map((r) => (
               <Table.Row key={r.key}>
                 <Table.HeaderCell
                   scope="row"
@@ -174,4 +182,105 @@ function mapYrke(yrke: string) {
     default:
       return storFørsteBokstav(yrke);
   }
+}
+
+// Sjekker om to perioder er sammenhengende (32 dager eller mindre mellom dem)
+function erPerioderSammenhengende(
+  sluttDato: string | null,
+  startDato: string,
+): boolean {
+  if (!sluttDato) return false; // Hvis første periode er pågående, er de ikke sammenhengende
+
+  // Parse datoer (format: YYYY-MM) og regn ut forskjellen i dager
+  const slutt = new Date(`${sluttDato}-01`);
+  const start = new Date(`${startDato}-01`);
+
+  const diffMs = start.getTime() - slutt.getTime();
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+
+  return diffDays > 0 && diffDays <= 32;
+}
+
+// Slår sammen sammenhengende arbeidsforhold for samme arbeidsgiver
+function slåSammenTilstøtendePerioder(
+  rader: Array<{
+    key: string;
+    arbeidsgiver: string;
+    organisasjonsnummer: string;
+    start: string;
+    slutt: string | null;
+    stillingsprosent: number | null;
+    arbeidsforholdType: string | null;
+    yrke: string | null;
+    løpende: boolean;
+  }>,
+) {
+  // Gruppér etter arbeidsgiver (bruker organisasjonsnummer)
+  const gruppert = new Map<
+    string,
+    Array<{
+      key: string;
+      arbeidsgiver: string;
+      organisasjonsnummer: string;
+      start: string;
+      slutt: string | null;
+      stillingsprosent: number | null;
+      arbeidsforholdType: string | null;
+      yrke: string | null;
+      løpende: boolean;
+    }>
+  >();
+
+  for (const rad of rader) {
+    const nøkkel = rad.organisasjonsnummer ?? rad.arbeidsgiver;
+    if (!gruppert.has(nøkkel)) {
+      gruppert.set(nøkkel, []);
+    }
+    gruppert.get(nøkkel)?.push(rad);
+  }
+
+  // For hver arbeidsgiver, slå sammen sammenhengende perioder
+  const sammenslåtteRader: typeof rader = [];
+
+  for (const [_, arbeidsgiverRader] of gruppert) {
+    // Sortér etter startdato (eldste først for merging)
+    arbeidsgiverRader.sort((a, b) =>
+      a.start < b.start ? -1 : a.start > b.start ? 1 : 0,
+    );
+
+    let tmpSammenslått = arbeidsgiverRader[0];
+
+    for (let i = 1; i < arbeidsgiverRader.length; i++) {
+      const nesteRad = arbeidsgiverRader[i];
+
+      // Sjekk om denne perioden er sammenhengende og har samme detaljer
+      const erSammenhengendeTid = erPerioderSammenhengende(
+        tmpSammenslått.slutt,
+        nesteRad.start,
+      );
+      const harSammeDetaljer =
+        tmpSammenslått.stillingsprosent === nesteRad.stillingsprosent &&
+        tmpSammenslått.arbeidsforholdType === nesteRad.arbeidsforholdType &&
+        tmpSammenslått.yrke === nesteRad.yrke;
+
+      if (erSammenhengendeTid && harSammeDetaljer) {
+        // Slå sammen: utvid sluttdato
+        tmpSammenslått = {
+          ...tmpSammenslått,
+          key: `${tmpSammenslått.key}-merged-${nesteRad.key}`,
+          slutt: nesteRad.slutt,
+          løpende: nesteRad.løpende,
+        };
+      } else {
+        // Ikke sammenhengende eller ulike detaljer - legg til som egen periode
+        sammenslåtteRader.push(tmpSammenslått);
+        tmpSammenslått = nesteRad;
+      }
+    }
+
+    // Ikke glem å legge til den siste sammenslåtte perioden
+    sammenslåtteRader.push(tmpSammenslått);
+  }
+
+  return sammenslåtteRader;
 }
