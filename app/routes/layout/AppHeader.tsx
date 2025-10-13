@@ -9,6 +9,8 @@ import {
   SunIcon,
 } from "@navikt/aksel-icons";
 import { ActionMenu, InternalHeader, Search, Spacer } from "@navikt/ds-react";
+import { useEffect, useRef, useState } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
 import { Link, useFetcher, useNavigate } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { useUser } from "~/features/auth/useUser";
@@ -19,6 +21,22 @@ export function AppHeader() {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
   const fetcher = useFetcher();
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const [metaKey, setMetaKey] = useState<"⌘" | "ctrl">("ctrl");
+
+  useHotkeys("mod+k", (event) => {
+    event.preventDefault();
+    searchInputRef.current?.focus();
+  });
+
+  useEffect(() => {
+    if (navigator.userAgent.includes("Macintosh")) {
+      setMetaKey("⌘");
+    } else {
+      setMetaKey("ctrl");
+    }
+  }, []);
+
   return (
     <InternalHeader>
       <InternalHeader.Title as="h1">
@@ -31,12 +49,13 @@ export function AppHeader() {
         className="flex items-center"
       >
         <Search
+          ref={searchInputRef}
           name="ident"
           size="small"
-          placeholder="Søk på bruker"
+          placeholder={`Søk på bruker (${metaKey}+k)`}
           label="Fødselsnummer eller D-nummer på bruker"
           autoComplete="off"
-          htmlSize={15}
+          htmlSize={20}
           variant="secondary"
         >
           <Search.Button type="submit" loading={fetcher.state !== "idle"} />
