@@ -1,0 +1,215 @@
+{
+  "utrekkstidspunkt": "2025-10-13T10:00:00.000000000",
+  "saksbehandlerIdent": "test-user",
+  "fødselsnummer": "11111112345",
+  "personInformasjon": {
+    "aktørId": "11111112345",
+    "familemedlemmer": {},
+    "statsborgerskap": ["NORGE"],
+    "navn": {
+      "fornavn": "TEST",
+      "mellomnavn": null,
+      "etternavn": "BRUKER"
+    },
+    "adresse": {
+      "norskAdresse": {
+        "adressenavn": "TESTVEIEN",
+        "husnummer": "1",
+        "husbokstav": null,
+        "postnummer": "0001",
+        "kommunenummer": "0301",
+        "poststed": "OSLO"
+      },
+      "utenlandskAdresse": null
+    },
+    "sivilstand": "UGIFT",
+    "alder": 35
+  },
+  "arbeidsgiverInformasjon": {
+    "løpendeArbeidsforhold": [
+      {
+        "arbeidsgiver": "ACME AS",
+        "organisasjonsnummer": "999000001",
+        "adresse": "Oslo",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2020-01",
+              "tom": "2020-12"
+            },
+            "yrke": "UTVIKLER"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2021-01",
+              "tom": "2021-12"
+            },
+            "yrke": "UTVIKLER"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2022-01",
+              "tom": null
+            },
+            "yrke": "UTVIKLER"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "TECH CORP",
+        "organisasjonsnummer": "999000002",
+        "adresse": "Bergen",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 50,
+            "antallTimerPrUke": 18.75,
+            "periode": {
+              "fom": "2021-01",
+              "tom": "2021-06"
+            },
+            "yrke": "KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 80,
+            "antallTimerPrUke": 30,
+            "periode": {
+              "fom": "2021-07",
+              "tom": "2021-12"
+            },
+            "yrke": "KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 80,
+            "antallTimerPrUke": 30,
+            "periode": {
+              "fom": "2022-01",
+              "tom": "2022-12"
+            },
+            "yrke": "KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 80,
+            "antallTimerPrUke": 30,
+            "periode": {
+              "fom": "2023-01",
+              "tom": "2023-06"
+            },
+            "yrke": "KONSULENT"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "DESIGN STUDIO",
+        "organisasjonsnummer": "999000003",
+        "adresse": "Trondheim",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2019-01",
+              "tom": "2019-12"
+            },
+            "yrke": "DESIGNER"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2020-01",
+              "tom": "2020-12"
+            },
+            "yrke": "SENIOR DESIGNER"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2021-01",
+              "tom": "2021-03"
+            },
+            "yrke": "SENIOR DESIGNER"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "STARTUP INC",
+        "organisasjonsnummer": "999000004",
+        "adresse": "Stavanger",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2018-01",
+              "tom": "2018-06"
+            },
+            "yrke": "UTVIKLER"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2018-08",
+              "tom": "2018-12"
+            },
+            "yrke": "UTVIKLER"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "FREELANCE AS",
+        "organisasjonsnummer": "999000005",
+        "adresse": "Oslo",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Frilanser",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-01",
+              "tom": "2023-12"
+            },
+            "yrke": "IT-KONSULENT"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2024-01",
+              "tom": "2024-12"
+            },
+            "yrke": "IT-KONSULENT"
+          }
+        ]
+      }
+    ],
+    "historikk": []
+  },
+  "inntektInformasjon": {
+    "lønnsinntekt": [],
+    "næringsinntekt": [],
+    "pensjonEllerTrygd": [],
+    "ytelseFraOffentlige": []
+  },
+  "stønader": []
+}
