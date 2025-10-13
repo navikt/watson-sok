@@ -6,13 +6,21 @@ import {
   HouseHeartIcon,
   NokIcon,
 } from "@navikt/aksel-icons";
-import { Alert, BodyShort, Skeleton, Timeline } from "@navikt/ds-react";
+import { Alert, Skeleton, Timeline } from "@navikt/ds-react";
 
-import { toDate } from "date-fns";
+import { differenceInDays, toDate } from "date-fns";
 import { use } from "react";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import type { Ytelse } from "~/routes/oppslag/schemas";
+import { formatterDato } from "~/utils/date-utils";
+import { formatterBeløp } from "~/utils/number-utils";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
+
+type GruppertPeriode = {
+  fom: string;
+  tom: string;
+  totalBeløp: number;
+};
 
 type StonadOversiktProps = {
   promise: Promise<Ytelse[] | null>;
@@ -42,34 +50,41 @@ const YtelserPanelMedData = ({ promise }: StønaderPanelMedDataProps) => {
       ) : (
         <Timeline>
           {ytelser.map((ytelse) => {
+            const groupedPeriods = grupperSammenhengendePerioder(
+              ytelse.perioder,
+            );
+
             return (
               <Timeline.Row
                 key={ytelse.stonadType}
                 label={ytelse.stonadType}
                 icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
               >
-                {ytelse.perioder.map((ytelsesperiode) => (
-                  <Timeline.Period
-                    key={ytelsesperiode.info}
-                    start={toDate(ytelsesperiode.periode.fom)}
-                    end={toDate(ytelsesperiode.periode.tom)}
-                    status={
-                      ytelsesperiode.beløp === 0.0 ? "warning" : "success"
-                    }
-                    icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
-                  >
-                    <BodyShort className="font-medium">
-                      {ytelsesperiode.beløp.toLocaleString()} kr
-                    </BodyShort>
-                    <BodyShort className="text-sm text-muted-foreground">
-                      Kilde: {ytelsesperiode.kilde}
-                      {ytelsesperiode.info}
-                    </BodyShort>
-                    <BodyShort className="text-sm text-muted-foreground">
-                      Bilag: {ytelsesperiode.info}
-                    </BodyShort>
-                  </Timeline.Period>
-                ))}
+                {groupedPeriods.map((groupedPeriod, index) => {
+                  const fomDate = toDate(groupedPeriod.fom);
+                  const tomDate = toDate(groupedPeriod.tom);
+                  const fomFormatert = formatterDato(groupedPeriod.fom);
+                  const tomFormatert = formatterDato(groupedPeriod.tom);
+                  const beløpFormatert = formatterBeløp(
+                    groupedPeriod.totalBeløp,
+                    0,
+                  );
+
+                  return (
+                    <Timeline.Period
+                      key={`${ytelse.stonadType}-${index}`}
+                      start={fomDate}
+                      end={tomDate}
+                      status="success"
+                      icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
+                    >
+                      <p>
+                        {fomFormatert} – {tomFormatert}
+                      </p>
+                      <p>Sum: {beløpFormatert}</p>
+                    </Timeline.Period>
+                  );
+                })}
               </Timeline.Row>
             );
           })}
@@ -115,3 +130,53 @@ const mapYtelsestypeTilIkon = (stønadtype: string) => {
       return <NokIcon />;
   }
 };
+
+/**
+ * Grupperer sammenhengende perioder som er mindre enn 45 dager fra hverandre til en enkel periode.
+ * Perioder sorteres etter startdato før gruppering.
+ * Beløpene for alle perioder i en gruppe summeres.
+ */
+function grupperSammenhengendePerioder(
+  perioder: Array<{ periode: { fom: string; tom: string }; beløp: number }>,
+): GruppertPeriode[] {
+  if (perioder.length === 0) {
+    return [];
+  }
+
+  // Sortér perioder etter startdato
+  const sortertePerioder = [...perioder].sort((a, b) =>
+    a.periode.fom.localeCompare(b.periode.fom),
+  );
+
+  const gruppert: GruppertPeriode[] = [];
+  let nåværendeGruppe: GruppertPeriode = {
+    fom: sortertePerioder[0].periode.fom,
+    tom: sortertePerioder[0].periode.tom,
+    totalBeløp: sortertePerioder[0].beløp,
+  };
+
+  for (let i = 1; i < sortertePerioder.length; i++) {
+    const forrigeSlutt = toDate(nåværendeGruppe.tom);
+    const nåværendeStart = toDate(sortertePerioder[i].periode.fom);
+    const dagerMellom = differenceInDays(nåværendeStart, forrigeSlutt);
+
+    // Hvis periodene er mindre enn 45 dager fra hverandre, utvid den nåværende gruppen
+    if (dagerMellom < 45) {
+      nåværendeGruppe.tom = sortertePerioder[i].periode.tom;
+      nåværendeGruppe.totalBeløp += sortertePerioder[i].beløp;
+    } else {
+      // Ellers, lagre den nåværende gruppen og start en ny
+      gruppert.push(nåværendeGruppe);
+      nåværendeGruppe = {
+        fom: sortertePerioder[i].periode.fom,
+        tom: sortertePerioder[i].periode.tom,
+        totalBeløp: sortertePerioder[i].beløp,
+      };
+    }
+  }
+
+  // Ikke glem å legge til den siste gruppen
+  gruppert.push(nåværendeGruppe);
+
+  return gruppert;
+}
