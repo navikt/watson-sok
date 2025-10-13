@@ -9,7 +9,7 @@ import {
 import { Alert, Skeleton, Timeline } from "@navikt/ds-react";
 
 import { differenceInDays, toDate } from "date-fns";
-import { use } from "react";
+import { use, useMemo } from "react";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import type { Ytelse } from "~/routes/oppslag/schemas";
 import { formatterDato } from "~/utils/date-utils";
@@ -41,6 +41,14 @@ const YtelserPanelMedData = ({ promise }: StønaderPanelMedDataProps) => {
   const ytelser = use(promise);
   const harIngenYtelser = !ytelser || ytelser.length === 0;
 
+  const ytelserMedGruppertePerioder = useMemo(() => {
+    if (!ytelser) return [];
+    return ytelser.map((ytelse) => ({
+      ...ytelse,
+      gruppertePerioder: grupperSammenhengendePerioder(ytelse.perioder),
+    }));
+  }, [ytelser]);
+
   return (
     <PanelContainer title="Ytelser">
       {harIngenYtelser ? (
@@ -49,18 +57,14 @@ const YtelserPanelMedData = ({ promise }: StønaderPanelMedDataProps) => {
         </Alert>
       ) : (
         <Timeline>
-          {ytelser.map((ytelse) => {
-            const groupedPeriods = grupperSammenhengendePerioder(
-              ytelse.perioder,
-            );
-
+          {ytelserMedGruppertePerioder.map((ytelse) => {
             return (
               <Timeline.Row
                 key={ytelse.stonadType}
                 label={ytelse.stonadType}
                 icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
               >
-                {groupedPeriods.map((groupedPeriod, index) => {
+                {ytelse.gruppertePerioder.map((groupedPeriod, index) => {
                   const fomDate = toDate(groupedPeriod.fom);
                   const tomDate = toDate(groupedPeriod.tom);
                   const fomFormatert = formatterDato(groupedPeriod.fom);
