@@ -48,10 +48,14 @@ const ArbeidsforholdPanelMedData = ({
     [arbeidsforhold],
   );
 
-  // Sortér nyeste start først
-  sammenslåtteArbeidsforhold.sort((a, b) =>
-    a.start > b.start ? -1 : a.start < b.start ? 1 : 0,
-  );
+  // Sortér løpende arbeidsforhold først, deretter etter nyeste start
+  sammenslåtteArbeidsforhold.sort((a, b) => {
+    // Løpende arbeidsforhold først
+    if (a.løpende && !b.løpende) return -1;
+    if (!a.løpende && b.løpende) return 1;
+    // Deretter sortér etter nyeste start
+    return a.start > b.start ? -1 : a.start < b.start ? 1 : 0;
+  });
 
   if (sammenslåtteArbeidsforhold.length === 0) {
     return (
