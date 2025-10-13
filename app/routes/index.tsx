@@ -22,6 +22,7 @@ export default function LandingPage() {
   return (
     <PageBlock width="text" gutters>
       <title>Oppslag Bruker 1.0</title>
+      <meta name="description" content="Oppslag på personer i Nav" />
       <div>
         <Heading level="1" size="medium" align="start" className="mt-4" spacing>
           <FileIcon title="a11y-title" className="inline-block mr-2" />
