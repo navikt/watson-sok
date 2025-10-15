@@ -47,6 +47,7 @@ npm run dev
 ### Tilgjengelige scripts
 
 - `npm run dev` - Starter utviklingsserveren
+- `npm run dev:local` - Starter utviklingsserveren, men kjører mot lokal backend
 - `npm run build` - Bygger applikasjonen for produksjon
 - `npm run start` - Starter produksjonsserveren
 - `npm run lint` - Kjører ESLint
@@ -63,6 +64,21 @@ Prosjektet bruker:
 - **ESLint** for kodekvalitet
 - **Prettier** for kodeformattering
 - **TypeScript** for typesikkerhet
+
+### Kjøring mot lokal backend
+
+For å kjøre mot lokal backend, må du gjøre et par ting:
+
+1. Gå til https://azure-token-generator.intern.dev.nav.no/api/obo?aud=dev-gcp.holmes.nav-persondata-api og logg inn med en Trygdeetaten bruker.
+2. Kopier "access_token"-tokenet og lim inn i .env-filen din. (Dette har en utløpsdato, så dette må du gjøre av og til)
+3. Start backenden (se [backendens README](https://github.com/navikt/nav-persondata-api/blob/main/README.md) fil for hvordan man gjør det)
+4. Start frontenden med `npm run dev:local`
+5. Sett opp port forwarding til 7164 via `k9s`
+6. Logg inn via `nais login` ([se her](https://doc.nais.io/operate/cli/how-to/install/) for hvordan du installerer nais-cli)
+7. Installer k9s med `brew install k9s`
+8. Kjør `kubectl use-context dev-gcp` ([se her](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/#install-with-homebrew-on-macos) for hvordan du setter opp `kubectl`)
+9. Kjør `k9s`, trykk `ctrl+f` og endre porten til `7164`
+10. Nå skal du kunne gjøre kall fra lokal frontend til lokal backend 🎉
 
 ## Deployment
 

@@ -43,7 +43,13 @@ export default function OppslagBruker() {
         </Alert>
       ) : data.eksistensOgTilgang === "error" ? (
         <Alert variant="error" className="w-fit">
-          En feil oppstod ved henting av bruker
+          <Heading level="2" size="small" spacing>
+            En feil oppstod ved henting av bruker
+          </Heading>
+          <BodyShort spacing>
+            Systemet vårt har litt problemer akkurat nå. Vennligst prøv igjen
+            senere.
+          </BodyShort>
           <Button onClick={() => navigate(RouteConfig.INDEX)}>
             Gå til forsiden
           </Button>

@@ -10,5 +10,6 @@
   "CLUSTER": "dev-gcp",
   "TENANT": "trygdeetaten.no",
   "FARO_URL": "https://telemetry.ekstern.dev.nav.no/collect",
-  "UMAMI_SITE_ID": "2a620987-f8b6-43ee-aaed-2845f515b8a1"
+  "UMAMI_SITE_ID": "2a620987-f8b6-43ee-aaed-2845f515b8a1",
+  "BACKEND_API_URL": "http://nav-persondata-api"
 }
