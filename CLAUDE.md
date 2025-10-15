@@ -95,6 +95,7 @@ The application uses React 19's Suspense with async components for progressive d
 3. **Progressive Loading**: Each panel can load independently with its own loading/error states
 
 Example from `app/routes/oppslag/index.tsx`:
+
 ```typescript
 export async function loader({ request }: LoaderFunctionArgs) {
   const ident = await hentIdentFraSession(request);
@@ -148,6 +149,7 @@ See `.env.example` for the full list.
 ### Security Headers
 
 Security headers are configured in `app/root.tsx` in the `headers()` export, including:
+
 - Content Security Policy (CSP)
 - X-Frame-Options (DENY)
 - Strict-Transport-Security (HSTS)
@@ -156,6 +158,7 @@ Security headers are configured in `app/root.tsx` in the `headers()` export, inc
 ### Theme Management
 
 Dark/light mode is managed via:
+
 - `app/features/darkside/ThemeCookie.tsx` - Cookie-based theme persistence
 - `app/features/darkside/ThemeContext.tsx` - React context for theme state
 
