@@ -4,7 +4,7 @@ kind: Application
 metadata:
   labels:
     team: holmes
-  name: oppslag-bruker-frontend
+  name: oppslag-bruker-frontend-demo
   namespace: holmes
 
 spec:
