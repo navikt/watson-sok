@@ -63,7 +63,7 @@ export function headers() {
       "style-src 'self' 'unsafe-inline'; " +
       "img-src 'self' data: https:; " +
       "font-src 'self' data: cdn.nav.no; " +
-      `connect-src 'self' telemetry.ekstern.nav.no telemetry.ekstern.dev.nav.no; ` +
+      `connect-src 'self' telemetry.nav.no telemetry.ekstern.dev.nav.no; ` +
       "frame-ancestors 'none'; " +
       "base-uri 'self'; " +
       "form-action 'self'",
