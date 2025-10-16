@@ -10,7 +10,12 @@ import {
   type OppslagBrukerRespons,
 } from "./schemas";
 
-type EksistensOgTilgangResponse = "ok" | "forbidden" | "not found" | "error";
+type EksistensOgTilgangResponse =
+  | "ok"
+  | "partial"
+  | "forbidden"
+  | "not found"
+  | "error";
 
 /** Sjekker eksistens og tilgang til en gitt personident */
 export async function sjekkEksistensOgTilgang(
@@ -43,6 +48,8 @@ export async function sjekkEksistensOgTilgang(
     switch (response.status) {
       case 200:
         return "ok";
+      case 206:
+        return "partial";
       case 403:
         return "forbidden";
       case 404:

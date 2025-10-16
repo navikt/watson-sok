@@ -54,11 +54,25 @@ export default function OppslagBruker() {
             Gå til forsiden
           </Button>
         </Alert>
-      ) : data.eksistensOgTilgang === "ok" ? (
+      ) : data.eksistensOgTilgang === "ok" ||
+        data.eksistensOgTilgang === "partial" ? (
         <>
           <div className="mb-4">
             <OverskriftPanel promise={data.personopplysninger} />
           </div>
+          {data.eksistensOgTilgang === "partial" && (
+            <Alert variant="info" className="w-fit mb-4">
+              <Heading level="2" size="small" spacing>
+                Begrenset tilgang
+              </Heading>
+              <BodyShort spacing>
+                Du har kun tilgang til å se deler av informasjonen for denne
+                brukeren. Det kan være fordi personen er skjermet, bor på
+                fortrolig adresse eller andre grunner. Ta kontakt med nærmeste
+                leder om du har behov for å se mer informasjon.
+              </BodyShort>
+            </Alert>
+          )}
           <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
             <BrukerinformasjonPanel promise={data.personopplysninger} />
             <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
@@ -82,7 +96,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   }
 
   const eksistensOgTilgang = await sjekkEksistensOgTilgang(ident, request);
-  if (eksistensOgTilgang === "ok") {
+  if (eksistensOgTilgang === "ok" || eksistensOgTilgang === "partial") {
     return {
       eksistensOgTilgang,
       personopplysninger: hentPersonopplysninger(ident, request),
