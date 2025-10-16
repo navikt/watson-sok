@@ -60,5 +60,5 @@ spec:
       value: {{FARO_URL}}
     - name: UMAMI_SITE_ID
       value: {{UMAMI_SITE_ID}}
-    - name: BACKEND_API_URL
-      value: {{BACKEND_API_URL}}
+    - name: ENVIRONMENT
+      value: {{ENVIRONMENT}}

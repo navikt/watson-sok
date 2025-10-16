@@ -1,5 +1,5 @@
 import type z from "zod";
-import { env, shouldUseMockData } from "~/config/env.server";
+import { BACKEND_API_URL, skalBrukeMockdata } from "~/config/env.server";
 import { getMockedResponseByFødselsnummer } from "~/routes/oppslag/mock.server";
 import { getBackendOboToken } from "~/utils/access-token";
 import {
@@ -22,24 +22,21 @@ export async function sjekkEksistensOgTilgang(
   ident: string,
   request: Request,
 ): Promise<EksistensOgTilgangResponse> {
-  if (shouldUseMockData) {
+  if (skalBrukeMockdata) {
     return "ok";
   }
 
   const oboToken = await getBackendOboToken(request);
 
   try {
-    const response = await fetch(
-      `${env.BACKEND_API_URL}/oppslag/personbruker`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${oboToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ident }),
+    const response = await fetch(`${BACKEND_API_URL}/oppslag/personbruker`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${oboToken}`,
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({ ident }),
+    });
 
     console.info(
       `Bruker med ident ${ident.substring(0, 6)} ***** slått opp med status ${response.status}`,
@@ -123,7 +120,7 @@ async function gjørOppslagApiRequest<T>(
 ): Promise<T> {
   const { endepunkt, schema, ekstraherFraMock } = config;
 
-  if (shouldUseMockData) {
+  if (skalBrukeMockdata) {
     try {
       const mockedResponse = await getMockedResponseByFødselsnummer(ident);
       return ekstraherFraMock(mockedResponse);
@@ -136,7 +133,7 @@ async function gjørOppslagApiRequest<T>(
   try {
     const oboToken = await getBackendOboToken(request);
 
-    const response = await fetch(`${env.BACKEND_API_URL}${endepunkt}`, {
+    const response = await fetch(`${BACKEND_API_URL}${endepunkt}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${oboToken}`,

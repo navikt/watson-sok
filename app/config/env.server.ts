@@ -4,11 +4,13 @@ const envSchema = z.object({
   NODE_ENV: z
     .enum(["development", "test", "production"])
     .describe("The mode the app is running in"),
+  ENVIRONMENT: z
+    .enum(["local-backend", "local-dev", "local-mock", "demo", "dev", "prod"])
+    .describe("The environment the app is running in"),
   CLUSTER: z.string().describe("The cluster the app is running in"),
   FARO_URL: z.string().describe("The URL of the Faro instance"),
   UMAMI_SITE_ID: z.string().describe("The ID of the Umami instance"),
   IDENT_SESSION_SECRET: z.string().describe("The secret for the ident session"),
-  BACKEND_API_URL: z.string().describe("The URL of the backend API"),
   DEVELOPMENT_OAUTH_TOKEN: z
     .string()
     .optional()
@@ -27,8 +29,16 @@ if (!envResult.success) {
 }
 
 export const env = envResult.data;
+export const BACKEND_API_URL =
+  env.ENVIRONMENT === "local-backend"
+    ? "http://localhost:8080"
+    : env.ENVIRONMENT === "local-dev"
+      ? "https://nav-persondata-api.intern.dev.nav.no"
+      : "http://nav-persondata-api";
+
 export const isProd = env.NODE_ENV === "production";
 export const isTest = env.NODE_ENV === "test";
 export const isDev = env.NODE_ENV === "development";
-export const shouldUseMockData =
-  isDev && !env.BACKEND_API_URL.includes("localhost:8080");
+
+export const skalBrukeMockdata =
+  env.ENVIRONMENT === "local-mock" || env.ENVIRONMENT === "demo";
