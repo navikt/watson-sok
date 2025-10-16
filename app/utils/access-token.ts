@@ -5,7 +5,7 @@ import {
   validateToken,
 } from "@navikt/oasis";
 import { redirect } from "react-router";
-import { env, isDev } from "~/config/env.server";
+import { env, isDev, skalBrukeMockdata } from "~/config/env.server";
 
 interface LoggedInUserResponse {
   preferredUsername: string;
@@ -23,6 +23,14 @@ type GetLoggedInUserProps = {
 export async function getLoggedInUser({
   request,
 }: GetLoggedInUserProps): Promise<LoggedInUserResponse> {
+  if (skalBrukeMockdata) {
+    return {
+      preferredUsername: "test",
+      name: "Saks Behandlersen",
+      navIdent: "S133337",
+      token: "test",
+    };
+  }
   const token = await getValidToken(request);
 
   const parseResult = parseAzureUserToken(token);
