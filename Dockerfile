@@ -15,14 +15,11 @@ COPY --from=dependencies /app/node_modules ./node_modules
 RUN npm run build
 
 FROM node:24-alpine
-ARG INCLUDE_MOCKS=false
 WORKDIR /app
 COPY package*.json ./
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY --from=builder /app/build ./build
-RUN if [ "$INCLUDE_MOCKS" = "true" ]; then \
-    cp -r /app/routes/oppslag/mocks ./app/routes/oppslag/mocks; \
-    fi
+COPY --from=builder /app/app/routes/oppslag/mocks ./app/routes/oppslag/mocks
 
 ENV NODE_ENV=production
 EXPOSE 3000
