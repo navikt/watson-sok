@@ -20,12 +20,9 @@ WORKDIR /app
 COPY package*.json ./
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY --from=builder /app/build ./build
-
-# Conditionally copy mock files if INCLUDE_MOCKS is true
 RUN if [ "$INCLUDE_MOCKS" = "true" ]; then \
-    mkdir -p ./app/routes/oppslag && \
-    cp -r /app/app/routes/oppslag/mocks ./app/routes/oppslag/mocks || true; \
-fi
+    cp -r /app/routes/oppslag/mocks ./app/routes/oppslag/mocks; \
+    fi
 
 ENV NODE_ENV=production
 EXPOSE 3000
