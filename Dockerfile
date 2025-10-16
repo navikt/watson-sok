@@ -19,6 +19,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY --from=builder /app/build ./build
+COPY --from=builder /app/app/routes/oppslag/mocks ./app/routes/oppslag/mocks
 
 ENV NODE_ENV=production
 EXPOSE 3000

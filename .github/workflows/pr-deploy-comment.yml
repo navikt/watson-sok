@@ -14,7 +14,8 @@ jobs:
         uses: actions/github-script@v8
         with:
           script: |
-            const workflowId = 'manual-deploy-to-dev.yml';
+            const devWorkflowId = 'manual-deploy-to-dev.yml';
+            const demoWorkflowId = 'deploy-to-demo.yml';
 
             // Fetch existing comments
             const comments = await github.rest.issues.listComments({
@@ -25,15 +26,17 @@ jobs:
 
             // Check if we already have a deploy comment
             const hasAlreadyAddedDeployComment = comments.data.some(comment => 
-              comment.body.includes('🚀 Deploy til dev-miljø')
+              comment.body.includes('🚀 Deploy')
             );
 
             if (!hasAlreadyAddedDeployComment) {
-              const comment = `## 🚀 Deploy til dev-miljø
+              const comment = `## 🚀 Deploy
 
-              Vil du deploye denne branchen til dev-miljøet?
+              Vil du deploye denne branchen noe sted?
 
               [![Deploy til dev](https://img.shields.io/badge/Deploy-til_dev-blue?style=for-the-badge)](${context.payload.repository.html_url}/actions/workflows/${workflowId})
+              
+              [![Deploy til demo](https://img.shields.io/badge/Deploy-demo-green?style=for-the-badge)](${context.payload.repository.html_url}/actions/workflows/${workflowId})
 
               Klikk på knappen over, trykk "Run workflow", velg branchen "${context.payload.pull_request.head.ref}" og trykk på den grønne knappen.`;
 
