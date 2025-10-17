@@ -154,9 +154,7 @@ const InntektPanelMedData = ({
                           />
                         )}
                         {r.arbeidsgiver === "Nav" && (
-                          <span className="inline-flex items-center gap-2">
-                            {mapYtelsestypeTilIkon(r.lønnstype ?? "")}
-                          </span>
+                          {mapYtelsestypeTilIkon(r.lønnstype ?? "")}
                         )}
                         <span>
                           {storFørsteBokstav(formatÅrMåned(r.periode))}
