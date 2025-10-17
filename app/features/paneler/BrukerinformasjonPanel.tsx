@@ -1,5 +1,6 @@
 import { Alert, CopyButton, Skeleton } from "@navikt/ds-react";
 import { Fragment, use } from "react";
+import { unstable_useRoute } from "react-router";
 import type { PersonInformasjon } from "~/routes/oppslag/schemas";
 import { formatterAdresse } from "~/utils/adresse-utils";
 import { tilFulltNavn } from "~/utils/navn-utils";
@@ -32,8 +33,9 @@ const BrukerinformasjonPanelMedData = ({
   promise,
 }: BrukerinformasjonPanelMedDataProps) => {
   const personopplysninger = use(promise);
+  const { loaderData: rootData } = unstable_useRoute("root");
 
-  if (!personopplysninger) {
+  if (!personopplysninger || !rootData) {
     return (
       <PanelContainer
         title="Brukerinformasjon"
@@ -55,7 +57,10 @@ const BrukerinformasjonPanelMedData = ({
   return (
     <PanelContainer
       title="Brukerinformasjon"
-      link={{ href: "https://modia.nav.no", beskrivelse: "Historikk" }}
+      link={{
+        href: `${rootData.envs.modiaUrl}/person/oversikt`,
+        beskrivelse: "Historikk",
+      }}
     >
       <dl className="grid sm:grid-cols-1 md:grid-cols-[1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7">
         <dt>Navn</dt>
