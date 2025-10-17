@@ -1,11 +1,3 @@
-import {
-  BabyWrappedIcon,
-  BriefcaseClockIcon,
-  FeedingBottleIcon,
-  HospitalIcon,
-  HouseHeartIcon,
-  NokIcon,
-} from "@navikt/aksel-icons";
 import { Alert, Skeleton, Timeline } from "@navikt/ds-react";
 
 import { differenceInDays, toDate } from "date-fns";
@@ -15,6 +7,7 @@ import type { Ytelse } from "~/routes/oppslag/schemas";
 import { formatterDato } from "~/utils/date-utils";
 import { formatterBeløp } from "~/utils/number-utils";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
+import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
 
 type GruppertPeriode = {
   fom: string;
@@ -22,11 +15,11 @@ type GruppertPeriode = {
   totalBeløp: number;
 };
 
-type StonadOversiktProps = {
+type YtelserOversiktProps = {
   promise: Promise<Ytelse[] | null>;
 };
 
-export function YtelserPanel({ promise }: StonadOversiktProps) {
+export function YtelserPanel({ promise }: YtelserOversiktProps) {
   return (
     <ResolvingComponent loadingFallback={<YtelserPanelSkeleton />}>
       <YtelserPanelMedData promise={promise} />
@@ -34,10 +27,10 @@ export function YtelserPanel({ promise }: StonadOversiktProps) {
   );
 }
 
-type StønaderPanelMedDataProps = {
+type YtelserPanelMedDataProps = {
   promise: Promise<Ytelse[] | null>;
 };
-const YtelserPanelMedData = ({ promise }: StønaderPanelMedDataProps) => {
+const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   const ytelser = use(promise);
   const harIngenYtelser = !ytelser || ytelser.length === 0;
 
@@ -116,23 +109,6 @@ const YtelserPanelSkeleton = () => {
       </div>
     </PanelContainerSkeleton>
   );
-};
-
-const mapYtelsestypeTilIkon = (stønadtype: string) => {
-  switch (stønadtype) {
-    case "Sykepenger":
-      return <HospitalIcon />;
-    case "Uføretrygd":
-      return <HouseHeartIcon />;
-    case "Arbeidsavklaringspenger":
-      return <BriefcaseClockIcon />;
-    case "Foreldrepenger":
-      return <FeedingBottleIcon />;
-    case "Svangerskapspenger":
-      return <BabyWrappedIcon />;
-    default:
-      return <NokIcon />;
-  }
 };
 
 /**

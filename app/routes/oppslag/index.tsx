@@ -81,7 +81,10 @@ export default function OppslagBruker() {
           <YtelserPanel promise={data.ytelser} />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <InntektPanel promise={data.inntektInformasjon} />
+            <InntektPanel
+              promise={data.inntektInformasjon}
+              ytelserPromise={data.ytelser}
+            />
           </div>
         </>
       ) : null}

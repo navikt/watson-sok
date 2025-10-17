@@ -1,8 +1,7 @@
 import { ExclamationmarkTriangleFillIcon } from "@navikt/aksel-icons";
-import { Alert, Skeleton, Table } from "@navikt/ds-react";
-import { isValid as isValidDate, parse } from "date-fns";
-import { use, type CSSProperties } from "react";
-import type { InntektInformasjon } from "~/routes/oppslag/schemas";
+import { Alert, Skeleton, Switch, Table } from "@navikt/ds-react";
+import { use, useMemo, useState, type CSSProperties } from "react";
+import type { InntektInformasjon, Ytelse } from "~/routes/oppslag/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
 import {
   formatterBeløp,
@@ -12,6 +11,7 @@ import {
 import { camelCaseTilNorsk, storFørsteBokstav } from "~/utils/string-utils";
 import { ResolvingComponent } from "../async/ResolvingComponent";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
+import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
 
 // Highlight-stil for celler i rad med flere versjoner
 const warnStyle: CSSProperties = {
@@ -19,35 +19,60 @@ const warnStyle: CSSProperties = {
   boxShadow: "inset 0 0 0 1px var(--a-border-warning-subtle)",
 };
 
-type InntektPanelProps = { promise: Promise<InntektInformasjon | null> };
-export function InntektPanel({ promise }: InntektPanelProps) {
+type InntektPanelProps = {
+  promise: Promise<InntektInformasjon | null>;
+  ytelserPromise: Promise<Ytelse[] | null>;
+};
+export function InntektPanel({ promise, ytelserPromise }: InntektPanelProps) {
   return (
     <ResolvingComponent loadingFallback={<InntektPanelSkeleton />}>
-      <InntektPanelMedData promise={promise} />
+      <InntektPanelMedData promise={promise} ytelserPromise={ytelserPromise} />
     </ResolvingComponent>
   );
 }
 
 type InntektPanelMedDataProps = {
   promise: Promise<InntektInformasjon | null>;
+  ytelserPromise: Promise<Ytelse[] | null>;
 };
-const InntektPanelMedData = ({ promise }: InntektPanelMedDataProps) => {
+const InntektPanelMedData = ({
+  promise,
+  ytelserPromise,
+}: InntektPanelMedDataProps) => {
   const inntektInformasjon = use(promise);
-  const alle = inntektInformasjon?.lønnsinntekt ?? [];
+  const ytelser = use(ytelserPromise);
+  const [visYtelser, setVisYtelser] = useState(false);
 
-  // Siste 3 år (36 mnd)
-  const nå = new Date();
-  const cutoff = new Date(nå.getFullYear(), nå.getMonth() - 36, 1);
-
-  const rader = alle
-    .filter((r) => {
-      const dato = parse(r.periode ?? "", "yyyy-MM", new Date());
-      return isValidDate(dato) && dato >= cutoff;
-    })
-    .sort((a, b) =>
-      (a.periode ?? "").localeCompare(b.periode ?? "", "nb", { numeric: true }),
-    )
-    .reverse();
+  const rader = useMemo(() => {
+    const nå = new Date();
+    const cutoff = new Date(nå.getFullYear(), nå.getMonth() - 36, 1);
+    const inntekterFraAareg = inntektInformasjon?.lønnsinntekt ?? [];
+    const ytelserFraNav =
+      ytelser?.flatMap((ytelse) =>
+        ytelse.perioder.map((periode) => ({
+          arbeidsgiver: "Nav",
+          lønnstype: ytelse.stonadType,
+          antall: null,
+          periode: periode.periode.fom.substring(0, 7),
+          harFlereVersjoner: false,
+          beløp: periode.beløp,
+        })),
+      ) || [];
+    const inntekterTilMapping = visYtelser
+      ? [...ytelserFraNav, ...inntekterFraAareg]
+      : inntekterFraAareg;
+    return inntekterTilMapping
+      .filter((r) => {
+        const dato = new Date(`${r.periode}-01`);
+        return !Number.isNaN(dato.getTime()) && dato >= cutoff;
+      })
+      .sort((a, b) =>
+        (a.periode ?? "").localeCompare(b.periode ?? "", "nb", {
+          numeric: true,
+        }),
+      )
+      .reverse();
+  }, [inntektInformasjon?.lønnsinntekt, ytelser, visYtelser]);
 
   const erTom = rader.length === 0;
 
@@ -66,6 +91,17 @@ const InntektPanelMedData = ({ promise }: InntektPanelMedDataProps) => {
             Rader markert i gult og med varselikon har flere versjoner i
             A-ordningen.
           </Alert>
+          {ytelser && ytelser.length > 0 && (
+            <div className="flex justify-end py-2 pr-2">
+              <Switch
+                checked={visYtelser}
+                onChange={() => setVisYtelser(!visYtelser)}
+                position="right"
+              >
+                Vis ytelser fra Nav
+              </Switch>
+            </div>
+          )}
           <Table size="medium">
             <Table.Header>
               <Table.Row>
@@ -116,6 +152,11 @@ const InntektPanelMedData = ({ promise }: InntektPanelMedDataProps) => {
                             }}
                             fontSize="1.125rem"
                           />
+                        )}
+                        {r.arbeidsgiver === "Nav" && (
+                          <span className="inline-flex items-center gap-2">
+                            {mapYtelsestypeTilIkon(r.lønnstype ?? "")}
+                          </span>
                         )}
                         <span>
                           {storFørsteBokstav(formatÅrMåned(r.periode))}
