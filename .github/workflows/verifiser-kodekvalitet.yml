@@ -1,4 +1,4 @@
-name: Verifiser
+name: Verifiser kodekvalitet
 
 on:
   push:
