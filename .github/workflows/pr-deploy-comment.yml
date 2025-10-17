@@ -34,9 +34,9 @@ jobs:
 
               Vil du deploye denne branchen noe sted?
 
-              [![Deploy til dev](https://img.shields.io/badge/Deploy-til_dev-blue?style=for-the-badge)](${context.payload.repository.html_url}/actions/workflows/${workflowId})
+              [![Deploy til dev-miljø](https://img.shields.io/badge/Deploy-til_dev-blue?style=for-the-badge)](${context.payload.repository.html_url}/actions/workflows/${devWorkflowId})
               
-              [![Deploy til demo](https://img.shields.io/badge/Deploy-demo-green?style=for-the-badge)](${context.payload.repository.html_url}/actions/workflows/${workflowId})
+              [![Deploy til demo-miljø](https://img.shields.io/badge/Deploy-til_demo-green?style=for-the-badge)](${context.payload.repository.html_url}/actions/workflows/${demoWorkflowId})
 
               Klikk på knappen over, trykk "Run workflow", velg branchen "${context.payload.pull_request.head.ref}" og trykk på den grønne knappen.`;
 
