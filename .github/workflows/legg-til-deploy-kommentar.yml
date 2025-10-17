@@ -1,4 +1,4 @@
-name: Legg til deploy-knapp i PR
+name: Legg til deploy-knapper
 on:
   pull_request:
     types: [opened, reopened, synchronize]
@@ -14,8 +14,8 @@ jobs:
         uses: actions/github-script@v8
         with:
           script: |
-            const devWorkflowId = 'manual-deploy-to-dev.yml';
-            const demoWorkflowId = 'deploy-to-demo.yml';
+            const devWorkflowId = 'deploy-til-dev.yml';
+            const demoWorkflowId = 'deploy-til-demo.yml';
 
             // Fetch existing comments
             const comments = await github.rest.issues.listComments({
