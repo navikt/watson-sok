@@ -1,13 +1,9 @@
-import { useRouteLoaderData } from "react-router";
-import type { loader as rootLoader } from "~/root";
+import { unstable_useRoute } from "react-router";
 
 export function useUser() {
-  const rootLoaderData = useRouteLoaderData<typeof rootLoader>("root");
-  if (!rootLoaderData) {
-    throw new Error("Root loader data not found");
-  }
-  if (!rootLoaderData.user) {
+  const rootLoaderData = unstable_useRoute("root");
+  if (!rootLoaderData?.loaderData?.user) {
     throw new Error("User not found");
   }
-  return rootLoaderData.user;
+  return rootLoaderData.loaderData.user;
 }

@@ -45,7 +45,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return {
     user,
     initialTheme,
-    envs: { isProd, faroUrl: env.FARO_URL, umamiSiteId: env.UMAMI_SITE_ID },
+    envs: {
+      isProd,
+      faroUrl: env.FARO_URL,
+      umamiSiteId: env.UMAMI_SITE_ID,
+      modiaUrl: env.MODIA_URL,
+    },
   };
 }
 
