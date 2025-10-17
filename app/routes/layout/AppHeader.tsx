@@ -46,7 +46,7 @@ export function AppHeader() {
         role="search"
         method="post"
         action={RouteConfig.INDEX}
-        className="flex items-center"
+        className="items-center hidden md:flex"
       >
         <Search
           ref={searchInputRef}

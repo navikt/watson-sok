@@ -73,7 +73,7 @@ export default function OppslagBruker() {
               </BodyShort>
             </Alert>
           )}
-          <HGrid gap="space-24" columns={{ xs: 1, sm: 2, md: 2 }}>
+          <HGrid gap="space-24" columns={{ xs: 1, md: 2 }}>
             <BrukerinformasjonPanel promise={data.personopplysninger} />
             <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
           </HGrid>
