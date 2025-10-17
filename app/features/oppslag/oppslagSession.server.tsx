@@ -1,18 +1,20 @@
 import { createCookieSessionStorage } from "react-router";
 import { env } from "~/config/env.server";
 
-const { getSession, commitSession, destroySession } =
-  createCookieSessionStorage<IdentSessionData, IdentFlashData>({
-    cookie: {
-      name: "ident",
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      secrets: [env.IDENT_SESSION_SECRET],
-      sameSite: "lax",
-      maxAge: 60 * 60, // 1 hour
-      path: "/",
-    },
-  });
+const { getSession, commitSession } = createCookieSessionStorage<
+  IdentSessionData,
+  IdentFlashData
+>({
+  cookie: {
+    name: "ident",
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    secrets: [env.IDENT_SESSION_SECRET],
+    sameSite: "lax",
+    maxAge: 60 * 60, // 1 hour
+    path: "/",
+  },
+});
 
 export async function lagreIdentPåSession(ident: string, request: Request) {
   const session = await getSession(request.headers.get("Cookie"));
@@ -28,11 +30,6 @@ export async function lagreIdentPåSession(ident: string, request: Request) {
 export async function hentIdentFraSession(request: Request) {
   const session = await getSession(request.headers.get("Cookie"));
   return session.get("ident") ?? null;
-}
-
-export async function slettIdentFraSession(request: Request) {
-  const session = await getSession(request.headers.get("Cookie"));
-  return destroySession(session);
 }
 
 type IdentSessionData = {
