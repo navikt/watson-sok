@@ -41,3 +41,11 @@ export function formatterDato(isoDate: string): string {
     return isoDate;
   }
 }
+
+export function forskjellIDager(dato1: string | Date, dato2: string | Date) {
+  const date1 = new Date(dato1);
+  const date2 = new Date(dato2);
+  return Math.floor(
+    Math.abs(date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24),
+  );
+}
