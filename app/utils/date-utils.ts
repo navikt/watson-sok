@@ -42,10 +42,23 @@ export function formatterDato(isoDate: string): string {
   }
 }
 
-export function forskjellIDager(dato1: string | Date, dato2: string | Date) {
-  const date1 = new Date(dato1);
-  const date2 = new Date(dato2);
+/**
+ * Kalkulerer hvor mange hele dater det er mellom to datoer
+ *
+ * Datoene man sender inn kan være ISO-timestamps, eller datoobjekter.
+ *
+ * @example
+ * ```tsx
+ * forskjellIDager("2025-01-01", "2025-01-02") // 1
+ * forskjellIDager("2025-01-01", new Date("2025-01-02")) // 1
+ * forskjellIDager(new Date("2025-01-01"), "2025-01-02") // 1
+ * forskjellIDager(new Date("2025-01-01"), new Date("2025-01-02")) // 1
+ * ```
+ */
+export function forskjellIDager(fom: string | Date, tom: string | Date) {
+  const fomDato = new Date(fom);
+  const tomDato = new Date(tom);
   return Math.floor(
-    Math.abs(date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24),
+    Math.abs(fomDato.getTime() - tomDato.getTime()) / (1000 * 60 * 60 * 24),
   );
 }
