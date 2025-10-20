@@ -1,10 +1,9 @@
 import { Alert, Skeleton, Timeline } from "@navikt/ds-react";
 
-import { differenceInDays, toDate } from "date-fns";
 import { use, useMemo } from "react";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import type { Ytelse } from "~/routes/oppslag/schemas";
-import { formatterDato } from "~/utils/date-utils";
+import { formatterDato, forskjellIDager } from "~/utils/date-utils";
 import { formatterBeløp } from "~/utils/number-utils";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
@@ -57,13 +56,13 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                 label={ytelse.stonadType}
                 icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
               >
-                {ytelse.gruppertePerioder.map((groupedPeriod, index) => {
-                  const fomDate = toDate(groupedPeriod.fom);
-                  const tomDate = toDate(groupedPeriod.tom);
-                  const fomFormatert = formatterDato(groupedPeriod.fom);
-                  const tomFormatert = formatterDato(groupedPeriod.tom);
+                {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
+                  const fomDate = new Date(gruppertPeriode.fom);
+                  const tomDate = new Date(gruppertPeriode.tom);
+                  const fomFormatert = formatterDato(gruppertPeriode.fom);
+                  const tomFormatert = formatterDato(gruppertPeriode.tom);
                   const beløpFormatert = formatterBeløp(
-                    groupedPeriod.totalBeløp,
+                    gruppertPeriode.totalBeløp,
                     0,
                   );
 
@@ -136,9 +135,9 @@ function grupperSammenhengendePerioder(
   };
 
   for (let i = 1; i < sortertePerioder.length; i++) {
-    const forrigeSlutt = toDate(nåværendeGruppe.tom);
-    const nåværendeStart = toDate(sortertePerioder[i].periode.fom);
-    const dagerMellom = differenceInDays(nåværendeStart, forrigeSlutt);
+    const forrigeSlutt = new Date(nåværendeGruppe.tom);
+    const nåværendeStart = new Date(sortertePerioder[i].periode.fom);
+    const dagerMellom = forskjellIDager(forrigeSlutt, nåværendeStart);
 
     // Hvis periodene er mindre enn 45 dager fra hverandre, utvid den nåværende gruppen
     if (dagerMellom < 45) {

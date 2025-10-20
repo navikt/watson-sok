@@ -60,20 +60,3 @@ export function formatterFødselsnummer(fødselsnummer: string | null): string {
 
   return fødselsnummer.slice(0, 6) + " " + fødselsnummer.slice(6);
 }
-
-/**
- * Formatterer et tall til en norsk sum
- *
- * @param sum - Summen som skal formateres
- * @returns Formattert sum
- */
-export function formatterSum(sum: number | null): string {
-  if (!sum) {
-    return "–";
-  }
-
-  return sum.toLocaleString("nb-NO", {
-    style: "currency",
-    currency: "NOK",
-  });
-}

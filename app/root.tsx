@@ -22,6 +22,7 @@ import {
 } from "./features/darkside/ThemeCookie";
 import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
+import { AnalyticsTag } from "./utils/analytics";
 import { initFaro } from "./utils/observability";
 
 export default function Root() {
@@ -32,7 +33,7 @@ export default function Root() {
     }
   }, [envs.isProd, envs.faroUrl]);
   return (
-    <HtmlRamme initialTheme={initialTheme}>
+    <HtmlRamme initialTheme={initialTheme} umamiSiteId={envs.umamiSiteId}>
       <Outlet />
     </HtmlRamme>
   );
@@ -80,13 +81,13 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   console.error(error);
   if (isRouteErrorResponse(error) && error.status === 404) {
     return (
-      <HtmlRamme>
+      <HtmlRamme umamiSiteId="">
         <PageNotFound />
       </HtmlRamme>
     );
   }
   return (
-    <HtmlRamme>
+    <HtmlRamme umamiSiteId="">
       <InternalServerError />
     </HtmlRamme>
   );
@@ -95,8 +96,13 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 type HtmlRammeProps = {
   children: React.ReactNode;
   initialTheme?: Theme;
+  umamiSiteId: string;
 };
-function HtmlRamme({ children, initialTheme = "light" }: HtmlRammeProps) {
+function HtmlRamme({
+  children,
+  initialTheme = "light",
+  umamiSiteId,
+}: HtmlRammeProps) {
   return (
     <html lang="nb-no">
       <head>
@@ -104,6 +110,7 @@ function HtmlRamme({ children, initialTheme = "light" }: HtmlRammeProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {umamiSiteId && <AnalyticsTag sporingId={umamiSiteId} />}
       </head>
       <body className="flex flex-col min-h-screen">
         <FaroErrorBoundary>

@@ -54,6 +54,7 @@ npm run dev
 - `npm run typecheck` - Kjører TypeScript typesjekk
 - `npm run prettier` - Sjekker Prettier formattering
 - `npm run prettier:fix` - Fikser Prettier formattering
+- `npm run unused` - Sjekker om du har ubrukt kode eller avhengigheter
 
 ## Utvikling
 
@@ -64,6 +65,7 @@ Prosjektet bruker:
 - **ESLint** for kodekvalitet
 - **Prettier** for kodeformattering
 - **TypeScript** for typesikkerhet
+- **Knip** for sjekking av ubrukt kode og avhengigheter
 
 ### Kjøring mot lokal backend
 

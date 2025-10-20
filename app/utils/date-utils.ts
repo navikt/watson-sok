@@ -41,3 +41,24 @@ export function formatterDato(isoDate: string): string {
     return isoDate;
   }
 }
+
+/**
+ * Kalkulerer hvor mange hele dater det er mellom to datoer
+ *
+ * Datoene man sender inn kan være ISO-timestamps, eller datoobjekter.
+ *
+ * @example
+ * ```tsx
+ * forskjellIDager("2025-01-01", "2025-01-02") // 1
+ * forskjellIDager("2025-01-01", new Date("2025-01-02")) // 1
+ * forskjellIDager(new Date("2025-01-01"), "2025-01-02") // 1
+ * forskjellIDager(new Date("2025-01-01"), new Date("2025-01-02")) // 1
+ * ```
+ */
+export function forskjellIDager(fom: string | Date, tom: string | Date) {
+  const fomDato = new Date(fom);
+  const tomDato = new Date(tom);
+  return Math.floor(
+    Math.abs(fomDato.getTime() - tomDato.getTime()) / (1000 * 60 * 60 * 24),
+  );
+}

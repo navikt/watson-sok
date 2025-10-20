@@ -1,7 +1,3 @@
-export function formatterHeltall(tall: number): string {
-  return tall.toLocaleString("nb-NO");
-}
-
 export function formatterDesimaltall(
   tall: number,
   minimumFractionDigits = 2,
