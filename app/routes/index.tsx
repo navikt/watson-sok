@@ -24,7 +24,7 @@ export default function LandingPage() {
       <title>Oppslag Bruker 1.0</title>
       <meta name="description" content="Oppslag på personer i Nav" />
       <div>
-        <Heading level="1" size="medium" align="start" className="mt-4" spacing>
+        <Heading level="2" size="medium" align="start" className="mt-4" spacing>
           <FileIcon title="a11y-title" className="inline-block mr-2" />
           Oppslag på bruker i Nav
         </Heading>
@@ -34,7 +34,7 @@ export default function LandingPage() {
         </BodyShort>
 
         <Alert variant="info">
-          <Heading level="2" size="small" spacing>
+          <Heading level="3" size="small" spacing>
             Tjenestelig behov
           </Heading>
           Det forutsettes at man har tjenestelig behov til grunn for å gjøre

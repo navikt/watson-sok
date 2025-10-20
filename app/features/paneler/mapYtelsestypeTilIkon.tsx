@@ -10,16 +10,16 @@ import {
 export const mapYtelsestypeTilIkon = (stønadtype: string): React.ReactNode => {
   switch (stønadtype) {
     case "Sykepenger":
-      return <HospitalIcon />;
+      return <HospitalIcon aria-hidden={true} />;
     case "Uføretrygd":
-      return <HouseHeartIcon />;
+      return <HouseHeartIcon aria-hidden={true} />;
     case "Arbeidsavklaringspenger":
-      return <BriefcaseClockIcon />;
+      return <BriefcaseClockIcon aria-hidden={true} />;
     case "Foreldrepenger":
-      return <FeedingBottleIcon />;
+      return <FeedingBottleIcon aria-hidden={true} />;
     case "Svangerskapspenger":
-      return <BabyWrappedIcon />;
+      return <BabyWrappedIcon aria-hidden={true} />;
     default:
-      return <NokIcon />;
+      return <NokIcon aria-hidden={true} />;
   }
 };

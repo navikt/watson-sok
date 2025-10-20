@@ -70,7 +70,7 @@ const ArbeidsforholdPanelMedData = ({
       title="Arbeidsforhold"
       link={{ href: "https://aareg.nav.no", beskrivelse: "Historikk" }}
     >
-      <div className="mt-4 max-h-[500px] overflow-y-scroll">
+      <div className="mt-4 max-h-[500px] overflow-y-scroll" tabIndex={0}>
         <Table size="medium" stickyHeader={true}>
           <Table.Header>
             <Table.Row>
@@ -145,7 +145,12 @@ const ArbeidsforholdPanelSkeleton = () => {
         <Table.Header>
           <Table.Row>
             {kolonner.map((_, idx) => (
-              <Table.HeaderCell key={idx} textSize="small" scope="col">
+              <Table.HeaderCell
+                key={idx}
+                textSize="small"
+                scope="col"
+                aria-hidden={true}
+              >
                 <Skeleton variant="text" width="60%" />
               </Table.HeaderCell>
             ))}
@@ -155,7 +160,7 @@ const ArbeidsforholdPanelSkeleton = () => {
           {rader.map((_, idx) => (
             <Table.Row key={idx}>
               {kolonner.map((_, idx) => (
-                <Table.DataCell key={idx} textSize="small">
+                <Table.DataCell key={idx} textSize="small" aria-hidden={true}>
                   <Skeleton variant="text" width="100%" />
                 </Table.DataCell>
               ))}
