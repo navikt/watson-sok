@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Set up Node.js
+      - name: Sett opp Node.js
         uses: actions/setup-node@v5
         with:
           node-version: "23"
@@ -25,17 +25,20 @@ jobs:
           registry-url: "https://npm.pkg.github.com"
           scope: "@navikt"
 
-      - name: Install dependencies
+      - name: Installer avhengigheter
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
-      - name: Run ESLint
+      - name: Kjør ESLint
         run: npm run lint
 
-      - name: Run Prettier
+      - name: Kjør Prettier
         run: npm run prettier
 
-      - name: Run TypeScript type checking
+      - name: Kjør typesjekk
         run: npm run typecheck
+
+      - name: Kjør sjekk for ubrukt kode
+        run: npm run unused
