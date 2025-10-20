@@ -1,6 +1,5 @@
 import { Alert, Skeleton, Timeline } from "@navikt/ds-react";
 
-import { toDate } from "date-fns";
 import { use, useMemo } from "react";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import type { Ytelse } from "~/routes/oppslag/schemas";
@@ -136,8 +135,8 @@ function grupperSammenhengendePerioder(
   };
 
   for (let i = 1; i < sortertePerioder.length; i++) {
-    const forrigeSlutt = toDate(nåværendeGruppe.tom);
-    const nåværendeStart = toDate(sortertePerioder[i].periode.fom);
+    const forrigeSlutt = new Date(nåværendeGruppe.tom);
+    const nåværendeStart = new Date(sortertePerioder[i].periode.fom);
     const dagerMellom = forskjellIDager(forrigeSlutt, nåværendeStart);
 
     // Hvis periodene er mindre enn 45 dager fra hverandre, utvid den nåværende gruppen
