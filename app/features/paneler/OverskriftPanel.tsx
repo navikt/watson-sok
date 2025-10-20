@@ -37,7 +37,7 @@ const OverskriftPanelMedData = ({ promise }: OverskriftPanelProps) => {
 
 const OverskriftPanelSkeleton = () => {
   return (
-    <Heading level="1" size="large">
+    <Heading level="1" size="large" as="div">
       <Skeleton variant="text" width="100%">
         Navn Navnesen (xx)
       </Skeleton>

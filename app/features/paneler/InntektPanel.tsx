@@ -86,7 +86,7 @@ const InntektPanelMedData = ({
           Ingen lønnsutbetalinger funnet for de siste 3 årene.
         </Alert>
       ) : (
-        <div className="mt-4 max-h-[500px] overflow-y-scroll">
+        <div className="mt-4 max-h-[500px] overflow-y-scroll" tabIndex={0}>
           <Alert variant="warning" className="mb-2">
             Rader markert i gult og med varselikon har flere versjoner i
             A-ordningen.
@@ -202,7 +202,12 @@ const InntektPanelSkeleton = () => {
         <Table.Header>
           <Table.Row>
             {kolonner.map((_, idx) => (
-              <Table.HeaderCell key={idx} textSize="small" scope="col">
+              <Table.HeaderCell
+                key={idx}
+                textSize="small"
+                scope="col"
+                aria-hidden={true}
+              >
                 <Skeleton variant="text" width="60%" />
               </Table.HeaderCell>
             ))}
@@ -212,7 +217,7 @@ const InntektPanelSkeleton = () => {
           {rader.map((_, idx) => (
             <Table.Row key={idx}>
               {kolonner.map((_, idx) => (
-                <Table.DataCell key={idx} textSize="small">
+                <Table.DataCell key={idx} textSize="small" aria-hidden={true}>
                   <Skeleton variant="text" width="100%" />
                 </Table.DataCell>
               ))}
