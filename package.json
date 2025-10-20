@@ -13,7 +13,10 @@
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "unused": "knip"
+    "unused": "knip",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed"
   },
   "dependencies": {
     "@grafana/faro-react": "^1.19.0",
@@ -38,6 +41,8 @@
     "zod": "^4.1.7"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.56.1",
     "@react-router/dev": "^7.9.4",
     "@tailwindcss/vite": "^4.1.13",
     "@types/node": "^24.8.1",
