@@ -3,6 +3,8 @@ name: Ende-til-ende-tester
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
 
 permissions:
   contents: read
@@ -35,6 +37,13 @@ jobs:
 
       - name: Kjør E2E-tester
         run: npm run test:e2e
+        env:
+          CLUSTER: dev-gcp
+          FARO_URL: https://telemetry.ekstern.dev.nav.no/collect
+          UMAMI_SITE_ID: dummy-site-id
+          IDENT_SESSION_SECRET: dummy-secret
+          ENVIRONMENT: local-mock
+          MODIA_URL: https://modiapersonoversikt.intern.dev.nav.no
 
       - name: Last opp test rapport
         uses: actions/upload-artifact@v4
