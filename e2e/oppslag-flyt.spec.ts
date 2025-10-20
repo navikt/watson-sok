@@ -37,9 +37,7 @@ test.describe("Oppslag-flyt", () => {
       await søkefelt.fill(testFnr);
 
       // Trykk på søkeknappen
-      const søkeknapp = mainContent
-        .getByRole("button", { name: /søk/i })
-        .or(mainContent.getByRole("button", { name: /søk/i }));
+      const søkeknapp = mainContent.getByRole("button", { name: /søk/i });
       await søkeknapp.click();
     });
 
@@ -142,9 +140,7 @@ test.describe("Oppslag-flyt", () => {
       );
       await søkefelt.fill("123"); // For kort
 
-      const søkeknapp = mainContent
-        .getByRole("button", { name: /søk/i })
-        .or(mainContent.locator('button[type="submit"]'));
+      const søkeknapp = mainContent.getByRole("button", { name: /søk/i });
       await søkeknapp.click();
     });
 
