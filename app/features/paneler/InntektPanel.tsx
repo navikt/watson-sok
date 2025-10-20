@@ -77,10 +77,7 @@ const InntektPanelMedData = ({
   const erTom = rader.length === 0;
 
   return (
-    <PanelContainer
-      title="Inntekt"
-      link={{ href: "https://aareg.nav.no", beskrivelse: "Historikk" }}
-    >
+    <PanelContainer title="Inntekt">
       {erTom ? (
         <Alert variant="info">
           Ingen lønnsutbetalinger funnet for de siste 3 årene.

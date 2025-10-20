@@ -66,10 +66,7 @@ const ArbeidsforholdPanelMedData = ({
   }
 
   return (
-    <PanelContainer
-      title="Arbeidsforhold"
-      link={{ href: "https://aareg.nav.no", beskrivelse: "Historikk" }}
-    >
+    <PanelContainer title="Arbeidsforhold">
       <div className="mt-4 max-h-[500px] overflow-y-scroll" tabIndex={0}>
         <Table size="medium" stickyHeader={true}>
           <Table.Header>
