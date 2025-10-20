@@ -65,7 +65,7 @@ export default function LandingPage() {
           </Search>
         </Form>
         <BodyShort spacing>
-          <Link href="https://pdl-web.intern.nav.no/sokperson" target="_blank">
+          <Link href="https://pdl-web.intern.nav.no/sokperson">
             Har du ikke fødsels- eller D-nummer?
           </Link>
         </BodyShort>
