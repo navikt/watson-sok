@@ -50,6 +50,7 @@ npm run dev
 - `npm run dev:local` - Starter utviklingsserveren, men kjører mot lokal backend
 - `npm run build` - Bygger applikasjonen for produksjon
 - `npm run start` - Starter produksjonsserveren
+- `npm run test:e2e` – Kjører ende-til-ende tester
 - `npm run lint` - Kjører ESLint
 - `npm run typecheck` - Kjører TypeScript typesjekk
 - `npm run prettier` - Sjekker Prettier formattering
@@ -57,6 +58,17 @@ npm run dev
 - `npm run unused` - Sjekker om du har ubrukt kode eller avhengigheter
 
 ## Utvikling
+
+## Antatt programvare
+
+Du må ha nyeste LTS-versjonen av Node og NPM installert, i tillegg til browserne til `playwright` (for å kjøre tester).
+
+```bash
+brew install node #installerer node om du ikke har det allerede
+npm i -g n # installerer en node version manager for deg
+n lts # installerer nyeste LTS (long time support)-versjon av Node og NPM
+npx playwright install # installerer headless browsers for Playwright
+```
 
 ### Kodekvalitet
 
@@ -66,6 +78,7 @@ Prosjektet bruker:
 - **Prettier** for kodeformattering
 - **TypeScript** for typesikkerhet
 - **Knip** for sjekking av ubrukt kode og avhengigheter
+- **Playwright** for å kjøre ende-til-ende tester
 
 ### Kjøring mot lokal backend
 
