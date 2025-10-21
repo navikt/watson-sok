@@ -125,7 +125,6 @@ function HtmlRamme({
     `,
           }}
         />
-
       </head>
       <body className="flex flex-col min-h-screen">
         <FaroErrorBoundary>
