@@ -14,18 +14,18 @@
     },
     "statsborgerskap": ["SYRIA"],
     "navn": {
-      "fornavn": ".",
-      "mellomnavn": "..",
-      "etternavn": "ETTERNAVN"
+      "fornavn": "DONALD",
+      "mellomnavn": null,
+      "etternavn": "DUCK"
     },
     "adresse": {
       "norskAdresse": {
-        "adressenavn": "SA#",
-        "husnummer": "18",
+        "adressenavn": "Apalveien",
+        "husnummer": "111",
         "husbokstav": "A",
         "postnummer": "3937",
         "kommunenummer": "4001",
-        "poststed": "3937"
+        "poststed": "ANDEBY"
       },
       "utenlandskAdresse": null
     },
