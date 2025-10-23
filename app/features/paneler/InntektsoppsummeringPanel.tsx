@@ -202,7 +202,7 @@ const InntektsoppsummeringPanelMedData = ({
 
   return (
     <PanelContainer title="Inntektsoppsummering">
-      <div className="flex justify-end mb-4 absolute top-4 right-4">
+      <div className="flex justify-end mb-4 static md:absolute md:top-4 md:right-4">
         <Select
           label="Velg tidsperiode"
           hideLabel

@@ -8,6 +8,7 @@ export function AnalyticsTags({ sporingId }: AnalyticsTagProps) {
   useEffect(() => {
     mixpanel.init("f5e4c5b5414a87e94d8d4182e4c458c2", {
       autocapture: true,
+      track_pageview: true,
       record_sessions_percent: 100,
       api_host: "https://api-eu.mixpanel.com",
     });
