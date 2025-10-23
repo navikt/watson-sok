@@ -1,5 +1,7 @@
 name: Deploy til demo-miljø
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
