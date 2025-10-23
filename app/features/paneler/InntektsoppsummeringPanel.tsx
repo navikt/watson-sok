@@ -81,9 +81,7 @@ const InntektsoppsummeringPanelMedData = ({
   promise,
 }: InntektsoppsummeringPanelMedDataProps) => {
   const inntektInformasjon = use(promise);
-  const [antallMåneder, setAntallMåneder] = useState<number>(
-    DEFAULT_ANTALL_MÅNEDER,
-  );
+  const [antallMåneder, setAntallMåneder] = useState(DEFAULT_ANTALL_MÅNEDER);
 
   const aggregert = useMemo<AggregertResultat | null>(() => {
     if (!inntektInformasjon) {
@@ -204,7 +202,7 @@ const InntektsoppsummeringPanelMedData = ({
 
   return (
     <PanelContainer title="Inntektsoppsummering">
-      <div className="flex justify-end mb-2">
+      <div className="flex justify-end mb-4 absolute top-4 right-4">
         <Select
           label="Velg tidsperiode"
           hideLabel
@@ -212,11 +210,7 @@ const InntektsoppsummeringPanelMedData = ({
           value={String(antallMåneder)}
           onChange={(event) => {
             const valgt = Number(event.target.value);
-            if (
-              ANTALL_MÅNEDER_ALTERNATIVER.includes(
-                valgt as (typeof ANTALL_MÅNEDER_ALTERNATIVER)[number],
-              )
-            ) {
+            if (erGyldigAntallMåneder(valgt)) {
               setAntallMåneder(valgt);
             }
           }}
@@ -320,6 +314,14 @@ const InntektsoppsummeringPanelMedData = ({
     </PanelContainer>
   );
 };
+
+function erGyldigAntallMåneder(
+  antallMåneder: number,
+): antallMåneder is (typeof ANTALL_MÅNEDER_ALTERNATIVER)[number] {
+  return ANTALL_MÅNEDER_ALTERNATIVER.includes(
+    antallMåneder as (typeof ANTALL_MÅNEDER_ALTERNATIVER)[number],
+  );
+}
 
 const StatistikkKort = ({
   label,
