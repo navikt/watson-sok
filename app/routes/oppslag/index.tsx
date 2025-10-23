@@ -11,6 +11,7 @@ import { hentIdentFraSession } from "~/features/oppslag/oppslagSession.server";
 import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
 import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
 import { InntektPanel } from "~/features/paneler/InntektPanel";
+import { InntektsoppsummeringPanel } from "~/features/paneler/InntektsoppsummeringPanel";
 import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
 import { YtelserPanel } from "~/features/paneler/YtelserPanel";
 import {
@@ -85,6 +86,7 @@ export default function OppslagBruker() {
               promise={data.inntektInformasjon}
               ytelserPromise={data.ytelser}
             />
+            <InntektsoppsummeringPanel promise={data.inntektInformasjon} />
           </div>
         </>
       ) : null}
