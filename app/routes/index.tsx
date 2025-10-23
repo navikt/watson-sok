@@ -1,5 +1,5 @@
 import { FileIcon } from "@navikt/aksel-icons";
-import { Alert, BodyShort, Heading, Search } from "@navikt/ds-react";
+import { Alert, BodyShort, Heading, Link, Search } from "@navikt/ds-react";
 import "~/globals.css";
 
 import { PageBlock } from "@navikt/ds-react/Page";
@@ -42,7 +42,7 @@ export default function LandingPage() {
         </Alert>
 
         <Form
-          className="mt-12"
+          className="mt-12 mb-2"
           method="post"
           role="search"
           onSubmit={() => sporHendelse("søk landingsside", {})}
@@ -64,6 +64,11 @@ export default function LandingPage() {
             />
           </Search>
         </Form>
+        <BodyShort spacing>
+          <Link href="https://pdl-web.intern.nav.no/sokperson">
+            Har du ikke fødsels- eller D-nummer?
+          </Link>
+        </BodyShort>
       </div>
     </PageBlock>
   );
