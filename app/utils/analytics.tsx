@@ -1,10 +1,12 @@
 import mixpanel from "mixpanel-browser";
 import { useEffect } from "react";
+import { useUser } from "~/features/auth/useUser";
 type AnalyticsTagProps = {
   sporingId: string;
 };
 
 export function AnalyticsTags({ sporingId }: AnalyticsTagProps) {
+  const { navIdent } = useUser();
   useEffect(() => {
     mixpanel.init("f5e4c5b5414a87e94d8d4182e4c458c2", {
       autocapture: true,
@@ -12,7 +14,10 @@ export function AnalyticsTags({ sporingId }: AnalyticsTagProps) {
       record_sessions_percent: 100,
       api_host: "https://api-eu.mixpanel.com",
     });
-  }, []);
+    if (navIdent) {
+      mixpanel.identify(navIdent);
+    }
+  }, [navIdent]);
   return (
     <script
       defer
@@ -38,6 +43,7 @@ export function sporHendelse(
   if (typeof window !== "undefined" && window.umami) {
     window.umami.track(hendelse, data);
   }
+  mixpanel.track(hendelse, data);
 }
 
 type Hendelse = "søk landingsside";
