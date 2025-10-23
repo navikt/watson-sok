@@ -15,6 +15,15 @@ Holmes Oppslag Bruker is a React Router v7 application for looking up users in t
 - **Observability**: Grafana Faro
 - **Deployment**: NAIS on GCP
 
+## FOLLOW THESE RULES
+- Write obvious code, not clever code
+- When implementing a new function, make sure to add elaborate jsdoc comments with at least one example.
+- Package new files by feature in the `features` folder
+- Write all code and comments in Norwegian
+- Ensure that the code you implement is accessible (a11y)
+- Ensure that you don't introduce any security concerns
+- Ask me clarifying questions until you're 95% confident you can complete the task successfully.
+
 ## Development Commands
 
 ```bash
