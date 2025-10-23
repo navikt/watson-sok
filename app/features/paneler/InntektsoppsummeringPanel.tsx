@@ -16,9 +16,9 @@ import {
   formatterProsent,
   konverterTilTall,
 } from "~/utils/number-utils";
+import { camelCaseTilNorsk } from "~/utils/string-utils";
 import { ResolvingComponent } from "../async/ResolvingComponent";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
-import { camelCaseTilNorsk } from "~/utils/string-utils";
 
 type InntektsoppsummeringPanelProps = {
   promise: Promise<InntektInformasjon | null>;
@@ -284,11 +284,7 @@ const InntektsoppsummeringPanelMedData = ({
                       {formatterProsent(lønnstype.andel)}
                     </Table.DataCell>
                     <Table.DataCell align="right">
-                      {formatterDesimaltall(
-                        lønnstype.antallUtbetalinger,
-                        0,
-                        0,
-                      )}
+                      {formatterDesimaltall(lønnstype.antallUtbetalinger, 0, 0)}
                     </Table.DataCell>
                   </Table.Row>
                 ))}
