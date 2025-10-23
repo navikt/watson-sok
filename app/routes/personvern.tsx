@@ -23,9 +23,9 @@ export default function Personvern() {
       </BodyLong>
       <BodyLong spacing>
         I tillegg til å journalføre alle søk, lagrer vi også informasjon om
-        hvordan du bruker tjenesten. Dette gjøres for å kvantitativt analysere
-        bruk av tjenesten, slik at vi kan videreutvikle og forbedre den.
-        Eksempler på hva vi samler inn er:
+        hvordan du bruker tjenesten i tjenestene Umami og Mixpanel. Dette gjøres
+        for å kvantitativt analysere bruk av tjenesten, slik at vi kan
+        videreutvikle og forbedre den. Eksempler på hva vi samler inn er:
       </BodyLong>
       <List className="mb-4">
         <ListItem>Hvor i løsningen du slår opp personer fra</ListItem>
@@ -36,10 +36,11 @@ export default function Personvern() {
 
       <BodyLong spacing>
         Om du ikke ønsker at vi samler inn denne bruksinformasjonen, kan du slå
-        på innstillingen &quot;Ikke spor meg&quot; i nettleseren din.
+        på innstillingen &quot;Ikke spor meg&quot; i nettleseren din.{" "}
+        <strong>Vi vil fortsatt loggføre alle søk du gjør.</strong>
       </BodyLong>
       <Heading level="2" size="medium" spacing>
-        Cookies
+        Funksjonelle cookies
       </Heading>
       <BodyLong spacing>
         Løsningen bruker cookies for å holde styr på hvilket tema du har valgt
