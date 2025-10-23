@@ -117,7 +117,35 @@ test.describe("Oppslag-flyt", () => {
       await sjekkTilgjengelighet(page);
     });
 
-    // Steg 9: Siste tilgjengelighetskontroll av hele siden
+    // Steg 9: Verifiser at InntektsoppsummeringPanel vises og fungerer
+    await test.step(
+      "Verifisere at inntektsoppsummeringpanel vises og er universelt utformet",
+      async () => {
+        const panelHeading = page.getByRole("heading", {
+          name: /inntektsoppsummering/i,
+        });
+        await expect(panelHeading).toBeVisible({ timeout: 10000 });
+
+        const periodeVelger = page.getByLabel(/velg tidsperiode/i);
+        await expect(periodeVelger).toBeVisible();
+
+        // Standardverdien skal være 36 måneder (default)
+        await expect(
+          page.getByText(/total inntekt \(siste 36 mnd\)/i),
+        ).toBeVisible();
+
+        // Endre perioden og verifiser at teksten oppdateres
+        await periodeVelger.selectOption("12");
+        await expect(
+          page.getByText(/total inntekt \(siste 12 mnd\)/i),
+        ).toBeVisible();
+
+        // Tilgjengelighetssjekk etter interaksjon
+        await sjekkTilgjengelighet(page);
+      },
+    );
+
+    // Steg 10: Siste tilgjengelighetskontroll av hele siden
     await test.step("Endelig tilgjengelighetskontroll", async () => {
       // Vent litt for å sikre at alt innhold er lastet
       await page.waitForTimeout(1000);
