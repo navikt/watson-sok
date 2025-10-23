@@ -344,7 +344,7 @@ const StatistikkKort = ({
         className="text-2xl font-semibold"
         spacing
         aria-labelledby={labelId}
-        aria-describedby={beskrivelseId}
+        aria-describedby={beskrivelse ? beskrivelseId : undefined}
       >
         {verdi}
       </BodyShort>
