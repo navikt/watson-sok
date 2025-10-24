@@ -100,14 +100,21 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return redirect(RouteConfig.INDEX);
   }
 
-  const eksistensOgTilgang = await sjekkEksistensOgTilgang(ident, request);
+  // Generer en unik nav-call-id for dette oppslaget
+  const navCallId = crypto.randomUUID();
+
+  const eksistensOgTilgang = await sjekkEksistensOgTilgang(
+    ident,
+    request,
+    navCallId,
+  );
   if (eksistensOgTilgang === "ok" || eksistensOgTilgang === "partial") {
     return {
       eksistensOgTilgang,
-      personopplysninger: hentPersonopplysninger(ident, request),
-      arbeidsgiverInformasjon: hentArbeidsforhold(ident, request),
-      inntektInformasjon: hentInntekter(ident, request),
-      ytelser: hentYtelser(ident, request),
+      personopplysninger: hentPersonopplysninger(ident, request, navCallId),
+      arbeidsgiverInformasjon: hentArbeidsforhold(ident, request, navCallId),
+      inntektInformasjon: hentInntekter(ident, request, navCallId),
+      ytelser: hentYtelser(ident, request, navCallId),
     };
   }
   return {
