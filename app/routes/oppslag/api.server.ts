@@ -17,10 +17,27 @@ type EksistensOgTilgangResponse =
   | "not found"
   | "error";
 
-/** Sjekker eksistens og tilgang til en gitt personident */
+/**
+ * Sjekker eksistens og tilgang til en gitt personident
+ *
+ * @param ident - Fødselsnummer eller D-nummer
+ * @param request - Request-objektet for å hente OBO-token
+ * @param navCallId - Unik ID for å korrelere alle API-kall i dette oppslaget
+ * @returns Status for eksistens og tilgang
+ *
+ * @example
+ * ```typescript
+ * const navCallId = crypto.randomUUID();
+ * const tilgang = await sjekkEksistensOgTilgang("12345678901", request, navCallId);
+ * if (tilgang === "ok") {
+ *   // Fortsett med å hente data
+ * }
+ * ```
+ */
 export async function sjekkEksistensOgTilgang(
   ident: string,
   request: Request,
+  navCallId: string,
 ): Promise<EksistensOgTilgangResponse> {
   if (skalBrukeMockdata) {
     return "ok";
@@ -34,12 +51,13 @@ export async function sjekkEksistensOgTilgang(
       headers: {
         Authorization: `Bearer ${oboToken}`,
         "Content-Type": "application/json",
+        "Nav-Call-Id": navCallId,
       },
       body: JSON.stringify({ ident }),
     });
 
     console.info(
-      `Bruker med ident ${ident.substring(0, 6)} ***** slått opp med status ${response.status}`,
+      `Bruker med ident ${ident.substring(0, 6)} ***** slått opp med status ${response.status} (nav-call-id: ${navCallId})`,
     );
 
     switch (response.status) {
@@ -61,8 +79,12 @@ export async function sjekkEksistensOgTilgang(
 }
 
 /** Henter personopplysninger for en gitt ident */
-export async function hentPersonopplysninger(ident: string, request: Request) {
-  return gjørOppslagApiRequest(ident, request, {
+export async function hentPersonopplysninger(
+  ident: string,
+  request: Request,
+  navCallId: string,
+) {
+  return gjørOppslagApiRequest(ident, request, navCallId, {
     endepunkt: "/oppslag/personopplysninger",
     schema: PersonInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.personInformasjon,
@@ -70,8 +92,12 @@ export async function hentPersonopplysninger(ident: string, request: Request) {
 }
 
 /** Henter arbeidsgivere for en gitt ident */
-export async function hentArbeidsforhold(ident: string, request: Request) {
-  return gjørOppslagApiRequest(ident, request, {
+export async function hentArbeidsforhold(
+  ident: string,
+  request: Request,
+  navCallId: string,
+) {
+  return gjørOppslagApiRequest(ident, request, navCallId, {
     endepunkt: "/oppslag/arbeidsforhold",
     schema: ArbeidsgiverInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.arbeidsgiverInformasjon,
@@ -79,8 +105,12 @@ export async function hentArbeidsforhold(ident: string, request: Request) {
 }
 
 /** Henter inntekter for en gitt ident */
-export async function hentInntekter(ident: string, request: Request) {
-  return gjørOppslagApiRequest(ident, request, {
+export async function hentInntekter(
+  ident: string,
+  request: Request,
+  navCallId: string,
+) {
+  return gjørOppslagApiRequest(ident, request, navCallId, {
     endepunkt: "/oppslag/inntekt",
     schema: InntektInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.inntektInformasjon,
@@ -88,8 +118,12 @@ export async function hentInntekter(ident: string, request: Request) {
 }
 
 /** Henter ytelser for en gitt ident */
-export async function hentYtelser(ident: string, request: Request) {
-  return gjørOppslagApiRequest(ident, request, {
+export async function hentYtelser(
+  ident: string,
+  request: Request,
+  navCallId: string,
+) {
+  return gjørOppslagApiRequest(ident, request, navCallId, {
     endepunkt: "/oppslag/stønad",
     schema: YtelserInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.stønader,
@@ -110,12 +144,14 @@ type ApiRequestConfig<T> = {
  *
  * @param ident - Identifikatoren (fødselsnummer etc) man vil slå opp
  * @param request - Det innkommende request-objektet (brukes for å hente ut OBO-token)
+ * @param navCallId - Unik ID for å korrelere alle API-kall i dette oppslaget
  * @param config - Konfigurasjonsobjekt for API-forespørselen
  * @returns Parsede og validerte data fra APIet eller mock
  */
 async function gjørOppslagApiRequest<T>(
   ident: string,
   request: Request,
+  navCallId: string,
   config: ApiRequestConfig<T>,
 ): Promise<T> {
   const { endepunkt, schema, ekstraherFraMock } = config;
@@ -138,6 +174,7 @@ async function gjørOppslagApiRequest<T>(
       headers: {
         Authorization: `Bearer ${oboToken}`,
         "Content-Type": "application/json",
+        "Nav-Call-Id": navCallId,
       },
       body: JSON.stringify({ ident }),
     });
