@@ -23,6 +23,7 @@ import {
 import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { AnalyticsTags } from "./utils/analytics";
+import { hentAlleFeatureFlagg } from "./utils/feature-toggling-utils";
 import { initFaro } from "./utils/observability";
 
 export default function Root() {
@@ -41,6 +42,7 @@ export default function Root() {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = await getLoggedInUser({ request });
+  const featureFlagg = hentAlleFeatureFlagg();
   const cookieValue = await themeCookie.parse(request.headers.get("Cookie"));
   const initialTheme = parseTheme(cookieValue);
   return {
@@ -52,6 +54,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       umamiSiteId: env.UMAMI_SITE_ID,
       modiaUrl: env.MODIA_URL,
     },
+    featureFlagg,
   };
 }
 
