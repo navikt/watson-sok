@@ -1,4 +1,4 @@
-import { Alert, Link, Skeleton, Table } from "@navikt/ds-react";
+import { Alert, Skeleton, Table } from "@navikt/ds-react";
 import { use, useMemo } from "react";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
@@ -104,17 +104,7 @@ const ArbeidsforholdPanelMedData = ({
                     r.løpende ? "border-l-6 border-l-ax-success-500" : undefined
                   }
                 >
-                  {r.organisasjonsnummer ? (
-                    <Link
-                      href={`https://www.proff.no/bransjesøk?q=${r.organisasjonsnummer}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {r.arbeidsgiver}
-                    </Link>
-                  ) : (
-                    r.arbeidsgiver
-                  )}
+                  {r.arbeidsgiver}
                 </Table.HeaderCell>
                 <Table.DataCell className="whitespace-nowrap" textSize="small">
                   {formatÅrMåned(r.start)}
