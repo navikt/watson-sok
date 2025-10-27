@@ -18,6 +18,25 @@ const envSchema = z.object({
     .describe(
       "The OAuth token for the development environment. Is not set in production.",
     ),
+  UNLEASH_SERVER_API_ENV: z
+    .enum(["development", "production"])
+    .describe("The environment of the Unleash instance")
+    .default("development"),
+  UNLEASH_SERVER_API_TYPE: z
+    .string()
+    .describe("What kind of client is being used?")
+    .default("CLIENT"),
+  UNLEASH_SERVER_API_TOKEN: z
+    .string()
+    .describe("Unique API token for the Unleash client"),
+  UNLEASH_SERVER_API_PROJECTS: z
+    .string()
+    .describe("The Unleash project to use")
+    .default("default"),
+  UNLEASH_SERVER_API_URL: z
+    .string()
+    .describe("The URL of the Unleash instance")
+    .default("https://holmes-unleash-api.nav.cloud.nais.io"),
 });
 
 const envResult = envSchema.safeParse(process.env);
