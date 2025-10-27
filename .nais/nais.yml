@@ -31,6 +31,8 @@ spec:
           namespace: holmes
         - application: populasjonstilgangskontroll
           namespace: tilgangsmaskin
+      external:
+        - host: holmes-unleash-api.nav.cloud.nais.io
   image: {{image}}
   port: 3000
   azure:
@@ -51,8 +53,10 @@ spec:
       autoLoginIgnorePaths:
         - /api/health
         - /assets/logos/*
+
   envFrom:
     - secret: oppslag-bruker-frontend
+    - secret: oppslag-bruker-frontend-unleash-api-token
   env:
     - name: CLUSTER
       value: {{CLUSTER}}

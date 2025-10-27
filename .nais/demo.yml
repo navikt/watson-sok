@@ -24,8 +24,10 @@ spec:
     - https://oppslag-bruker-demo.ekstern.dev.nav.no
   image: {{image}}
   port: 3000
+
   envFrom:
     - secret: oppslag-bruker-frontend
+    - secret: oppslag-bruker-frontend-unleash-api-token
   env:
     - name: CLUSTER
       value: dev-gcp
