@@ -103,6 +103,12 @@ For deployment til dev-miljøet, kan du kjøre actionen [Deploy manuelt til dev]
 
 For deployment til produksjon, lag en [ny release](https://github.com/navikt/holmes-oppslag-bruker/releases/new).
 
+### Unleash API tokens
+
+Teamet bruker [Unleash](https://docs.nais.io/services/feature-toggling/) for å styre feature toggling. For at dette skal fungere, trengs det en egen ApiToken-ressurs i Nais, som må deployes på egenhånd hver gang applikasjonen settes opp fra bunnen av i nytt miljø.
+
+For å deploye denne ressursen kan man kjøre [en egen GitHub action](https://github.com/navikt/holmes-oppslag-bruker/actions/workflows/deploy-unleash.yml), hvor man velger miljøet man ønsker å deploye til.
+
 ### Miljøer
 
 - **Produksjon**: https://oppslag-bruker.intern.nav.no
