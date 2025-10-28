@@ -78,7 +78,10 @@ const ArbeidsforholdPanelMedData = ({
 
   return (
     <PanelContainer title="Arbeidsforhold">
-      <div className="mt-4 max-h-[500px] overflow-y-scroll" tabIndex={0}>
+      <div
+        className="mt-4 max-h-[500px] overflow-y-scroll print:max-h-none print:overflow-y-auto"
+        tabIndex={0}
+      >
         <Table size="medium" stickyHeader={true}>
           <Table.Header>
             <Table.Row>
