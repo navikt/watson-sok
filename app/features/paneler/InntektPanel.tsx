@@ -83,7 +83,10 @@ const InntektPanelMedData = ({
           Ingen lønnsutbetalinger funnet for de siste 3 årene.
         </Alert>
       ) : (
-        <div className="mt-4 max-h-[500px] overflow-y-scroll" tabIndex={0}>
+        <div
+          className="mt-4 max-h-[500px] overflow-y-scroll print:max-h-none print:overflow-y-auto"
+          tabIndex={0}
+        >
           <Alert variant="warning" className="mb-2">
             Rader markert i gult og med varselikon har flere versjoner i
             A-ordningen.
