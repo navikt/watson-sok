@@ -20,6 +20,7 @@ import {
   themeCookie,
   type Theme,
 } from "./features/darkside/ThemeCookie";
+import { hentAlleFeatureFlagg } from "./features/feature-toggling/utils.server";
 import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { AnalyticsTags } from "./utils/analytics";
@@ -41,7 +42,10 @@ export default function Root() {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = await getLoggedInUser({ request });
-  const cookieValue = await themeCookie.parse(request.headers.get("Cookie"));
+  const [featureFlagg, cookieValue] = await Promise.all([
+    hentAlleFeatureFlagg(user.navIdent),
+    themeCookie.parse(request.headers.get("Cookie")),
+  ]);
   const initialTheme = parseTheme(cookieValue);
   return {
     user,
@@ -52,6 +56,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       umamiSiteId: env.UMAMI_SITE_ID,
       modiaUrl: env.MODIA_URL,
     },
+    featureFlagg,
   };
 }
 

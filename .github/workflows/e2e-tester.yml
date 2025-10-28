@@ -44,6 +44,11 @@ jobs:
           IDENT_SESSION_SECRET: dummy-secret
           ENVIRONMENT: local-mock
           MODIA_URL: https://modiapersonoversikt.intern.dev.nav.no
+          UNLEASH_SERVER_API_URL: dummy
+          UNLEASH_SERVER_API_TOKEN: dummy
+          UNLEASH_SERVER_API_PROJECTS: default
+          UNLEASH_SERVER_API_TYPE: CLIENT
+          UNLEASH_SERVER_API_ENV: development
 
       - name: Last opp test rapport
         uses: actions/upload-artifact@v4

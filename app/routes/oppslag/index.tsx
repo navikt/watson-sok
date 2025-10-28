@@ -7,6 +7,8 @@ import {
   type MetaArgs,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
+import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
 import { hentIdentFraSession } from "~/features/oppslag/oppslagSession.server";
 import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
 import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
@@ -25,6 +27,9 @@ import {
 export default function OppslagBruker() {
   const data = useLoaderData<typeof loader>();
   const navigate = useNavigate();
+  const visInntektsoppsummeringPanel = useEnkeltFeatureFlagg(
+    FeatureFlagg.INNTEKTSOPPSUMMERING_PANEL,
+  );
 
   return (
     <div className="flex flex-col gap-4 px-4 mt-8">
@@ -86,7 +91,10 @@ export default function OppslagBruker() {
               promise={data.inntektInformasjon}
               ytelserPromise={data.ytelser}
             />
-            <InntektsoppsummeringPanel promise={data.inntektInformasjon} />
+
+            {visInntektsoppsummeringPanel && (
+              <InntektsoppsummeringPanel promise={data.inntektInformasjon} />
+            )}
           </div>
         </>
       ) : null}
