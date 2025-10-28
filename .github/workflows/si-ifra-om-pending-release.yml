@@ -2,7 +2,7 @@ name: Si ifra om pending release på Slack
 
 on:
   schedule:
-    - cron: "0 */6 * * *" # kjør hver 6. time
+    - cron: "37 13 * * 1-5" # kjør kl 13:37 mandag-fredag (kun hverdager)
   workflow_dispatch:
   push:
     branches:
