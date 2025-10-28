@@ -38,7 +38,7 @@ export async function hentAlleFeatureFlagg(
   return unleash.getFeatureToggleDefinitions().reduce(
     (acc, neste) => {
       acc[neste.name as FeatureFlagg] = unleash.isEnabled(neste.name, {
-        usedId: navIdent,
+        userId: navIdent,
       });
       return acc;
     },
