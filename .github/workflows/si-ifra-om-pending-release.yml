@@ -22,7 +22,6 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
           script: |
-            const core = require("@actions/core");
             const { owner, repo } = context.repo;
 
             // 1) Finn siste release (fallback til siste tag hvis ingen release finnes)
