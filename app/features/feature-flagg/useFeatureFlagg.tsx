@@ -15,5 +15,5 @@ function useAlleFeatureFlagg(): Record<FeatureFlagg, boolean> {
 /** Returnerer om ett gitt feature flagg er påskrudd */
 export function useEnkeltFeatureFlagg(feature: FeatureFlagg): boolean {
   const featureFlagg = useAlleFeatureFlagg();
-  return featureFlagg[feature];
+  return featureFlagg[feature] ?? false;
 }

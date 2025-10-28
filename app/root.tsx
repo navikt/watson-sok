@@ -41,9 +41,9 @@ export default function Root() {
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const [user, featureFlagg, cookieValue] = await Promise.all([
-    getLoggedInUser({ request }),
-    hentAlleFeatureFlagg(),
+  const user = await getLoggedInUser({ request });
+  const [featureFlagg, cookieValue] = await Promise.all([
+    hentAlleFeatureFlagg(user.navIdent),
     themeCookie.parse(request.headers.get("Cookie")),
   ]);
   const initialTheme = parseTheme(cookieValue);

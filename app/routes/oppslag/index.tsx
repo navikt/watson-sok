@@ -22,12 +22,13 @@ import {
   hentYtelser,
   sjekkEksistensOgTilgang,
 } from "./api.server";
+import { FeatureFlagg } from "~/utils/feature-toggling-utils";
 
 export default function OppslagBruker() {
   const data = useLoaderData<typeof loader>();
   const navigate = useNavigate();
   const visInntektsoppsummeringPanel = useEnkeltFeatureFlagg(
-    "inntektsoppsummering-panel",
+    FeatureFlagg.INNTEKTSOPPSUMMERING_PANEL,
   );
 
   return (

@@ -1,8 +1,12 @@
 import { startUnleash, Unleash } from "unleash-client";
-import { env } from "~/config/env.server";
+import { env, isDev } from "~/config/env.server";
 
 let unleash: Unleash;
-export async function initialiserUnleash() {
+/** Initialiserer Unleash-singletonen */
+async function initialiserUnleash() {
+  if (unleash) {
+    return;
+  }
   unleash = await startUnleash({
     url: `${env.UNLEASH_SERVER_API_URL}/api`,
     appName: "oppslag-bruker-frontend",
@@ -14,19 +18,27 @@ export async function initialiserUnleash() {
   });
 }
 /** De forskjellige feature-flaggene som kan benyttes */
-export type FeatureFlagg = "inntektsoppsummering-panel";
+export enum FeatureFlagg {
+  INNTEKTSOPPSUMMERING_PANEL = "inntektsoppsummering-panel",
+}
 
 /** Henter alle påskrudde feature-flaggene */
-export async function hentAlleFeatureFlagg(): Promise<
-  Record<FeatureFlagg, boolean>
-> {
-  if (!unleash) {
-    await initialiserUnleash();
+export async function hentAlleFeatureFlagg(
+  navIdent: string,
+): Promise<Record<FeatureFlagg, boolean>> {
+  if (isDev) {
+    return Promise.resolve({
+      [FeatureFlagg.INNTEKTSOPPSUMMERING_PANEL]: true,
+    });
   }
-  return unleash
-    .getFeatureToggleDefinitions()
-    .reduce(
-      (acc, neste) => ({ ...acc, [neste.name]: neste.enabled }),
-      {} as Record<FeatureFlagg, boolean>,
-    );
+  await initialiserUnleash();
+  return unleash.getFeatureToggleDefinitions().reduce(
+    (acc, neste) => {
+      acc[neste.name as FeatureFlagg] = unleash.isEnabled(neste.name, {
+        usedId: navIdent,
+      });
+      return acc;
+    },
+    {} as Record<FeatureFlagg, boolean>,
+  );
 }
