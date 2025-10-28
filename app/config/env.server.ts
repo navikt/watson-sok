@@ -28,7 +28,8 @@ const envSchema = z.object({
     .default("CLIENT"),
   UNLEASH_SERVER_API_TOKEN: z
     .string()
-    .describe("Unique API token for the Unleash client"),
+    .describe("Unique API token for the Unleash client")
+    .optional(),
   UNLEASH_SERVER_API_PROJECTS: z
     .string()
     .describe("The Unleash project to use")

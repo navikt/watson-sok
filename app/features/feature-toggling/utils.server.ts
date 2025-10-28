@@ -8,6 +8,9 @@ async function initialiserUnleash() {
   if (unleash) {
     return;
   }
+  if (!env.UNLEASH_SERVER_API_TOKEN) {
+    throw new Error("UNLEASH_SERVER_API_TOKEN er ikke satt som miljøvariabel.");
+  }
   unleash = await startUnleash({
     url: `${env.UNLEASH_SERVER_API_URL}/api`,
     appName: "oppslag-bruker-frontend",
