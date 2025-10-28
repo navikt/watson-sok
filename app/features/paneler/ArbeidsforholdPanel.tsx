@@ -100,12 +100,8 @@ const ArbeidsforholdPanelMedData = ({
               <Table.HeaderCell textSize="small" scope="col">
                 Yrke
               </Table.HeaderCell>
-              <Table.HeaderCell
-                textSize="small"
-                scope="col"
-                aria-label="Handlinger"
-              >
-                &nbsp;
+              <Table.HeaderCell textSize="small" scope="col">
+                <span className="sr-only">Handlinger</span>
               </Table.HeaderCell>
             </Table.Row>
           </Table.Header>
