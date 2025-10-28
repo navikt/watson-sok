@@ -70,6 +70,7 @@ n lts # installerer nyeste LTS (long time support)-versjon av Node og NPM
 npx playwright install # installerer headless browsers for Playwright
 ```
 
+
 ### Kodekvalitet
 
 Prosjektet bruker:
