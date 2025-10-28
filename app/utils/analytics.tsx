@@ -46,4 +46,7 @@ export function sporHendelse(
   mixpanel.track(hendelse, data);
 }
 
-type Hendelse = "søk landingsside";
+type Hendelse =
+  | "søk landingsside"
+  | "lenke trykket brønnøysundregistrene"
+  | "handlinger for arbeidsforhold åpnet";

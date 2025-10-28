@@ -1,6 +1,17 @@
-import { Alert, Skeleton, Table } from "@navikt/ds-react";
+import {
+  InformationSquareIcon,
+  MenuElipsisVerticalIcon,
+} from "@navikt/aksel-icons";
+import { ActionMenu, Alert, Button, Skeleton, Table } from "@navikt/ds-react";
+import {
+  ActionMenuContent,
+  ActionMenuItem,
+  ActionMenuLabel,
+  ActionMenuTrigger,
+} from "@navikt/ds-react/ActionMenu";
 import { use, useMemo } from "react";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/schemas";
+import { sporHendelse } from "~/utils/analytics";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterProsent } from "~/utils/number-utils";
 import { storFørsteBokstav } from "~/utils/string-utils";
@@ -89,6 +100,9 @@ const ArbeidsforholdPanelMedData = ({
               <Table.HeaderCell textSize="small" scope="col">
                 Yrke
               </Table.HeaderCell>
+              <Table.HeaderCell textSize="small" scope="col">
+                <span className="sr-only">Handlinger</span>
+              </Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -120,6 +134,41 @@ const ArbeidsforholdPanelMedData = ({
                 </Table.DataCell>
                 <Table.DataCell textSize="small">
                   {mapYrke(r.yrke ?? "–")}
+                </Table.DataCell>
+                <Table.DataCell textSize="small">
+                  <ActionMenu>
+                    <ActionMenuTrigger
+                      onToggle={(open) => {
+                        if (open) {
+                          sporHendelse("handlinger for arbeidsforhold åpnet");
+                        }
+                      }}
+                    >
+                      <Button
+                        variant="tertiary"
+                        size="small"
+                        aria-label={`Handlinger for ${r.arbeidsgiver}`}
+                        title={`Handlinger for ${r.arbeidsgiver}`}
+                      >
+                        <MenuElipsisVerticalIcon aria-hidden={true} />
+                      </Button>
+                    </ActionMenuTrigger>
+                    <ActionMenuContent>
+                      <ActionMenuLabel>Relevante lenker</ActionMenuLabel>
+                      <ActionMenuItem
+                        icon={<InformationSquareIcon />}
+                        as="a"
+                        href={`https://virksomhet.brreg.no/nb/oppslag/enheter/${r.organisasjonsnummer}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onSelect={() => {
+                          sporHendelse("lenke trykket brønnøysundregistrene");
+                        }}
+                      >
+                        Brønnøysundregistrene
+                      </ActionMenuItem>
+                    </ActionMenuContent>
+                  </ActionMenu>
                 </Table.DataCell>
               </Table.Row>
             ))}
