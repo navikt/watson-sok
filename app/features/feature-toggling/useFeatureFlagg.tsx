@@ -1,5 +1,5 @@
 import { unstable_useRoute } from "react-router";
-import type { FeatureFlagg } from "~/utils/feature-toggling-utils";
+import { FeatureFlagg } from "./featureflagg";
 
 /**
  * Henter alle påskrudde feature-flagg
@@ -7,7 +7,7 @@ import type { FeatureFlagg } from "~/utils/feature-toggling-utils";
 function useAlleFeatureFlagg(): Record<FeatureFlagg, boolean> {
   const { loaderData } = unstable_useRoute("root");
   if (!loaderData?.featureFlagg) {
-    return {} as Record<FeatureFlagg, boolean>;
+    throw new Error("Feature flagg ikke funnet i root-loader dataen.");
   }
   return loaderData.featureFlagg;
 }

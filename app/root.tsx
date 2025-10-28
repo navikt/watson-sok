@@ -20,10 +20,10 @@ import {
   themeCookie,
   type Theme,
 } from "./features/darkside/ThemeCookie";
+import { hentAlleFeatureFlagg } from "./features/feature-toggling/utils.server";
 import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { AnalyticsTags } from "./utils/analytics";
-import { hentAlleFeatureFlagg } from "./utils/feature-toggling-utils";
 import { initFaro } from "./utils/observability";
 
 export default function Root() {

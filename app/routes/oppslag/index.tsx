@@ -7,7 +7,8 @@ import {
   type MetaArgs,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
-import { useEnkeltFeatureFlagg } from "~/features/feature-flagg/useFeatureFlagg";
+import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
 import { hentIdentFraSession } from "~/features/oppslag/oppslagSession.server";
 import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
 import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
@@ -22,7 +23,6 @@ import {
   hentYtelser,
   sjekkEksistensOgTilgang,
 } from "./api.server";
-import { FeatureFlagg } from "~/utils/feature-toggling-utils";
 
 export default function OppslagBruker() {
   const data = useLoaderData<typeof loader>();

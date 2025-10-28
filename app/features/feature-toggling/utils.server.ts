@@ -1,5 +1,6 @@
 import { startUnleash, Unleash } from "unleash-client";
-import { env, isDev } from "~/config/env.server";
+import { env, isProd } from "~/config/env.server";
+import { FeatureFlagg } from "./featureflagg";
 
 let unleash: Unleash;
 /** Initialiserer Unleash-singletonen */
@@ -17,19 +18,21 @@ async function initialiserUnleash() {
     },
   });
 }
-/** De forskjellige feature-flaggene som kan benyttes */
-export enum FeatureFlagg {
-  INNTEKTSOPPSUMMERING_PANEL = "inntektsoppsummering-panel",
-}
-
 /** Henter alle påskrudde feature-flaggene */
 export async function hentAlleFeatureFlagg(
   navIdent: string,
 ): Promise<Record<FeatureFlagg, boolean>> {
-  if (isDev) {
-    return Promise.resolve({
-      [FeatureFlagg.INNTEKTSOPPSUMMERING_PANEL]: true,
-    });
+  if (!isProd) {
+    // Hvis vi kjører lokalt eller tester, returnerer vi alle feature flaggene som påskrudd
+    return Promise.resolve(
+      Object.values(FeatureFlagg).reduce(
+        (acc, key) => {
+          acc[key as FeatureFlagg] = true;
+          return acc;
+        },
+        {} as Record<FeatureFlagg, boolean>,
+      ),
+    );
   }
   await initialiserUnleash();
   return unleash.getFeatureToggleDefinitions().reduce(
