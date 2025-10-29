@@ -56,9 +56,6 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     }));
   }, [ytelser]);
 
-  const diff = forskjellIDager(nåværendeVindu.start, nåværendeVindu.slutt);
-  console.log(`viser data for ${diff} dager`);
-
   return (
     <PanelContainer title="Ytelser">
       {harIngenYtelser ? (
