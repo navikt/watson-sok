@@ -162,10 +162,16 @@ const ArbeidsforholdPanelMedData = ({
                         <ActionMenuItem
                           icon={<ClipboardIcon />}
                           onSelect={() => {
-                            navigator.clipboard.writeText(
-                              r.organisasjonsnummer,
-                            );
-                            sporHendelse("organisasjonsnummer kopiert");
+                            try {
+                              navigator.clipboard.writeText(
+                                r.organisasjonsnummer,
+                              );
+                              sporHendelse("organisasjonsnummer kopiert");
+                            } catch (error) {
+                              sporHendelse(
+                                "organisasjonsnummer-kopiering feilet",
+                              );
+                            }
                           }}
                         >
                           Kopier org.nr.
