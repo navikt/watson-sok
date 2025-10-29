@@ -17,10 +17,12 @@ export function beregnAlderFraFødselsEllerDnummer(
   if (erDnummer) {
     dag -= 40;
   }
-  if (år < 25 && erBarn) {
+  const nåværendeÅr = Number(new Date().getFullYear().toString().slice(2));
+
+  if (år < nåværendeÅr && erBarn) {
     år += 2000;
   } else {
-    år += 1900;
+    år += nåværendeÅr - 100;
   }
 
   const dato = new Date(år, måned - 1, dag);
