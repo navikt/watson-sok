@@ -118,6 +118,10 @@ For å deploye denne ressursen kan man kjøre [en egen GitHub action](https://gi
 
 For testbrukere i dev, sjekk [Confluence](https://confluence.adeo.no/spaces/THLMS/pages/675780711/Testmilj%C3%B8er).
 
+## 🐣 Legg til trace-logging for et gitt søk
+
+Om du ønsker å legge til trace-logging for et gitt søk, legg til "?" etter personidenten du ønsker å søke på. Om du vanligvis vil søke på "12345612345", kan du da søke etter "12345612345?", og dette vil slå på trace-logging for det ene søket.
+
 ## Lisens
 
 Nav sin egen versjon av MIT. Se [LICENSE](LICENSE) filen for detaljer.

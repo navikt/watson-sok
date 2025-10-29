@@ -17,12 +17,16 @@ type EksistensOgTilgangResponse =
   | "not found"
   | "error";
 
+type BackendKallSignatur = {
+  ident: string;
+  request: Request;
+  navCallId: string;
+  traceLogging: boolean;
+};
+
 /**
  * Sjekker eksistens og tilgang til en gitt personident
  *
- * @param ident - Fødselsnummer eller D-nummer
- * @param request - Request-objektet for å hente OBO-token
- * @param navCallId - Unik ID for å korrelere alle API-kall i dette oppslaget
  * @returns Status for eksistens og tilgang
  *
  * @example
@@ -34,11 +38,12 @@ type EksistensOgTilgangResponse =
  * }
  * ```
  */
-export async function sjekkEksistensOgTilgang(
-  ident: string,
-  request: Request,
-  navCallId: string,
-): Promise<EksistensOgTilgangResponse> {
+export async function sjekkEksistensOgTilgang({
+  ident,
+  request,
+  navCallId,
+  traceLogging,
+}: BackendKallSignatur): Promise<EksistensOgTilgangResponse> {
   if (skalBrukeMockdata) {
     return "ok";
   }
@@ -52,6 +57,7 @@ export async function sjekkEksistensOgTilgang(
         Authorization: `Bearer ${oboToken}`,
         "Content-Type": "application/json",
         "Nav-Call-Id": navCallId,
+        logg: traceLogging ? "true" : "false",
       },
       body: JSON.stringify({ ident }),
     });
@@ -79,83 +85,109 @@ export async function sjekkEksistensOgTilgang(
 }
 
 /** Henter personopplysninger for en gitt ident */
-export async function hentPersonopplysninger(
-  ident: string,
-  request: Request,
-  navCallId: string,
-) {
-  return gjørOppslagApiRequest(ident, request, navCallId, {
+export async function hentPersonopplysninger({
+  ident,
+  request,
+  navCallId,
+  traceLogging,
+}: BackendKallSignatur) {
+  return gjørOppslagApiRequest({
+    ident,
+    request,
+    navCallId,
     endepunkt: "/oppslag/personopplysninger",
     schema: PersonInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.personInformasjon,
+    traceLogging,
   });
 }
 
 /** Henter arbeidsgivere for en gitt ident */
-export async function hentArbeidsforhold(
-  ident: string,
-  request: Request,
-  navCallId: string,
-) {
-  return gjørOppslagApiRequest(ident, request, navCallId, {
+export async function hentArbeidsforhold({
+  ident,
+  request,
+  navCallId,
+  traceLogging,
+}: BackendKallSignatur) {
+  return gjørOppslagApiRequest({
+    ident,
+    request,
+    navCallId,
     endepunkt: "/oppslag/arbeidsforhold",
     schema: ArbeidsgiverInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.arbeidsgiverInformasjon,
+    traceLogging,
   });
 }
 
 /** Henter inntekter for en gitt ident */
-export async function hentInntekter(
-  ident: string,
-  request: Request,
-  navCallId: string,
-) {
-  return gjørOppslagApiRequest(ident, request, navCallId, {
+export async function hentInntekter({
+  ident,
+  request,
+  navCallId,
+  traceLogging,
+}: BackendKallSignatur) {
+  return gjørOppslagApiRequest({
+    ident,
+    request,
+    navCallId,
     endepunkt: "/oppslag/inntekt",
     schema: InntektInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.inntektInformasjon,
+    traceLogging,
   });
 }
 
 /** Henter ytelser for en gitt ident */
-export async function hentYtelser(
-  ident: string,
-  request: Request,
-  navCallId: string,
-) {
-  return gjørOppslagApiRequest(ident, request, navCallId, {
+export async function hentYtelser({
+  ident,
+  request,
+  navCallId,
+  traceLogging,
+}: BackendKallSignatur) {
+  return gjørOppslagApiRequest({
+    ident,
+    request,
+    navCallId,
     endepunkt: "/oppslag/stønad",
     schema: YtelserInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.stønader,
+    traceLogging,
   });
 }
 
 type ApiRequestConfig<T> = {
+  /** Identifikatoren (fødselsnummer etc) man vil slå opp */
+  ident: string;
+  /** Det innkommende request-objektet (brukes for å hente ut OBO-token) */
+  request: Request;
+  /** Unik ID for å korrelere alle API-kall i dette oppslaget */
+  navCallId: string;
   /** API endepunkt-URL */
   endepunkt: `/${string}`;
   /** Zod schema for å parse responsen */
   schema: z.ZodSchema<T>;
   /** En funksjon som returnerer riktig del av mock-datagrunnlaget */
   ekstraherFraMock: (mockData: OppslagBrukerRespons) => T;
+  /** Om trace-logging skal være på */
+  traceLogging: boolean;
 };
 
 /**
  * Generisk funksjon for å gjøre en forespørsel mot oppslags-APIene
  *
- * @param ident - Identifikatoren (fødselsnummer etc) man vil slå opp
- * @param request - Det innkommende request-objektet (brukes for å hente ut OBO-token)
- * @param navCallId - Unik ID for å korrelere alle API-kall i dette oppslaget
  * @param config - Konfigurasjonsobjekt for API-forespørselen
  * @returns Parsede og validerte data fra APIet eller mock
  */
-async function gjørOppslagApiRequest<T>(
-  ident: string,
-  request: Request,
-  navCallId: string,
-  config: ApiRequestConfig<T>,
-): Promise<T> {
-  const { endepunkt, schema, ekstraherFraMock } = config;
-
+async function gjørOppslagApiRequest<T>({
+  ident,
+  request,
+  navCallId,
+  endepunkt,
+  schema,
+  ekstraherFraMock,
+  traceLogging,
+}: ApiRequestConfig<T>): Promise<T> {
   if (skalBrukeMockdata) {
     try {
       const mockedResponse = await getMockedResponseByFødselsnummer(ident);
@@ -175,6 +207,7 @@ async function gjørOppslagApiRequest<T>(
         Authorization: `Bearer ${oboToken}`,
         "Content-Type": "application/json",
         "Nav-Call-Id": navCallId,
+        logg: traceLogging ? "true" : "false",
       },
       body: JSON.stringify({ ident }),
     });

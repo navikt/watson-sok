@@ -76,13 +76,18 @@ export default function LandingPage() {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const ident = formData.get("ident")?.toString().trim();
+  const rawIdent = formData.get("ident")?.toString().trim();
+  const leggTilTraceHeader = rawIdent?.endsWith("?");
+  const ident = rawIdent?.replace("?", "");
   if (ident && ident.length === 11 && ident.match(/^\d+$/)) {
-    return redirectDocument(RouteConfig.OPPSLAG, {
-      headers: {
-        "Set-Cookie": await lagreIdentPåSession(ident, request),
+    return redirectDocument(
+      RouteConfig.OPPSLAG + (leggTilTraceHeader ? "?traceLogging=true" : ""),
+      {
+        headers: {
+          "Set-Cookie": await lagreIdentPåSession(ident, request),
+        },
       },
-    });
+    );
   }
   return { error: "Ugyldig fødselsnummer" };
 }
