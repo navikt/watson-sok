@@ -8,13 +8,14 @@ export function beregnAlderFraFødselsEllerDnummer(
   erBarn: boolean,
 ) {
   const datoDel = personident.slice(0, 6);
-  const erDnummer = Number(datoDel) >= 400000;
 
-  const dag = Number(datoDel.slice(0, 2));
-  const måned = Number(datoDel.slice(2, 4));
+  let dag = Number(datoDel.slice(0, 2));
+  let måned = Number(datoDel.slice(2, 4));
   let år = Number(datoDel.slice(4, 6));
+
+  const erDnummer = dag >= 40;
   if (erDnummer) {
-    år -= 40;
+    dag -= 40;
   }
   if (år < 25 && erBarn) {
     år += 2000;
