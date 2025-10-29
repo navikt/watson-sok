@@ -83,10 +83,7 @@ const InntektPanelMedData = ({
           Ingen lønnsutbetalinger funnet for de siste 3 årene.
         </Alert>
       ) : (
-        <div
-          className="mt-4 max-h-[500px] overflow-y-scroll print:max-h-none print:overflow-y-auto"
-          tabIndex={0}
-        >
+        <div className="mt-4" tabIndex={0}>
           {ytelser && ytelser.length > 0 && (
             <div className="flex justify-end py-2 pr-2">
               <Switch
@@ -98,88 +95,92 @@ const InntektPanelMedData = ({
               </Switch>
             </div>
           )}
-          <Table size="medium">
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell scope="col" textSize="small">
-                  Periode
-                </Table.HeaderCell>
-                <Table.HeaderCell scope="col" textSize="small">
-                  Arbeidsgiver
-                </Table.HeaderCell>
-                <Table.HeaderCell scope="col" textSize="small">
-                  Lønnstype
-                </Table.HeaderCell>
-                <Table.HeaderCell scope="col" textSize="small">
-                  Timer
-                </Table.HeaderCell>
-                <Table.HeaderCell scope="col" align="right" textSize="small">
-                  Beløp
-                </Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
+          <div className="max-h-[500px] overflow-y-scroll print:max-h-none print:overflow-y-auto">
+            <Table size="medium" stickyHeader={true}>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell scope="col" textSize="small">
+                    Periode
+                  </Table.HeaderCell>
+                  <Table.HeaderCell scope="col" textSize="small">
+                    Arbeidsgiver
+                  </Table.HeaderCell>
+                  <Table.HeaderCell scope="col" textSize="small">
+                    Lønnstype
+                  </Table.HeaderCell>
+                  <Table.HeaderCell scope="col" textSize="small">
+                    Timer
+                  </Table.HeaderCell>
+                  <Table.HeaderCell scope="col" align="right" textSize="small">
+                    Beløp
+                  </Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
 
-            <Table.Body>
-              {rader.map((r, i) => {
-                const timer = konverterTilTall(r.antall);
-                const beløp = konverterTilTall(r.beløp);
-                const harFlereVersjoner = Boolean(r.harFlereVersjoner);
-                const cellStyle = harFlereVersjoner ? warnStyle : undefined;
+              <Table.Body>
+                {rader.map((r, i) => {
+                  const timer = konverterTilTall(r.antall);
+                  const beløp = konverterTilTall(r.beløp);
+                  const harFlereVersjoner = Boolean(r.harFlereVersjoner);
+                  const cellStyle = harFlereVersjoner ? warnStyle : undefined;
 
-                return (
-                  <Table.Row
-                    key={`${r.arbeidsgiver}-${r.periode}-${i}`}
-                    title={
-                      harFlereVersjoner
-                        ? "Har flere versjoner i A-registeret"
-                        : undefined
-                    }
-                  >
-                    <Table.HeaderCell
-                      scope="row"
-                      style={cellStyle}
-                      textSize="small"
+                  return (
+                    <Table.Row
+                      key={`${r.arbeidsgiver}-${r.periode}-${i}`}
+                      title={
+                        harFlereVersjoner
+                          ? "Har flere versjoner i A-registeret"
+                          : undefined
+                      }
                     >
-                      <span className="inline-flex items-center gap-2">
-                        {harFlereVersjoner && (
-                          <ExclamationmarkTriangleFillIcon
-                            aria-hidden={true}
-                            style={{
-                              color: "var(--ax-text-warning-decoration)",
-                            }}
-                            fontSize="1.125rem"
-                          />
-                        )}
-                        {r.arbeidsgiver === "Nav" &&
-                          mapYtelsestypeTilIkon(r.lønnstype ?? "")}
-                        <span>
-                          {storFørsteBokstav(formatÅrMåned(r.periode))}
+                      <Table.HeaderCell
+                        scope="row"
+                        style={cellStyle}
+                        textSize="small"
+                      >
+                        <span className="inline-flex items-center gap-2">
+                          {harFlereVersjoner && (
+                            <ExclamationmarkTriangleFillIcon
+                              aria-hidden={true}
+                              style={{
+                                color: "var(--ax-text-warning-decoration)",
+                              }}
+                              fontSize="1.125rem"
+                            />
+                          )}
+                          {r.arbeidsgiver === "Nav" &&
+                            mapYtelsestypeTilIkon(r.lønnstype ?? "")}
+                          <span>
+                            {storFørsteBokstav(formatÅrMåned(r.periode))}
+                          </span>
+                          {harFlereVersjoner && (
+                            <span className="sr-only"> (flere versjoner)</span>
+                          )}
                         </span>
-                        {harFlereVersjoner && (
-                          <span className="sr-only"> (flere versjoner)</span>
-                        )}
-                      </span>
-                    </Table.HeaderCell>
-                    <Table.DataCell style={cellStyle} textSize="small">
-                      {r.arbeidsgiver || "–"}
-                    </Table.DataCell>
-                    <Table.DataCell style={cellStyle} textSize="small">
-                      {camelCaseTilNorsk(r.lønnstype)}
-                    </Table.DataCell>
-                    <Table.DataCell style={cellStyle} textSize="small">
-                      {timer !== null ? formatterDesimaltall(timer, 0, 2) : "–"}
-                    </Table.DataCell>
-                    <Table.DataCell
-                      style={{ ...cellStyle, textAlign: "right" }}
-                      textSize="small"
-                    >
-                      {beløp !== null ? formatterBeløp(beløp) : "–"}
-                    </Table.DataCell>
-                  </Table.Row>
-                );
-              })}
-            </Table.Body>
-          </Table>
+                      </Table.HeaderCell>
+                      <Table.DataCell style={cellStyle} textSize="small">
+                        {r.arbeidsgiver || "–"}
+                      </Table.DataCell>
+                      <Table.DataCell style={cellStyle} textSize="small">
+                        {camelCaseTilNorsk(r.lønnstype)}
+                      </Table.DataCell>
+                      <Table.DataCell style={cellStyle} textSize="small">
+                        {timer !== null
+                          ? formatterDesimaltall(timer, 0, 2)
+                          : "–"}
+                      </Table.DataCell>
+                      <Table.DataCell
+                        style={{ ...cellStyle, textAlign: "right" }}
+                        textSize="small"
+                      >
+                        {beløp !== null ? formatterBeløp(beløp) : "–"}
+                      </Table.DataCell>
+                    </Table.Row>
+                  );
+                })}
+              </Table.Body>
+            </Table>
+          </div>
         </div>
       )}
     </PanelContainer>
