@@ -48,6 +48,26 @@ export function camelCaseTilNorsk(camelCaseStr: string | null) {
 }
 
 /**
+ * Konverterer snake_case til en norsk setning med stor første bokstav
+ *
+ * @param snakeCaseStr - snake_case-teksten som skal konverteres
+ * @returns Norsk tekst med stor første bokstav
+ */
+export function snakeCaseTilSetning(snakeCaseStr: string | null) {
+  if (!snakeCaseStr) {
+    return "";
+  }
+
+  const [førsteOrd, ...restenAvOrdene] = snakeCaseStr.split("_");
+  return [
+    storFørsteBokstav(førsteOrd),
+    restenAvOrdene.map((s) => s.toLowerCase()).join(" "),
+  ]
+    .join(" ")
+    .trim();
+}
+
+/**
  * Formaterer fødselsnummer til å ha mellomrom mellom de seks første og de fem siste sifrene
  *
  * @param fødselsnummer - Fødselsnummer som skal formateres
