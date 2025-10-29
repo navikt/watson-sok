@@ -83,7 +83,7 @@ const InntektPanelMedData = ({
           Ingen lønnsutbetalinger funnet for de siste 3 årene.
         </Alert>
       ) : (
-        <div className="mt-4" tabIndex={0}>
+        <div className="mt-4">
           {ytelser && ytelser.length > 0 && (
             <div className="flex justify-end py-2 pr-2">
               <Switch
@@ -95,7 +95,10 @@ const InntektPanelMedData = ({
               </Switch>
             </div>
           )}
-          <div className="max-h-[500px] overflow-y-scroll print:max-h-none print:overflow-y-auto">
+          <div
+            tabIndex={0}
+            className="max-h-[500px] overflow-y-scroll print:max-h-none print:overflow-y-auto"
+          >
             <Table size="medium" stickyHeader={true}>
               <Table.Header>
                 <Table.Row>
