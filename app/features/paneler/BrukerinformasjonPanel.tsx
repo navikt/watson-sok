@@ -10,6 +10,7 @@ import {
   storFørsteBokstavPerOrd,
 } from "~/utils/string-utils";
 import { ResolvingComponent } from "../async/ResolvingComponent";
+import { FamiliemedlemmerModal } from "./FamiliemedlemmerModal";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 type BrukerinformasjonProps = {
@@ -96,8 +97,9 @@ const BrukerinformasjonPanelMedData = ({
         <dd>{storFørsteBokstav(personopplysninger.sivilstand ?? "Ukjent")}</dd>
         <dt>Familemedlemmer</dt>
         <dd>
-          {antallFamilemedlemmer}{" "}
-          {antallFamilemedlemmer === 1 ? "familiemedlem" : "familemedlemmer"}
+          <FamiliemedlemmerModal
+            familiemedlemmer={personopplysninger.familemedlemmer}
+          />
         </dd>
       </dl>
     </PanelContainer>
