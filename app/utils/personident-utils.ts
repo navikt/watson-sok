@@ -22,7 +22,7 @@ export function beregnAlderFraFødselsEllerDnummer(
   if (år < nåværendeÅr && erBarn) {
     år += 2000;
   } else {
-    år += nåværendeÅr - 100;
+    år += 1900;
   }
 
   const dato = new Date(år, måned - 1, dag);
