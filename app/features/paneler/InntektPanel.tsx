@@ -129,11 +129,6 @@ const InntektPanelMedData = ({
                 return (
                   <Table.Row
                     key={`${r.arbeidsgiver}-${r.periode}-${i}`}
-                    aria-label={
-                      harFlereVersjoner
-                        ? "Har flere versjoner i A-registeret"
-                        : undefined
-                    }
                     title={
                       harFlereVersjoner
                         ? "Har flere versjoner i A-registeret"
