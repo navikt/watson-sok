@@ -1,12 +1,13 @@
 import {
+  ClipboardIcon,
   InformationSquareIcon,
   MenuElipsisVerticalIcon,
 } from "@navikt/aksel-icons";
 import { ActionMenu, Alert, Button, Skeleton, Table } from "@navikt/ds-react";
 import {
   ActionMenuContent,
+  ActionMenuGroup,
   ActionMenuItem,
-  ActionMenuLabel,
   ActionMenuTrigger,
 } from "@navikt/ds-react/ActionMenu";
 import { use, useMemo } from "react";
@@ -157,19 +158,39 @@ const ArbeidsforholdPanelMedData = ({
                       </Button>
                     </ActionMenuTrigger>
                     <ActionMenuContent>
-                      <ActionMenuLabel>Relevante lenker</ActionMenuLabel>
-                      <ActionMenuItem
-                        icon={<InformationSquareIcon />}
-                        as="a"
-                        href={`https://virksomhet.brreg.no/nb/oppslag/enheter/${r.organisasjonsnummer}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onSelect={() => {
-                          sporHendelse("lenke trykket brønnøysundregistrene");
-                        }}
-                      >
-                        Brønnøysundregistrene
-                      </ActionMenuItem>
+                      <ActionMenuGroup label="Handlinger">
+                        <ActionMenuItem
+                          icon={<ClipboardIcon />}
+                          onSelect={() => {
+                            try {
+                              navigator.clipboard.writeText(
+                                r.organisasjonsnummer,
+                              );
+                              sporHendelse("organisasjonsnummer kopiert");
+                            } catch (error) {
+                              sporHendelse(
+                                "organisasjonsnummer-kopiering feilet",
+                              );
+                            }
+                          }}
+                        >
+                          Kopier org.nr.
+                        </ActionMenuItem>
+                      </ActionMenuGroup>
+                      <ActionMenuGroup label="Relevante lenker">
+                        <ActionMenuItem
+                          icon={<InformationSquareIcon />}
+                          as="a"
+                          href={`https://virksomhet.brreg.no/nb/oppslag/enheter/${r.organisasjonsnummer}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onSelect={() => {
+                            sporHendelse("lenke trykket brønnøysundregistrene");
+                          }}
+                        >
+                          Brønnøysundregistrene
+                        </ActionMenuItem>
+                      </ActionMenuGroup>
                     </ActionMenuContent>
                   </ActionMenu>
                 </Table.DataCell>
