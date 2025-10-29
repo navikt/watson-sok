@@ -104,25 +104,28 @@ export default function OppslagBruker() {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const ident = await hentIdentFraSession(request);
+  const traceLogging = request.headers.get("logg") === "true";
   if (!ident) {
     return redirect(RouteConfig.INDEX);
   }
 
   // Generer en unik nav-call-id for dette oppslaget
   const navCallId = crypto.randomUUID();
-
-  const eksistensOgTilgang = await sjekkEksistensOgTilgang(
+  const params = {
     ident,
     request,
     navCallId,
-  );
+    traceLogging,
+  };
+
+  const eksistensOgTilgang = await sjekkEksistensOgTilgang(params);
   if (eksistensOgTilgang === "ok" || eksistensOgTilgang === "partial") {
     return {
       eksistensOgTilgang,
-      personopplysninger: hentPersonopplysninger(ident, request, navCallId),
-      arbeidsgiverInformasjon: hentArbeidsforhold(ident, request, navCallId),
-      inntektInformasjon: hentInntekter(ident, request, navCallId),
-      ytelser: hentYtelser(ident, request, navCallId),
+      personopplysninger: hentPersonopplysninger(params),
+      arbeidsgiverInformasjon: hentArbeidsforhold(params),
+      inntektInformasjon: hentInntekter(params),
+      ytelser: hentYtelser(params),
     };
   }
   return {
