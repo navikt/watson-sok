@@ -59,11 +59,12 @@ export function snakeCaseTilSetning(snakeCaseStr: string | null) {
   }
 
   const [førsteOrd, ...restenAvOrdene] = snakeCaseStr.split("_");
-  return (
-    storFørsteBokstav(førsteOrd) +
-    " " +
-    restenAvOrdene.map((s) => s.toLowerCase()).join(" ")
-  ).trim();
+  return [
+    storFørsteBokstav(førsteOrd),
+    restenAvOrdene.map((s) => s.toLowerCase()).join(" "),
+  ]
+    .join(" ")
+    .trim();
 }
 
 /**
