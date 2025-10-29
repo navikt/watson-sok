@@ -104,7 +104,8 @@ export default function OppslagBruker() {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const ident = await hentIdentFraSession(request);
-  const traceLogging = request.headers.get("logg") === "true";
+  const traceLogging =
+    new URL(request.url).searchParams.get("traceLogging") === "true";
   if (!ident) {
     return redirect(RouteConfig.INDEX);
   }
