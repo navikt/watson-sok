@@ -49,4 +49,8 @@ export function sporHendelse(
 type Hendelse =
   | "søk landingsside"
   | "lenke trykket brønnøysundregistrene"
-  | "handlinger for arbeidsforhold åpnet";
+  | "handlinger for arbeidsforhold åpnet"
+  | "organisasjonsnummer kopiert"
+  | "organisasjonsnummer-kopiering feilet"
+  | "tidslinje periode flyttet"
+  | "tidslinje størrelse endret";

@@ -1,8 +1,17 @@
-import { Alert, Skeleton, Timeline } from "@navikt/ds-react";
+import {
+  Alert,
+  Button,
+  Skeleton,
+  Timeline,
+  ToggleGroup,
+} from "@navikt/ds-react";
 
-import { use, useMemo } from "react";
+import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
+import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
+import { use, useMemo, useState } from "react";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import type { Ytelse } from "~/routes/oppslag/schemas";
+import { sporHendelse } from "~/utils/analytics";
 import { formatterDato, forskjellIDager } from "~/utils/date-utils";
 import { formatterBeløp } from "~/utils/number-utils";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
@@ -32,6 +41,12 @@ type YtelserPanelMedDataProps = {
 const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   const ytelser = use(promise);
   const harIngenYtelser = !ytelser || ytelser.length === 0;
+  const {
+    nåværendeVindu,
+    oppdaterVindu,
+    vinduetsStørrelse,
+    setVinduetsStørrelse,
+  } = useTidslinjevindu();
 
   const ytelserMedGruppertePerioder = useMemo(() => {
     if (!ytelser) return [];
@@ -41,6 +56,9 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     }));
   }, [ytelser]);
 
+  const diff = forskjellIDager(nåværendeVindu.start, nåværendeVindu.slutt);
+  console.log(`viser data for ${diff} dager`);
+
   return (
     <PanelContainer title="Ytelser">
       {harIngenYtelser ? (
@@ -48,43 +66,57 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
           Ingen ytelser registrert de siste 3 årene.
         </Alert>
       ) : (
-        <Timeline>
-          {ytelserMedGruppertePerioder.map((ytelse) => {
-            return (
-              <Timeline.Row
-                key={ytelse.stonadType}
-                label={ytelse.stonadType}
-                icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
-              >
-                {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
-                  const fomDate = new Date(gruppertPeriode.fom);
-                  const tomDate = new Date(gruppertPeriode.tom);
-                  const fomFormatert = formatterDato(gruppertPeriode.fom);
-                  const tomFormatert = formatterDato(gruppertPeriode.tom);
-                  const beløpFormatert = formatterBeløp(
-                    gruppertPeriode.totalBeløp,
-                    0,
-                  );
+        <>
+          <TidslinjeKontrollpanel
+            nåværendeVindu={nåværendeVindu}
+            oppdaterVindu={oppdaterVindu}
+            vinduetsStørrelse={vinduetsStørrelse}
+            setVinduetsStørrelse={setVinduetsStørrelse}
+          />
 
-                  return (
-                    <Timeline.Period
-                      key={`${ytelse.stonadType}-${index}`}
-                      start={fomDate}
-                      end={tomDate}
-                      status="success"
-                      icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
-                    >
-                      <p>
-                        {fomFormatert} – {tomFormatert}
-                      </p>
-                      <p>Sum: {beløpFormatert}</p>
-                    </Timeline.Period>
-                  );
-                })}
-              </Timeline.Row>
-            );
-          })}
-        </Timeline>
+          <Timeline
+            id="timeline-dynamic"
+            aria-controls="timeline-toolbar"
+            startDate={nåværendeVindu.start}
+            endDate={nåværendeVindu.slutt}
+          >
+            {ytelserMedGruppertePerioder.map((ytelse) => {
+              return (
+                <Timeline.Row
+                  key={ytelse.stonadType}
+                  label={ytelse.stonadType}
+                  icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
+                >
+                  {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
+                    const fomDate = new Date(gruppertPeriode.fom);
+                    const tomDate = new Date(gruppertPeriode.tom);
+                    const fomFormatert = formatterDato(gruppertPeriode.fom);
+                    const tomFormatert = formatterDato(gruppertPeriode.tom);
+                    const beløpFormatert = formatterBeløp(
+                      gruppertPeriode.totalBeløp,
+                      0,
+                    );
+
+                    return (
+                      <Timeline.Period
+                        key={`${ytelse.stonadType}-${index}`}
+                        start={fomDate}
+                        end={tomDate}
+                        status="success"
+                        icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
+                      >
+                        <p>
+                          {fomFormatert} – {tomFormatert}
+                        </p>
+                        <p>Sum: {beløpFormatert}</p>
+                      </Timeline.Period>
+                    );
+                  })}
+                </Timeline.Row>
+              );
+            })}
+          </Timeline>
+        </>
       )}
     </PanelContainer>
   );
@@ -94,6 +126,11 @@ const YtelserPanelSkeleton = () => {
   const ytelser = Array.from({ length: 3 }, (_, index) => index);
   return (
     <PanelContainerSkeleton title="Ytelser">
+      <div className="flex gap-2 absolute top-4 right-4">
+        <Skeleton variant="rounded" width="32px" height="32px" />
+        <Skeleton variant="rounded" width="32px" height="32px" />
+        <Skeleton variant="rounded" width="148px" height="32px" />
+      </div>
       <div className="flex flex-col gap-4 mt-2">
         <div className="flex gap-2">
           <div className="w-[15%]" />
@@ -107,6 +144,74 @@ const YtelserPanelSkeleton = () => {
         ))}
       </div>
     </PanelContainerSkeleton>
+  );
+};
+
+type TidslinjeKontrollpanelProps = ReturnType<typeof useTidslinjevindu>;
+const TidslinjeKontrollpanel = ({
+  nåværendeVindu,
+  oppdaterVindu,
+  vinduetsStørrelse,
+  setVinduetsStørrelse,
+}: TidslinjeKontrollpanelProps) => {
+  const nå = new Date();
+  const treÅrSiden = new Date(nå.getTime());
+  treÅrSiden.setMonth(nå.getMonth() - 36);
+
+  const kanFlytteForrigePeriode =
+    forskjellIDager(nåværendeVindu.start, treÅrSiden) >= 30;
+  const kanFlytteNestePeriode = forskjellIDager(nåværendeVindu.slutt, nå) >= 30;
+
+  return (
+    <div
+      className="flex justify-end items-center gap-2 mb-4 static md:absolute md:top-4 md:right-4"
+      aria-controls="timeline-dynamic"
+      id="timeline-toolbar"
+    >
+      <div className="flex gap-0.5 items-center">
+        <Button
+          icon={<ChevronLeftIcon title="Forrige periode" />}
+          variant="secondary-neutral"
+          size="small"
+          disabled={!kanFlytteForrigePeriode}
+          onClick={() => {
+            oppdaterVindu("forrige", 1, vinduetsStørrelse);
+            sporHendelse("tidslinje periode flyttet", {
+              retning: "forrige",
+            });
+          }}
+        />
+        <Button
+          disabled={!kanFlytteNestePeriode}
+          icon={<ChevronRightIcon title="Neste periode" />}
+          variant="secondary-neutral"
+          size="small"
+          onClick={() => {
+            oppdaterVindu("neste", 1, vinduetsStørrelse);
+            sporHendelse("tidslinje periode flyttet", {
+              retning: "neste",
+            });
+          }}
+        />
+      </div>
+      <ToggleGroup
+        variant="neutral"
+        size="small"
+        value={vinduetsStørrelse}
+        onChange={(value) => {
+          const antallMåneder = value as AntallMåneder;
+          setVinduetsStørrelse(antallMåneder);
+          oppdaterVindu("gjeldende", 0, antallMåneder);
+          sporHendelse("tidslinje størrelse endret", {
+            antallMåneder,
+          });
+        }}
+      >
+        <ToggleGroupItem value="12" label="1 år" />
+        <ToggleGroupItem value="24" label="2 år" />
+        <ToggleGroupItem value="36" label="3 år" />
+      </ToggleGroup>
+    </div>
   );
 };
 
@@ -158,4 +263,58 @@ function grupperSammenhengendePerioder(
   gruppert.push(nåværendeGruppe);
 
   return gruppert;
+}
+
+type AntallMåneder = "12" | "24" | "36";
+function useTidslinjevindu() {
+  const [vinduetsStørrelse, setVinduetsStørrelse] =
+    useState<AntallMåneder>("36");
+
+  const [nåværendeVindu, setNåværendeVindu] = useState<{
+    start: Date;
+    slutt: Date;
+  }>(() => {
+    const nå = new Date();
+    const start = new Date(nå);
+    start.setMonth(start.getMonth() - Number(vinduetsStørrelse));
+    return { start, slutt: nå };
+  });
+
+  function oppdaterVindu(
+    retning: "forrige" | "neste" | "gjeldende",
+    endringMåneder: number,
+    vindusstørrelse: AntallMåneder,
+  ) {
+    const antallMåneder = parseInt(vindusstørrelse);
+
+    if (retning === "forrige") {
+      const nyStartdato = new Date(nåværendeVindu.start);
+      nyStartdato.setMonth(nyStartdato.getMonth() - endringMåneder);
+
+      const nySluttdato = new Date(nyStartdato);
+      nySluttdato.setMonth(nySluttdato.getMonth() + antallMåneder);
+
+      setNåværendeVindu({ start: nyStartdato, slutt: nySluttdato });
+    } else if (retning === "neste") {
+      const nyStartdato = new Date(nåværendeVindu.start);
+      nyStartdato.setMonth(nyStartdato.getMonth() + endringMåneder);
+
+      const nySluttdato = new Date(nyStartdato);
+      nySluttdato.setMonth(nySluttdato.getMonth() + antallMåneder);
+
+      setNåværendeVindu({ start: nyStartdato, slutt: nySluttdato });
+    } else {
+      const nyStartdato = new Date();
+      nyStartdato.setMonth(nyStartdato.getMonth() - antallMåneder);
+
+      const nySluttdato = new Date();
+      setNåværendeVindu({ start: nyStartdato, slutt: nySluttdato });
+    }
+  }
+  return {
+    nåværendeVindu,
+    oppdaterVindu,
+    vinduetsStørrelse,
+    setVinduetsStørrelse,
+  };
 }
