@@ -148,8 +148,7 @@ const InntektPanelMedData = ({
                       <span className="inline-flex items-center gap-2">
                         {harFlereVersjoner && (
                           <ExclamationmarkTriangleFillIcon
-                            aria-label="Flere versjoner"
-                            title="Flere versjoner"
+                            aria-hidden={true}
                             style={{
                               color: "var(--ax-text-warning-decoration)",
                             }}
