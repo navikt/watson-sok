@@ -95,7 +95,7 @@ const BrukerinformasjonPanelMedData = ({
         </dd>
         <dt>Sivilstand</dt>
         <dd>{storFørsteBokstav(personopplysninger.sivilstand ?? "Ukjent")}</dd>
-        <dt>Familemedlemmer</dt>
+        <dt>Familiemedlemmer</dt>
         <dd>
           <FamiliemedlemmerModal
             familiemedlemmer={personopplysninger.familemedlemmer}
