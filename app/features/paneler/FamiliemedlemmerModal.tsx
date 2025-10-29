@@ -18,6 +18,7 @@ import {
 type FamiliemedlemmerModalProps = {
   familiemedlemmer: Record<string, string>;
 };
+
 /**
  * En modal (med trigger-knapp) som viser en liste over familiemedlemmer
  */
@@ -25,36 +26,20 @@ export function FamiliemedlemmerModal({
   familiemedlemmer,
 }: FamiliemedlemmerModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
-  const familiemedlemmerListe = Object.entries(familiemedlemmer)
-    .map(([personIdent, type]) => ({
-      personIdent,
-      type,
-    }))
-    .sort((a, b) => a.type.localeCompare(b.type));
+  const familiemedlemmerListe = transformerTilSortertListe(familiemedlemmer);
+
   if (familiemedlemmerListe.length === 0) {
     return <BodyShort>Ingen kjente familiemedlemmer</BodyShort>;
   }
-  const antallBarn = familiemedlemmerListe.filter(
-    ({ type }) => type === "BARN",
-  ).length;
-  const antallFamiliemedlemmerOppsummering = `${familiemedlemmerListe.length} ${familiemedlemmerListe.length === 1 ? "person" : "personer"}`;
-  const aldrePåBarn = familiemedlemmerListe
-    .filter(({ type }) => type === "BARN")
-    .map(({ personIdent }) =>
-      beregnAlderFraFødselsEllerDnummer(personIdent, true),
-    );
-  const yngsteBarn = Math.min(...aldrePåBarn);
-  const eldsteBarn = Math.max(...aldrePåBarn);
 
-  const aldersoppsummering =
-    aldrePåBarn.length > 0
-      ? yngsteBarn === eldsteBarn
-        ? `på ${yngsteBarn} år`
-        : `fra ${yngsteBarn} til ${eldsteBarn} år`
-      : "";
+  const barn = hentBarn(familiemedlemmerListe);
+  const alderStat = beregnBarnAlder(barn);
+  const oppsummering = byggOppsummeringstekst(
+    familiemedlemmerListe.length,
+    barn.length,
+    alderStat,
+  );
 
-  const antallBarnOppsummering =
-    `, hvorav ${antallBarn || "ingen"} barn ${aldersoppsummering}`.trim();
   return (
     <>
       <Link
@@ -62,7 +47,7 @@ export function FamiliemedlemmerModal({
         onClick={() => ref.current?.showModal()}
         className="text-left p-0"
       >
-        {antallFamiliemedlemmerOppsummering} {antallBarnOppsummering}
+        {oppsummering}
       </Link>
       <Modal
         ref={ref}
@@ -116,11 +101,148 @@ export function FamiliemedlemmerModal({
   );
 }
 
-const mapTypeTilIkon = (type: string) => {
+/**
+ * Mapper familiemedlemtype til ikon
+ *
+ * @param type - Typen av familiemedlem
+ * @returns Ikon-komponent for typen
+ *
+ * @example
+ * mapTypeTilIkon("BARN"); // Returns: <ChildEyesIcon />
+ * mapTypeTilIkon("PARTNER"); // Returns: <PersonIcon />
+ */
+function mapTypeTilIkon(type: string) {
   switch (type) {
     case "BARN":
       return <ChildEyesIcon aria-hidden={true} className="inline-block" />;
     default:
       return <PersonIcon aria-hidden={true} className="inline-block" />;
   }
+}
+
+type Familiemedlem = {
+  personIdent: string;
+  type: string;
 };
+
+/**
+ * Transformerer familiemedlemmer-record til sortert liste
+ *
+ * @param familiemedlemmer - Record med personIdent som nøkkel og type som verdi
+ * @returns Sortert liste av familiemedlemmer
+ *
+ * @example
+ * const medlemmer = { "12345678901": "BARN", "98765432109": "PARTNER" };
+ * const liste = transformerTilSortertListe(medlemmer);
+ * // Returns: [{ personIdent: "12345678901", type: "BARN" }, ...]
+ */
+function transformerTilSortertListe(
+  familiemedlemmer: Record<string, string>,
+): Familiemedlem[] {
+  return Object.entries(familiemedlemmer)
+    .map(([personIdent, type]) => ({ personIdent, type }))
+    .sort((a, b) => a.type.localeCompare(b.type));
+}
+
+/**
+ * Henter alle barn fra familiemedlemmer-listen
+ *
+ * @param familiemedlemmerListe - Liste av familiemedlemmer
+ * @returns Liste av familiemedlemmer som er barn
+ *
+ * @example
+ * const medlemmer = [
+ *   { personIdent: "123", type: "BARN" },
+ *   { personIdent: "456", type: "PARTNER" }
+ * ];
+ * const barn = hentBarn(medlemmer);
+ * // Returns: [{ personIdent: "123", type: "BARN" }]
+ */
+function hentBarn(familiemedlemmerListe: Familiemedlem[]): Familiemedlem[] {
+  return familiemedlemmerListe.filter(({ type }) => type === "BARN");
+}
+
+/**
+ * Beregner aldersstatistikk for barn
+ *
+ * @param barn - Liste av familiemedlemmer som er barn
+ * @returns Object med yngste og eldste alder, eller null hvis ingen barn
+ *
+ * @example
+ * const barn = [
+ *   { personIdent: "01012010", type: "BARN" },
+ *   { personIdent: "01012015", type: "BARN" }
+ * ];
+ * const stat = beregnBarnAlder(barn);
+ * // Returns: { yngste: 9, eldste: 14 }
+ */
+function beregnBarnAlder(barn: Familiemedlem[]): {
+  yngste: number;
+  eldste: number;
+} | null {
+  if (barn.length === 0) {
+    return null;
+  }
+
+  const aldre = barn.map(({ personIdent }) =>
+    beregnAlderFraFødselsEllerDnummer(personIdent, true),
+  );
+
+  return {
+    yngste: Math.min(...aldre),
+    eldste: Math.max(...aldre),
+  };
+}
+
+/**
+ * Formaterer aldersoppsummering for barn
+ *
+ * @param alderStat - Aldersstatistikk for barn
+ * @returns Formatert tekststreng med alder, eller tom streng hvis ingen barn
+ *
+ * @example
+ * const stat = { yngste: 10, eldste: 10 };
+ * formaterAldersoppsummering(stat); // Returns: "på 10 år"
+ *
+ * @example
+ * const stat = { yngste: 5, eldste: 12 };
+ * formaterAldersoppsummering(stat); // Returns: "fra 5 til 12 år"
+ */
+function formaterAldersoppsummering(
+  alderStat: { yngste: number; eldste: number } | null,
+): string {
+  if (!alderStat) {
+    return "";
+  }
+
+  if (alderStat.yngste === alderStat.eldste) {
+    return `på ${alderStat.yngste} år`;
+  }
+
+  return `fra ${alderStat.yngste} til ${alderStat.eldste} år`;
+}
+
+/**
+ * Bygger oppsummeringstekst for familiemedlemmer
+ *
+ * @param totalAntall - Totalt antall familiemedlemmer
+ * @param antallBarn - Antall barn
+ * @param alderStat - Aldersstatistikk for barn
+ * @returns Formatert oppsummeringstekst
+ *
+ * @example
+ * const tekst = byggOppsummeringstekst(3, 2, { yngste: 5, eldste: 10 });
+ * // Returns: "3 personer, hvorav 2 barn fra 5 til 10 år"
+ */
+function byggOppsummeringstekst(
+  totalAntall: number,
+  antallBarn: number,
+  alderStat: { yngste: number; eldste: number } | null,
+): string {
+  const personerTekst = `${totalAntall} ${totalAntall === 1 ? "person" : "personer"}`;
+  const aldersoppsummering = formaterAldersoppsummering(alderStat);
+  const barnTekst =
+    antallBarn > 0 ? `${antallBarn} barn ${aldersoppsummering}` : "ingen barn";
+
+  return `${personerTekst}, hvorav ${barnTekst}`.trim();
+}
