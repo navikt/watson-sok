@@ -24,8 +24,8 @@ export function beregnAlderFraFødselsEllerDnummer(
   }
 
   const dato = new Date(år, måned - 1, dag);
-  const today = new Date();
-  const alder = today.getFullYear() - dato.getFullYear();
-
-  return alder;
+  const iDag = new Date();
+  const antallMillisekunderPerÅr = 1000 * 60 * 60 * 24 * 365.25;
+  let alder = (iDag.getTime() - dato.getTime()) / antallMillisekunderPerÅr;
+  return Math.floor(alder);
 }
