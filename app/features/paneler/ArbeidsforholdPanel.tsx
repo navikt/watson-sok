@@ -39,11 +39,13 @@ const ArbeidsforholdPanelMedData = ({
 }: ArbeidsforholdPanelMedDataProps) => {
   const arbeidsgiverInformasjon = use(promise);
   const løpende = arbeidsgiverInformasjon?.løpendeArbeidsforhold ?? [];
+  const historikk = arbeidsgiverInformasjon?.historikk ?? [];
 
   // Flater ut alle (arbeidsgiver x ansettelsesDetalj) til rad-objekter
-  const arbeidsforhold = [...løpende].flatMap((ag) =>
+  const arbeidsforhold = [...løpende, ...historikk].flatMap((ag) =>
     (ag.ansettelsesDetaljer ?? []).map((detalj, idx) => ({
-      key: `${ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}`,
+      key: `${ag.id ?? ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}`,
+      id: ag.id,
       arbeidsgiver: ag.arbeidsgiver,
       organisasjonsnummer: ag.organisasjonsnummer,
       start: detalj.periode.fom,
@@ -167,7 +169,7 @@ const ArbeidsforholdPanelMedData = ({
                                 r.organisasjonsnummer,
                               );
                               sporHendelse("organisasjonsnummer kopiert");
-                            } catch (error) {
+                            } catch {
                               sporHendelse(
                                 "organisasjonsnummer-kopiering feilet",
                               );
@@ -284,6 +286,7 @@ function erPerioderSammenhengende(
 function slåSammenTilstøtendePerioder(
   rader: Array<{
     key: string;
+    id?: string;
     arbeidsgiver: string;
     organisasjonsnummer: string;
     start: string;
@@ -294,11 +297,12 @@ function slåSammenTilstøtendePerioder(
     løpende: boolean;
   }>,
 ) {
-  // Gruppér etter arbeidsgiver (bruker organisasjonsnummer)
+  // Gruppér etter arbeidsgiver (bruker id eller organisasjonsnummer om id ikke finnes)
   const gruppert = new Map<
     string,
     Array<{
       key: string;
+      id?: string;
       arbeidsgiver: string;
       organisasjonsnummer: string;
       start: string;
@@ -311,7 +315,7 @@ function slåSammenTilstøtendePerioder(
   >();
 
   for (const rad of rader) {
-    const nøkkel = rad.organisasjonsnummer ?? rad.arbeidsgiver;
+    const nøkkel = rad.id ?? rad.organisasjonsnummer ?? rad.arbeidsgiver;
     if (!gruppert.has(nøkkel)) {
       gruppert.set(nøkkel, []);
     }
