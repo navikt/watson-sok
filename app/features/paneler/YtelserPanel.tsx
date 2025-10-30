@@ -8,7 +8,7 @@ import {
   ToggleGroup,
 } from "@navikt/ds-react";
 
-import { Link as RouterLink, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
@@ -45,7 +45,7 @@ type YtelserPanelMedDataProps = {
 };
 const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   const ytelser = use(promise);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const harIngenYtelser = !ytelser || ytelser.length === 0;
   const {
     nåværendeVindu,
@@ -71,8 +71,14 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     <PanelContainer title={tittel}>
       <BodyShort spacing>
         <Link
-          as={RouterLink}
-          to={`${RouteConfig.OPPSLAG}?utvidet=${!viserSiste10År}`}
+          href={`${RouteConfig.OPPSLAG}?utvidet=${!viserSiste10År}`}
+          onClick={(e) => {
+            e.preventDefault();
+            setSearchParams((prev) => {
+              prev.set("utvidet", viserSiste10År ? "false" : "true");
+              return prev;
+            });
+          }}
         >
           Vis siste {viserSiste10År ? "3" : "10"} år
         </Link>
