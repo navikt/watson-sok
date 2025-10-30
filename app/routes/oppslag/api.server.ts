@@ -144,12 +144,13 @@ export async function hentYtelser({
   request,
   navCallId,
   traceLogging,
-}: BackendKallSignatur) {
+  utvidet,
+}: BackendKallSignatur & { utvidet: boolean }) {
   return gjørOppslagApiRequest({
     ident,
     request,
     navCallId,
-    endepunkt: "/oppslag/stønad",
+    endepunkt: `/oppslag/stønad?utvidet=${utvidet}`,
     schema: YtelserInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.stønader,
     traceLogging,

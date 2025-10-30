@@ -1,14 +1,19 @@
 import {
   Alert,
+  BodyShort,
   Button,
+  Link,
   Skeleton,
   Timeline,
   ToggleGroup,
 } from "@navikt/ds-react";
 
+import { useSearchParams } from "react-router";
+
 import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useMemo, useState } from "react";
+import { RouteConfig } from "~/config/routeConfig";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import type { Ytelse } from "~/routes/oppslag/schemas";
 import { sporHendelse } from "~/utils/analytics";
@@ -40,6 +45,7 @@ type YtelserPanelMedDataProps = {
 };
 const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   const ytelser = use(promise);
+  const [searchParams, setSearchParams] = useSearchParams();
   const harIngenYtelser = !ytelser || ytelser.length === 0;
   const {
     nåværendeVindu,
@@ -56,15 +62,35 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     }));
   }, [ytelser]);
 
+  const viserSiste10År = searchParams.get("utvidet") === "true";
+  const tittel = viserSiste10År
+    ? "Ytelser fra Nav siste 10 år"
+    : "Ytelser fra Nav siste 3 år";
+
   return (
-    <PanelContainer title="Ytelser">
+    <PanelContainer title={tittel}>
+      <BodyShort spacing>
+        <Link
+          href={`${RouteConfig.OPPSLAG}?utvidet=${!viserSiste10År}`}
+          onClick={(e) => {
+            e.preventDefault();
+            setSearchParams((prev) => {
+              prev.set("utvidet", viserSiste10År ? "false" : "true");
+              return prev;
+            });
+          }}
+        >
+          Vis siste {viserSiste10År ? "3" : "10"} år
+        </Link>
+      </BodyShort>
       {harIngenYtelser ? (
         <Alert variant="info" className="w-fit">
-          Ingen ytelser registrert de siste 3 årene.
+          Ingen ytelser registrert de siste {viserSiste10År ? "10" : "3"} årene.
         </Alert>
       ) : (
         <>
           <TidslinjeKontrollpanel
+            viserSiste10År={viserSiste10År}
             nåværendeVindu={nåværendeVindu}
             oppdaterVindu={oppdaterVindu}
             vinduetsStørrelse={vinduetsStørrelse}
@@ -144,19 +170,22 @@ const YtelserPanelSkeleton = () => {
   );
 };
 
-type TidslinjeKontrollpanelProps = ReturnType<typeof useTidslinjevindu>;
+type TidslinjeKontrollpanelProps = ReturnType<typeof useTidslinjevindu> & {
+  viserSiste10År: boolean;
+};
 const TidslinjeKontrollpanel = ({
   nåværendeVindu,
   oppdaterVindu,
   vinduetsStørrelse,
   setVinduetsStørrelse,
+  viserSiste10År,
 }: TidslinjeKontrollpanelProps) => {
   const nå = new Date();
-  const treÅrSiden = new Date(nå.getTime());
-  treÅrSiden.setMonth(nå.getMonth() - 36);
+  const dataCutoff = new Date(nå.getTime());
+  dataCutoff.setMonth(nå.getMonth() - (viserSiste10År ? 120 : 36));
 
   const kanFlytteForrigePeriode =
-    forskjellIDager(nåværendeVindu.start, treÅrSiden) >= 30;
+    forskjellIDager(nåværendeVindu.start, dataCutoff) >= 30;
   const kanFlytteNestePeriode = forskjellIDager(nåværendeVindu.slutt, nå) >= 30;
 
   return (
@@ -204,8 +233,8 @@ const TidslinjeKontrollpanel = ({
           });
         }}
       >
+        <ToggleGroupItem value="6" label="6 mnd" />
         <ToggleGroupItem value="12" label="1 år" />
-        <ToggleGroupItem value="24" label="2 år" />
         <ToggleGroupItem value="36" label="3 år" />
       </ToggleGroup>
     </div>
@@ -262,7 +291,7 @@ function grupperSammenhengendePerioder(
   return gruppert;
 }
 
-type AntallMåneder = "12" | "24" | "36";
+type AntallMåneder = "6" | "12" | "36";
 function useTidslinjevindu() {
   const [vinduetsStørrelse, setVinduetsStørrelse] =
     useState<AntallMåneder>("36");

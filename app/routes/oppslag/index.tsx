@@ -121,12 +121,16 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   const eksistensOgTilgang = await sjekkEksistensOgTilgang(params);
   if (eksistensOgTilgang === "ok" || eksistensOgTilgang === "partial") {
+    const utvidet = new URL(request.url).searchParams.get("utvidet") === "true";
     return {
       eksistensOgTilgang,
       personopplysninger: hentPersonopplysninger(params),
       arbeidsgiverInformasjon: hentArbeidsforhold(params),
       inntektInformasjon: hentInntekter(params),
-      ytelser: hentYtelser(params),
+      ytelser: hentYtelser({
+        ...params,
+        utvidet,
+      }),
     };
   }
   return {
