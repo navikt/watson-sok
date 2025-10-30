@@ -44,6 +44,7 @@ const ArbeidsforholdPanelMedData = ({
   const arbeidsforhold = [...løpende].flatMap((ag) =>
     (ag.ansettelsesDetaljer ?? []).map((detalj, idx) => ({
       key: `${ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}`,
+      id: ag.id,
       arbeidsgiver: ag.arbeidsgiver,
       organisasjonsnummer: ag.organisasjonsnummer,
       start: detalj.periode.fom,
@@ -284,6 +285,7 @@ function erPerioderSammenhengende(
 function slåSammenTilstøtendePerioder(
   rader: Array<{
     key: string;
+    id?: string;
     arbeidsgiver: string;
     organisasjonsnummer: string;
     start: string;
@@ -299,6 +301,7 @@ function slåSammenTilstøtendePerioder(
     string,
     Array<{
       key: string;
+      id?: string;
       arbeidsgiver: string;
       organisasjonsnummer: string;
       start: string;
@@ -311,7 +314,7 @@ function slåSammenTilstøtendePerioder(
   >();
 
   for (const rad of rader) {
-    const nøkkel = rad.organisasjonsnummer ?? rad.arbeidsgiver;
+    const nøkkel = rad.id ?? rad.organisasjonsnummer ?? rad.arbeidsgiver;
     if (!gruppert.has(nøkkel)) {
       gruppert.set(nøkkel, []);
     }

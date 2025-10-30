@@ -95,6 +95,7 @@ const AnsettelsesDetaljSchema = z.object({
 });
 
 const ArbeidsforholdSchema = z.object({
+  id: z.string().optional(),
   arbeidsgiver: z.string(),
   organisasjonsnummer: z.string(),
   adresse: z.string(),
