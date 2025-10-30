@@ -39,9 +39,10 @@ const ArbeidsforholdPanelMedData = ({
 }: ArbeidsforholdPanelMedDataProps) => {
   const arbeidsgiverInformasjon = use(promise);
   const løpende = arbeidsgiverInformasjon?.løpendeArbeidsforhold ?? [];
+  const historikk = arbeidsgiverInformasjon?.historikk ?? [];
 
   // Flater ut alle (arbeidsgiver x ansettelsesDetalj) til rad-objekter
-  const arbeidsforhold = [...løpende].flatMap((ag) =>
+  const arbeidsforhold = [...løpende, ...historikk].flatMap((ag) =>
     (ag.ansettelsesDetaljer ?? []).map((detalj, idx) => ({
       key: `${ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}`,
       id: ag.id,
@@ -168,7 +169,7 @@ const ArbeidsforholdPanelMedData = ({
                                 r.organisasjonsnummer,
                               );
                               sporHendelse("organisasjonsnummer kopiert");
-                            } catch (error) {
+                            } catch {
                               sporHendelse(
                                 "organisasjonsnummer-kopiering feilet",
                               );
