@@ -44,7 +44,7 @@ const ArbeidsforholdPanelMedData = ({
   // Flater ut alle (arbeidsgiver x ansettelsesDetalj) til rad-objekter
   const arbeidsforhold = [...løpende, ...historikk].flatMap((ag) =>
     (ag.ansettelsesDetaljer ?? []).map((detalj, idx) => ({
-      key: `${ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}`,
+      key: `${ag.id ?? ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}`,
       id: ag.id,
       arbeidsgiver: ag.arbeidsgiver,
       organisasjonsnummer: ag.organisasjonsnummer,
