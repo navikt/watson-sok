@@ -57,7 +57,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   }, [ytelser]);
 
   return (
-    <PanelContainer title="Ytelser">
+    <PanelContainer title="Ytelser fra Nav siste 3 år">
       {harIngenYtelser ? (
         <Alert variant="info" className="w-fit">
           Ingen ytelser registrert de siste 3 årene.
