@@ -297,7 +297,7 @@ function slåSammenTilstøtendePerioder(
     løpende: boolean;
   }>,
 ) {
-  // Gruppér etter arbeidsgiver (bruker organisasjonsnummer)
+  // Gruppér etter arbeidsgiver (bruker id eller organisasjonsnummer om id ikke finnes)
   const gruppert = new Map<
     string,
     Array<{
