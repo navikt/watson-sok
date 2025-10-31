@@ -1,0 +1,215 @@
+{
+  "utrekkstidspunkt": "2025-10-31T09:47:21.452100000",
+  "saksbehandlerIdent": "easteregg",
+  "fødselsnummer": "22107622199",
+  "personInformasjon": {
+    "navn": {
+      "fornavn": "SHERLOCK",
+      "mellomnavn": null,
+      "etternavn": "HOLMES"
+    },
+    "aktørId": "22107622199",
+    "adresse": {
+      "norskAdresse": null,
+      "utenlandskAdresse": {
+        "adressenavnNummer": "221B Baker Street",
+        "bygningEtasjeLeilighet": "Leilighet B",
+        "postboksNummerNavn": null,
+        "postkode": "NW1 6XE",
+        "bySted": "London",
+        "regionDistriktOmråde": "Greater London",
+        "landkode": "GB"
+      }
+    },
+    "familemedlemmer": {
+      "05055014587": "FAR",
+      "23065229845": "MOR"
+    },
+    "statsborgerskap": ["STORBRITANNIA", "NORGE"],
+    "sivilstand": "UGIFT",
+    "alder": 48
+  },
+  "arbeidsgiverInformasjon": {
+    "løpendeArbeidsforhold": [
+      {
+        "arbeidsgiver": "221B Etterforskning AS",
+        "organisasjonsnummer": "926122199",
+        "adresse": "Pilestredet 56, 0167 OSLO",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2018-08",
+              "tom": null
+            },
+            "yrke": "PRIVATETTERFORSKER"
+          },
+          {
+            "type": "Permisjon",
+            "stillingsprosent": 0.0,
+            "antallTimerPrUke": 0.0,
+            "periode": {
+              "fom": "2024-02",
+              "tom": "2024-03"
+            },
+            "yrke": "PRIVATETTERFORSKER"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "Scotland Yard Konsulenttjenester",
+        "organisasjonsnummer": "912188700",
+        "adresse": "New Scotland Yard, Victoria Embankment, London",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Konsulent",
+            "stillingsprosent": 40.0,
+            "antallTimerPrUke": 15.0,
+            "periode": {
+              "fom": "2021-05",
+              "tom": null
+            },
+            "yrke": "FORENSISK RÅDGIVER"
+          }
+        ]
+      }
+    ],
+    "historikk": [
+      {
+        "arbeidsgiver": "MI5 Analytikerteam",
+        "organisasjonsnummer": "910154321",
+        "adresse": "Thames House, Millbank, London",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 60.0,
+            "antallTimerPrUke": 22.5,
+            "periode": {
+              "fom": "2015-01",
+              "tom": "2017-12"
+            },
+            "yrke": "SENIORANALYTIKER"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "Deerstalker Research",
+        "organisasjonsnummer": "913775221",
+        "adresse": "Karl Johans gate 22, 0159 OSLO",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2011-04",
+              "tom": "2014-12"
+            },
+            "yrke": "ETTERRETNINGSSPESIALIST"
+          }
+        ]
+      }
+    ]
+  },
+  "inntektInformasjon": {
+    "lønnsinntekt": [
+      {
+        "arbeidsgiver": "221B Etterforskning AS",
+        "periode": "2025-07",
+        "arbeidsforhold": "Fast",
+        "stillingsprosent": "100",
+        "lønnstype": "FASTLØNN",
+        "antall": null,
+        "beløp": 74250,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "221B Etterforskning AS",
+        "periode": "2025-06",
+        "arbeidsforhold": "Fast",
+        "stillingsprosent": "100",
+        "lønnstype": "FASTLØNN",
+        "antall": null,
+        "beløp": 74250,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "Scotland Yard Konsulenttjenester",
+        "periode": "2025-05",
+        "arbeidsforhold": "Konsulentavtale",
+        "stillingsprosent": "40",
+        "lønnstype": "KONSULENT",
+        "antall": 1,
+        "beløp": 18500,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "221B Etterforskning AS",
+        "periode": "2025-01",
+        "arbeidsforhold": "Fast",
+        "stillingsprosent": "100",
+        "lønnstype": "FASTLØNN",
+        "antall": null,
+        "beløp": 73500,
+        "harFlereVersjoner": false
+      }
+    ],
+    "næringsinntekt": [
+      {
+        "arbeidsgiver": null,
+        "periode": "2024-12",
+        "arbeidsforhold": "ENK",
+        "stillingsprosent": null,
+        "lønnstype": "OPPDRAGSINNTEKT",
+        "antall": 3,
+        "beløp": 92000,
+        "harFlereVersjoner": false
+      }
+    ],
+    "pensjonEllerTrygd": [],
+    "ytelseFraOffentlige": [
+      {
+        "arbeidsgiver": "NAV Tiltak",
+        "periode": "2024-03",
+        "arbeidsforhold": "Tiltak",
+        "stillingsprosent": null,
+        "lønnstype": "REISEGODTGJØRELSE",
+        "antall": 5,
+        "beløp": 3100,
+        "harFlereVersjoner": false
+      }
+    ]
+  },
+  "stønader": [
+    {
+      "stonadType": "Sykepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2024-02-01",
+            "tom": "2024-03-15"
+          },
+          "beløp": 56230,
+          "kilde": "NAV",
+          "info": "Sykemeldt etter skade under etterforskning i Oslo"
+        }
+      ]
+    },
+    {
+      "stonadType": "Arbeidsavklaringspenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2016-06-01",
+            "tom": "2016-11-30"
+          },
+          "beløp": 112000,
+          "kilde": "NAV",
+          "info": "Rehabilitering etter opphold i Sveits"
+        }
+      ]
+    }
+  ]
+}
