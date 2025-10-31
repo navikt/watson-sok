@@ -3,6 +3,7 @@ import { Fragment, use } from "react";
 import { unstable_useRoute } from "react-router";
 import type { PersonInformasjon } from "~/routes/oppslag/schemas";
 import { formatterAdresse } from "~/utils/adresse-utils";
+import { formatterDato } from "~/utils/date-utils";
 import { tilFulltNavn } from "~/utils/navn-utils";
 import {
   formatterFødselsnummer,
@@ -76,6 +77,18 @@ const BrukerinformasjonPanelMedData = ({
               {formatterFødselsnummer(personopplysninger.aktørId)}&nbsp;
               <KopiKnapp copyText={personopplysninger.aktørId} />
             </dd>
+          </>
+        )}
+        {personopplysninger.fødselsdato && (
+          <>
+            <dt>Fødselsdato</dt>
+            <dd>{formatterDato(personopplysninger.fødselsdato)}</dd>
+          </>
+        )}
+        {personopplysninger.dødsdato && (
+          <>
+            <dt>Dødsdato</dt>
+            <dd>{formatterDato(personopplysninger.dødsdato)}</dd>
           </>
         )}
         {folkeregistrertAdresse && (
