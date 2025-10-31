@@ -31,6 +31,7 @@ const OverskriftPanelMedData = ({ promise }: OverskriftPanelProps) => {
   return (
     <Heading level="1" size="large">
       {tilFulltNavn(personopplysninger.navn)} ({personopplysninger.alder})
+      {personopplysninger.dødsdato ? ` (død)` : ""}
     </Heading>
   );
 };
