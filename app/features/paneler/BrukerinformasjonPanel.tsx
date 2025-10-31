@@ -40,7 +40,10 @@ const BrukerinformasjonPanelMedData = ({
     return (
       <PanelContainer
         title="Brukerinformasjon"
-        link={{ href: "https://modia.nav.no", beskrivelse: "Historikk" }}
+        link={{
+          href: "https://modiapersonoversikt.intern.nav.no/person/oversikt",
+          beskrivelse: "Historikk",
+        }}
       >
         <Alert variant="warning" className="w-fit">
           Fant ikke brukerinformasjon
@@ -51,9 +54,6 @@ const BrukerinformasjonPanelMedData = ({
   const erDNummer = Number(personopplysninger.aktørId?.charAt(0)) > 3;
   const fulltNavn = tilFulltNavn(personopplysninger.navn);
   const folkeregistrertAdresse = formatterAdresse(personopplysninger.adresse);
-  const antallFamilemedlemmer = Object.keys(
-    personopplysninger.familemedlemmer ?? {},
-  ).length;
 
   return (
     <PanelContainer
