@@ -30,7 +30,8 @@
       "utenlandskAdresse": null
     },
     "sivilstand": "SKILT",
-    "alder": 35
+    "alder": 35,
+    "fødselsdato": "1990-08-09"
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [

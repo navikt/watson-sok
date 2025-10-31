@@ -26,7 +26,8 @@
       "utenlandskAdresse": null
     },
     "sivilstand": "GIFT",
-    "alder": 29
+    "alder": 29,
+    "fødselsdato": "1996-06-17"
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [

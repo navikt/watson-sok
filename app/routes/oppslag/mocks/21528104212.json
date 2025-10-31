@@ -21,7 +21,8 @@
     "familemedlemmer": {},
     "statsborgerskap": ["NORGE"],
     "sivilstand": null,
-    "alder": 51
+    "alder": 51,
+    "fødselsdato": "1974-05-21"
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [
