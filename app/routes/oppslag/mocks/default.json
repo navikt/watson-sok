@@ -25,7 +25,8 @@
     },
     "statsborgerskap": ["NORGE", "SVERIGE"],
     "sivilstand": null,
-    "alder": 70
+    "alder": 70,
+    "fødselsdato": "1954-12-31"
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [
