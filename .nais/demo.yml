@@ -20,6 +20,10 @@ spec:
     logging:
       destinations:
         - id: loki
+  accessPolicy:
+    outbound:
+      external:
+        - host: holmes-unleash-api.nav.cloud.nais.io
   ingresses:
     - https://oppslag-bruker-demo.ekstern.dev.nav.no
   image: {{image}}
