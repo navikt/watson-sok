@@ -11,6 +11,7 @@ import {
 import { useSearchParams } from "react-router";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
+import { TimelinePin } from "@navikt/ds-react/Timeline";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useMemo, useState } from "react";
 import { RouteConfig } from "~/config/routeConfig";
@@ -62,6 +63,19 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     }));
   }, [ytelser]);
 
+  const tilbakekrevinger = useMemo(
+    () =>
+      ytelser
+        ?.flatMap((ytelse) => ytelse.perioder)
+        .filter(
+          (periode) =>
+            periode.beløp < 0 &&
+            new Date(periode.periode.fom) > nåværendeVindu.start &&
+            new Date(periode.periode.tom) < nåværendeVindu.slutt,
+        ),
+    [ytelser, nåværendeVindu],
+  );
+
   const viserSiste10År = searchParams.get("utvidet") === "true";
   const tittel = viserSiste10År
     ? "Ytelser fra Nav siste 10 år"
@@ -103,6 +117,20 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
             startDate={nåværendeVindu.start}
             endDate={nåværendeVindu.slutt}
           >
+            {tilbakekrevinger?.map((tilbakebetaling) => (
+              <TimelinePin
+                key={tilbakebetaling.beløp}
+                date={new Date(tilbakebetaling.periode.fom)}
+              >
+                <BodyShort spacing>Tilbakekreving</BodyShort>
+                <BodyShort spacing>
+                  {formatterBeløp(tilbakebetaling.beløp)}
+                </BodyShort>
+                <BodyShort className="text-ax-danger-500">
+                  Vedtak, Se Gosys
+                </BodyShort>
+              </TimelinePin>
+            ))}
             {ytelserMedGruppertePerioder.map((ytelse) => {
               return (
                 <Timeline.Row
