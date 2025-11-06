@@ -11,6 +11,8 @@ import {
   storFørsteBokstavPerOrd,
 } from "~/utils/string-utils";
 import { ResolvingComponent } from "../async/ResolvingComponent";
+import { FeatureFlagg } from "../feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "../feature-toggling/useFeatureFlagg";
 import { FamiliemedlemmerModal } from "./FamiliemedlemmerModal";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
@@ -36,6 +38,9 @@ const BrukerinformasjonPanelMedData = ({
 }: BrukerinformasjonPanelMedDataProps) => {
   const personopplysninger = use(promise);
   const { loaderData: rootData } = unstable_useRoute("root");
+  const visFødselsOgDødsdato = useEnkeltFeatureFlagg(
+    FeatureFlagg.VIS_FØDSELS_OG_DØDSDATO,
+  );
 
   if (!personopplysninger || !rootData) {
     return (
@@ -79,16 +84,20 @@ const BrukerinformasjonPanelMedData = ({
             </dd>
           </>
         )}
-        {personopplysninger.fødselsdato && (
+        {visFødselsOgDødsdato && (
           <>
-            <dt>Fødselsdato</dt>
-            <dd>{formatterDato(personopplysninger.fødselsdato)}</dd>
-          </>
-        )}
-        {personopplysninger.dødsdato && (
-          <>
-            <dt>Dødsdato</dt>
-            <dd>{formatterDato(personopplysninger.dødsdato)}</dd>
+            {personopplysninger.fødselsdato && (
+              <>
+                <dt>Fødselsdato</dt>
+                <dd>{formatterDato(personopplysninger.fødselsdato)}</dd>
+              </>
+            )}
+            {personopplysninger.dødsdato && (
+              <>
+                <dt>Dødsdato</dt>
+                <dd>{formatterDato(personopplysninger.dødsdato)}</dd>
+              </>
+            )}
           </>
         )}
         {folkeregistrertAdresse && (
