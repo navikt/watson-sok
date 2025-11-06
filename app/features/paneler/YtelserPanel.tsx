@@ -11,7 +11,11 @@ import {
 import { useSearchParams } from "react-router";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
-import { TimelinePin } from "@navikt/ds-react/Timeline";
+import {
+  TimelinePeriod,
+  TimelinePin,
+  TimelineRow,
+} from "@navikt/ds-react/Timeline";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useMemo, useState } from "react";
 import { RouteConfig } from "~/config/routeConfig";
@@ -70,8 +74,8 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
         .filter(
           (periode) =>
             periode.beløp < 0 &&
-            new Date(periode.periode.fom) > nåværendeVindu.start &&
-            new Date(periode.periode.tom) < nåværendeVindu.slutt,
+            new Date(periode.periode.fom) >= nåværendeVindu.start &&
+            new Date(periode.periode.tom) <= nåværendeVindu.slutt,
         ),
     [ytelser, nåværendeVindu],
   );
@@ -119,7 +123,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
           >
             {tilbakekrevinger?.map((tilbakebetaling) => (
               <TimelinePin
-                key={tilbakebetaling.beløp}
+                key={tilbakebetaling.info}
                 date={new Date(tilbakebetaling.periode.fom)}
               >
                 <BodyShort spacing>Tilbakekreving</BodyShort>
@@ -133,7 +137,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
             ))}
             {ytelserMedGruppertePerioder.map((ytelse) => {
               return (
-                <Timeline.Row
+                <TimelineRow
                   key={ytelse.stonadType}
                   label={ytelse.stonadType}
                   icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
@@ -149,7 +153,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                     );
 
                     return (
-                      <Timeline.Period
+                      <TimelinePeriod
                         key={`${ytelse.stonadType}-${index}`}
                         start={fomDate}
                         end={tomDate}
@@ -160,10 +164,10 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                           {fomFormatert} – {tomFormatert}
                         </p>
                         <p>Sum: {beløpFormatert}</p>
-                      </Timeline.Period>
+                      </TimelinePeriod>
                     );
                   })}
-                </Timeline.Row>
+                </TimelineRow>
               );
             })}
           </Timeline>
