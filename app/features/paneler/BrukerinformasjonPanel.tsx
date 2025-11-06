@@ -79,6 +79,12 @@ const BrukerinformasjonPanelMedData = ({
             </dd>
           </>
         )}
+        {personopplysninger.fødselsdato && (
+          <>
+            <dt>Fødselsdato</dt>
+            <dd>{formatterDato(personopplysninger.fødselsdato)}</dd>
+          </>
+        )}
         {personopplysninger.dødsdato && (
           <>
             <dt>Dødsdato</dt>
