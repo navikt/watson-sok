@@ -11,10 +11,17 @@ import {
 import { useSearchParams } from "react-router";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
+import {
+  TimelinePeriod,
+  TimelinePin,
+  TimelineRow,
+} from "@navikt/ds-react/Timeline";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useMemo, useState } from "react";
 import { RouteConfig } from "~/config/routeConfig";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
+import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
 import type { Ytelse } from "~/routes/oppslag/schemas";
 import { sporHendelse } from "~/utils/analytics";
 import { formatterDato, forskjellIDager } from "~/utils/date-utils";
@@ -53,6 +60,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     vinduetsStørrelse,
     setVinduetsStørrelse,
   } = useTidslinjevindu();
+  const tilbakekrevinger = useTilbakekrevinger(ytelser, nåværendeVindu);
 
   const ytelserMedGruppertePerioder = useMemo(() => {
     if (!ytelser) return [];
@@ -103,9 +111,23 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
             startDate={nåværendeVindu.start}
             endDate={nåværendeVindu.slutt}
           >
+            {tilbakekrevinger.map((tilbakebetaling) => (
+              <TimelinePin
+                key={tilbakebetaling.info}
+                date={new Date(tilbakebetaling.periode.fom)}
+              >
+                <BodyShort spacing>Tilbakekreving</BodyShort>
+                <BodyShort spacing>
+                  {formatterBeløp(tilbakebetaling.beløp)}
+                </BodyShort>
+                <BodyShort className="text-ax-danger-500">
+                  Vedtak, Se Gosys
+                </BodyShort>
+              </TimelinePin>
+            ))}
             {ytelserMedGruppertePerioder.map((ytelse) => {
               return (
-                <Timeline.Row
+                <TimelineRow
                   key={ytelse.stonadType}
                   label={ytelse.stonadType}
                   icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
@@ -121,7 +143,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                     );
 
                     return (
-                      <Timeline.Period
+                      <TimelinePeriod
                         key={`${ytelse.stonadType}-${index}`}
                         start={fomDate}
                         end={tomDate}
@@ -132,10 +154,10 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                           {fomFormatert} – {tomFormatert}
                         </p>
                         <p>Sum: {beløpFormatert}</p>
-                      </Timeline.Period>
+                      </TimelinePeriod>
                     );
                   })}
-                </Timeline.Row>
+                </TimelineRow>
               );
             })}
           </Timeline>
@@ -343,4 +365,36 @@ function useTidslinjevindu() {
     vinduetsStørrelse,
     setVinduetsStørrelse,
   };
+}
+
+/**
+ * Returnerer filtrerte tilbakekrevinger innenfor valgt vindu dersom funksjonen er aktivert via feature-flagg.
+ *
+ * @example
+ * const tilbakekrevinger = useTilbakekrevinger(ytelser, { start: new Date("2024-01-01"), slutt: new Date("2024-06-30") });
+ */
+function useTilbakekrevinger(
+  ytelser: Ytelse[] | null,
+  nåværendeVindu: { start: Date; slutt: Date },
+) {
+  const visTilbakebetalingIdentifikatorer = useEnkeltFeatureFlagg(
+    FeatureFlagg.VIS_TILBAKEBETALING_IDENTIFIKATORER,
+  );
+
+  return useMemo(() => {
+    if (!visTilbakebetalingIdentifikatorer) {
+      return [];
+    }
+
+    return (
+      ytelser
+        ?.flatMap((ytelse) => ytelse.perioder)
+        .filter(
+          (periode) =>
+            periode.beløp < 0 &&
+            new Date(periode.periode.fom) >= nåværendeVindu.start &&
+            new Date(periode.periode.tom) <= nåværendeVindu.slutt,
+        ) ?? []
+    );
+  }, [visTilbakebetalingIdentifikatorer, ytelser, nåværendeVindu]);
 }
