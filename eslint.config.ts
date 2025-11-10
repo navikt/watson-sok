@@ -43,7 +43,7 @@ const config = [
       ],
       "@typescript-eslint/no-non-null-assertion": "warn",
       "@typescript-eslint/no-empty-interface": "warn",
-      "@typescript-eslint/no-empty-function": "warn",
+      "@typescript-eslint/no-empty-function": "off",
 
       // React rules
       "react/prop-types": "off",
