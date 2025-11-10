@@ -73,8 +73,8 @@ export const PersonInformasjonSchema = z.object({
   statsborgerskap: z.array(z.string()),
   sivilstand: z.string().nullable(),
   alder: z.number(),
-  fødselsdato: z.string().optional(),
-  dødsdato: z.string().optional().nullable(),
+  fødselsdato: z.string(),
+  dødsdato: z.string().nullable(),
 });
 
 export type PersonInformasjon = z.infer<typeof PersonInformasjonSchema>;
