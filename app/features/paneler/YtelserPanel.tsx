@@ -60,9 +60,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     vinduetsStørrelse,
     setVinduetsStørrelse,
   } = useTidslinjevindu();
-  const visTilbakebetalingIdentifikatorer = useEnkeltFeatureFlagg(
-    FeatureFlagg.VIS_TILBAKEBETALING_IDENTIFIKATORER,
-  );
+  const tilbakekrevinger = useTilbakekrevinger(ytelser, nåværendeVindu);
 
   const ytelserMedGruppertePerioder = useMemo(() => {
     if (!ytelser) return [];
@@ -71,19 +69,6 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
       gruppertePerioder: grupperSammenhengendePerioder(ytelse.perioder),
     }));
   }, [ytelser]);
-
-  const tilbakekrevinger = useMemo(
-    () =>
-      ytelser
-        ?.flatMap((ytelse) => ytelse.perioder)
-        .filter(
-          (periode) =>
-            periode.beløp < 0 &&
-            new Date(periode.periode.fom) >= nåværendeVindu.start &&
-            new Date(periode.periode.tom) <= nåværendeVindu.slutt,
-        ),
-    [ytelser, nåværendeVindu],
-  );
 
   const viserSiste10År = searchParams.get("utvidet") === "true";
   const tittel = viserSiste10År
@@ -126,21 +111,20 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
             startDate={nåværendeVindu.start}
             endDate={nåværendeVindu.slutt}
           >
-            {visTilbakebetalingIdentifikatorer &&
-              tilbakekrevinger?.map((tilbakebetaling) => (
-                <TimelinePin
-                  key={tilbakebetaling.info}
-                  date={new Date(tilbakebetaling.periode.fom)}
-                >
-                  <BodyShort spacing>Tilbakekreving</BodyShort>
-                  <BodyShort spacing>
-                    {formatterBeløp(tilbakebetaling.beløp)}
-                  </BodyShort>
-                  <BodyShort className="text-ax-danger-500">
-                    Vedtak, Se Gosys
-                  </BodyShort>
-                </TimelinePin>
-              ))}
+            {tilbakekrevinger.map((tilbakebetaling) => (
+              <TimelinePin
+                key={tilbakebetaling.info}
+                date={new Date(tilbakebetaling.periode.fom)}
+              >
+                <BodyShort spacing>Tilbakekreving</BodyShort>
+                <BodyShort spacing>
+                  {formatterBeløp(tilbakebetaling.beløp)}
+                </BodyShort>
+                <BodyShort className="text-ax-danger-500">
+                  Vedtak, Se Gosys
+                </BodyShort>
+              </TimelinePin>
+            ))}
             {ytelserMedGruppertePerioder.map((ytelse) => {
               return (
                 <TimelineRow
@@ -381,4 +365,36 @@ function useTidslinjevindu() {
     vinduetsStørrelse,
     setVinduetsStørrelse,
   };
+}
+
+/**
+ * Returnerer filtrerte tilbakekrevinger innenfor valgt vindu dersom funksjonen er aktivert via feature-flagg.
+ *
+ * @example
+ * const tilbakekrevinger = useTilbakekrevinger(ytelser, { start: new Date("2024-01-01"), slutt: new Date("2024-06-30") });
+ */
+function useTilbakekrevinger(
+  ytelser: Ytelse[] | null,
+  nåværendeVindu: { start: Date; slutt: Date },
+) {
+  const visTilbakebetalingIdentifikatorer = useEnkeltFeatureFlagg(
+    FeatureFlagg.VIS_TILBAKEBETALING_IDENTIFIKATORER,
+  );
+
+  return useMemo(() => {
+    if (!visTilbakebetalingIdentifikatorer) {
+      return [];
+    }
+
+    return (
+      ytelser
+        ?.flatMap((ytelse) => ytelse.perioder)
+        .filter(
+          (periode) =>
+            periode.beløp < 0 &&
+            new Date(periode.periode.fom) >= nåværendeVindu.start &&
+            new Date(periode.periode.tom) <= nåværendeVindu.slutt,
+        ) ?? []
+    );
+  }, [visTilbakebetalingIdentifikatorer, ytelser, nåværendeVindu]);
 }
