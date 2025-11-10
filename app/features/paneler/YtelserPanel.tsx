@@ -20,6 +20,8 @@ import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useMemo, useState } from "react";
 import { RouteConfig } from "~/config/routeConfig";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
+import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
 import type { Ytelse } from "~/routes/oppslag/schemas";
 import { sporHendelse } from "~/utils/analytics";
 import { formatterDato, forskjellIDager } from "~/utils/date-utils";
@@ -58,6 +60,9 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     vinduetsStørrelse,
     setVinduetsStørrelse,
   } = useTidslinjevindu();
+  const visTilbakebetalingIdentifikatorer = useEnkeltFeatureFlagg(
+    FeatureFlagg.VIS_TILBAKEBETALING_IDENTIFIKATORER,
+  );
 
   const ytelserMedGruppertePerioder = useMemo(() => {
     if (!ytelser) return [];
@@ -121,20 +126,21 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
             startDate={nåværendeVindu.start}
             endDate={nåværendeVindu.slutt}
           >
-            {tilbakekrevinger?.map((tilbakebetaling) => (
-              <TimelinePin
-                key={tilbakebetaling.info}
-                date={new Date(tilbakebetaling.periode.fom)}
-              >
-                <BodyShort spacing>Tilbakekreving</BodyShort>
-                <BodyShort spacing>
-                  {formatterBeløp(tilbakebetaling.beløp)}
-                </BodyShort>
-                <BodyShort className="text-ax-danger-500">
-                  Vedtak, Se Gosys
-                </BodyShort>
-              </TimelinePin>
-            ))}
+            {visTilbakebetalingIdentifikatorer &&
+              tilbakekrevinger?.map((tilbakebetaling) => (
+                <TimelinePin
+                  key={tilbakebetaling.info}
+                  date={new Date(tilbakebetaling.periode.fom)}
+                >
+                  <BodyShort spacing>Tilbakekreving</BodyShort>
+                  <BodyShort spacing>
+                    {formatterBeløp(tilbakebetaling.beløp)}
+                  </BodyShort>
+                  <BodyShort className="text-ax-danger-500">
+                    Vedtak, Se Gosys
+                  </BodyShort>
+                </TimelinePin>
+              ))}
             {ytelserMedGruppertePerioder.map((ytelse) => {
               return (
                 <TimelineRow
