@@ -144,7 +144,7 @@ export function meta({ loaderData }: MetaArgs<typeof loader>) {
   }
   return [
     {
-      title: `Oppslag Bruker`,
+      title: `Oppslag bruker`,
     },
   ];
 }
