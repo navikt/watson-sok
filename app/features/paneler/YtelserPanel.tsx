@@ -6,11 +6,16 @@ import {
   Skeleton,
   Timeline,
   ToggleGroup,
+  Tooltip,
 } from "@navikt/ds-react";
 
 import { useSearchParams } from "react-router";
 
-import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  InformationSquareIcon,
+} from "@navikt/aksel-icons";
 import {
   TimelinePeriod,
   TimelinePin,
@@ -76,7 +81,16 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     : "Ytelser fra Nav siste 3 år";
 
   return (
-    <PanelContainer title={tittel}>
+    <PanelContainer
+      title={
+        <div className="flex items-center gap-2">
+          {tittel}
+          <Tooltip content="Visningen er basert på utbetalinger fra Nav.">
+            <InformationSquareIcon aria-hidden="true" />
+          </Tooltip>
+        </div>
+      }
+    >
       <BodyShort spacing>
         <Link
           href={`${RouteConfig.OPPSLAG}?utvidet=${!viserSiste10År}`}
