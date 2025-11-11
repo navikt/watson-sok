@@ -1,4 +1,4 @@
-import type z from "zod";
+import z from "zod";
 import { BACKEND_API_URL, skalBrukeMockdata } from "~/config/env.server";
 import { getMockedResponseByFødselsnummer } from "~/routes/oppslag/mock.server";
 import { getBackendOboToken } from "~/utils/access-token";
@@ -233,8 +233,13 @@ async function gjørOppslagApiRequest<T>({
     const parsedData = schema.safeParse(rawData.data);
 
     if (!parsedData.success) {
-      console.error("Ugyldig data fra baksystem", parsedData.error.flatten());
-      throw new Error("Ugyldig data fra baksystem");
+      console.error(
+        "Mottok ugyldig data fra baksystem",
+        z.treeifyError(parsedData.error),
+      );
+      throw new OppslagApiError(
+        "Ugyldig data fra baksystem: " + z.treeifyError(parsedData.error),
+      );
     }
 
     return parsedData.data;

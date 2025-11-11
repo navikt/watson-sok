@@ -74,7 +74,6 @@ export const PersonInformasjonSchema = z.object({
   sivilstand: z.string().nullable(),
   alder: z.number(),
   fødselsdato: z.string(),
-  cødsdato: z.string(),
   dødsdato: z.string().nullable(),
 });
 
