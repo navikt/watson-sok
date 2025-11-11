@@ -74,7 +74,7 @@ export default function LandingPage() {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const rawIdent = formData.get("ident")?.toString().replace(/\s+/, "").trim();
+  const rawIdent = formData.get("ident")?.toString().replace(/\s+/g, "").trim();
   const leggTilTraceHeader = rawIdent?.endsWith("?");
   const ident = rawIdent?.replace("?", "");
   if (ident && ident.length === 11 && ident.match(/^\d+$/)) {
