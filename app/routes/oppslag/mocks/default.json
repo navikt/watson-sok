@@ -1,7 +1,7 @@
 {
   "utrekkstidspunkt": "2025-09-02T16:45:08.472148",
   "saksbehandlerIdent": "",
-  "fødselsnummer": "",
+  "fødselsnummer": "12345678901",
   "personInformasjon": {
     "navn": {
       "fornavn": "ETT",
@@ -26,7 +26,8 @@
     "statsborgerskap": ["NORGE", "SVERIGE"],
     "sivilstand": null,
     "alder": 70,
-    "fødselsdato": "1954-12-31"
+    "fødselsdato": "1954-12-31",
+    "dødsdato": null
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [

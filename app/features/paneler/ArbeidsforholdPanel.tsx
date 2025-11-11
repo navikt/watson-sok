@@ -325,7 +325,7 @@ function slåSammenTilstøtendePerioder(
   // For hver arbeidsgiver, slå sammen sammenhengende perioder
   const sammenslåtteRader: typeof rader = [];
 
-  for (const [_, arbeidsgiverRader] of gruppert) {
+  for (const [, arbeidsgiverRader] of gruppert) {
     // Sortér etter startdato (eldste først for merging)
     arbeidsgiverRader.sort((a, b) =>
       a.start < b.start ? -1 : a.start > b.start ? 1 : 0,
