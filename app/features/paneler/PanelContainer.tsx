@@ -1,8 +1,9 @@
+import { ExternalLinkIcon } from "@navikt/aksel-icons";
 import { Heading, Link, Skeleton } from "@navikt/ds-react";
 
 type PanelContainerProps = {
   children: React.ReactNode;
-  title?: string;
+  title?: React.ReactNode;
   link?: {
     href: string;
     beskrivelse: string;
@@ -30,7 +31,10 @@ export function PanelContainer({
       )}
       {link && (
         <div className="md:absolute top-4 right-4 mb-4">
-          <Link href={link.href}>{link.beskrivelse}</Link>
+          <Link href={link.href}>
+            <ExternalLinkIcon aria-hidden="true" />
+            {link.beskrivelse}
+          </Link>
         </div>
       )}
       {children}

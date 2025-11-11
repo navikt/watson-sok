@@ -1,4 +1,3 @@
-import { FileIcon } from "@navikt/aksel-icons";
 import { Alert, BodyShort, Heading, Link, Search } from "@navikt/ds-react";
 import "~/globals.css";
 
@@ -21,25 +20,16 @@ export default function LandingPage() {
 
   return (
     <PageBlock width="text" gutters>
-      <title>Oppslag Bruker 1.0</title>
+      <title>Oppslag bruker</title>
       <meta name="description" content="Oppslag på personer i Nav" />
       <div>
         <Heading level="2" size="medium" align="start" className="mt-4" spacing>
-          <FileIcon title="a11y-title" className="inline-block mr-2" />
-          Oppslag på bruker i Nav
+          Brukeroppslag
         </Heading>
         <BodyShort spacing>
-          Ved å søke på fødselsnummer eller D-nummer i søkefeltet nedenfor får
-          du en enkel oversikt over en Nav bruker sine relasjoner til Nav
+          Ved å søke på fødsels- eller D-nummer får du en oversikt over relevant
+          informasjon om en bruker. Merk at alle søk blir loggført.
         </BodyShort>
-
-        <Alert variant="info">
-          <Heading level="3" size="small" spacing>
-            Tjenestelig behov
-          </Heading>
-          Det forutsettes at man har tjenestelig behov til grunn for å gjøre
-          oppslaget.
-        </Alert>
 
         <Form
           className="mt-12 mb-2"
@@ -52,7 +42,7 @@ export default function LandingPage() {
             size="medium"
             variant="primary"
             placeholder="11 siffer"
-            label="Fødselsnummer eller D-nummer på bruker"
+            label="Fødsels- eller D-nummer"
             hideLabel={false}
             error={actionData?.error}
             autoComplete="off"
@@ -69,6 +59,14 @@ export default function LandingPage() {
             Har du ikke fødsels- eller D-nummer?
           </Link>
         </BodyShort>
+
+        <Alert variant="info">
+          <Heading level="3" size="small" spacing>
+            Tjenestelig behov
+          </Heading>
+          Det forutsettes at man har tjenestelig behov til grunn for å gjøre
+          oppslaget.
+        </Alert>
       </div>
     </PageBlock>
   );
@@ -76,7 +74,7 @@ export default function LandingPage() {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const rawIdent = formData.get("ident")?.toString().trim();
+  const rawIdent = formData.get("ident")?.toString().replace(/\s+/g, "");
   const leggTilTraceHeader = rawIdent?.endsWith("?");
   const ident = rawIdent?.replace("?", "");
   if (ident && ident.length === 11 && ident.match(/^\d+$/)) {

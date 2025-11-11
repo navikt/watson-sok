@@ -1,10 +1,7 @@
 import {
-  BarChartIcon,
   Buildings3Icon,
-  ExternalLinkIcon,
   MenuGridIcon,
   MoonIcon,
-  PersonGroupIcon,
   PersonIcon,
   SunIcon,
 } from "@navikt/aksel-icons";
@@ -40,7 +37,7 @@ export function AppHeader() {
   return (
     <InternalHeader>
       <InternalHeader.Title as="h1">
-        <Link to={RouteConfig.INDEX}>Oppslag bruker 1.0</Link>
+        <Link to={RouteConfig.INDEX}>Oppslag bruker</Link>
       </InternalHeader.Title>
       <fetcher.Form
         role="search"
@@ -77,29 +74,7 @@ export function AppHeader() {
             >
               Oppslag bruker
             </ActionMenu.Item>
-            <ActionMenu.Item disabled icon={<PersonGroupIcon />}>
-              Arbeidsgiveroversikt
-            </ActionMenu.Item>
-            <ActionMenu.Item disabled icon={<BarChartIcon />}>
-              Statistikk og innsikt
-            </ActionMenu.Item>
-          </ActionMenu.Group>
 
-          <ActionMenu.Divider />
-
-          <ActionMenu.Group label="Systemer og oppslagsverk">
-            <ActionMenu.Item
-              onSelect={console.info}
-              icon={<ExternalLinkIcon />}
-            >
-              Gosys
-            </ActionMenu.Item>
-            <ActionMenu.Item
-              onSelect={console.info}
-              icon={<ExternalLinkIcon />}
-            >
-              Modia
-            </ActionMenu.Item>
             <ActionMenu.Item onSelect={console.info} icon={<Buildings3Icon />}>
               Argus
             </ActionMenu.Item>

@@ -13,11 +13,11 @@ test.describe("Oppslag-flyt", () => {
       await page.goto("/");
 
       // Sjekk at siden lastes
-      await expect(page).toHaveTitle(/Oppslag Bruker/);
+      await expect(page).toHaveTitle(/Oppslag bruker/);
 
       // Sjekk at overskrift vises
       await expect(
-        page.getByRole("heading", { name: /Oppslag på bruker i Nav/i }),
+        page.getByRole("heading", { name: /Brukeroppslag/i }),
       ).toBeVisible();
 
       // Sjekk tilgjengelighet på landingssiden
@@ -28,9 +28,7 @@ test.describe("Oppslag-flyt", () => {
     await test.step("Fylle ut søkeskjema med testbruker", async () => {
       const mainContent = page.locator("#maincontent");
       // Finn søkefeltet
-      const søkefelt = mainContent.getByLabel(
-        /Fødselsnummer eller D-nummer på bruker/i,
-      );
+      const søkefelt = mainContent.getByLabel(/Fødsels- eller D-nummer/i);
       await expect(søkefelt).toBeVisible();
 
       // Fyll inn fødselsnummer
@@ -160,9 +158,7 @@ test.describe("Oppslag-flyt", () => {
 
     await test.step("Prøve å søke med ugyldig fødselsnummer", async () => {
       const mainContent = page.locator("#maincontent");
-      const søkefelt = mainContent.getByLabel(
-        /Fødselsnummer eller D-nummer på bruker/i,
-      );
+      const søkefelt = mainContent.getByLabel(/Fødsels- eller D-nummer/i);
       await søkefelt.fill("123"); // For kort
 
       const søkeknapp = mainContent.getByRole("button", { name: /søk/i });
