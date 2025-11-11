@@ -32,7 +32,7 @@ export function PanelContainer({
       {link && (
         <div className="md:absolute top-4 right-4 mb-4">
           <Link href={link.href}>
-            <ExternalLinkIcon aria-label="Ekstern lenke" />
+            <ExternalLinkIcon aria-hidden="true" />
             {link.beskrivelse}
           </Link>
         </div>
