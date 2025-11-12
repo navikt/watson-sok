@@ -107,7 +107,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const begrunnelse = formData.get("begrunnelse")?.toString();
+  const begrunnelse = formData.get("begrunnelse")?.toString().trim();
   if (!begrunnelse) {
     return { error: "Begrunnelse er påkrevd" };
   }
@@ -127,7 +127,12 @@ export async function action({ request }: ActionFunctionArgs) {
     },
     request,
   );
-  await loggBegrunnetTilgang({ ident, begrunnelse, mangel: tilgang, request });
+  await loggBegrunnetTilgang({
+    ident,
+    begrunnelse,
+    mangel: tilgang,
+    request,
+  });
   return redirectDocument(RouteConfig.OPPSLAG, {
     headers: {
       "Set-Cookie": cookie,

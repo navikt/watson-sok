@@ -45,10 +45,9 @@ export async function hentSøkedataFraSession(request: Request) {
   return {
     ident: session.get("ident") ?? null,
     tilgang: session.get("tilgang") ?? null,
-    harUtvidetTilgang: Boolean(session.get("harUtvidetTilgang")),
-    bekreftetBegrunnetTilgang: Boolean(
-      session.get("bekreftetBegrunnetTilgang"),
-    ),
+    harUtvidetTilgang: session.get("harUtvidetTilgang") ?? false,
+    bekreftetBegrunnetTilgang:
+      session.get("bekreftetBegrunnetTilgang") ?? false,
   };
 }
 

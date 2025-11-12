@@ -72,7 +72,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const traceLogging =
     new URL(request.url).searchParams.get("traceLogging") === "true";
 
-  if (!søkedata || !søkedata.ident || !søkedata.tilgang) {
+  if (
+    !søkedata ||
+    !søkedata.ident ||
+    !søkedata.tilgang ||
+    søkedata.tilgang === "IKKE_FUNNET"
+  ) {
     return redirect(RouteConfig.INDEX);
   }
 
