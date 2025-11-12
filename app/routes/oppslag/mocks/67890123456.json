@@ -2,6 +2,10 @@
   "utrekkstidspunkt": "2025-09-23T09:07:36.871281071",
   "saksbehandlerIdent": "prod-gcp:holmes:nav-persondata-api",
   "fødselsnummer": "67890123456",
+  "tilgang": {
+    "tilgang": "OK",
+    "harUtvidetTilgang": false
+  },
   "personInformasjon": {
     "aktørId": "67890123456",
     "familemedlemmer": {

@@ -2,6 +2,10 @@
   "utrekkstidspunkt": "2025-10-13T10:00:00.000000000",
   "saksbehandlerIdent": "test-user",
   "fødselsnummer": "11111112345",
+  "tilgang": {
+    "tilgang": "OK",
+    "harUtvidetTilgang": false
+  },
   "personInformasjon": {
     "aktørId": "11111112345",
     "familemedlemmer": {},

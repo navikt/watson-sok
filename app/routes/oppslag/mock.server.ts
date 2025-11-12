@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
-import { OppslagBrukerResponsSchema } from "./schemas";
+import { MockOppslagBrukerResponsSchema } from "./schemas";
 
 const MOCK_DIR = path.join(process.cwd(), "app", "routes", "oppslag", "mocks");
 
@@ -29,7 +29,7 @@ export async function getMockedResponseByFødselsnummer(fødselsnummer: string) 
       continue; // File doesn't exist, try next
     }
 
-    const parsedData = OppslagBrukerResponsSchema.safeParse(rawData);
+    const parsedData = MockOppslagBrukerResponsSchema.safeParse(rawData);
     if (parsedData.success) {
       return parsedData.data;
     }

@@ -9,7 +9,7 @@ import {
   PersonInformasjonSchema,
   YtelserInformasjonSchema,
   type EksistensOgTilgang,
-  type OppslagBrukerRespons,
+  type MockOppslagBrukerRespons,
 } from "./schemas";
 
 type BackendKallSignatur = {
@@ -40,10 +40,8 @@ export async function sjekkEksistensOgTilgang({
   traceLogging,
 }: BackendKallSignatur): Promise<EksistensOgTilgang> {
   if (skalBrukeMockdata) {
-    return {
-      tilgang: "OK",
-      harUtvidetTilgang: false,
-    };
+    const mockedResponse = await getMockedResponseByFødselsnummer(ident);
+    return mockedResponse.tilgang;
   }
 
   const oboToken = await getBackendOboToken(request);
@@ -217,7 +215,7 @@ type ApiRequestConfig<T> = {
   /** Zod schema for å parse responsen */
   schema: z.ZodSchema<T>;
   /** En funksjon som returnerer riktig del av mock-datagrunnlaget */
-  ekstraherFraMock: (mockData: OppslagBrukerRespons) => T;
+  ekstraherFraMock: (mockData: MockOppslagBrukerRespons) => T;
   /** Om trace-logging skal være på */
   traceLogging: boolean;
 };

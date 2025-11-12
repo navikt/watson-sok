@@ -133,18 +133,6 @@ export const InntektInformasjonSchema = z.object({
 
 export type InntektInformasjon = z.infer<typeof InntektInformasjonSchema>;
 
-export const OppslagBrukerResponsSchema = z.object({
-  utrekkstidspunkt: z.string(),
-  saksbehandlerIdent: z.string(),
-  fødselsnummer: z.string(),
-  personInformasjon: PersonInformasjonSchema.nullable(),
-  arbeidsgiverInformasjon: ArbeidsgiverInformasjonSchema.nullable(),
-  inntektInformasjon: InntektInformasjonSchema.nullable(),
-  stønader: YtelserInformasjonSchema.nullable(),
-});
-
-export type OppslagBrukerRespons = z.infer<typeof OppslagBrukerResponsSchema>;
-
 export const EksistensOgTilgangSchema = z.object({
   tilgang: z.enum([
     "OK",
@@ -164,3 +152,18 @@ export const EksistensOgTilgangSchema = z.object({
 });
 
 export type EksistensOgTilgang = z.infer<typeof EksistensOgTilgangSchema>;
+
+export const MockOppslagBrukerResponsSchema = z.object({
+  tilgang: EksistensOgTilgangSchema,
+  utrekkstidspunkt: z.string(),
+  saksbehandlerIdent: z.string(),
+  fødselsnummer: z.string(),
+  personInformasjon: PersonInformasjonSchema.nullable(),
+  arbeidsgiverInformasjon: ArbeidsgiverInformasjonSchema.nullable(),
+  inntektInformasjon: InntektInformasjonSchema.nullable(),
+  stønader: YtelserInformasjonSchema.nullable(),
+});
+
+export type MockOppslagBrukerRespons = z.infer<
+  typeof MockOppslagBrukerResponsSchema
+>;
