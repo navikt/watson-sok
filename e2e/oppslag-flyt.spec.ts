@@ -170,7 +170,9 @@ test.describe("Oppslag-flyt", () => {
       await expect(page).toHaveURL("/");
 
       // Sjekk at feilmelding vises
-      await expect(page.getByText(/Ugyldig fødselsnummer/i)).toBeVisible();
+      await expect(
+        page.getByText(/Ugyldig fødsels- eller D-nummer/i),
+      ).toBeVisible();
 
       // Sjekk tilgjengelighet med feilmelding
       await sjekkTilgjengelighet(page);
