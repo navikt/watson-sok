@@ -4,18 +4,13 @@ import { getMockedResponseByFødselsnummer } from "~/routes/oppslag/mock.server"
 import { getBackendOboToken } from "~/utils/access-token";
 import {
   ArbeidsgiverInformasjonSchema,
+  EksistensOgTilgangSchema,
   InntektInformasjonSchema,
   PersonInformasjonSchema,
   YtelserInformasjonSchema,
+  type EksistensOgTilgang,
   type OppslagBrukerRespons,
 } from "./schemas";
-
-type EksistensOgTilgangResponse =
-  | "ok"
-  | "partial"
-  | "forbidden"
-  | "not found"
-  | "error";
 
 type BackendKallSignatur = {
   ident: string;
@@ -43,9 +38,12 @@ export async function sjekkEksistensOgTilgang({
   request,
   navCallId,
   traceLogging,
-}: BackendKallSignatur): Promise<EksistensOgTilgangResponse> {
+}: BackendKallSignatur): Promise<EksistensOgTilgang> {
   if (skalBrukeMockdata) {
-    return "ok";
+    return {
+      tilgang: "OK",
+      harUtvidetTilgang: false,
+    };
   }
 
   const oboToken = await getBackendOboToken(request);
@@ -66,21 +64,71 @@ export async function sjekkEksistensOgTilgang({
       `Bruker med ident ${ident.substring(0, 6)} ***** slått opp med status ${response.status} (nav-call-id: ${navCallId})`,
     );
 
-    switch (response.status) {
-      case 200:
-        return "ok";
-      case 206:
-        return "partial";
-      case 403:
-        return "forbidden";
-      case 404:
-        return "not found";
-      default:
-        return "error";
+    if (response.status === 404) {
+      return {
+        tilgang: "IKKE_FUNNET",
+        harUtvidetTilgang: false,
+      };
+    }
+
+    const data = await response.json();
+    const parsedData = EksistensOgTilgangSchema.safeParse(data);
+    if (!parsedData.success) {
+      throw new OppslagApiError(
+        "Ugyldig data fra baksystem: " + z.treeifyError(parsedData.error),
+      );
+    }
+
+    return {
+      tilgang: parsedData.data.tilgang,
+      harUtvidetTilgang: parsedData.data.harUtvidetTilgang,
+    };
+  } catch (error) {
+    if (error instanceof OppslagApiError) {
+      throw error;
+    }
+    console.error("⛔ Nettverksfeil mot baksystem:", error);
+    throw error;
+  }
+}
+type LoggBegrunnetTilgangArgs = {
+  ident: string;
+  begrunnelse: string;
+  mangel: string;
+  request: Request;
+};
+export async function loggBegrunnetTilgang({
+  ident,
+  mangel,
+  begrunnelse,
+  request,
+}: LoggBegrunnetTilgangArgs) {
+  try {
+    const oboToken = await getBackendOboToken(request);
+    const response = await fetch(
+      `${BACKEND_API_URL}/oppslag/begrunnet-tilgang`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${oboToken}`,
+          "Content-Type": "application/json",
+          "Nav-Call-Id": crypto.randomUUID(),
+        },
+        body: JSON.stringify({ ident, begrunnelse, mangel }),
+      },
+    );
+
+    if (!response.ok) {
+      console.info(
+        `Begrunnet tilgang logget for oppslag på bruker med ident ${ident.substring(0, 6)} *****.`,
+      );
+    } else {
+      throw new Error(
+        `Kunne ikke loggføre begrunnelse for begrunnet tilgang til bruker med ident ${ident.substring(0, 6)} *****. Status: ${response.status} – ${await response.text()}`,
+      );
     }
   } catch (error) {
-    console.error("⛔ Nettverksfeil mot baksystem:", error);
-    return "error";
+    console.error("⛔ Nettverksfeil mot begrunnet tilgangslogg:", error);
   }
 }
 

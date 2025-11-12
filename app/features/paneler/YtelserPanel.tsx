@@ -85,7 +85,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
       title={
         <div className="flex items-center gap-2">
           {tittel}
-          <Tooltip content="Visningen er basert på utbetalinger fra Nav.">
+          <Tooltip content="Visningen er basert på utbetalingstidspunkt fra Nav.">
             <InformationSquareIcon aria-hidden="true" />
           </Tooltip>
         </div>
