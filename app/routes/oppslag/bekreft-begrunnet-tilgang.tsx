@@ -146,16 +146,17 @@ const mapGrunnForBegrensetTilgang = (grunnForBegrensetTilgang: string) => {
     case "AVVIST_GEOGRAFISK":
       return "du ikke har tilgang til brukerens geografiske område eller enhet";
     case "AVVIST_AVDOED":
-      return "brukeren har vært død i mer enn x måneder";
     case "AVVIST_AVDØD":
       return "brukeren har vært død i mer enn x måneder";
     case "AVVIST_SKJERMING":
       return "brukeren er Nav-ansatt eller annen skjermet bruker";
     case "AVVIST_HABILITET":
-      return "du ikke har tilgang til å informasjon om deg selv eller dine nærmeste";
+      return "du ikke har tilgang til å se informasjon om deg selv eller dine nærmeste";
     case "AVVIST_VERGE":
       return "du er registrert som brukerens verge";
     case "AVVIST_MANGLENDE_DATA":
       return "manglende data i systemet gjør at vi ikke kan gi deg tilgang automatisk";
+    default:
+      return "en ukjent grunn";
   }
 };

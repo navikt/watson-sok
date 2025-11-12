@@ -118,7 +118,7 @@ export async function loggBegrunnetTilgang({
       },
     );
 
-    if (!response.ok) {
+    if (response.ok) {
       console.info(
         `Begrunnet tilgang logget for oppslag på bruker med ident ${ident.substring(0, 6)} *****.`,
       );
