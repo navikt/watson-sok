@@ -30,7 +30,8 @@
     },
     "sivilstand": "GIFT",
     "alder": 38,
-    "fødselsdato": "1987-07-22"
+    "fødselsdato": "1987-07-22",
+    "dødsdato": null
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [

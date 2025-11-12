@@ -30,7 +30,8 @@
     },
     "sivilstand": "SEPARERT",
     "alder": 39,
-    "fødselsdato": "1986-05-09"
+    "fødselsdato": "1986-05-09",
+    "dødsdato": null
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [

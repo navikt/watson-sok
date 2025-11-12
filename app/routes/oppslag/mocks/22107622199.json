@@ -28,7 +28,8 @@
     "statsborgerskap": ["STORBRITANNIA", "NORGE"],
     "sivilstand": "UGIFT",
     "alder": 48,
-    "fødselsdato": "1976-10-22"
+    "fødselsdato": "1976-10-22",
+    "dødsdato": null
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [
