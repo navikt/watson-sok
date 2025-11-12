@@ -22,7 +22,8 @@
     "statsborgerskap": ["NORGE"],
     "sivilstand": null,
     "alder": 51,
-    "fødselsdato": "1974-05-21"
+    "fødselsdato": "1974-05-21",
+    "dødsdato": null
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [

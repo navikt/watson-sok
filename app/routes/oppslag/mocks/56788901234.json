@@ -27,7 +27,8 @@
     },
     "sivilstand": "GIFT",
     "alder": 29,
-    "fødselsdato": "1996-06-17"
+    "fødselsdato": "1996-06-17",
+    "dødsdato": null
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [

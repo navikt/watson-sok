@@ -30,7 +30,8 @@
     },
     "sivilstand": "SKILT",
     "alder": 38,
-    "fødselsdato": "1987-09-23"
+    "fødselsdato": "1987-09-23",
+    "dødsdato": null
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [
