@@ -101,6 +101,10 @@ export async function loggBegrunnetTilgang({
   begrunnelse,
   request,
 }: LoggBegrunnetTilgangArgs) {
+  if (skalBrukeMockdata) {
+    return;
+  }
+
   try {
     const oboToken = await getBackendOboToken(request);
     const response = await fetch(

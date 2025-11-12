@@ -3,7 +3,7 @@
   "saksbehandlerIdent": "prod-gcp:holmes:nav-persondata-api",
   "fødselsnummer": "22078733571",
   "tilgang": {
-    "tilgang": "OK",
+    "tilgang": "AVVIST_SKJERMING",
     "harUtvidetTilgang": false
   },
   "personInformasjon": {
