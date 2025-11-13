@@ -56,6 +56,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       umamiSiteId: env.UMAMI_SITE_ID,
       modiaUrl: env.MODIA_URL,
       appversjon: env.APP_VERSION,
+      miljø: env.ENVIRONMENT,
     },
     featureFlagg,
   };

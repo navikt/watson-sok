@@ -6,10 +6,16 @@ import {
   PersonIcon,
   SunIcon,
 } from "@navikt/aksel-icons";
-import { ActionMenu, InternalHeader, Search, Spacer } from "@navikt/ds-react";
+import {
+  ActionMenu,
+  InternalHeader,
+  Search,
+  Spacer,
+  Tag,
+} from "@navikt/ds-react";
 import { useEffect, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import { Link, useFetcher, useNavigate } from "react-router";
+import { Link, unstable_useRoute, useFetcher, useNavigate } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { useUser } from "~/features/auth/useUser";
 import { useTheme } from "~/features/darkside/ThemeContext";
@@ -35,16 +41,30 @@ export function AppHeader() {
     }
   }, []);
 
+  const { loaderData } = unstable_useRoute("root");
+  const miljø = loaderData?.envs.miljø;
+  const visMiljøtag = miljø !== "prod";
+  const miljøtagVariant =
+    miljø === "demo" ? "alt2" : miljø === "dev" ? "alt1" : "alt3";
+
   return (
     <InternalHeader>
       <InternalHeader.Title as="h1">
-        <Link to={RouteConfig.INDEX}>Oppslag bruker</Link>
+        <div className="flex items-center gap-2">
+          <Link to={RouteConfig.INDEX}>Oppslag bruker</Link>
+          {visMiljøtag && (
+            <Tag variant={miljøtagVariant} size="small">
+              {miljø}
+            </Tag>
+          )}
+        </div>
       </InternalHeader.Title>
+
       <fetcher.Form
         role="search"
         method="post"
         action={RouteConfig.INDEX}
-        className="items-center hidden md:flex"
+        className="items-center hidden md:flex ml-5"
       >
         <Search
           ref={searchInputRef}
