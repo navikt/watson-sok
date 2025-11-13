@@ -31,8 +31,8 @@ import type { Ytelse } from "~/routes/oppslag/schemas";
 import { sporHendelse } from "~/utils/analytics";
 import { formatterDato, forskjellIDager } from "~/utils/date-utils";
 import { formatterBeløp } from "~/utils/number-utils";
-import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
+import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 import { YtelseUtbetalingerModal } from "./YtelseUtbetalingerModal";
 
 type GruppertPeriode = {
@@ -186,8 +186,8 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
           </Timeline>
           <YtelseUtbetalingerModal
             ytelse={valgtYtelse}
-            åpen={Boolean(valgtYtelse)}
-            lukk={() => setValgtYtelse(null)}
+            isOpen={Boolean(valgtYtelse)}
+            onClose={() => setValgtYtelse(null)}
           />
         </>
       )}

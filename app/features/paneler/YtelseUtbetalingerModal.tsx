@@ -1,13 +1,14 @@
 import { BodyShort, Button, Table } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
+import { useMemo } from "react";
 import type { Ytelse } from "~/routes/oppslag/schemas";
 import { formatterDato } from "~/utils/date-utils";
 import { formatterBeløp } from "~/utils/number-utils";
 
 type YtelseUtbetalingerModalProps = {
   ytelse: Ytelse | null;
-  åpen: boolean;
-  lukk: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 };
 
 /**
@@ -24,22 +25,28 @@ type YtelseUtbetalingerModalProps = {
  */
 export function YtelseUtbetalingerModal({
   ytelse,
-  åpen,
-  lukk,
+  isOpen,
+  onClose,
 }: YtelseUtbetalingerModalProps) {
+  const sorterteUtbetalinger = useMemo(
+    () =>
+      ytelse
+        ? [...ytelse.perioder].sort((a, b) =>
+            b.periode.fom.localeCompare(a.periode.fom),
+          )
+        : [],
+    [ytelse],
+  );
+
   if (!ytelse) {
     return null;
   }
 
-  const sorterteUtbetalinger = [...ytelse.perioder].sort((a, b) =>
-    b.periode.fom.localeCompare(a.periode.fom),
-  );
-
   return (
     <Modal
       width="medium"
-      open={åpen}
-      onClose={lukk}
+      open={isOpen}
+      onClose={onClose}
       closeOnBackdropClick
       header={{
         heading: `Utbetalinger for ${ytelse.stonadType}`,
@@ -75,9 +82,7 @@ export function YtelseUtbetalingerModal({
                     <Table.DataCell align="right">
                       {formatterBeløp(periode.beløp, 0)}
                     </Table.DataCell>
-                    <Table.DataCell>
-                      {periode.info ?? "Ingen ekstra informasjon"}
-                    </Table.DataCell>
+                    <Table.DataCell>{periode.info ?? "–"}</Table.DataCell>
                   </Table.Row>
                 );
               })}
@@ -86,7 +91,7 @@ export function YtelseUtbetalingerModal({
         )}
       </ModalBody>
       <ModalFooter>
-        <Button variant="primary" onClick={lukk}>
+        <Button variant="primary" onClick={onClose}>
           Lukk
         </Button>
       </ModalFooter>
