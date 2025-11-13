@@ -1,3 +1,4 @@
+import { execSync } from "node:child_process";
 import { z } from "zod";
 
 const envSchema = z.object({
@@ -38,6 +39,12 @@ const envSchema = z.object({
     .string()
     .describe("The URL of the Unleash instance")
     .default("https://holmes-unleash-api.nav.cloud.nais.io"),
+  APP_VERSION: z
+    .string()
+    .describe(
+      "Versjonstekst som vises i footeren (release-tag i prod, commit i dev)",
+    )
+    .optional(),
 });
 
 const envResult = envSchema.safeParse(process.env);
@@ -50,6 +57,25 @@ if (!envResult.success) {
 }
 
 export const env = envResult.data;
+const finnCommithash = () => {
+  if (process.env.NODE_ENV === "production") {
+    return undefined;
+  }
+  try {
+    // Bruker --short for å unngå støy når vi jobber lokalt
+    return execSync("git rev-parse --short HEAD", {
+      stdio: ["ignore", "pipe", "ignore"],
+    })
+      .toString()
+      .trim();
+  } catch {
+    return undefined;
+  }
+};
+
+export const appversjon =
+  env.APP_VERSION || finnCommithash() || "ukjent versjon";
+
 export const BACKEND_API_URL =
   env.ENVIRONMENT === "local-backend"
     ? "http://localhost:8080"

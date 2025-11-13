@@ -31,3 +31,4 @@ jobs:
           IMAGE: ${{ steps.docker-push-dev.outputs.image }}
           RESOURCE: .nais/nais.yml
           VARS: .nais/dev.json
+          APP_VERSION: ${{ github.sha }}
