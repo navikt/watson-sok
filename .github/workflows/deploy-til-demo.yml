@@ -31,4 +31,4 @@ jobs:
           CLUSTER: dev-gcp
           IMAGE: ${{ steps.docker-push-demo.outputs.image }}
           RESOURCE: .nais/demo.yml
-          APP_VERSION: ${{ github.sha }}
+          VAR: APP_VERSION=${{ github.sha }}
