@@ -33,6 +33,7 @@ import { formatterDato, forskjellIDager } from "~/utils/date-utils";
 import { formatterBeløp } from "~/utils/number-utils";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
+import { YtelseUtbetalingerModal } from "./YtelseUtbetalingerModal";
 
 type GruppertPeriode = {
   fom: string;
@@ -66,6 +67,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     setVinduetsStørrelse,
   } = useTidslinjevindu();
   const tilbakekrevinger = useTilbakekrevinger(ytelser, nåværendeVindu);
+  const [valgtYtelse, setValgtYtelse] = useState<Ytelse | null>(null);
 
   const ytelserMedGruppertePerioder = useMemo(() => {
     if (!ytelser) return [];
@@ -163,6 +165,13 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                         end={tomDate}
                         status="success"
                         icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
+                        onSelectPeriod={(event) => {
+                          event.preventDefault();
+                          setValgtYtelse(ytelse);
+                          sporHendelse("ytelse utbetalinger modal åpnet", {
+                            stonadType: ytelse.stonadType,
+                          });
+                        }}
                       >
                         <p>
                           {fomFormatert} – {tomFormatert}
@@ -175,6 +184,11 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
               );
             })}
           </Timeline>
+          <YtelseUtbetalingerModal
+            ytelse={valgtYtelse}
+            åpen={Boolean(valgtYtelse)}
+            lukk={() => setValgtYtelse(null)}
+          />
         </>
       )}
     </PanelContainer>
