@@ -68,3 +68,5 @@ spec:
       value: {{ENVIRONMENT}}
     - name: MODIA_URL
       value: {{MODIA_URL}}
+    - name: APP_VERSION
+      value: {{APP_VERSION}}
