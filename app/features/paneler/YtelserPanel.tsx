@@ -31,8 +31,9 @@ import type { Ytelse } from "~/routes/oppslag/schemas";
 import { sporHendelse } from "~/utils/analytics";
 import { formatterDato, forskjellIDager } from "~/utils/date-utils";
 import { formatterBeløp } from "~/utils/number-utils";
-import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
+import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
+import { YtelseUtbetalingerModal } from "./YtelseUtbetalingerModal";
 
 type GruppertPeriode = {
   fom: string;
@@ -58,6 +59,9 @@ type YtelserPanelMedDataProps = {
 const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   const ytelser = use(promise);
   const [searchParams, setSearchParams] = useSearchParams();
+  const visYtelsesdetaljerModal = useEnkeltFeatureFlagg(
+    FeatureFlagg.VIS_YTELSESDETALJER_MODAL,
+  );
   const harIngenYtelser = !ytelser || ytelser.length === 0;
   const {
     nåværendeVindu,
@@ -66,6 +70,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     setVinduetsStørrelse,
   } = useTidslinjevindu();
   const tilbakekrevinger = useTilbakekrevinger(ytelser, nåværendeVindu);
+  const [valgtYtelse, setValgtYtelse] = useState<Ytelse | null>(null);
 
   const ytelserMedGruppertePerioder = useMemo(() => {
     if (!ytelser) return [];
@@ -163,11 +168,21 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                         end={tomDate}
                         status="success"
                         icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
+                        onSelectPeriod={(event) => {
+                          if (!visYtelsesdetaljerModal) {
+                            return;
+                          }
+                          event.preventDefault();
+                          setValgtYtelse(ytelse);
+                          sporHendelse("ytelse utbetalinger modal åpnet", {
+                            stonadType: ytelse.stonadType,
+                          });
+                        }}
                       >
-                        <p>
+                        <BodyShort>
                           {fomFormatert} – {tomFormatert}
-                        </p>
-                        <p>Sum: {beløpFormatert}</p>
+                        </BodyShort>
+                        <BodyShort>Sum: {beløpFormatert}</BodyShort>
                       </TimelinePeriod>
                     );
                   })}
@@ -175,6 +190,13 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
               );
             })}
           </Timeline>
+          {visYtelsesdetaljerModal && (
+            <YtelseUtbetalingerModal
+              ytelse={valgtYtelse}
+              isOpen={Boolean(valgtYtelse)}
+              onClose={() => setValgtYtelse(null)}
+            />
+          )}
         </>
       )}
     </PanelContainer>
