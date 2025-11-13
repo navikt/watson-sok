@@ -1,11 +1,10 @@
 import { BodyLong, Detail, Link as NavLink, Theme } from "@navikt/ds-react";
-import { Link, useRouteLoaderData } from "react-router";
+import { Link, unstable_useRoute } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
-import type { loader as rootLoader } from "~/root";
 
 export function AppFooter() {
-  const loaderData = useRouteLoaderData<typeof rootLoader>("root");
-  const appVersionTekst = formaterVersjon(loaderData?.envs.appVersion);
+  const loaderData = unstable_useRoute("root");
+  const appversjon = formaterVersjon(loaderData?.loaderData?.envs.appversjon);
   return (
     <div className="mt-8">
       <Theme theme="dark">
@@ -16,7 +15,7 @@ export function AppFooter() {
             </NavLink>
           </BodyLong>
           <Detail align="center" className="mt-2 text-text-subtle">
-            Versjon: {appVersionTekst}
+            Versjon: {appversjon}
           </Detail>
         </footer>
       </Theme>

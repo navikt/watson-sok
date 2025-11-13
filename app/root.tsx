@@ -55,7 +55,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       faroUrl: env.FARO_URL,
       umamiSiteId: env.UMAMI_SITE_ID,
       modiaUrl: env.MODIA_URL,
-      appVersion: appversjon,
+      appversjon,
     },
     featureFlagg,
   };

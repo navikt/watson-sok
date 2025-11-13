@@ -74,10 +74,7 @@ const finnCommithash = () => {
 };
 
 export const appversjon =
-  env.APP_VERSION ||
-  process.env.GITHUB_SHA ||
-  finnCommithash() ||
-  "ukjent versjon";
+  env.APP_VERSION || finnCommithash() || "ukjent versjon";
 
 export const BACKEND_API_URL =
   env.ENVIRONMENT === "local-backend"
