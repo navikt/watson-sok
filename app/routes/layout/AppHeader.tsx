@@ -1,4 +1,5 @@
 import {
+  BooksIcon,
   Buildings3Icon,
   MenuGridIcon,
   MoonIcon,
@@ -81,6 +82,13 @@ export function AppHeader() {
           </ActionMenu.Group>
 
           <ActionMenu.Divider />
+          <ActionMenu.Item
+            as="a"
+            href="https://navno.sharepoint.com/sites/45/SitePages/Holmes.aspx"
+            icon={<BooksIcon />}
+          >
+            Hjelp
+          </ActionMenu.Item>
 
           <ActionMenu.Item
             onSelect={toggleTheme}

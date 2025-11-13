@@ -13,7 +13,7 @@ import {
 import "~/globals.css";
 import { getLoggedInUser } from "~/utils/access-token";
 import type { Route } from "./+types/root";
-import { appversjon, env, isProd } from "./config/env.server";
+import { env, isProd } from "./config/env.server";
 import { ThemeProvider } from "./features/darkside/ThemeContext";
 import {
   parseTheme,
@@ -55,7 +55,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       faroUrl: env.FARO_URL,
       umamiSiteId: env.UMAMI_SITE_ID,
       modiaUrl: env.MODIA_URL,
-      appversjon,
+      appversjon: env.APP_VERSION,
     },
     featureFlagg,
   };
