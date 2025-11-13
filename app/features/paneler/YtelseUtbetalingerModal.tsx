@@ -1,5 +1,12 @@
 import { BodyShort, Button, Table } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
+import {
+  TableBody,
+  TableDataCell,
+  TableHeader,
+  TableHeaderCell,
+  TableRow,
+} from "@navikt/ds-react/Table";
 import { useMemo } from "react";
 import type { Ytelse } from "~/routes/oppslag/schemas";
 import { formatterDato } from "~/utils/date-utils";
@@ -62,31 +69,36 @@ export function YtelseUtbetalingerModal({
             <caption className="text-left text-sm font-semibold text-text-subtle mb-2">
               Alle utbetalinger i ytelsen
             </caption>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell scope="col">Tidspunkt</Table.HeaderCell>
-                <Table.HeaderCell scope="col">Beløp</Table.HeaderCell>
-                <Table.HeaderCell scope="col">Referanse</Table.HeaderCell>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
+            <TableHeader>
+              <TableRow>
+                <TableHeaderCell scope="col">Tidspunkt</TableHeaderCell>
+                <TableHeaderCell scope="col">Beløp</TableHeaderCell>
+                <TableHeaderCell scope="col">Referanse</TableHeaderCell>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {sorterteUtbetalinger.map((periode, index) => {
                 const fom = formatterDato(periode.periode.fom);
                 const tom = formatterDato(periode.periode.tom);
                 const tidspunkt = fom === tom ? fom : `${fom} – ${tom}`;
                 return (
-                  <Table.Row key={`${periode.periode.fom}-${index}`}>
-                    <Table.DataCell className="whitespace-nowrap">
+                  <TableRow key={`${periode.periode.fom}-${index}`}>
+                    <TableDataCell className="whitespace-nowrap">
                       {tidspunkt}
-                    </Table.DataCell>
-                    <Table.DataCell align="right">
+                    </TableDataCell>
+                    <TableDataCell
+                      align="right"
+                      className={
+                        periode.beløp < 0 ? "text-ax-danger-500" : undefined
+                      }
+                    >
                       {formatterBeløp(periode.beløp, 0)}
-                    </Table.DataCell>
-                    <Table.DataCell>{periode.info ?? "–"}</Table.DataCell>
-                  </Table.Row>
+                    </TableDataCell>
+                    <TableDataCell>{periode.info ?? "–"}</TableDataCell>
+                  </TableRow>
                 );
               })}
-            </Table.Body>
+            </TableBody>
           </Table>
         )}
       </ModalBody>

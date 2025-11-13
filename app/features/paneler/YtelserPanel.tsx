@@ -169,7 +169,9 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                         status="success"
                         icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
                         onSelectPeriod={(event) => {
-                          if (!visYtelsesdetaljerModal) return;
+                          if (!visYtelsesdetaljerModal) {
+                            return;
+                          }
                           event.preventDefault();
                           setValgtYtelse(ytelse);
                           sporHendelse("ytelse utbetalinger modal åpnet", {
@@ -177,10 +179,10 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                           });
                         }}
                       >
-                        <p>
+                        <BodyShort>
                           {fomFormatert} – {tomFormatert}
-                        </p>
-                        <p>Sum: {beløpFormatert}</p>
+                        </BodyShort>
+                        <BodyShort>Sum: {beløpFormatert}</BodyShort>
                       </TimelinePeriod>
                     );
                   })}
