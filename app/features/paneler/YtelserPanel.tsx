@@ -2,6 +2,7 @@ import {
   Alert,
   BodyShort,
   Button,
+  Heading,
   Link,
   Skeleton,
   Timeline,
@@ -135,9 +136,18 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                 key={tilbakebetaling.info}
                 date={new Date(tilbakebetaling.periode.fom)}
               >
-                <BodyShort spacing>Tilbakekreving</BodyShort>
+                <Heading level="3" size="small">
+                  Tilbakekreving
+                </Heading>
                 <BodyShort spacing>
-                  {formatterBeløp(tilbakebetaling.beløp)}
+                  <strong>Periode:</strong>{" "}
+                  {formatterDato(tilbakebetaling.periode.fom)} –{" "}
+                  {formatterDato(tilbakebetaling.periode.tom)}
+                  <br />
+                  <strong>Beløp:</strong>{" "}
+                  {formatterBeløp(Math.abs(tilbakebetaling.beløp))}
+                  <br />
+                  <strong>Referanse:</strong> {tilbakebetaling.info}
                 </BodyShort>
                 <BodyShort className="text-ax-danger-500">
                   Vedtak, Se Gosys
