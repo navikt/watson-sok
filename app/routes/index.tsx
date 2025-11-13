@@ -4,14 +4,19 @@ import "~/globals.css";
 import { PageBlock } from "@navikt/ds-react/Page";
 import {
   type ActionFunctionArgs,
+  data,
   Form,
   redirectDocument,
   useActionData,
   useNavigation,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
-import { lagreIdentPåSession } from "~/features/oppslag/oppslagSession.server";
+import {
+  hentSøkedataFraSession,
+  lagreSøkeinfoPåSession,
+} from "~/features/oppslag/oppslagSession.server";
 import { sporHendelse } from "~/utils/analytics";
+import { sjekkEksistensOgTilgang } from "./oppslag/api.server";
 
 export default function LandingPage() {
   const actionData = useActionData<typeof action>();
@@ -74,18 +79,76 @@ export default function LandingPage() {
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const rawIdent = formData.get("ident")?.toString().replace(/\s+/g, "");
-  const leggTilTraceHeader = rawIdent?.endsWith("?");
-  const ident = rawIdent?.replace("?", "");
-  if (ident && ident.length === 11 && ident.match(/^\d+$/)) {
-    return redirectDocument(
-      RouteConfig.OPPSLAG + (leggTilTraceHeader ? "?traceLogging=true" : ""),
-      {
-        headers: {
-          "Set-Cookie": await lagreIdentPåSession(ident, request),
-        },
-      },
-    );
+  const råIdent = formData.get("ident")?.toString().replace(/\s+/g, "");
+
+  const leggTilTraceHeader = råIdent?.endsWith("?") ?? false;
+  const ident = råIdent?.replace("?", "");
+
+  if (!ident || ident.length !== 11 || !ident.match(/^\d+$/)) {
+    return { error: "Ugyldig fødsels- eller D-nummer" };
   }
-  return { error: "Ugyldig fødselsnummer" };
+
+  try {
+    const eksistensOgTilgang = await sjekkEksistensOgTilgang({
+      ident,
+      request,
+      navCallId: crypto.randomUUID(),
+      traceLogging: leggTilTraceHeader,
+    });
+
+    if (eksistensOgTilgang.tilgang === "IKKE_FUNNET") {
+      const cookie = await lagreSøkeinfoPåSession(
+        {
+          ident,
+          tilgang: "IKKE_FUNNET",
+          harUtvidetTilgang: eksistensOgTilgang.harUtvidetTilgang,
+          bekreftetBegrunnetTilgang: false,
+        },
+        request,
+      );
+      return data(
+        { error: "Bruker ikke funnet" },
+        { headers: { "Set-Cookie": cookie } },
+      );
+    }
+
+    const eksisterendeSøkedata = await hentSøkedataFraSession(request);
+
+    const harAlleredeBekreftetBegrunnetTilgang =
+      eksisterendeSøkedata.ident === ident &&
+      eksisterendeSøkedata.bekreftetBegrunnetTilgang;
+
+    const cookie = await lagreSøkeinfoPåSession(
+      {
+        ident,
+        tilgang: eksistensOgTilgang.tilgang,
+        harUtvidetTilgang: eksistensOgTilgang.harUtvidetTilgang,
+        bekreftetBegrunnetTilgang: harAlleredeBekreftetBegrunnetTilgang,
+      },
+      request,
+    );
+
+    if (
+      eksistensOgTilgang.tilgang === "OK" ||
+      harAlleredeBekreftetBegrunnetTilgang
+    ) {
+      return redirectDocument(
+        RouteConfig.OPPSLAG + (leggTilTraceHeader ? "?traceLogging=true" : ""),
+        {
+          headers: {
+            "Set-Cookie": cookie,
+          },
+        },
+      );
+    }
+
+    return redirectDocument(RouteConfig.BEKREFT_BEGRUNNET_TILGANG, {
+      headers: {
+        "Set-Cookie": cookie,
+      },
+    });
+  } catch (error) {
+    console.error("En feil oppsto ved søking på bruker.", error);
+    return { error: "En feil oppsto ved søking på bruker. Prøv igjen senere." };
+  }
 }

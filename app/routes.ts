@@ -10,6 +10,10 @@ export default [
   layout("routes/layout/layout.tsx", [
     route(RouteConfig.INDEX, "routes/index.tsx"),
     route(RouteConfig.OPPSLAG, "routes/oppslag/index.tsx"),
+    route(
+      RouteConfig.BEKREFT_BEGRUNNET_TILGANG,
+      "routes/oppslag/bekreft-begrunnet-tilgang.tsx",
+    ),
     route(RouteConfig.PERSONVERN, "routes/personvern.tsx"),
   ]),
 

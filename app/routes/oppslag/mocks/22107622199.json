@@ -2,6 +2,10 @@
   "utrekkstidspunkt": "2025-10-31T09:47:21.452100000",
   "saksbehandlerIdent": "easteregg",
   "fødselsnummer": "22107622199",
+  "tilgang": {
+    "tilgang": "OK",
+    "harUtvidetTilgang": false
+  },
   "personInformasjon": {
     "navn": {
       "fornavn": "SHERLOCK",

@@ -1,12 +1,13 @@
 import { createCookieSessionStorage } from "react-router";
 import { env } from "~/config/env.server";
+import type { EksistensOgTilgang } from "~/routes/oppslag/schemas";
 
 const { getSession, commitSession } = createCookieSessionStorage<
-  IdentSessionData,
-  IdentFlashData
+  SøkeinfoSessionData,
+  SøkeinfoFlashData
 >({
   cookie: {
-    name: "ident",
+    name: "sokeinfo",
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     secrets: [env.IDENT_SESSION_SECRET],
@@ -16,26 +17,47 @@ const { getSession, commitSession } = createCookieSessionStorage<
   },
 });
 
-export async function lagreIdentPåSession(ident: string, request: Request) {
+type Søkeinfo = {
+  ident: string;
+  tilgang: EksistensOgTilgang["tilgang"];
+  harUtvidetTilgang: boolean;
+  bekreftetBegrunnetTilgang: boolean;
+};
+export async function lagreSøkeinfoPåSession(
+  søkeinfo: Søkeinfo,
+  request: Request,
+) {
   const session = await getSession(request.headers.get("Cookie"));
-  if (!ident.match(/^\d{11}$/)) {
-    session.flash("error", "Ugyldig fødselsnummer");
+  if (!søkeinfo.ident.match(/^\d{11}$/)) {
+    session.flash("error", "Ugyldig fødsels- eller D-nummer");
     return commitSession(session);
   }
 
-  session.set("ident", ident);
+  session.set("ident", søkeinfo.ident);
+  session.set("tilgang", søkeinfo.tilgang);
+  session.set("harUtvidetTilgang", søkeinfo.harUtvidetTilgang);
+  session.set("bekreftetBegrunnetTilgang", søkeinfo.bekreftetBegrunnetTilgang);
   return commitSession(session);
 }
 
-export async function hentIdentFraSession(request: Request) {
+export async function hentSøkedataFraSession(request: Request) {
   const session = await getSession(request.headers.get("Cookie"));
-  return session.get("ident") ?? null;
+  return {
+    ident: session.get("ident") ?? null,
+    tilgang: session.get("tilgang") ?? null,
+    harUtvidetTilgang: session.get("harUtvidetTilgang") ?? false,
+    bekreftetBegrunnetTilgang:
+      session.get("bekreftetBegrunnetTilgang") ?? false,
+  };
 }
 
-type IdentSessionData = {
+type SøkeinfoSessionData = {
   ident: string;
+  tilgang: EksistensOgTilgang["tilgang"];
+  bekreftetBegrunnetTilgang: boolean;
+  harUtvidetTilgang: boolean;
 };
 
-type IdentFlashData = {
+type SøkeinfoFlashData = {
   error?: string;
 };

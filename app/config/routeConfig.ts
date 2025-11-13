@@ -5,6 +5,7 @@
 export const RouteConfig = {
   INDEX: "/",
   PERSONVERN: "/personvern",
+  BEKREFT_BEGRUNNET_TILGANG: "/bekreft-begrunnet-tilgang",
   OPPSLAG: "/oppslag",
 
   WELL_KNOWN: {
