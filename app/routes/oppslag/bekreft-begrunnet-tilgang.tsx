@@ -1,4 +1,11 @@
-import { BodyLong, Button, Heading, Textarea } from "@navikt/ds-react";
+import {
+  BodyLong,
+  Button,
+  ErrorMessage,
+  Heading,
+  Label,
+  useId,
+} from "@navikt/ds-react";
 import { PageBlock } from "@navikt/ds-react/Page";
 import {
   Form,
@@ -58,8 +65,6 @@ export default function BekreftSide() {
           name="begrunnelse"
           label="Begrunnelse"
           error={actionData?.error}
-          minRows={3}
-          resize="vertical"
         />
 
         <div className="flex justify-end gap-2">
@@ -79,6 +84,45 @@ export default function BekreftSide() {
   );
 }
 
+type TextareaProps = {
+  name: string;
+  label: string;
+  error: string | undefined;
+};
+/** En litt dummere textarea-komponent enn det Aksel har.
+ *
+ * Grunnen til at vi ikke kan bruke Aksel sin, er at den har en lei glitch, der høyden er 0 på første render (på serversiden). Når den buggen er fikset, kan denne komponenten fjernes.
+ */
+function Textarea({ name, label, error }: TextareaProps) {
+  const id = useId();
+  const errorId = `${id}-error`;
+  return (
+    <div
+      className={`aksel-form-field aksel-textarea ${error ? "aksel-form-field--error" : ""}`}
+    >
+      <Label htmlFor={id} className="aksel-form-field__label">
+        {label}
+      </Label>
+      <textarea
+        name={name}
+        id={id}
+        className="aksel-textarea__input aksel-body-short aksel-body-short--medium"
+        aria-describedby={error ? errorId : undefined}
+      />
+      {error && (
+        <div
+          id={errorId}
+          className="aksel-form-field__error"
+          aria-relevant="additions removals"
+          aria-live="polite"
+        >
+          <ErrorMessage showIcon>{error}</ErrorMessage>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export async function loader({ request }: LoaderFunctionArgs) {
   const { ident, bekreftetBegrunnetTilgang, tilgang, harUtvidetTilgang } =
     await hentSøkedataFraSession(request);
@@ -87,7 +131,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return redirect(RouteConfig.INDEX);
   }
 
-  if (bekreftetBegrunnetTilgang) {
+  if (bekreftetBegrunnetTilgang || tilgang === "OK") {
     return redirect(RouteConfig.OPPSLAG);
   }
 
@@ -127,17 +171,23 @@ export async function action({ request }: ActionFunctionArgs) {
     },
     request,
   );
-  await loggBegrunnetTilgang({
-    ident,
-    begrunnelse,
-    mangel: tilgang,
-    request,
-  });
-  return redirectDocument(RouteConfig.OPPSLAG, {
-    headers: {
-      "Set-Cookie": cookie,
-    },
-  });
+  try {
+    await loggBegrunnetTilgang({
+      ident,
+      begrunnelse,
+      mangel: tilgang,
+      request,
+    });
+    return redirectDocument(RouteConfig.OPPSLAG, {
+      headers: {
+        "Set-Cookie": cookie,
+      },
+    });
+  } catch {
+    return {
+      error: "En feil oppsto ved loggning av begrunnelse. Prøv igjen senere.",
+    };
+  }
 }
 
 const mapGrunnForBegrensetTilgang = (grunnForBegrensetTilgang: string) => {

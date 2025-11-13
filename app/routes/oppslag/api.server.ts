@@ -131,6 +131,7 @@ export async function loggBegrunnetTilgang({
     }
   } catch (error) {
     console.error("⛔ Nettverksfeil mot begrunnet tilgangslogg:", error);
+    throw error;
   }
 }
 

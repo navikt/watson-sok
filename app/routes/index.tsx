@@ -84,7 +84,11 @@ export async function action({ request }: ActionFunctionArgs) {
   const leggTilTraceHeader = råIdent?.endsWith("?") ?? false;
   const ident = råIdent?.replace("?", "");
 
-  if (ident && ident.length === 11 && ident.match(/^\d+$/)) {
+  if (!ident || ident.length !== 11 || !ident.match(/^\d+$/)) {
+    return { error: "Ugyldig fødsels- eller D-nummer" };
+  }
+
+  try {
     const eksistensOgTilgang = await sjekkEksistensOgTilgang({
       ident,
       request,
@@ -143,6 +147,8 @@ export async function action({ request }: ActionFunctionArgs) {
         "Set-Cookie": cookie,
       },
     });
+  } catch (error) {
+    console.error("En feil oppsto ved søking på bruker.", error);
+    return { error: "En feil oppsto ved søking på bruker. Prøv igjen senere." };
   }
-  return { error: "Ugyldig fødsels- eller D-nummer" };
 }
