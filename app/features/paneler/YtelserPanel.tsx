@@ -59,6 +59,9 @@ type YtelserPanelMedDataProps = {
 const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   const ytelser = use(promise);
   const [searchParams, setSearchParams] = useSearchParams();
+  const visYtelsesdetaljerModal = useEnkeltFeatureFlagg(
+    FeatureFlagg.VIS_YTELSESDETALJER_MODAL,
+  );
   const harIngenYtelser = !ytelser || ytelser.length === 0;
   const {
     nåværendeVindu,
@@ -166,6 +169,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                         status="success"
                         icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
                         onSelectPeriod={(event) => {
+                          if (!visYtelsesdetaljerModal) return;
                           event.preventDefault();
                           setValgtYtelse(ytelse);
                           sporHendelse("ytelse utbetalinger modal åpnet", {
@@ -184,11 +188,13 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
               );
             })}
           </Timeline>
-          <YtelseUtbetalingerModal
-            ytelse={valgtYtelse}
-            isOpen={Boolean(valgtYtelse)}
-            onClose={() => setValgtYtelse(null)}
-          />
+          {visYtelsesdetaljerModal && (
+            <YtelseUtbetalingerModal
+              ytelse={valgtYtelse}
+              isOpen={Boolean(valgtYtelse)}
+              onClose={() => setValgtYtelse(null)}
+            />
+          )}
         </>
       )}
     </PanelContainer>
