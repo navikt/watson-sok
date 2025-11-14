@@ -12,7 +12,7 @@ type VersjonsvarslingProps = {
 };
 
 type VersjonRespons = {
-  appversjon?: string;
+  appversjon: string;
 };
 
 /**
@@ -25,13 +25,8 @@ type VersjonRespons = {
  */
 export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
   const [skalVises, setSkalVises] = useState(false);
-  const sistRegistrerteVersjon = useRef(gjeldendeVersjon);
   const timeoutId = useRef<number | undefined>(undefined);
   const aktivController = useRef<AbortController | undefined>(undefined);
-
-  useEffect(() => {
-    sistRegistrerteVersjon.current = gjeldendeVersjon;
-  }, [gjeldendeVersjon]);
 
   useEffect(() => {
     if (!gjeldendeVersjon) {
@@ -59,12 +54,7 @@ export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
           aktivController.current.signal,
         );
 
-        if (
-          serverVersjon &&
-          serverVersjon !== gjeldendeVersjon &&
-          serverVersjon !== sistRegistrerteVersjon.current
-        ) {
-          sistRegistrerteVersjon.current = serverVersjon;
+        if (serverVersjon && serverVersjon !== gjeldendeVersjon) {
           setSkalVises(true);
         }
       } catch (error) {
@@ -101,7 +91,7 @@ export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
     };
   }, [gjeldendeVersjon]);
 
-  if (!gjeldendeVersjon || process.env.NODE_ENV !== "production") {
+  if (!skalVises) {
     return null;
   }
 
