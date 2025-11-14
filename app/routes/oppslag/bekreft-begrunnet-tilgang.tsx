@@ -49,7 +49,7 @@ export default function BekreftSide() {
       </BodyLong>
       <BodyLong spacing>
         Om du allikevel ønsker å se informasjon om brukeren, kan du skrive en
-        begrunnelse, og bekrefte at du allikevel har tjenestelig behov ved å
+        begrunnelse, og bekrefte at du allikevel har tjenestlig behov ved å
         trykke på knappen under. Både begrunnelse og bekreftelse vil bli
         loggført.
       </BodyLong>
@@ -69,7 +69,7 @@ export default function BekreftSide() {
 
         <div className="flex justify-end gap-2">
           <Button variant="primary" type="submit" loading={isSubmitting}>
-            Bekreft at du har tjenestelig behov
+            Bekreft at du har tjenestlig behov
           </Button>
           <Button
             variant="secondary"

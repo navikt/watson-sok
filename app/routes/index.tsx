@@ -1,4 +1,11 @@
-import { Alert, BodyShort, Heading, Link, Search } from "@navikt/ds-react";
+import {
+  Alert,
+  BodyLong,
+  BodyShort,
+  Heading,
+  Link,
+  Search,
+} from "@navikt/ds-react";
 import "~/globals.css";
 
 import { PageBlock } from "@navikt/ds-react/Page";
@@ -33,7 +40,7 @@ export default function LandingPage() {
         </Heading>
         <BodyShort spacing>
           Ved å søke på fødsels- eller D-nummer får du en oversikt over relevant
-          informasjon om en bruker. Merk at alle søk blir loggført.
+          informasjon om en bruker.
         </BodyShort>
 
         <Form
@@ -65,12 +72,15 @@ export default function LandingPage() {
           </Link>
         </BodyShort>
 
-        <Alert variant="info">
+        <Alert variant="info" className="mt-4">
           <Heading level="3" size="small" spacing>
-            Tjenestelig behov
+            Tjenestlig behov
           </Heading>
-          Det forutsettes at man har tjenestelig behov til grunn for å gjøre
-          oppslaget.
+          <BodyLong>
+            Brukeroppslag forutsetter tjenestlig behov.
+            <br />
+            Merk at alle søk logges.
+          </BodyLong>
         </Alert>
       </div>
     </PageBlock>
