@@ -67,7 +67,9 @@ export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
           setSkalVises(true);
         }
       } catch (error) {
-        console.error("Klarte ikke å hente appversjon", error);
+        if (error && error instanceof Error && error.name !== "AbortError") {
+          console.error("Klarte ikke å hente appversjon", error);
+        }
       } finally {
         planleggNySjekk();
       }
@@ -83,11 +85,11 @@ export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
       }
 
       timeoutId.current = window.setTimeout(() => {
-        void sjekkEtterNyVersjon();
+        sjekkEtterNyVersjon();
       }, POLLING_INTERVAL_MS);
     }
 
-    sjekkEtterNyVersjon();
+    planleggNySjekk();
 
     return () => {
       erAvsluttet = true;
@@ -104,8 +106,8 @@ export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
 
   return (
     <Modal
-      open={true}
-      onClose={() => setSkalVises(false)}
+      open={skalVises}
+      onClose={() => {}}
       header={{
         heading: "Oppslag Bruker har blitt oppdatert",
         icon: <BellIcon aria-hidden={true} />,
@@ -149,13 +151,10 @@ async function hentVersjonFraServer(signal?: AbortSignal) {
     method: "GET",
     credentials: "same-origin",
     signal,
-    headers: {
-      "Cache-Control": "no-store",
-    },
   });
 
   if (!respons.ok) {
-    throw new Error("Versjonsendepunkt svarte ikke med 200");
+    throw new Error("Versjonsendepunkt feilet");
   }
 
   const data = (await respons.json()) as VersjonRespons;

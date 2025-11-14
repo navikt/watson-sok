@@ -8,7 +8,7 @@ export async function loader() {
     { appVersjon: env.APP_VERSION },
     {
       headers: {
-        "Cache-Control": "no-store, max-age=0",
+        "Cache-Control": "no-store",
       },
     },
   );
