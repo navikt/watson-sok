@@ -15,14 +15,14 @@ type VersjonRespons = {
 };
 
 /**
- * Viser en modal som informerer brukeren når en nyere versjon av appen er tilgjengelig.
+ * Viser en modal som sjekker og informerer brukeren når en nyere versjon av appen er tilgjengelig.
  *
  * @param gjeldendeVersjon - Versjonsnummeret som er aktivt i klienten akkurat nå.
  *
  * @example
- * <VersjonsVarsel gjeldendeVersjon="2024.05.21-1" />
+ * <Versjonsvarsel gjeldendeVersjon={envs.appversjon} />
  */
-export function VersjonsVarsel({ gjeldendeVersjon }: VersjonsvarselProps) {
+export function Versjonsvarsel({ gjeldendeVersjon }: VersjonsvarselProps) {
   const [skalVises, setSkalVises] = useState(false);
   const sistRegistrerteVersjon = useRef(gjeldendeVersjon);
   const timeoutId = useRef<number | undefined>(undefined);
