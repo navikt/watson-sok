@@ -104,15 +104,17 @@ export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
 
   return (
     <Modal
-      open={skalVises}
+      open={true}
       onClose={() => setSkalVises(false)}
       header={{
         heading: "Oppslag Bruker har blitt oppdatert",
         icon: <BellIcon aria-hidden={true} />,
+        closeButton: false,
       }}
       closeOnBackdropClick={false}
+      width="small"
     >
-      <ModalBody className="min-w-lg">
+      <ModalBody>
         <BodyLong>
           Det har kommet en ny versjon av Oppslag Bruker. For å fortsette å
           bruke løsningen, må du laste inn siden på nytt.
