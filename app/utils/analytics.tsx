@@ -54,4 +54,5 @@ type Hendelse =
   | "organisasjonsnummer-kopiering feilet"
   | "tidslinje periode flyttet"
   | "tidslinje størrelse endret"
-  | "ytelse utbetalinger modal åpnet";
+  | "ytelse utbetalinger modal åpnet"
+  | "lastet inn siden på nytt på grunn av ny versjon";

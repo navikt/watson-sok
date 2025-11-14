@@ -3,6 +3,7 @@ import { BodyLong, Button } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useEffect, useRef, useState } from "react";
 import { RouteConfig } from "~/config/routeConfig";
+import { sporHendelse } from "~/utils/analytics";
 
 const POLLING_INTERVAL_MS = 60_000;
 
@@ -126,6 +127,7 @@ export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
         <Button
           variant="primary"
           onClick={() => {
+            sporHendelse("lastet inn siden på nytt på grunn av ny versjon");
             window.location.reload();
           }}
         >
