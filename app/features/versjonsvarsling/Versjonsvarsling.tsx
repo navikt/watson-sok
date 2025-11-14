@@ -12,7 +12,7 @@ type VersjonsvarslingProps = {
 };
 
 type VersjonRespons = {
-  appversjon?: string;
+  appversjon: string;
 };
 
 /**
