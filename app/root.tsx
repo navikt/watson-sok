@@ -25,6 +25,7 @@ import { InternalServerError } from "./features/feilhåndtering/InternalServerEr
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { AnalyticsTags } from "./utils/analytics";
 import { initFaro } from "./utils/observability";
+import { VersjonsVarsel } from "./features/versjonsvarsling/VersjonsVarsel";
 
 export default function Root() {
   const { envs, initialTheme } = useLoaderData<typeof loader>();
@@ -35,6 +36,7 @@ export default function Root() {
   }, [envs.isProd, envs.faroUrl]);
   return (
     <HtmlRamme initialTheme={initialTheme} umamiSiteId={envs.umamiSiteId}>
+      <VersjonsVarsel gjeldendeVersjon={envs.appversjon} />
       <Outlet />
     </HtmlRamme>
   );
