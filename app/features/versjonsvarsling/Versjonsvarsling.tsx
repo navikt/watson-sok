@@ -6,7 +6,7 @@ import { RouteConfig } from "~/config/routeConfig";
 
 const POLLING_INTERVAL_MS = 60_000;
 
-type VersjonsvarselProps = {
+type VersjonsvarslingProps = {
   gjeldendeVersjon?: string;
 };
 
@@ -20,9 +20,9 @@ type VersjonRespons = {
  * @param gjeldendeVersjon - Versjonsnummeret som er aktivt i klienten akkurat nå.
  *
  * @example
- * <Versjonsvarsel gjeldendeVersjon={envs.appversjon} />
+ * <Versjonsvarsling gjeldendeVersjon={envs.appversjon} />
  */
-export function Versjonsvarsel({ gjeldendeVersjon }: VersjonsvarselProps) {
+export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
   const [skalVises, setSkalVises] = useState(false);
   const sistRegistrerteVersjon = useRef(gjeldendeVersjon);
   const timeoutId = useRef<number | undefined>(undefined);

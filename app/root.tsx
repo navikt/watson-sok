@@ -23,7 +23,7 @@ import {
 import { hentAlleFeatureFlagg } from "./features/feature-toggling/utils.server";
 import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
-import { Versjonsvarsel } from "./features/versjonsvarsling/Versjonsvarsel";
+import { Versjonsvarsling } from "./features/versjonsvarsling/Versjonsvarsling";
 import { AnalyticsTags } from "./utils/analytics";
 import { initFaro } from "./utils/observability";
 
@@ -36,7 +36,7 @@ export default function Root() {
   }, [envs.isProd, envs.faroUrl]);
   return (
     <HtmlRamme initialTheme={initialTheme} umamiSiteId={envs.umamiSiteId}>
-      <Versjonsvarsel gjeldendeVersjon={envs.appversjon} />
+      <Versjonsvarsling gjeldendeVersjon={envs.appversjon} />
       <Outlet />
     </HtmlRamme>
   );
