@@ -101,7 +101,7 @@ export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
     };
   }, [gjeldendeVersjon]);
 
-  if (!gjeldendeVersjon) {
+  if (!gjeldendeVersjon || process.env.NODE_ENV !== "production") {
     return null;
   }
 
