@@ -55,4 +55,4 @@ type Hendelse =
   | "tidslinje periode flyttet"
   | "tidslinje størrelse endret"
   | "ytelse utbetalinger modal åpnet"
-  | "lastet inn siden på nytt på grunn av ny versjon";
+  | "side lastet på nytt grunnet ny versjon";

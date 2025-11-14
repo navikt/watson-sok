@@ -5,7 +5,7 @@ import { env } from "~/config/env.server";
  */
 export async function loader() {
   return Response.json(
-    { appVersjon: env.APP_VERSION },
+    { appversjon: env.APP_VERSION },
     {
       headers: {
         "Cache-Control": "no-store",

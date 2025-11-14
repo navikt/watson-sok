@@ -12,7 +12,7 @@ type VersjonsvarslingProps = {
 };
 
 type VersjonRespons = {
-  appVersjon?: string;
+  appversjon?: string;
 };
 
 /**
@@ -68,7 +68,7 @@ export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
           setSkalVises(true);
         }
       } catch (error) {
-        if (error && error instanceof Error && error.name !== "AbortError") {
+        if (error instanceof Error && error.name !== "AbortError") {
           console.error("Klarte ikke å hente appversjon", error);
         }
       } finally {
@@ -127,7 +127,7 @@ export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
         <Button
           variant="primary"
           onClick={() => {
-            sporHendelse("lastet inn siden på nytt på grunn av ny versjon");
+            sporHendelse("side lastet på nytt grunnet ny versjon");
             window.location.reload();
           }}
         >
@@ -160,7 +160,7 @@ async function hentVersjonFraServer(signal?: AbortSignal) {
   }
 
   const data = (await respons.json()) as VersjonRespons;
-  return data.appVersjon;
+  return data.appversjon;
 }
 
 /**
