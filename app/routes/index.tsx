@@ -74,10 +74,10 @@ export default function LandingPage() {
 
         <Alert variant="info" className="mt-4">
           <Heading level="3" size="small" spacing>
-            Tjenestelig behov
+            Tjenestlig behov
           </Heading>
           <BodyLong>
-            Brukeroppslag forutsetter tjenestelig behov.
+            Brukeroppslag forutsetter tjenestlig behov.
             <br />
             Merk at alle søk logges.
           </BodyLong>

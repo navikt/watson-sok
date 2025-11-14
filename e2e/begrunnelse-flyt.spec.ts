@@ -36,7 +36,7 @@ test.describe("Begrunnelse-flyt for skjermet bruker", () => {
       await page
         .getByLabel(/Begrunnelse/i)
         .fill("Behov for å hjelpe bruker i sak 123");
-      await page.getByRole("button", { name: /tjenestelig behov/i }).click();
+      await page.getByRole("button", { name: /tjenestlig behov/i }).click();
 
       await expect(page).toHaveURL(/\/oppslag/);
       await sjekkTilgjengelighet(page);
