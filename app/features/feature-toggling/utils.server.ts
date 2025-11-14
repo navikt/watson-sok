@@ -1,4 +1,4 @@
-import { startUnleash, Unleash } from "unleash-client";
+import { startUnleash, type Unleash } from "unleash-client";
 import { env, isProd } from "~/config/env.server";
 import { FeatureFlagg } from "./featureflagg";
 

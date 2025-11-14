@@ -21,6 +21,7 @@ export default [
   route(RouteConfig.API.HEALTH, "routes/api/health/index.ts"),
   route(RouteConfig.API.LOGGED_IN_USER, "routes/api/logged-in-user/index.ts"),
   route(RouteConfig.API.THEME, "routes/api/theme/index.ts"),
+  route(RouteConfig.API.VERSION, "routes/api/version/index.ts"),
 
   // Well-known routes
   route(
