@@ -49,6 +49,7 @@ jobs:
           UNLEASH_SERVER_API_PROJECTS: default
           UNLEASH_SERVER_API_TYPE: CLIENT
           UNLEASH_SERVER_API_ENV: development
+          APP_VERSION: ${{ github.sha }}
 
       - name: Last opp test rapport
         uses: actions/upload-artifact@v4
