@@ -24,7 +24,7 @@ test.describe("Begrunnelse-flyt for skjermet bruker", () => {
 
     await test.step("Validere at begrunnelse er påkrevd", async () => {
       const bekreftKnapp = page.getByRole("button", {
-        name: /tjenestelig behov/i,
+        name: /tjenestlig behov/i,
       });
 
       await bekreftKnapp.click();
