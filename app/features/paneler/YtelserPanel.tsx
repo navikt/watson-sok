@@ -147,7 +147,8 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                   <strong>Beløp:</strong>{" "}
                   {formatterBeløp(Math.abs(tilbakebetaling.beløp))}
                   <br />
-                  <strong>Referanse:</strong> {tilbakebetaling.info ?? "Ikke tilgjengelig"}
+                  <strong>Bilagsnummer:</strong>{" "}
+                  {tilbakebetaling.info ?? "Ikke tilgjengelig"}
                 </BodyShort>
                 <BodyShort className="text-ax-danger-500">
                   Vedtak, Se Gosys

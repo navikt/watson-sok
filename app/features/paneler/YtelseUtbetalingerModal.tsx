@@ -73,7 +73,7 @@ export function YtelseUtbetalingerModal({
               <TableRow>
                 <TableHeaderCell scope="col">Tidspunkt</TableHeaderCell>
                 <TableHeaderCell scope="col">Beløp</TableHeaderCell>
-                <TableHeaderCell scope="col">Referanse</TableHeaderCell>
+                <TableHeaderCell scope="col">Bilagsnummer</TableHeaderCell>
               </TableRow>
             </TableHeader>
             <TableBody>
