@@ -112,7 +112,7 @@ const InntektPanelMedData = ({
                     Lønnstype
                   </Table.HeaderCell>
                   <Table.HeaderCell scope="col" textSize="small">
-                    Timer
+                    Antall
                   </Table.HeaderCell>
                   <Table.HeaderCell scope="col" align="right" textSize="small">
                     Beløp

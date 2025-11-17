@@ -22,7 +22,7 @@ export function PanelContainer({
 }: PanelContainerProps) {
   return (
     <section
-      className={`border-1 border-ax-neutral-400 rounded-xl p-4 relative h-fit ${className}`}
+      className={`border border-ax-neutral-400 rounded-xl p-4 relative h-fit ${className}`}
     >
       {title && (
         <Heading level="2" size="medium" spacing>
@@ -32,8 +32,8 @@ export function PanelContainer({
       {link && (
         <div className="md:absolute top-4 right-4 mb-4">
           <Link href={link.href}>
-            <ExternalLinkIcon aria-hidden="true" />
             {link.beskrivelse}
+            <ExternalLinkIcon aria-hidden="true" />
           </Link>
         </div>
       )}
