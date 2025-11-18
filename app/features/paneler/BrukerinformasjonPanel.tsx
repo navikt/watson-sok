@@ -114,8 +114,12 @@ const BrukerinformasjonPanelMedData = ({
             familiemedlemmer={personopplysninger.familemedlemmer}
           />
         </dd>
-        <dt>NavKontor</dt>
-        <dd>{storFørsteBokstav(personopplysninger.navKontor?.navn?? "Ukjent")}</dd>
+        <dt>Nav-kontor</dt>
+        <dd>
+          {storFørsteBokstavPerOrd(
+            personopplysninger.navKontor?.navn ?? "Ukjent",
+          )}
+        </dd>
       </dl>
     </PanelContainer>
   );
