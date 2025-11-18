@@ -31,7 +31,14 @@
     "sivilstand": null,
     "alder": 70,
     "fødselsdato": "1954-12-31",
-    "dødsdato": null
+    "dødsdato": null,
+    "navKontor": {
+      "enhetId": 100000111,
+      "navn": "Nav Valdres",
+      "enhetNr": "0542",
+      "type": "LOKAL"
+    }
+
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [
