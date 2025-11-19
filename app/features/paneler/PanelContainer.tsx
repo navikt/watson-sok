@@ -1,8 +1,9 @@
 import { ExternalLinkIcon } from "@navikt/aksel-icons";
-import { Heading, Link, Skeleton } from "@navikt/ds-react";
+import { Heading, Link, Skeleton, Tag, Tooltip } from "@navikt/ds-react";
 
 type PanelContainerProps = {
   children: React.ReactNode;
+  isBeta?: boolean;
   title?: React.ReactNode;
   link?: {
     href: string;
@@ -18,6 +19,7 @@ export function PanelContainer({
   children,
   title,
   link,
+  isBeta = false,
   className = "",
 }: PanelContainerProps) {
   return (
@@ -25,10 +27,20 @@ export function PanelContainer({
       className={`border border-ax-neutral-400 rounded-xl p-4 relative h-fit ${className}`}
     >
       {title && (
-        <Heading level="2" size="medium" spacing>
-          {title}
-        </Heading>
+        <div className="flex items-center gap-2 mb-4">
+          <Heading level="2" size="medium">
+            {title}
+          </Heading>
+          {isBeta && (
+            <Tooltip content="Denne funksjonaliteten er under utvikling og kan endre seg.">
+              <Tag variant="alt1-filled" size="small">
+                Beta
+              </Tag>
+            </Tooltip>
+          )}
+        </div>
       )}
+
       {link && (
         <div className="md:absolute top-4 right-4 mb-4">
           <Link href={link.href}>
