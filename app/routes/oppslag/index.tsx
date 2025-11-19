@@ -15,6 +15,7 @@ import { InntektPanel } from "~/features/paneler/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/features/paneler/InntektsoppsummeringPanel";
 import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
 import { YtelserPanel } from "~/features/paneler/YtelserPanel";
+import { useMiljø } from "~/features/use-miljø/useMiljø";
 import {
   hentArbeidsforhold,
   hentInntekter,
@@ -27,9 +28,12 @@ export default function OppslagBruker() {
   const visInntektsoppsummeringPanel = useEnkeltFeatureFlagg(
     FeatureFlagg.INNTEKTSOPPSUMMERING_PANEL,
   );
-
+  const miljø = useMiljø();
   return (
     <div className="flex flex-col gap-4 px-4 mt-8">
+      <title>
+        Oppslag – Oppslag Bruker {miljø !== "prod" ? `(${miljø})` : ""}
+      </title>
       <div className="mb-4">
         <OverskriftPanel promise={data.personopplysninger} />
       </div>

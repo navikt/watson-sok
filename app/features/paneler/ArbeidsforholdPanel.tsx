@@ -92,154 +92,168 @@ const ArbeidsforholdPanelMedData = ({
     return a.start > b.start ? -1 : a.start < b.start ? 1 : 0;
   });
 
-  if (sammenslåtteArbeidsforhold.length === 0) {
-    return (
-      <Alert variant="info" className="h-fit">
-        Ingen arbeidsforhold funnet.
-      </Alert>
-    );
-  }
-
   return (
     <PanelContainer title="Arbeidsforhold">
-      <div
-        className={containerClassName}
-        id={containerId}
-        ref={tabellContainerRef}
-        tabIndex={-1}
-      >
-        <Table size="medium" stickyHeader={true}>
-          <TableHeader>
-            <TableRow>
-              <TableHeaderCell textSize="small" scope="col">
-                Arbeidsgiver
-              </TableHeaderCell>
-              <TableHeaderCell textSize="small" scope="col">
-                Start
-              </TableHeaderCell>
-              <TableHeaderCell textSize="small" scope="col">
-                Slutt
-              </TableHeaderCell>
-              <TableHeaderCell textSize="small" scope="col">
-                Stilling&nbsp;%
-              </TableHeaderCell>
-              <TableHeaderCell textSize="small" scope="col">
-                Arbeidsforhold
-              </TableHeaderCell>
-              <TableHeaderCell textSize="small" scope="col">
-                Yrke
-              </TableHeaderCell>
-              <TableHeaderCell textSize="small" scope="col">
-                <span className="sr-only">Handlinger</span>
-              </TableHeaderCell>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {sammenslåtteArbeidsforhold.map((r) => (
-              <TableRow key={r.key}>
-                <TableHeaderCell
-                  scope="row"
-                  textSize="small"
-                  title={
-                    r.løpende ? "Dette er et løpende arbeidsforhold" : undefined
-                  }
-                  className={
-                    r.løpende ? "border-l-6 border-l-ax-success-500" : undefined
-                  }
-                >
-                  {r.arbeidsgiver}
-                </TableHeaderCell>
-                <TableDataCell className="whitespace-nowrap" textSize="small">
-                  {formatÅrMåned(r.start)}
-                </TableDataCell>
-                <TableDataCell className="whitespace-nowrap" textSize="small">
-                  {r.slutt ? formatÅrMåned(r.slutt) : "–"}
-                </TableDataCell>
-                <TableDataCell align="right" textSize="small">
-                  {formatterProsent(r.stillingsprosent ?? "-")}
-                </TableDataCell>
-                <TableDataCell textSize="small">
-                  {mapArbeidsforholdType(r.arbeidsforholdType ?? "–")}
-                </TableDataCell>
-                <TableDataCell textSize="small">
-                  {mapYrke(r.yrke ?? "–")}
-                </TableDataCell>
-                <TableDataCell textSize="small">
-                  <ActionMenu>
-                    <ActionMenuTrigger
-                      onToggle={(open) => {
-                        if (open) {
-                          sporHendelse("handlinger for arbeidsforhold åpnet");
-                        }
-                      }}
+      {sammenslåtteArbeidsforhold.length === 0 ? (
+        <Alert variant="info" className="h-fit">
+          Ingen arbeidsforhold funnet.
+        </Alert>
+      ) : (
+        <>
+          <div
+            className={containerClassName}
+            id={containerId}
+            ref={tabellContainerRef}
+            tabIndex={-1}
+          >
+            <Table size="medium" stickyHeader={true}>
+              <TableHeader>
+                <TableRow>
+                  <TableHeaderCell textSize="small" scope="col">
+                    Arbeidsgiver
+                  </TableHeaderCell>
+                  <TableHeaderCell textSize="small" scope="col">
+                    Start
+                  </TableHeaderCell>
+                  <TableHeaderCell textSize="small" scope="col">
+                    Slutt
+                  </TableHeaderCell>
+                  <TableHeaderCell textSize="small" scope="col">
+                    Stilling&nbsp;%
+                  </TableHeaderCell>
+                  <TableHeaderCell textSize="small" scope="col">
+                    Arbeidsforhold
+                  </TableHeaderCell>
+                  <TableHeaderCell textSize="small" scope="col">
+                    Yrke
+                  </TableHeaderCell>
+                  <TableHeaderCell textSize="small" scope="col">
+                    <span className="sr-only">Handlinger</span>
+                  </TableHeaderCell>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {sammenslåtteArbeidsforhold.map((r) => (
+                  <TableRow key={r.key}>
+                    <TableHeaderCell
+                      scope="row"
+                      textSize="small"
+                      title={
+                        r.løpende
+                          ? "Dette er et løpende arbeidsforhold"
+                          : undefined
+                      }
+                      className={
+                        r.løpende
+                          ? "border-l-6 border-l-ax-success-500"
+                          : undefined
+                      }
                     >
-                      <Button
-                        variant="tertiary"
-                        size="small"
-                        aria-label={`Handlinger for ${r.arbeidsgiver}`}
-                        title={`Handlinger for ${r.arbeidsgiver}`}
-                      >
-                        <MenuElipsisVerticalIcon aria-hidden={true} />
-                      </Button>
-                    </ActionMenuTrigger>
-                    <ActionMenuContent>
-                      <ActionMenuGroup label="Handlinger">
-                        <ActionMenuItem
-                          icon={<ClipboardIcon />}
-                          onSelect={() => {
-                            try {
-                              navigator.clipboard.writeText(
-                                r.organisasjonsnummer,
-                              );
-                              sporHendelse("organisasjonsnummer kopiert");
-                            } catch {
+                      {r.arbeidsgiver}
+                    </TableHeaderCell>
+                    <TableDataCell
+                      className="whitespace-nowrap"
+                      textSize="small"
+                    >
+                      {formatÅrMåned(r.start)}
+                    </TableDataCell>
+                    <TableDataCell
+                      className="whitespace-nowrap"
+                      textSize="small"
+                    >
+                      {r.slutt ? formatÅrMåned(r.slutt) : "–"}
+                    </TableDataCell>
+                    <TableDataCell align="right" textSize="small">
+                      {formatterProsent(r.stillingsprosent ?? "-")}
+                    </TableDataCell>
+                    <TableDataCell textSize="small">
+                      {mapArbeidsforholdType(r.arbeidsforholdType ?? "–")}
+                    </TableDataCell>
+                    <TableDataCell textSize="small">
+                      {mapYrke(r.yrke ?? "–")}
+                    </TableDataCell>
+                    <TableDataCell textSize="small">
+                      <ActionMenu>
+                        <ActionMenuTrigger
+                          onToggle={(open) => {
+                            if (open) {
                               sporHendelse(
-                                "organisasjonsnummer-kopiering feilet",
+                                "handlinger for arbeidsforhold åpnet",
                               );
                             }
                           }}
                         >
-                          Kopier org.nr.
-                        </ActionMenuItem>
-                      </ActionMenuGroup>
-                      <ActionMenuGroup label="Relevante lenker">
-                        <ActionMenuItem
-                          icon={<InformationSquareIcon />}
-                          as="a"
-                          href={`https://virksomhet.brreg.no/nb/oppslag/enheter/${r.organisasjonsnummer}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onSelect={() => {
-                            sporHendelse("lenke trykket brønnøysundregistrene");
-                          }}
-                        >
-                          Brønnøysundregistrene
-                        </ActionMenuItem>
-                      </ActionMenuGroup>
-                    </ActionMenuContent>
-                  </ActionMenu>
-                </TableDataCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        {harOverflow && (
-          <div className="pointer-events-none h-12 absolute bottom-0 left-0 right-0 bg-linear-to-b from-transparent to-ax-bg-default" />
-        )}
-      </div>
-      {skalViseVisningsknapp && (
-        <div className="mt-2 flex justify-end print:hidden">
-          <Button
-            variant="secondary"
-            size="small"
-            type="button"
-            onClick={handleToggle}
-            aria-expanded={visAlleArbeidsforhold}
-            aria-controls={containerId}
-          >
-            {knappTekst}
-          </Button>
-        </div>
+                          <Button
+                            variant="tertiary"
+                            size="small"
+                            aria-label={`Handlinger for ${r.arbeidsgiver}`}
+                            title={`Handlinger for ${r.arbeidsgiver}`}
+                          >
+                            <MenuElipsisVerticalIcon aria-hidden={true} />
+                          </Button>
+                        </ActionMenuTrigger>
+                        <ActionMenuContent>
+                          <ActionMenuGroup label="Handlinger">
+                            <ActionMenuItem
+                              icon={<ClipboardIcon />}
+                              onSelect={() => {
+                                try {
+                                  navigator.clipboard.writeText(
+                                    r.organisasjonsnummer,
+                                  );
+                                  sporHendelse("organisasjonsnummer kopiert");
+                                } catch {
+                                  sporHendelse(
+                                    "organisasjonsnummer-kopiering feilet",
+                                  );
+                                }
+                              }}
+                            >
+                              Kopier org.nr.
+                            </ActionMenuItem>
+                          </ActionMenuGroup>
+                          <ActionMenuGroup label="Relevante lenker">
+                            <ActionMenuItem
+                              icon={<InformationSquareIcon />}
+                              as="a"
+                              href={`https://virksomhet.brreg.no/nb/oppslag/enheter/${r.organisasjonsnummer}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onSelect={() => {
+                                sporHendelse(
+                                  "lenke trykket brønnøysundregistrene",
+                                );
+                              }}
+                            >
+                              Brønnøysundregistrene
+                            </ActionMenuItem>
+                          </ActionMenuGroup>
+                        </ActionMenuContent>
+                      </ActionMenu>
+                    </TableDataCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+            {harOverflow && (
+              <div className="pointer-events-none h-12 absolute bottom-0 left-0 right-0 bg-linear-to-b from-transparent to-ax-bg-default" />
+            )}
+          </div>
+          {skalViseVisningsknapp && (
+            <div className="mt-2 flex justify-end print:hidden">
+              <Button
+                variant="secondary"
+                size="small"
+                type="button"
+                onClick={handleToggle}
+                aria-expanded={visAlleArbeidsforhold}
+                aria-controls={containerId}
+              >
+                {knappTekst}
+              </Button>
+            </div>
+          )}
+        </>
       )}
     </PanelContainer>
   );

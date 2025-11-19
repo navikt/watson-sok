@@ -64,10 +64,10 @@ const BrukerinformasjonPanelMedData = ({
         beskrivelse: "Historikk",
       }}
     >
-      <dl className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr_2fr] 2xl:grid-cols-[1fr_2fr_1fr_2fr_1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7">
+      <dl className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr_2fr] 2xl:grid-cols-[1fr_2fr_1fr_2fr_1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd, &>dt]:flex [&>dd, &>dt]:items-center [&>dd, &>dt]:min-h-7">
         <dt>Navn</dt>
         <dd>
-          {tilFulltNavn(personopplysninger.navn)}{" "}
+          {storFørsteBokstavPerOrd(tilFulltNavn(personopplysninger.navn))}{" "}
           <KopiKnapp copyText={fulltNavn} />
         </dd>
         {personopplysninger.aktørId && (

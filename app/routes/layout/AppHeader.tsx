@@ -1,6 +1,5 @@
 import {
   BooksIcon,
-  Buildings3Icon,
   MenuGridIcon,
   MoonIcon,
   PersonIcon,
@@ -15,10 +14,12 @@ import {
 } from "@navikt/ds-react";
 import { useEffect, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import { Link, unstable_useRoute, useFetcher, useNavigate } from "react-router";
+import { Link, useFetcher, useNavigate } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { useUser } from "~/features/auth/useUser";
 import { useTheme } from "~/features/darkside/ThemeContext";
+import { useMiljø } from "~/features/use-miljø/useMiljø";
+import { sporHendelse } from "~/utils/analytics";
 
 export function AppHeader() {
   const user = useUser();
@@ -41,8 +42,7 @@ export function AppHeader() {
     }
   }, []);
 
-  const { loaderData } = unstable_useRoute("root");
-  const miljø = loaderData?.envs.miljø;
+  const miljø = useMiljø();
   const visMiljøtag = miljø !== "prod";
   const miljøtagVariant =
     miljø === "demo" ? "alt2" : miljø === "dev" ? "alt1" : "alt3";
@@ -95,23 +95,26 @@ export function AppHeader() {
             >
               Oppslag bruker
             </ActionMenu.Item>
-
-            <ActionMenu.Item onSelect={console.info} icon={<Buildings3Icon />}>
-              Argus
-            </ActionMenu.Item>
           </ActionMenu.Group>
 
           <ActionMenu.Divider />
           <ActionMenu.Item
             as="a"
             href="https://navno.sharepoint.com/sites/45/SitePages/Holmes.aspx"
+            target="_blank"
+            rel="noopener noreferrer"
             icon={<BooksIcon />}
           >
             Hjelp
           </ActionMenu.Item>
 
           <ActionMenu.Item
-            onSelect={toggleTheme}
+            onSelect={() => {
+              toggleTheme();
+              sporHendelse(
+                `endre tema til ${theme === "light" ? "mørk" : "lys"}`,
+              );
+            }}
             icon={theme === "light" ? <MoonIcon /> : <SunIcon />}
           >
             Bruk {theme === "light" ? "mørke" : "lyse"} farger

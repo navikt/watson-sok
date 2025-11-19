@@ -13,12 +13,16 @@ import { Link } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { AppFooter } from "~/routes/layout/AppFooter";
 import { AppHeader } from "~/routes/layout/AppHeader";
+import { useMiljø } from "../use-miljø/useMiljø";
 
 export function PageNotFound() {
+  const miljø = useMiljø();
   return (
     <Page footer={<AppFooter />}>
       <AppHeader />
-      <title>Fant ikke side – Oppslag Bruker</title>
+      <title>
+        Fant ikke side – Oppslag Bruker {miljø !== "prod" ? `(${miljø})` : ""}
+      </title>
       <Page.Block as="main" width="xl" gutters>
         <Box paddingBlock="20 16" data-aksel-template="404-v2">
           <VStack gap="space-16">

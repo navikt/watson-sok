@@ -1,10 +1,14 @@
 import { BodyLong, Heading, Link, List, Page } from "@navikt/ds-react";
 import { ListItem } from "@navikt/ds-react/List";
+import { useMiljø } from "~/features/use-miljø/useMiljø";
 
 export default function Personvern() {
+  const miljø = useMiljø();
   return (
     <Page.Block width="text" gutters>
-      <title>Personvern – Oppslag Bruker</title>
+      <title>
+        Personvern – Oppslag Bruker {miljø !== "prod" ? `(${miljø})` : ""}
+      </title>
       <Heading level="1" size="large" spacing className="mt-4">
         Personvern
       </Heading>

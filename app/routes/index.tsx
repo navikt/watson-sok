@@ -22,6 +22,7 @@ import {
   hentSøkedataFraSession,
   lagreSøkeinfoPåSession,
 } from "~/features/oppslag/oppslagSession.server";
+import { useMiljø } from "~/features/use-miljø/useMiljø";
 import { sporHendelse } from "~/utils/analytics";
 import { sjekkEksistensOgTilgang } from "./oppslag/api.server";
 
@@ -29,10 +30,11 @@ export default function LandingPage() {
   const actionData = useActionData<typeof action>();
 
   const navigation = useNavigation();
+  const miljø = useMiljø();
 
   return (
     <PageBlock width="text" gutters>
-      <title>Oppslag bruker</title>
+      <title>Oppslag bruker {miljø !== "prod" ? `(${miljø})` : ""}</title>
       <meta name="description" content="Oppslag på personer i Nav" />
       <div>
         <Heading level="2" size="medium" align="start" className="mt-4" spacing>
@@ -47,7 +49,7 @@ export default function LandingPage() {
           className="mt-12 mb-2"
           method="post"
           role="search"
-          onSubmit={() => sporHendelse("søk landingsside", {})}
+          onSubmit={() => sporHendelse("søk landingsside")}
         >
           <Search
             name="ident"
