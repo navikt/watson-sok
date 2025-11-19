@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, HGrid } from "@navikt/ds-react";
+import { Alert, BodyShort, Heading } from "@navikt/ds-react";
 import {
   redirect,
   useLoaderData,
@@ -46,10 +46,8 @@ export default function OppslagBruker() {
           </BodyShort>
         </Alert>
       )}
-      <HGrid gap="space-24" columns={{ xs: 1, md: 2 }}>
-        <BrukerinformasjonPanel promise={data.personopplysninger} />
-        <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
-      </HGrid>
+      <BrukerinformasjonPanel promise={data.personopplysninger} />
+      <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
 
       <YtelserPanel promise={data.ytelser} />
 

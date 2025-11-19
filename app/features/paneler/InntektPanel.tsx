@@ -1,5 +1,12 @@
 import { ExclamationmarkTriangleFillIcon } from "@navikt/aksel-icons";
 import { Alert, Skeleton, Switch, Table } from "@navikt/ds-react";
+import {
+  TableBody,
+  TableDataCell,
+  TableHeader,
+  TableHeaderCell,
+  TableRow,
+} from "@navikt/ds-react/Table";
 import { use, useMemo, useState, type CSSProperties } from "react";
 import type { InntektInformasjon, Ytelse } from "~/routes/oppslag/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
@@ -85,7 +92,7 @@ const InntektPanelMedData = ({
       ) : (
         <div className="mt-4">
           {ytelser && ytelser.length > 0 && (
-            <div className="flex justify-end py-2 pr-2">
+            <div className="flex justify-end absolute top-2 right-4">
               <Switch
                 checked={visYtelser}
                 onChange={() => setVisYtelser(!visYtelser)}
@@ -100,27 +107,27 @@ const InntektPanelMedData = ({
             className="max-h-[500px] overflow-y-scroll print:max-h-none print:overflow-y-auto"
           >
             <Table size="medium" stickyHeader={true}>
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell scope="col" textSize="small">
+              <TableHeader>
+                <TableRow>
+                  <TableHeaderCell scope="col" textSize="small">
                     Periode
-                  </Table.HeaderCell>
-                  <Table.HeaderCell scope="col" textSize="small">
+                  </TableHeaderCell>
+                  <TableHeaderCell scope="col" textSize="small">
                     Arbeidsgiver
-                  </Table.HeaderCell>
-                  <Table.HeaderCell scope="col" textSize="small">
+                  </TableHeaderCell>
+                  <TableHeaderCell scope="col" textSize="small">
                     Lønnstype
-                  </Table.HeaderCell>
-                  <Table.HeaderCell scope="col" textSize="small">
+                  </TableHeaderCell>
+                  <TableHeaderCell scope="col" textSize="small">
                     Antall
-                  </Table.HeaderCell>
-                  <Table.HeaderCell scope="col" align="right" textSize="small">
+                  </TableHeaderCell>
+                  <TableHeaderCell scope="col" align="right" textSize="small">
                     Beløp
-                  </Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
+                  </TableHeaderCell>
+                </TableRow>
+              </TableHeader>
 
-              <Table.Body>
+              <TableBody>
                 {rader.map((r, i) => {
                   const timer = konverterTilTall(r.antall);
                   const beløp = konverterTilTall(r.beløp);
@@ -128,7 +135,7 @@ const InntektPanelMedData = ({
                   const cellStyle = harFlereVersjoner ? warnStyle : undefined;
 
                   return (
-                    <Table.Row
+                    <TableRow
                       key={`${r.arbeidsgiver}-${r.periode}-${i}`}
                       title={
                         harFlereVersjoner
@@ -136,7 +143,7 @@ const InntektPanelMedData = ({
                           : undefined
                       }
                     >
-                      <Table.HeaderCell
+                      <TableHeaderCell
                         scope="row"
                         style={cellStyle}
                         textSize="small"
@@ -160,28 +167,28 @@ const InntektPanelMedData = ({
                             <span className="sr-only"> (flere versjoner)</span>
                           )}
                         </span>
-                      </Table.HeaderCell>
-                      <Table.DataCell style={cellStyle} textSize="small">
+                      </TableHeaderCell>
+                      <TableDataCell style={cellStyle} textSize="small">
                         {r.arbeidsgiver || "–"}
-                      </Table.DataCell>
-                      <Table.DataCell style={cellStyle} textSize="small">
+                      </TableDataCell>
+                      <TableDataCell style={cellStyle} textSize="small">
                         {camelCaseTilNorsk(r.lønnstype)}
-                      </Table.DataCell>
-                      <Table.DataCell style={cellStyle} textSize="small">
+                      </TableDataCell>
+                      <TableDataCell style={cellStyle} textSize="small">
                         {timer !== null
                           ? formatterDesimaltall(timer, 0, 2)
                           : "–"}
-                      </Table.DataCell>
-                      <Table.DataCell
+                      </TableDataCell>
+                      <TableDataCell
                         style={{ ...cellStyle, textAlign: "right" }}
                         textSize="small"
                       >
                         {beløp !== null ? formatterBeløp(beløp) : "–"}
-                      </Table.DataCell>
-                    </Table.Row>
+                      </TableDataCell>
+                    </TableRow>
                   );
                 })}
-              </Table.Body>
+              </TableBody>
             </Table>
           </div>
         </div>
@@ -200,31 +207,31 @@ const InntektPanelSkeleton = () => {
     >
       <Skeleton variant="rounded" width="100%" height="4rem" />
       <Table size="medium">
-        <Table.Header>
-          <Table.Row>
+        <TableHeader>
+          <TableRow>
             {kolonner.map((_, idx) => (
-              <Table.HeaderCell
+              <TableHeaderCell
                 key={idx}
                 textSize="small"
                 scope="col"
                 aria-hidden={true}
               >
                 <Skeleton variant="text" width="60%" />
-              </Table.HeaderCell>
+              </TableHeaderCell>
             ))}
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {rader.map((_, idx) => (
-            <Table.Row key={idx}>
+            <TableRow key={idx}>
               {kolonner.map((_, idx) => (
-                <Table.DataCell key={idx} textSize="small" aria-hidden={true}>
+                <TableDataCell key={idx} textSize="small" aria-hidden={true}>
                   <Skeleton variant="text" width="100%" />
-                </Table.DataCell>
+                </TableDataCell>
               ))}
-            </Table.Row>
+            </TableRow>
           ))}
-        </Table.Body>
+        </TableBody>
       </Table>
     </PanelContainerSkeleton>
   );
