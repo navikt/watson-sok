@@ -10,13 +10,15 @@ import {
   ActionMenuItem,
   ActionMenuTrigger,
 } from "@navikt/ds-react/ActionMenu";
-import { use, useMemo } from "react";
+import { use, useEffect, useId, useMemo, useRef, useState } from "react";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/schemas";
 import { sporHendelse } from "~/utils/analytics";
+import { cn } from "~/utils/class-utils";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterProsent } from "~/utils/number-utils";
 import { storFørsteBokstav } from "~/utils/string-utils";
 import { ResolvingComponent } from "../async/ResolvingComponent";
+import { useDisclosure } from "../use-disclosure/useDisclosure";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 type ArbeidsforholdPanelProps = {
@@ -62,6 +64,42 @@ const ArbeidsforholdPanelMedData = ({
     [arbeidsforhold],
   );
 
+  const {
+    erÅpen: visAlleArbeidsforhold,
+    onToggle: onToggleVisAlleArbeidsforhold,
+  } = useDisclosure();
+  const tabellContainerRef = useRef<HTMLDivElement | null>(null);
+  const [harOverflow, setHarOverflow] = useState(false);
+  const containerId = useId();
+
+  useEffect(() => {
+    const container = tabellContainerRef.current;
+    if (!container) {
+      return;
+    }
+
+    const oppdaterOverflow = () => {
+      setHarOverflow(container.scrollHeight - container.clientHeight > 1);
+    };
+
+    oppdaterOverflow();
+
+    const resizeObserver = new ResizeObserver(oppdaterOverflow);
+    resizeObserver.observe(container);
+
+    window.addEventListener("resize", oppdaterOverflow);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", oppdaterOverflow);
+    };
+  }, []);
+
+  const skalViseVisningsknapp = harOverflow || visAlleArbeidsforhold;
+  const knappTekst = visAlleArbeidsforhold
+    ? "Vis færre arbeidsforhold"
+    : "Vis alle arbeidsforhold";
+
   // Sortér løpende arbeidsforhold først, deretter etter nyeste start
   sammenslåtteArbeidsforhold.sort((a, b) => {
     // Løpende arbeidsforhold først
@@ -82,8 +120,15 @@ const ArbeidsforholdPanelMedData = ({
   return (
     <PanelContainer title="Arbeidsforhold">
       <div
-        className="mt-4 max-h-[500px] overflow-y-scroll print:max-h-none print:overflow-y-auto"
-        tabIndex={0}
+        className={cn(
+          "relative print:max-h-none print:overflow-y-auto",
+          visAlleArbeidsforhold
+            ? "max-h-none"
+            : "max-h-[320px] overflow-y-hidden",
+        )}
+        id={containerId}
+        ref={tabellContainerRef}
+        tabIndex={-1}
       >
         <Table size="medium" stickyHeader={true}>
           <Table.Header>
@@ -200,7 +245,33 @@ const ArbeidsforholdPanelMedData = ({
             ))}
           </Table.Body>
         </Table>
+        {harOverflow && (
+          <div className="pointer-events-none h-12 absolute bottom-0 left-0 right-0 bg-linear-to-b from-transparent to-ax-bg-default" />
+        )}
       </div>
+      {skalViseVisningsknapp && (
+        <div className="mt-2 flex justify-end print:hidden">
+          <Button
+            variant="secondary"
+            size="small"
+            type="button"
+            onClick={() => {
+              onToggleVisAlleArbeidsforhold();
+              tabellContainerRef.current?.scrollTo({ top: 0 });
+              tabellContainerRef.current?.focus();
+              sporHendelse(
+                visAlleArbeidsforhold
+                  ? "vis færre arbeidsforhold klikket"
+                  : "vis alle arbeidsforhold klikket",
+              );
+            }}
+            aria-expanded={visAlleArbeidsforhold}
+            aria-controls={containerId}
+          >
+            {knappTekst}
+          </Button>
+        </div>
+      )}
     </PanelContainer>
   );
 };
