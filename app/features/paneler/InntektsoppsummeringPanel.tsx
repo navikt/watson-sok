@@ -201,8 +201,8 @@ const InntektsoppsummeringPanelMedData = ({
   const harIngenInntekter = !aggregert;
 
   return (
-    <PanelContainer title="Inntektsoppsummering" isBeta={true}>
-      <div className="flex justify-end mb-4 static md:absolute md:top-4 md:right-4">
+    <PanelContainer title="Inntekts&shy;oppsummering" isBeta={true}>
+      <div className="flex justify-end mb-4 static lg:absolute lg:top-4 lg:right-4">
         <Select
           label="Velg tidsperiode"
           hideLabel
@@ -214,7 +214,7 @@ const InntektsoppsummeringPanelMedData = ({
               setAntallMåneder(valgt);
             }
           }}
-          className="w-full md:w-48"
+          className="w-full lg:w-48"
         >
           {ANTALL_MÅNEDER_ALTERNATIVER.map((alternativ) => (
             <option key={alternativ} value={alternativ}>
