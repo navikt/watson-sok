@@ -64,7 +64,7 @@ export function PanelContainerSkeleton({
 }: PanelContainerProps) {
   return (
     <section
-      className={`border-1 border-ax-neutral-400 rounded-xl p-4 relative h-fit`}
+      className={`border border-ax-neutral-400 rounded-xl p-4 relative h-fit`}
     >
       {title && (
         <Heading level="2" size="medium" spacing as={Skeleton}>
