@@ -47,9 +47,8 @@ export default function OppslagBruker() {
         </Alert>
       )}
       <BrukerinformasjonPanel promise={data.personopplysninger} />
-      <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
-
       <YtelserPanel promise={data.ytelser} />
+      <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InntektPanel
