@@ -1,10 +1,6 @@
 import { Alert, BodyShort, Heading } from "@navikt/ds-react";
-import {
-  redirect,
-  useLoaderData,
-  type LoaderFunctionArgs,
-  type MetaArgs,
-} from "react-router";
+import { Page, PageBlock } from "@navikt/ds-react/Page";
+import { redirect, useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
@@ -30,41 +26,43 @@ export default function OppslagBruker() {
   );
   const miljø = useMiljø();
   return (
-    <div className="flex flex-col gap-4 px-4 mt-8">
-      <title>
-        Oppslag – Oppslag Bruker {miljø !== "prod" ? `(${miljø})` : ""}
-      </title>
-      <div className="mb-4">
-        <OverskriftPanel promise={data.personopplysninger} />
-      </div>
-      {data.erBegrensetTilgang && (
-        <Alert variant="info" className="w-fit mb-4">
-          <Heading level="2" size="small" spacing>
-            Begrenset tilgang
-          </Heading>
-          <BodyShort spacing>
-            Du har kun tilgang til å se deler av informasjonen for denne
-            brukeren. Det kan være fordi personen er skjermet, bor på fortrolig
-            adresse eller andre grunner. Ta kontakt med nærmeste leder om du har
-            behov for å se mer informasjon.
-          </BodyShort>
-        </Alert>
-      )}
-      <BrukerinformasjonPanel promise={data.personopplysninger} />
-      <YtelserPanel promise={data.ytelser} />
-      <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <InntektPanel
-          promise={data.inntektInformasjon}
-          ytelserPromise={data.ytelser}
-        />
-
-        {visInntektsoppsummeringPanel && (
-          <InntektsoppsummeringPanel promise={data.inntektInformasjon} />
+    <Page>
+      <PageBlock className="flex flex-col gap-4 mt-8 px-4">
+        <title>
+          Oppslag – Oppslag Bruker {miljø !== "prod" ? `(${miljø})` : ""}
+        </title>
+        <div className="mb-4">
+          <OverskriftPanel promise={data.personopplysninger} />
+        </div>
+        {data.erBegrensetTilgang && (
+          <Alert variant="info" className="w-fit mb-4">
+            <Heading level="2" size="small" spacing>
+              Begrenset tilgang
+            </Heading>
+            <BodyShort spacing>
+              Du har kun tilgang til å se deler av informasjonen for denne
+              brukeren. Det kan være fordi personen er skjermet, bor på
+              fortrolig adresse eller andre grunner. Ta kontakt med nærmeste
+              leder om du har behov for å se mer informasjon.
+            </BodyShort>
+          </Alert>
         )}
-      </div>
-    </div>
+        <BrukerinformasjonPanel promise={data.personopplysninger} />
+        <YtelserPanel promise={data.ytelser} />
+        <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <InntektPanel
+            promise={data.inntektInformasjon}
+            ytelserPromise={data.ytelser}
+          />
+
+          {visInntektsoppsummeringPanel && (
+            <InntektsoppsummeringPanel promise={data.inntektInformasjon} />
+          )}
+        </div>
+      </PageBlock>
+    </Page>
   );
 }
 
@@ -109,15 +107,4 @@ export async function loader({ request }: LoaderFunctionArgs) {
       utvidet,
     }),
   };
-}
-
-export function meta({ loaderData }: MetaArgs<typeof loader>) {
-  if (!loaderData || "error" in loaderData) {
-    return [];
-  }
-  return [
-    {
-      title: `Oppslag bruker`,
-    },
-  ];
 }

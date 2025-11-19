@@ -103,7 +103,7 @@ const BrukerinformasjonPanelMedData = ({
         <dt>Statsborgerskap</dt>
         <dd>
           {personopplysninger.statsborgerskap
-            .map(storFørsteBokstavPerOrd)
+            .map((statsborgerskap) => storFørsteBokstavPerOrd(statsborgerskap))
             .join(", ")}
         </dd>
         <dt>Sivilstand</dt>

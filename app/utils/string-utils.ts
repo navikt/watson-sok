@@ -15,12 +15,18 @@ export function storFørsteBokstav(tekst: string | null | undefined): string {
   return førsteBokstav + restAvTeksten;
 }
 
-export function storFørsteBokstavPerOrd(tekst: string | null | undefined) {
+export function storFørsteBokstavPerOrd(
+  tekst: string | null | undefined,
+  inkluderBindestrek: boolean = false,
+) {
   if (!tekst) {
     return "";
   }
 
-  return tekst.split(" ").map(storFørsteBokstav).join(" ");
+  return tekst
+    .split(inkluderBindestrek ? /[- ]/g : " ")
+    .map(storFørsteBokstav)
+    .join(" ");
 }
 
 /**
