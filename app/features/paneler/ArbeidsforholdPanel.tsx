@@ -10,6 +10,13 @@ import {
   ActionMenuItem,
   ActionMenuTrigger,
 } from "@navikt/ds-react/ActionMenu";
+import {
+  TableBody,
+  TableDataCell,
+  TableHeader,
+  TableHeaderCell,
+  TableRow,
+} from "@navikt/ds-react/Table";
 import { use, useEffect, useId, useMemo, useRef, useState } from "react";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/schemas";
 import { sporHendelse } from "~/utils/analytics";
@@ -40,6 +47,18 @@ const ArbeidsforholdPanelMedData = ({
   promise,
 }: ArbeidsforholdPanelMedDataProps) => {
   const arbeidsgiverInformasjon = use(promise);
+
+  const {
+    tabellContainerRef,
+    containerId,
+    harOverflow,
+    visAlleArbeidsforhold,
+    skalViseVisningsknapp,
+    knappTekst,
+    containerClassName,
+    handleToggle,
+  } = useArbeidsforholdOverflow();
+
   const løpende = arbeidsgiverInformasjon?.løpendeArbeidsforhold ?? [];
   const historikk = arbeidsgiverInformasjon?.historikk ?? [];
 
@@ -64,42 +83,6 @@ const ArbeidsforholdPanelMedData = ({
     [arbeidsforhold],
   );
 
-  const {
-    erÅpen: visAlleArbeidsforhold,
-    onToggle: onToggleVisAlleArbeidsforhold,
-  } = useDisclosure();
-  const tabellContainerRef = useRef<HTMLDivElement | null>(null);
-  const [harOverflow, setHarOverflow] = useState(false);
-  const containerId = useId();
-
-  useEffect(() => {
-    const container = tabellContainerRef.current;
-    if (!container) {
-      return;
-    }
-
-    const oppdaterOverflow = () => {
-      setHarOverflow(container.scrollHeight - container.clientHeight > 1);
-    };
-
-    oppdaterOverflow();
-
-    const resizeObserver = new ResizeObserver(oppdaterOverflow);
-    resizeObserver.observe(container);
-
-    window.addEventListener("resize", oppdaterOverflow);
-
-    return () => {
-      resizeObserver.disconnect();
-      window.removeEventListener("resize", oppdaterOverflow);
-    };
-  }, []);
-
-  const skalViseVisningsknapp = harOverflow || visAlleArbeidsforhold;
-  const knappTekst = visAlleArbeidsforhold
-    ? "Vis færre arbeidsforhold"
-    : "Vis alle arbeidsforhold";
-
   // Sortér løpende arbeidsforhold først, deretter etter nyeste start
   sammenslåtteArbeidsforhold.sort((a, b) => {
     // Løpende arbeidsforhold først
@@ -120,46 +103,41 @@ const ArbeidsforholdPanelMedData = ({
   return (
     <PanelContainer title="Arbeidsforhold">
       <div
-        className={cn(
-          "relative print:max-h-none print:overflow-y-auto",
-          visAlleArbeidsforhold
-            ? "max-h-none"
-            : "max-h-[320px] overflow-y-hidden",
-        )}
+        className={containerClassName}
         id={containerId}
         ref={tabellContainerRef}
         tabIndex={-1}
       >
         <Table size="medium" stickyHeader={true}>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell textSize="small" scope="col">
+          <TableHeader>
+            <TableRow>
+              <TableHeaderCell textSize="small" scope="col">
                 Arbeidsgiver
-              </Table.HeaderCell>
-              <Table.HeaderCell textSize="small" scope="col">
+              </TableHeaderCell>
+              <TableHeaderCell textSize="small" scope="col">
                 Start
-              </Table.HeaderCell>
-              <Table.HeaderCell textSize="small" scope="col">
+              </TableHeaderCell>
+              <TableHeaderCell textSize="small" scope="col">
                 Slutt
-              </Table.HeaderCell>
-              <Table.HeaderCell textSize="small" scope="col">
+              </TableHeaderCell>
+              <TableHeaderCell textSize="small" scope="col">
                 Stilling&nbsp;%
-              </Table.HeaderCell>
-              <Table.HeaderCell textSize="small" scope="col">
+              </TableHeaderCell>
+              <TableHeaderCell textSize="small" scope="col">
                 Arbeidsforhold
-              </Table.HeaderCell>
-              <Table.HeaderCell textSize="small" scope="col">
+              </TableHeaderCell>
+              <TableHeaderCell textSize="small" scope="col">
                 Yrke
-              </Table.HeaderCell>
-              <Table.HeaderCell textSize="small" scope="col">
+              </TableHeaderCell>
+              <TableHeaderCell textSize="small" scope="col">
                 <span className="sr-only">Handlinger</span>
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
+              </TableHeaderCell>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {sammenslåtteArbeidsforhold.map((r) => (
-              <Table.Row key={r.key}>
-                <Table.HeaderCell
+              <TableRow key={r.key}>
+                <TableHeaderCell
                   scope="row"
                   textSize="small"
                   title={
@@ -170,23 +148,23 @@ const ArbeidsforholdPanelMedData = ({
                   }
                 >
                   {r.arbeidsgiver}
-                </Table.HeaderCell>
-                <Table.DataCell className="whitespace-nowrap" textSize="small">
+                </TableHeaderCell>
+                <TableDataCell className="whitespace-nowrap" textSize="small">
                   {formatÅrMåned(r.start)}
-                </Table.DataCell>
-                <Table.DataCell className="whitespace-nowrap" textSize="small">
+                </TableDataCell>
+                <TableDataCell className="whitespace-nowrap" textSize="small">
                   {r.slutt ? formatÅrMåned(r.slutt) : "–"}
-                </Table.DataCell>
-                <Table.DataCell align="right" textSize="small">
+                </TableDataCell>
+                <TableDataCell align="right" textSize="small">
                   {formatterProsent(r.stillingsprosent ?? "-")}
-                </Table.DataCell>
-                <Table.DataCell textSize="small">
+                </TableDataCell>
+                <TableDataCell textSize="small">
                   {mapArbeidsforholdType(r.arbeidsforholdType ?? "–")}
-                </Table.DataCell>
-                <Table.DataCell textSize="small">
+                </TableDataCell>
+                <TableDataCell textSize="small">
                   {mapYrke(r.yrke ?? "–")}
-                </Table.DataCell>
-                <Table.DataCell textSize="small">
+                </TableDataCell>
+                <TableDataCell textSize="small">
                   <ActionMenu>
                     <ActionMenuTrigger
                       onToggle={(open) => {
@@ -240,10 +218,10 @@ const ArbeidsforholdPanelMedData = ({
                       </ActionMenuGroup>
                     </ActionMenuContent>
                   </ActionMenu>
-                </Table.DataCell>
-              </Table.Row>
+                </TableDataCell>
+              </TableRow>
             ))}
-          </Table.Body>
+          </TableBody>
         </Table>
         {harOverflow && (
           <div className="pointer-events-none h-12 absolute bottom-0 left-0 right-0 bg-linear-to-b from-transparent to-ax-bg-default" />
@@ -255,16 +233,7 @@ const ArbeidsforholdPanelMedData = ({
             variant="secondary"
             size="small"
             type="button"
-            onClick={() => {
-              onToggleVisAlleArbeidsforhold();
-              tabellContainerRef.current?.scrollTo({ top: 0 });
-              tabellContainerRef.current?.focus();
-              sporHendelse(
-                visAlleArbeidsforhold
-                  ? "vis færre arbeidsforhold klikket"
-                  : "vis alle arbeidsforhold klikket",
-              );
-            }}
+            onClick={handleToggle}
             aria-expanded={visAlleArbeidsforhold}
             aria-controls={containerId}
           >
@@ -278,42 +247,124 @@ const ArbeidsforholdPanelMedData = ({
 
 const ArbeidsforholdPanelSkeleton = () => {
   const kolonner = Array.from({ length: 6 }, (_, index) => index);
-  const rader = Array.from({ length: 8 }, (_, index) => index);
+  const rader = Array.from({ length: 5 }, (_, index) => index);
   return (
-    <PanelContainerSkeleton
-      title="Arbeidsforhold"
-      link={{ href: "https://aareg.nav.no", beskrivelse: "Historikk" }}
-    >
+    <PanelContainerSkeleton title="Arbeidsforhold">
       <Table size="medium" stickyHeader={true}>
-        <Table.Header>
-          <Table.Row>
+        <TableHeader>
+          <TableRow>
             {kolonner.map((_, idx) => (
-              <Table.HeaderCell
+              <TableHeaderCell
                 key={idx}
                 textSize="small"
                 scope="col"
                 aria-hidden={true}
               >
                 <Skeleton variant="text" width="60%" />
-              </Table.HeaderCell>
+              </TableHeaderCell>
             ))}
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {rader.map((_, idx) => (
-            <Table.Row key={idx}>
+            <TableRow key={idx}>
               {kolonner.map((_, idx) => (
-                <Table.DataCell key={idx} textSize="small" aria-hidden={true}>
+                <TableDataCell key={idx} textSize="small" aria-hidden={true}>
                   <Skeleton variant="text" width="100%" />
-                </Table.DataCell>
+                </TableDataCell>
               ))}
-            </Table.Row>
+            </TableRow>
           ))}
-        </Table.Body>
+        </TableBody>
       </Table>
     </PanelContainerSkeleton>
   );
 };
+
+/**
+ * Hook for å håndtere visning/skjuling av arbeidsforhold-overflow.
+ * Håndterer overflow-deteksjon, toggle-funksjonalitet og relatert logikk.
+ *
+ * @returns Objekt med refs, state og funksjoner for overflow-håndtering
+ *
+ * @example
+ * ```tsx
+ * const {
+ *   tabellContainerRef,
+ *   containerId,
+ *   harOverflow,
+ *   visAlleArbeidsforhold,
+ *   skalViseVisningsknapp,
+ *   knappTekst,
+ *   containerClassName,
+ *   handleToggle,
+ * } = useArbeidsforholdOverflow();
+ * ```
+ */
+function useArbeidsforholdOverflow() {
+  const {
+    erÅpen: visAlleArbeidsforhold,
+    onToggle: onToggleVisAlleArbeidsforhold,
+  } = useDisclosure();
+  const tabellContainerRef = useRef<HTMLDivElement | null>(null);
+  const [harOverflow, setHarOverflow] = useState(false);
+  const containerId = useId();
+
+  useEffect(() => {
+    const container = tabellContainerRef.current;
+    if (!container) {
+      return;
+    }
+
+    const oppdaterOverflow = () => {
+      setHarOverflow(container.scrollHeight - container.clientHeight > 1);
+    };
+
+    oppdaterOverflow();
+
+    const resizeObserver = new ResizeObserver(oppdaterOverflow);
+    resizeObserver.observe(container);
+
+    window.addEventListener("resize", oppdaterOverflow);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", oppdaterOverflow);
+    };
+  }, []);
+
+  const skalViseVisningsknapp = harOverflow || visAlleArbeidsforhold;
+  const knappTekst = visAlleArbeidsforhold
+    ? "Vis færre arbeidsforhold"
+    : "Vis alle arbeidsforhold";
+
+  const containerClassName = cn(
+    "relative print:max-h-none print:overflow-y-auto",
+    visAlleArbeidsforhold ? "max-h-none" : "max-h-[320px] overflow-y-hidden",
+  );
+
+  const handleToggle = () => {
+    onToggleVisAlleArbeidsforhold();
+    tabellContainerRef.current?.scrollTo({ top: 0 });
+    tabellContainerRef.current?.focus();
+    sporHendelse(
+      visAlleArbeidsforhold
+        ? "vis færre arbeidsforhold klikket"
+        : "vis alle arbeidsforhold klikket",
+    );
+  };
+
+  return {
+    tabellContainerRef,
+    containerId,
+    harOverflow,
+    visAlleArbeidsforhold,
+    skalViseVisningsknapp,
+    knappTekst,
+    containerClassName,
+    handleToggle,
+  };
+}
 
 function mapArbeidsforholdType(type: string) {
   switch (type) {
