@@ -132,14 +132,14 @@ const BrukerinformasjonPanelSkeleton = () => {
       title="Brukerinformasjon"
       link={{ href: "https://modia.nav.no", beskrivelse: "Historikk" }}
     >
-      <dl className="grid sm:grid-cols-1 md:grid-cols-[1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7">
+      <dl className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr_2fr] 2xl:grid-cols-[1fr_2fr_1fr_2fr_1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7">
         {linjer.map((_, idx) => (
           <Fragment key={idx}>
             <dt>
               <Skeleton variant="text" width="70%" />
             </dt>
             <dd>
-              <Skeleton variant="text" width="100%" />
+              <Skeleton variant="text" width="70%" />
             </dd>
           </Fragment>
         ))}
