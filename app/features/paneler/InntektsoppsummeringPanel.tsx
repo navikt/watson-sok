@@ -59,9 +59,30 @@ const KILDER = [
   fallbackLabel: string;
 }>;
 
-const ANTALL_MÅNEDER_ALTERNATIVER = [3, 6, 12, 24, 36] as const;
+const PERIODE_ALTERNATIVER = [
+  {
+    label: "3 måneder",
+    value: 3,
+  },
+  {
+    label: "6 måneder",
+    value: 6,
+  },
+  {
+    label: "1 år",
+    value: 12,
+  },
+  {
+    label: "2 år",
+    value: 24,
+  },
+  {
+    label: "3 år",
+    value: 36,
+  },
+] as const;
 const DEFAULT_ANTALL_MÅNEDER =
-  ANTALL_MÅNEDER_ALTERNATIVER[ANTALL_MÅNEDER_ALTERNATIVER.length - 1];
+  PERIODE_ALTERNATIVER[PERIODE_ALTERNATIVER.length - 1].value;
 const TOPP_UTBETALERE_ANTALL = 3;
 
 export function InntektsoppsummeringPanel({
@@ -210,15 +231,15 @@ const InntektsoppsummeringPanelMedData = ({
           value={String(antallMåneder)}
           onChange={(event) => {
             const valgt = Number(event.target.value);
-            if (erGyldigAntallMåneder(valgt)) {
-              setAntallMåneder(valgt);
-            }
+            setAntallMåneder(
+              valgt as (typeof PERIODE_ALTERNATIVER)[number]["value"],
+            );
           }}
           className="w-full lg:w-48"
         >
-          {ANTALL_MÅNEDER_ALTERNATIVER.map((alternativ) => (
-            <option key={alternativ} value={alternativ}>
-              {alternativ} måneder
+          {PERIODE_ALTERNATIVER.map((alternativ) => (
+            <option key={alternativ.value} value={alternativ.value}>
+              {alternativ.label}
             </option>
           ))}
         </Select>
@@ -314,14 +335,6 @@ const InntektsoppsummeringPanelMedData = ({
     </PanelContainer>
   );
 };
-
-function erGyldigAntallMåneder(
-  antallMåneder: number,
-): antallMåneder is (typeof ANTALL_MÅNEDER_ALTERNATIVER)[number] {
-  return ANTALL_MÅNEDER_ALTERNATIVER.includes(
-    antallMåneder as (typeof ANTALL_MÅNEDER_ALTERNATIVER)[number],
-  );
-}
 
 const StatistikkKort = ({
   label,
