@@ -1,13 +1,13 @@
 {
   "utrekkstidspunkt": "2025-09-16T13:27:48.036660876",
   "saksbehandlerIdent": "prod-gcp:holmes:nav-persondata-api",
-  "fødselsnummer": "22078733571",
+  "fødselsnummer": "22078700000",
   "tilgang": {
     "tilgang": "AVVIST_SKJERMING",
     "harUtvidetTilgang": false
   },
   "personInformasjon": {
-    "aktørId": "22078733571",
+    "aktørId": "22078700000",
     "familemedlemmer": {
       "12345678903": "BARN",
       "12345678904": "FAR",
@@ -17,7 +17,7 @@
     },
     "statsborgerskap": ["NORGE"],
     "navn": {
-      "fornavn": "SNEDIG",
+      "fornavn": "SNEDIG-FJES",
       "mellomnavn": "MOTVEKT",
       "etternavn": "SPRETT"
     },

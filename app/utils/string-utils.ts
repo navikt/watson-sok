@@ -15,11 +15,27 @@ export function storFørsteBokstav(tekst: string | null | undefined): string {
   return førsteBokstav + restAvTeksten;
 }
 
-export function storFørsteBokstavPerOrd(tekst: string | null | undefined) {
+/**
+ * Gjør første bokstav stor i hvert ord
+ *
+ * @param tekst - Teksten som skal ha stor første bokstav per ord
+ * @param inkluderBindestrek - Om bindestrek skal behandles som orddelimeter (default: false)
+ * @returns Tekst med stor første bokstav per ord
+ */
+export function storFørsteBokstavPerOrd(
+  tekst: string | null | undefined,
+  inkluderBindestrek: boolean = false,
+) {
   if (!tekst) {
     return "";
   }
 
+  if (inkluderBindestrek) {
+    return tekst
+      .split(/([- ])/g)
+      .map((part, i) => (i % 2 === 0 ? storFørsteBokstav(part) : part))
+      .join("");
+  }
   return tekst.split(" ").map(storFørsteBokstav).join(" ");
 }
 

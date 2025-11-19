@@ -57,4 +57,6 @@ type Hendelse =
   | "ytelse utbetalinger modal åpnet"
   | "side lastet på nytt grunnet ny versjon"
   | "vis færre arbeidsforhold klikket"
-  | "vis alle arbeidsforhold klikket";
+  | "vis alle arbeidsforhold klikket"
+  | "endre tema til mørk"
+  | "endre tema til lys";

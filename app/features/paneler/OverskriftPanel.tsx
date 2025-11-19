@@ -2,6 +2,7 @@ import { Heading, Skeleton } from "@navikt/ds-react";
 import { use } from "react";
 import type { PersonInformasjon } from "~/routes/oppslag/schemas";
 import { tilFulltNavn } from "~/utils/navn-utils";
+import { storFørsteBokstavPerOrd } from "~/utils/string-utils";
 import { ResolvingComponent } from "../async/ResolvingComponent";
 
 type OverskriftPanelProps = {
@@ -30,8 +31,8 @@ const OverskriftPanelMedData = ({ promise }: OverskriftPanelProps) => {
   }
   return (
     <Heading level="1" size="large">
-      {tilFulltNavn(personopplysninger.navn)} ({personopplysninger.alder})
-      {personopplysninger.dødsdato ? ` (død)` : ""}
+      {storFørsteBokstavPerOrd(tilFulltNavn(personopplysninger.navn), true)} (
+      {personopplysninger.alder}){personopplysninger.dødsdato ? ` (død)` : ""}
     </Heading>
   );
 };

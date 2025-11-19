@@ -64,10 +64,10 @@ const BrukerinformasjonPanelMedData = ({
         beskrivelse: "Historikk",
       }}
     >
-      <dl className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr_2fr] 2xl:grid-cols-[1fr_2fr_1fr_2fr_1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7">
+      <dl className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr_2fr] 2xl:grid-cols-[1fr_2fr_1fr_2fr_1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7 [&>dt]:flex [&>dt]:items-center [&>dt]:min-h-7">
         <dt>Navn</dt>
         <dd>
-          {tilFulltNavn(personopplysninger.navn)}{" "}
+          {storFørsteBokstavPerOrd(tilFulltNavn(personopplysninger.navn), true)}{" "}
           <KopiKnapp copyText={fulltNavn} />
         </dd>
         {personopplysninger.aktørId && (
@@ -103,7 +103,7 @@ const BrukerinformasjonPanelMedData = ({
         <dt>Statsborgerskap</dt>
         <dd>
           {personopplysninger.statsborgerskap
-            .map(storFørsteBokstavPerOrd)
+            .map((statsborgerskap) => storFørsteBokstavPerOrd(statsborgerskap))
             .join(", ")}
         </dd>
         <dt>Sivilstand</dt>

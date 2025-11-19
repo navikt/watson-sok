@@ -9,17 +9,22 @@ import {
   VStack,
 } from "@navikt/ds-react";
 import { ListItem } from "@navikt/ds-react/List";
+import { PageBlock } from "@navikt/ds-react/Page";
 import { Link } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { AppFooter } from "~/routes/layout/AppFooter";
 import { AppHeader } from "~/routes/layout/AppHeader";
+import { useMiljø } from "../use-miljø/useMiljø";
 
 export function PageNotFound() {
+  const miljø = useMiljø();
   return (
     <Page footer={<AppFooter />}>
       <AppHeader />
-      <title>Fant ikke side – Oppslag Bruker</title>
-      <Page.Block as="main" width="xl" gutters>
+      <title>
+        Fant ikke side – Oppslag Bruker {miljø !== "prod" ? `(${miljø})` : ""}
+      </title>
+      <PageBlock as="main" width="xl" gutters>
         <Box paddingBlock="20 16" data-aksel-template="404-v2">
           <VStack gap="space-16">
             <VStack gap="space-12" align="start">
@@ -43,7 +48,7 @@ export function PageNotFound() {
             </VStack>
           </VStack>
         </Box>
-      </Page.Block>
+      </PageBlock>
     </Page>
   );
 }

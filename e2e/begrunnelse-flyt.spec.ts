@@ -5,7 +5,7 @@ test.describe("Begrunnelse-flyt for skjermet bruker", () => {
   test("skal kreve begrunnelse og huske bekreftet tilgang", async ({
     page,
   }) => {
-    const skjermetFnr = "22078733571";
+    const skjermetFnr = "22078700000";
 
     await test.step("Søke på skjermet bruker og havne på bekreft-siden", async () => {
       await page.goto("/");
