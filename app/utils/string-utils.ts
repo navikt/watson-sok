@@ -15,6 +15,13 @@ export function storFørsteBokstav(tekst: string | null | undefined): string {
   return førsteBokstav + restAvTeksten;
 }
 
+/**
+ * Gjør første bokstav stor i hvert ord
+ *
+ * @param tekst - Teksten som skal ha stor første bokstav per ord
+ * @param inkluderBindestrek - Om bindestrek skal behandles som orddelimeter (default: false)
+ * @returns Tekst med stor første bokstav per ord
+ */
 export function storFørsteBokstavPerOrd(
   tekst: string | null | undefined,
   inkluderBindestrek: boolean = false,
@@ -23,10 +30,13 @@ export function storFørsteBokstavPerOrd(
     return "";
   }
 
-  return tekst
-    .split(inkluderBindestrek ? /[- ]/g : " ")
-    .map(storFørsteBokstav)
-    .join(" ");
+  if (inkluderBindestrek) {
+    return tekst
+      .split(/([- ])/g)
+      .map((part, i) => (i % 2 === 0 ? storFørsteBokstav(part) : part))
+      .join("");
+  }
+  return tekst.split(" ").map(storFørsteBokstav).join(" ");
 }
 
 /**

@@ -96,9 +96,7 @@ export function YtelseUtbetalingerModal({
                     </TableDataCell>
                     <TableDataCell>
                       {periode.info ?? "–"}{" "}
-                      {periode.info && (
-                        <CopyButton copyText={periode.info ?? ""} />
-                      )}
+                      {periode.info && <CopyButton copyText={periode.info} />}
                     </TableDataCell>
                   </TableRow>
                 );

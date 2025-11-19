@@ -1,6 +1,12 @@
 import { Alert, BodyShort, Heading } from "@navikt/ds-react";
 import { Page, PageBlock } from "@navikt/ds-react/Page";
-import { redirect, useLoaderData, type LoaderFunctionArgs } from "react-router";
+import {
+  redirect,
+  useLoaderData,
+  type LoaderFunctionArgs,
+  type MetaArgs,
+} from "react-router";
+import { env } from "~/config/env.server";
 import { RouteConfig } from "~/config/routeConfig";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
@@ -11,7 +17,6 @@ import { InntektPanel } from "~/features/paneler/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/features/paneler/InntektsoppsummeringPanel";
 import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
 import { YtelserPanel } from "~/features/paneler/YtelserPanel";
-import { useMiljø } from "~/features/use-miljø/useMiljø";
 import {
   hentArbeidsforhold,
   hentInntekter,
@@ -24,13 +29,9 @@ export default function OppslagBruker() {
   const visInntektsoppsummeringPanel = useEnkeltFeatureFlagg(
     FeatureFlagg.INNTEKTSOPPSUMMERING_PANEL,
   );
-  const miljø = useMiljø();
   return (
     <Page>
       <PageBlock className="flex flex-col gap-4 mt-8 px-4">
-        <title>
-          Oppslag – Oppslag Bruker {miljø !== "prod" ? `(${miljø})` : ""}
-        </title>
         <div className="mb-4">
           <OverskriftPanel promise={data.personopplysninger} />
         </div>
@@ -92,6 +93,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   const utvidet = new URL(request.url).searchParams.get("utvidet") === "true";
   return {
+    miljø: env.ENVIRONMENT,
     erBegrensetTilgang:
       !søkedata.harUtvidetTilgang &&
       [
@@ -107,4 +109,13 @@ export async function loader({ request }: LoaderFunctionArgs) {
       utvidet,
     }),
   };
+}
+
+export function meta({ loaderData }: MetaArgs<typeof loader>) {
+  const miljø = loaderData?.miljø ?? "ukjent";
+  return [
+    {
+      title: `Oppslag – Oppslag Bruker ${miljø !== "prod" ? `(${miljø})` : ""}`,
+    },
+  ];
 }

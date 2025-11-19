@@ -67,7 +67,7 @@ const BrukerinformasjonPanelMedData = ({
       <dl className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr_2fr] 2xl:grid-cols-[1fr_2fr_1fr_2fr_1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd, &>dt]:flex [&>dd, &>dt]:items-center [&>dd, &>dt]:min-h-7">
         <dt>Navn</dt>
         <dd>
-          {storFørsteBokstavPerOrd(tilFulltNavn(personopplysninger.navn))}{" "}
+          {storFørsteBokstavPerOrd(tilFulltNavn(personopplysninger.navn), true)}{" "}
           <KopiKnapp copyText={fulltNavn} />
         </dd>
         {personopplysninger.aktørId && (
