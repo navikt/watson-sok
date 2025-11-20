@@ -70,23 +70,25 @@ export function FamiliemedlemmerModal({
                   )}
                   &nbsp; år)
                 </div>
-                <Form action={RouteConfig.INDEX} method="post">
-                  <input type="hidden" name="ident" value={personIdent} />
-                  <Button
-                    variant="tertiary"
-                    size="small"
-                    type="submit"
-                    icon={
-                      <FileSearchIcon
-                        aria-hidden={true}
-                        className="inline-block"
-                        title="Søk etter familiemedlem"
-                      />
-                    }
-                  >
-                    Slå opp
-                  </Button>
-                </Form>
+                {personIdent && personIdent !== "Ukjent" && (
+                  <Form action={RouteConfig.INDEX} method="post">
+                    <input type="hidden" name="ident" value={personIdent} />
+                    <Button
+                      variant="tertiary"
+                      size="small"
+                      type="submit"
+                      icon={
+                        <FileSearchIcon
+                          aria-hidden={true}
+                          className="inline-block"
+                          title="Søk etter familiemedlem"
+                        />
+                      }
+                    >
+                      Slå opp
+                    </Button>
+                  </Form>
+                )}
               </div>
             ))}
           </div>
