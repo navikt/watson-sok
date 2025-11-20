@@ -19,4 +19,12 @@ export default defineConfig({
       host: "localhost",
     },
   },
+  customLogger: {
+    ...console,
+    info: (msg: string, options?: any) => {
+      // Filtrer ut health check logs
+      if (msg.includes('/api/health')) return;
+      console.info(msg, options);
+    },
+  } as any,
 });
