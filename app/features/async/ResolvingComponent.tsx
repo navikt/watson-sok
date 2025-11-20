@@ -28,7 +28,16 @@ export const ResolvingComponent = ({
   children,
 }: ResolvingComponentProps) => {
   return (
-    <ErrorBoundary fallback={errorFallback}>
+    <ErrorBoundary
+      fallback={errorFallback}
+      onError={(error, info) => {
+        console.error(
+          "Feil oppstod mens løsningen ventet på serveren: ",
+          error,
+          info,
+        );
+      }}
+    >
       <Suspense fallback={loadingFallback}>{children}</Suspense>
     </ErrorBoundary>
   );
