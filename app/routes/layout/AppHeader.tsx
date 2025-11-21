@@ -65,6 +65,7 @@ export function AppHeader() {
         method="post"
         action={RouteConfig.INDEX}
         className="items-center hidden md:flex ml-5"
+        onSubmit={() => sporHendelse("søk header")}
       >
         <Search
           ref={searchInputRef}
