@@ -66,7 +66,15 @@ export default function BekreftSide() {
             leder for å få tilgang til denne informasjonen.
           </BodyLong>
         )}
-        <Form method="post" className="flex flex-col gap-2">
+        <Form
+          method="post"
+          className="flex flex-col gap-2"
+          onSubmit={() => {
+            sporHendelse("skjermingsbegrunnelse utfylt", {
+              skjermingsbehov: grunnForBegrensetTilgang,
+            });
+          }}
+        >
           <Textarea
             name="begrunnelse"
             label="Begrunnelse"
@@ -74,16 +82,7 @@ export default function BekreftSide() {
           />
 
           <div className="flex justify-end gap-2">
-            <Button
-              variant="primary"
-              type="submit"
-              loading={isSubmitting}
-              onClick={() =>
-                sporHendelse("skjermingsbegrunnelse utfylt", {
-                  skjermingsbehov: grunnForBegrensetTilgang,
-                })
-              }
-            >
+            <Button variant="primary" type="submit" loading={isSubmitting}>
               Bekreft at du har tjenestlig behov
             </Button>
             <Button
