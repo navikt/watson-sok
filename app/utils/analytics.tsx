@@ -59,5 +59,7 @@ type Hendelse =
   | "side lastet på nytt grunnet ny versjon"
   | "vis færre arbeidsforhold klikket"
   | "vis alle arbeidsforhold klikket"
+  | "skjermingsbegrunnelse utfylt"
+  | "skjermingsbegrunnelse avbrutt"
   | "endre tema til mørk"
   | "endre tema til lys";

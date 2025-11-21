@@ -24,6 +24,7 @@ import {
   lagreSøkeinfoPåSession,
 } from "~/features/oppslag/oppslagSession.server";
 import { useMiljø } from "~/features/use-miljø/useMiljø";
+import { sporHendelse } from "~/utils/analytics";
 import { loggBegrunnetTilgang } from "./api.server";
 
 export default function BekreftSide() {
@@ -73,13 +74,27 @@ export default function BekreftSide() {
           />
 
           <div className="flex justify-end gap-2">
-            <Button variant="primary" type="submit" loading={isSubmitting}>
+            <Button
+              variant="primary"
+              type="submit"
+              loading={isSubmitting}
+              onClick={() =>
+                sporHendelse("skjermingsbegrunnelse utfylt", {
+                  skjermingsbehov: grunnForBegrensetTilgang,
+                })
+              }
+            >
               Bekreft at du har tjenestlig behov
             </Button>
             <Button
               variant="secondary"
               type="button"
-              onClick={() => navigate(RouteConfig.INDEX)}
+              onClick={() => {
+                sporHendelse("skjermingsbegrunnelse avbrutt", {
+                  skjermingsbehov: grunnForBegrensetTilgang,
+                });
+                navigate(RouteConfig.INDEX);
+              }}
             >
               Søk på en annen bruker
             </Button>
