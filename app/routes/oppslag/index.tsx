@@ -13,6 +13,7 @@ import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFla
 import { hentSøkedataFraSession } from "~/features/oppslag/oppslagSession.server";
 import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
 import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
+import { InntektOgYtelseOverlappPanel } from "~/features/paneler/InntektOgYtelseOverlappPanel";
 import { InntektPanel } from "~/features/paneler/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/features/paneler/InntektsoppsummeringPanel";
 import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
@@ -62,6 +63,11 @@ export default function OppslagBruker() {
             <InntektsoppsummeringPanel promise={data.inntektInformasjon} />
           )}
         </div>
+
+        <InntektOgYtelseOverlappPanel
+          inntektPromise={data.inntektInformasjon}
+          ytelserPromise={data.ytelser}
+        />
       </PageBlock>
     </Page>
   );
