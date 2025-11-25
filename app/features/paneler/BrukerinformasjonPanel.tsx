@@ -126,7 +126,7 @@ const BrukerinformasjonPanelMedData = ({
                 <span>({personopplysninger.navKontor.enhetNr})</span>
               </Tooltip>
               <KopiKnapp
-                copyText={personopplysninger.navKontor.enhetNr.toString()}
+                copyText={personopplysninger.navKontor.enhetNr}
               />
             </>
           )}
