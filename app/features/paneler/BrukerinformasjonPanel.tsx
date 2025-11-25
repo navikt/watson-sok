@@ -1,4 +1,4 @@
-import { Alert, CopyButton, Skeleton } from "@navikt/ds-react";
+import { Alert, CopyButton, Skeleton, Tooltip } from "@navikt/ds-react";
 import { Fragment, use } from "react";
 import { unstable_useRoute } from "react-router";
 import type { PersonInformasjon } from "~/routes/oppslag/schemas";
@@ -118,6 +118,17 @@ const BrukerinformasjonPanelMedData = ({
         <dd>
           {storFørsteBokstavPerOrd(
             personopplysninger.navKontor?.navn ?? "Ukjent",
+          )}
+          {personopplysninger.navKontor?.enhetNr && (
+            <>
+              &nbsp;
+              <Tooltip content="Enhetsnummer">
+                <span>({personopplysninger.navKontor.enhetNr})</span>
+              </Tooltip>
+              <KopiKnapp
+                copyText={personopplysninger.navKontor.enhetNr.toString()}
+              />
+            </>
           )}
         </dd>
       </dl>
