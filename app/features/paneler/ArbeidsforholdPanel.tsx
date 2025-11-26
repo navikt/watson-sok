@@ -118,7 +118,7 @@ const ArbeidsforholdPanelMedData = ({
                   <TableHeaderCell textSize="small" scope="col">
                     Slutt
                   </TableHeaderCell>
-                  <TableHeaderCell textSize="small" scope="col">
+                  <TableHeaderCell textSize="small" scope="col" align="right">
                     Stilling&nbsp;%
                   </TableHeaderCell>
                   <TableHeaderCell textSize="small" scope="col">
