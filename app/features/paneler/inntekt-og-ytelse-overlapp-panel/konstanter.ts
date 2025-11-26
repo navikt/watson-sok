@@ -13,7 +13,7 @@ export const STANDARD_FARGER: GrafFarger = {
   ytelseStolpeStroke: "var(--ax-bg-brand-beige-strong)",
 } as const;
 
-export const AKSE_OPPSETT = {
+const AKSE_OPPSETT = {
   padding: { top: 20, right: 20, bottom: 40, left: 60 },
   høyde: 240,
   bredde: 800,
