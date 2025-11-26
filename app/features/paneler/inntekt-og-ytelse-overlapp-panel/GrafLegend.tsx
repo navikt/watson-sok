@@ -2,12 +2,12 @@ import { BodyShort } from "@navikt/ds-react";
 import { STANDARD_FARGER } from "./konstanter";
 
 /**
- * Viser legende for inntekts- og ytelsesfargene.
+ * Viser legend for inntekts- og ytelsesfargene.
  *
  * @example
- * <GrafLegende />
+ * <GrafLegend />
  */
-export function GrafLegende() {
+export function GrafLegend() {
   return (
     <div
       className="flex items-center justify-center gap-6 mt-4"

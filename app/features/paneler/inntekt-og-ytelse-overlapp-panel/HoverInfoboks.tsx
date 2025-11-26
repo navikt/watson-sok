@@ -1,6 +1,7 @@
 import { BodyShort } from "@navikt/ds-react";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterBeløp } from "~/utils/number-utils";
+import { storFørsteBokstav } from "~/utils/string-utils";
 import type { MånedligData } from "./typer";
 
 type HoverInfoboksProps = {
@@ -25,12 +26,17 @@ export function HoverInfoboks({ data, hoveredIndex }: HoverInfoboksProps) {
     >
       {valgt ? (
         <BodyShort size="small" className="flex flex-wrap items-center gap-3">
-          <span className="font-semibold">{formatÅrMåned(valgt.periode)}</span>
+          <span className="font-semibold">
+            {storFørsteBokstav(formatÅrMåned(valgt.periode))}
+          </span>
           <span aria-label="Inntekt denne måneden">
             Inntekt: {formatterBeløp(valgt.inntekt)}
           </span>
           <span aria-label="Ytelser denne måneden">
             Ytelse: {formatterBeløp(valgt.ytelse)}
+          </span>
+          <span aria-label="Ytelser denne måneden" className="font-semibold">
+            Totalt: {formatterBeløp(valgt.inntekt + valgt.ytelse)}
           </span>
         </BodyShort>
       ) : (

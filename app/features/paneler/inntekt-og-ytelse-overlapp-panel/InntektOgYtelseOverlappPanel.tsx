@@ -3,18 +3,18 @@ import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useMemo, useState } from "react";
 import { ResolvingComponent } from "../../async/ResolvingComponent";
 import { PanelContainer, PanelContainerSkeleton } from "../PanelContainer";
-import { GrafLegende } from "./GrafLegende";
+import { GrafLegend } from "./GrafLegend";
 import { HoverInfoboks } from "./HoverInfoboks";
 import { Linjegraf } from "./Linjegraf";
 import { SkjultTabell } from "./SkjultTabell";
 import { Stolpediagram } from "./Stolpediagram";
 import { ANTALL_MÅNEDER_BACK, GRAF_HØYDE } from "./konstanter";
-import { transformTilMånedligData } from "./utils";
 import type {
   GrafData,
   GrafVisning,
   InntektOgYtelseOverlappPanelProps,
 } from "./typer";
+import { transformTilMånedligData } from "./utils";
 
 /**
  * Laster inn og viser inntekt- og ytelsesdata som enten linjegraf eller stolpediagram.
@@ -38,7 +38,8 @@ export function InntektOgYtelseOverlappPanel({
   );
 }
 
-type InntektOgYtelseOverlappPanelMedDataProps = InntektOgYtelseOverlappPanelProps;
+type InntektOgYtelseOverlappPanelMedDataProps =
+  InntektOgYtelseOverlappPanelProps;
 
 /**
  * Viser grafen når dataene er ferdig resolved.
@@ -126,7 +127,7 @@ const InntektOgYtelseOverlappPanelMedData = ({
             />
           )}
           <HoverInfoboks data={grafData.data} hoveredIndex={hoveredIndex} />
-          <GrafLegende />
+          <GrafLegend />
           <SkjultTabell data={grafData.data} />
         </div>
       )}
