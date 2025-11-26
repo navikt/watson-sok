@@ -35,7 +35,7 @@ export function HoverInfoboks({ data, hoveredIndex }: HoverInfoboksProps) {
           <span aria-label="Ytelser denne måneden">
             Ytelse: {formatterBeløp(valgt.ytelse)}
           </span>
-          <span aria-label="Ytelser denne måneden" className="font-semibold">
+          <span aria-label="Totalt for denne måneden" className="font-semibold">
             Totalt: {formatterBeløp(valgt.inntekt + valgt.ytelse)}
           </span>
         </BodyShort>
