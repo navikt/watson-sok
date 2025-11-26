@@ -111,23 +111,25 @@ const InntektOgYtelseOverlappPanelMedData = ({
               <ToggleGroupItem value="stolpe" label="Stolper" />
             </ToggleGroup>
           </div>
-          {grafVisning === "linje" ? (
-            <Linjegraf
-              data={grafData.data}
-              maksVerdi={grafData.maksVerdi}
-              hoveredIndex={hoveredIndex}
-              onHover={setHoveredIndex}
-            />
-          ) : (
-            <Stolpediagram
-              data={grafData.data}
-              maksVerdi={grafData.maksVerdi}
-              hoveredIndex={hoveredIndex}
-              onHover={setHoveredIndex}
-            />
-          )}
-          <HoverInfoboks data={grafData.data} hoveredIndex={hoveredIndex} />
-          <GrafLegend />
+          <div className="max-w-[1400px] mx-auto">
+            {grafVisning === "linje" ? (
+              <Linjegraf
+                data={grafData.data}
+                maksVerdi={grafData.maksVerdi}
+                hoveredIndex={hoveredIndex}
+                onHover={setHoveredIndex}
+              />
+            ) : (
+              <Stolpediagram
+                data={grafData.data}
+                maksVerdi={grafData.maksVerdi}
+                hoveredIndex={hoveredIndex}
+                onHover={setHoveredIndex}
+              />
+            )}
+            <HoverInfoboks data={grafData.data} hoveredIndex={hoveredIndex} />
+            <GrafLegend />
+          </div>
           <SkjultTabell data={grafData.data} />
         </div>
       )}

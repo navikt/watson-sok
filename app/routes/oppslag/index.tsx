@@ -54,13 +54,17 @@ export default function OppslagBruker() {
         )}
         <BrukerinformasjonPanel promise={data.personopplysninger} />
         <YtelserPanel promise={data.ytelser} />
-        {visInntektOgYtelseOverlappPanel && (
-          <InntektOgYtelseOverlappPanel
-            inntektPromise={data.inntektInformasjon}
-            ytelserPromise={data.ytelser}
-          />
+        {visInntektOgYtelseOverlappPanel ? (
+          <div className="grid grid-cols-1 min-[1800px]:grid-cols-2 gap-4">
+            <InntektOgYtelseOverlappPanel
+              inntektPromise={data.inntektInformasjon}
+              ytelserPromise={data.ytelser}
+            />
+            <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
+          </div>
+        ) : (
+          <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
         )}
-        <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <InntektPanel
