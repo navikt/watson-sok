@@ -51,6 +51,10 @@ export default function OppslagBruker() {
         )}
         <BrukerinformasjonPanel promise={data.personopplysninger} />
         <YtelserPanel promise={data.ytelser} />
+        <InntektOgYtelseOverlappPanel
+          inntektPromise={data.inntektInformasjon}
+          ytelserPromise={data.ytelser}
+        />
         <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -63,11 +67,6 @@ export default function OppslagBruker() {
             <InntektsoppsummeringPanel promise={data.inntektInformasjon} />
           )}
         </div>
-
-        <InntektOgYtelseOverlappPanel
-          inntektPromise={data.inntektInformasjon}
-          ytelserPromise={data.ytelser}
-        />
       </PageBlock>
     </Page>
   );

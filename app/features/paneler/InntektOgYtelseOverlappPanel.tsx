@@ -1,4 +1,11 @@
-import { Alert, BodyShort, Heading, Skeleton } from "@navikt/ds-react";
+import {
+  Alert,
+  BodyShort,
+  Heading,
+  Skeleton,
+  ToggleGroup,
+} from "@navikt/ds-react";
+import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useMemo, useState } from "react";
 import type { InntektInformasjon, Ytelse } from "~/routes/oppslag/schemas";
 import { formatÅrMåned } from "~/utils/date-utils";
@@ -134,6 +141,7 @@ const InntektOgYtelseOverlappPanelMedData = ({
   const inntektInformasjon = use(inntektPromise);
   const ytelser = use(ytelserPromise);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [grafVisning, setGrafVisning] = useState<"linje" | "stolpe">("linje");
 
   const månedligData = useMemo(
     () => transformTilMånedligData(inntektInformasjon, ytelser),
@@ -157,7 +165,11 @@ const InntektOgYtelseOverlappPanelMedData = ({
     // Finn maks-verdier for skalering
     const maksInntekt = Math.max(...månedligData.map((d) => d.inntekt), 0);
     const maksYtelse = Math.max(...månedligData.map((d) => d.ytelse), 0);
-    const maksVerdi = Math.max(maksInntekt, maksYtelse, 1);
+    const maksTotal = Math.max(
+      ...månedligData.map((d) => d.inntekt + d.ytelse),
+      0,
+    );
+    const maksVerdi = Math.max(maksInntekt, maksYtelse, maksTotal, 1);
 
     // Bruk alle måneder for sammenhengende linjer, ikke bare de med verdier
     return {
@@ -177,12 +189,33 @@ const InntektOgYtelseOverlappPanelMedData = ({
         </Alert>
       ) : (
         <div className="mt-4">
-          <Linjegraf
-            data={grafData.data}
-            maksVerdi={grafData.maksVerdi}
-            hoveredIndex={hoveredIndex}
-            onHover={setHoveredIndex}
-          />
+          <div className="flex justify-end absolute top-4 right-4">
+            <ToggleGroup
+              variant="neutral"
+              size="small"
+              value={grafVisning}
+              aria-label="Velg grafvisning"
+              onChange={(value) => setGrafVisning(value as typeof grafVisning)}
+            >
+              <ToggleGroupItem value="linje" label="Linjer" />
+              <ToggleGroupItem value="stolpe" label="Stolper" />
+            </ToggleGroup>
+          </div>
+          {grafVisning === "linje" ? (
+            <Linjegraf
+              data={grafData.data}
+              maksVerdi={grafData.maksVerdi}
+              hoveredIndex={hoveredIndex}
+              onHover={setHoveredIndex}
+            />
+          ) : (
+            <StolpeGraf
+              data={grafData.data}
+              maksVerdi={grafData.maksVerdi}
+              hoveredIndex={hoveredIndex}
+              onHover={setHoveredIndex}
+            />
+          )}
           <HoverInfoboks data={grafData.data} hoveredIndex={hoveredIndex} />
           <GrafLegende />
           <SkjultTabell data={grafData.data} />
@@ -301,7 +334,7 @@ function Linjegraf({ data, maksVerdi, hoveredIndex, onHover }: LinjegrafProps) {
                 x={PADDING.left - 10}
                 y={grid.y + 4}
                 textAnchor="end"
-                fontSize="11"
+                fontSize="10"
               >
                 {formatterBeløp(grid.avrundetVerdi, 0)}
               </text>
@@ -325,7 +358,7 @@ function Linjegraf({ data, maksVerdi, hoveredIndex, onHover }: LinjegrafProps) {
                 x={label.x}
                 y={PADDING.top + grafHøyde + 20}
                 textAnchor="middle"
-                fontSize="11"
+                fontSize="10"
                 fill="var(--ax-text-default)"
               >
                 {formatÅrMåned(label.periode)}
@@ -421,6 +454,195 @@ function Linjegraf({ data, maksVerdi, hoveredIndex, onHover }: LinjegrafProps) {
                   x1={x}
                   y1={PADDING.top}
                   x2={x}
+                  y2={PADDING.top + grafHøyde}
+                  stroke="var(--ax-neutral-400)"
+                  strokeWidth="1"
+                  strokeDasharray="2 2"
+                />
+              )}
+            </g>
+          );
+        })}
+      </svg>
+    </div>
+  );
+}
+
+type StolpeGrafProps = {
+  data: MånedligData[];
+  maksVerdi: number;
+  hoveredIndex: number | null;
+  onHover: (index: number | null) => void;
+};
+
+/**
+ * Viser et stacked stolpediagram med inntekt nederst og ytelse øverst.
+ */
+function StolpeGraf({
+  data,
+  maksVerdi,
+  hoveredIndex,
+  onHover,
+}: StolpeGrafProps) {
+  const grafBredde = GRAF_BREDDE - PADDING.left - PADDING.right;
+  const grafHøyde = GRAF_HØYDE - PADDING.top - PADDING.bottom;
+  const xScale = (index: number) =>
+    PADDING.left + (index / (data.length - 1 || 1)) * grafBredde;
+  const yScale = (verdi: number) =>
+    PADDING.top + grafHøyde - (verdi / maksVerdi) * grafHøyde;
+
+  const barWidth = Math.min(32, Math.max(12, grafBredde / data.length / 1.5));
+
+  const antallGridLinjer = 5;
+  const gridLinjer = Array.from({ length: antallGridLinjer }, (_, i) => {
+    const verdi =
+      (maksVerdi / (antallGridLinjer - 1)) * (antallGridLinjer - 1 - i);
+    const avrundetVerdi = Math.round(verdi / 1000) * 1000;
+    const y = yScale(verdi);
+    return { verdi, avrundetVerdi, y };
+  });
+
+  const xLabels = data
+    .map((d, index) => ({ d, index }))
+    .filter(
+      ({ index }) =>
+        index % Math.ceil(data.length / 8) === 0 || index === data.length - 1,
+    )
+    .map(({ d, index }) => ({ ...d, originalIndex: index, x: xScale(index) }));
+
+  const minLabelAvstand = 55;
+  const xLabelsMedPlass = xLabels.filter((label, idx, arr) => {
+    if (idx !== arr.length - 1 || arr.length < 2) {
+      return true;
+    }
+
+    const nestSiste = arr[arr.length - 2];
+    return label.x - nestSiste.x >= minLabelAvstand;
+  });
+
+  return (
+    <div className="overflow-x-auto">
+      <svg
+        viewBox={`0 0 ${GRAF_BREDDE} ${GRAF_HØYDE}`}
+        preserveAspectRatio="xMidYMid meet"
+        className="w-full h-auto min-h-[300px]"
+        role="img"
+        aria-labelledby="stolpe-graf-tittel"
+        aria-describedby="stolpe-graf-beskrivelse"
+      >
+        <title id="stolpe-graf-tittel">
+          Stolpediagram over inntekter og ytelser over tid
+        </title>
+        <desc id="stolpe-graf-beskrivelse">
+          Viser inntekter som nederste del av stolpen og ytelser på toppen. Se
+          tabellen nedenfor for nøyaktige verdier.
+        </desc>
+
+        <g aria-hidden="true">
+          {gridLinjer.map((grid, i) => (
+            <g key={i}>
+              <line
+                x1={PADDING.left}
+                y1={grid.y}
+                x2={PADDING.left + grafBredde}
+                y2={grid.y}
+                stroke="var(--ax-neutral-300)"
+                strokeWidth="1"
+                strokeDasharray="4 4"
+              />
+              <text
+                x={PADDING.left - 10}
+                y={grid.y + 4}
+                textAnchor="end"
+                fontSize="10"
+              >
+                {formatterBeløp(grid.avrundetVerdi, 0)}
+              </text>
+            </g>
+          ))}
+        </g>
+
+        <g aria-hidden="true">
+          <line
+            x1={PADDING.left}
+            y1={PADDING.top + grafHøyde}
+            x2={PADDING.left + grafBredde}
+            y2={PADDING.top + grafHøyde}
+            stroke="var(--ax-neutral-600)"
+            strokeWidth="1"
+          />
+          {xLabelsMedPlass.map((label) => (
+            <g key={label.periode}>
+              <text
+                x={label.x}
+                y={PADDING.top + grafHøyde + 20}
+                textAnchor="middle"
+                fontSize="10"
+                fill="var(--ax-text-default)"
+              >
+                {formatÅrMåned(label.periode)}
+              </text>
+            </g>
+          ))}
+        </g>
+
+        <g aria-hidden="true">
+          <line
+            x1={PADDING.left}
+            y1={PADDING.top}
+            x2={PADDING.left}
+            y2={PADDING.top + grafHøyde}
+            stroke="var(--ax-neutral-600)"
+            strokeWidth="1"
+          />
+        </g>
+
+        {data.map((d, i) => {
+          const xCenter = xScale(i);
+          const inntektHøyde = (d.inntekt / maksVerdi) * grafHøyde;
+          const ytelseHøyde = (d.ytelse / maksVerdi) * grafHøyde;
+          const baseY = PADDING.top + grafHøyde;
+          const isHovered = hoveredIndex === i;
+
+          return (
+            <g key={d.periode}>
+              <rect
+                x={xCenter - barWidth / 2}
+                y={PADDING.top}
+                width={barWidth}
+                height={grafHøyde}
+                fill="transparent"
+                onMouseEnter={() => onHover(i)}
+                onMouseLeave={() => onHover(null)}
+                style={{ cursor: "pointer" }}
+              />
+
+              {d.inntekt > 0 && (
+                <rect
+                  x={xCenter - barWidth / 2}
+                  y={baseY - inntektHøyde}
+                  width={barWidth}
+                  height={inntektHøyde}
+                  fill="var(--ax-bg-meta-purple-strong-hover)"
+                  aria-label={`Inntekt ${formatÅrMåned(d.periode)}: ${formatterBeløp(d.inntekt)}`}
+                />
+              )}
+              {d.ytelse > 0 && (
+                <rect
+                  x={xCenter - barWidth / 2}
+                  y={baseY - inntektHøyde - ytelseHøyde}
+                  width={barWidth}
+                  height={ytelseHøyde}
+                  fill="var(--ax-bg-meta-lime-strong-hover)"
+                  aria-label={`Ytelse ${formatÅrMåned(d.periode)}: ${formatterBeløp(d.ytelse)}`}
+                />
+              )}
+
+              {isHovered && (
+                <line
+                  x1={xCenter}
+                  y1={PADDING.top}
+                  x2={xCenter}
                   y2={PADDING.top + grafHøyde}
                   stroke="var(--ax-neutral-400)"
                   strokeWidth="1"
