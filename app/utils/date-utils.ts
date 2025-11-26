@@ -12,7 +12,7 @@ export function formatÅrMåned(årMåned: string | null | undefined) {
   }
   try {
     const formatter = new Intl.DateTimeFormat("nb-NO", {
-      month: "long",
+      month: "short",
       year: "numeric",
     });
     return formatter.format(new Date(`${årMåned}-01`));
