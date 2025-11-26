@@ -13,7 +13,7 @@ import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFla
 import { hentSøkedataFraSession } from "~/features/oppslag/oppslagSession.server";
 import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
 import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
-import { InntektOgYtelseOverlappPanel } from "~/features/paneler/InntektOgYtelseOverlappPanel";
+import { InntektOgYtelseOverlappPanel } from "~/features/paneler/inntekt-og-ytelse-overlapp-panel";
 import { InntektPanel } from "~/features/paneler/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/features/paneler/InntektsoppsummeringPanel";
 import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
@@ -29,6 +29,9 @@ export default function OppslagBruker() {
   const data = useLoaderData<typeof loader>();
   const visInntektsoppsummeringPanel = useEnkeltFeatureFlagg(
     FeatureFlagg.INNTEKTSOPPSUMMERING_PANEL,
+  );
+  const visInntektOgYtelseOverlappPanel = useEnkeltFeatureFlagg(
+    FeatureFlagg.INNTEKT_OG_YTELSE_OVERLAPP_PANEL,
   );
   return (
     <Page>
@@ -51,10 +54,12 @@ export default function OppslagBruker() {
         )}
         <BrukerinformasjonPanel promise={data.personopplysninger} />
         <YtelserPanel promise={data.ytelser} />
-        <InntektOgYtelseOverlappPanel
-          inntektPromise={data.inntektInformasjon}
-          ytelserPromise={data.ytelser}
-        />
+        {visInntektOgYtelseOverlappPanel && (
+          <InntektOgYtelseOverlappPanel
+            inntektPromise={data.inntektInformasjon}
+            ytelserPromise={data.ytelser}
+          />
+        )}
         <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

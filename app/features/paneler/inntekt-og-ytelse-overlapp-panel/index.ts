@@ -1,0 +1,1 @@
+export { InntektOgYtelseOverlappPanel } from "./InntektOgYtelseOverlappPanel";
