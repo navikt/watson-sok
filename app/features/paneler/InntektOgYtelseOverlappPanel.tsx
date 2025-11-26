@@ -169,7 +169,7 @@ const InntektOgYtelseOverlappPanelMedData = ({
   const erTom = !grafData || grafData.data.length === 0;
 
   return (
-    <PanelContainer title="Inntekt og ytelser over tid">
+    <PanelContainer title="Inntekt og ytelsesutbetalinger over tid" isBeta>
       {erTom ? (
         <Alert variant="info">
           Ingen inntekter eller ytelser funnet for de siste{" "}
@@ -183,6 +183,7 @@ const InntektOgYtelseOverlappPanelMedData = ({
             hoveredIndex={hoveredIndex}
             onHover={setHoveredIndex}
           />
+          <HoverInfoboks data={grafData.data} hoveredIndex={hoveredIndex} />
           <GrafLegende />
           <SkjultTabell data={grafData.data} />
         </div>
@@ -199,7 +200,7 @@ type LinjegrafProps = {
 };
 
 const PADDING = { top: 20, right: 20, bottom: 40, left: 60 };
-const GRAF_HØYDE = 300;
+const GRAF_HØYDE = 240;
 const GRAF_BREDDE = 800;
 
 /**
@@ -240,14 +241,29 @@ function Linjegraf({ data, maksVerdi, hoveredIndex, onHover }: LinjegrafProps) {
   const gridLinjer = Array.from({ length: antallGridLinjer }, (_, i) => {
     const verdi =
       (maksVerdi / (antallGridLinjer - 1)) * (antallGridLinjer - 1 - i);
+    const avrundetVerdi = Math.round(verdi / 1000) * 1000;
     const y = yScale(verdi);
-    return { verdi, y };
+    return { verdi, avrundetVerdi, y };
   });
 
   // X-akse labels (vis hver 6. måned for å unngå overfylt)
-  const xLabels = data.filter(
-    (_, i) => i % Math.ceil(data.length / 8) === 0 || i === data.length - 1,
-  );
+  const xLabels = data
+    .map((d, index) => ({ d, index }))
+    .filter(
+      ({ index }) =>
+        index % Math.ceil(data.length / 8) === 0 || index === data.length - 1,
+    )
+    .map(({ d, index }) => ({ ...d, originalIndex: index, x: xScale(index) }));
+
+  const minLabelAvstand = 55;
+  const xLabelsMedPlass = xLabels.filter((label, idx, arr) => {
+    if (idx !== arr.length - 1 || arr.length < 2) {
+      return true;
+    }
+
+    const nestSiste = arr[arr.length - 2];
+    return label.x - nestSiste.x >= minLabelAvstand;
+  });
 
   return (
     <div className="overflow-x-auto">
@@ -260,7 +276,7 @@ function Linjegraf({ data, maksVerdi, hoveredIndex, onHover }: LinjegrafProps) {
         aria-describedby="graf-beskrivelse"
       >
         <title id="graf-tittel">
-          Linjegraf over inntekter og ytelser over tid
+          Linjegraf over inntekter og ytelses&nbsp;utbetalinger over tid
         </title>
         <desc id="graf-beskrivelse">
           Grafen viser månedlige inntekter og ytelser de siste{" "}
@@ -285,9 +301,9 @@ function Linjegraf({ data, maksVerdi, hoveredIndex, onHover }: LinjegrafProps) {
                 x={PADDING.left - 10}
                 y={grid.y + 4}
                 textAnchor="end"
-                fontSize="12"
+                fontSize="11"
               >
-                {formatterBeløp(grid.verdi, 0)}
+                {formatterBeløp(grid.avrundetVerdi, 0)}
               </text>
             </g>
           ))}
@@ -303,25 +319,19 @@ function Linjegraf({ data, maksVerdi, hoveredIndex, onHover }: LinjegrafProps) {
             stroke="var(--ax-neutral-600)"
             strokeWidth="1"
           />
-          {xLabels.map((d) => {
-            const originalIndex = data.findIndex(
-              (item) => item.periode === d.periode,
-            );
-            const x = xScale(originalIndex);
-            return (
-              <g key={d.periode}>
-                <text
-                  x={x}
-                  y={PADDING.top + grafHøyde + 20}
-                  textAnchor="middle"
-                  fontSize="11"
-                  fill="var(--ax-text-default)"
-                >
-                  {formatÅrMåned(d.periode)}
-                </text>
-              </g>
-            );
-          })}
+          {xLabelsMedPlass.map((label) => (
+            <g key={label.periode}>
+              <text
+                x={label.x}
+                y={PADDING.top + grafHøyde + 20}
+                textAnchor="middle"
+                fontSize="11"
+                fill="var(--ax-text-default)"
+              >
+                {formatÅrMåned(label.periode)}
+              </text>
+            </g>
+          ))}
         </g>
 
         {/* Y-akse */}
@@ -407,65 +417,53 @@ function Linjegraf({ data, maksVerdi, hoveredIndex, onHover }: LinjegrafProps) {
 
               {/* Tooltip ved hover */}
               {isHovered && (
-                <g>
-                  {/* Vertikal linje */}
-                  <line
-                    x1={x}
-                    y1={PADDING.top}
-                    x2={x}
-                    y2={PADDING.top + grafHøyde}
-                    stroke="var(--ax-neutral-400)"
-                    strokeWidth="1"
-                    strokeDasharray="2 2"
-                  />
-                  {/* Tooltip-bakgrunn */}
-                  <rect
-                    x={x - 60}
-                    y={PADDING.top - 20}
-                    width="120"
-                    height="60"
-                    fill="var(--ax-bg-default)"
-                    stroke="var(--ax-neutral-400)"
-                    strokeWidth="1"
-                    rx="4"
-                  />
-                  {/* Tooltip-tekst */}
-                  <text
-                    x={x}
-                    y={PADDING.top - 8}
-                    textAnchor="middle"
-                    fontSize="11"
-                    fill="var(--ax-text-default)"
-                    fontWeight="bold"
-                  >
-                    {formatÅrMåned(d.periode)}
-                  </text>
-                  <text
-                    x={x}
-                    y={PADDING.top + 8}
-                    textAnchor="middle"
-                    fontSize="10"
-                    fill="var(--ax-text-default)"
-                    fontWeight="500"
-                  >
-                    Inntekt: {formatterBeløp(d.inntekt)}
-                  </text>
-                  <text
-                    x={x}
-                    y={PADDING.top + 22}
-                    textAnchor="middle"
-                    fontSize="10"
-                    fill="var(--ax-text-default)"
-                    fontWeight="500"
-                  >
-                    Ytelse: {formatterBeløp(d.ytelse)}
-                  </text>
-                </g>
+                <line
+                  x1={x}
+                  y1={PADDING.top}
+                  x2={x}
+                  y2={PADDING.top + grafHøyde}
+                  stroke="var(--ax-neutral-400)"
+                  strokeWidth="1"
+                  strokeDasharray="2 2"
+                />
               )}
             </g>
           );
         })}
       </svg>
+    </div>
+  );
+}
+
+type HoverInfoboksProps = {
+  data: MånedligData[];
+  hoveredIndex: number | null;
+};
+
+function HoverInfoboks({ data, hoveredIndex }: HoverInfoboksProps) {
+  const valgt = hoveredIndex !== null ? data[hoveredIndex] : null;
+
+  return (
+    <div
+      className="mt-3 rounded-md border border-ax-neutral-200 bg-ax-bg-default px-4 py-3"
+      aria-live="polite"
+      aria-label="Detaljer om valgt måned"
+    >
+      {valgt ? (
+        <BodyShort size="small" className="flex flex-wrap items-center gap-3">
+          <span className="font-semibold">{formatÅrMåned(valgt.periode)}</span>
+          <span aria-label="Inntekt denne måneden">
+            Inntekt: {formatterBeløp(valgt.inntekt)}
+          </span>
+          <span aria-label="Ytelser denne måneden">
+            Ytelse: {formatterBeløp(valgt.ytelse)}
+          </span>
+        </BodyShort>
+      ) : (
+        <BodyShort size="small">
+          Hold markøren over et punkt i grafen for detaljer.
+        </BodyShort>
+      )}
     </div>
   );
 }
@@ -480,11 +478,11 @@ function GrafLegende() {
       aria-hidden="true"
     >
       <div className="flex items-center gap-2">
-        <div className="w-4 h-0.5 bg-ax-bg-meta-purple-strong" />
+        <div className="w-4 h-4 rounded-full bg-ax-bg-meta-purple-strong" />
         <BodyShort size="small">Inntekter</BodyShort>
       </div>
       <div className="flex items-center gap-2">
-        <div className="w-4 h-0.5 bg-ax-bg-meta-lime-strong" />
+        <div className="w-4 h-4 rounded-full bg-ax-bg-meta-lime-strong" />
         <BodyShort size="small">Ytelser</BodyShort>
       </div>
     </div>
