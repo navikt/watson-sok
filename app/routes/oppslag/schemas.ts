@@ -63,6 +63,12 @@ export const PersonInformasjonSchema = z.object({
   navn: NavnSchema,
   aktørId: z.string().nullable(),
   adresse: AdresseSchema.nullable(),
+  adresseBeskyttelse: z.enum([
+    "UGRADERT",
+    "FORTROLIG",
+    "STRENGT_FORTROLIG",
+    "STRENGT_FORTROLIG_UTLAND",
+  ]),
   familemedlemmer: z.record(
     z.string(),
     z.enum([
