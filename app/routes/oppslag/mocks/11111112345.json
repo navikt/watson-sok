@@ -3,7 +3,7 @@
   "saksbehandlerIdent": "test-user",
   "fødselsnummer": "11111112345",
   "tilgang": {
-    "tilgang": "OK",
+    "tilgang": "AVVIST_VERGE",
     "harUtvidetTilgang": false
   },
   "personInformasjon": {
