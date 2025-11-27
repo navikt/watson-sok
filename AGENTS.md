@@ -181,8 +181,8 @@ Dark/light mode is managed via:
 
 ## Deployment
 
-- **Development**: Automatic deployment to https://oppslag-bruker.intern.dev.nav.no on every merge to `main`
-- **Production**: Create a new GitHub release to deploy to https://oppslag-bruker.intern.nav.no
+- **Development**: Automatic deployment to https://watson-søk.intern.dev.nav.no on every merge to `main`
+- **Production**: Create a new GitHub release to deploy to https://watson-søk.intern.nav.no
 - **Manual Dev Deploy**: Use the "Deploy manuelt til dev" GitHub Action with any branch
 
 NAIS configuration is in `.nais/nais.yml` with environment-specific values in `.nais/dev.json` and `.nais/prod.json`.
