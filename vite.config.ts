@@ -11,7 +11,7 @@ export default defineConfig({
     tailwindcss(),
     reactRouterDevTools(),
     reactRouter(),
-    devtoolsJson(),
+    ...(process.env.NODE_ENV === 'development' ? [devtoolsJson()] : []),
     tsconfigPaths(),
   ],
   server: {
