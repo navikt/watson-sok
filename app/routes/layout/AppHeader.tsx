@@ -14,7 +14,7 @@ import {
 } from "@navikt/ds-react";
 import { useEffect, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import { Link, useFetcher, useNavigate } from "react-router";
+import { Form, Link, useNavigate, useNavigation } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { useUser } from "~/features/auth/useUser";
 import { useTheme } from "~/features/darkside/ThemeContext";
@@ -25,7 +25,7 @@ export function AppHeader() {
   const user = useUser();
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
-  const fetcher = useFetcher();
+  const navigation = useNavigation();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [metaKey, setMetaKey] = useState<"⌘" | "ctrl">("ctrl");
 
@@ -60,9 +60,9 @@ export function AppHeader() {
         </div>
       </InternalHeader.Title>
 
-      <fetcher.Form
-        role="search"
+      <Form
         method="post"
+        role="search"
         action={RouteConfig.INDEX}
         className="items-center hidden md:flex ml-5"
         onSubmit={() => sporHendelse("søk header")}
@@ -77,9 +77,12 @@ export function AppHeader() {
           htmlSize={20}
           variant="secondary"
         >
-          <Search.Button type="submit" loading={fetcher.state !== "idle"} />
+          <Search.Button
+            type="submit"
+            loading={navigation.state === "submitting"}
+          />
         </Search>
-      </fetcher.Form>
+      </Form>
       <Spacer />
       <ActionMenu>
         <ActionMenu.Trigger>

@@ -12,10 +12,9 @@ import { Page, PageBlock } from "@navikt/ds-react/Page";
 import {
   type ActionFunctionArgs,
   data,
-  Form,
   redirectDocument,
   useActionData,
-  useNavigation,
+  useFetcher,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import {
@@ -29,8 +28,8 @@ import { sjekkEksistensOgTilgang } from "./oppslag/api.server";
 export default function LandingPage() {
   const actionData = useActionData<typeof action>();
 
-  const navigation = useNavigation();
   const miljø = useMiljø();
+  const fetcher = useFetcher();
 
   return (
     <Page>
@@ -52,7 +51,7 @@ export default function LandingPage() {
             relevant informasjon om en bruker.
           </BodyShort>
 
-          <Form
+          <fetcher.Form
             className="mt-12 mb-2"
             method="post"
             role="search"
@@ -69,12 +68,9 @@ export default function LandingPage() {
               autoComplete="off"
               htmlSize={15}
             >
-              <Search.Button
-                type="submit"
-                loading={navigation.state !== "idle"}
-              />
+              <Search.Button type="submit" loading={fetcher.state !== "idle"} />
             </Search>
-          </Form>
+          </fetcher.Form>
           <BodyShort spacing>
             <Link href="https://pdl-web.intern.nav.no/sokperson">
               Har du ikke fødsels- eller D-nummer?

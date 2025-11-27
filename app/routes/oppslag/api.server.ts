@@ -41,6 +41,12 @@ export async function sjekkEksistensOgTilgang({
 }: BackendKallSignatur): Promise<EksistensOgTilgang> {
   if (skalBrukeMockdata) {
     const mockedResponse = await getMockedResponseByFødselsnummer(ident);
+    if (!mockedResponse) {
+      return {
+        tilgang: "IKKE_FUNNET",
+        harUtvidetTilgang: false,
+      };
+    }
     return mockedResponse.tilgang;
   }
 
@@ -243,6 +249,9 @@ async function gjørOppslagApiRequest<T>({
   if (skalBrukeMockdata) {
     try {
       const mockedResponse = await getMockedResponseByFødselsnummer(ident);
+      if (!mockedResponse) {
+        throw new OppslagApiError("Ingen match på fødsels- eller D-nummer");
+      }
       return ekstraherFraMock(mockedResponse);
     } catch (error) {
       console.error("Mock data error:", error);
