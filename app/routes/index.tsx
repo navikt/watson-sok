@@ -9,12 +9,13 @@ import {
 import "~/globals.css";
 
 import { Page, PageBlock } from "@navikt/ds-react/Page";
+import { useEffect, useState } from "react";
 import {
   type ActionFunctionArgs,
   data,
+  Form,
   redirectDocument,
   useActionData,
-  useFetcher,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import {
@@ -26,10 +27,15 @@ import { sporHendelse } from "~/utils/analytics";
 import { sjekkEksistensOgTilgang } from "./oppslag/api.server";
 
 export default function LandingPage() {
-  const actionData = useActionData<typeof action>();
-
   const miljø = useMiljø();
-  const fetcher = useFetcher();
+  const actionData = useActionData<typeof action>();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (actionData?.error) {
+      setIsLoading(false);
+    }
+  }, [actionData]);
 
   return (
     <Page>
@@ -51,11 +57,14 @@ export default function LandingPage() {
             relevant informasjon om en bruker.
           </BodyShort>
 
-          <fetcher.Form
+          <Form
             className="mt-12 mb-2"
             method="post"
             role="search"
-            onSubmit={() => sporHendelse("søk landingsside")}
+            onSubmit={() => {
+              sporHendelse("søk landingsside");
+              setIsLoading(true);
+            }}
           >
             <Search
               name="ident"
@@ -68,10 +77,10 @@ export default function LandingPage() {
               autoComplete="off"
               htmlSize={15}
             >
-              <Search.Button type="submit" loading={fetcher.state !== "idle"} />
+              <Search.Button type="submit" loading={isLoading} />
             </Search>
-          </fetcher.Form>
-          <BodyShort spacing>
+          </Form>
+          <BodyShort spacing className="mt-2">
             <Link href="https://pdl-web.intern.nav.no/sokperson">
               Har du ikke fødsels- eller D-nummer?
             </Link>

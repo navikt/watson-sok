@@ -28,6 +28,7 @@ export function AppHeader() {
   const navigation = useNavigation();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [metaKey, setMetaKey] = useState<"⌘" | "ctrl">("ctrl");
+  const [isLoading, setIsLoading] = useState(false);
 
   useHotkeys("mod+k", (event) => {
     event.preventDefault();
@@ -41,6 +42,12 @@ export function AppHeader() {
       setMetaKey("ctrl");
     }
   }, []);
+
+  useEffect(() => {
+    if (navigation.state === "idle") {
+      setIsLoading(false);
+    }
+  }, [navigation.state]);
 
   const miljø = useMiljø();
   const visMiljøtag = miljø !== "prod";
@@ -65,7 +72,10 @@ export function AppHeader() {
         role="search"
         action={RouteConfig.INDEX}
         className="items-center hidden md:flex ml-5"
-        onSubmit={() => sporHendelse("søk header")}
+        onSubmit={() => {
+          sporHendelse("søk header");
+          setIsLoading(true);
+        }}
       >
         <Search
           ref={searchInputRef}
@@ -77,10 +87,7 @@ export function AppHeader() {
           htmlSize={20}
           variant="secondary"
         >
-          <Search.Button
-            type="submit"
-            loading={navigation.state === "submitting"}
-          />
+          <Search.Button type="submit" loading={isLoading} />
         </Search>
       </Form>
       <Spacer />
