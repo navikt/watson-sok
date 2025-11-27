@@ -42,7 +42,7 @@ export default function BekreftSide() {
     <Page>
       <PageBlock width="text" gutters>
         <title>
-          {`Bekreft ønsket tilgang – Oppslag Bruker ${miljø !== "prod" ? `(${miljø})` : ""}`}
+          {`Bekreft ønsket tilgang – Watson Søk ${miljø !== "prod" ? `(${miljø})` : ""}`}
         </title>
         <meta name="description" content="Oppslag på personer i Nav" />
         <Heading level="2" size="medium" align="start" className="mt-4" spacing>

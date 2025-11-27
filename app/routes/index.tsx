@@ -35,7 +35,7 @@ export default function LandingPage() {
   return (
     <Page>
       <PageBlock width="text" gutters>
-        <title>{`Oppslag bruker ${miljø !== "prod" ? `(${miljø})` : ""}`}</title>
+        <title>{`Watson Søk ${miljø !== "prod" ? `(${miljø})` : ""}`}</title>
         <meta name="description" content="Oppslag på personer i Nav" />
         <div>
           <Heading

@@ -15,7 +15,7 @@ import { AppHeader } from "~/routes/layout/AppHeader";
 export function InternalServerError() {
   return (
     <Page footer={<AppFooter />}>
-      <title>Feil – Oppslag Bruker</title>
+      <title>Feil – Watson Søk</title>
       <AppHeader />
       <Page.Block as="main" width="xl" gutters>
         <Box paddingBlock="20 8">

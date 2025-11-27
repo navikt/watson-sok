@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Holmes Oppslag Bruker is a React Router v7 application for looking up users in the Norwegian Nav system using fødselsnummer (national ID) or D-nummer. The application displays comprehensive user information including personal details, employment relationships, income, and benefits (ytelser).
+Watson Søk is a React Router v7 application for looking up users in the Norwegian Nav system using fødselsnummer (national ID) or D-nummer. The application displays comprehensive user information including personal details, employment relationships, income, and benefits (ytelser).
 
 ## Tech Stack
 

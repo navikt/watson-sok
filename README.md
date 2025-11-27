@@ -1,4 +1,4 @@
-# Holmes Oppslag Bruker
+# Watson Søk
 
 En React Router-applikasjon for å søke opp brukere i Nav-systemet ved hjelp av fødselsnummer eller D-nummer.
 
