@@ -84,7 +84,7 @@ export default function TilgangSide() {
         </title>
         <meta name="description" content="Oppslag på personer i Nav" />
         <Heading level="2" size="medium" align="start" className="mt-4" spacing>
-          {erSkjermetBruker ? "Begrenset tilgang" : "Bekreft ønsket tilgang"}
+          Bekreft ønsket tilgang
         </Heading>
         <BodyLong spacing>
           Du har bedt om tilgang til å se informasjon om en person. I følge
