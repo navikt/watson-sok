@@ -162,7 +162,7 @@ export async function action({ request }: ActionFunctionArgs) {
       );
     }
 
-    return redirectDocument(RouteConfig.BEKREFT_BEGRUNNET_TILGANG, {
+    return redirectDocument(RouteConfig.TILGANG, {
       headers: {
         "Set-Cookie": cookie,
       },

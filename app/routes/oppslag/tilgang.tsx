@@ -27,17 +27,55 @@ import { useMiljø } from "~/features/use-miljø/useMiljø";
 import { sporHendelse } from "~/utils/analytics";
 import { loggBegrunnetTilgang } from "./api.server";
 
-export default function BekreftSide() {
+export default function TilgangSide() {
   const {
     grunnForBegrensetTilgang,
     harUtvidetTilgang,
     erKode6Eller7EllerUtland,
+    erSkjermetBruker,
   } = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   const miljø = useMiljø();
+
+  if (erSkjermetBruker) {
+    return (
+      <Page>
+        <PageBlock width="text" gutters>
+          <title>{`Begrenset tilgang – Watson Søk ${miljø !== "prod" ? `(${miljø})` : ""}`}</title>
+          <meta
+            name="description"
+            content="Begrenset tilgang til informasjon om bruker"
+          />
+          <Heading
+            level="2"
+            size="medium"
+            align="start"
+            className="mt-4"
+            spacing
+          >
+            Begrenset tilgang
+          </Heading>
+          <BodyLong spacing>
+            Du har bedt om tilgang til å se informasjon om en person som er
+            ansatt i Nav. I følge tilgangene har du begrenset tilgang til å se
+            informasjonen. Ta kontakt med nærmeste leder for veiledning.
+          </BodyLong>
+          <div className="flex justify-end">
+            <Button
+              variant="primary"
+              type="button"
+              onClick={() => navigate(RouteConfig.INDEX)}
+            >
+              Søk på annen bruker
+            </Button>
+          </div>
+        </PageBlock>
+      </Page>
+    );
+  }
   return (
     <Page>
       <PageBlock width="text" gutters>
@@ -166,6 +204,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       "AVVIST_STRENGT_FORTROLIG_UTLAND",
       "AVVIST_FORTROLIG_ADRESSE",
     ].includes(tilgang),
+    erSkjermetBruker: tilgang === "AVVIST_SKJERMING",
   };
 }
 

@@ -95,7 +95,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   }
 
   if (søkedata.tilgang !== "OK" && !søkedata.bekreftetBegrunnetTilgang) {
-    return redirect(RouteConfig.BEKREFT_BEGRUNNET_TILGANG);
+    return redirect(RouteConfig.TILGANG);
   }
 
   const params = {
