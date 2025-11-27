@@ -71,7 +71,7 @@ function lagAdressebeskyttelseBeskrivelse(
 ): string {
   switch (adresseBeskyttelse) {
     case "FORTROLIG":
-      return "Personen har fortrolig adresse";
+      return "Brukeren har fortrolig adresse";
     case "STRENGT_FORTROLIG":
       return "Brukeren har strengt fortrolig adresse";
     case "STRENGT_FORTROLIG_UTLAND":

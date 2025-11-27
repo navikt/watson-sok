@@ -6,7 +6,7 @@ test.describe("Oppslag-flyt", () => {
     page,
   }) => {
     // Test med gyldig 11-sifret fødselsnummer (mock)
-    const testFnr = "12345678901";
+    const testFnr = "98765432101";
 
     // Steg 1: Gå til landingssiden
     await test.step("Navigere til landingsside", async () => {
