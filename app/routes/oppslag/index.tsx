@@ -129,7 +129,7 @@ export function meta({ loaderData }: MetaArgs<typeof loader>) {
   const miljø = loaderData?.miljø ?? "ukjent";
   return [
     {
-      title: `Oppslag – Oppslag Bruker ${miljø !== "prod" ? `(${miljø})` : ""}`,
+      title: `Oppslag – Watson Søk ${miljø !== "prod" ? `(${miljø})` : ""}`,
     },
   ];
 }

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Holmes Oppslag Bruker is a React Router v7 application for looking up users in the Norwegian Nav system using fødselsnummer (national ID) or D-nummer. The application displays comprehensive user information including personal details, employment relationships, income, and benefits (ytelser).
+Watson Søk is a React Router v7 application for looking up users in the Norwegian Nav system using fødselsnummer (national ID) or D-nummer. The application displays comprehensive user information including personal details, employment relationships, income, and benefits (ytelser).
 
 ## Tech Stack
 
@@ -181,8 +181,8 @@ Dark/light mode is managed via:
 
 ## Deployment
 
-- **Development**: Automatic deployment to https://oppslag-bruker.intern.dev.nav.no on every merge to `main`
-- **Production**: Create a new GitHub release to deploy to https://oppslag-bruker.intern.nav.no
+- **Development**: Automatic deployment to https://watson-sok.intern.dev.nav.no on every merge to `main`
+- **Production**: Create a new GitHub release to deploy to https://watson-sok.intern.nav.no
 - **Manual Dev Deploy**: Use the "Deploy manuelt til dev" GitHub Action with any branch
 
 NAIS configuration is in `.nais/nais.yml` with environment-specific values in `.nais/dev.json` and `.nais/prod.json`.

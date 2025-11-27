@@ -13,7 +13,7 @@ test.describe("Oppslag-flyt", () => {
       await page.goto("/");
 
       // Sjekk at siden lastes
-      await expect(page).toHaveTitle(/Oppslag bruker/);
+      await expect(page).toHaveTitle(/Watson Søk/);
 
       // Sjekk at overskrift vises
       await expect(

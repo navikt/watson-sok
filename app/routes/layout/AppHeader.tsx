@@ -51,7 +51,7 @@ export function AppHeader() {
     <InternalHeader>
       <InternalHeader.Title as="h1">
         <div className="flex items-center gap-2">
-          <Link to={RouteConfig.INDEX}>Oppslag bruker</Link>
+          <Link to={RouteConfig.INDEX}>Watson Søk</Link>
           {visMiljøtag && (
             <Tag variant={miljøtagVariant} size="small">
               {miljø}
@@ -94,7 +94,7 @@ export function AppHeader() {
               onSelect={() => navigate(RouteConfig.INDEX)}
               icon={<PersonIcon />}
             >
-              Oppslag bruker
+              Watson Søk
             </ActionMenu.Item>
           </ActionMenu.Group>
 

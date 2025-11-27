@@ -9,7 +9,7 @@ export default function Personvern() {
     <Page>
       <PageBlock width="text" gutters>
         <title>
-          {`Personvern – Oppslag Bruker ${miljø !== "prod" ? `(${miljø})` : ""}`}
+          {`Personvern – Watson Søk ${miljø !== "prod" ? `(${miljø})` : ""}`}
         </title>
         <Heading level="1" size="large" spacing className="mt-4">
           Personvern
