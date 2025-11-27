@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { sjekkTilgjengelighet } from "./uu-util";
 
-test.describe("Begrunnelse-flyt for skjermet bruker", () => {
+test.describe("Tilgangsflyt for skjermet bruker", () => {
   test("skal kreve begrunnelse og huske bekreftet tilgang", async ({
     page,
   }) => {
@@ -15,7 +15,7 @@ test.describe("Begrunnelse-flyt for skjermet bruker", () => {
       await søkefelt.fill(skjermetFnr);
       await mainContent.getByRole("button", { name: /søk/i }).click();
 
-      await expect(page).toHaveURL(/bekreft-begrunnet-tilgang/);
+      await expect(page).toHaveURL(/tilgang/);
       await expect(
         page.getByText(/brukeren er Nav-ansatt eller annen skjermet bruker/i),
       ).toBeVisible();
@@ -28,7 +28,7 @@ test.describe("Begrunnelse-flyt for skjermet bruker", () => {
       });
 
       await bekreftKnapp.click();
-      await expect(page).toHaveURL(/bekreft-begrunnet-tilgang/);
+      await expect(page).toHaveURL(/tilgang/);
       await expect(page.getByText(/Begrunnelse er påkrevd/i)).toBeVisible();
     });
 
