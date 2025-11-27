@@ -1,11 +1,11 @@
 import { expect, test } from "@playwright/test";
 import { sjekkTilgjengelighet } from "./uu-util";
 
-test.describe("Tilgangsflyt for skjermet bruker", () => {
+test.describe("Begrunnelse-flyt for skjermet bruker", () => {
   test("skal kreve begrunnelse og huske bekreftet tilgang", async ({
     page,
   }) => {
-    const skjermetFnr = "22078700000";
+    const skjermetFnr = "11111112345";
 
     await test.step("Søke på skjermet bruker og havne på bekreft-siden", async () => {
       await page.goto("/");
@@ -17,7 +17,7 @@ test.describe("Tilgangsflyt for skjermet bruker", () => {
 
       await expect(page).toHaveURL(/tilgang/);
       await expect(
-        page.getByText(/brukeren er Nav-ansatt eller annen skjermet bruker/i),
+        page.getByText(/du er registrert som brukerens verge/i),
       ).toBeVisible();
       await sjekkTilgjengelighet(page);
     });
@@ -51,6 +51,27 @@ test.describe("Tilgangsflyt for skjermet bruker", () => {
       await mainContent.getByRole("button", { name: /søk/i }).click();
 
       await expect(page).toHaveURL(/\/oppslag$/);
+    });
+  });
+
+  test("skal nekte tilgang for skjermet bruker", async ({ page }) => {
+    const skjermetFnr = "22078700000";
+
+    await test.step("Søke på skjermet bruker og havne på tilgangs-siden", async () => {
+      await page.goto("/");
+
+      const mainContent = page.locator("#maincontent");
+      const søkefelt = mainContent.getByLabel(/Fødsels- eller D-nummer/i);
+      await søkefelt.fill(skjermetFnr);
+      await mainContent.getByRole("button", { name: /søk/i }).click();
+
+      await expect(page).toHaveURL(/tilgang/);
+      await expect(
+        page.getByText(
+          /Du har bedt om tilgang til å se informasjon om en person som er ansatt i Nav/i,
+        ),
+      ).toBeVisible();
+      await sjekkTilgjengelighet(page);
     });
   });
 });
