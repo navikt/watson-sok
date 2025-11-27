@@ -22,7 +22,7 @@ export function PageNotFound() {
     <Page footer={<AppFooter />}>
       <AppHeader />
       <title>
-        Fant ikke side – Oppslag Bruker {miljø !== "prod" ? `(${miljø})` : ""}
+        {`Fant ikke side – Oppslag Bruker ${miljø !== "prod" ? `(${miljø})` : ""}`}
       </title>
       <PageBlock as="main" width="xl" gutters>
         <Box paddingBlock="20 16" data-aksel-template="404-v2">
