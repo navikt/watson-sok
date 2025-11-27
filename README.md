@@ -56,6 +56,7 @@ npm run dev
 - `npm run prettier` - Sjekker Prettier formattering
 - `npm run prettier:fix` - Fikser Prettier formattering
 - `npm run unused` - Sjekker om du har ubrukt kode eller avhengigheter
+- `npm run code-quality` – Kjører lint, typecheck, prettier og unused
 
 ## Utvikling
 
