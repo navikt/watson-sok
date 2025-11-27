@@ -2,8 +2,8 @@
   "INGRESS_URLS": [
     "https://oppslag-bruker.ansatt.dev.nav.no",
     "https://oppslag-bruker.intern.dev.nav.no",
-    "https://watson-søk.ansatt.dev.nav.no",
-    "https://watson-søk.intern.dev.nav.no"
+    "https://watson-sok.ansatt.dev.nav.no",
+    "https://watson-sok.intern.dev.nav.no"
   ],
   "CLAIM_GROUPS": [
     "b734a20d-63e3-4b44-bb77-87f7f0b7f48a",

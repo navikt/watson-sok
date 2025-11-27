@@ -26,7 +26,7 @@ spec:
         - host: holmes-unleash-api.nav.cloud.nais.io
   ingresses:
     - https://oppslag-bruker-demo.ekstern.dev.nav.no
-    - https://watson-søk-demo.ekstern.dev.nav.no
+    - https://watson-sok-demo.ekstern.dev.nav.no
   image: {{image}}
   port: 3000
 

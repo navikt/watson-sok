@@ -117,9 +117,9 @@ For å deploye denne ressursen kan man kjøre [en egen GitHub action](https://gi
 
 ### Miljøer
 
-- **Produksjon**: https://watson-søk.intern.nav.no
-- **Dev**: https://watson-søk.intern.dev.nav.no
-- **Demo**: https://watson-søk-demo.ekstern.dev.nav.no/
+- **Produksjon**: https://watson-sok.intern.nav.no
+- **Dev**: https://watson-sok.intern.dev.nav.no
+- **Demo**: https://watson-sok-demo.ekstern.dev.nav.no/
 - **Utvikling**: Lokal utvikling på https://localhost:5173
 
 For testbrukere i dev, sjekk [Confluence](https://confluence.adeo.no/spaces/THLMS/pages/675780711/Testmilj%C3%B8er).
