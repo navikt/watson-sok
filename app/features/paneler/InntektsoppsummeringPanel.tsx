@@ -222,7 +222,10 @@ const InntektsoppsummeringPanelMedData = ({
   const harIngenInntekter = !aggregert;
 
   return (
-    <PanelContainer title="Inntekts&shy;oppsummering" isBeta={true}>
+    <PanelContainer
+      title="Inntekts&shy;oppsummering"
+      betaFeature="inntektsoppsummering"
+    >
       <div className="flex justify-end mb-4 static lg:absolute lg:top-4 lg:right-4">
         <Select
           label="Velg tidsperiode"

@@ -62,4 +62,5 @@ type Hendelse =
   | "skjermingsbegrunnelse utfylt"
   | "skjermingsbegrunnelse avbrutt"
   | "endre tema til mørk"
-  | "endre tema til lys";
+  | "endre tema til lys"
+  | `tilbakemelding på ${string}`;
