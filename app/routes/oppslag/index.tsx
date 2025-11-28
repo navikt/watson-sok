@@ -94,7 +94,11 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return redirect(RouteConfig.INDEX);
   }
 
-  if (søkedata.tilgang !== "OK" && !søkedata.bekreftetBegrunnetTilgang) {
+  if (
+    søkedata.tilgang !== "OK" &&
+    !søkedata.bekreftetBegrunnetTilgang &&
+    !søkedata.harUtvidetTilgang
+  ) {
     return redirect(RouteConfig.TILGANG);
   }
 
