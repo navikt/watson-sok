@@ -6,6 +6,7 @@ const brukereSomHarTilgang = {
   kristofer: "S162301",
   snorri: "E176931",
   sturle: "H139079",
+  espen: "E170973",
   // Testbruker vi bruker i dev
   devTestbruker: "Z994531",
 };
