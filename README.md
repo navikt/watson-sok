@@ -29,7 +29,7 @@ Du må ha nyeste LTS-versjonen av Node og NPM installert, i tillegg til browsern
 ```bash
 brew install node # installerer node om du ikke har det allerede
 npm i -g n # installerer en node version manager for deg
-n lts # installerer nyeste LTS (long time support)-versjon av Node og NPM
+n lts # installerer nyeste LTS (long-term support)-versjon av Node og NPM
 npx playwright install # installerer headless browsers for Playwright
 ```
 
