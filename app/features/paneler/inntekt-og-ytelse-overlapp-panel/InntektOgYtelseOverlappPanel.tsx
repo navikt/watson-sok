@@ -93,7 +93,7 @@ const InntektOgYtelseOverlappPanelMedData = ({
   return (
     <PanelContainer
       title="Inntekt og ytelsesutbetalinger over tid"
-      betaFeature="inntekt-ytelse-overlapp-visualisering"
+      betaFeature="inntekt-ytelse-visualisering"
     >
       {erTom ? (
         <Alert variant="info">
