@@ -6,7 +6,7 @@ import {
   Label,
   useId,
 } from "@navikt/ds-react";
-import { PageBlock } from "@navikt/ds-react/Page";
+import { Page, PageBlock } from "@navikt/ds-react/Page";
 import {
   Form,
   redirect,
@@ -23,64 +23,122 @@ import {
   hentSøkedataFraSession,
   lagreSøkeinfoPåSession,
 } from "~/features/oppslag/oppslagSession.server";
+import { useMiljø } from "~/features/use-miljø/useMiljø";
+import { sporHendelse } from "~/utils/analytics";
 import { loggBegrunnetTilgang } from "./api.server";
 
-export default function BekreftSide() {
+export default function TilgangSide() {
   const {
     grunnForBegrensetTilgang,
     harUtvidetTilgang,
     erKode6Eller7EllerUtland,
+    erSkjermetBruker,
   } = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
-  return (
-    <PageBlock width="text" gutters>
-      <title>Bekreft ønsket tilgang – Oppslag bruker</title>
-      <meta name="description" content="Oppslag på personer i Nav" />
-      <Heading level="2" size="medium" align="start" className="mt-4" spacing>
-        Bekreft ønsket tilgang
-      </Heading>
-      <BodyLong spacing>
-        Du har bedt om tilgang til å se informasjon om en person. I følge
-        tilgangene har du begrenset tilgang til å se informasjonen, fordi{" "}
-        <strong>{grunnForBegrensetTilgang}</strong>.
-      </BodyLong>
-      <BodyLong spacing>
-        Om du allikevel ønsker å se informasjon om brukeren, kan du skrive en
-        begrunnelse, og bekrefte at du allikevel har tjenestlig behov ved å
-        trykke på knappen under. Både begrunnelse og bekreftelse vil bli
-        loggført.
-      </BodyLong>
-      {!harUtvidetTilgang && erKode6Eller7EllerUtland && (
-        <BodyLong spacing>
-          <strong>Merk:</strong> Siden brukeren har adresseskjerming, vil all
-          geolokaliserende informasjon være sensurert. Ta kontakt med nærmeste
-          leder for å få tilgang til denne informasjonen.
-        </BodyLong>
-      )}
-      <Form method="post" className="flex flex-col gap-2">
-        <Textarea
-          name="begrunnelse"
-          label="Begrunnelse"
-          error={actionData?.error}
-        />
+  const miljø = useMiljø();
 
-        <div className="flex justify-end gap-2">
-          <Button variant="primary" type="submit" loading={isSubmitting}>
-            Bekreft at du har tjenestlig behov
-          </Button>
-          <Button
-            variant="secondary"
-            type="button"
-            onClick={() => navigate(RouteConfig.INDEX)}
+  if (erSkjermetBruker) {
+    return (
+      <Page>
+        <PageBlock width="text" gutters>
+          <title>{`Begrenset tilgang – Watson Søk ${miljø !== "prod" ? `(${miljø})` : ""}`}</title>
+          <meta
+            name="description"
+            content="Begrenset tilgang til informasjon om bruker"
+          />
+          <Heading
+            level="2"
+            size="medium"
+            align="start"
+            className="mt-4"
+            spacing
           >
-            Søk på en annen bruker
-          </Button>
-        </div>
-      </Form>
-    </PageBlock>
+            Begrenset tilgang
+          </Heading>
+          <BodyLong spacing>
+            Du har bedt om tilgang til å se informasjon om en person som er
+            ansatt i Nav. I følge tilgangene har du begrenset tilgang til å se
+            informasjonen. Ta kontakt med nærmeste leder for veiledning.
+          </BodyLong>
+          <div className="flex justify-end">
+            <Button
+              variant="primary"
+              type="button"
+              onClick={() => navigate(RouteConfig.INDEX)}
+            >
+              Søk på annen bruker
+            </Button>
+          </div>
+        </PageBlock>
+      </Page>
+    );
+  }
+  return (
+    <Page>
+      <PageBlock width="text" gutters>
+        <title>
+          {`Bekreft ønsket tilgang – Watson Søk ${miljø !== "prod" ? `(${miljø})` : ""}`}
+        </title>
+        <meta name="description" content="Oppslag på personer i Nav" />
+        <Heading level="2" size="medium" align="start" className="mt-4" spacing>
+          Bekreft ønsket tilgang
+        </Heading>
+        <BodyLong spacing>
+          Du har bedt om tilgang til å se informasjon om en person. I følge
+          tilgangene har du begrenset tilgang til å se informasjonen, fordi{" "}
+          <strong>{grunnForBegrensetTilgang}</strong>.
+        </BodyLong>
+        <BodyLong spacing>
+          Om du allikevel ønsker å se informasjon om brukeren, kan du skrive en
+          begrunnelse, og bekrefte at du allikevel har tjenestlig behov ved å
+          trykke på knappen under. Både begrunnelse og bekreftelse vil bli
+          loggført.
+        </BodyLong>
+        {!harUtvidetTilgang && erKode6Eller7EllerUtland && (
+          <BodyLong spacing>
+            <strong>Merk:</strong> Siden brukeren har adresseskjerming, vil all
+            geolokaliserende informasjon være sensurert. Ta kontakt med nærmeste
+            leder for å få tilgang til denne informasjonen.
+          </BodyLong>
+        )}
+        <Form
+          method="post"
+          className="flex flex-col gap-2"
+          onSubmit={() => {
+            sporHendelse("skjermingsbegrunnelse utfylt", {
+              skjermingsbehov: grunnForBegrensetTilgang,
+            });
+          }}
+        >
+          <Textarea
+            name="begrunnelse"
+            label="Begrunnelse"
+            error={actionData?.error}
+          />
+
+          <div className="flex justify-end gap-2">
+            <Button variant="primary" type="submit" loading={isSubmitting}>
+              Bekreft at du har tjenestlig behov
+            </Button>
+            <Button
+              variant="secondary"
+              type="button"
+              onClick={() => {
+                sporHendelse("skjermingsbegrunnelse avbrutt", {
+                  skjermingsbehov: grunnForBegrensetTilgang,
+                });
+                navigate(RouteConfig.INDEX);
+              }}
+            >
+              Søk på en annen bruker
+            </Button>
+          </div>
+        </Form>
+      </PageBlock>
+    </Page>
   );
 }
 
@@ -146,6 +204,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       "AVVIST_STRENGT_FORTROLIG_UTLAND",
       "AVVIST_FORTROLIG_ADRESSE",
     ].includes(tilgang),
+    erSkjermetBruker: tilgang === "AVVIST_SKJERMING",
   };
 }
 

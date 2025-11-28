@@ -4,7 +4,7 @@
   "fødselsnummer": "67890123456",
   "tilgang": {
     "tilgang": "OK",
-    "harUtvidetTilgang": false
+    "harUtvidetTilgang": true
   },
   "personInformasjon": {
     "aktørId": "67890123456",
@@ -16,6 +16,7 @@
       "18021200000": "BARN",
       "20029100000": "SKILT"
     },
+    "adresseBeskyttelse": "FORTROLIG",
     "statsborgerskap": ["SYRIA"],
     "navn": {
       "fornavn": "DONALD",

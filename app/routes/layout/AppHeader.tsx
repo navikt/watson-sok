@@ -1,6 +1,5 @@
 import {
   BooksIcon,
-  Buildings3Icon,
   MenuGridIcon,
   MoonIcon,
   PersonIcon,
@@ -15,18 +14,21 @@ import {
 } from "@navikt/ds-react";
 import { useEffect, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import { Link, unstable_useRoute, useFetcher, useNavigate } from "react-router";
+import { Form, Link, useNavigate, useNavigation } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { useUser } from "~/features/auth/useUser";
 import { useTheme } from "~/features/darkside/ThemeContext";
+import { useMiljø } from "~/features/use-miljø/useMiljø";
+import { sporHendelse } from "~/utils/analytics";
 
 export function AppHeader() {
   const user = useUser();
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
-  const fetcher = useFetcher();
+  const navigation = useNavigation();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [metaKey, setMetaKey] = useState<"⌘" | "ctrl">("ctrl");
+  const [isLoading, setIsLoading] = useState(false);
 
   useHotkeys("mod+k", (event) => {
     event.preventDefault();
@@ -41,8 +43,13 @@ export function AppHeader() {
     }
   }, []);
 
-  const { loaderData } = unstable_useRoute("root");
-  const miljø = loaderData?.envs.miljø;
+  useEffect(() => {
+    if (navigation.state === "idle") {
+      setIsLoading(false);
+    }
+  }, [navigation.state]);
+
+  const miljø = useMiljø();
   const visMiljøtag = miljø !== "prod";
   const miljøtagVariant =
     miljø === "demo" ? "alt2" : miljø === "dev" ? "alt1" : "alt3";
@@ -51,7 +58,7 @@ export function AppHeader() {
     <InternalHeader>
       <InternalHeader.Title as="h1">
         <div className="flex items-center gap-2">
-          <Link to={RouteConfig.INDEX}>Oppslag bruker</Link>
+          <Link to={RouteConfig.INDEX}>Watson Søk</Link>
           {visMiljøtag && (
             <Tag variant={miljøtagVariant} size="small">
               {miljø}
@@ -60,11 +67,15 @@ export function AppHeader() {
         </div>
       </InternalHeader.Title>
 
-      <fetcher.Form
-        role="search"
+      <Form
         method="post"
+        role="search"
         action={RouteConfig.INDEX}
         className="items-center hidden md:flex ml-5"
+        onSubmit={() => {
+          sporHendelse("søk header");
+          setIsLoading(true);
+        }}
       >
         <Search
           ref={searchInputRef}
@@ -76,9 +87,9 @@ export function AppHeader() {
           htmlSize={20}
           variant="secondary"
         >
-          <Search.Button type="submit" loading={fetcher.state !== "idle"} />
+          <Search.Button type="submit" loading={isLoading} />
         </Search>
-      </fetcher.Form>
+      </Form>
       <Spacer />
       <ActionMenu>
         <ActionMenu.Trigger>
@@ -93,11 +104,7 @@ export function AppHeader() {
               onSelect={() => navigate(RouteConfig.INDEX)}
               icon={<PersonIcon />}
             >
-              Oppslag bruker
-            </ActionMenu.Item>
-
-            <ActionMenu.Item onSelect={console.info} icon={<Buildings3Icon />}>
-              Argus
+              Watson Søk
             </ActionMenu.Item>
           </ActionMenu.Group>
 
@@ -105,13 +112,20 @@ export function AppHeader() {
           <ActionMenu.Item
             as="a"
             href="https://navno.sharepoint.com/sites/45/SitePages/Holmes.aspx"
+            target="_blank"
+            rel="noopener noreferrer"
             icon={<BooksIcon />}
           >
             Hjelp
           </ActionMenu.Item>
 
           <ActionMenu.Item
-            onSelect={toggleTheme}
+            onSelect={() => {
+              toggleTheme();
+              sporHendelse(
+                `endre tema til ${theme === "light" ? "mørk" : "lys"}`,
+              );
+            }}
             icon={theme === "light" ? <MoonIcon /> : <SunIcon />}
           >
             Bruk {theme === "light" ? "mørke" : "lyse"} farger

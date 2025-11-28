@@ -1,4 +1,4 @@
-import { Alert, CopyButton, Skeleton } from "@navikt/ds-react";
+import { Alert, CopyButton, Skeleton, Tooltip } from "@navikt/ds-react";
 import { Fragment, use } from "react";
 import { unstable_useRoute } from "react-router";
 import type { PersonInformasjon } from "~/routes/oppslag/schemas";
@@ -53,7 +53,10 @@ const BrukerinformasjonPanelMedData = ({
     );
   }
   const erDNummer = Number(personopplysninger.aktørId?.charAt(0)) > 3;
-  const fulltNavn = tilFulltNavn(personopplysninger.navn);
+  const fulltNavn = storFørsteBokstavPerOrd(
+    tilFulltNavn(personopplysninger.navn),
+    true,
+  );
   const folkeregistrertAdresse = formatterAdresse(personopplysninger.adresse);
 
   return (
@@ -64,11 +67,10 @@ const BrukerinformasjonPanelMedData = ({
         beskrivelse: "Historikk",
       }}
     >
-      <dl className="grid sm:grid-cols-1 md:grid-cols-[1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7">
+      <dl className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr_2fr] 2xl:grid-cols-[1fr_2fr_1fr_2fr_1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7 [&>dt]:flex [&>dt]:items-center [&>dt]:min-h-7">
         <dt>Navn</dt>
         <dd>
-          {tilFulltNavn(personopplysninger.navn)}{" "}
-          <KopiKnapp copyText={fulltNavn} />
+          {fulltNavn} <KopiKnapp copyText={fulltNavn} />
         </dd>
         {personopplysninger.aktørId && (
           <>
@@ -103,7 +105,7 @@ const BrukerinformasjonPanelMedData = ({
         <dt>Statsborgerskap</dt>
         <dd>
           {personopplysninger.statsborgerskap
-            .map(storFørsteBokstavPerOrd)
+            .map((statsborgerskap) => storFørsteBokstavPerOrd(statsborgerskap))
             .join(", ")}
         </dd>
         <dt>Sivilstand</dt>
@@ -113,6 +115,21 @@ const BrukerinformasjonPanelMedData = ({
           <FamiliemedlemmerModal
             familiemedlemmer={personopplysninger.familemedlemmer}
           />
+        </dd>
+        <dt>Nav-kontor</dt>
+        <dd>
+          {storFørsteBokstavPerOrd(
+            personopplysninger.navKontor?.navn ?? "Ukjent",
+          )}
+          {personopplysninger.navKontor?.enhetNr && (
+            <>
+              &nbsp;
+              <Tooltip content="Enhetsnummer">
+                <span>({personopplysninger.navKontor.enhetNr})</span>
+              </Tooltip>
+              <KopiKnapp copyText={personopplysninger.navKontor.enhetNr} />
+            </>
+          )}
         </dd>
       </dl>
     </PanelContainer>
@@ -126,14 +143,14 @@ const BrukerinformasjonPanelSkeleton = () => {
       title="Brukerinformasjon"
       link={{ href: "https://modia.nav.no", beskrivelse: "Historikk" }}
     >
-      <dl className="grid sm:grid-cols-1 md:grid-cols-[1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7">
+      <dl className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr_2fr] 2xl:grid-cols-[1fr_2fr_1fr_2fr_1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7">
         {linjer.map((_, idx) => (
           <Fragment key={idx}>
             <dt>
               <Skeleton variant="text" width="70%" />
             </dt>
             <dd>
-              <Skeleton variant="text" width="100%" />
+              <Skeleton variant="text" width="70%" />
             </dd>
           </Fragment>
         ))}

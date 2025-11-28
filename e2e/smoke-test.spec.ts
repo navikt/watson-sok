@@ -7,7 +7,7 @@ test.describe("Smoke test", () => {
     await page.goto("/");
 
     // Verifiser at siden laster
-    await expect(page).toHaveTitle(/Oppslag bruker/);
+    await expect(page).toHaveTitle(/Watson Søk/);
 
     await sjekkTilgjengelighet(page);
 

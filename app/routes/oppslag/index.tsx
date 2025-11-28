@@ -1,16 +1,19 @@
-import { Alert, BodyShort, Heading, HGrid } from "@navikt/ds-react";
+import { Alert, BodyShort, Heading } from "@navikt/ds-react";
+import { Page, PageBlock } from "@navikt/ds-react/Page";
 import {
   redirect,
   useLoaderData,
   type LoaderFunctionArgs,
   type MetaArgs,
 } from "react-router";
+import { env } from "~/config/env.server";
 import { RouteConfig } from "~/config/routeConfig";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
 import { hentSøkedataFraSession } from "~/features/oppslag/oppslagSession.server";
 import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
 import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
+import { InntektOgYtelseOverlappPanel } from "~/features/paneler/inntekt-og-ytelse-overlapp-panel";
 import { InntektPanel } from "~/features/paneler/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/features/paneler/InntektsoppsummeringPanel";
 import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
@@ -27,43 +30,54 @@ export default function OppslagBruker() {
   const visInntektsoppsummeringPanel = useEnkeltFeatureFlagg(
     FeatureFlagg.INNTEKTSOPPSUMMERING_PANEL,
   );
-
+  const visInntektOgYtelseOverlappPanel = useEnkeltFeatureFlagg(
+    FeatureFlagg.INNTEKT_OG_YTELSE_OVERLAPP_PANEL,
+  );
   return (
-    <div className="flex flex-col gap-4 px-4 mt-8">
-      <div className="mb-4">
-        <OverskriftPanel promise={data.personopplysninger} />
-      </div>
-      {data.erBegrensetTilgang && (
-        <Alert variant="info" className="w-fit mb-4">
-          <Heading level="2" size="small" spacing>
-            Begrenset tilgang
-          </Heading>
-          <BodyShort spacing>
-            Du har kun tilgang til å se deler av informasjonen for denne
-            brukeren. Det kan være fordi personen er skjermet, bor på fortrolig
-            adresse eller andre grunner. Ta kontakt med nærmeste leder om du har
-            behov for å se mer informasjon.
-          </BodyShort>
-        </Alert>
-      )}
-      <HGrid gap="space-24" columns={{ xs: 1, md: 2 }}>
-        <BrukerinformasjonPanel promise={data.personopplysninger} />
-        <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
-      </HGrid>
-
-      <YtelserPanel promise={data.ytelser} />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <InntektPanel
-          promise={data.inntektInformasjon}
-          ytelserPromise={data.ytelser}
-        />
-
-        {visInntektsoppsummeringPanel && (
-          <InntektsoppsummeringPanel promise={data.inntektInformasjon} />
+    <Page>
+      <PageBlock className="flex flex-col gap-4 mt-8 px-4">
+        <div className="mb-4">
+          <OverskriftPanel promise={data.personopplysninger} />
+        </div>
+        {data.erBegrensetTilgang && (
+          <Alert variant="info" className="w-fit mb-4">
+            <Heading level="2" size="small" spacing>
+              Begrenset tilgang
+            </Heading>
+            <BodyShort spacing>
+              Du har kun tilgang til å se deler av informasjonen for denne
+              brukeren. Det kan være fordi personen er skjermet, bor på
+              fortrolig adresse eller andre grunner. Ta kontakt med nærmeste
+              leder om du har behov for å se mer informasjon.
+            </BodyShort>
+          </Alert>
         )}
-      </div>
-    </div>
+        <BrukerinformasjonPanel promise={data.personopplysninger} />
+        <YtelserPanel promise={data.ytelser} />
+        {visInntektOgYtelseOverlappPanel ? (
+          <div className="grid grid-cols-1 min-[1800px]:grid-cols-2 gap-4">
+            <InntektOgYtelseOverlappPanel
+              inntektPromise={data.inntektInformasjon}
+              ytelserPromise={data.ytelser}
+            />
+            <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
+          </div>
+        ) : (
+          <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <InntektPanel
+            promise={data.inntektInformasjon}
+            ytelserPromise={data.ytelser}
+          />
+
+          {visInntektsoppsummeringPanel && (
+            <InntektsoppsummeringPanel promise={data.inntektInformasjon} />
+          )}
+        </div>
+      </PageBlock>
+    </Page>
   );
 }
 
@@ -81,7 +95,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   }
 
   if (søkedata.tilgang !== "OK" && !søkedata.bekreftetBegrunnetTilgang) {
-    return redirect(RouteConfig.BEKREFT_BEGRUNNET_TILGANG);
+    return redirect(RouteConfig.TILGANG);
   }
 
   const params = {
@@ -93,6 +107,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   const utvidet = new URL(request.url).searchParams.get("utvidet") === "true";
   return {
+    miljø: env.ENVIRONMENT,
     erBegrensetTilgang:
       !søkedata.harUtvidetTilgang &&
       [
@@ -111,12 +126,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export function meta({ loaderData }: MetaArgs<typeof loader>) {
-  if (!loaderData || "error" in loaderData) {
-    return [];
-  }
+  const miljø = loaderData?.miljø ?? "ukjent";
   return [
     {
-      title: `Oppslag bruker`,
+      title: `Oppslag – Watson Søk ${miljø !== "prod" ? `(${miljø})` : ""}`,
     },
   ];
 }

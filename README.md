@@ -1,4 +1,4 @@
-# Holmes Oppslag Bruker
+# Watson Søk
 
 En React Router-applikasjon for å søke opp brukere i Nav-systemet ved hjelp av fødselsnummer eller D-nummer.
 
@@ -56,6 +56,7 @@ npm run dev
 - `npm run prettier` - Sjekker Prettier formattering
 - `npm run prettier:fix` - Fikser Prettier formattering
 - `npm run unused` - Sjekker om du har ubrukt kode eller avhengigheter
+- `npm run code-quality` – Kjører lint, typecheck, prettier og unused
 
 ## Utvikling
 
@@ -117,9 +118,9 @@ For å deploye denne ressursen kan man kjøre [en egen GitHub action](https://gi
 
 ### Miljøer
 
-- **Produksjon**: https://oppslag-bruker.intern.nav.no
-- **Dev**: https://oppslag-bruker.intern.dev.nav.no
-- **Demo**: https://oppslag-bruker-demo.ekstern.dev.nav.no/
+- **Produksjon**: https://watson-sok.intern.nav.no
+- **Dev**: https://watson-sok.intern.dev.nav.no
+- **Demo**: https://watson-sok-demo.ekstern.dev.nav.no/
 - **Utvikling**: Lokal utvikling på https://localhost:5173
 
 For testbrukere i dev, sjekk [Confluence](https://confluence.adeo.no/spaces/THLMS/pages/675780711/Testmilj%C3%B8er).

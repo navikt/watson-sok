@@ -1,8 +1,13 @@
 import { ExternalLinkIcon } from "@navikt/aksel-icons";
-import { Heading, Link, Skeleton } from "@navikt/ds-react";
+import { Heading, Link, Skeleton, Tag, Tooltip } from "@navikt/ds-react";
+import { Feedback } from "./feedback/Feedback";
 
 type PanelContainerProps = {
   children: React.ReactNode;
+  /** Om funksjonaliteten er i beta, sett et unikt navn.
+   * Dette brukes til å tracke om folk er fornøyd eller ikke med funksjonaliteten,
+   * og kan finnes igjen i analyseverktøyene */
+  betaFeature?: false | string;
   title?: React.ReactNode;
   link?: {
     href: string;
@@ -18,6 +23,7 @@ export function PanelContainer({
   children,
   title,
   link,
+  betaFeature = false,
   className = "",
 }: PanelContainerProps) {
   return (
@@ -25,13 +31,26 @@ export function PanelContainer({
       className={`border border-ax-neutral-400 rounded-xl p-4 relative h-fit ${className}`}
     >
       {title && (
-        <Heading level="2" size="medium" spacing>
-          {title}
-        </Heading>
+        <div className="flex items-center gap-2 mb-4">
+          <Heading level="2" size="medium">
+            {title}
+          </Heading>
+          {betaFeature !== false && (
+            <>
+              <Tooltip content="Denne funksjonaliteten er under utvikling og kan endre seg.">
+                <Tag variant="alt1-filled" size="small">
+                  Beta
+                </Tag>
+              </Tooltip>
+              <Feedback feature={betaFeature} />
+            </>
+          )}
+        </div>
       )}
+
       {link && (
         <div className="md:absolute top-4 right-4 mb-4">
-          <Link href={link.href}>
+          <Link href={link.href} target="_blank">
             {link.beskrivelse}
             <ExternalLinkIcon aria-hidden="true" />
           </Link>
@@ -52,7 +71,7 @@ export function PanelContainerSkeleton({
 }: PanelContainerProps) {
   return (
     <section
-      className={`border-1 border-ax-neutral-400 rounded-xl p-4 relative h-fit`}
+      className={`border border-ax-neutral-400 rounded-xl p-4 relative h-fit`}
     >
       {title && (
         <Heading level="2" size="medium" spacing as={Skeleton}>

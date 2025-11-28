@@ -48,6 +48,7 @@ export function sporHendelse(
 
 type Hendelse =
   | "søk landingsside"
+  | "søk header"
   | "lenke trykket brønnøysundregistrene"
   | "handlinger for arbeidsforhold åpnet"
   | "organisasjonsnummer kopiert"
@@ -55,4 +56,11 @@ type Hendelse =
   | "tidslinje periode flyttet"
   | "tidslinje størrelse endret"
   | "ytelse utbetalinger modal åpnet"
-  | "side lastet på nytt grunnet ny versjon";
+  | "side lastet på nytt grunnet ny versjon"
+  | "vis færre arbeidsforhold klikket"
+  | "vis alle arbeidsforhold klikket"
+  | "skjermingsbegrunnelse utfylt"
+  | "skjermingsbegrunnelse avbrutt"
+  | "endre tema til mørk"
+  | "endre tema til lys"
+  | `tilbakemelding på ${string}`;

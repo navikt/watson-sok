@@ -8,82 +8,97 @@ import {
 } from "@navikt/ds-react";
 import "~/globals.css";
 
-import { PageBlock } from "@navikt/ds-react/Page";
+import { Page, PageBlock } from "@navikt/ds-react/Page";
+import { useEffect, useState } from "react";
 import {
   type ActionFunctionArgs,
   data,
   Form,
   redirectDocument,
   useActionData,
-  useNavigation,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import {
   hentSøkedataFraSession,
   lagreSøkeinfoPåSession,
 } from "~/features/oppslag/oppslagSession.server";
+import { useMiljø } from "~/features/use-miljø/useMiljø";
 import { sporHendelse } from "~/utils/analytics";
 import { sjekkEksistensOgTilgang } from "./oppslag/api.server";
 
 export default function LandingPage() {
+  const miljø = useMiljø();
   const actionData = useActionData<typeof action>();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const navigation = useNavigation();
+  useEffect(() => {
+    if (actionData?.error) {
+      setIsLoading(false);
+    }
+  }, [actionData]);
 
   return (
-    <PageBlock width="text" gutters>
-      <title>Oppslag bruker</title>
-      <meta name="description" content="Oppslag på personer i Nav" />
-      <div>
-        <Heading level="2" size="medium" align="start" className="mt-4" spacing>
-          Brukeroppslag
-        </Heading>
-        <BodyShort spacing>
-          Ved å søke på fødsels- eller D-nummer får du en oversikt over relevant
-          informasjon om en bruker.
-        </BodyShort>
-
-        <Form
-          className="mt-12 mb-2"
-          method="post"
-          role="search"
-          onSubmit={() => sporHendelse("søk landingsside", {})}
-        >
-          <Search
-            name="ident"
+    <Page>
+      <PageBlock width="text" gutters>
+        <title>{`Watson Søk ${miljø !== "prod" ? `(${miljø})` : ""}`}</title>
+        <meta name="description" content="Oppslag på personer i Nav" />
+        <div>
+          <Heading
+            level="2"
             size="medium"
-            variant="primary"
-            placeholder="11 siffer"
-            label="Fødsels- eller D-nummer"
-            hideLabel={false}
-            error={actionData?.error}
-            autoComplete="off"
-            htmlSize={15}
+            align="start"
+            className="mt-4"
+            spacing
           >
-            <Search.Button
-              type="submit"
-              loading={navigation.state !== "idle"}
-            />
-          </Search>
-        </Form>
-        <BodyShort spacing>
-          <Link href="https://pdl-web.intern.nav.no/sokperson">
-            Har du ikke fødsels- eller D-nummer?
-          </Link>
-        </BodyShort>
-
-        <Alert variant="info" className="mt-4">
-          <Heading level="3" size="small" spacing>
-            Tjenestlig behov
+            Brukeroppslag
           </Heading>
-          <BodyLong>
-            Brukeroppslag forutsetter tjenestlig behov.
-            <br />
-            Merk at alle søk logges.
-          </BodyLong>
-        </Alert>
-      </div>
-    </PageBlock>
+          <BodyShort spacing>
+            Ved å søke på fødsels- eller D-nummer får du en oversikt over
+            relevant informasjon om en bruker.
+          </BodyShort>
+
+          <Form
+            className="mt-12 mb-2"
+            method="post"
+            role="search"
+            onSubmit={() => {
+              sporHendelse("søk landingsside");
+              setIsLoading(true);
+            }}
+          >
+            <Search
+              name="ident"
+              size="medium"
+              variant="primary"
+              placeholder="11 siffer"
+              label="Fødsels- eller D-nummer"
+              hideLabel={false}
+              error={actionData?.error}
+              autoComplete="off"
+              htmlSize={15}
+            >
+              <Search.Button type="submit" loading={isLoading} />
+            </Search>
+          </Form>
+          <BodyShort spacing className="mt-2">
+            <Link href="https://pdl-web.intern.nav.no/sokperson">
+              Har du ikke fødsels- eller D-nummer?
+            </Link>
+          </BodyShort>
+
+          <Alert variant="info" className="mt-4">
+            <Heading level="3" size="small" spacing>
+              Tjenestlig behov
+            </Heading>
+            <BodyLong>
+              Brukeroppslag forutsetter tjenestlig behov.
+              <br />
+              Merk at alle søk logges.
+            </BodyLong>
+          </Alert>
+        </div>
+      </PageBlock>
+    </Page>
   );
 }
 
@@ -152,7 +167,7 @@ export async function action({ request }: ActionFunctionArgs) {
       );
     }
 
-    return redirectDocument(RouteConfig.BEKREFT_BEGRUNNET_TILGANG, {
+    return redirectDocument(RouteConfig.TILGANG, {
       headers: {
         "Set-Cookie": cookie,
       },

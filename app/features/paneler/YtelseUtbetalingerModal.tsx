@@ -1,4 +1,4 @@
-import { BodyShort, Button, Table } from "@navikt/ds-react";
+import { BodyShort, Button, CopyButton, Table } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import {
   TableBody,
@@ -94,7 +94,12 @@ export function YtelseUtbetalingerModal({
                     >
                       {formatterBeløp(periode.beløp, 0)}
                     </TableDataCell>
-                    <TableDataCell>{periode.info ?? "–"}</TableDataCell>
+                    <TableDataCell className="flex items-center gap-1">
+                      {periode.info ?? "–"}{" "}
+                      {periode.info && (
+                        <CopyButton copyText={periode.info} size="small" />
+                      )}
+                    </TableDataCell>
                   </TableRow>
                 );
               })}

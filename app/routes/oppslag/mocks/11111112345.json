@@ -3,7 +3,7 @@
   "saksbehandlerIdent": "test-user",
   "fødselsnummer": "11111112345",
   "tilgang": {
-    "tilgang": "OK",
+    "tilgang": "AVVIST_VERGE",
     "harUtvidetTilgang": false
   },
   "personInformasjon": {
@@ -26,6 +26,7 @@
       },
       "utenlandskAdresse": null
     },
+    "adresseBeskyttelse": "UGRADERT",
     "sivilstand": "UGIFT",
     "alder": 35,
     "fødselsdato": "1990-04-11",

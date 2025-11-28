@@ -52,10 +52,23 @@ const AdresseSchema = z.object({
 });
 export type Adresse = z.infer<typeof AdresseSchema>;
 
+const NavKontorSchema = z.object({
+  enhetId: z.number(),
+  navn: z.string(),
+  enhetNr: z.string(),
+  type: z.string(),
+});
+
 export const PersonInformasjonSchema = z.object({
   navn: NavnSchema,
   aktørId: z.string().nullable(),
   adresse: AdresseSchema.nullable(),
+  adresseBeskyttelse: z.enum([
+    "UGRADERT",
+    "FORTROLIG",
+    "STRENGT_FORTROLIG",
+    "STRENGT_FORTROLIG_UTLAND",
+  ]),
   familemedlemmer: z.record(
     z.string(),
     z.enum([
@@ -75,6 +88,7 @@ export const PersonInformasjonSchema = z.object({
   alder: z.number(),
   fødselsdato: z.string(),
   dødsdato: z.string().nullable(),
+  navKontor: NavKontorSchema.nullish(),
 });
 
 export type PersonInformasjon = z.infer<typeof PersonInformasjonSchema>;

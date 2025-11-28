@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 /**
- * Playwright configuration for Holmes Oppslag Bruker
+ * Playwright configuration for Watson Søk
  * See https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({

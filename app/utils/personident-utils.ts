@@ -6,7 +6,10 @@
 export function beregnAlderFraFødselsEllerDnummer(
   personident: string,
   erBarn: boolean,
-) {
+): number {
+  if (personident === "Ukjent") {
+    return 0;
+  }
   const datoDel = personident.slice(0, 6);
 
   let dag = Number(datoDel.slice(0, 2));
