@@ -3,3 +3,17 @@
 @import "@navikt/ds-css/darkside" layer(components);
 
 @config '../tailwind.config.cjs';
+
+@theme {
+  /* Animasjon som viser noe i ett sekund, og så fade ut */
+  --animate-feedback-fade-out: fade-out 0.3s ease-out 1s forwards;
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}

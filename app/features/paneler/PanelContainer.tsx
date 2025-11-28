@@ -1,9 +1,13 @@
 import { ExternalLinkIcon } from "@navikt/aksel-icons";
 import { Heading, Link, Skeleton, Tag, Tooltip } from "@navikt/ds-react";
+import { Feedback } from "./feedback/Feedback";
 
 type PanelContainerProps = {
   children: React.ReactNode;
-  isBeta?: boolean;
+  /** Om funksjonaliteten er i beta, sett et unikt navn.
+   * Dette brukes til å tracke om folk er fornøyd eller ikke med funksjonaliteten,
+   * og kan finnes igjen i analyseverktøyene */
+  betaFeature?: false | string;
   title?: React.ReactNode;
   link?: {
     href: string;
@@ -19,7 +23,7 @@ export function PanelContainer({
   children,
   title,
   link,
-  isBeta = false,
+  betaFeature = false,
   className = "",
 }: PanelContainerProps) {
   return (
@@ -31,12 +35,15 @@ export function PanelContainer({
           <Heading level="2" size="medium">
             {title}
           </Heading>
-          {isBeta && (
-            <Tooltip content="Denne funksjonaliteten er under utvikling og kan endre seg.">
-              <Tag variant="alt1-filled" size="small">
-                Beta
-              </Tag>
-            </Tooltip>
+          {betaFeature !== false && (
+            <>
+              <Tooltip content="Denne funksjonaliteten er under utvikling og kan endre seg.">
+                <Tag variant="alt1-filled" size="small">
+                  Beta
+                </Tag>
+              </Tooltip>
+              <Feedback feature={betaFeature} />
+            </>
           )}
         </div>
       )}
