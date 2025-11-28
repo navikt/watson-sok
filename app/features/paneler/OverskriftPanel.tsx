@@ -1,4 +1,4 @@
-import { Heading, Skeleton } from "@navikt/ds-react";
+import { Heading, Skeleton, Tag, Tooltip } from "@navikt/ds-react";
 import { use } from "react";
 import type { PersonInformasjon } from "~/routes/oppslag/schemas";
 import { tilFulltNavn } from "~/utils/navn-utils";
@@ -30,9 +30,20 @@ const OverskriftPanelMedData = ({ promise }: OverskriftPanelProps) => {
     );
   }
   return (
-    <Heading level="1" size="large">
+    <Heading level="1" size="large" className="flex items-center gap-2">
       {storFørsteBokstavPerOrd(tilFulltNavn(personopplysninger.navn), true)} (
       {personopplysninger.alder}){personopplysninger.dødsdato ? ` (død)` : ""}
+      {personopplysninger.adresseBeskyttelse !== "UGRADERT" && (
+        <Tooltip
+          content={lagAdressebeskyttelseBeskrivelse(
+            personopplysninger.adresseBeskyttelse,
+          )}
+        >
+          <Tag variant="error" size="small">
+            Diskresjon
+          </Tag>
+        </Tooltip>
+      )}
     </Heading>
   );
 };
@@ -54,3 +65,18 @@ const OverskriftPanelError = () => {
     </Heading>
   );
 };
+
+function lagAdressebeskyttelseBeskrivelse(
+  adresseBeskyttelse: PersonInformasjon["adresseBeskyttelse"],
+): string {
+  switch (adresseBeskyttelse) {
+    case "FORTROLIG":
+      return "Brukeren har fortrolig adresse";
+    case "STRENGT_FORTROLIG":
+      return "Brukeren har strengt fortrolig adresse";
+    case "STRENGT_FORTROLIG_UTLAND":
+      return "Brukeren har strengt fortrolig adresse i utlandet";
+    default:
+      return "";
+  }
+}
