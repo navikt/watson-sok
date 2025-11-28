@@ -1,13 +1,18 @@
 import mixpanel from "mixpanel-browser";
 import { useEffect } from "react";
 import { useUser } from "~/features/auth/useUser";
+import { useMiljø } from "~/features/use-miljø/useMiljø";
 type AnalyticsTagProps = {
   sporingId: string;
 };
 
 export function AnalyticsTags({ sporingId }: AnalyticsTagProps) {
   const { navIdent } = useUser();
+  const miljø = useMiljø();
   useEffect(() => {
+    if (miljø !== "prod") {
+      return;
+    }
     mixpanel.init("f5e4c5b5414a87e94d8d4182e4c458c2", {
       autocapture: true,
       track_pageview: true,
@@ -17,7 +22,7 @@ export function AnalyticsTags({ sporingId }: AnalyticsTagProps) {
     if (navIdent) {
       mixpanel.identify(navIdent);
     }
-  }, [navIdent]);
+  }, [navIdent, miljø]);
   return (
     <script
       defer

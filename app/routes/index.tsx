@@ -155,6 +155,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
     if (
       eksistensOgTilgang.tilgang === "OK" ||
+      eksistensOgTilgang.harUtvidetTilgang ||
       harAlleredeBekreftetBegrunnetTilgang
     ) {
       return redirectDocument(
