@@ -93,6 +93,7 @@ export function Linjegraf({
                 y={grid.y + 4}
                 textAnchor="end"
                 fontSize="10"
+                fill="var(--ax-text-default)"
               >
                 {formatterBeløp(grid.avrundetVerdi, 0)}
               </text>
