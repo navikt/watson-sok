@@ -19,7 +19,6 @@ export async function getMockedResponseByFødselsnummer(fødselsnummer: string) 
   const sanitizedFødselsnummer = sanitizeFødselsnummer(fødselsnummer);
   const candidateFiles = [
     path.join(MOCK_DIR, `${sanitizedFødselsnummer}.json`),
-    path.join(MOCK_DIR, `default.json`), // fallback
   ];
 
   for (const filePath of candidateFiles) {
@@ -40,9 +39,7 @@ export async function getMockedResponseByFødselsnummer(fødselsnummer: string) 
     );
   }
 
-  throw new Error(
-    `Ingen mock funnet for ${fødselsnummer}, og ingen fallback funnet.`,
-  );
+  return null;
 }
 
 function sanitizeFødselsnummer(input: string): string {

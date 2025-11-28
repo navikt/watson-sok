@@ -9,13 +9,13 @@ import {
 import "~/globals.css";
 
 import { Page, PageBlock } from "@navikt/ds-react/Page";
+import { useEffect, useState } from "react";
 import {
   type ActionFunctionArgs,
   data,
   Form,
   redirectDocument,
   useActionData,
-  useNavigation,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import {
@@ -27,10 +27,15 @@ import { sporHendelse } from "~/utils/analytics";
 import { sjekkEksistensOgTilgang } from "./oppslag/api.server";
 
 export default function LandingPage() {
-  const actionData = useActionData<typeof action>();
-
-  const navigation = useNavigation();
   const miljø = useMiljø();
+  const actionData = useActionData<typeof action>();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (actionData?.error) {
+      setIsLoading(false);
+    }
+  }, [actionData]);
 
   return (
     <Page>
@@ -56,7 +61,10 @@ export default function LandingPage() {
             className="mt-12 mb-2"
             method="post"
             role="search"
-            onSubmit={() => sporHendelse("søk landingsside")}
+            onSubmit={() => {
+              sporHendelse("søk landingsside");
+              setIsLoading(true);
+            }}
           >
             <Search
               name="ident"
@@ -69,13 +77,10 @@ export default function LandingPage() {
               autoComplete="off"
               htmlSize={15}
             >
-              <Search.Button
-                type="submit"
-                loading={navigation.state !== "idle"}
-              />
+              <Search.Button type="submit" loading={isLoading} />
             </Search>
           </Form>
-          <BodyShort spacing>
+          <BodyShort spacing className="mt-2">
             <Link href="https://pdl-web.intern.nav.no/sokperson">
               Har du ikke fødsels- eller D-nummer?
             </Link>
