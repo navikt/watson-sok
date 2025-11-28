@@ -42,11 +42,16 @@ export function sporHendelse(
   data: Record<string, unknown> = {},
 ) {
   if (process.env.NODE_ENV === "development") {
+    if (hendelse.length > 50) {
+      console.warn(
+        `📊 [Analytics] Hendelse ${hendelse} er for lang. Maks lengde er 50 tegn, hendelsen er på ${hendelse.length} tegn.`,
+      );
+    }
     console.info(`📊 [Analytics] ${hendelse}`, data);
     return;
   }
   if (typeof window !== "undefined" && window.umami) {
-    window.umami.track(hendelse, data);
+    window.umami.track(hendelse.substring(0, 50), data); // Maks lengde er 50 tegn for Umami
   }
   mixpanel.track(hendelse, data);
 }
