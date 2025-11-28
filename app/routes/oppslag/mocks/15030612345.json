@@ -1,0 +1,249 @@
+{
+  "utrekkstidspunkt": "2025-11-28T10:00:00.000000000",
+  "saksbehandlerIdent": "prod-gcp:holmes:nav-persondata-api",
+  "fødselsnummer": "15030612345",
+  "tilgang": {
+    "tilgang": "OK",
+    "harUtvidetTilgang": false
+  },
+  "personInformasjon": {
+    "navn": {
+      "fornavn": "MARTE",
+      "mellomnavn": null,
+      "etternavn": "PRØVERUD"
+    },
+    "aktørId": "15030612345",
+    "adresse": {
+      "norskAdresse": {
+        "adressenavn": "Skolebakken",
+        "husnummer": "12",
+        "husbokstav": null,
+        "postnummer": "1482",
+        "kommunenummer": "3024",
+        "poststed": "NITTEDAL"
+      },
+      "utenlandskAdresse": null
+    },
+    "adresseBeskyttelse": "UGRADERT",
+    "familemedlemmer": {
+      "10057012345": "FAR",
+      "15068012345": "MOR",
+      "22072412345": "BARN"
+    },
+    "statsborgerskap": ["NORGE"],
+    "sivilstand": "UGIFT",
+    "alder": 19,
+    "fødselsdato": "2006-03-15",
+    "dødsdato": null,
+    "navKontor": {
+      "enhetId": 100000756,
+      "navn": "NAV Nittedal",
+      "enhetNr": "0305",
+      "type": "LOKAL"
+    }
+  },
+  "arbeidsgiverInformasjon": {
+    "løpendeArbeidsforhold": [
+      {
+        "arbeidsgiver": "SVINDAL ENTREPRENØR AS",
+        "organisasjonsnummer": "912345678",
+        "adresse": "Industriveien 42, 1482 NITTEDAL",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100.0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2025-02",
+              "tom": null
+            },
+            "yrke": "PROSJEKTLEDER (BYGG OG ANLEGG - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
+          }
+        ]
+      }
+    ],
+    "historikk": []
+  },
+  "inntektInformasjon": {
+    "lønnsinntekt": [
+      {
+        "arbeidsgiver": "SVINDAL ENTREPRENØR AS",
+        "periode": "2025-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "100",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 75000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SVINDAL ENTREPRENØR AS",
+        "periode": "2025-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "100",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 75000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SVINDAL ENTREPRENØR AS",
+        "periode": "2025-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "100",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 75000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SVINDAL ENTREPRENØR AS",
+        "periode": "2025-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "100",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 75000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SVINDAL ENTREPRENØR AS",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "100",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 75000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SVINDAL ENTREPRENØR AS",
+        "periode": "2025-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "100",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 75000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SVINDAL ENTREPRENØR AS",
+        "periode": "2025-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "100",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 75000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SVINDAL ENTREPRENØR AS",
+        "periode": "2025-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "100",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 75000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SVINDAL ENTREPRENØR AS",
+        "periode": "2025-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "100",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 75000.0,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "SVINDAL ENTREPRENØR AS",
+        "periode": "2025-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "100",
+        "lønnstype": "fastloenn",
+        "antall": null,
+        "beløp": 75000.0,
+        "harFlereVersjoner": false
+      }
+    ],
+    "næringsinntekt": [],
+    "pensjonEllerTrygd": [],
+    "ytelseFraOffentlige": []
+  },
+  "stønader": [
+    {
+      "stonadType": "Sykepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2025-05-01",
+            "tom": "2025-05-31"
+          },
+          "beløp": 34615,
+          "kilde": "NAV",
+          "info": "Sykemeldt pga svangerskapsrelatert sykdom"
+        },
+        {
+          "periode": {
+            "fom": "2025-06-01",
+            "tom": "2025-06-30"
+          },
+          "beløp": 34615,
+          "kilde": "NAV",
+          "info": "Sykemeldt pga svangerskapsrelatert sykdom"
+        },
+        {
+          "periode": {
+            "fom": "2025-07-01",
+            "tom": "2025-07-31"
+          },
+          "beløp": 34615,
+          "kilde": "NAV",
+          "info": "Sykemeldt pga svangerskapsrelatert sykdom"
+        }
+      ]
+    },
+    {
+      "stonadType": "Foreldrepenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2025-08-01",
+            "tom": "2025-08-31"
+          },
+          "beløp": 57692,
+          "kilde": "NAV",
+          "info": "Fødselspermisjon - 100% dekningsgrad"
+        },
+        {
+          "periode": {
+            "fom": "2025-09-01",
+            "tom": "2025-09-30"
+          },
+          "beløp": 57692,
+          "kilde": "NAV",
+          "info": "Fødselspermisjon - 100% dekningsgrad"
+        },
+        {
+          "periode": {
+            "fom": "2025-10-01",
+            "tom": "2025-10-31"
+          },
+          "beløp": 57692,
+          "kilde": "NAV",
+          "info": "Fødselspermisjon - 100% dekningsgrad"
+        },
+        {
+          "periode": {
+            "fom": "2025-11-01",
+            "tom": "2025-11-30"
+          },
+          "beløp": 57692,
+          "kilde": "NAV",
+          "info": "Fødselspermisjon - 100% dekningsgrad"
+        }
+      ]
+    }
+  ]
+}
