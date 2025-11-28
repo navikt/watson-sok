@@ -2,6 +2,9 @@
 
 En React Router-applikasjon for å søke opp brukere i Nav-systemet ved hjelp av fødselsnummer eller D-nummer.
 
+<details>
+<summary>TL;DR:</summary>
+
 ## Funksjonalitet
 
 - Søk på brukere ved hjelp av fødselsnummer eller D-nummer
@@ -14,14 +17,25 @@ En React Router-applikasjon for å søke opp brukere i Nav-systemet ved hjelp av
 - **Autentisering**: Azure AD via Oasis
 - **Deployment**: NAIS på GCP
 
-## Kom i gang
+</details>
 
-### Forutsetninger
+<details>
+<summary>Kom i gang</summary>
 
-- Node.js 20 eller høyere
-- npm
+## Forutsetninger
 
-### Installasjon
+Du må ha nyeste LTS-versjonen av Node og NPM installert, i tillegg til browserne til `playwright` (for å kjøre tester).
+
+```bash
+brew install node #installerer node om du ikke har det allerede
+npm i -g n # installerer en node version manager for deg
+n lts # installerer nyeste LTS (long time support)-versjon av Node og NPM
+npx playwright install # installerer headless browsers for Playwright
+```
+
+For utvikling mot lokal backend trenger du også `gcloud` og `k9s`. Se utviklings-seksjonen for mer informasjon om hvordan det settes opp.
+
+## Installasjon
 
 1. Klon repositoriet:
 
@@ -44,7 +58,7 @@ npm run dev
 
 4. Åpne [http://localhost:5173](http://localhost:5173) i nettleseren
 
-### Tilgjengelige scripts
+## Tilgjengelige scripts
 
 - `npm run dev` - Starter utviklingsserveren
 - `npm run dev:local` - Starter utviklingsserveren, men kjører mot lokal backend
@@ -57,21 +71,12 @@ npm run dev
 - `npm run prettier:fix` - Fikser Prettier formattering
 - `npm run unused` - Sjekker om du har ubrukt kode eller avhengigheter
 - `npm run code-quality` – Kjører lint, typecheck, prettier og unused
+</details>
 
-## Utvikling
+<details>
+<summary>Utvikling</summary>
 
-## Antatt programvare
-
-Du må ha nyeste LTS-versjonen av Node og NPM installert, i tillegg til browserne til `playwright` (for å kjøre tester).
-
-```bash
-brew install node #installerer node om du ikke har det allerede
-npm i -g n # installerer en node version manager for deg
-n lts # installerer nyeste LTS (long time support)-versjon av Node og NPM
-npx playwright install # installerer headless browsers for Playwright
-```
-
-### Kodekvalitet
+## Kodekvalitet
 
 Prosjektet bruker:
 
@@ -81,7 +86,7 @@ Prosjektet bruker:
 - **Knip** for sjekking av ubrukt kode og avhengigheter
 - **Playwright** for å kjøre ende-til-ende tester
 
-### Kjøring mot lokal backend
+## Kjøring mot lokal backend
 
 For å kjøre mot lokal backend, må du gjøre et par ting:
 
@@ -96,7 +101,10 @@ For å kjøre mot lokal backend, må du gjøre et par ting:
 9. Kjør `k9s`, trykk `ctrl+f` og endre porten til `7164`
 10. Nå skal du kunne gjøre kall fra lokal frontend til lokal backend 🎉
 
-## Deployment
+</details>
+
+<details>
+<summary>Deployment</summary>
 
 Applikasjonen deployes automatisk til NAIS på GCP via GitHub Actions.
 
@@ -125,10 +133,30 @@ For å deploye denne ressursen kan man kjøre [en egen GitHub action](https://gi
 
 For testbrukere i dev, sjekk [Confluence](https://confluence.adeo.no/spaces/THLMS/pages/675780711/Testmilj%C3%B8er).
 
+</details>
+
+<details>
+<summary>Debugging</summary>
+
 ## 🐣 Legg til trace-logging for et gitt søk
 
 Om du ønsker å legge til trace-logging for et gitt søk, legg til "?" etter personidenten du ønsker å søke på. Om du vanligvis vil søke på "12345612345", kan du da søke etter "12345612345?", og dette vil slå på trace-logging for det ene søket.
 
-## Lisens
+</details>
+
+<details>
+<summary>Kontakt, lisens og legal</summary>
+
+### Kontakt
+
+For spørsmål om tjenesten, koden eller annet, kontakt [#team-holmes](https://nav-it.slack.com/archives/C08CZLL2QKE) på Slack.
+
+### Lisens
 
 Nav sin egen versjon av MIT. Se [LICENSE](LICENSE) filen for detaljer.
+
+### Bruk av AI til utvikling av kode
+
+Teamet benytter seg av AI-tjenester for å utvikle koden i denne applikasjonen. All kode gjennomgås av teamet før det integreres i kodebasen.
+
+</details>
