@@ -27,7 +27,7 @@ En React Router-applikasjon for å søke opp brukere i Nav-systemet ved hjelp av
 Du må ha nyeste LTS-versjonen av Node og NPM installert, i tillegg til browserne til `playwright` (for å kjøre tester).
 
 ```bash
-brew install node #installerer node om du ikke har det allerede
+brew install node # installerer node om du ikke har det allerede
 npm i -g n # installerer en node version manager for deg
 n lts # installerer nyeste LTS (long time support)-versjon av Node og NPM
 npx playwright install # installerer headless browsers for Playwright
