@@ -7,8 +7,8 @@ import {
   Table,
 } from "@navikt/ds-react";
 import { use, useId, useMemo } from "react";
+import { useTidsvindu } from "~/features/tidsvindu/Tidsvindu";
 import type { InntektInformasjon } from "~/routes/oppslag/schemas";
-import { useTidsvindu } from "~/routes/oppslag/Tidsvindu";
 import { formatÅrMåned } from "~/utils/date-utils";
 import {
   formatterBeløp,

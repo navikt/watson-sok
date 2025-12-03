@@ -19,12 +19,15 @@ import { InntektsoppsummeringPanel } from "~/features/paneler/Inntektsoppsummeri
 import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
 import { YtelserPanel } from "~/features/paneler/YtelserPanel";
 import {
+  TidsvinduProvider,
+  TidsvinduVelger,
+} from "../../features/tidsvindu/Tidsvindu";
+import {
   hentArbeidsforhold,
   hentInntekter,
   hentPersonopplysninger,
   hentYtelser,
 } from "./api.server";
-import { TidsvinduProvider, TidsvinduVelger } from "./Tidsvindu";
 
 export default function OppslagBruker() {
   const data = useLoaderData<typeof loader>();

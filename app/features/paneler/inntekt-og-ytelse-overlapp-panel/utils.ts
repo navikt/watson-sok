@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useTidsvindu } from "~/routes/oppslag/Tidsvindu";
+import { useTidsvindu } from "~/features/tidsvindu/Tidsvindu";
 import { konverterTilTall } from "~/utils/number-utils";
 import { ANTALL_GRID_LINJER, MIN_LABEL_AVSTAND } from "./konstanter";
 import type {

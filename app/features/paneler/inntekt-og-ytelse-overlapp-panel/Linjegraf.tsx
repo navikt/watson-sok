@@ -1,4 +1,4 @@
-import { useTidsvindu } from "~/routes/oppslag/Tidsvindu";
+import { useTidsvindu } from "~/features/tidsvindu/Tidsvindu";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterBeløp } from "~/utils/number-utils";
 import {
