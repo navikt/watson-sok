@@ -67,6 +67,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   const { nåværendeVindu, oppdaterVindu } = useTidslinjevindu();
   const tilbakekrevinger = useTilbakekrevinger(ytelser, nåværendeVindu);
   const [valgtYtelse, setValgtYtelse] = useState<Ytelse | null>(null);
+  const { tidsvindu } = useTidsvindu();
 
   const ytelserMedGruppertePerioder = useMemo(() => {
     if (!ytelser) return [];
@@ -79,7 +80,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   const viserSiste10År = searchParams.get("utvidet") === "true";
   const tittel = viserSiste10År
     ? "Ytelser fra Nav siste 10 år"
-    : "Ytelser fra Nav siste 3 år";
+    : `Ytelser fra Nav siste ${tidsvindu}`;
 
   return (
     <PanelContainer
