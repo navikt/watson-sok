@@ -79,7 +79,8 @@ export async function sjekkEksistensOgTilgang({
     const parsedData = EksistensOgTilgangSchema.safeParse(data);
     if (!parsedData.success) {
       throw new OppslagApiError(
-        "Ugyldig data fra baksystem: " + z.treeifyError(parsedData.error),
+        "Ugyldig data fra baksystem: " +
+          JSON.stringify(z.treeifyError(parsedData.error), null, 2),
       );
     }
 
