@@ -34,7 +34,7 @@ export const ResolvingComponent = ({
         console.error(
           "Feil oppstod mens løsningen ventet på serveren: ",
           error,
-          info,
+          info?.componentStack,
         );
       }}
     >

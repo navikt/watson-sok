@@ -160,6 +160,8 @@ export const EksistensOgTilgangSchema = z.object({
     "AVVIST_HABILITET",
     "AVVIST_VERGE",
     "AVVIST_MANGLENDE_DATA",
+    "AVVIST_PERSON_UTLAND",
+    "AVVIST_UKJENT_BOSTED",
   ]),
   harUtvidetTilgang: z.boolean(),
 });
