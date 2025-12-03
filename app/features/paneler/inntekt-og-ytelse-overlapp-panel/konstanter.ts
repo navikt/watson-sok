@@ -1,7 +1,5 @@
 import type { GrafFarger } from "./typer";
 
-export const ANTALL_MÅNEDER_BACK = 36; // 3 år, samme som InntektPanel
-
 export const STANDARD_FARGER: GrafFarger = {
   inntektLinje: "var(--ax-bg-brand-blue-strong)",
   inntektPunkt: "var(--ax-bg-brand-blue-strong-hover)",

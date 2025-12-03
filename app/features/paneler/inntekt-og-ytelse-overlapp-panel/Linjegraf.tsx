@@ -1,7 +1,7 @@
+import { useTidsvindu } from "~/routes/oppslag/Tidsvindu";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterBeløp } from "~/utils/number-utils";
 import {
-  ANTALL_MÅNEDER_BACK,
   GRAF_BREDDE,
   GRAF_HØYDE,
   PADDING,
@@ -29,6 +29,7 @@ export function Linjegraf({
   hoveredIndex,
   onHover,
 }: LinjegrafProps) {
+  const { tidsvinduIAntallMåneder } = useTidsvindu();
   const grafBredde = GRAF_BREDDE - PADDING.left - PADDING.right;
   const grafHøyde = GRAF_HØYDE - PADDING.top - PADDING.bottom;
 
@@ -72,7 +73,7 @@ export function Linjegraf({
         </title>
         <desc id="graf-beskrivelse">
           Grafen viser månedlige inntekter og ytelser de siste{" "}
-          {ANTALL_MÅNEDER_BACK} månedene. Se tabellen nedenfor for nøyaktige
+          {tidsvinduIAntallMåneder} månedene. Se tabellen nedenfor for nøyaktige
           verdier.
         </desc>
 

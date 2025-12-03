@@ -1,9 +1,7 @@
+import { useMemo } from "react";
+import { useTidsvindu } from "~/routes/oppslag/Tidsvindu";
 import { konverterTilTall } from "~/utils/number-utils";
-import {
-  ANTALL_GRID_LINJER,
-  ANTALL_MÅNEDER_BACK,
-  MIN_LABEL_AVSTAND,
-} from "./konstanter";
+import { ANTALL_GRID_LINJER, MIN_LABEL_AVSTAND } from "./konstanter";
 import type {
   GridLinje,
   HoverHandler,
@@ -13,28 +11,49 @@ import type {
 } from "./typer";
 
 /**
+ * Hook som returnerer memoisert månedlig data basert på inntektinformasjon,
+ * ytelser og valgt tidsvindu.
+ */
+export function useMånedligData(
+  inntektInformasjon: Awaited<
+    InntektOgYtelseOverlappPanelProps["inntektPromise"]
+  >,
+  ytelser: Awaited<InntektOgYtelseOverlappPanelProps["ytelserPromise"]>,
+) {
+  const { tidsvinduIAntallMåneder } = useTidsvindu();
+  return useMemo(() => {
+    return transformTilMånedligData(
+      inntektInformasjon,
+      ytelser,
+      tidsvinduIAntallMåneder,
+    );
+  }, [inntektInformasjon, ytelser, tidsvinduIAntallMåneder]);
+}
+
+/**
  * Transformerer inntekter og ytelser til månedlige aggregater for de siste 36 månedene.
  *
  * @example
  * const data = transformTilMånedligData(inntektInformasjon, ytelser);
  * // data[0] kan være { periode: "2024-01", inntekt: 50000, ytelse: 0 }
  */
-export function transformTilMånedligData(
+function transformTilMånedligData(
   inntektInformasjon: Awaited<
     InntektOgYtelseOverlappPanelProps["inntektPromise"]
   >,
   ytelser: Awaited<InntektOgYtelseOverlappPanelProps["ytelserPromise"]>,
+  antallMånederBack: number,
 ): MånedligData[] {
   const nå = new Date();
   const cutoff = new Date(
     nå.getFullYear(),
-    nå.getMonth() - ANTALL_MÅNEDER_BACK,
+    nå.getMonth() - antallMånederBack,
     1,
   );
 
   const månedligData = new Map<string, { inntekt: number; ytelse: number }>();
 
-  for (let i = 0; i <= ANTALL_MÅNEDER_BACK; i++) {
+  for (let i = 0; i <= antallMånederBack; i++) {
     const måned = new Date(nå.getFullYear(), nå.getMonth() - i, 1);
     const periodeKey = `${måned.getFullYear()}-${String(måned.getMonth() + 1).padStart(2, "0")}`;
     månedligData.set(periodeKey, { inntekt: 0, ytelse: 0 });

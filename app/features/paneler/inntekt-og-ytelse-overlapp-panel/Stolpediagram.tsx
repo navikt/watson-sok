@@ -1,7 +1,7 @@
+import { useTidsvindu } from "~/routes/oppslag/Tidsvindu";
 import { formatÅrMåned } from "~/utils/date-utils";
 import { formatterBeløp } from "~/utils/number-utils";
 import {
-  ANTALL_MÅNEDER_BACK,
   GRAF_BREDDE,
   GRAF_HØYDE,
   PADDING,
@@ -45,6 +45,7 @@ export function Stolpediagram({
   const radius = Math.min(4, barWidth / 3);
   const gridLinjer = lagGridLinjer(maksVerdi, yScale);
   const xLabelsMedPlass = lagXLabels(data, xScale);
+  const { tidsvinduIAntallMåneder } = useTidsvindu();
 
   return (
     <div className="overflow-x-auto">
@@ -62,7 +63,7 @@ export function Stolpediagram({
         <desc id="stolpe-graf-beskrivelse">
           Viser inntekter som nederste del av stolpen og ytelser på toppen. Se
           tabellen nedenfor for nøyaktige verdier for de siste{" "}
-          {ANTALL_MÅNEDER_BACK} månedene.
+          {tidsvinduIAntallMåneder} månedene.
         </desc>
 
         <g aria-hidden="true">

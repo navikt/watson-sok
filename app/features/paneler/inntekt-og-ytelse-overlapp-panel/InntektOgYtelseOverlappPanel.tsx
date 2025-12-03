@@ -1,6 +1,7 @@
 import { Alert, Skeleton, ToggleGroup } from "@navikt/ds-react";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useMemo, useState } from "react";
+import { useTidsvindu } from "~/routes/oppslag/Tidsvindu";
 import { ResolvingComponent } from "../../async/ResolvingComponent";
 import { PanelContainer, PanelContainerSkeleton } from "../PanelContainer";
 import { GrafLegend } from "./GrafLegend";
@@ -8,13 +9,13 @@ import { HoverInfoboks } from "./HoverInfoboks";
 import { Linjegraf } from "./Linjegraf";
 import { SkjultTabell } from "./SkjultTabell";
 import { Stolpediagram } from "./Stolpediagram";
-import { ANTALL_MÅNEDER_BACK, GRAF_HØYDE } from "./konstanter";
+import { GRAF_HØYDE } from "./konstanter";
 import type {
   GrafData,
   GrafVisning,
   InntektOgYtelseOverlappPanelProps,
 } from "./typer";
-import { transformTilMånedligData } from "./utils";
+import { useMånedligData } from "./utils";
 
 /**
  * Laster inn og viser inntekt- og ytelsesdata som enten linjegraf eller stolpediagram.
@@ -55,11 +56,8 @@ const InntektOgYtelseOverlappPanelMedData = ({
   const ytelser = use(ytelserPromise);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [grafVisning, setGrafVisning] = useState<GrafVisning>("linje");
-
-  const månedligData = useMemo(
-    () => transformTilMånedligData(inntektInformasjon, ytelser),
-    [inntektInformasjon, ytelser],
-  );
+  const { tidsvinduIAntallMåneder } = useTidsvindu();
+  const månedligData = useMånedligData(inntektInformasjon, ytelser);
 
   const grafData: GrafData | null = useMemo(() => {
     if (månedligData.length === 0) {
@@ -98,7 +96,7 @@ const InntektOgYtelseOverlappPanelMedData = ({
       {erTom ? (
         <Alert variant="info">
           Ingen inntekter eller ytelser funnet for de siste{" "}
-          {ANTALL_MÅNEDER_BACK} månedene.
+          {tidsvinduIAntallMåneder} månedene.
         </Alert>
       ) : (
         <div className="mt-4">
