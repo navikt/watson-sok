@@ -51,18 +51,17 @@ export const useTidsvindu = () => {
 export const TidsvinduVelger = () => {
   const { tidsvindu, setTidsvindu } = useTidsvindu();
   return (
-    <div className="sticky p-4 top-18 right-4 z-10 bg-ax-surface-primary">
-      <ToggleGroup
-        variant="neutral"
-        size="small"
-        value={tidsvindu}
-        aria-label="Velg tidsvindu"
-        onChange={(value) => setTidsvindu(value as TidsvinduPeriode)}
-      >
-        <ToggleGroupItem value="6 måneder" label="6 mnd" />
-        <ToggleGroupItem value="1 år" label="1 år" />
-        <ToggleGroupItem value="3 år" label="3 år" />
-      </ToggleGroup>
-    </div>
+    <ToggleGroup
+      variant="neutral"
+      size="small"
+      value={tidsvindu}
+      aria-label="Velg tidsvindu"
+      onChange={(value) => setTidsvindu(value as TidsvinduPeriode)}
+      className="bg-ax-bg-default rounded-lg w-fit"
+    >
+      <ToggleGroupItem value="6 måneder" label="6 mnd" />
+      <ToggleGroupItem value="1 år" label="1 år" />
+      <ToggleGroupItem value="3 år" label="3 år" />
+    </ToggleGroup>
   );
 };

@@ -41,8 +41,8 @@ export default function OppslagBruker() {
     <TidsvinduProvider>
       <Page>
         <PageBlock className="flex flex-col gap-4 mt-8 px-4">
-          <div className="mb-4 flex items-center justify-between">
-            <OverskriftPanel promise={data.personopplysninger} />
+          <OverskriftPanel promise={data.personopplysninger} />
+          <div className="sticky top-4 z-20 self-end -mt-13">
             <TidsvinduVelger />
           </div>
           {data.erBegrensetTilgang && (

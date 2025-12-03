@@ -30,7 +30,7 @@ const OverskriftPanelMedData = ({ promise }: OverskriftPanelProps) => {
     );
   }
   return (
-    <Heading level="1" size="large" className="flex items-center gap-2">
+    <Heading level="1" size="large" className="flex items-center gap-2 w-fit">
       {storFørsteBokstavPerOrd(tilFulltNavn(personopplysninger.navn), true)} (
       {personopplysninger.alder}){personopplysninger.dødsdato ? ` (død)` : ""}
       {personopplysninger.adresseBeskyttelse !== "UGRADERT" && (
@@ -51,9 +51,7 @@ const OverskriftPanelMedData = ({ promise }: OverskriftPanelProps) => {
 const OverskriftPanelSkeleton = () => {
   return (
     <Heading level="1" size="large" as="div">
-      <Skeleton variant="text" width="100%">
-        Navn Navnesen (xx)
-      </Skeleton>
+      <Skeleton variant="text">Navn Navnesen (xx)</Skeleton>
     </Heading>
   );
 };
