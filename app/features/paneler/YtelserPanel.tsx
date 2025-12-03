@@ -253,7 +253,6 @@ const TidslinjeKontrollpanel = ({
   oppdaterVindu,
   viserSiste10År,
 }: TidslinjeKontrollpanelProps) => {
-  const { tidsvinduIAntallMåneder } = useTidsvindu();
   const nå = new Date();
   const dataCutoff = new Date(nå.getTime());
   dataCutoff.setMonth(nå.getMonth() - (viserSiste10År ? 120 : 36));
