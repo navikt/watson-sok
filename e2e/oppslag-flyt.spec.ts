@@ -162,4 +162,77 @@ test.describe("Oppslag-flyt", () => {
       await sjekkTilgjengelighet(page);
     });
   });
+
+  test("skal oppdatere paneler når tidsvindu endres", async ({ page }) => {
+    await page.clock.setFixedTime(new Date("2025-07-01T12:00:00Z"));
+
+    await page.goto("/");
+    const mainContent = page.locator("#maincontent");
+    const søkefelt = mainContent.getByLabel(/Fødsels- eller D-nummer/i);
+    await søkefelt.fill("98765432101");
+    await mainContent.getByRole("button", { name: /søk/i }).click();
+
+    await expect(page).toHaveURL(/\/oppslag/);
+
+    const ytelserOverskrift = page.getByRole("heading", {
+      name: /Ytelser fra Nav siste 3 år/i,
+    });
+    await expect(ytelserOverskrift).toBeVisible();
+
+    const totalInntektLabel = page.getByText(/Total inntekt \(siste/i).first();
+    const totalInntektVerdi = totalInntektLabel.locator(
+      "xpath=following-sibling::*[1]",
+    );
+    const skjultTabell = page
+      .locator(".sr-only")
+      .filter({ hasText: "Månedlige inntekter og ytelser" })
+      .locator("table");
+    const hentTotalInntekt = async () => {
+      const tekst = await totalInntektVerdi.innerText();
+      return Number(tekst.replace(/\D/g, ""));
+    };
+
+    await expect.poll(hentTotalInntekt).toBe(2134053);
+    await expect
+      .poll(async () => skjultTabell.locator("tbody tr").count())
+      .toBe(37);
+
+    const tidsvinduVelger = page.locator('[aria-label="Velg tidsvindu"]');
+    await expect(tidsvinduVelger).toBeVisible();
+
+    const velgTidsvindu = async (label: string | RegExp) => {
+      const valg = tidsvinduVelger.getByText(label);
+      await expect(valg).toBeVisible();
+      await valg.click();
+    };
+
+    await velgTidsvindu(/6 mnd/i);
+    await expect(
+      page.getByRole("heading", {
+        name: /Ytelser fra Nav siste 6 måneder/i,
+      }),
+    ).toBeVisible();
+    await expect.poll(hentTotalInntekt).toBe(414234);
+    await expect
+      .poll(async () => skjultTabell.locator("tbody tr").count())
+      .toBe(7);
+
+    await velgTidsvindu(/1 år/i);
+    await expect(
+      page.getByRole("heading", {
+        name: /Ytelser fra Nav siste 1 år/i,
+      }),
+    ).toBeVisible();
+    await expect.poll(hentTotalInntekt).toBe(770915);
+    await expect
+      .poll(async () => skjultTabell.locator("tbody tr").count())
+      .toBe(13);
+
+    await velgTidsvindu(/3 år/i);
+    await expect(ytelserOverskrift).toBeVisible();
+    await expect.poll(hentTotalInntekt).toBe(2134053);
+    await expect
+      .poll(async () => skjultTabell.locator("tbody tr").count())
+      .toBe(37);
+  });
 });
