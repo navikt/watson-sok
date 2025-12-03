@@ -3,7 +3,7 @@
   "saksbehandlerIdent": "prod-gcp:holmes:nav-persondata-api",
   "fødselsnummer": "56788901234",
   "tilgang": {
-    "tilgang": "OK",
+    "tilgang": "AVVIST_FORTROLIG_ADRESSE",
     "harUtvidetTilgang": false
   },
   "personInformasjon": {
