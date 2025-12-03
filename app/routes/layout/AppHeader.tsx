@@ -32,6 +32,7 @@ export function AppHeader() {
 
   useHotkeys("mod+k", (event) => {
     event.preventDefault();
+    event.stopPropagation();
     searchInputRef.current?.focus();
   });
 

@@ -7,7 +7,6 @@ import {
   Link,
   Skeleton,
   Timeline,
-  ToggleGroup,
   Tooltip,
 } from "@navikt/ds-react";
 
@@ -23,12 +22,12 @@ import {
   TimelinePin,
   TimelineRow,
 } from "@navikt/ds-react/Timeline";
-import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useMemo, useState } from "react";
 import { RouteConfig } from "~/config/routeConfig";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
+import { useTidsvindu } from "~/features/tidsvindu/Tidsvindu";
 import type { Ytelse } from "~/routes/oppslag/schemas";
 import { sporHendelse } from "~/utils/analytics";
 import { formatterDato, forskjellIDager } from "~/utils/date-utils";
@@ -65,14 +64,10 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     FeatureFlagg.VIS_YTELSESDETALJER_MODAL,
   );
   const harIngenYtelser = !ytelser || ytelser.length === 0;
-  const {
-    nåværendeVindu,
-    oppdaterVindu,
-    vinduetsStørrelse,
-    setVinduetsStørrelse,
-  } = useTidslinjevindu();
+  const { nåværendeVindu, oppdaterVindu } = useTidslinjevindu();
   const tilbakekrevinger = useTilbakekrevinger(ytelser, nåværendeVindu);
   const [valgtYtelse, setValgtYtelse] = useState<Ytelse | null>(null);
+  const { tidsvindu } = useTidsvindu();
 
   const ytelserMedGruppertePerioder = useMemo(() => {
     if (!ytelser) return [];
@@ -85,7 +80,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   const viserSiste10År = searchParams.get("utvidet") === "true";
   const tittel = viserSiste10År
     ? "Ytelser fra Nav siste 10 år"
-    : "Ytelser fra Nav siste 3 år";
+    : `Ytelser fra Nav siste ${tidsvindu}`;
 
   return (
     <PanelContainer
@@ -122,8 +117,6 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
             viserSiste10År={viserSiste10År}
             nåværendeVindu={nåværendeVindu}
             oppdaterVindu={oppdaterVindu}
-            vinduetsStørrelse={vinduetsStørrelse}
-            setVinduetsStørrelse={setVinduetsStørrelse}
           />
 
           <Timeline
@@ -249,14 +242,15 @@ const YtelserPanelSkeleton = () => {
   );
 };
 
-type TidslinjeKontrollpanelProps = ReturnType<typeof useTidslinjevindu> & {
+type TidslinjeKontrollpanelProps = Pick<
+  ReturnType<typeof useTidslinjevindu>,
+  "nåværendeVindu" | "oppdaterVindu"
+> & {
   viserSiste10År: boolean;
 };
 const TidslinjeKontrollpanel = ({
   nåværendeVindu,
   oppdaterVindu,
-  vinduetsStørrelse,
-  setVinduetsStørrelse,
   viserSiste10År,
 }: TidslinjeKontrollpanelProps) => {
   const nå = new Date();
@@ -280,7 +274,7 @@ const TidslinjeKontrollpanel = ({
           size="small"
           disabled={!kanFlytteForrigePeriode}
           onClick={() => {
-            oppdaterVindu("forrige", 1, vinduetsStørrelse);
+            oppdaterVindu("forrige");
             sporHendelse("tidslinje periode flyttet", {
               retning: "forrige",
             });
@@ -292,30 +286,13 @@ const TidslinjeKontrollpanel = ({
           variant="secondary-neutral"
           size="small"
           onClick={() => {
-            oppdaterVindu("neste", 1, vinduetsStørrelse);
+            oppdaterVindu("neste");
             sporHendelse("tidslinje periode flyttet", {
               retning: "neste",
             });
           }}
         />
       </div>
-      <ToggleGroup
-        variant="neutral"
-        size="small"
-        value={vinduetsStørrelse}
-        onChange={(value) => {
-          const antallMåneder = value as AntallMåneder;
-          setVinduetsStørrelse(antallMåneder);
-          oppdaterVindu("gjeldende", 0, antallMåneder);
-          sporHendelse("tidslinje størrelse endret", {
-            antallMåneder,
-          });
-        }}
-      >
-        <ToggleGroupItem value="6" label="6 mnd" />
-        <ToggleGroupItem value="12" label="1 år" />
-        <ToggleGroupItem value="36" label="3 år" />
-      </ToggleGroup>
     </div>
   );
 };
@@ -370,57 +347,28 @@ function grupperSammenhengendePerioder(
   return gruppert;
 }
 
-type AntallMåneder = "6" | "12" | "36";
 function useTidslinjevindu() {
-  const [vinduetsStørrelse, setVinduetsStørrelse] =
-    useState<AntallMåneder>("36");
+  const { tidsvinduIAntallMåneder } = useTidsvindu();
+  const [tidsvinduOffset, setTidsvinduOffset] = useState(0);
 
-  const [nåværendeVindu, setNåværendeVindu] = useState<{
-    start: Date;
-    slutt: Date;
-  }>(() => {
-    const nå = new Date();
-    const start = new Date(nå);
-    start.setMonth(start.getMonth() - Number(vinduetsStørrelse));
-    return { start, slutt: nå };
-  });
+  const nå = new Date();
+  const start = new Date(nå);
+  start.setMonth(nå.getMonth() - tidsvinduIAntallMåneder - tidsvinduOffset);
+  const slutt = new Date(nå);
+  slutt.setMonth(nå.getMonth() - tidsvinduOffset);
 
-  function oppdaterVindu(
-    retning: "forrige" | "neste" | "gjeldende",
-    endringMåneder: number,
-    vindusstørrelse: AntallMåneder,
-  ) {
-    const antallMåneder = parseInt(vindusstørrelse);
-
+  function oppdaterVindu(retning: "forrige" | "neste" | "gjeldende") {
     if (retning === "forrige") {
-      const nyStartdato = new Date(nåværendeVindu.start);
-      nyStartdato.setMonth(nyStartdato.getMonth() - endringMåneder);
-
-      const nySluttdato = new Date(nyStartdato);
-      nySluttdato.setMonth(nySluttdato.getMonth() + antallMåneder);
-
-      setNåværendeVindu({ start: nyStartdato, slutt: nySluttdato });
+      setTidsvinduOffset((prev) => prev + 1);
     } else if (retning === "neste") {
-      const nyStartdato = new Date(nåværendeVindu.start);
-      nyStartdato.setMonth(nyStartdato.getMonth() + endringMåneder);
-
-      const nySluttdato = new Date(nyStartdato);
-      nySluttdato.setMonth(nySluttdato.getMonth() + antallMåneder);
-
-      setNåværendeVindu({ start: nyStartdato, slutt: nySluttdato });
+      setTidsvinduOffset((prev) => prev - 1);
     } else {
-      const nyStartdato = new Date();
-      nyStartdato.setMonth(nyStartdato.getMonth() - antallMåneder);
-
-      const nySluttdato = new Date();
-      setNåværendeVindu({ start: nyStartdato, slutt: nySluttdato });
+      setTidsvinduOffset(0);
     }
   }
   return {
-    nåværendeVindu,
+    nåværendeVindu: { start, slutt },
     oppdaterVindu,
-    vinduetsStørrelse,
-    setVinduetsStørrelse,
   };
 }
 
