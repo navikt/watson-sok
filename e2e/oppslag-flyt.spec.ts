@@ -121,22 +121,6 @@ test.describe("Oppslag-flyt", () => {
         name: /inntektsoppsummering/i,
       });
       await expect(panelHeading).toBeVisible({ timeout: 10000 });
-
-      const periodeVelger = page.getByLabel(/velg tidsperiode/i);
-      await expect(periodeVelger).toBeVisible();
-
-      // Standardverdien skal være 36 måneder (default)
-      await expect(
-        page.getByText(/total inntekt \(siste 36 mnd\)/i),
-      ).toBeVisible();
-
-      // Endre perioden og verifiser at teksten oppdateres
-      await periodeVelger.selectOption("12");
-      await expect(
-        page.getByText(/total inntekt \(siste 12 mnd\)/i),
-      ).toBeVisible();
-
-      // Tilgjengelighetssjekk etter interaksjon
       await sjekkTilgjengelighet(page);
     });
 

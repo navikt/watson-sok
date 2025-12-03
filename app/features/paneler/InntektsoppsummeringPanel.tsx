@@ -204,8 +204,9 @@ const InntektsoppsummeringPanelMedData = ({
     >
       {harIngenInntekter ? (
         <Alert variant="info">
-          Ingen utbetalinger registrert de siste{" "}
-          {tidsvindu === "1 år" ? "året" : `${tidsvindu}ene`}.
+          Ingen utbetalinger registrert{" "}
+          {tidsvindu === "1 år" ? "det siste året" : `de siste ${tidsvindu}ene`}
+          .
         </Alert>
       ) : (
         <div className="flex flex-col gap-6">

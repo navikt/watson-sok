@@ -30,13 +30,6 @@ export function useMånedligData(
   }, [inntektInformasjon, ytelser, tidsvinduIAntallMåneder]);
 }
 
-/**
- * Transformerer inntekter og ytelser til månedlige aggregater for de siste 36 månedene.
- *
- * @example
- * const data = transformTilMånedligData(inntektInformasjon, ytelser);
- * // data[0] kan være { periode: "2024-01", inntekt: 50000, ytelse: 0 }
- */
 function transformTilMånedligData(
   inntektInformasjon: Awaited<
     InntektOgYtelseOverlappPanelProps["inntektPromise"]

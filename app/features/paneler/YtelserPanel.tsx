@@ -359,9 +359,9 @@ function useTidslinjevindu() {
 
   function oppdaterVindu(retning: "forrige" | "neste" | "gjeldende") {
     if (retning === "forrige") {
-      setTidsvinduOffset(tidsvinduOffset + 1);
+      setTidsvinduOffset((prev) => prev + 1);
     } else if (retning === "neste") {
-      setTidsvinduOffset(tidsvinduOffset - 1);
+      setTidsvinduOffset((prev) => prev - 1);
     } else {
       setTidsvinduOffset(0);
     }

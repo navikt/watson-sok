@@ -1,6 +1,6 @@
 import { ToggleGroup } from "@navikt/ds-react";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
-import { createContext, use, useState } from "react";
+import { createContext, use, useMemo, useState } from "react";
 
 type TidsvinduPeriode = "6 måneder" | "1 år" | "3 år";
 
@@ -19,8 +19,12 @@ export const TidsvinduProvider = ({
   children: React.ReactNode;
 }) => {
   const [tidsvindu, setTidsvindu] = useState<TidsvinduPeriode>("3 år");
+  const context = useMemo(
+    () => ({ tidsvindu, setTidsvindu }),
+    [tidsvindu, setTidsvindu],
+  );
   return (
-    <TidsvinduContext.Provider value={{ tidsvindu, setTidsvindu }}>
+    <TidsvinduContext.Provider value={context}>
       {children}
     </TidsvinduContext.Provider>
   );
