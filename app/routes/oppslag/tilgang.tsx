@@ -270,6 +270,10 @@ const mapGrunnForBegrensetTilgang = (grunnForBegrensetTilgang: string) => {
       return "du er registrert som brukerens verge";
     case "AVVIST_MANGLENDE_DATA":
       return "manglende data i systemet gjør at vi ikke kan gi deg tilgang automatisk";
+    case "AVVIST_PERSON_UTLAND":
+      return "brukeren bor i utlandet";
+    case "AVVIST_UKJENT_BOSTED":
+      return "brukeren har ukjent bosted";
     default:
       return "en ukjent grunn";
   }
