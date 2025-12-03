@@ -3,12 +3,12 @@ import {
   BodyShort,
   Heading,
   Label,
-  Select,
   Skeleton,
   Table,
 } from "@navikt/ds-react";
-import { use, useId, useMemo, useState } from "react";
+import { use, useId, useMemo } from "react";
 import type { InntektInformasjon } from "~/routes/oppslag/schemas";
+import { useTidsvindu } from "~/routes/oppslag/Tidsvindu";
 import { formatÅrMåned } from "~/utils/date-utils";
 import {
   formatterBeløp,
@@ -59,30 +59,6 @@ const KILDER = [
   fallbackLabel: string;
 }>;
 
-const PERIODE_ALTERNATIVER = [
-  {
-    label: "3 måneder",
-    value: 3,
-  },
-  {
-    label: "6 måneder",
-    value: 6,
-  },
-  {
-    label: "1 år",
-    value: 12,
-  },
-  {
-    label: "2 år",
-    value: 24,
-  },
-  {
-    label: "3 år",
-    value: 36,
-  },
-] as const;
-const DEFAULT_ANTALL_MÅNEDER =
-  PERIODE_ALTERNATIVER[PERIODE_ALTERNATIVER.length - 1].value;
 const TOPP_UTBETALERE_ANTALL = 3;
 
 export function InntektsoppsummeringPanel({
@@ -102,7 +78,7 @@ const InntektsoppsummeringPanelMedData = ({
   promise,
 }: InntektsoppsummeringPanelMedDataProps) => {
   const inntektInformasjon = use(promise);
-  const [antallMåneder, setAntallMåneder] = useState(DEFAULT_ANTALL_MÅNEDER);
+  const { tidsvinduIAntallMåneder, tidsvindu } = useTidsvindu();
 
   const aggregert = useMemo<AggregertResultat | null>(() => {
     if (!inntektInformasjon) {
@@ -112,7 +88,7 @@ const InntektsoppsummeringPanelMedData = ({
     const cutoff = new Date();
     cutoff.setDate(1);
     cutoff.setHours(0, 0, 0, 0);
-    cutoff.setMonth(cutoff.getMonth() - antallMåneder);
+    cutoff.setMonth(cutoff.getMonth() - tidsvinduIAntallMåneder);
 
     const allePoster: AggregertInntekt[] = [];
 
@@ -217,7 +193,7 @@ const InntektsoppsummeringPanelMedData = ({
       lønnstyper,
       toppUtbetalere,
     };
-  }, [inntektInformasjon, antallMåneder]);
+  }, [inntektInformasjon, tidsvinduIAntallMåneder]);
 
   const harIngenInntekter = !aggregert;
 
@@ -226,36 +202,16 @@ const InntektsoppsummeringPanelMedData = ({
       title="Inntekts&shy;oppsummering"
       betaFeature="inntektsoppsummering"
     >
-      <div className="flex justify-end mb-4 static lg:absolute lg:top-4 lg:right-4">
-        <Select
-          label="Velg tidsperiode"
-          hideLabel
-          size="small"
-          value={String(antallMåneder)}
-          onChange={(event) => {
-            const valgt = Number(event.target.value);
-            setAntallMåneder(
-              valgt as (typeof PERIODE_ALTERNATIVER)[number]["value"],
-            );
-          }}
-          className="w-full lg:w-48"
-        >
-          {PERIODE_ALTERNATIVER.map((alternativ) => (
-            <option key={alternativ.value} value={alternativ.value}>
-              {alternativ.label}
-            </option>
-          ))}
-        </Select>
-      </div>
       {harIngenInntekter ? (
         <Alert variant="info">
-          Ingen utbetalinger registrert de siste {antallMåneder} månedene.
+          Ingen utbetalinger registrert de siste{" "}
+          {tidsvindu === "1 år" ? "året" : `${tidsvindu}ene`}.
         </Alert>
       ) : (
         <div className="flex flex-col gap-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <StatistikkKort
-              label={`Total inntekt (siste ${antallMåneder} mnd)`}
+              label={`Total inntekt (siste ${tidsvindu})`}
               verdi={formatterBeløp(aggregert.totalBeløp, 0)}
               beskrivelse={aggregert.periodeTekst}
             />
