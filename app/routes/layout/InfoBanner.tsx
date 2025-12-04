@@ -11,7 +11,7 @@ import { useDisclosure } from "~/features/use-disclosure/useDisclosure";
 /** Viser statusmelding fra Unleash */
 export function InfoBanner() {
   const { loaderData } = unstable_useRoute("root");
-  const { erÅpen, onLukk } = useDisclosure();
+  const { erÅpen, onLukk } = useDisclosure(true);
   const statusmelding = loaderData?.statusmelding;
   if (!statusmelding || !erÅpen) {
     return null;
