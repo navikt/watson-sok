@@ -21,6 +21,7 @@ async function initialiserUnleash() {
     },
   });
 }
+
 /** Henter alle påskrudde feature-flaggene */
 export async function hentAlleFeatureFlagg(
   navIdent: string,
@@ -38,13 +39,43 @@ export async function hentAlleFeatureFlagg(
     );
   }
   await initialiserUnleash();
-  return unleash.getFeatureToggleDefinitions().reduce(
-    (acc, neste) => {
-      acc[neste.name as FeatureFlagg] = unleash.isEnabled(neste.name, {
-        userId: navIdent,
-      });
-      return acc;
-    },
-    {} as Record<FeatureFlagg, boolean>,
-  );
+  const toggles = unleash.getFeatureToggleDefinitions();
+  return toggles
+    .filter((toggle) => toggle.name !== FeatureFlagg.STATUSMELDING)
+    .reduce(
+      (acc, toggle) => {
+        acc[toggle.name as FeatureFlagg] = unleash.isEnabled(toggle.name, {
+          userId: navIdent,
+        });
+        return acc;
+      },
+      {} as Record<FeatureFlagg, boolean>,
+    );
+}
+
+type Statusmelding = {
+  tittel: string;
+  beskrivelse?: string;
+};
+export async function hentStatusmeldingFeatureFlagg(): Promise<
+  Statusmelding | false
+> {
+  if (!isProd) {
+    return false;
+  }
+  await initialiserUnleash();
+  const toggle = unleash
+    .getFeatureToggleDefinitions()
+    .find((toggle) => toggle.name === FeatureFlagg.STATUSMELDING);
+
+  if (!toggle || !toggle.description) {
+    return false;
+  }
+  const [tittel, ...beskrivelse] = toggle.description
+    .split("\n")
+    .filter((s) => s.trim().length > 0);
+  return {
+    tittel: tittel.trim(),
+    beskrivelse: beskrivelse.join("\n").trim(),
+  };
 }
