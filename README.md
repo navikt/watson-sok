@@ -136,6 +136,25 @@ For testbrukere i dev, sjekk [Confluence](https://confluence.adeo.no/spaces/THLM
 </details>
 
 <details>
+<summary>Statusmeldinger / varsler</summary>
+
+## Legg ut statusmeldinger via Unleash
+
+Per i dag kan man legge ut statusmelding på siden om vi eller noen av undersystemene våre har tekniske problemer, via Unleash.
+
+For å legge ut en melding, kan du gå inn [her](https://holmes-unleash-web.iap.nav.cloud.nais.io/projects/default/features/statusmelding/edit), og endre "Description" til hva du ønsker at statusmeldingen skal være.
+
+Her er det litt "magisk" formatering – **første linje er tittel, påfølgende linjer er beskrivelse**. Her er et eksempel
+
+```
+Dette er tittelen
+Dette er beskrivelsen. Påfølgende linjeskift vil bli ignorert.
+```
+
+Når du har oppdatert beskrivelsen, slå på feature flagget i dev eller prod.
+</details>
+
+<details>
 <summary>Debugging</summary>
 
 ## 🐣 Legg til trace-logging for et gitt søk
