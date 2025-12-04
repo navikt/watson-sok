@@ -64,15 +64,20 @@ export async function hentStatusmeldingFeatureFlagg(): Promise<
     return false;
   }
   await initialiserUnleash();
-  const toggle = unleash
-    .getFeatureToggleDefinitions()
-    .find((toggle) => toggle.name === FeatureFlagg.STATUSMELDING);
-
-  if (!toggle?.enabled || !toggle?.description) {
+  const erPåskrudd = unleash.isEnabled(FeatureFlagg.STATUSMELDING);
+  if (!erPåskrudd) {
     return false;
   }
 
-  const [tittel, ...beskrivelse] = toggle.description
+  const tekst = unleash.getFeatureToggleDefinition(
+    FeatureFlagg.STATUSMELDING,
+  )?.description;
+
+  if (!tekst) {
+    return false;
+  }
+
+  const [tittel, ...beskrivelse] = tekst
     .split("\n")
     .filter((s) => s.trim().length > 0);
   return {
