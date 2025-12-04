@@ -68,9 +68,10 @@ export async function hentStatusmeldingFeatureFlagg(): Promise<
     .getFeatureToggleDefinitions()
     .find((toggle) => toggle.name === FeatureFlagg.STATUSMELDING);
 
-  if (!toggle || !toggle.description) {
+  if (!toggle?.enabled || !toggle?.description) {
     return false;
   }
+
   const [tittel, ...beskrivelse] = toggle.description
     .split("\n")
     .filter((s) => s.trim().length > 0);
