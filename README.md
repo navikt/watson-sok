@@ -152,6 +152,7 @@ Dette er beskrivelsen. Påfølgende linjeskift vil bli ignorert.
 ```
 
 Når du har oppdatert beskrivelsen, slå på feature flagget i dev eller prod.
+
 </details>
 
 <details>

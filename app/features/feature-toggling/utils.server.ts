@@ -73,7 +73,7 @@ export async function hentStatusmeldingFeatureFlagg(): Promise<
     FeatureFlagg.STATUSMELDING,
   )?.description;
 
-  if (!tekst) {
+  if (!tekst?.trim()) {
     return false;
   }
 
