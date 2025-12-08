@@ -1,14 +1,43 @@
 class Logger {
   info(message: string, data?: Record<string, unknown>) {
-    console.info(JSON.stringify({ level: "info", message, ...data }));
+    this.logg("info", message, data);
   }
 
   warn(message: string, data?: Record<string, unknown>) {
-    console.warn(JSON.stringify({ level: "warn", message, ...data }));
+    this.logg("warn", message, data);
   }
 
   error(message: string, data?: Record<string, unknown>) {
-    console.error(JSON.stringify({ level: "error", message, ...data }));
+    this.logg("error", message, data);
+  }
+
+  private logg(
+    level: "info" | "warn" | "error",
+    message: string,
+    data?: Record<string, unknown>,
+  ) {
+    console[level](
+      JSON.stringify({ level, message, ...this.serialiserData(data) }),
+    );
+  }
+
+  private serialiserData(data?: Record<string, unknown>) {
+    if (!data) {
+      return {};
+    }
+    const serialisert: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(data)) {
+      if (value instanceof Error) {
+        serialisert[key] = {
+          message: value.message,
+          stack: value.stack,
+          name: value.name,
+        };
+      } else {
+        serialisert[key] = value;
+      }
+    }
+    return serialisert;
   }
 }
 
