@@ -79,9 +79,15 @@ export async function hentStatusmeldingFeatureFlagg(): Promise<
 
   const [tittel, ...beskrivelse] = tekst
     .split("\n")
-    .filter((s) => s.trim().length > 0);
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  if (!tittel) {
+    return false;
+  }
+
   return {
-    tittel: tittel.trim(),
-    beskrivelse: beskrivelse.join("\n").trim(),
+    tittel,
+    beskrivelse: beskrivelse.join("\n") || undefined,
   };
 }
