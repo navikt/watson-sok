@@ -20,7 +20,10 @@ import {
   themeCookie,
   type Theme,
 } from "./features/darkside/ThemeCookie";
-import { hentAlleFeatureFlagg } from "./features/feature-toggling/utils.server";
+import {
+  hentAlleFeatureFlagg,
+  hentStatusmeldingFeatureFlagg,
+} from "./features/feature-toggling/utils.server";
 import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { Versjonsvarsling } from "./features/versjonsvarsling/Versjonsvarsling";
@@ -44,8 +47,9 @@ export default function Root() {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = await getLoggedInUser({ request });
-  const [featureFlagg, cookieValue] = await Promise.all([
+  const [featureFlagg, statusmelding, cookieValue] = await Promise.all([
     hentAlleFeatureFlagg(user.navIdent),
+    hentStatusmeldingFeatureFlagg(),
     themeCookie.parse(request.headers.get("Cookie")),
   ]);
   const initialTheme = parseTheme(cookieValue);
@@ -61,6 +65,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       miljø: env.ENVIRONMENT,
     },
     featureFlagg,
+    statusmelding,
   };
 }
 

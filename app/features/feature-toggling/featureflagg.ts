@@ -4,4 +4,5 @@ export enum FeatureFlagg {
   INNTEKT_OG_YTELSE_OVERLAPP_PANEL = "inntekt-og-ytelse-overlapp-panel",
   VIS_TILBAKEBETALING_IDENTIFIKATORER = "vis-tilbakebetaling-identifikatorer",
   VIS_YTELSESDETALJER_MODAL = "vis-ytelsesdetaljer-modal",
+  STATUSMELDING = "statusmelding",
 }
