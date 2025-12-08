@@ -6,6 +6,7 @@ import {
 } from "@navikt/oasis";
 import { redirect } from "react-router";
 import { env, isDev, skalBrukeMockdata } from "~/config/env.server";
+import { logger } from "./logging";
 
 interface LoggedInUserResponse {
   preferredUsername: string;
@@ -35,7 +36,7 @@ export async function getLoggedInUser({
 
   const parseResult = parseAzureUserToken(token);
   if (!parseResult.ok) {
-    console.error("Token parse result not ok", parseResult.error);
+    logger.error("Token parse resultat ikke ok", { error: parseResult.error });
     throw redirect(`/oauth2/login`);
   }
 
@@ -96,7 +97,7 @@ async function getValidToken(request: Request): Promise<string> {
   const token: string | null | undefined = getToken(authHeader);
   if (!token) {
     if (isDev) {
-      console.error("Du må sette DEVELOPMENT_OAUTH_TOKEN i .env");
+      logger.error("Du må sette DEVELOPMENT_OAUTH_TOKEN i .env");
       throw new Error("Du må sette DEVELOPMENT_OAUTH_TOKEN i .env");
     }
     throw redirect(`/oauth2/login`);
@@ -105,9 +106,9 @@ async function getValidToken(request: Request): Promise<string> {
   const validationResult = await validateToken(token);
   if (!validationResult.ok) {
     if (isDev) {
-      console.error(
+      logger.error(
         "DEVELOPMENT_OAUTH_TOKEN er ikke gyldig. Generer et nytt token og sett det i .env",
-        validationResult.error,
+        { error: validationResult.error },
       );
       throw new Error(
         "DEVELOPMENT_OAUTH_TOKEN er ikke gyldig. Generer et nytt token og sett det i .env",

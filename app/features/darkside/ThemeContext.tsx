@@ -1,6 +1,7 @@
 import { Theme } from "@navikt/ds-react";
 import { createContext, useContext, useState } from "react";
 import { RouteConfig } from "~/config/routeConfig";
+import { logger } from "~/utils/logging";
 import { type Theme as ThemeType } from "./ThemeCookie";
 
 const ThemeContext = createContext<{
@@ -44,7 +45,7 @@ export function ThemeProvider({
         body: formData,
       });
     } catch (error) {
-      console.error("Failed to save theme preference:", error);
+      logger.error("Kunne ikke lagre tema-preferense", { error });
       setTheme(oldTheme);
     }
   };

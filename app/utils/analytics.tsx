@@ -2,6 +2,7 @@ import mixpanel from "mixpanel-browser";
 import { useEffect } from "react";
 import { useUser } from "~/features/auth/useUser";
 import { useMiljø } from "~/features/use-miljø/useMiljø";
+import { logger } from "./logging";
 type AnalyticsTagProps = {
   sporingId: string;
 };
@@ -43,11 +44,11 @@ export function sporHendelse(
 ) {
   if (process.env.NODE_ENV === "development") {
     if (hendelse.length > 50) {
-      console.warn(
+      logger.warn(
         `📊 [Analytics] Hendelse ${hendelse} er for lang. Maks lengde er 50 tegn, hendelsen er på ${hendelse.length} tegn.`,
       );
     }
-    console.info(`📊 [Analytics] ${hendelse}`, data);
+    logger.info(`📊 [Analytics] ${hendelse}`, data);
     return;
   }
   if (typeof window !== "undefined" && window.umami) {

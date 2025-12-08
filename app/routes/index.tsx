@@ -24,6 +24,7 @@ import {
 } from "~/features/oppslag/oppslagSession.server";
 import { useMiljø } from "~/features/use-miljø/useMiljø";
 import { sporHendelse } from "~/utils/analytics";
+import { logger } from "~/utils/logging";
 import { sjekkEksistensOgTilgang } from "./oppslag/api.server";
 
 export default function LandingPage() {
@@ -174,7 +175,7 @@ export async function action({ request }: ActionFunctionArgs) {
       },
     });
   } catch (error) {
-    console.error("En feil oppsto ved søking på bruker.", error);
+    logger.error("En feil oppsto ved søking på bruker.", { error });
     return { error: "En feil oppsto ved søking på bruker. Prøv igjen senere." };
   }
 }

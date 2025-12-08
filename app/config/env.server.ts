@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { logger } from "~/utils/logging";
 
 const envSchema = z.object({
   NODE_ENV: z
@@ -44,7 +45,9 @@ const envSchema = z.object({
 const envResult = envSchema.safeParse(process.env);
 
 if (!envResult.success) {
-  console.error("Missing or invalid environment variables", envResult.error);
+  logger.error("Mangler eller er ugyldige miljøvariabler", {
+    error: envResult.error,
+  });
   throw new Error(
     "Invalid environment variables. Check console for more information.",
   );
