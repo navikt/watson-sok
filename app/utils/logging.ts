@@ -1,14 +1,14 @@
 class Logger {
   info(message: string, data?: Record<string, unknown>) {
-    console.info({ level: "info", message, ...data });
+    console.info(JSON.stringify({ level: "info", message, ...data }));
   }
 
   warn(message: string, data?: Record<string, unknown>) {
-    console.warn({ level: "warn", message, ...data });
+    console.warn(JSON.stringify({ level: "warn", message, ...data }));
   }
 
   error(message: string, data?: Record<string, unknown>) {
-    console.error({ level: "error", message, ...data });
+    console.error(JSON.stringify({ level: "error", message, ...data }));
   }
 }
 
