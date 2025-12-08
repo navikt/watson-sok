@@ -49,7 +49,7 @@ export async function sjekkEksistensOgTilgang({
         harUtvidetTilgang: false,
       };
     }
-    logger.error(`Fant mocket match på fødselsnummer ${ident}`);
+    logger.info(`Fant mocket match på fødselsnummer ${ident}`);
     return mockedResponse.tilgang;
   }
 
