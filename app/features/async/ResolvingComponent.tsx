@@ -1,6 +1,7 @@
 import { Alert, BodyShort, Heading } from "@navikt/ds-react";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { logger } from "~/utils/logging";
 
 type ResolvingComponentProps = {
   /** Fallback for loading */
@@ -31,11 +32,10 @@ export const ResolvingComponent = ({
     <ErrorBoundary
       fallback={errorFallback}
       onError={(error, info) => {
-        console.error(
-          "Feil oppstod mens løsningen ventet på serveren: ",
+        logger.error("Feil oppstod mens løsningen ventet på serveren", {
           error,
-          info?.componentStack,
-        );
+          componentStack: info?.componentStack,
+        });
       }}
     >
       <Suspense fallback={loadingFallback}>{children}</Suspense>

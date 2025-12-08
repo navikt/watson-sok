@@ -4,6 +4,7 @@ import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useEffect, useRef, useState } from "react";
 import { RouteConfig } from "~/config/routeConfig";
 import { sporHendelse } from "~/utils/analytics";
+import { logger } from "~/utils/logging";
 
 const POLLING_INTERVAL_MS = 60_000;
 
@@ -59,7 +60,7 @@ export function Versjonsvarsling({ gjeldendeVersjon }: VersjonsvarslingProps) {
         }
       } catch (error) {
         if (error instanceof Error && error.name !== "AbortError") {
-          console.error("Klarte ikke å hente appversjon", error);
+          logger.error("Klarte ikke å hente appversjon", { error });
         }
       } finally {
         planleggNySjekk();

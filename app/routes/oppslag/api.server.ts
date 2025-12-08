@@ -2,6 +2,7 @@ import z from "zod";
 import { BACKEND_API_URL, skalBrukeMockdata } from "~/config/env.server";
 import { getMockedResponseByFødselsnummer } from "~/routes/oppslag/mock.server";
 import { getBackendOboToken } from "~/utils/access-token";
+import { logger } from "~/utils/logging";
 import {
   ArbeidsgiverInformasjonSchema,
   EksistensOgTilgangSchema,
@@ -42,11 +43,13 @@ export async function sjekkEksistensOgTilgang({
   if (skalBrukeMockdata) {
     const mockedResponse = await getMockedResponseByFødselsnummer(ident);
     if (!mockedResponse) {
+      logger.error(`Fant ingen mocket match på fødselsnummer ${ident}`);
       return {
         tilgang: "IKKE_FUNNET",
         harUtvidetTilgang: false,
       };
     }
+    logger.info(`Fant mocket match på fødselsnummer ${ident}`);
     return mockedResponse.tilgang;
   }
 
@@ -64,8 +67,9 @@ export async function sjekkEksistensOgTilgang({
       body: JSON.stringify({ ident }),
     });
 
-    console.info(
-      `Bruker med ident ${ident.substring(0, 6)} ***** slått opp med status ${response.status} (nav-call-id: ${navCallId})`,
+    logger.info(
+      `Bruker med ident ${ident.substring(0, 6)} ***** slått opp med status ${response.status}`,
+      { traceId: navCallId },
     );
 
     if (response.status === 404) {
@@ -92,7 +96,7 @@ export async function sjekkEksistensOgTilgang({
     if (error instanceof OppslagApiError) {
       throw error;
     }
-    console.error("⛔ Nettverksfeil mot baksystem:", error);
+    logger.error("⛔ Nettverksfeil mot baksystem:", { error });
     throw error;
   }
 }
@@ -128,7 +132,7 @@ export async function loggBegrunnetTilgang({
     );
 
     if (response.ok) {
-      console.info(
+      logger.info(
         `Begrunnet tilgang logget for oppslag på bruker med ident ${ident.substring(0, 6)} *****.`,
       );
     } else {
@@ -137,7 +141,7 @@ export async function loggBegrunnetTilgang({
       );
     }
   } catch (error) {
-    console.error("⛔ Nettverksfeil mot begrunnet tilgangslogg:", error);
+    logger.error("⛔ Nettverksfeil mot begrunnet tilgangslogg:", { error });
     throw error;
   }
 }
@@ -255,7 +259,7 @@ async function gjørOppslagApiRequest<T>({
       }
       return ekstraherFraMock(mockedResponse);
     } catch (error) {
-      console.error("Mock data error:", error);
+      logger.error("Mock data error:", { error });
       throw error;
     }
   }
@@ -294,10 +298,9 @@ async function gjørOppslagApiRequest<T>({
     const parsedData = schema.safeParse(rawData.data);
 
     if (!parsedData.success) {
-      console.error(
-        "Mottok ugyldig data fra baksystem",
-        z.treeifyError(parsedData.error),
-      );
+      logger.error("Mottok ugyldig data fra baksystem", {
+        error: z.treeifyError(parsedData.error),
+      });
       throw new OppslagApiError(
         "Ugyldig data fra baksystem: " + z.treeifyError(parsedData.error),
       );
@@ -308,7 +311,7 @@ async function gjørOppslagApiRequest<T>({
     if (err instanceof OppslagApiError) {
       throw err;
     }
-    console.error("⛔ Nettverksfeil mot baksystem:", err);
+    logger.error("⛔ Nettverksfeil mot baksystem:", { error: err });
     throw err;
   }
 }

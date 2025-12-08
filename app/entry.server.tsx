@@ -6,6 +6,7 @@ import type { RenderToPipeableStreamOptions } from "react-dom/server";
 import { renderToPipeableStream } from "react-dom/server";
 import type { EntryContext } from "react-router";
 import { ServerRouter } from "react-router";
+import { logger } from "./utils/logging";
 
 export const streamTimeout = 60_000;
 
@@ -62,7 +63,7 @@ export default function handleRequest(
         onError(error: unknown) {
           responseStatusCode = 500;
           if (shellRendered) {
-            console.error(error);
+            logger.error("Error rendering shell", { error });
           }
         },
       },

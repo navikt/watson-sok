@@ -28,6 +28,7 @@ import { InternalServerError } from "./features/feilhåndtering/InternalServerEr
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { Versjonsvarsling } from "./features/versjonsvarsling/Versjonsvarsling";
 import { AnalyticsTags } from "./utils/analytics";
+import { logger } from "./utils/logging";
 import { initFaro } from "./utils/observability";
 
 export default function Root() {
@@ -92,7 +93,7 @@ export function headers() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  console.error(error);
+  logger.error("Feil fanget av error boundary", { error });
   if (isRouteErrorResponse(error) && error.status === 404) {
     return (
       <HtmlRamme umamiSiteId="">
