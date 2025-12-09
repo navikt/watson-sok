@@ -9,10 +9,10 @@ import {
 } from "@navikt/ds-react/Table";
 import { use, useMemo, useState, type CSSProperties } from "react";
 import type { InntektInformasjon, Ytelse } from "~/routes/oppslag/schemas";
-import { formatÅrMåned } from "~/utils/date-utils";
+import { formaterÅrMåned } from "~/utils/date-utils";
 import {
-  formatterBeløp,
-  formatterDesimaltall,
+  formaterBeløp,
+  formaterDesimaltall,
   konverterTilTall,
 } from "~/utils/number-utils";
 import { camelCaseTilNorsk, storFørsteBokstav } from "~/utils/string-utils";
@@ -161,7 +161,7 @@ const InntektPanelMedData = ({
                           {r.arbeidsgiver === "Nav" &&
                             mapYtelsestypeTilIkon(r.lønnstype ?? "")}
                           <span>
-                            {storFørsteBokstav(formatÅrMåned(r.periode))}
+                            {storFørsteBokstav(formaterÅrMåned(r.periode))}
                           </span>
                           {harFlereVersjoner && (
                             <span className="sr-only"> (flere versjoner)</span>
@@ -176,14 +176,14 @@ const InntektPanelMedData = ({
                       </TableDataCell>
                       <TableDataCell style={cellStyle} textSize="small">
                         {timer !== null
-                          ? formatterDesimaltall(timer, 0, 2)
+                          ? formaterDesimaltall(timer, 0, 2)
                           : "–"}
                       </TableDataCell>
                       <TableDataCell
                         style={{ ...cellStyle, textAlign: "right" }}
                         textSize="small"
                       >
-                        {beløp !== null ? formatterBeløp(beløp) : "–"}
+                        {beløp !== null ? formaterBeløp(beløp) : "–"}
                       </TableDataCell>
                     </TableRow>
                   );

@@ -9,11 +9,11 @@ import {
 import { use, useId, useMemo } from "react";
 import { useTidsvindu } from "~/features/tidsvindu/Tidsvindu";
 import type { InntektInformasjon } from "~/routes/oppslag/schemas";
-import { formatÅrMåned } from "~/utils/date-utils";
+import { formaterÅrMåned } from "~/utils/date-utils";
 import {
-  formatterBeløp,
-  formatterDesimaltall,
-  formatterProsent,
+  formaterBeløp,
+  formaterDesimaltall,
+  formaterProsent,
   konverterTilTall,
 } from "~/utils/number-utils";
 import { camelCaseTilNorsk } from "~/utils/string-utils";
@@ -182,8 +182,8 @@ const InntektsoppsummeringPanelMedData = ({
       sortertePerioder[sortertePerioder.length - 1] ?? førstePeriode;
     const periodeTekst =
       førstePeriode && sistePeriode && sortertePerioder.length >= 2
-        ? `${formatÅrMåned(førstePeriode)} – ${formatÅrMåned(sistePeriode)}`
-        : formatÅrMåned(førstePeriode);
+        ? `${formaterÅrMåned(førstePeriode)} – ${formaterÅrMåned(sistePeriode)}`
+        : formaterÅrMåned(førstePeriode);
 
     return {
       totalBeløp,
@@ -213,14 +213,14 @@ const InntektsoppsummeringPanelMedData = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <StatistikkKort
               label={`Total inntekt (siste ${tidsvindu})`}
-              verdi={formatterBeløp(aggregert.totalBeløp, 0)}
+              verdi={formaterBeløp(aggregert.totalBeløp, 0)}
               beskrivelse={aggregert.periodeTekst}
             />
             <StatistikkKort
               label="Snitt per måned"
               verdi={
                 aggregert.gjennomsnittPerMåned !== null
-                  ? formatterBeløp(aggregert.gjennomsnittPerMåned, 0)
+                  ? formaterBeløp(aggregert.gjennomsnittPerMåned, 0)
                   : "–"
               }
               beskrivelse={`${aggregert.månederMedUtbetaling} mnd med utbetaling`}
@@ -253,13 +253,13 @@ const InntektsoppsummeringPanelMedData = ({
                       {camelCaseTilNorsk(lønnstype.label)}
                     </Table.HeaderCell>
                     <Table.DataCell align="right">
-                      {formatterBeløp(lønnstype.sum, 0)}
+                      {formaterBeløp(lønnstype.sum, 0)}
                     </Table.DataCell>
                     <Table.DataCell align="right">
-                      {formatterProsent(lønnstype.andel)}
+                      {formaterProsent(lønnstype.andel)}
                     </Table.DataCell>
                     <Table.DataCell align="right">
-                      {formatterDesimaltall(lønnstype.antallUtbetalinger, 0, 0)}
+                      {formaterDesimaltall(lønnstype.antallUtbetalinger, 0, 0)}
                     </Table.DataCell>
                   </Table.Row>
                 ))}
@@ -283,7 +283,7 @@ const InntektsoppsummeringPanelMedData = ({
                       <BodyShort size="small">{utbetaler.navn}</BodyShort>
                     </span>
                     <BodyShort size="small">
-                      {formatterBeløp(utbetaler.sum, 0)}
+                      {formaterBeløp(utbetaler.sum, 0)}
                     </BodyShort>
                   </li>
                 ))}

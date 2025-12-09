@@ -9,8 +9,8 @@ import {
 } from "@navikt/ds-react/Table";
 import { useMemo } from "react";
 import type { Ytelse } from "~/routes/oppslag/schemas";
-import { formatterDato } from "~/utils/date-utils";
-import { formatterBeløp } from "~/utils/number-utils";
+import { formaterDato } from "~/utils/date-utils";
+import { formaterBeløp } from "~/utils/number-utils";
 
 type YtelseUtbetalingerModalProps = {
   ytelse: Ytelse | null;
@@ -78,8 +78,8 @@ export function YtelseUtbetalingerModal({
             </TableHeader>
             <TableBody>
               {sorterteUtbetalinger.map((periode, index) => {
-                const fom = formatterDato(periode.periode.fom);
-                const tom = formatterDato(periode.periode.tom);
+                const fom = formaterDato(periode.periode.fom);
+                const tom = formaterDato(periode.periode.tom);
                 const tidspunkt = fom === tom ? fom : `${fom} – ${tom}`;
                 return (
                   <TableRow key={`${periode.periode.fom}-${index}`}>
@@ -92,7 +92,7 @@ export function YtelseUtbetalingerModal({
                         periode.beløp < 0 ? "text-ax-danger-500" : undefined
                       }
                     >
-                      {formatterBeløp(periode.beløp, 0)}
+                      {formaterBeløp(periode.beløp, 0)}
                     </TableDataCell>
                     <TableDataCell className="flex items-center gap-1">
                       {periode.info ?? "–"}{" "}

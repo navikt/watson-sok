@@ -67,8 +67,8 @@ npm run dev
 - `npm run test:e2e` – Kjører ende-til-ende tester
 - `npm run lint` - Kjører ESLint
 - `npm run typecheck` - Kjører TypeScript typesjekk
-- `npm run prettier` - Sjekker Prettier formattering
-- `npm run prettier:fix` - Fikser Prettier formattering
+- `npm run prettier` - Sjekker Prettier formatering
+- `npm run prettier:fix` - Fikser Prettier formatering
 - `npm run unused` - Sjekker om du har ubrukt kode eller avhengigheter
 - `npm run code-quality` – Kjører lint, typecheck, prettier og unused
 </details>
@@ -81,7 +81,7 @@ npm run dev
 Prosjektet bruker:
 
 - **ESLint** for kodekvalitet
-- **Prettier** for kodeformattering
+- **Prettier** for kodeformatering
 - **TypeScript** for typesikkerhet
 - **Knip** for sjekking av ubrukt kode og avhengigheter
 - **Playwright** for å kjøre ende-til-ende tester

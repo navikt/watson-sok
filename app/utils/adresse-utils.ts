@@ -12,27 +12,27 @@ import { storFørsteBokstav, storFørsteBokstavPerOrd } from "./string-utils";
  * Om brukeren har både norsk og utenlandsk adresse, returnerer norsk adresse
  *
  * @param adresse - Adresse-objekt som skal formateres
- * @returns Formattert adresse-objekt som en string
+ * @returns Formatert adresse-objekt som en string
  */
-export function formatterAdresse(adresse: Adresse | null): string {
+export function formaterAdresse(adresse: Adresse | null): string {
   if (adresse?.norskAdresse) {
-    return formatterNorskAdresse(adresse.norskAdresse);
+    return formaterNorskAdresse(adresse.norskAdresse);
   }
 
   if (adresse?.utenlandskAdresse) {
-    return formatterUtenlandskAdresse(adresse.utenlandskAdresse);
+    return formaterUtenlandskAdresse(adresse.utenlandskAdresse);
   }
 
   return "–";
 }
 
-function formatterNorskAdresse(norskAdresse: NorskAdresse): string {
+function formaterNorskAdresse(norskAdresse: NorskAdresse): string {
   const adresselinje1 = `${storFørsteBokstav(norskAdresse.adressenavn)} ${norskAdresse.husnummer}${(norskAdresse.husbokstav ?? "").toUpperCase()}`;
   const adresselinje2 = `${norskAdresse.postnummer} ${storFørsteBokstav(norskAdresse.poststed)}`;
   return `${adresselinje1}, ${adresselinje2}`;
 }
 
-function formatterUtenlandskAdresse(
+function formaterUtenlandskAdresse(
   utenlandskAdresse: UtenlandskAdresse,
 ): string {
   const adresselinje1 = `${storFørsteBokstav(utenlandskAdresse.adressenavnNummer)} ${utenlandskAdresse.bygningEtasjeLeilighet} ${utenlandskAdresse.postboksNummerNavn}`;

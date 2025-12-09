@@ -1,4 +1,10 @@
-export function formatterDesimaltall(
+/**
+ * Formater desimaltall
+ *
+ * @param tall - Tallen som skal formateres
+ * @returns Formatert desimaltall
+ */
+export function formaterDesimaltall(
   tall: number,
   minimumFractionDigits = 2,
   maximumFractionDigits = 2,
@@ -10,12 +16,12 @@ export function formatterDesimaltall(
 }
 
 /**
- * Formatter prosent
+ * Formater prosent
  *
- * @param tall - Tallen som skal formatteres som prosent (mellom 0 og 100)
- * @returns Formattert prosent
+ * @param tall - Tallen som skal formateres som prosent (mellom 0 og 100)
+ * @returns Formatert prosent
  */
-export function formatterProsent(tall: number | unknown): string {
+export function formaterProsent(tall: number | unknown): string {
   if (typeof tall !== "number") {
     return tall as string;
   }
@@ -28,12 +34,12 @@ export function formatterProsent(tall: number | unknown): string {
 }
 
 /**
- * Formatter beløp
+ * Formater beløp
  *
- * @param tall - Tallen som skal formatteres
- * @returns Formattert beløp
+ * @param tall - Tallen som skal formateres
+ * @returns Formatert beløp
  */
-export function formatterBeløp(
+export function formaterBeløp(
   tall: number | unknown,
   maximumFractionDigits = 2,
 ): string {
