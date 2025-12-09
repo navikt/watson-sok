@@ -29,8 +29,6 @@ spec:
       rules:
         - application: nav-persondata-api
           namespace: holmes
-        - application: populasjonstilgangskontroll
-          namespace: tilgangsmaskin
       external:
         - host: holmes-unleash-api.nav.cloud.nais.io
   image: {{image}}
