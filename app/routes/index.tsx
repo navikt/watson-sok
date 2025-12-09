@@ -9,6 +9,7 @@ import {
 import "~/globals.css";
 
 import { Page, PageBlock } from "@navikt/ds-react/Page";
+import { SearchButton } from "@navikt/ds-react/Search";
 import { useEffect, useState } from "react";
 import {
   type ActionFunctionArgs,
@@ -77,8 +78,13 @@ export default function LandingPage() {
               error={actionData?.error}
               autoComplete="off"
               htmlSize={15}
+              disabled={isLoading}
             >
-              <Search.Button type="submit" loading={isLoading} />
+              <SearchButton
+                type="submit"
+                loading={isLoading}
+                disabled={isLoading}
+              />
             </Search>
           </Form>
           <BodyShort spacing className="mt-2">

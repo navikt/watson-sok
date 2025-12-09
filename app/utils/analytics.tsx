@@ -60,6 +60,7 @@ export function sporHendelse(
 type Hendelse =
   | "søk landingsside"
   | "søk header"
+  | "søk familiemedlem"
   | "lenke trykket brønnøysundregistrene"
   | "handlinger for arbeidsforhold åpnet"
   | "organisasjonsnummer kopiert"

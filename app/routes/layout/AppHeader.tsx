@@ -87,8 +87,13 @@ export function AppHeader() {
           autoComplete="off"
           htmlSize={20}
           variant="secondary"
+          disabled={isLoading}
         >
-          <Search.Button type="submit" loading={isLoading} />
+          <Search.Button
+            type="submit"
+            loading={isLoading}
+            disabled={isLoading}
+          />
         </Search>
       </Form>
       <Spacer />
