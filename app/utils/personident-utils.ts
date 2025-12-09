@@ -22,7 +22,7 @@ export function beregnAlderFraFødselsEllerDnummer(
   }
   const nåværendeÅr = Number(new Date().getFullYear().toString().slice(2));
 
-  if (år < nåværendeÅr && erBarn) {
+  if (år <= nåværendeÅr && erBarn) {
     år += 2000;
   } else {
     år += 1900;
