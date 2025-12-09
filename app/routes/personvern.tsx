@@ -29,9 +29,9 @@ export default function Personvern() {
         </BodyLong>
         <BodyLong spacing>
           I tillegg til å journalføre alle søk, lagrer vi også informasjon om
-          hvordan du bruker tjenesten i tjenestene Umami og Mixpanel. Dette
-          gjøres for å kvantitativt analysere bruk av tjenesten, slik at vi kan
-          videreutvikle og forbedre den. Eksempler på hva vi samler inn er:
+          hvordan du bruker tjenesten i tjenesten Mixpanel. Dette gjøres for å
+          kvantitativt analysere bruk av tjenesten, slik at vi kan videreutvikle
+          og forbedre den. Eksempler på hva vi samler inn er:
         </BodyLong>
         <List className="mb-4">
           <ListItem>Hvor i løsningen du slår opp personer fra</ListItem>
@@ -40,11 +40,6 @@ export default function Personvern() {
           <ListItem>Hvilke sider du er inne på</ListItem>
         </List>
 
-        <BodyLong spacing>
-          Om du ikke ønsker at vi samler inn denne bruksinformasjonen, kan du
-          slå på innstillingen &quot;Ikke spor meg&quot; i nettleseren din.{" "}
-          <strong>Vi vil fortsatt loggføre alle søk du gjør.</strong>
-        </BodyLong>
         <Heading level="2" size="medium" spacing>
           Funksjonelle cookies
         </Heading>
@@ -57,6 +52,10 @@ export default function Personvern() {
           Løsningen bruker også cookies for å holde styr på hvilket
           fødselsnummer du har søkt opp sist. Denne cookien lagres i opptil en
           time, til du lukker nettleseren din, eller logger ut.
+        </BodyLong>
+        <BodyLong spacing>
+          Alle cookies er krypterte, så informasjonen som lagres i dem er
+          sikret.
         </BodyLong>
         <Heading level="2" size="medium" spacing>
           Spørsmål?
