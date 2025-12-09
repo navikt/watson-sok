@@ -6,9 +6,10 @@ import {
 } from "@navikt/aksel-icons";
 import { BodyShort, Button, Link } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Form } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
+import { sporHendelse } from "~/utils/analytics";
 import { beregnAlderFraFødselsEllerDnummer } from "~/utils/personident-utils";
 import {
   formaterFødselsnummer,
@@ -27,6 +28,7 @@ export function FamiliemedlemmerModal({
 }: FamiliemedlemmerModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const familiemedlemmerListe = transformerTilSortertListe(familiemedlemmer);
+  const [loadingIdent, setLoadingIdent] = useState<string | null>(null);
 
   if (familiemedlemmerListe.length === 0) {
     return <BodyShort>Ingen kjente familiemedlemmer</BodyShort>;
@@ -71,12 +73,21 @@ export function FamiliemedlemmerModal({
                   &nbsp; år)
                 </div>
                 {personIdent && personIdent !== "Ukjent" && (
-                  <Form action={RouteConfig.INDEX} method="post">
+                  <Form
+                    action={RouteConfig.INDEX}
+                    method="post"
+                    onSubmit={() => {
+                      sporHendelse("søk familiemedlem");
+                      setLoadingIdent(personIdent);
+                    }}
+                  >
                     <input type="hidden" name="ident" value={personIdent} />
                     <Button
                       variant="tertiary"
                       size="small"
                       type="submit"
+                      loading={loadingIdent === personIdent}
+                      disabled={loadingIdent === personIdent}
                       icon={
                         <FileSearchIcon
                           aria-hidden={true}
