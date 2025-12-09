@@ -27,19 +27,20 @@ import {
 import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { Versjonsvarsling } from "./features/versjonsvarsling/Versjonsvarsling";
-import { AnalyticsTags } from "./utils/analytics";
+import { useAnalytics } from "./utils/analytics";
 import { logger } from "./utils/logging";
 import { initFaro } from "./utils/observability";
 
 export default function Root() {
   const { envs, initialTheme } = useLoaderData<typeof loader>();
+  useAnalytics();
   useEffect(() => {
     if (envs.isProd) {
       initFaro(envs.faroUrl);
     }
   }, [envs.isProd, envs.faroUrl]);
   return (
-    <HtmlRamme initialTheme={initialTheme} umamiSiteId={envs.umamiSiteId}>
+    <HtmlRamme initialTheme={initialTheme}>
       <Versjonsvarsling gjeldendeVersjon={envs.appversjon} />
       <Outlet />
     </HtmlRamme>
@@ -60,7 +61,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
     envs: {
       isProd,
       faroUrl: env.FARO_URL,
-      umamiSiteId: env.UMAMI_SITE_ID,
       modiaUrl: env.MODIA_URL,
       appversjon: env.APP_VERSION,
       miljø: env.ENVIRONMENT,
@@ -84,7 +84,7 @@ export function headers() {
       "style-src 'self' 'unsafe-inline'; " +
       "img-src 'self' data: https:; " +
       "font-src 'self' data: cdn.nav.no; " +
-      "connect-src 'self' telemetry.nav.no telemetry.ekstern.dev.nav.no umami.nav.no https://api-eu.mixpanel.com https://data-eu.mixpanel.com;" +
+      "connect-src 'self' telemetry.nav.no telemetry.ekstern.dev.nav.no https://api-eu.mixpanel.com https://data-eu.mixpanel.com;" +
       "frame-ancestors 'none'; " +
       "base-uri 'self'; " +
       "form-action 'self'",
@@ -96,13 +96,13 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   logger.error("Feil fanget av error boundary", { error });
   if (isRouteErrorResponse(error) && error.status === 404) {
     return (
-      <HtmlRamme umamiSiteId="">
+      <HtmlRamme>
         <PageNotFound />
       </HtmlRamme>
     );
   }
   return (
-    <HtmlRamme umamiSiteId="">
+    <HtmlRamme>
       <InternalServerError />
     </HtmlRamme>
   );
@@ -111,13 +111,8 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 type HtmlRammeProps = {
   children: React.ReactNode;
   initialTheme?: Theme;
-  umamiSiteId: string;
 };
-function HtmlRamme({
-  children,
-  initialTheme = "light",
-  umamiSiteId,
-}: HtmlRammeProps) {
+function HtmlRamme({ children, initialTheme = "light" }: HtmlRammeProps) {
   return (
     <html lang="nb-no">
       <head>
@@ -126,7 +121,6 @@ function HtmlRamme({
         <link rel="icon" href="/favicon.svg" />
         <Meta />
         <Links />
-        {umamiSiteId && <AnalyticsTags sporingId={umamiSiteId} />}
       </head>
       <body className="flex flex-col min-h-screen">
         <FaroErrorBoundary>

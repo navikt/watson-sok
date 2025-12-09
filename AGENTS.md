@@ -151,7 +151,6 @@ Environment variables are validated using Zod in `app/config/env.server.ts`. Req
 - `NODE_ENV` - Environment mode (development/test/production)
 - `CLUSTER` - GCP cluster name
 - `FARO_URL` - Grafana Faro monitoring URL
-- `UMAMI_SITE_ID` - Umami analytics site ID
 - `IDENT_SESSION_SECRET` - Secret for encrypting session cookies
 
 See `.env.example` for the full list.
