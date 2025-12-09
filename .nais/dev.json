@@ -1,7 +1,5 @@
 {
   "INGRESS_URLS": [
-    "https://oppslag-bruker.ansatt.dev.nav.no",
-    "https://oppslag-bruker.intern.dev.nav.no",
     "https://watson-sok.ansatt.dev.nav.no",
     "https://watson-sok.intern.dev.nav.no"
   ],
