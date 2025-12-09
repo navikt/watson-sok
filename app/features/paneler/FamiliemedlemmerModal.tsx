@@ -11,7 +11,7 @@ import { Form } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { beregnAlderFraFødselsEllerDnummer } from "~/utils/personident-utils";
 import {
-  formatterFødselsnummer,
+  formaterFødselsnummer,
   snakeCaseTilSetning,
 } from "~/utils/string-utils";
 
@@ -63,7 +63,7 @@ export function FamiliemedlemmerModal({
               >
                 <div>
                   {mapTypeTilIkon(type)}&nbsp;{snakeCaseTilSetning(type)}:&nbsp;
-                  {formatterFødselsnummer(personIdent)}&nbsp;(
+                  {formaterFødselsnummer(personIdent)}&nbsp;(
                   {beregnAlderFraFødselsEllerDnummer(
                     personIdent,
                     type === "BARN",

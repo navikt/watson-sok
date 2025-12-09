@@ -1,6 +1,6 @@
 import { Heading } from "@navikt/ds-react";
-import { formatÅrMåned } from "~/utils/date-utils";
-import { formatterBeløp } from "~/utils/number-utils";
+import { formaterÅrMåned } from "~/utils/date-utils";
+import { formaterBeløp } from "~/utils/number-utils";
 import type { MånedligData } from "./typer";
 
 type SkjultTabellProps = {
@@ -30,9 +30,9 @@ export function SkjultTabell({ data }: SkjultTabellProps) {
         <tbody>
           {data.map((d) => (
             <tr key={d.periode}>
-              <td>{formatÅrMåned(d.periode)}</td>
-              <td>{formatterBeløp(d.inntekt)}</td>
-              <td>{formatterBeløp(d.ytelse)}</td>
+              <td>{formaterÅrMåned(d.periode)}</td>
+              <td>{formaterBeløp(d.inntekt)}</td>
+              <td>{formaterBeløp(d.ytelse)}</td>
             </tr>
           ))}
         </tbody>
