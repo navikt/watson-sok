@@ -38,6 +38,8 @@ spec:
       value: dev-gcp
     - name: FARO_URL
       value: https://telemetry.ekstern.dev.nav.no/collect
+    - name: UMAMI_SITE_ID
+      value: 2a620987-f8b6-43ee-aaed-2845f515b8a1
     - name: ENVIRONMENT
       value: demo
     - name: MODIA_URL
