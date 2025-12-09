@@ -21,8 +21,8 @@ import { use, useEffect, useId, useMemo, useRef, useState } from "react";
 import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/schemas";
 import { sporHendelse } from "~/utils/analytics";
 import { cn } from "~/utils/class-utils";
-import { formatÅrMåned } from "~/utils/date-utils";
-import { formatterProsent } from "~/utils/number-utils";
+import { formaterÅrMåned } from "~/utils/date-utils";
+import { formaterProsent } from "~/utils/number-utils";
 import { storFørsteBokstav } from "~/utils/string-utils";
 import { ResolvingComponent } from "../async/ResolvingComponent";
 import { useDisclosure } from "../use-disclosure/useDisclosure";
@@ -155,16 +155,16 @@ const ArbeidsforholdPanelMedData = ({
                       className="whitespace-nowrap"
                       textSize="small"
                     >
-                      {formatÅrMåned(r.start)}
+                      {formaterÅrMåned(r.start)}
                     </TableDataCell>
                     <TableDataCell
                       className="whitespace-nowrap"
                       textSize="small"
                     >
-                      {r.slutt ? formatÅrMåned(r.slutt) : "–"}
+                      {r.slutt ? formaterÅrMåned(r.slutt) : "–"}
                     </TableDataCell>
                     <TableDataCell align="right" textSize="small">
-                      {formatterProsent(r.stillingsprosent ?? "-")}
+                      {formaterProsent(r.stillingsprosent ?? "-")}
                     </TableDataCell>
                     <TableDataCell textSize="small">
                       {mapArbeidsforholdType(r.arbeidsforholdType ?? "–")}

@@ -89,7 +89,7 @@ export function snakeCaseTilSetning(snakeCaseStr: string | null) {
  * @param fødselsnummer - Fødselsnummer som skal formateres
  * @returns Formatert fødselsnummer
  */
-export function formatterFødselsnummer(fødselsnummer: string | null): string {
+export function formaterFødselsnummer(fødselsnummer: string | null): string {
   if (!fødselsnummer || fødselsnummer.length !== 11) {
     return fødselsnummer ?? "";
   }

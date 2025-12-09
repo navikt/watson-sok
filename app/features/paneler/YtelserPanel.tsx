@@ -30,8 +30,8 @@ import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFla
 import { useTidsvindu } from "~/features/tidsvindu/Tidsvindu";
 import type { Ytelse } from "~/routes/oppslag/schemas";
 import { sporHendelse } from "~/utils/analytics";
-import { formatterDato, forskjellIDager } from "~/utils/date-utils";
-import { formatterBeløp } from "~/utils/number-utils";
+import { formaterDato, forskjellIDager } from "~/utils/date-utils";
+import { formaterBeløp } from "~/utils/number-utils";
 import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 import { YtelseUtbetalingerModal } from "./YtelseUtbetalingerModal";
@@ -135,11 +135,11 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                 </Heading>
                 <BodyShort spacing>
                   <strong>Periode:</strong>{" "}
-                  {formatterDato(tilbakebetaling.periode.fom)} –{" "}
-                  {formatterDato(tilbakebetaling.periode.tom)}
+                  {formaterDato(tilbakebetaling.periode.fom)} –{" "}
+                  {formaterDato(tilbakebetaling.periode.tom)}
                   <br />
                   <strong>Beløp:</strong>{" "}
-                  {formatterBeløp(Math.abs(tilbakebetaling.beløp))}
+                  {formaterBeløp(Math.abs(tilbakebetaling.beløp))}
                   <br />
                   <span className="flex items-center gap-1">
                     <strong>Bilagsnummer:</strong>{" "}
@@ -168,9 +168,9 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                   {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
                     const fomDate = new Date(gruppertPeriode.fom);
                     const tomDate = new Date(gruppertPeriode.tom);
-                    const fomFormatert = formatterDato(gruppertPeriode.fom);
-                    const tomFormatert = formatterDato(gruppertPeriode.tom);
-                    const beløpFormatert = formatterBeløp(
+                    const fomFormatert = formaterDato(gruppertPeriode.fom);
+                    const tomFormatert = formaterDato(gruppertPeriode.tom);
+                    const beløpFormatert = formaterBeløp(
                       gruppertPeriode.totalBeløp,
                       0,
                     );

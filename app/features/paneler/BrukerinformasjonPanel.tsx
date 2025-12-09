@@ -2,11 +2,11 @@ import { Alert, CopyButton, Skeleton, Tooltip } from "@navikt/ds-react";
 import { Fragment, use } from "react";
 import { unstable_useRoute } from "react-router";
 import type { PersonInformasjon } from "~/routes/oppslag/schemas";
-import { formatterAdresse } from "~/utils/adresse-utils";
-import { formatterDato } from "~/utils/date-utils";
+import { formaterAdresse } from "~/utils/adresse-utils";
+import { formaterDato } from "~/utils/date-utils";
 import { tilFulltNavn } from "~/utils/navn-utils";
 import {
-  formatterFødselsnummer,
+  formaterFødselsnummer,
   storFørsteBokstav,
   storFørsteBokstavPerOrd,
 } from "~/utils/string-utils";
@@ -57,7 +57,7 @@ const BrukerinformasjonPanelMedData = ({
     tilFulltNavn(personopplysninger.navn),
     true,
   );
-  const folkeregistrertAdresse = formatterAdresse(personopplysninger.adresse);
+  const folkeregistrertAdresse = formaterAdresse(personopplysninger.adresse);
 
   return (
     <PanelContainer
@@ -76,7 +76,7 @@ const BrukerinformasjonPanelMedData = ({
           <>
             <dt>{erDNummer ? "D-nummer" : "Fødselsnummer"}</dt>
             <dd>
-              {formatterFødselsnummer(personopplysninger.aktørId)}&nbsp;
+              {formaterFødselsnummer(personopplysninger.aktørId)}&nbsp;
               <KopiKnapp copyText={personopplysninger.aktørId} />
             </dd>
           </>
@@ -84,13 +84,13 @@ const BrukerinformasjonPanelMedData = ({
         {personopplysninger.fødselsdato && (
           <>
             <dt>Fødselsdato</dt>
-            <dd>{formatterDato(personopplysninger.fødselsdato)}</dd>
+            <dd>{formaterDato(personopplysninger.fødselsdato)}</dd>
           </>
         )}
         {personopplysninger.dødsdato && (
           <>
             <dt>Dødsdato</dt>
-            <dd>{formatterDato(personopplysninger.dødsdato)}</dd>
+            <dd>{formaterDato(personopplysninger.dødsdato)}</dd>
           </>
         )}
         {folkeregistrertAdresse && (
