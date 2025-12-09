@@ -123,9 +123,9 @@ export function AppHeader() {
           <ActionMenu.Item
             onSelect={() => {
               toggleTheme();
-              sporHendelse(
-                `endre tema til ${theme === "light" ? "mørk" : "lys"}`,
-              );
+              sporHendelse("endre tema", {
+                tema: theme === "light" ? "mørk" : "lys",
+              });
             }}
             icon={theme === "light" ? <MoonIcon /> : <SunIcon />}
           >

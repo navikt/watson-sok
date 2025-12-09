@@ -50,6 +50,5 @@ type Hendelse =
   | "vis alle arbeidsforhold klikket"
   | "skjermingsbegrunnelse utfylt"
   | "skjermingsbegrunnelse avbrutt"
-  | "endre tema til mørk"
-  | "endre tema til lys"
-  | `tilbakemelding på ${string}`;
+  | "endre tema"
+  | `tilbakemelding`;

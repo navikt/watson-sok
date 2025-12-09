@@ -28,7 +28,8 @@ export function Feedback({ feature, className }: FeedbackProps) {
   const lagVurderingshandler =
     (tilbakemelding: "nyttig" | "ikke nyttig") => () => {
       setHarVurdert(true);
-      sporHendelse(`tilbakemelding på ${feature}`, {
+      sporHendelse("tilbakemelding", {
+        funksjonalitet: feature,
         tilbakemelding,
       });
     };
