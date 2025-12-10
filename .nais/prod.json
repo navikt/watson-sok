@@ -1,4 +1,6 @@
 {
+  "MIN_REPLICAS": 2,
+  "MAX_REPLICAS": 2,
   "INGRESS_URLS": [
     "https://oppslag-bruker.ansatt.nav.no",
     "https://oppslag-bruker.intern.nav.no",
