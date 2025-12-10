@@ -24,6 +24,9 @@ spec:
     {{#each INGRESS_URLS}}
     - {{this}}
     {{/each}}
+  replicas:
+    min: {{MIN_REPLICAS}}
+    max: {{MAX_REPLICAS}}
   accessPolicy:
     outbound:
       rules:
