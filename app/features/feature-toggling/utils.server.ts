@@ -1,5 +1,5 @@
 import { startUnleash, type Unleash } from "unleash-client";
-import { env, isProd } from "~/config/env.server";
+import { env, isProd } from "~/features/config/env.server";
 import { FeatureFlagg } from "./featureflagg";
 
 let unleash: Unleash;

@@ -1,7 +1,7 @@
 import { env } from "process";
 import { type LoaderFunctionArgs, redirect } from "react-router";
-import { RouteConfig } from "~/config/routeConfig";
 import { hentArbeidsforhold } from "~/features/arbeidsforhold/api.server";
+import { RouteConfig } from "~/features/config/routeConfig";
 import { hentInntekter } from "~/features/inntekt-og-ytelse/inntekt/api.server";
 import { hentYtelser } from "~/features/inntekt-og-ytelse/ytelse/api.server";
 import { hentPersonopplysninger } from "~/features/person/api.server";

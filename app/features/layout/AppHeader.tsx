@@ -15,9 +15,9 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { Form, Link, useNavigate, useNavigation } from "react-router";
-import { RouteConfig } from "~/config/routeConfig";
 import { sporHendelse } from "~/features/analytics/analytics";
 import { useUser } from "~/features/auth/useUser";
+import { RouteConfig } from "~/features/config/routeConfig";
 import { useMiljø } from "~/features/miljø/useMiljø";
 import { useTheme } from "~/features/tema/ThemeContext";
 

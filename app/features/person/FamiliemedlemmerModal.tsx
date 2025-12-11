@@ -8,8 +8,8 @@ import { BodyShort, Button, Link } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useRef, useState } from "react";
 import { Form } from "react-router";
-import { RouteConfig } from "~/config/routeConfig";
 import { sporHendelse } from "~/features/analytics/analytics";
+import { RouteConfig } from "~/features/config/routeConfig";
 import {
   formaterFødselsnummer,
   snakeCaseTilSetning,

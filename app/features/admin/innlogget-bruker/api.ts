@@ -1,5 +1,5 @@
 import type { LoaderFunctionArgs } from "react-router";
-import { getLoggedInUser } from "~/utils/access-token";
+import { getLoggedInUser } from "~/features/auth/access-token";
 
 const brukereSomHarTilgang = {
   hansJacob: "M118976",

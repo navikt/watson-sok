@@ -2,8 +2,8 @@ import { BellIcon } from "@navikt/aksel-icons";
 import { BodyLong, Button } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useEffect, useRef, useState } from "react";
-import { RouteConfig } from "~/config/routeConfig";
 import { sporHendelse } from "~/features/analytics/analytics";
+import { RouteConfig } from "~/features/config/routeConfig";
 import { logger } from "~/features/logging/logging";
 
 const POLLING_INTERVAL_MS = 60_000;

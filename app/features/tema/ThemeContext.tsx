@@ -1,6 +1,6 @@
 import { Theme } from "@navikt/ds-react";
 import { createContext, useContext, useState } from "react";
-import { RouteConfig } from "~/config/routeConfig";
+import { RouteConfig } from "~/features/config/routeConfig";
 import { logger } from "~/features/logging/logging";
 import { type Theme as ThemeType } from "./ThemeCookie";
 

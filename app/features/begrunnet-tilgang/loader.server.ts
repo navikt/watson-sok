@@ -1,7 +1,7 @@
 import { redirect } from "react-router";
 
 import type { LoaderFunctionArgs } from "react-router";
-import { RouteConfig } from "~/config/routeConfig";
+import { RouteConfig } from "~/features/config/routeConfig";
 import { hentSøkedataFraSession } from "~/features/søk/søkeinfoSession.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {

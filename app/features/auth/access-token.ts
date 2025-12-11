@@ -5,8 +5,8 @@ import {
   validateToken,
 } from "@navikt/oasis";
 import { redirect } from "react-router";
-import { env, isDev, skalBrukeMockdata } from "~/config/env.server";
-import { logger } from "../features/logging/logging";
+import { env, isDev, skalBrukeMockdata } from "~/features/config/env.server";
+import { logger } from "../logging/logging";
 
 interface LoggedInUserResponse {
   preferredUsername: string;

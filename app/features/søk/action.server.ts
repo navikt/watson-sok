@@ -1,5 +1,5 @@
 import { data, redirectDocument, type ActionFunctionArgs } from "react-router";
-import { RouteConfig } from "~/config/routeConfig";
+import { RouteConfig } from "~/features/config/routeConfig";
 import { logger } from "../logging/logging";
 import { sjekkEksistensOgTilgang } from "./api.server";
 import {

@@ -3,7 +3,7 @@ import {
   route,
   type RouteConfig as RouteConfigType,
 } from "@react-router/dev/routes";
-import { RouteConfig } from "./config/routeConfig";
+import { RouteConfig } from "./features/config/routeConfig";
 
 export default [
   // App routes
@@ -32,7 +32,7 @@ export default [
   // Well-known routes
   route(
     RouteConfig.WELL_KNOWN.SECURITY_TXT,
-    "features/well-known/security.txt.tsx",
+    "features/sikkerhet/well-known/api.ts",
   ),
 
   // Fallback 404 route

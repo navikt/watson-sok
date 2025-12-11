@@ -9,8 +9,9 @@ import {
   useLoaderData,
   type LoaderFunctionArgs,
 } from "react-router";
-import { env, isProd } from "~/config/env.server";
 import { AnalyticsTags } from "~/features/analytics/analytics";
+import { getLoggedInUser } from "~/features/auth/access-token";
+import { env, isProd } from "~/features/config/env.server";
 import {
   hentAlleFeatureFlagg,
   hentStatusmeldingFeatureFlagg,
@@ -28,7 +29,6 @@ import {
 } from "~/features/tema/ThemeCookie";
 import { Versjonsvarsling } from "~/features/versjonsvarsling/Versjonsvarsling";
 import "~/globals.css";
-import { getLoggedInUser } from "~/utils/access-token";
 import type { Route } from "./+types/root";
 
 export default function Root() {

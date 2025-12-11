@@ -23,9 +23,9 @@ import {
   TimelineRow,
 } from "@navikt/ds-react/Timeline";
 import { use, useMemo, useState } from "react";
-import { RouteConfig } from "~/config/routeConfig";
 import { sporHendelse } from "~/features/analytics/analytics";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
+import { RouteConfig } from "~/features/config/routeConfig";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
 import type { Ytelse } from "~/features/inntekt-og-ytelse/ytelse/domene";

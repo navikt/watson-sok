@@ -1,4 +1,4 @@
-import { env } from "~/config/env.server";
+import { env } from "~/features/config/env.server";
 
 /**
  * Returnerer dagens appversjon slik at klienten kan avgjøre om en oppdatering er tilgjengelig.
