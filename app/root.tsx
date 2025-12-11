@@ -1,5 +1,4 @@
 import { FaroErrorBoundary } from "@grafana/faro-react";
-import { useEffect } from "react";
 import {
   isRouteErrorResponse,
   Links,
@@ -10,35 +9,31 @@ import {
   useLoaderData,
   type LoaderFunctionArgs,
 } from "react-router";
-import "~/globals.css";
-import { getLoggedInUser } from "~/utils/access-token";
-import type { Route } from "./+types/root";
-import { env, isProd } from "./config/env.server";
-import { AnalyticsTags } from "./features/analytics/analytics";
+import { env, isProd } from "~/config/env.server";
+import { AnalyticsTags } from "~/features/analytics/analytics";
 import {
   hentAlleFeatureFlagg,
   hentStatusmeldingFeatureFlagg,
-} from "./features/feature-toggling/utils.server";
-import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
-import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
-import { logger } from "./features/logging/logging";
-import { genererSikkerhetsheaders } from "./features/sikkerhet/headers";
-import { ThemeProvider } from "./features/tema/ThemeContext";
+} from "~/features/feature-toggling/utils.server";
+import { InternalServerError } from "~/features/feilhåndtering/InternalServerError";
+import { PageNotFound } from "~/features/feilhåndtering/PageNotFound";
+import { logger } from "~/features/logging/logging";
+import { useFaro } from "~/features/monitorering/faro";
+import { genererSikkerhetsheaders } from "~/features/sikkerhet/headers";
+import { ThemeProvider } from "~/features/tema/ThemeContext";
 import {
   parseTheme,
   themeCookie,
   type Theme,
-} from "./features/tema/ThemeCookie";
-import { Versjonsvarsling } from "./features/versjonsvarsling/Versjonsvarsling";
-import { initFaro } from "./utils/observability";
+} from "~/features/tema/ThemeCookie";
+import { Versjonsvarsling } from "~/features/versjonsvarsling/Versjonsvarsling";
+import "~/globals.css";
+import { getLoggedInUser } from "~/utils/access-token";
+import type { Route } from "./+types/root";
 
 export default function Root() {
   const { envs, initialTheme } = useLoaderData<typeof loader>();
-  useEffect(() => {
-    if (envs.isProd) {
-      initFaro(envs.faroUrl);
-    }
-  }, [envs.isProd, envs.faroUrl]);
+  useFaro();
   return (
     <HtmlRamme initialTheme={initialTheme} umamiSiteId={envs.umamiSiteId}>
       <Versjonsvarsling gjeldendeVersjon={envs.appversjon} />
