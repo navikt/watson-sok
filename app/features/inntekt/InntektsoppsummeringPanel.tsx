@@ -7,8 +7,13 @@ import {
   Table,
 } from "@navikt/ds-react";
 import { use, useId, useMemo } from "react";
+import { ResolvingComponent } from "~/features/async/ResolvingComponent";
+import type { InntektInformasjon } from "~/features/inntekt/domene";
+import {
+  PanelContainer,
+  PanelContainerSkeleton,
+} from "~/features/paneler/PanelContainer";
 import { useTidsvindu } from "~/features/tidsvindu/Tidsvindu";
-import type { InntektInformasjon } from "~/routes/oppslag/schemas";
 import { formaterÅrMåned } from "~/utils/date-utils";
 import {
   formaterBeløp,
@@ -17,8 +22,6 @@ import {
   konverterTilTall,
 } from "~/utils/number-utils";
 import { camelCaseTilNorsk } from "~/utils/string-utils";
-import { ResolvingComponent } from "../async/ResolvingComponent";
-import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 
 type InntektsoppsummeringPanelProps = {
   promise: Promise<InntektInformasjon | null>;

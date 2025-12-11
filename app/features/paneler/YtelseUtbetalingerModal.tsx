@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@navikt/ds-react/Table";
 import { useMemo } from "react";
-import type { Ytelse } from "~/routes/oppslag/schemas";
+import type { Ytelse } from "~/features/ytelse/domene";
 import { formaterDato } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
 

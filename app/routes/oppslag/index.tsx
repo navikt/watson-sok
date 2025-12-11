@@ -12,9 +12,10 @@ import { hentArbeidsforhold } from "~/features/arbeidsforhold/api.server";
 import { ArbeidsforholdPanel } from "~/features/arbeidsforhold/ArbeidsforholdPanel";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
+import { hentInntekter } from "~/features/inntekt/api.server";
+import { InntektPanel } from "~/features/inntekt/InntektPanel";
+import { InntektsoppsummeringPanel } from "~/features/inntekt/InntektsoppsummeringPanel";
 import { InntektOgYtelseOverlappPanel } from "~/features/paneler/inntekt-og-ytelse-overlapp-panel";
-import { InntektPanel } from "~/features/paneler/InntektPanel";
-import { InntektsoppsummeringPanel } from "~/features/paneler/InntektsoppsummeringPanel";
 import { YtelserPanel } from "~/features/paneler/YtelserPanel";
 import { hentPersonopplysninger } from "~/features/person/api.server";
 import { OverskriftPanel } from "~/features/person/OverskriftPanel";
@@ -24,7 +25,7 @@ import {
   TidsvinduProvider,
   TidsvinduVelger,
 } from "~/features/tidsvindu/Tidsvindu";
-import { hentInntekter, hentYtelser } from "./api.server";
+import { hentYtelser } from "~/features/ytelse/api.server";
 
 export default function OppslagBruker() {
   const data = useLoaderData<typeof loader>();

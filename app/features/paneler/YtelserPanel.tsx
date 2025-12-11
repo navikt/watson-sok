@@ -29,10 +29,10 @@ import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
 import { useTidsvindu } from "~/features/tidsvindu/Tidsvindu";
-import type { Ytelse } from "~/routes/oppslag/schemas";
+import type { Ytelse } from "~/features/ytelse/domene";
+import { mapYtelsestypeTilIkon } from "~/features/ytelse/mapYtelsestypeTilIkon";
 import { formaterDato, forskjellIDager } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
-import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
 import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
 import { YtelseUtbetalingerModal } from "./YtelseUtbetalingerModal";
 

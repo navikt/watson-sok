@@ -8,7 +8,13 @@ import {
   TableRow,
 } from "@navikt/ds-react/Table";
 import { use, useMemo, useState, type CSSProperties } from "react";
-import type { InntektInformasjon, Ytelse } from "~/routes/oppslag/schemas";
+import { ResolvingComponent } from "~/features/async/ResolvingComponent";
+import {
+  PanelContainer,
+  PanelContainerSkeleton,
+} from "~/features/paneler/PanelContainer";
+import type { Ytelse } from "~/features/ytelse/domene";
+import { mapYtelsestypeTilIkon } from "~/features/ytelse/mapYtelsestypeTilIkon";
 import { formaterÅrMåned } from "~/utils/date-utils";
 import {
   formaterBeløp,
@@ -16,9 +22,7 @@ import {
   konverterTilTall,
 } from "~/utils/number-utils";
 import { camelCaseTilNorsk, storFørsteBokstav } from "~/utils/string-utils";
-import { ResolvingComponent } from "../async/ResolvingComponent";
-import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
-import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
+import type { InntektInformasjon } from "./domene";
 
 // Highlight-stil for celler i rad med flere versjoner
 const warnStyle: CSSProperties = {
