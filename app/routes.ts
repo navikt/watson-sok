@@ -8,7 +8,7 @@ import { RouteConfig } from "./config/routeConfig";
 export default [
   // App routes
   layout("features/layout/AppLayout.tsx", [
-    route(RouteConfig.INDEX, "routes/index.tsx"),
+    route(RouteConfig.INDEX, "features/søk/Søkeside.route.tsx"),
     route(RouteConfig.OPPSLAG, "routes/oppslag/index.tsx"),
     route(RouteConfig.TILGANG, "routes/oppslag/tilgang.tsx"),
     route(RouteConfig.PERSONVERN, "routes/personvern.tsx"),

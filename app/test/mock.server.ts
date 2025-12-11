@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
-import { MockOppslagBrukerResponsSchema } from "../routes/oppslag/schemas";
+import { MockOppslagBrukerResponsSchema } from "./domene";
 
 const MOCK_DIR = path.join(process.cwd(), "app", "test", "mocks");
 

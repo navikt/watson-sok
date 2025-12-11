@@ -23,7 +23,7 @@ import { sporHendelse } from "~/features/analytics/analytics";
 import {
   hentSøkedataFraSession,
   lagreSøkeinfoPåSession,
-} from "~/features/oppslag/oppslagSession.server";
+} from "~/features/søk/søkeinfoSession.server";
 import { useMiljø } from "~/features/use-miljø/useMiljø";
 import { loggBegrunnetTilgang } from "./api.server";
 

@@ -1,6 +1,6 @@
 import { createCookieSessionStorage } from "react-router";
 import { env } from "~/config/env.server";
-import type { EksistensOgTilgang } from "~/routes/oppslag/schemas";
+import type { EksistensOgTilgang } from "./domene";
 
 const { getSession, commitSession } = createCookieSessionStorage<
   SøkeinfoSessionData,
@@ -12,7 +12,7 @@ const { getSession, commitSession } = createCookieSessionStorage<
     secure: process.env.NODE_ENV === "production",
     secrets: [env.IDENT_SESSION_SECRET],
     sameSite: "lax",
-    maxAge: 60 * 60, // 1 hour
+    maxAge: 60 * 60, // 1 time
     path: "/",
   },
 });

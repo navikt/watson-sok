@@ -10,7 +10,6 @@ import { env } from "~/config/env.server";
 import { RouteConfig } from "~/config/routeConfig";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
-import { hentSøkedataFraSession } from "~/features/oppslag/oppslagSession.server";
 import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
 import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
 import { InntektOgYtelseOverlappPanel } from "~/features/paneler/inntekt-og-ytelse-overlapp-panel";
@@ -18,6 +17,7 @@ import { InntektPanel } from "~/features/paneler/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/features/paneler/InntektsoppsummeringPanel";
 import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
 import { YtelserPanel } from "~/features/paneler/YtelserPanel";
+import { hentSøkedataFraSession } from "~/features/søk/søkeinfoSession.server";
 import {
   TidsvinduProvider,
   TidsvinduVelger,
