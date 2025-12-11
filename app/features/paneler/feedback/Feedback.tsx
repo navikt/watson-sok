@@ -1,7 +1,7 @@
 import { ThumbDownIcon, ThumbUpIcon } from "@navikt/aksel-icons";
 import { BodyShort, Button } from "@navikt/ds-react";
 import { useState } from "react";
-import { sporHendelse } from "~/utils/analytics";
+import { sporHendelse } from "~/features/analytics/analytics";
 import { cn } from "~/utils/class-utils";
 
 type FeedbackProps = {

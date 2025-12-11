@@ -16,10 +16,10 @@ import { useEffect, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { Form, Link, useNavigate, useNavigation } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
+import { sporHendelse } from "~/features/analytics/analytics";
 import { useUser } from "~/features/auth/useUser";
 import { useTheme } from "~/features/darkside/ThemeContext";
 import { useMiljø } from "~/features/use-miljø/useMiljø";
-import { sporHendelse } from "~/utils/analytics";
 
 export function AppHeader() {
   const user = useUser();

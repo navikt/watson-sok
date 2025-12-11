@@ -2,7 +2,7 @@ import mixpanel from "mixpanel-browser";
 import { useEffect } from "react";
 import { useUser } from "~/features/auth/useUser";
 import { useMiljø } from "~/features/use-miljø/useMiljø";
-import { logger } from "./logging";
+import { logger } from "~/utils/logging";
 type AnalyticsTagProps = {
   sporingId: string;
 };

@@ -19,12 +19,12 @@ import {
   useActionData,
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
+import { sporHendelse } from "~/features/analytics/analytics";
 import {
   hentSøkedataFraSession,
   lagreSøkeinfoPåSession,
 } from "~/features/oppslag/oppslagSession.server";
 import { useMiljø } from "~/features/use-miljø/useMiljø";
-import { sporHendelse } from "~/utils/analytics";
 import { logger } from "~/utils/logging";
 import { sjekkEksistensOgTilgang } from "./oppslag/api.server";
 

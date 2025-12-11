@@ -9,7 +9,7 @@ import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useRef, useState } from "react";
 import { Form } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
-import { sporHendelse } from "~/utils/analytics";
+import { sporHendelse } from "~/features/analytics/analytics";
 import { beregnAlderFraFødselsEllerDnummer } from "~/utils/personident-utils";
 import {
   formaterFødselsnummer,

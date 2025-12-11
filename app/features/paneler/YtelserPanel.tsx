@@ -24,12 +24,12 @@ import {
 } from "@navikt/ds-react/Timeline";
 import { use, useMemo, useState } from "react";
 import { RouteConfig } from "~/config/routeConfig";
+import { sporHendelse } from "~/features/analytics/analytics";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
 import { useTidsvindu } from "~/features/tidsvindu/Tidsvindu";
 import type { Ytelse } from "~/routes/oppslag/schemas";
-import { sporHendelse } from "~/utils/analytics";
 import { formaterDato, forskjellIDager } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
 import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
