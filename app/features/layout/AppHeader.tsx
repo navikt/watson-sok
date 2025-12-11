@@ -19,7 +19,7 @@ import { RouteConfig } from "~/config/routeConfig";
 import { sporHendelse } from "~/features/analytics/analytics";
 import { useUser } from "~/features/auth/useUser";
 import { useTheme } from "~/features/darkside/ThemeContext";
-import { useMiljø } from "~/features/use-miljø/useMiljø";
+import { useMiljø } from "~/features/miljø/useMiljø";
 
 export function AppHeader() {
   const user = useUser();
