@@ -27,5 +27,5 @@ export default [
   ),
 
   // Fallback 404 route
-  route("*", "routes/404.tsx"),
+  route("*", "features/feilhåndtering/404.route.tsx"),
 ] satisfies RouteConfigType;

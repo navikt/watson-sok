@@ -12,8 +12,8 @@ import { ListItem } from "@navikt/ds-react/List";
 import { PageBlock } from "@navikt/ds-react/Page";
 import { Link } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
-import { AppFooter } from "~/routes/layout/AppFooter";
-import { AppHeader } from "~/routes/layout/AppHeader";
+import { AppFooter } from "~/features/layout/AppFooter";
+import { AppHeader } from "~/features/layout/AppHeader";
 import { useMiljø } from "../use-miljø/useMiljø";
 
 export function PageNotFound() {

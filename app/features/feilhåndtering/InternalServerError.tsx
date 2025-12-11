@@ -9,8 +9,8 @@ import {
   VStack,
 } from "@navikt/ds-react";
 import { ListItem } from "@navikt/ds-react/List";
-import { AppFooter } from "~/routes/layout/AppFooter";
-import { AppHeader } from "~/routes/layout/AppHeader";
+import { AppFooter } from "~/features/layout/AppFooter";
+import { AppHeader } from "~/features/layout/AppHeader";
 
 export function InternalServerError() {
   return (
