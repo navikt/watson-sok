@@ -1,6 +1,6 @@
 import z from "zod";
 import { BACKEND_API_URL, skalBrukeMockdata } from "~/config/env.server";
-import { getMockedResponseByFødselsnummer } from "~/routes/oppslag/mock.server";
+import { getMockedResponseByFødselsnummer } from "~/test/mock.server";
 import { getBackendOboToken } from "~/utils/access-token";
 import { logger } from "~/utils/logging";
 import {

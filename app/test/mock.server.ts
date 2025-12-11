@@ -1,8 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
-import { MockOppslagBrukerResponsSchema } from "./schemas";
+import { MockOppslagBrukerResponsSchema } from "../routes/oppslag/schemas";
 
-const MOCK_DIR = path.join(process.cwd(), "app", "routes", "oppslag", "mocks");
+const MOCK_DIR = path.join(process.cwd(), "app", "test", "mocks");
 
 /**
  * Returnerer mock-data basert på fødselsnummer, eller en fallback-bruker om ingen mock matchet fødselsnummeret.
@@ -25,7 +25,7 @@ export async function getMockedResponseByFødselsnummer(fødselsnummer: string) 
     const rawData = await readMockFile(filePath);
 
     if (rawData === null) {
-      continue; // File doesn't exist, try next
+      continue;
     }
 
     const parsedData = MockOppslagBrukerResponsSchema.safeParse(rawData);
@@ -33,7 +33,6 @@ export async function getMockedResponseByFødselsnummer(fødselsnummer: string) 
       return parsedData.data;
     }
 
-    // If we reach here, the file exists but data is invalid
     throw new Error(
       `Mock data i ${path.basename(filePath)} er ugyldig: ${parsedData.error.message}`,
     );
