@@ -19,14 +19,17 @@ import {
 } from "@navikt/ds-react/Table";
 import { use, useEffect, useId, useMemo, useRef, useState } from "react";
 import { sporHendelse } from "~/features/analytics/analytics";
-import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/schemas";
+import { ResolvingComponent } from "~/features/async/ResolvingComponent";
+import {
+  PanelContainer,
+  PanelContainerSkeleton,
+} from "~/features/paneler/PanelContainer";
+import { useDisclosure } from "~/features/use-disclosure/useDisclosure";
 import { cn } from "~/utils/class-utils";
 import { formaterÅrMåned } from "~/utils/date-utils";
 import { formaterProsent } from "~/utils/number-utils";
 import { storFørsteBokstav } from "~/utils/string-utils";
-import { ResolvingComponent } from "../async/ResolvingComponent";
-import { useDisclosure } from "../use-disclosure/useDisclosure";
-import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
+import type { ArbeidsgiverInformasjon } from "./domene";
 
 type ArbeidsforholdPanelProps = {
   promise: Promise<ArbeidsgiverInformasjon | null>;

@@ -4,11 +4,7 @@ import { logger } from "~/features/logging/logging";
 import type { MockOppslagBrukerRespons } from "~/test/domene";
 import { getMockedResponseByFødselsnummer } from "~/test/mock.server";
 import { getBackendOboToken } from "~/utils/access-token";
-import {
-  ArbeidsgiverInformasjonSchema,
-  InntektInformasjonSchema,
-  YtelserInformasjonSchema,
-} from "./schemas";
+import { InntektInformasjonSchema, YtelserInformasjonSchema } from "./schemas";
 
 type BackendKallSignatur = {
   ident: string;
@@ -61,24 +57,6 @@ export async function loggBegrunnetTilgang({
     logger.error("⛔ Nettverksfeil mot begrunnet tilgangslogg:", { error });
     throw error;
   }
-}
-
-/** Henter arbeidsgivere for en gitt ident */
-export async function hentArbeidsforhold({
-  ident,
-  request,
-  navCallId,
-  traceLogging,
-}: BackendKallSignatur) {
-  return gjørOppslagApiRequest({
-    ident,
-    request,
-    navCallId,
-    endepunkt: "/oppslag/arbeidsforhold",
-    schema: ArbeidsgiverInformasjonSchema,
-    ekstraherFraMock: (mockData) => mockData.arbeidsgiverInformasjon,
-    traceLogging,
-  });
 }
 
 /** Henter inntekter for en gitt ident */

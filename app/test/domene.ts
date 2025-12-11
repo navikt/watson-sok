@@ -1,8 +1,8 @@
 import z from "zod";
+import { ArbeidsgiverInformasjonSchema } from "~/features/arbeidsforhold/domene";
 import { PersonInformasjonSchema } from "~/features/person/domene";
 import { EksistensOgTilgangSchema } from "~/features/søk/domene";
 import {
-  ArbeidsgiverInformasjonSchema,
   InntektInformasjonSchema,
   YtelserInformasjonSchema,
 } from "~/routes/oppslag/schemas";

@@ -8,9 +8,10 @@ import {
 } from "react-router";
 import { env } from "~/config/env.server";
 import { RouteConfig } from "~/config/routeConfig";
+import { hentArbeidsforhold } from "~/features/arbeidsforhold/api.server";
+import { ArbeidsforholdPanel } from "~/features/arbeidsforhold/ArbeidsforholdPanel";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
-import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
 import { InntektOgYtelseOverlappPanel } from "~/features/paneler/inntekt-og-ytelse-overlapp-panel";
 import { InntektPanel } from "~/features/paneler/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/features/paneler/InntektsoppsummeringPanel";
@@ -22,8 +23,8 @@ import { hentSøkedataFraSession } from "~/features/søk/søkeinfoSession.server
 import {
   TidsvinduProvider,
   TidsvinduVelger,
-} from "../../features/tidsvindu/Tidsvindu";
-import { hentArbeidsforhold, hentInntekter, hentYtelser } from "./api.server";
+} from "~/features/tidsvindu/Tidsvindu";
+import { hentInntekter, hentYtelser } from "./api.server";
 
 export default function OppslagBruker() {
   const data = useLoaderData<typeof loader>();
