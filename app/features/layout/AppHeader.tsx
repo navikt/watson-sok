@@ -18,8 +18,8 @@ import { Form, Link, useNavigate, useNavigation } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { sporHendelse } from "~/features/analytics/analytics";
 import { useUser } from "~/features/auth/useUser";
-import { useTheme } from "~/features/darkside/ThemeContext";
 import { useMiljø } from "~/features/miljø/useMiljø";
+import { useTheme } from "~/features/tema/ThemeContext";
 
 export function AppHeader() {
   const user = useUser();

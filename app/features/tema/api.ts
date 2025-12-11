@@ -1,5 +1,5 @@
 import { type ActionFunctionArgs, data } from "react-router";
-import { parseTheme, themeCookie } from "~/features/darkside/ThemeCookie";
+import { parseTheme, themeCookie } from "~/features/tema/ThemeCookie";
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();

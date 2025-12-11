@@ -15,12 +15,6 @@ import { getLoggedInUser } from "~/utils/access-token";
 import type { Route } from "./+types/root";
 import { env, isProd } from "./config/env.server";
 import { AnalyticsTags } from "./features/analytics/analytics";
-import { ThemeProvider } from "./features/darkside/ThemeContext";
-import {
-  parseTheme,
-  themeCookie,
-  type Theme,
-} from "./features/darkside/ThemeCookie";
 import {
   hentAlleFeatureFlagg,
   hentStatusmeldingFeatureFlagg,
@@ -29,6 +23,12 @@ import { InternalServerError } from "./features/feilhåndtering/InternalServerEr
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { logger } from "./features/logging/logging";
 import { genererSikkerhetsheaders } from "./features/sikkerhet/headers";
+import { ThemeProvider } from "./features/tema/ThemeContext";
+import {
+  parseTheme,
+  themeCookie,
+  type Theme,
+} from "./features/tema/ThemeCookie";
 import { Versjonsvarsling } from "./features/versjonsvarsling/Versjonsvarsling";
 import { initFaro } from "./utils/observability";
 
