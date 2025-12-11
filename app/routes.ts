@@ -10,7 +10,10 @@ export default [
   layout("features/layout/AppLayout.tsx", [
     route(RouteConfig.INDEX, "features/søk/Søkeside.route.tsx"),
     route(RouteConfig.OPPSLAG, "routes/oppslag/index.tsx"),
-    route(RouteConfig.TILGANG, "routes/oppslag/tilgang.tsx"),
+    route(
+      RouteConfig.TILGANG,
+      "features/begrunnet-tilgang/TilgangSide.route.tsx",
+    ),
     route(RouteConfig.PERSONVERN, "routes/personvern.tsx"),
   ]),
 
