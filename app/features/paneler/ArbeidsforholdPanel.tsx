@@ -18,8 +18,8 @@ import {
   TableRow,
 } from "@navikt/ds-react/Table";
 import { use, useEffect, useId, useMemo, useRef, useState } from "react";
-import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/schemas";
 import { sporHendelse } from "~/features/analytics/analytics";
+import type { ArbeidsgiverInformasjon } from "~/routes/oppslag/schemas";
 import { cn } from "~/utils/class-utils";
 import { formaterÅrMåned } from "~/utils/date-utils";
 import { formaterProsent } from "~/utils/number-utils";

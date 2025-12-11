@@ -6,7 +6,7 @@ import type { RenderToPipeableStreamOptions } from "react-dom/server";
 import { renderToPipeableStream } from "react-dom/server";
 import type { EntryContext } from "react-router";
 import { ServerRouter } from "react-router";
-import { logger } from "./utils/logging";
+import { logger } from "./features/logging/logging";
 
 export const streamTimeout = 60_000;
 

@@ -1,7 +1,7 @@
 import { Alert, BodyShort, Heading } from "@navikt/ds-react";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { logger } from "~/utils/logging";
+import { logger } from "~/features/logging/logging";
 
 type ResolvingComponentProps = {
   /** Fallback for loading */

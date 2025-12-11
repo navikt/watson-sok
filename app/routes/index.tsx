@@ -20,12 +20,12 @@ import {
 } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { sporHendelse } from "~/features/analytics/analytics";
+import { logger } from "~/features/logging/logging";
 import {
   hentSøkedataFraSession,
   lagreSøkeinfoPåSession,
 } from "~/features/oppslag/oppslagSession.server";
 import { useMiljø } from "~/features/use-miljø/useMiljø";
-import { logger } from "~/utils/logging";
 import { sjekkEksistensOgTilgang } from "./oppslag/api.server";
 
 export default function LandingPage() {

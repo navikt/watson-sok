@@ -14,6 +14,7 @@ import "~/globals.css";
 import { getLoggedInUser } from "~/utils/access-token";
 import type { Route } from "./+types/root";
 import { env, isProd } from "./config/env.server";
+import { AnalyticsTags } from "./features/analytics/analytics";
 import { ThemeProvider } from "./features/darkside/ThemeContext";
 import {
   parseTheme,
@@ -26,9 +27,8 @@ import {
 } from "./features/feature-toggling/utils.server";
 import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
+import { logger } from "./features/logging/logging";
 import { Versjonsvarsling } from "./features/versjonsvarsling/Versjonsvarsling";
-import { AnalyticsTags } from "./utils/analytics";
-import { logger } from "./utils/logging";
 import { initFaro } from "./utils/observability";
 
 export default function Root() {
