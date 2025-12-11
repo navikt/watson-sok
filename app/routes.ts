@@ -3,7 +3,7 @@ import {
   route,
   type RouteConfig as RouteConfigType,
 } from "@react-router/dev/routes";
-import { RouteConfig } from "~/features/config/routeConfig";
+import { RouteConfig } from "./features/config/routeConfig";
 
 export default [
   // App routes

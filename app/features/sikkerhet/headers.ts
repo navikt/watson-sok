@@ -1,4 +1,4 @@
-export function genererSikkerhetsheaders() {
+export function headers() {
   return {
     "X-Frame-Options": "DENY",
     "X-Content-Type-Options": "nosniff",
