@@ -1,8 +1,8 @@
 import { FaroErrorBoundary } from "@grafana/faro-react";
 import { Links, Meta, Scripts, ScrollRestoration } from "react-router";
-import { AnalyticsTags } from "../analytics/analytics";
-import { ThemeProvider } from "../tema/ThemeContext";
-import type { Theme } from "../tema/ThemeCookie";
+import { AnalyticsTags } from "~/features/analytics/analytics";
+import { ThemeProvider } from "~/features/tema/ThemeContext";
+import type { Theme } from "~/features/tema/ThemeCookie";
 
 type HtmlRammeProps = {
   children: React.ReactNode;

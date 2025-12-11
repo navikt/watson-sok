@@ -6,7 +6,7 @@ import {
 } from "@navikt/oasis";
 import { redirect } from "react-router";
 import { env, isDev, skalBrukeMockdata } from "~/features/config/env.server";
-import { logger } from "../logging/logging";
+import { logger } from "~/features/logging/logging";
 
 interface LoggedInUserResponse {
   preferredUsername: string;

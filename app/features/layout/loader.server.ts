@@ -1,11 +1,11 @@
 import type { LoaderFunctionArgs } from "react-router";
-import { getLoggedInUser } from "../auth/access-token";
-import { env, isProd } from "../config/env.server";
+import { getLoggedInUser } from "~/features/auth/access-token";
+import { env, isProd } from "~/features/config/env.server";
 import {
   hentAlleFeatureFlagg,
   hentStatusmeldingFeatureFlagg,
-} from "../feature-toggling/utils.server";
-import { parseTheme, themeCookie } from "../tema/ThemeCookie";
+} from "~/features/feature-toggling/utils.server";
+import { parseTheme, themeCookie } from "~/features/tema/ThemeCookie";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = await getLoggedInUser({ request });

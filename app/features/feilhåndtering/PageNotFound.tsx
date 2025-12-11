@@ -14,7 +14,7 @@ import { Link } from "react-router";
 import { RouteConfig } from "~/features/config/routeConfig";
 import { AppFooter } from "~/features/layout/AppFooter";
 import { AppHeader } from "~/features/layout/AppHeader";
-import { useMiljø } from "../miljø/useMiljø";
+import { useMiljø } from "~/features/miljø/useMiljø";
 
 export function PageNotFound() {
   const miljø = useMiljø();

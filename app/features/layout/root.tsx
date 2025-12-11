@@ -16,6 +16,6 @@ export default function Root() {
   );
 }
 
-export { genererSikkerhetsheaders as headers } from "~/features/sikkerhet/headers";
+export { genererSikkerhetsheaders as headers } from "~/features/sikkerhet/headers.server";
 export { ErrorBoundary } from "./ErrorBoundary";
 export { loader } from "./loader.server";

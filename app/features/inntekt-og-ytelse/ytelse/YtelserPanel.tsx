@@ -30,13 +30,13 @@ import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
 import type { Ytelse } from "~/features/inntekt-og-ytelse/ytelse/domene";
 import { mapYtelsestypeTilIkon } from "~/features/inntekt-og-ytelse/ytelse/mapYtelsestypeTilIkon";
-import { useTidsvindu } from "~/features/tidsvindu/Tidsvindu";
-import { formaterDato, forskjellIDager } from "~/utils/date-utils";
-import { formaterBeløp } from "~/utils/number-utils";
 import {
   PanelContainer,
   PanelContainerSkeleton,
-} from "../../paneler/PanelContainer";
+} from "~/features/paneler/PanelContainer";
+import { useTidsvindu } from "~/features/tidsvindu/Tidsvindu";
+import { formaterDato, forskjellIDager } from "~/utils/date-utils";
+import { formaterBeløp } from "~/utils/number-utils";
 import { YtelseUtbetalingerModal } from "./YtelseUtbetalingerModal";
 
 type GruppertPeriode = {

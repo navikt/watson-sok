@@ -11,8 +11,8 @@ import { PageBlock } from "@navikt/ds-react/Page";
 import { SearchButton } from "@navikt/ds-react/Search";
 import { useEffect, useState } from "react";
 import { Form, useActionData } from "react-router";
-import { sporHendelse } from "../analytics/analytics";
-import { useMiljø } from "../miljø/useMiljø";
+import { sporHendelse } from "~/features/analytics/analytics";
+import { useMiljø } from "~/features/miljø/useMiljø";
 import { søkAction } from "./action.server";
 
 export const action = søkAction;
