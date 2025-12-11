@@ -3,38 +3,26 @@ import {
   route,
   type RouteConfig as RouteConfigType,
 } from "@react-router/dev/routes";
-import { RouteConfig } from "./features/config/routeConfig";
+import { RouteConfig } from "./config/routeConfig";
 
 export default [
   // App routes
-  layout("features/layout/AppLayout.tsx", [
-    route(RouteConfig.INDEX, "features/søk/Søkeside.route.tsx"),
-    route(RouteConfig.OPPSLAG, "features/oppslag/OppslagSide.route.tsx"),
-    route(
-      RouteConfig.TILGANG,
-      "features/begrunnet-tilgang/TilgangSide.route.tsx",
-    ),
-    route(
-      RouteConfig.PERSONVERN,
-      "features/personvern/PersonvernSide.route.tsx",
-    ),
+  layout("layout/AppLayout.tsx", [
+    route(RouteConfig.INDEX, "søk/Søkeside.route.tsx"),
+    route(RouteConfig.OPPSLAG, "oppslag/OppslagSide.route.tsx"),
+    route(RouteConfig.TILGANG, "begrunnet-tilgang/TilgangSide.route.tsx"),
+    route(RouteConfig.PERSONVERN, "personvern/PersonvernSide.route.tsx"),
   ]),
 
   // API routes
-  route(RouteConfig.API.HEALTH, "features/monitorering/helsesjekk/api.ts"),
-  route(
-    RouteConfig.API.LOGGED_IN_USER,
-    "features/admin/innlogget-bruker/api.ts",
-  ),
-  route(RouteConfig.API.THEME, "features/tema/api.ts"),
-  route(RouteConfig.API.VERSION, "features/versjonsvarsling/api.ts"),
+  route(RouteConfig.API.HEALTH, "monitorering/helsesjekk/api.ts"),
+  route(RouteConfig.API.LOGGED_IN_USER, "admin/innlogget-bruker/api.ts"),
+  route(RouteConfig.API.THEME, "tema/api.ts"),
+  route(RouteConfig.API.VERSION, "versjonsvarsling/api.ts"),
 
   // Well-known routes
-  route(
-    RouteConfig.WELL_KNOWN.SECURITY_TXT,
-    "features/sikkerhet/well-known/api.ts",
-  ),
+  route(RouteConfig.WELL_KNOWN.SECURITY_TXT, "sikkerhet/well-known/api.ts"),
 
   // Fallback 404 route
-  route("*", "features/feilhåndtering/404.route.tsx"),
+  route("*", "feilhåndtering/404.route.tsx"),
 ] satisfies RouteConfigType;

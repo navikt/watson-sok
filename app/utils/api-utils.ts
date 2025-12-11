@@ -1,12 +1,9 @@
 // TODO: Samlokaliser dette med noe annet…
 
 import z from "zod";
-import { getBackendOboToken } from "~/features/auth/access-token";
-import {
-  BACKEND_API_URL,
-  skalBrukeMockdata,
-} from "~/features/config/env.server";
-import { logger } from "~/features/logging/logging";
+import { getBackendOboToken } from "~/auth/access-token";
+import { BACKEND_API_URL, skalBrukeMockdata } from "~/config/env.server";
+import { logger } from "~/logging/logging";
 import type { MockOppslagBrukerRespons } from "~/test/domene";
 import { getMockedResponseByFødselsnummer } from "~/test/mock.server";
 

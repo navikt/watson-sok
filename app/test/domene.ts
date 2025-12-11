@@ -1,9 +1,9 @@
 import z from "zod";
-import { ArbeidsgiverInformasjonSchema } from "~/features/arbeidsforhold/domene";
-import { InntektInformasjonSchema } from "~/features/inntekt-og-ytelse/inntekt/domene";
-import { YtelserInformasjonSchema } from "~/features/inntekt-og-ytelse/ytelse/domene";
-import { PersonInformasjonSchema } from "~/features/person/domene";
-import { EksistensOgTilgangSchema } from "~/features/søk/domene";
+import { ArbeidsgiverInformasjonSchema } from "~/arbeidsforhold/domene";
+import { InntektInformasjonSchema } from "~/inntekt-og-ytelse/inntekt/domene";
+import { YtelserInformasjonSchema } from "~/inntekt-og-ytelse/ytelse/domene";
+import { PersonInformasjonSchema } from "~/person/domene";
+import { EksistensOgTilgangSchema } from "~/søk/domene";
 
 export const MockOppslagBrukerResponsSchema = z.object({
   tilgang: EksistensOgTilgangSchema,
