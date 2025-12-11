@@ -26,7 +26,7 @@ export default [
   // Well-known routes
   route(
     RouteConfig.WELL_KNOWN.SECURITY_TXT,
-    "routes/well-known/security.txt.ts",
+    "features/well-known/security.txt.tsx",
   ),
 
   // Fallback 404 route

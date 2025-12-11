@@ -28,6 +28,7 @@ import {
 import { InternalServerError } from "./features/feilhåndtering/InternalServerError";
 import { PageNotFound } from "./features/feilhåndtering/PageNotFound";
 import { logger } from "./features/logging/logging";
+import { genererSikkerhetsheaders } from "./features/sikkerhet/headers";
 import { Versjonsvarsling } from "./features/versjonsvarsling/Versjonsvarsling";
 import { initFaro } from "./utils/observability";
 
@@ -70,27 +71,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   };
 }
 
-export function headers() {
-  return {
-    "X-Frame-Options": "DENY",
-    "X-Content-Type-Options": "nosniff",
-    "X-XSS-Protection": "1; mode=block",
-    "Referrer-Policy": "strict-origin-when-cross-origin",
-    "Permissions-Policy":
-      "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()",
-    "Content-Security-Policy":
-      "default-src 'self'; " +
-      "script-src 'self' https://cdn.nav.no https://cdn.mxpnl.com 'unsafe-inline' 'unsafe-eval'; " +
-      "style-src 'self' 'unsafe-inline'; " +
-      "img-src 'self' data: https:; " +
-      "font-src 'self' data: cdn.nav.no; " +
-      "connect-src 'self' telemetry.nav.no telemetry.ekstern.dev.nav.no umami.nav.no https://api-eu.mixpanel.com https://data-eu.mixpanel.com;" +
-      "frame-ancestors 'none'; " +
-      "base-uri 'self'; " +
-      "form-action 'self'",
-    "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
-  };
-}
+export const headers = genererSikkerhetsheaders;
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   logger.error("Feil fanget av error boundary", { error });
