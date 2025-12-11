@@ -1,9 +1,12 @@
 import { Alert, Skeleton, ToggleGroup } from "@navikt/ds-react";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useMemo, useState } from "react";
+import { ResolvingComponent } from "~/features/async/ResolvingComponent";
+import {
+  PanelContainer,
+  PanelContainerSkeleton,
+} from "~/features/paneler/PanelContainer";
 import { useTidsvindu } from "~/features/tidsvindu/Tidsvindu";
-import { ResolvingComponent } from "../../async/ResolvingComponent";
-import { PanelContainer, PanelContainerSkeleton } from "../PanelContainer";
 import { GrafLegend } from "./GrafLegend";
 import { HoverInfoboks } from "./HoverInfoboks";
 import { Linjegraf } from "./Linjegraf";

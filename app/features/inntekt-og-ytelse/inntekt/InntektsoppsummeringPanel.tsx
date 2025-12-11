@@ -8,7 +8,7 @@ import {
 } from "@navikt/ds-react";
 import { use, useId, useMemo } from "react";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
-import type { InntektInformasjon } from "~/features/inntekt/domene";
+import type { InntektInformasjon } from "~/features/inntekt-og-ytelse/inntekt/domene";
 import {
   PanelContainer,
   PanelContainerSkeleton,

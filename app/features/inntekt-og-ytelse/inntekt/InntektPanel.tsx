@@ -9,12 +9,12 @@ import {
 } from "@navikt/ds-react/Table";
 import { use, useMemo, useState, type CSSProperties } from "react";
 import { ResolvingComponent } from "~/features/async/ResolvingComponent";
+import type { Ytelse } from "~/features/inntekt-og-ytelse/ytelse/domene";
+import { mapYtelsestypeTilIkon } from "~/features/inntekt-og-ytelse/ytelse/mapYtelsestypeTilIkon";
 import {
   PanelContainer,
   PanelContainerSkeleton,
 } from "~/features/paneler/PanelContainer";
-import type { Ytelse } from "~/features/ytelse/domene";
-import { mapYtelsestypeTilIkon } from "~/features/ytelse/mapYtelsestypeTilIkon";
 import { formaterÅrMåned } from "~/utils/date-utils";
 import {
   formaterBeløp,

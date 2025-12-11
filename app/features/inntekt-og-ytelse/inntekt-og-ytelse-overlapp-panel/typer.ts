@@ -1,5 +1,5 @@
-import type { InntektInformasjon } from "~/features/inntekt/domene";
-import type { Ytelse } from "~/features/ytelse/domene";
+import type { InntektInformasjon } from "~/features/inntekt-og-ytelse/inntekt/domene";
+import type { Ytelse } from "~/features/inntekt-og-ytelse/ytelse/domene";
 
 export type InntektOgYtelseOverlappPanelProps = {
   inntektPromise: Promise<InntektInformasjon | null>;

@@ -12,11 +12,12 @@ import { hentArbeidsforhold } from "~/features/arbeidsforhold/api.server";
 import { ArbeidsforholdPanel } from "~/features/arbeidsforhold/ArbeidsforholdPanel";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
-import { hentInntekter } from "~/features/inntekt/api.server";
-import { InntektPanel } from "~/features/inntekt/InntektPanel";
-import { InntektsoppsummeringPanel } from "~/features/inntekt/InntektsoppsummeringPanel";
-import { InntektOgYtelseOverlappPanel } from "~/features/paneler/inntekt-og-ytelse-overlapp-panel";
-import { YtelserPanel } from "~/features/paneler/YtelserPanel";
+import { InntektOgYtelseOverlappPanel } from "~/features/inntekt-og-ytelse/inntekt-og-ytelse-overlapp-panel/InntektOgYtelseOverlappPanel";
+import { hentInntekter } from "~/features/inntekt-og-ytelse/inntekt/api.server";
+import { InntektPanel } from "~/features/inntekt-og-ytelse/inntekt/InntektPanel";
+import { InntektsoppsummeringPanel } from "~/features/inntekt-og-ytelse/inntekt/InntektsoppsummeringPanel";
+import { hentYtelser } from "~/features/inntekt-og-ytelse/ytelse/api.server";
+import { YtelserPanel } from "~/features/inntekt-og-ytelse/ytelse/YtelserPanel";
 import { hentPersonopplysninger } from "~/features/person/api.server";
 import { OverskriftPanel } from "~/features/person/OverskriftPanel";
 import { PersonopplysningerPanel } from "~/features/person/PersonopplysningerPanel";
@@ -25,7 +26,6 @@ import {
   TidsvinduProvider,
   TidsvinduVelger,
 } from "~/features/tidsvindu/Tidsvindu";
-import { hentYtelser } from "~/features/ytelse/api.server";
 
 export default function OppslagBruker() {
   const data = useLoaderData<typeof loader>();
