@@ -7,7 +7,7 @@ import { RouteConfig } from "./config/routeConfig";
 
 export default [
   // App routes
-  layout("routes/layout/layout.tsx", [
+  layout("features/layout/AppLayout.tsx", [
     route(RouteConfig.INDEX, "routes/index.tsx"),
     route(RouteConfig.OPPSLAG, "routes/oppslag/index.tsx"),
     route(RouteConfig.TILGANG, "routes/oppslag/tilgang.tsx"),
