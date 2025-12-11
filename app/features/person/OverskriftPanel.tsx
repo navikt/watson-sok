@@ -1,9 +1,9 @@
 import { Heading, Skeleton, Tag, Tooltip } from "@navikt/ds-react";
 import { use } from "react";
-import type { PersonInformasjon } from "~/routes/oppslag/schemas";
-import { tilFulltNavn } from "~/utils/navn-utils";
 import { storFørsteBokstavPerOrd } from "~/utils/string-utils";
 import { ResolvingComponent } from "../async/ResolvingComponent";
+import type { PersonInformasjon } from "./domene";
+import { tilFulltNavn } from "./utils/navn-utils";
 
 type OverskriftPanelProps = {
   promise: Promise<PersonInformasjon | null>;

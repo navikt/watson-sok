@@ -10,11 +10,11 @@ import { useRef, useState } from "react";
 import { Form } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { sporHendelse } from "~/features/analytics/analytics";
-import { beregnAlderFraFødselsEllerDnummer } from "~/utils/personident-utils";
 import {
   formaterFødselsnummer,
   snakeCaseTilSetning,
 } from "~/utils/string-utils";
+import { beregnAlderFraFødselsEllerDnummer } from "./utils/personident-utils";
 
 type FamiliemedlemmerModalProps = {
   familiemedlemmer: Record<string, string>;

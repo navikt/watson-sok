@@ -11,23 +11,19 @@ import { RouteConfig } from "~/config/routeConfig";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
 import { ArbeidsforholdPanel } from "~/features/paneler/ArbeidsforholdPanel";
-import { BrukerinformasjonPanel } from "~/features/paneler/BrukerinformasjonPanel";
 import { InntektOgYtelseOverlappPanel } from "~/features/paneler/inntekt-og-ytelse-overlapp-panel";
 import { InntektPanel } from "~/features/paneler/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/features/paneler/InntektsoppsummeringPanel";
-import { OverskriftPanel } from "~/features/paneler/OverskriftPanel";
 import { YtelserPanel } from "~/features/paneler/YtelserPanel";
+import { hentPersonopplysninger } from "~/features/person/api.server";
+import { OverskriftPanel } from "~/features/person/OverskriftPanel";
+import { PersonopplysningerPanel } from "~/features/person/PersonopplysningerPanel";
 import { hentSøkedataFraSession } from "~/features/søk/søkeinfoSession.server";
 import {
   TidsvinduProvider,
   TidsvinduVelger,
 } from "../../features/tidsvindu/Tidsvindu";
-import {
-  hentArbeidsforhold,
-  hentInntekter,
-  hentPersonopplysninger,
-  hentYtelser,
-} from "./api.server";
+import { hentArbeidsforhold, hentInntekter, hentYtelser } from "./api.server";
 
 export default function OppslagBruker() {
   const data = useLoaderData<typeof loader>();
@@ -58,7 +54,7 @@ export default function OppslagBruker() {
               </BodyShort>
             </Alert>
           )}
-          <BrukerinformasjonPanel promise={data.personopplysninger} />
+          <PersonopplysningerPanel promise={data.personopplysninger} />
           <YtelserPanel promise={data.ytelser} />
           {visInntektOgYtelseOverlappPanel ? (
             <div className="grid grid-cols-1 min-[1800px]:grid-cols-2 gap-4">

@@ -1,9 +1,4 @@
-import {
-  data,
-  redirectDocument,
-  unstable_useRoute,
-  type ActionFunctionArgs,
-} from "react-router";
+import { data, redirectDocument, type ActionFunctionArgs } from "react-router";
 import { RouteConfig } from "~/config/routeConfig";
 import { logger } from "../logging/logging";
 import { sjekkEksistensOgTilgang } from "./api.server";

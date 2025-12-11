@@ -1,9 +1,9 @@
-import type { UtenlandskAdresse } from "~/routes/oppslag/schemas";
+import type { Adresse, NorskAdresse, UtenlandskAdresse } from "../domene";
 
-import type { NorskAdresse } from "~/routes/oppslag/schemas";
-
-import type { Adresse } from "~/routes/oppslag/schemas";
-import { storFørsteBokstav, storFørsteBokstavPerOrd } from "./string-utils";
+import {
+  storFørsteBokstav,
+  storFørsteBokstavPerOrd,
+} from "~/utils/string-utils";
 
 /**
  * Formaterer et adresse-objekt til en norsk adresse eller utenlandsk adresse

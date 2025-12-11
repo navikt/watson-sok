@@ -1,39 +1,42 @@
 import { Alert, CopyButton, Skeleton, Tooltip } from "@navikt/ds-react";
 import { Fragment, use } from "react";
 import { unstable_useRoute } from "react-router";
-import type { PersonInformasjon } from "~/routes/oppslag/schemas";
-import { formaterAdresse } from "~/utils/adresse-utils";
+import { ResolvingComponent } from "~/features/async/ResolvingComponent";
+import {
+  PanelContainer,
+  PanelContainerSkeleton,
+} from "~/features/paneler/PanelContainer";
 import { formaterDato } from "~/utils/date-utils";
-import { tilFulltNavn } from "~/utils/navn-utils";
 import {
   formaterFødselsnummer,
   storFørsteBokstav,
   storFørsteBokstavPerOrd,
 } from "~/utils/string-utils";
-import { ResolvingComponent } from "../async/ResolvingComponent";
+import type { PersonInformasjon } from "./domene";
 import { FamiliemedlemmerModal } from "./FamiliemedlemmerModal";
-import { PanelContainer, PanelContainerSkeleton } from "./PanelContainer";
+import { formaterAdresse } from "./utils/adresse-utils";
+import { tilFulltNavn } from "./utils/navn-utils";
 
-type BrukerinformasjonProps = {
+type PersonopplysningerProps = {
   promise: Promise<PersonInformasjon | null>;
 };
 /**
  * Komponent som viser personlig informasjon om en bruker
  */
-export function BrukerinformasjonPanel({ promise }: BrukerinformasjonProps) {
+export function PersonopplysningerPanel({ promise }: PersonopplysningerProps) {
   return (
-    <ResolvingComponent loadingFallback={<BrukerinformasjonPanelSkeleton />}>
-      <BrukerinformasjonPanelMedData promise={promise} />
+    <ResolvingComponent loadingFallback={<PersonopplysningerPanelSkeleton />}>
+      <PersonopplysningerPanelMedData promise={promise} />
     </ResolvingComponent>
   );
 }
 
-type BrukerinformasjonPanelMedDataProps = {
+type PersonopplysningerPanelMedDataProps = {
   promise: Promise<PersonInformasjon | null>;
 };
-const BrukerinformasjonPanelMedData = ({
+const PersonopplysningerPanelMedData = ({
   promise,
-}: BrukerinformasjonPanelMedDataProps) => {
+}: PersonopplysningerPanelMedDataProps) => {
   const personopplysninger = use(promise);
   const { loaderData: rootData } = unstable_useRoute("root");
 
@@ -136,7 +139,7 @@ const BrukerinformasjonPanelMedData = ({
   );
 };
 
-const BrukerinformasjonPanelSkeleton = () => {
+const PersonopplysningerPanelSkeleton = () => {
   const linjer = Array.from({ length: 6 }, (_, index) => index);
   return (
     <PanelContainerSkeleton
