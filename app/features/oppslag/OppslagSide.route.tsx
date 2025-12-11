@@ -1,33 +1,22 @@
 import { Alert, BodyShort, Heading } from "@navikt/ds-react";
 import { Page, PageBlock } from "@navikt/ds-react/Page";
-import {
-  redirect,
-  useLoaderData,
-  type LoaderFunctionArgs,
-  type MetaArgs,
-} from "react-router";
-import { env } from "~/config/env.server";
-import { RouteConfig } from "~/config/routeConfig";
-import { hentArbeidsforhold } from "~/features/arbeidsforhold/api.server";
+import { useLoaderData } from "react-router";
 import { ArbeidsforholdPanel } from "~/features/arbeidsforhold/ArbeidsforholdPanel";
 import { FeatureFlagg } from "~/features/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/features/feature-toggling/useFeatureFlagg";
 import { InntektOgYtelseOverlappPanel } from "~/features/inntekt-og-ytelse/inntekt-og-ytelse-overlapp-panel/InntektOgYtelseOverlappPanel";
-import { hentInntekter } from "~/features/inntekt-og-ytelse/inntekt/api.server";
 import { InntektPanel } from "~/features/inntekt-og-ytelse/inntekt/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/features/inntekt-og-ytelse/inntekt/InntektsoppsummeringPanel";
-import { hentYtelser } from "~/features/inntekt-og-ytelse/ytelse/api.server";
 import { YtelserPanel } from "~/features/inntekt-og-ytelse/ytelse/YtelserPanel";
-import { hentPersonopplysninger } from "~/features/person/api.server";
 import { OverskriftPanel } from "~/features/person/OverskriftPanel";
 import { PersonopplysningerPanel } from "~/features/person/PersonopplysningerPanel";
-import { hentSøkedataFraSession } from "~/features/søk/søkeinfoSession.server";
 import {
   TidsvinduProvider,
   TidsvinduVelger,
 } from "~/features/tidsvindu/Tidsvindu";
+import type { loader } from "./loader.server";
 
-export default function OppslagBruker() {
+export default function OppslagBrukerSide() {
   const data = useLoaderData<typeof loader>();
   const visInntektsoppsummeringPanel = useEnkeltFeatureFlagg(
     FeatureFlagg.INNTEKTSOPPSUMMERING_PANEL,
@@ -86,59 +75,5 @@ export default function OppslagBruker() {
   );
 }
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const søkedata = await hentSøkedataFraSession(request);
-  const traceLogging =
-    new URL(request.url).searchParams.get("traceLogging") === "true";
-
-  if (
-    !søkedata.ident ||
-    !søkedata.tilgang ||
-    søkedata.tilgang === "IKKE_FUNNET"
-  ) {
-    return redirect(RouteConfig.INDEX);
-  }
-
-  if (
-    søkedata.tilgang !== "OK" &&
-    !søkedata.bekreftetBegrunnetTilgang &&
-    !søkedata.harUtvidetTilgang
-  ) {
-    return redirect(RouteConfig.TILGANG);
-  }
-
-  const params = {
-    ident: søkedata.ident,
-    request,
-    navCallId: crypto.randomUUID(),
-    traceLogging,
-  };
-
-  const utvidet = new URL(request.url).searchParams.get("utvidet") === "true";
-  return {
-    miljø: env.ENVIRONMENT,
-    erBegrensetTilgang:
-      !søkedata.harUtvidetTilgang &&
-      [
-        "AVVIST_STRENGT_FORTROLIG_ADRESSE",
-        "AVVIST_STRENGT_FORTROLIG_UTLAND",
-        "AVVIST_FORTROLIG_ADRESSE",
-      ].includes(søkedata.tilgang),
-    personopplysninger: hentPersonopplysninger(params),
-    arbeidsgiverInformasjon: hentArbeidsforhold(params),
-    inntektInformasjon: hentInntekter(params),
-    ytelser: hentYtelser({
-      ...params,
-      utvidet,
-    }),
-  };
-}
-
-export function meta({ loaderData }: MetaArgs<typeof loader>) {
-  const miljø = loaderData?.miljø ?? "ukjent";
-  return [
-    {
-      title: `Oppslag – Watson Søk ${miljø !== "prod" ? `(${miljø})` : ""}`,
-    },
-  ];
-}
+export { loader } from "./loader.server";
+export { meta } from "./meta.server";

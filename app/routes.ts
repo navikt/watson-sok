@@ -9,7 +9,7 @@ export default [
   // App routes
   layout("features/layout/AppLayout.tsx", [
     route(RouteConfig.INDEX, "features/søk/Søkeside.route.tsx"),
-    route(RouteConfig.OPPSLAG, "routes/oppslag/index.tsx"),
+    route(RouteConfig.OPPSLAG, "features/oppslag/OppslagSide.route.tsx"),
     route(
       RouteConfig.TILGANG,
       "features/begrunnet-tilgang/TilgangSide.route.tsx",
