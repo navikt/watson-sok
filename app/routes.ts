@@ -14,7 +14,10 @@ export default [
       RouteConfig.TILGANG,
       "features/begrunnet-tilgang/TilgangSide.route.tsx",
     ),
-    route(RouteConfig.PERSONVERN, "routes/personvern.tsx"),
+    route(
+      RouteConfig.PERSONVERN,
+      "features/personvern/PersonvernSide.route.tsx",
+    ),
   ]),
 
   // API routes

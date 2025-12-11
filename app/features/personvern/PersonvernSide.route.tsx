@@ -3,7 +3,7 @@ import { ListItem } from "@navikt/ds-react/List";
 import { PageBlock } from "@navikt/ds-react/Page";
 import { useMiljø } from "~/features/miljø/useMiljø";
 
-export default function Personvern() {
+export default function PersonvernSide() {
   const miljø = useMiljø();
   return (
     <Page>
