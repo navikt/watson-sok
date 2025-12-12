@@ -1,7 +1,4 @@
-import {
-  gjørOppslagApiRequest,
-  type BackendKallSignatur,
-} from "~/utils/api-utils";
+import { gjørOppslagApiRequest, type BackendKallSignatur } from "~/oppslag/api";
 import { YtelserInformasjonSchema } from "./domene";
 
 /** Henter ytelser for en gitt ident */

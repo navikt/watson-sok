@@ -1,5 +1,3 @@
-// TODO: Samlokaliser dette med noe annet…
-
 import z from "zod";
 import { getBackendOboToken } from "~/auth/access-token";
 import { BACKEND_API_URL, skalBrukeMockdata } from "~/config/env.server";
@@ -29,6 +27,17 @@ type ApiRequestConfig<T> = {
  *
  * @param config - Konfigurasjonsobjekt for API-forespørselen
  * @returns Parsede og validerte data fra APIet eller mock
+ *
+ * @example
+ * const data = await gjørOppslagApiRequest({
+ *   ident: "12345678901",
+ *   request,
+ *   navCallId: crypto.randomUUID(),
+ *   endepunkt: "/oppslag/inntekt",
+ *   schema: InntektInformasjonSchema,
+ *   ekstraherFraMock: (mock) => mock.inntektInformasjon,
+ *   traceLogging: false,
+ * });
  */
 export async function gjørOppslagApiRequest<T>({
   ident,
