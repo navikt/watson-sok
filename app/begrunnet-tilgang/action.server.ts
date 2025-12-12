@@ -10,7 +10,7 @@ import {
 } from "~/søk/søkeinfoSession.server";
 import { loggBegrunnetTilgang } from "./api.server";
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function tilgangAction({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const begrunnelse = formData.get("begrunnelse")?.toString().trim();
   if (!begrunnelse) {

@@ -17,8 +17,11 @@ import {
 import { sporHendelse } from "~/analytics/analytics";
 import { useMiljø } from "~/miljø/useMiljø";
 import { RouteConfig } from "~/routeConfig";
-import type { action } from "./action.server";
-import type { loader } from "./loader.server";
+import { tilgangAction } from "./action.server";
+import { tilgangLoader } from "./loader.server";
+
+export const loader = tilgangLoader;
+export const action = tilgangAction;
 
 export default function TilgangSide() {
   const {
@@ -26,8 +29,8 @@ export default function TilgangSide() {
     harUtvidetTilgang,
     erKode6Eller7EllerUtland,
     erSkjermetBruker,
-  } = useLoaderData<typeof loader>();
-  const actionData = useActionData<typeof action>();
+  } = useLoaderData<typeof tilgangLoader>();
+  const actionData = useActionData<typeof tilgangAction>();
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";

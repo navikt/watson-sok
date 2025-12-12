@@ -4,7 +4,7 @@ import type { LoaderFunctionArgs } from "react-router";
 import { RouteConfig } from "~/routeConfig";
 import { hentSøkedataFraSession } from "~/søk/søkeinfoSession.server";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function tilgangLoader({ request }: LoaderFunctionArgs) {
   const { ident, bekreftetBegrunnetTilgang, tilgang, harUtvidetTilgang } =
     await hentSøkedataFraSession(request);
 
