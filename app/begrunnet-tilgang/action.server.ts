@@ -3,7 +3,7 @@ import {
   redirectDocument,
   type ActionFunctionArgs,
 } from "react-router";
-import { RouteConfig } from "~/config/routeConfig";
+import { RouteConfig } from "~/routeConfig";
 import {
   hentSøkedataFraSession,
   lagreSøkeinfoPåSession,

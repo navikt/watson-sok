@@ -15,8 +15,8 @@ import {
   useNavigation,
 } from "react-router";
 import { sporHendelse } from "~/analytics/analytics";
-import { RouteConfig } from "~/config/routeConfig";
 import { useMiljø } from "~/miljø/useMiljø";
+import { RouteConfig } from "~/routeConfig";
 import type { action } from "./action.server";
 import type { loader } from "./loader.server";
 

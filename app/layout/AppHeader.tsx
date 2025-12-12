@@ -17,8 +17,8 @@ import { useHotkeys } from "react-hotkeys-hook";
 import { Form, Link, useNavigate, useNavigation } from "react-router";
 import { sporHendelse } from "~/analytics/analytics";
 import { useUser } from "~/auth/useUser";
-import { RouteConfig } from "~/config/routeConfig";
 import { useMiljø } from "~/miljø/useMiljø";
+import { RouteConfig } from "~/routeConfig";
 import { useTheme } from "~/tema/ThemeContext";
 
 export function AppHeader() {

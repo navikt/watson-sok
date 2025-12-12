@@ -11,10 +11,10 @@ import {
 import { ListItem } from "@navikt/ds-react/List";
 import { PageBlock } from "@navikt/ds-react/Page";
 import { Link } from "react-router";
-import { RouteConfig } from "~/config/routeConfig";
 import { AppFooter } from "~/layout/AppFooter";
 import { AppHeader } from "~/layout/AppHeader";
 import { useMiljø } from "~/miljø/useMiljø";
+import { RouteConfig } from "~/routeConfig";
 
 export function PageNotFound() {
   const miljø = useMiljø();

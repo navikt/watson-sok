@@ -25,18 +25,18 @@ import {
 import { use, useMemo, useState } from "react";
 import { sporHendelse } from "~/analytics/analytics";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
-import { RouteConfig } from "~/config/routeConfig";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
-import type { Ytelse } from "~/inntekt-og-ytelse/ytelse/domene";
-import { mapYtelsestypeTilIkon } from "~/inntekt-og-ytelse/ytelse/mapYtelsestypeTilIkon";
 import {
   PanelContainer,
   PanelContainerSkeleton,
 } from "~/paneler/PanelContainer";
+import { RouteConfig } from "~/routeConfig";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { formaterDato, forskjellIDager } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
+import type { Ytelse } from "./domene";
+import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
 import { YtelseUtbetalingerModal } from "./YtelseUtbetalingerModal";
 
 type GruppertPeriode = {

@@ -1,10 +1,10 @@
 import { env } from "process";
 import { type LoaderFunctionArgs, redirect } from "react-router";
 import { hentArbeidsforhold } from "~/arbeidsforhold/api.server";
-import { RouteConfig } from "~/config/routeConfig";
 import { hentInntekter } from "~/inntekt-og-ytelse/inntekt/api.server";
 import { hentYtelser } from "~/inntekt-og-ytelse/ytelse/api.server";
 import { hentPersonopplysninger } from "~/person/api.server";
+import { RouteConfig } from "~/routeConfig";
 import { hentSøkedataFraSession } from "~/søk/søkeinfoSession.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {

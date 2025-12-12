@@ -9,7 +9,7 @@ import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useRef, useState } from "react";
 import { Form } from "react-router";
 import { sporHendelse } from "~/analytics/analytics";
-import { RouteConfig } from "~/config/routeConfig";
+import { RouteConfig } from "~/routeConfig";
 import {
   formaterFødselsnummer,
   snakeCaseTilSetning,

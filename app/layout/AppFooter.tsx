@@ -1,6 +1,6 @@
 import { BodyLong, Detail, Link as NavLink, Theme } from "@navikt/ds-react";
 import { Link, unstable_useRoute } from "react-router";
-import { RouteConfig } from "~/config/routeConfig";
+import { RouteConfig } from "~/routeConfig";
 
 export function AppFooter() {
   const loaderData = unstable_useRoute("root");

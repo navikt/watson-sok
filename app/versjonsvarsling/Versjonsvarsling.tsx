@@ -3,8 +3,8 @@ import { BodyLong, Button } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useEffect, useRef, useState } from "react";
 import { sporHendelse } from "~/analytics/analytics";
-import { RouteConfig } from "~/config/routeConfig";
 import { logger } from "~/logging/logging";
+import { RouteConfig } from "~/routeConfig";
 
 const POLLING_INTERVAL_MS = 60_000;
 
