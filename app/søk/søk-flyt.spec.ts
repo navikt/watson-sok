@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { sjekkTilgjengelighet } from "./uu-util";
+import { sjekkTilgjengelighet } from "../test/uu-util";
 
 test.describe("Begrunnelse-flyt for skjermet bruker", () => {
   test("skal kreve begrunnelse og huske bekreftet tilgang", async ({

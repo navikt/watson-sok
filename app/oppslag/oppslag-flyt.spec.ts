@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { sjekkTilgjengelighet } from "./uu-util";
+import { sjekkTilgjengelighet } from "../test/uu-util";
 
 test.describe("Oppslag-flyt", () => {
   test("skal fullføre oppslag på testbruker og vise alle paneler", async ({

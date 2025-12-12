@@ -11,7 +11,11 @@ import { YtelserPanel } from "~/inntekt-og-ytelse/ytelse/YtelserPanel";
 import { OverskriftPanel } from "~/person/OverskriftPanel";
 import { PersonopplysningerPanel } from "~/person/PersonopplysningerPanel";
 import { TidsvinduProvider, TidsvinduVelger } from "~/tidsvindu/Tidsvindu";
-import type { oppslagLoader } from "./loader.server";
+import { oppslagLoader } from "./loader.server";
+import { oppslagMeta } from "./meta";
+
+export const loader = oppslagLoader;
+export const meta = oppslagMeta;
 
 export default function OppslagBrukerSide() {
   const data = useLoaderData<typeof oppslagLoader>();
@@ -71,6 +75,3 @@ export default function OppslagBrukerSide() {
     </TidsvinduProvider>
   );
 }
-
-export { oppslagLoader as loader } from "./loader.server";
-export { meta } from "./meta";

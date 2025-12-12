@@ -5,7 +5,7 @@ import { logger } from "~/logging/logging";
 import type { Route } from "../+types/root";
 import { HtmlRamme } from "./HtmlRamme";
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export function RootErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   logger.error("Feil fanget av error boundary", { error });
   if (isRouteErrorResponse(error) && error.status === 404) {
     return (
