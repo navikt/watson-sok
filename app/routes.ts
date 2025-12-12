@@ -3,29 +3,26 @@ import {
   route,
   type RouteConfig as RouteConfigType,
 } from "@react-router/dev/routes";
-import { RouteConfig } from "./config/routeConfig";
+import { RouteConfig } from "./routeConfig";
 
 export default [
   // App routes
-  layout("routes/layout/layout.tsx", [
-    route(RouteConfig.INDEX, "routes/index.tsx"),
-    route(RouteConfig.OPPSLAG, "routes/oppslag/index.tsx"),
-    route(RouteConfig.TILGANG, "routes/oppslag/tilgang.tsx"),
-    route(RouteConfig.PERSONVERN, "routes/personvern.tsx"),
+  layout("layout/AppLayout.tsx", [
+    route(RouteConfig.INDEX, "søk/Søkeside.route.tsx"),
+    route(RouteConfig.OPPSLAG, "oppslag/OppslagSide.route.tsx"),
+    route(RouteConfig.TILGANG, "begrunnet-tilgang/TilgangSide.route.tsx"),
+    route(RouteConfig.PERSONVERN, "personvern/PersonvernSide.route.tsx"),
   ]),
 
   // API routes
-  route(RouteConfig.API.HEALTH, "routes/api/health/index.ts"),
-  route(RouteConfig.API.LOGGED_IN_USER, "routes/api/logged-in-user/index.ts"),
-  route(RouteConfig.API.THEME, "routes/api/theme/index.ts"),
-  route(RouteConfig.API.VERSION, "routes/api/version/index.ts"),
+  route(RouteConfig.API.HEALTH, "monitorering/helsesjekk/api.ts"),
+  route(RouteConfig.API.LOGGED_IN_USER, "admin/innlogget-bruker/api.ts"),
+  route(RouteConfig.API.THEME, "tema/api.ts"),
+  route(RouteConfig.API.VERSION, "versjonsvarsling/api.ts"),
 
   // Well-known routes
-  route(
-    RouteConfig.WELL_KNOWN.SECURITY_TXT,
-    "routes/well-known/security.txt.ts",
-  ),
+  route(RouteConfig.WELL_KNOWN.SECURITY_TXT, "sikkerhet/well-known/api.ts"),
 
   // Fallback 404 route
-  route("*", "routes/404.tsx"),
+  route("*", "feilhåndtering/404.route.tsx"),
 ] satisfies RouteConfigType;

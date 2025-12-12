@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { logger } from "~/utils/logging";
+import { logger } from "~/logging/logging";
 
 const envSchema = z.object({
   NODE_ENV: z
