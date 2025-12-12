@@ -4,10 +4,10 @@ import { useFaro } from "~/monitorering/faro";
 import { Versjonsvarsling } from "~/versjonsvarsling/Versjonsvarsling";
 
 import { HtmlRamme } from "./HtmlRamme";
-import type { loader } from "./loader.server";
+import type { rootLoader } from "./loader.server";
 
 export default function Root() {
-  const { envs, initialTheme } = useLoaderData<typeof loader>();
+  const { envs, initialTheme } = useLoaderData<typeof rootLoader>();
   useFaro();
   return (
     <HtmlRamme initialTheme={initialTheme} umamiSiteId={envs.umamiSiteId}>

@@ -6,5 +6,5 @@ import { default as RootRoute } from "~/layout/root";
 
 export default RootRoute;
 export { ErrorBoundary } from "~/layout/ErrorBoundary";
-export { loader } from "~/layout/loader.server";
+export { rootLoader as loader } from "~/layout/loader.server";
 export { headers } from "~/sikkerhet/headers";

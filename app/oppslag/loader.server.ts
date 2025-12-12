@@ -7,7 +7,7 @@ import { hentPersonopplysninger } from "~/person/api.server";
 import { RouteConfig } from "~/routeConfig";
 import { hentSøkedataFraSession } from "~/søk/søkeinfoSession.server";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function oppslagLoader({ request }: LoaderFunctionArgs) {
   const søkedata = await hentSøkedataFraSession(request);
   const traceLogging =
     new URL(request.url).searchParams.get("traceLogging") === "true";

@@ -1,7 +1,7 @@
 import type { MetaArgs } from "react-router";
-import type { loader } from "./loader.server";
+import type { oppslagLoader } from "./loader.server";
 
-export function meta({ loaderData }: MetaArgs<typeof loader>) {
+export function meta({ loaderData }: MetaArgs<typeof oppslagLoader>) {
   const miljø = loaderData?.miljø ?? "ukjent";
   return [
     {

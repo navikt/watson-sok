@@ -7,7 +7,7 @@ import {
 } from "~/feature-toggling/utils.server";
 import { parseTheme, themeCookie } from "~/tema/ThemeCookie";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function rootLoader({ request }: LoaderFunctionArgs) {
   const user = await getLoggedInUser({ request });
   const [featureFlagg, statusmelding, cookieValue] = await Promise.all([
     hentAlleFeatureFlagg(user.navIdent),

@@ -11,10 +11,10 @@ import { YtelserPanel } from "~/inntekt-og-ytelse/ytelse/YtelserPanel";
 import { OverskriftPanel } from "~/person/OverskriftPanel";
 import { PersonopplysningerPanel } from "~/person/PersonopplysningerPanel";
 import { TidsvinduProvider, TidsvinduVelger } from "~/tidsvindu/Tidsvindu";
-import type { loader } from "./loader.server";
+import type { oppslagLoader } from "./loader.server";
 
 export default function OppslagBrukerSide() {
-  const data = useLoaderData<typeof loader>();
+  const data = useLoaderData<typeof oppslagLoader>();
   const visInntektsoppsummeringPanel = useEnkeltFeatureFlagg(
     FeatureFlagg.INNTEKTSOPPSUMMERING_PANEL,
   );
@@ -72,5 +72,5 @@ export default function OppslagBrukerSide() {
   );
 }
 
-export { loader } from "./loader.server";
+export { oppslagLoader as loader } from "./loader.server";
 export { meta } from "./meta";
