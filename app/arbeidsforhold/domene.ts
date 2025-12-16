@@ -8,7 +8,7 @@ const ÅpenPeriodeSchema = z.object({
 const AnsettelsesDetaljSchema = z.object({
   type: z.string(),
   stillingsprosent: z.number().nullable(),
-  antallTimerPrUke: z.number().nullable(),
+  antallTimerPrUke: z.number().nullable().default(null),
   periode: ÅpenPeriodeSchema,
   yrke: z.string().nullable(),
 });

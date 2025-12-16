@@ -371,6 +371,7 @@
         "arbeidsforhold": "",
         "stillingsprosent": "",
         "lønnstype": "fastloenn",
+        "antallTimerPrUke": 37.5,
         "antall": null,
         "beløp": 51158.25,
         "harFlereVersjoner": false

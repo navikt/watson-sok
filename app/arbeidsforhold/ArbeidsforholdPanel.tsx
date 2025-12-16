@@ -76,6 +76,7 @@ const ArbeidsforholdPanelMedData = ({
       slutt: detalj.periode.tom,
       stillingsprosent: detalj.stillingsprosent ?? null,
       arbeidsforholdType: detalj.type ?? null,
+      antallTimerPrUke: detalj.antallTimerPrUke ?? null,
       yrke: detalj.yrke,
       løpende: !detalj.periode.tom,
     })),
@@ -124,6 +125,9 @@ const ArbeidsforholdPanelMedData = ({
                   <TableHeaderCell textSize="small" scope="col" align="right">
                     Stilling&nbsp;%
                   </TableHeaderCell>
+                  <TableHeaderCell textSize="small" scope="col" align="right">
+                    Timer&nbsp;pr&nbsp;uke
+                  </TableHeaderCell>
                   <TableHeaderCell textSize="small" scope="col">
                     Arbeidsforhold
                   </TableHeaderCell>
@@ -168,6 +172,10 @@ const ArbeidsforholdPanelMedData = ({
                     </TableDataCell>
                     <TableDataCell align="right" textSize="small">
                       {formaterProsent(r.stillingsprosent ?? "-")}
+                    </TableDataCell>
+                    <TableDataCell align="right" textSize="small">
+                      {r.antallTimerPrUke ?? "Ukjent"}{" "}
+                      {r.antallTimerPrUke !== null && "t"}
                     </TableDataCell>
                     <TableDataCell textSize="small">
                       {mapArbeidsforholdType(r.arbeidsforholdType ?? "–")}
@@ -431,6 +439,7 @@ function slåSammenTilstøtendePerioder(
     start: string;
     slutt: string | null;
     stillingsprosent: number | null;
+    antallTimerPrUke: number | null;
     arbeidsforholdType: string | null;
     yrke: string | null;
     løpende: boolean;
@@ -447,6 +456,7 @@ function slåSammenTilstøtendePerioder(
       start: string;
       slutt: string | null;
       stillingsprosent: number | null;
+      antallTimerPrUke: number | null;
       arbeidsforholdType: string | null;
       yrke: string | null;
       løpende: boolean;
@@ -482,6 +492,7 @@ function slåSammenTilstøtendePerioder(
       );
       const harSammeDetaljer =
         tmpSammenslått.stillingsprosent === nesteRad.stillingsprosent &&
+        tmpSammenslått.antallTimerPrUke === nesteRad.antallTimerPrUke &&
         tmpSammenslått.arbeidsforholdType === nesteRad.arbeidsforholdType &&
         tmpSammenslått.yrke === nesteRad.yrke;
 
