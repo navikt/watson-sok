@@ -2,8 +2,16 @@ import {
   ClipboardIcon,
   InformationSquareIcon,
   MenuElipsisVerticalIcon,
+  QuestionmarkCircleIcon,
 } from "@navikt/aksel-icons";
-import { ActionMenu, Alert, Button, Skeleton, Table } from "@navikt/ds-react";
+import {
+  ActionMenu,
+  Alert,
+  Button,
+  Skeleton,
+  Table,
+  Tooltip,
+} from "@navikt/ds-react";
 import {
   ActionMenuContent,
   ActionMenuGroup,
@@ -126,7 +134,15 @@ const ArbeidsforholdPanelMedData = ({
                     Stilling&nbsp;%
                   </TableHeaderCell>
                   <TableHeaderCell textSize="small" scope="col" align="right">
-                    Timer&nbsp;pr&nbsp;uke
+                    <span className="inline-flex items-center gap-1">
+                      Full stilling tilsvarer
+                      <Tooltip content="Antall timer pr uke som inngår i en full stilling">
+                        <QuestionmarkCircleIcon
+                          fontSize="1.125rem"
+                          aria-label="Hva er dette?"
+                        />
+                      </Tooltip>
+                    </span>
                   </TableHeaderCell>
                   <TableHeaderCell textSize="small" scope="col">
                     Arbeidsforhold
@@ -174,8 +190,8 @@ const ArbeidsforholdPanelMedData = ({
                       {formaterProsent(r.stillingsprosent ?? "-")}
                     </TableDataCell>
                     <TableDataCell align="right" textSize="small">
-                      {r.antallTimerPrUke ?? "Ukjent"}{" "}
-                      {r.antallTimerPrUke !== null && "t"}
+                      {r.antallTimerPrUke ?? "–"}{" "}
+                      {r.antallTimerPrUke !== null && "t / uke"}
                     </TableDataCell>
                     <TableDataCell textSize="small">
                       {mapArbeidsforholdType(r.arbeidsforholdType ?? "–")}
