@@ -353,6 +353,8 @@ function grupperSammenhengendePerioder(
 function useTidslinjevindu() {
   const { tidsvinduIAntallMåneder } = useTidsvindu();
   const [tidsvinduOffset, setTidsvinduOffset] = useState(0);
+  const hopp =
+    tidsvinduIAntallMåneder === 36 ? 6 : tidsvinduIAntallMåneder === 12 ? 3 : 1;
 
   const nå = new Date();
   const start = new Date(nå);
@@ -362,9 +364,9 @@ function useTidslinjevindu() {
 
   function oppdaterVindu(retning: "forrige" | "neste" | "gjeldende") {
     if (retning === "forrige") {
-      setTidsvinduOffset((prev) => prev + 1);
+      setTidsvinduOffset((prev) => Math.max(0, prev + hopp));
     } else if (retning === "neste") {
-      setTidsvinduOffset((prev) => prev - 1);
+      setTidsvinduOffset((prev) => Math.max(0, prev - hopp));
     } else {
       setTidsvinduOffset(0);
     }
