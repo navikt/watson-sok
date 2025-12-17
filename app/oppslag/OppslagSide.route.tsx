@@ -8,6 +8,7 @@ import { InntektOgYtelseOverlappPanel } from "~/inntekt-og-ytelse/inntekt-og-yte
 import { InntektPanel } from "~/inntekt-og-ytelse/inntekt/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/inntekt-og-ytelse/inntekt/InntektsoppsummeringPanel";
 import { YtelserPanel } from "~/inntekt-og-ytelse/ytelse/YtelserPanel";
+import { MeldekortPanel } from "~/meldekort/MeldekortPanel";
 import { OverskriftPanel } from "~/person/OverskriftPanel";
 import { PersonopplysningerPanel } from "~/person/PersonopplysningerPanel";
 import { TidsvinduProvider, TidsvinduVelger } from "~/tidsvindu/Tidsvindu";
@@ -48,6 +49,7 @@ export default function OppslagBrukerSide() {
           )}
           <PersonopplysningerPanel promise={data.personopplysninger} />
           <YtelserPanel promise={data.ytelser} />
+          <MeldekortPanel promise={data.meldekort} />
           {visInntektOgYtelseOverlappPanel ? (
             <div className="grid grid-cols-1 min-[1800px]:grid-cols-2 gap-4">
               <InntektOgYtelseOverlappPanel

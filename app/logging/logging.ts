@@ -16,9 +16,15 @@ class Logger {
     message: string,
     data?: Record<string, unknown>,
   ) {
-    console[level](
-      JSON.stringify({ level, message, ...this.serialiserData(data) }),
-    );
+    let logglinje: string | Record<string, unknown> = {
+      level,
+      message,
+      ...this.serialiserData(data),
+    };
+    if (process.env.NODE_ENV != "development") {
+      logglinje = JSON.stringify(logglinje);
+    }
+    console[level](logglinje);
   }
 
   private serialiserData(data?: Record<string, unknown>) {
