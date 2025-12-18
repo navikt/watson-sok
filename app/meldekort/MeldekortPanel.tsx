@@ -1,4 +1,8 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ExclamationmarkTriangleFillIcon,
+} from "@navikt/aksel-icons";
 import {
   Alert,
   BodyShort,
@@ -46,19 +50,13 @@ type MeldekortPanelMedDataProps = {
 const MeldekortPanelMedData = ({ promise }: MeldekortPanelMedDataProps) => {
   const meldekort = use(promise);
 
+  if (!meldekort || meldekort.length === 0) {
+    return null;
+  }
+
   return (
     <PanelContainer title="Meldekort, dagpenger">
-      {!meldekort ? (
-        <Alert variant="warning" className="w-fit">
-          Fant ikke meldekort
-        </Alert>
-      ) : meldekort.length === 0 ? (
-        <Alert variant="info" className="w-fit">
-          Ingen meldekort registrert
-        </Alert>
-      ) : (
-        <MeldekortVisning meldekort={meldekort} />
-      )}
+      <MeldekortVisning meldekort={meldekort} />
     </PanelContainer>
   );
 };
@@ -77,7 +75,7 @@ const AKTIVITET_TYPER = ["Arbeid", "Fravaer", "Syk", "Utdanning"] as const;
 type AktivitetType = (typeof AKTIVITET_TYPER)[number];
 
 const TIMER_FORMAT = new Intl.NumberFormat("nb-NO", {
-  maximumFractionDigits: 2,
+  maximumFractionDigits: 1,
   minimumFractionDigits: 0,
 });
 
@@ -140,7 +138,7 @@ type MeldekortTabellProps = {
   meldekort: MeldekortRespons;
 };
 
-type MeldekortVisning = "tabell" | "stolpe";
+type MeldekortVisning = "tabell" | "stolpe" | "sirkler";
 
 const MeldekortVisning = ({ meldekort }: MeldekortTabellProps) => {
   const sorterteMeldekort = useMemo(
@@ -191,6 +189,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortTabellProps) => {
           >
             <ToggleGroupItem value="tabell" label="Tabell" />
             <ToggleGroupItem value="stolpe" label="Stolper" />
+            <ToggleGroupItem value="sirkler" label="Sirkler" />
           </ToggleGroup>
           <div className="flex items-center gap-0.5">
             <Button
@@ -212,8 +211,10 @@ const MeldekortVisning = ({ meldekort }: MeldekortTabellProps) => {
       </div>
       {visning === "tabell" ? (
         <MeldekortTabellVisning meldekort={aktivtMeldekort} />
-      ) : (
+      ) : visning === "stolpe" ? (
         <MeldekortStolpediagram dager={aktivtMeldekort.dager} />
+      ) : (
+        <MeldekortDatovisning dager={aktivtMeldekort.dager} />
       )}
     </div>
   );
@@ -269,6 +270,7 @@ const MELDEKORT_GRAF_PADDING = {
   bottom: 32,
   left: 36,
 } as const;
+const MELDEKORT_SIRKEL_STØRRELSE = 64;
 
 const AKTIVITET_FARGER: Record<
   AktivitetType,
@@ -291,6 +293,10 @@ const AKTIVITET_FARGER: Record<
     stroke: "var(--ax-warning-500)",
   },
 };
+const NØYTRAL_FARGE = {
+  fill: "var(--ax-neutral-100)",
+  stroke: "var(--ax-neutral-400)",
+};
 
 const KORT_DATO_FORMAT = new Intl.DateTimeFormat("nb-NO", {
   day: "numeric",
@@ -301,7 +307,9 @@ const STANDARD_TIMER_VED_MANGLER = 7.5;
 const MeldekortStolpediagram = ({ dager }: MeldekortStolpediagramProps) => {
   const sorterteDager = sorterDager(dager);
   const grafData = sorterteDager.map((dag) => {
-    const { summer, harManglendeTimer } = summerAktiviteter(dag.aktiviteter);
+    const { summer, harManglendeTimer, manglerPerType } = summerAktiviteter(
+      dag.aktiviteter,
+    );
     const total = AKTIVITET_TYPER.reduce((sum, type) => sum + summer[type], 0);
 
     return {
@@ -309,6 +317,7 @@ const MeldekortStolpediagram = ({ dager }: MeldekortStolpediagramProps) => {
       summer,
       total,
       harManglendeTimer,
+      manglerPerType,
     };
   });
 
@@ -453,9 +462,14 @@ const MeldekortStolpediagram = ({ dager }: MeldekortStolpediagramProps) => {
                   const x = xCenter - barWidth / 2;
                   const farger = AKTIVITET_FARGER[segment.type];
                   const key = `${dag.dato}-${segment.type}`;
+                  const manglerForType = dag.manglerPerType[segment.type];
                   const tooltipInnhold = `${mapAktivitetstype(
                     segment.type,
-                  )} ${TIMER_FORMAT.format(segment.verdi)} t`;
+                  )} ${TIMER_FORMAT.format(segment.verdi)} t${
+                    manglerForType > 0
+                      ? ` (inkl. ${manglerForType} ${dagTekst(manglerForType)} standard)`
+                      : ""
+                  }`;
 
                   if (segmentIndex === toppIndex) {
                     return (
@@ -521,6 +535,103 @@ const MeldekortStolpediagram = ({ dager }: MeldekortStolpediagramProps) => {
   );
 };
 
+type MeldekortDatovisningProps = {
+  dager: MeldekortRespons[number]["dager"];
+};
+
+const MeldekortDatovisning = ({ dager }: MeldekortDatovisningProps) => {
+  const sorterteDager = sorterDager(dager);
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="overflow-x-auto">
+        <div className="grid grid-cols-7 gap-3 mb-2">
+          {UKEDAGER.map((dag) => (
+            <span key={dag} className="text-[11px] font-semibold text-center">
+              {dag}
+            </span>
+          ))}
+        </div>
+        <div
+          className="grid grid-cols-7 gap-3"
+          role="list"
+          aria-label="Aktiviteter per dag"
+        >
+          {sorterteDager.map((dag) => {
+            const aktivitet = dag.aktiviteter[0];
+            const aktivitetType = aktivitet?.type;
+            const erArbeid = aktivitetType === "Arbeid";
+            const harManglendeTimer = erArbeid && aktivitet?.timer == null;
+            const farger = aktivitetType
+              ? AKTIVITET_FARGER[aktivitetType]
+              : NØYTRAL_FARGE;
+            const aktivitetNavn = aktivitetType
+              ? mapAktivitetstype(aktivitetType)
+              : "Ingen aktivitet";
+            const timerTekst = erArbeid
+              ? aktivitet?.timer != null
+                ? `${TIMER_FORMAT.format(aktivitet.timer)} t`
+                : "Mangler"
+              : null;
+            const ariaLabel = `${formaterDato(dag.dato)}: ${aktivitetNavn}${
+              timerTekst ? ` ${timerTekst}` : ""
+            }${harManglendeTimer ? " (manglende timer)" : ""}`;
+
+            return (
+              <div
+                key={dag.dagIndex}
+                className="flex flex-col items-center gap-2"
+                role="listitem"
+              >
+                <div
+                  className="relative flex flex-col items-center justify-center rounded-full border-2 text-center px-2"
+                  style={{
+                    backgroundColor: farger.fill,
+                    borderColor: farger.stroke,
+                    height: `${MELDEKORT_SIRKEL_STØRRELSE}px`,
+                    width: `${MELDEKORT_SIRKEL_STØRRELSE}px`,
+                  }}
+                  aria-label={ariaLabel}
+                >
+                  <span className="text-[11px] font-semibold leading-tight">
+                    {aktivitetType ? aktivitetNavn : "–"}
+                  </span>
+                  {erArbeid && (
+                    <span className="text-[10px] leading-tight">
+                      {timerTekst}
+                    </span>
+                  )}
+                  {harManglendeTimer && (
+                    <span className="absolute -top-1 -right-1 text-ax-danger-500">
+                      <ExclamationmarkTriangleFillIcon
+                        aria-hidden="true"
+                        title="Mangler timer"
+                      />
+                    </span>
+                  )}
+                </div>
+                <span className="text-[11px] text-ax-text-subtle">
+                  {formaterKortDato(dag.dato)}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const UKEDAGER = [
+  "Mandag",
+  "Tirsdag",
+  "Onsdag",
+  "Torsdag",
+  "Fredag",
+  "Lørdag",
+  "Søndag",
+] as const;
+
 function formaterKortDato(isoDato: string) {
   try {
     return KORT_DATO_FORMAT.format(new Date(isoDato));
@@ -538,6 +649,12 @@ function summerAktiviteter(
     Syk: 0,
     Utdanning: 0,
   };
+  const manglerPerType = {
+    Arbeid: 0,
+    Fravaer: 0,
+    Syk: 0,
+    Utdanning: 0,
+  };
   let harManglendeTimer = false;
 
   for (const aktivitet of aktiviteter) {
@@ -546,13 +663,14 @@ function summerAktiviteter(
     }
     if (aktivitet.timer == null) {
       harManglendeTimer = true;
+      manglerPerType[aktivitet.type] += 1;
       summer[aktivitet.type] += STANDARD_TIMER_VED_MANGLER;
       continue;
     }
     summer[aktivitet.type] += aktivitet.timer;
   }
 
-  return { summer, harManglendeTimer };
+  return { summer, harManglendeTimer, manglerPerType };
 }
 
 function lagTopprundetPath(
@@ -575,4 +693,8 @@ function lagTopprundetPath(
     `L ${høyreX} ${bunnY}`,
     "Z",
   ].join(" ");
+}
+
+function dagTekst(antall: number) {
+  return antall === 1 ? "dag" : "dager";
 }
