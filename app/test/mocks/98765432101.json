@@ -2322,5 +2322,306 @@
         }
       ]
     }
+  ],
+  "meldekort": [
+    {
+      "dager": [
+        {
+          "dato": "2025-11-24",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-11-25",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-11-26",
+          "aktiviteter": [
+            {
+              "id": "019afd1c-e23a-74ff-a111-5c5c2fe92206",
+              "type": "Arbeid",
+              "timer": 10,
+              "dato": "2025-11-26"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-11-27",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-11-28",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-11-29",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-11-30",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-12-01",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-12-02",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-12-03",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-12-04",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-12-05",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-12-06",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-12-07",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "02877398113",
+      "periode": {
+        "fraOgMed": "2025-11-24",
+        "tilOgMed": "2025-12-07"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "02877398113"
+      },
+      "innsendtTidspunkt": "2025-12-08T09:38:52.960599",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-12-08"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-11-10",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-11-11",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-11-12",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-11-13",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-11-14",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-11-15",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-11-16",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-11-17",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-11-18",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-11-19",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-11-20",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-11-21",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-11-22",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-11-23",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "02877398113",
+      "periode": {
+        "fraOgMed": "2025-11-10",
+        "tilOgMed": "2025-11-23"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "02877398113"
+      },
+      "innsendtTidspunkt": "2025-11-25T13:09:45.724533",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-11-25"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-10-27",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-10-28",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-10-29",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-10-30",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-10-31",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-11-01",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-11-02",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-11-03",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-11-04",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-11-05",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-11-06",
+          "aktiviteter": [
+            {
+              "id": "019abaea-90a1-7830-8413-810903a1ce3e",
+              "type": "Arbeid",
+              "timer": 10,
+              "dato": "2025-11-06"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-11-07",
+          "aktiviteter": [
+            {
+              "id": "019abaea-a254-72f3-ab37-1eca93e93411",
+              "type": "Fravaer",
+              "timer": null,
+              "dato": "2025-11-07"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-11-08",
+          "aktiviteter": [
+            {
+              "id": "019abaea-a254-72f3-ab37-1eca93e93412",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-08"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-11-09",
+          "aktiviteter": [
+            {
+              "id": "019abaea-a254-72f3-ab37-1eca93e93412",
+              "type": "Syk",
+              "timer": null,
+              "dato": "2025-11-09"
+            }
+          ],
+          "dagIndex": 13
+        }
+      ],
+      "id": "02877398113",
+      "periode": {
+        "fraOgMed": "2025-10-27",
+        "tilOgMed": "2025-11-09"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "02877398113"
+      },
+      "innsendtTidspunkt": "2025-11-25T13:09:22.219582",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-11-25"
+    }
   ]
 }

@@ -26,6 +26,9 @@ export default function OppslagBrukerSide() {
   const visInntektOgYtelseOverlappPanel = useEnkeltFeatureFlagg(
     FeatureFlagg.INNTEKT_OG_YTELSE_OVERLAPP_PANEL,
   );
+  const visMeldekortPanel = useEnkeltFeatureFlagg(
+    FeatureFlagg.VIS_MELDEKORT_PANEL,
+  );
   return (
     <TidsvinduProvider>
       <Page>
@@ -49,7 +52,6 @@ export default function OppslagBrukerSide() {
           )}
           <PersonopplysningerPanel promise={data.personopplysninger} />
           <YtelserPanel promise={data.ytelser} />
-          <MeldekortPanel promise={data.meldekort} />
           {visInntektOgYtelseOverlappPanel ? (
             <div className="grid grid-cols-1 min-[1800px]:grid-cols-2 gap-4">
               <InntektOgYtelseOverlappPanel
@@ -71,6 +73,8 @@ export default function OppslagBrukerSide() {
             {visInntektsoppsummeringPanel && (
               <InntektsoppsummeringPanel promise={data.inntektInformasjon} />
             )}
+
+            {visMeldekortPanel && <MeldekortPanel promise={data.meldekort} />}
           </div>
         </PageBlock>
       </Page>

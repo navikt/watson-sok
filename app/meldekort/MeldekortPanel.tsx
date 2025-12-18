@@ -1,34 +1,24 @@
 import {
+  CalendarIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  ExclamationmarkTriangleFillIcon,
 } from "@navikt/aksel-icons";
 import {
-  Alert,
   BodyShort,
   Button,
+  DatePicker,
   Heading,
   Skeleton,
-  Table,
-  ToggleGroup,
-  Tooltip,
 } from "@navikt/ds-react";
-import {
-  TableBody,
-  TableDataCell,
-  TableHeader,
-  TableHeaderCell,
-  TableRow,
-} from "@navikt/ds-react/Table";
-import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useEffect, useMemo, useState } from "react";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import {
   PanelContainer,
   PanelContainerSkeleton,
 } from "~/paneler/PanelContainer";
+import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { formaterDato } from "~/utils/date-utils";
-import type { MeldekortRespons } from "./domene";
+import type { AktivitetType, Dag, MeldekortRespons } from "./domene";
 
 type MeldekortPanelProps = {
   promise: Promise<MeldekortRespons | null | undefined>;
@@ -55,7 +45,7 @@ const MeldekortPanelMedData = ({ promise }: MeldekortPanelMedDataProps) => {
   }
 
   return (
-    <PanelContainer title="Meldekort, dagpenger">
+    <PanelContainer title="Meldekort, dagpenger" betaFeature="meldekort">
       <MeldekortVisning meldekort={meldekort} />
     </PanelContainer>
   );
@@ -71,76 +61,26 @@ const MeldekortPanelSkeleton = () => {
   );
 };
 
-const AKTIVITET_TYPER = ["Arbeid", "Fravaer", "Syk", "Utdanning"] as const;
-type AktivitetType = (typeof AKTIVITET_TYPER)[number];
-
-const TIMER_FORMAT = new Intl.NumberFormat("nb-NO", {
-  maximumFractionDigits: 1,
-  minimumFractionDigits: 0,
-});
-
-function sorterDager(
-  dager: MeldekortRespons[number]["dager"],
-): MeldekortRespons[number]["dager"] {
+function sorterDager(dager: Dag[]): Dag[] {
   return [...dager].sort((a, b) => a.dagIndex - b.dagIndex);
-}
-
-function formaterAktiviteter(
-  aktiviteter: MeldekortRespons[number]["dager"][number]["aktiviteter"],
-) {
-  if (aktiviteter.length === 0) {
-    return "–";
-  }
-
-  const oppsummering = AKTIVITET_TYPER.map((type) => {
-    const aktiviteterForType = aktiviteter.filter(
-      (aktivitet) => aktivitet.type === type,
-    );
-
-    if (aktiviteterForType.length === 0) {
-      return null;
-    }
-
-    const navn = mapAktivitetstype(type);
-    const manglerTimer = aktiviteterForType.some(
-      (aktivitet) => aktivitet.timer == null,
-    );
-
-    if (manglerTimer) {
-      return navn;
-    }
-
-    const sum = aktiviteterForType.reduce(
-      (total, aktivitet) => total + (aktivitet.timer ?? 0),
-      0,
-    );
-
-    return `${navn} ${TIMER_FORMAT.format(sum)} t`;
-  }).filter(Boolean);
-
-  if (oppsummering.length === 0) {
-    return "–";
-  }
-
-  return oppsummering.join(", ");
 }
 
 function mapAktivitetstype(type: AktivitetType) {
   switch (type) {
     case "Fravaer":
       return "Fravær";
+    case "Utdanning":
+      return "Kurs";
     default:
       return type;
   }
 }
 
-type MeldekortTabellProps = {
+type MeldekortVisningProps = {
   meldekort: MeldekortRespons;
 };
 
-type MeldekortVisning = "tabell" | "stolpe" | "sirkler";
-
-const MeldekortVisning = ({ meldekort }: MeldekortTabellProps) => {
+const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
   const sorterteMeldekort = useMemo(
     () =>
       [...meldekort].sort((a, b) =>
@@ -149,6 +89,8 @@ const MeldekortVisning = ({ meldekort }: MeldekortTabellProps) => {
     [meldekort],
   );
   const [aktivtIndex, setAktivtIndex] = useState(0);
+  const { erÅpen: erDatepickerÅpen, onToggle: onToggleDatepicker } =
+    useDisclosure(false);
 
   useEffect(() => {
     setAktivtIndex(0);
@@ -157,50 +99,73 @@ const MeldekortVisning = ({ meldekort }: MeldekortTabellProps) => {
   const aktivtMeldekort = sorterteMeldekort[aktivtIndex];
   const kanGåTilForrige = aktivtIndex < sorterteMeldekort.length - 1;
   const kanGåTilNeste = aktivtIndex > 0;
-  const [visning, setVisning] = useState<MeldekortVisning>("tabell");
+
+  const velgRelevantMeldekort = (dato: Date | undefined) => {
+    if (dato == null) {
+      return;
+    }
+    const meldekort = sorterteMeldekort.find((meldekort) => {
+      return meldekort.dager.some(
+        (dag) => dag.dato === dato.toISOString().substring(0, 10),
+      );
+    });
+    if (meldekort) {
+      setAktivtIndex(sorterteMeldekort.indexOf(meldekort));
+    }
+  };
 
   return (
-    <div className="flex flex-col gap-3 max-w-[50%]">
+    <div className="flex flex-col gap-3">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="flex flex-col gap-1">
           <Heading level="3" size="small">
             Periode {formaterDato(aktivtMeldekort.periode.fraOgMed)} –{" "}
             {formaterDato(aktivtMeldekort.periode.tilOgMed)}
           </Heading>
-          <BodyShort size="small">Meldekort-ID: {aktivtMeldekort.id}</BodyShort>
-          {aktivtMeldekort.meldedato && (
-            <BodyShort size="small">
-              Meldedato: {formaterDato(aktivtMeldekort.meldedato)}
-            </BodyShort>
-          )}
-          {sorterteMeldekort.length > 1 && (
-            <BodyShort size="small">
-              Viser {aktivtIndex + 1} av {sorterteMeldekort.length}
-            </BodyShort>
-          )}
+          <BodyShort size="small">
+            Meldekort-ID: {aktivtMeldekort.id} – Meldedato:{" "}
+            {aktivtMeldekort.meldedato
+              ? formaterDato(aktivtMeldekort.meldedato)
+              : "Ukjent"}
+          </BodyShort>
         </div>
-        <div className="flex flex-wrap items-center justify-end gap-2">
-          <ToggleGroup
-            variant="neutral"
-            size="small"
-            value={visning}
-            aria-label="Velg visning"
-            onChange={(value) => setVisning(value as MeldekortVisning)}
-          >
-            <ToggleGroupItem value="tabell" label="Tabell" />
-            <ToggleGroupItem value="stolpe" label="Stolper" />
-            <ToggleGroupItem value="sirkler" label="Sirkler" />
-          </ToggleGroup>
+        <div className="flex flex-wrap items-center justify-end gap-2 absolute top-4 right-4">
           <div className="flex items-center gap-0.5">
             <Button
               icon={<ChevronLeftIcon title="Forrige meldekort" />}
+              type="button"
               variant="secondary-neutral"
               size="small"
               disabled={!kanGåTilForrige}
               onClick={() => setAktivtIndex((index) => index + 1)}
             />
+            <DatePicker
+              open={erDatepickerÅpen}
+              onClose={onToggleDatepicker}
+              onSelect={(dato) => {
+                velgRelevantMeldekort(dato);
+                onToggleDatepicker();
+              }}
+              dropdownCaption={true}
+              toDate={new Date(sorterteMeldekort[0].periode.fraOgMed)}
+              fromDate={
+                new Date(
+                  sorterteMeldekort[sorterteMeldekort.length - 1].periode
+                    .tilOgMed,
+                )
+              }
+            >
+              <Button
+                icon={<CalendarIcon title="Velg dato" />}
+                type="button"
+                variant="secondary-neutral"
+                size="small"
+                onClick={onToggleDatepicker}
+              />
+            </DatePicker>
             <Button
               icon={<ChevronRightIcon title="Neste meldekort" />}
+              type="button"
               variant="secondary-neutral"
               size="small"
               disabled={!kanGåTilNeste}
@@ -209,67 +174,11 @@ const MeldekortVisning = ({ meldekort }: MeldekortTabellProps) => {
           </div>
         </div>
       </div>
-      {visning === "tabell" ? (
-        <MeldekortTabellVisning meldekort={aktivtMeldekort} />
-      ) : visning === "stolpe" ? (
-        <MeldekortStolpediagram dager={aktivtMeldekort.dager} />
-      ) : (
-        <MeldekortDatovisning dager={aktivtMeldekort.dager} />
-      )}
+      <MeldekortDatovisning dager={aktivtMeldekort.dager} />
     </div>
   );
 };
 
-type MeldekortTabellVisningProps = {
-  meldekort: MeldekortRespons[number];
-};
-
-const MeldekortTabellVisning = ({ meldekort }: MeldekortTabellVisningProps) => {
-  return (
-    <div className="flex flex-col gap-2">
-      <Table size="small" zebraStripes>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderCell scope="col" textSize="small">
-              Dato
-            </TableHeaderCell>
-            <TableHeaderCell scope="col" textSize="small">
-              Aktivitet
-            </TableHeaderCell>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {sorterDager(meldekort.dager).map((dag) => (
-            <TableRow key={`${meldekort.id}-${dag.dagIndex}`}>
-              <TableHeaderCell scope="row" textSize="small">
-                {formaterDato(dag.dato)}
-              </TableHeaderCell>
-              <TableDataCell textSize="small">
-                {formaterAktiviteter(dag.aktiviteter)}
-              </TableDataCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <BodyShort size="small">
-        Aktiviteter uten timer vises uten timeangivelse.
-      </BodyShort>
-    </div>
-  );
-};
-
-type MeldekortStolpediagramProps = {
-  dager: MeldekortRespons[number]["dager"];
-};
-
-const MELDEKORT_GRAF_BREDDE = 720;
-const MELDEKORT_GRAF_HØYDE = 220;
-const MELDEKORT_GRAF_PADDING = {
-  top: 16,
-  right: 16,
-  bottom: 32,
-  left: 36,
-} as const;
 const MELDEKORT_SIRKEL_STØRRELSE = 64;
 
 const AKTIVITET_FARGER: Record<
@@ -302,238 +211,6 @@ const KORT_DATO_FORMAT = new Intl.DateTimeFormat("nb-NO", {
   day: "numeric",
   month: "short",
 });
-const STANDARD_TIMER_VED_MANGLER = 7.5;
-
-const MeldekortStolpediagram = ({ dager }: MeldekortStolpediagramProps) => {
-  const sorterteDager = sorterDager(dager);
-  const grafData = sorterteDager.map((dag) => {
-    const { summer, harManglendeTimer, manglerPerType } = summerAktiviteter(
-      dag.aktiviteter,
-    );
-    const total = AKTIVITET_TYPER.reduce((sum, type) => sum + summer[type], 0);
-
-    return {
-      dato: dag.dato,
-      summer,
-      total,
-      harManglendeTimer,
-      manglerPerType,
-    };
-  });
-
-  const maksVerdi = Math.max(...grafData.map((dag) => dag.total), 0);
-  const harOppgitteTimer = maksVerdi > 0;
-  const harManglendeTimer = grafData.some((dag) => dag.harManglendeTimer);
-
-  if (!harOppgitteTimer) {
-    return (
-      <div className="flex flex-col gap-2">
-        <Alert variant="info">Ingen oppgitte timer i perioden.</Alert>
-        {harManglendeTimer && (
-          <BodyShort size="small">
-            Timer mangler for én eller flere aktiviteter. Viser 7,5 t som
-            standard.
-          </BodyShort>
-        )}
-      </div>
-    );
-  }
-
-  const grafBredde =
-    MELDEKORT_GRAF_BREDDE -
-    MELDEKORT_GRAF_PADDING.left -
-    MELDEKORT_GRAF_PADDING.right;
-  const grafHøyde =
-    MELDEKORT_GRAF_HØYDE -
-    MELDEKORT_GRAF_PADDING.top -
-    MELDEKORT_GRAF_PADDING.bottom;
-  const xScale = (index: number) =>
-    MELDEKORT_GRAF_PADDING.left +
-    (index / (grafData.length - 1 || 1)) * grafBredde;
-  const yScale = (verdi: number) =>
-    MELDEKORT_GRAF_PADDING.top + grafHøyde - (verdi / maksVerdi) * grafHøyde;
-  const barWidth = Math.min(
-    28,
-    Math.max(10, grafBredde / grafData.length / 1.6),
-  );
-  const radius = Math.min(4, barWidth / 3);
-  const gridLinjer = [0.25, 0.5, 0.75, 1].map((faktor) => ({
-    verdi: maksVerdi * faktor,
-    y: yScale(maksVerdi * faktor),
-  }));
-
-  return (
-    <div className="flex flex-col gap-2">
-      <div className="overflow-x-auto">
-        <svg
-          viewBox={`0 0 ${MELDEKORT_GRAF_BREDDE} ${MELDEKORT_GRAF_HØYDE}`}
-          preserveAspectRatio="xMidYMid meet"
-          className="w-full h-auto min-h-[220px]"
-          role="img"
-          aria-labelledby="meldekort-stolpe-tittel"
-          aria-describedby="meldekort-stolpe-beskrivelse"
-        >
-          <title id="meldekort-stolpe-tittel">
-            Stolpediagram over registrerte timer per dag
-          </title>
-          <desc id="meldekort-stolpe-beskrivelse">
-            Viser summerte timer per aktivitetstype for hver dag i perioden. Se
-            tabellen for detaljer.
-          </desc>
-
-          <g aria-hidden="true">
-            {gridLinjer.map((grid, index) => (
-              <g key={index}>
-                <line
-                  x1={MELDEKORT_GRAF_PADDING.left}
-                  y1={grid.y}
-                  x2={MELDEKORT_GRAF_PADDING.left + grafBredde}
-                  y2={grid.y}
-                  stroke="var(--ax-neutral-300)"
-                  strokeWidth="1"
-                  strokeDasharray="4 4"
-                />
-                <text
-                  x={MELDEKORT_GRAF_PADDING.left - 8}
-                  y={grid.y + 4}
-                  textAnchor="end"
-                  fontSize="10"
-                  fill="var(--ax-text-default)"
-                >
-                  {TIMER_FORMAT.format(grid.verdi)}
-                </text>
-              </g>
-            ))}
-          </g>
-
-          <g aria-hidden="true">
-            <line
-              x1={MELDEKORT_GRAF_PADDING.left}
-              y1={MELDEKORT_GRAF_PADDING.top + grafHøyde}
-              x2={MELDEKORT_GRAF_PADDING.left + grafBredde}
-              y2={MELDEKORT_GRAF_PADDING.top + grafHøyde}
-              stroke="var(--ax-neutral-600)"
-              strokeWidth="1"
-            />
-            {grafData.map((dag, index) => {
-              if (index % 2 !== 0) {
-                return null;
-              }
-              return (
-                <text
-                  key={dag.dato}
-                  x={xScale(index)}
-                  y={MELDEKORT_GRAF_PADDING.top + grafHøyde + 20}
-                  textAnchor="middle"
-                  fontSize="10"
-                  fill="var(--ax-text-default)"
-                >
-                  {formaterKortDato(dag.dato)}
-                </text>
-              );
-            })}
-          </g>
-
-          <g aria-hidden="true">
-            <line
-              x1={MELDEKORT_GRAF_PADDING.left}
-              y1={MELDEKORT_GRAF_PADDING.top}
-              x2={MELDEKORT_GRAF_PADDING.left}
-              y2={MELDEKORT_GRAF_PADDING.top + grafHøyde}
-              stroke="var(--ax-neutral-600)"
-              strokeWidth="1"
-            />
-          </g>
-
-          {grafData.map((dag, index) => {
-            const xCenter = xScale(index);
-            let currentY = MELDEKORT_GRAF_PADDING.top + grafHøyde;
-            const segmenter = AKTIVITET_TYPER.map((type) => ({
-              type,
-              verdi: dag.summer[type],
-            })).filter((segment) => segment.verdi > 0);
-            const toppIndex = segmenter.length - 1;
-
-            return (
-              <g key={dag.dato}>
-                {segmenter.map((segment, segmentIndex) => {
-                  const høyde = (segment.verdi / maksVerdi) * grafHøyde;
-                  currentY -= høyde;
-                  const x = xCenter - barWidth / 2;
-                  const farger = AKTIVITET_FARGER[segment.type];
-                  const key = `${dag.dato}-${segment.type}`;
-                  const manglerForType = dag.manglerPerType[segment.type];
-                  const tooltipInnhold = `${mapAktivitetstype(
-                    segment.type,
-                  )} ${TIMER_FORMAT.format(segment.verdi)} t${
-                    manglerForType > 0
-                      ? ` (inkl. ${manglerForType} ${dagTekst(manglerForType)} standard)`
-                      : ""
-                  }`;
-
-                  if (segmentIndex === toppIndex) {
-                    return (
-                      <Tooltip key={key} content={tooltipInnhold}>
-                        <path
-                          d={lagTopprundetPath(
-                            x,
-                            currentY,
-                            barWidth,
-                            høyde,
-                            radius,
-                          )}
-                          fill={farger.fill}
-                          stroke={farger.stroke}
-                          strokeWidth="1"
-                          style={{ cursor: "pointer" }}
-                        />
-                      </Tooltip>
-                    );
-                  }
-
-                  return (
-                    <Tooltip key={key} content={tooltipInnhold}>
-                      <rect
-                        x={x}
-                        y={currentY}
-                        width={barWidth}
-                        height={høyde}
-                        fill={farger.fill}
-                        stroke={farger.stroke}
-                        strokeWidth="1"
-                        style={{ cursor: "pointer" }}
-                      />
-                    </Tooltip>
-                  );
-                })}
-              </g>
-            );
-          })}
-        </svg>
-      </div>
-      <div className="flex flex-wrap gap-4">
-        {AKTIVITET_TYPER.map((type) => (
-          <div key={type} className="flex items-center gap-2">
-            <span
-              className="inline-block h-3 w-3 rounded-sm"
-              style={{
-                backgroundColor: AKTIVITET_FARGER[type].fill,
-                border: `1px solid ${AKTIVITET_FARGER[type].stroke}`,
-              }}
-            />
-            <BodyShort size="small">{mapAktivitetstype(type)}</BodyShort>
-          </div>
-        ))}
-      </div>
-      {harManglendeTimer && (
-        <BodyShort size="small">
-          Timer mangler for én eller flere aktiviteter. Viser 7,5 t som
-          standard.
-        </BodyShort>
-      )}
-    </div>
-  );
-};
 
 type MeldekortDatovisningProps = {
   dager: MeldekortRespons[number]["dager"];
@@ -547,16 +224,15 @@ const MeldekortDatovisning = ({ dager }: MeldekortDatovisningProps) => {
       <div className="overflow-x-auto">
         <div className="grid grid-cols-7 gap-3 mb-2">
           {UKEDAGER.map((dag) => (
-            <span key={dag} className="text-[11px] font-semibold text-center">
+            <span
+              key={dag}
+              className="text-lg font-semibold text-center truncate"
+            >
               {dag}
             </span>
           ))}
         </div>
-        <div
-          className="grid grid-cols-7 gap-3"
-          role="list"
-          aria-label="Aktiviteter per dag"
-        >
+        <ul className="grid grid-cols-7 gap-3" aria-label="Aktiviteter per dag">
           {sorterteDager.map((dag) => {
             const aktivitet = dag.aktiviteter[0];
             const aktivitetType = aktivitet?.type;
@@ -570,7 +246,7 @@ const MeldekortDatovisning = ({ dager }: MeldekortDatovisningProps) => {
               : "Ingen aktivitet";
             const timerTekst = erArbeid
               ? aktivitet?.timer != null
-                ? `${TIMER_FORMAT.format(aktivitet.timer)} t`
+                ? `${aktivitet.timer} t`
                 : "Mangler"
               : null;
             const ariaLabel = `${formaterDato(dag.dato)}: ${aktivitetNavn}${
@@ -578,10 +254,9 @@ const MeldekortDatovisning = ({ dager }: MeldekortDatovisningProps) => {
             }${harManglendeTimer ? " (manglende timer)" : ""}`;
 
             return (
-              <div
+              <li
                 key={dag.dagIndex}
-                className="flex flex-col items-center gap-2"
-                role="listitem"
+                className="flex flex-col items-center gap-2 list-none"
               >
                 <div
                   className="relative flex flex-col items-center justify-center rounded-full border-2 text-center px-2"
@@ -593,30 +268,20 @@ const MeldekortDatovisning = ({ dager }: MeldekortDatovisningProps) => {
                   }}
                   aria-label={ariaLabel}
                 >
-                  <span className="text-[11px] font-semibold leading-tight">
+                  <span className="text-sm font-semibold leading-tight">
                     {aktivitetType ? aktivitetNavn : "–"}
                   </span>
                   {erArbeid && (
-                    <span className="text-[10px] leading-tight">
-                      {timerTekst}
-                    </span>
-                  )}
-                  {harManglendeTimer && (
-                    <span className="absolute -top-1 -right-1 text-ax-danger-500">
-                      <ExclamationmarkTriangleFillIcon
-                        aria-hidden="true"
-                        title="Mangler timer"
-                      />
-                    </span>
+                    <span className="text-sm leading-tight">{timerTekst}</span>
                   )}
                 </div>
-                <span className="text-[11px] text-ax-text-subtle">
+                <span className="text-sm text-ax-text-subtle">
                   {formaterKortDato(dag.dato)}
                 </span>
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </div>
   );
@@ -638,63 +303,4 @@ function formaterKortDato(isoDato: string) {
   } catch {
     return isoDato;
   }
-}
-
-function summerAktiviteter(
-  aktiviteter: MeldekortRespons[number]["dager"][number]["aktiviteter"],
-) {
-  const summer = {
-    Arbeid: 0,
-    Fravaer: 0,
-    Syk: 0,
-    Utdanning: 0,
-  };
-  const manglerPerType = {
-    Arbeid: 0,
-    Fravaer: 0,
-    Syk: 0,
-    Utdanning: 0,
-  };
-  let harManglendeTimer = false;
-
-  for (const aktivitet of aktiviteter) {
-    if (!AKTIVITET_TYPER.includes(aktivitet.type)) {
-      continue;
-    }
-    if (aktivitet.timer == null) {
-      harManglendeTimer = true;
-      manglerPerType[aktivitet.type] += 1;
-      summer[aktivitet.type] += STANDARD_TIMER_VED_MANGLER;
-      continue;
-    }
-    summer[aktivitet.type] += aktivitet.timer;
-  }
-
-  return { summer, harManglendeTimer, manglerPerType };
-}
-
-function lagTopprundetPath(
-  x: number,
-  y: number,
-  bredde: number,
-  høyde: number,
-  r: number,
-) {
-  const effektivR = Math.min(r, bredde / 2, høyde);
-  const høyreX = x + bredde;
-  const bunnY = y + høyde;
-
-  return [
-    `M ${x} ${bunnY}`,
-    `L ${x} ${y + effektivR}`,
-    `Q ${x} ${y} ${x + effektivR} ${y}`,
-    `L ${høyreX - effektivR} ${y}`,
-    `Q ${høyreX} ${y} ${høyreX} ${y + effektivR}`,
-    `L ${høyreX} ${bunnY}`,
-    "Z",
-  ].join(" ");
-}
-
-function dagTekst(antall: number) {
-  return antall === 1 ? "dag" : "dager";
 }

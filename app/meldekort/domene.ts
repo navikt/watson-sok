@@ -1,6 +1,7 @@
 import z from "zod";
 
 const AktivitetTypeSchema = z.enum(["Arbeid", "Fravaer", "Syk", "Utdanning"]);
+export type AktivitetType = z.infer<typeof AktivitetTypeSchema>;
 
 const AktivitetSchema = z.object({
   id: z.string(),
@@ -14,6 +15,7 @@ const DagSchema = z.object({
   aktiviteter: z.array(AktivitetSchema),
   dagIndex: z.number(),
 });
+export type Dag = z.infer<typeof DagSchema>;
 
 const PeriodeSchema = z.object({
   fraOgMed: z.string(),
