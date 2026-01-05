@@ -147,13 +147,13 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
                 onToggleDatepicker();
               }}
               dropdownCaption={true}
-              toDate={new Date(sorterteMeldekort[0].periode.fraOgMed)}
               fromDate={
                 new Date(
                   sorterteMeldekort[sorterteMeldekort.length - 1].periode
                     .tilOgMed,
                 )
               }
+              toDate={new Date(sorterteMeldekort[0].periode.fraOgMed)}
             >
               <Button
                 icon={<CalendarIcon title="Velg dato" />}
