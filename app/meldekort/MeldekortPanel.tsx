@@ -336,7 +336,7 @@ const MeldekortDager = ({ dager }: MeldekortDagerProps) => {
                 className="flex flex-col items-center gap-2 list-none"
               >
                 <div
-                  className={`relative flex flex-col items-center justify-center rounded-full border-2 text-center px-2 w-16 h-16 bg-ax-${farger.fill} border-ax-${farger.stroke}`}
+                  className="relative flex flex-col items-center justify-center rounded-full border-2 text-center px-2 w-16 h-16"
                   style={{
                     backgroundColor: farger.fill,
                     borderColor: farger.stroke,

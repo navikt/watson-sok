@@ -21,7 +21,7 @@ class Logger {
       message,
       ...this.serialiserData(data),
     };
-    if (process.env.NODE_ENV != "development") {
+    if (process.env.NODE_ENV !== "development") {
       logglinje = JSON.stringify(logglinje);
     }
     console[level](logglinje);
