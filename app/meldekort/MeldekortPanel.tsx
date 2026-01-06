@@ -9,6 +9,7 @@ import {
   DatePicker,
   Heading,
   Skeleton,
+  Tooltip,
 } from "@navikt/ds-react";
 import { use, useEffect, useMemo, useState } from "react";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
@@ -132,11 +133,22 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
         <div className="flex flex-wrap items-center justify-end gap-2 absolute top-4 right-4">
           <div className="flex items-center gap-0.5">
             <Button
-              icon={<ChevronLeftIcon title="Forrige meldekort" />}
+              icon={
+                <Tooltip
+                  content={
+                    kanGåTilForrige
+                      ? "Forrige meldekort"
+                      : "Ingen eldre meldekort"
+                  }
+                >
+                  <ChevronLeftIcon aria-hidden="true" />
+                </Tooltip>
+              }
               type="button"
               variant="secondary-neutral"
               size="small"
               disabled={!kanGåTilForrige}
+              aria-label="Forrige meldekort"
               onClick={() => setAktivtIndex((index) => index + 1)}
             />
             <DatePicker
@@ -156,7 +168,11 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
               toDate={new Date(sorterteMeldekort[0].periode.fraOgMed)}
             >
               <Button
-                icon={<CalendarIcon title="Velg dato" />}
+                icon={
+                  <Tooltip content="Velg dato">
+                    <CalendarIcon aria-hidden="true" />
+                  </Tooltip>
+                }
                 type="button"
                 variant="secondary-neutral"
                 size="small"
@@ -164,7 +180,15 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
               />
             </DatePicker>
             <Button
-              icon={<ChevronRightIcon title="Neste meldekort" />}
+              icon={
+                <Tooltip
+                  content={
+                    kanGåTilNeste ? "Neste meldekort" : "Ingen nyere meldekort"
+                  }
+                >
+                  <ChevronRightIcon aria-hidden="true" />
+                </Tooltip>
+              }
               type="button"
               variant="secondary-neutral"
               size="small"

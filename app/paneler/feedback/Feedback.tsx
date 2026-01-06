@@ -1,5 +1,5 @@
 import { ThumbDownIcon, ThumbUpIcon } from "@navikt/aksel-icons";
-import { BodyShort, Button } from "@navikt/ds-react";
+import { BodyShort, Button, Tooltip } from "@navikt/ds-react";
 import { useState } from "react";
 import { sporHendelse } from "~/analytics/analytics";
 import { cn } from "~/utils/class-utils";
@@ -39,20 +39,26 @@ export function Feedback({ feature, className }: FeedbackProps) {
       <p className="sr-only">Hva synes du om denne funksjonaliteten?</p>
       <Button
         variant="tertiary"
-        size="small"
+        size="xsmall"
         aria-label="Dette var nyttig"
         onClick={lagVurderingshandler("nyttig")}
-      >
-        <ThumbUpIcon aria-hidden="true" />
-      </Button>
+        icon={
+          <Tooltip content="Dette var nyttig">
+            <ThumbUpIcon aria-hidden="true" />
+          </Tooltip>
+        }
+      />
       <Button
         variant="tertiary"
-        size="small"
+        size="xsmall"
         aria-label="Dette var ikke nyttig"
         onClick={lagVurderingshandler("ikke nyttig")}
-      >
-        <ThumbDownIcon aria-hidden="true" />
-      </Button>
+        icon={
+          <Tooltip content="Dette var ikke nyttig">
+            <ThumbDownIcon aria-hidden="true" />
+          </Tooltip>
+        }
+      />
     </div>
   );
 }
