@@ -40,7 +40,6 @@ export function Feedback({ feature, className }: FeedbackProps) {
       <Button
         variant="tertiary"
         size="xsmall"
-        aria-label="Dette var nyttig"
         onClick={lagVurderingshandler("nyttig")}
         icon={
           <Tooltip content="Dette var nyttig">
@@ -51,7 +50,6 @@ export function Feedback({ feature, className }: FeedbackProps) {
       <Button
         variant="tertiary"
         size="xsmall"
-        aria-label="Dette var ikke nyttig"
         onClick={lagVurderingshandler("ikke nyttig")}
         icon={
           <Tooltip content="Dette var ikke nyttig">
