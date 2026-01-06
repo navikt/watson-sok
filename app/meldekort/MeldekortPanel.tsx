@@ -223,6 +223,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
               ]}
             >
               <Button
+                aria-label="Velg dato"
                 icon={
                   <Tooltip content="Velg dato">
                     <CalendarIcon aria-hidden="true" />
@@ -248,6 +249,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
               variant="secondary-neutral"
               size="small"
               disabled={!kanGåTilNeste}
+              aria-label="Neste meldekort"
               onClick={() => setAktivIndex((index) => index - 1)}
             />
           </div>

@@ -272,6 +272,7 @@ const TidslinjeKontrollpanel = ({
     >
       <div className="flex gap-0.5 items-center">
         <Button
+          aria-label="Forrige periode"
           icon={
             <Tooltip
               content={
@@ -295,6 +296,7 @@ const TidslinjeKontrollpanel = ({
         />
         <Button
           disabled={!kanFlytteNestePeriode}
+          aria-label="Neste periode"
           icon={
             <Tooltip
               content={
