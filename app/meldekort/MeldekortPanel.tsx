@@ -25,7 +25,7 @@ type MeldekortPanelProps = {
   promise: Promise<MeldekortRespons | null | undefined>;
 };
 
-/** Placeholder-panel for meldekort */
+/** Viser meldekort for dagpenger */
 export function MeldekortPanel({ promise }: MeldekortPanelProps) {
   return (
     <ResolvingComponent loadingFallback={<MeldekortPanelSkeleton />}>
@@ -54,16 +54,59 @@ const MeldekortPanelMedData = ({ promise }: MeldekortPanelMedDataProps) => {
 
 const MeldekortPanelSkeleton = () => {
   return (
-    <PanelContainerSkeleton title="Meldekort">
-      <div className="flex flex-col gap-2">
-        <Skeleton variant="text" width="45%" />
+    <PanelContainerSkeleton title="Meldekort, dagpenger">
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-wrap items-start justify-between gap-2">
+          <div className="flex flex-col gap-1">
+            <Skeleton variant="text" width="220px" height="28px" />
+            <Skeleton variant="text" width="280px" height="20px" />
+          </div>
+        </div>
+        <div className="flex flex-col gap-3">
+          <div className="overflow-x-auto">
+            <div className="grid grid-cols-7 gap-3 mb-2">
+              {UKEDAGER.map((dag) => (
+                <BodyShort
+                  className="font-semibold leading-tight mx-auto"
+                  size="large"
+                  key={dag}
+                  as={Skeleton}
+                  variant="text"
+                >
+                  {dag}
+                </BodyShort>
+              ))}
+            </div>
+            <div className="grid grid-cols-7 gap-3">
+              {Array.from({ length: 14 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center gap-2 list-none"
+                >
+                  <Skeleton variant="circle" className="w-16 h-16" />
+                  <BodyShort
+                    className="mx-auto"
+                    size="small"
+                    as={Skeleton}
+                    variant="text"
+                  >
+                    En dato
+                  </BodyShort>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </PanelContainerSkeleton>
   );
 };
 
-function sorterDager(dager: Dag[]): Dag[] {
-  return [...dager].sort((a, b) => a.dagIndex - b.dagIndex);
+function useSorterteDager(dager: Dag[]): Dag[] {
+  return useMemo(
+    () => [...dager].sort((a, b) => a.dagIndex - b.dagIndex),
+    [dager],
+  );
 }
 
 function mapAktivitetstype(type: AktivitetType) {
@@ -102,7 +145,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
   const kanGåTilNeste = aktivtIndex > 0;
 
   const velgRelevantMeldekort = (dato: Date | undefined) => {
-    if (dato == null) {
+    if (!dato) {
       return;
     }
     const meldekort = sorterteMeldekort.find((meldekort) => {
@@ -162,10 +205,10 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
               fromDate={
                 new Date(
                   sorterteMeldekort[sorterteMeldekort.length - 1].periode
-                    .tilOgMed,
+                    .fraOgMed,
                 )
               }
-              toDate={new Date(sorterteMeldekort[0].periode.fraOgMed)}
+              toDate={new Date(sorterteMeldekort[0].periode.tilOgMed)}
             >
               <Button
                 icon={
@@ -198,7 +241,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
           </div>
         </div>
       </div>
-      <MeldekortDatovisning dager={aktivtMeldekort.dager} />
+      <MeldekortDager dager={aktivtMeldekort.dager} />
     </div>
   );
 };
@@ -214,7 +257,7 @@ const AKTIVITET_FARGER: Record<
     stroke: "var(--ax-success-600)",
   },
   Fravaer: {
-    fill: "var(--ax-warning-300)",
+    fill: "var(--ax-warning-200)",
     stroke: "var(--ax-warning-600)",
   },
   Syk: {
@@ -223,12 +266,12 @@ const AKTIVITET_FARGER: Record<
   },
   Utdanning: {
     fill: "var(--ax-warning-200)",
-    stroke: "var(--ax-warning-500)",
+    stroke: "var(--ax-warning-600)",
   },
 };
 const NØYTRAL_FARGE = {
-  fill: "var(--ax-neutral-100)",
-  stroke: "var(--ax-neutral-400)",
+  fill: "var(--ax-neutral-200)",
+  stroke: "var(--ax-neutral-600)",
 };
 
 const KORT_DATO_FORMAT = new Intl.DateTimeFormat("nb-NO", {
@@ -236,12 +279,12 @@ const KORT_DATO_FORMAT = new Intl.DateTimeFormat("nb-NO", {
   month: "short",
 });
 
-type MeldekortDatovisningProps = {
+type MeldekortDagerProps = {
   dager: MeldekortRespons[number]["dager"];
 };
 
-const MeldekortDatovisning = ({ dager }: MeldekortDatovisningProps) => {
-  const sorterteDager = sorterDager(dager);
+const MeldekortDager = ({ dager }: MeldekortDagerProps) => {
+  const sorterteDager = useSorterteDager(dager);
 
   return (
     <div className="flex flex-col gap-3">
@@ -283,12 +326,10 @@ const MeldekortDatovisning = ({ dager }: MeldekortDatovisningProps) => {
                 className="flex flex-col items-center gap-2 list-none"
               >
                 <div
-                  className="relative flex flex-col items-center justify-center rounded-full border-2 text-center px-2"
+                  className={`relative flex flex-col items-center justify-center rounded-full border-2 text-center px-2 w-16 h-16 bg-ax-${farger.fill} border-ax-${farger.stroke}`}
                   style={{
                     backgroundColor: farger.fill,
                     borderColor: farger.stroke,
-                    height: `${MELDEKORT_SIRKEL_STØRRELSE}px`,
-                    width: `${MELDEKORT_SIRKEL_STØRRELSE}px`,
                   }}
                   aria-label={ariaLabel}
                 >

@@ -2492,7 +2492,7 @@
           "dagIndex": 13
         }
       ],
-      "id": "02877398113",
+      "id": "02877398114",
       "periode": {
         "fraOgMed": "2025-11-10",
         "tilOgMed": "2025-11-23"
@@ -2501,7 +2501,7 @@
       "migrert": false,
       "kilde": {
         "rolle": "Bruker",
-        "ident": "02877398113"
+        "ident": "02877398115"
       },
       "innsendtTidspunkt": "2025-11-25T13:09:45.724533",
       "registrertArbeidssoker": true,
@@ -2608,7 +2608,7 @@
           "dagIndex": 13
         }
       ],
-      "id": "02877398113",
+      "id": "02877398115",
       "periode": {
         "fraOgMed": "2025-10-27",
         "tilOgMed": "2025-11-09"
@@ -2617,11 +2617,11 @@
       "migrert": false,
       "kilde": {
         "rolle": "Bruker",
-        "ident": "02877398113"
+        "ident": "02877398115"
       },
-      "innsendtTidspunkt": "2025-11-25T13:09:22.219582",
+      "innsendtTidspunkt": "2025-11-10T13:09:22.219582",
       "registrertArbeidssoker": true,
-      "meldedato": "2025-11-25"
+      "meldedato": "2025-11-10"
     }
   ]
 }
