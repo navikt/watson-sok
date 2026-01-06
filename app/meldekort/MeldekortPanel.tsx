@@ -18,7 +18,7 @@ import {
   PanelContainerSkeleton,
 } from "~/paneler/PanelContainer";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
-import { formaterDato } from "~/utils/date-utils";
+import { formaterDato, formaterTilIsoDato } from "~/utils/date-utils";
 import type { AktivitetType, Dag, MeldekortRespons } from "./domene";
 
 type MeldekortPanelProps = {
@@ -132,17 +132,17 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
       ),
     [meldekort],
   );
-  const [aktivtIndex, setAktivtIndex] = useState(0);
+  const [aktivIndex, setAktivIndex] = useState(0);
+  useEffect(() => {
+    setAktivIndex(0);
+  }, [sorterteMeldekort.length]);
+
   const { erÅpen: erDatepickerÅpen, onToggle: onToggleDatepicker } =
     useDisclosure(false);
 
-  useEffect(() => {
-    setAktivtIndex(0);
-  }, [sorterteMeldekort.length]);
-
-  const aktivtMeldekort = sorterteMeldekort[aktivtIndex];
-  const kanGåTilForrige = aktivtIndex < sorterteMeldekort.length - 1;
-  const kanGåTilNeste = aktivtIndex > 0;
+  const aktivtMeldekort = sorterteMeldekort[aktivIndex];
+  const kanGåTilForrige = aktivIndex < sorterteMeldekort.length - 1;
+  const kanGåTilNeste = aktivIndex > 0;
 
   const velgRelevantMeldekort = (dato: Date | undefined) => {
     if (!dato) {
@@ -150,13 +150,21 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
     }
     const meldekort = sorterteMeldekort.find((meldekort) => {
       return meldekort.dager.some(
-        (dag) => dag.dato === dato.toISOString().substring(0, 10),
+        (dag) => dag.dato === formaterTilIsoDato(dato),
       );
     });
     if (meldekort) {
-      setAktivtIndex(sorterteMeldekort.indexOf(meldekort));
+      setAktivIndex(sorterteMeldekort.indexOf(meldekort));
     }
   };
+
+  const fraDato = new Date(
+    sorterteMeldekort[sorterteMeldekort.length - 1].periode.fraOgMed,
+  );
+  const tilDato = new Date(sorterteMeldekort[0].periode.tilOgMed);
+  const tilgjengeligeDager = sorterteMeldekort.flatMap((meldekort) =>
+    meldekort.dager.map((dag) => new Date(dag.dato)),
+  );
 
   return (
     <div className="flex flex-col gap-3">
@@ -192,7 +200,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
               size="small"
               disabled={!kanGåTilForrige}
               aria-label="Forrige meldekort"
-              onClick={() => setAktivtIndex((index) => index + 1)}
+              onClick={() => setAktivIndex((index) => index + 1)}
             />
             <DatePicker
               open={erDatepickerÅpen}
@@ -202,13 +210,17 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
                 onToggleDatepicker();
               }}
               dropdownCaption={true}
-              fromDate={
-                new Date(
-                  sorterteMeldekort[sorterteMeldekort.length - 1].periode
-                    .fraOgMed,
-                )
-              }
-              toDate={new Date(sorterteMeldekort[0].periode.tilOgMed)}
+              fromDate={fraDato}
+              toDate={tilDato}
+              disabled={[
+                { before: fraDato, after: tilDato },
+                (date) =>
+                  !tilgjengeligeDager.some(
+                    (tilgjengeligDag) =>
+                      formaterTilIsoDato(tilgjengeligDag) ===
+                      formaterTilIsoDato(date),
+                  ),
+              ]}
             >
               <Button
                 icon={
@@ -236,7 +248,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
               variant="secondary-neutral"
               size="small"
               disabled={!kanGåTilNeste}
-              onClick={() => setAktivtIndex((index) => index - 1)}
+              onClick={() => setAktivIndex((index) => index - 1)}
             />
           </div>
         </div>
@@ -245,8 +257,6 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
     </div>
   );
 };
-
-const MELDEKORT_SIRKEL_STØRRELSE = 64;
 
 const AKTIVITET_FARGER: Record<
   AktivitetType,
@@ -265,8 +275,8 @@ const AKTIVITET_FARGER: Record<
     stroke: "var(--ax-danger-600)",
   },
   Utdanning: {
-    fill: "var(--ax-warning-200)",
-    stroke: "var(--ax-warning-600)",
+    fill: "var(--ax-info-200)",
+    stroke: "var(--ax-info-600)",
   },
 };
 const NØYTRAL_FARGE = {

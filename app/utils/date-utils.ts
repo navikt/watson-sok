@@ -42,6 +42,15 @@ export function formaterDato(isoDate: string): string {
   }
 }
 
+export function formaterTilIsoDato(dato: Date): string {
+  // Dette returnerer en streng i formatet "YYYY-MM-DD"
+  return new Intl.DateTimeFormat("sv-SE", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(dato);
+}
+
 /**
  * Kalkulerer hvor mange hele dater det er mellom to datoer
  *
