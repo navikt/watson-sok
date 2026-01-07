@@ -7,12 +7,13 @@ export async function hentArbeidsforhold({
   request,
   navCallId,
   traceLogging,
+  utvidet,
 }: BackendKallSignatur) {
   return gjørOppslagApiRequest({
     ident,
     request,
     navCallId,
-    endepunkt: "/oppslag/arbeidsforhold",
+    endepunkt: `/oppslag/arbeidsforhold?utvidet=${utvidet}`,
     schema: ArbeidsgiverInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.arbeidsgiverInformasjon,
     traceLogging,

@@ -125,4 +125,5 @@ export type BackendKallSignatur = {
   request: Request;
   navCallId: string;
   traceLogging: boolean;
+  utvidet: boolean;
 };

@@ -8,7 +8,7 @@ export async function hentYtelser({
   navCallId,
   traceLogging,
   utvidet,
-}: BackendKallSignatur & { utvidet: boolean }) {
+}: BackendKallSignatur) {
   return gjørOppslagApiRequest({
     ident,
     request,
