@@ -272,7 +272,18 @@ const TidslinjeKontrollpanel = ({
     >
       <div className="flex gap-0.5 items-center">
         <Button
-          icon={<ChevronLeftIcon title="Forrige periode" />}
+          aria-label="Forrige periode"
+          icon={
+            <Tooltip
+              content={
+                kanFlytteForrigePeriode
+                  ? "Forrige periode"
+                  : "Ingen eldre periode"
+              }
+            >
+              <ChevronLeftIcon aria-hidden="true" />
+            </Tooltip>
+          }
           variant="secondary-neutral"
           size="small"
           disabled={!kanFlytteForrigePeriode}
@@ -285,7 +296,16 @@ const TidslinjeKontrollpanel = ({
         />
         <Button
           disabled={!kanFlytteNestePeriode}
-          icon={<ChevronRightIcon title="Neste periode" />}
+          aria-label="Neste periode"
+          icon={
+            <Tooltip
+              content={
+                kanFlytteNestePeriode ? "Neste periode" : "Ingen nyere periode"
+              }
+            >
+              <ChevronRightIcon aria-hidden="true" />
+            </Tooltip>
+          }
           variant="secondary-neutral"
           size="small"
           onClick={() => {

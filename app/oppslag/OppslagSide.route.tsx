@@ -8,6 +8,7 @@ import { InntektOgYtelseOverlappPanel } from "~/inntekt-og-ytelse/inntekt-og-yte
 import { InntektPanel } from "~/inntekt-og-ytelse/inntekt/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/inntekt-og-ytelse/inntekt/InntektsoppsummeringPanel";
 import { YtelserPanel } from "~/inntekt-og-ytelse/ytelse/YtelserPanel";
+import { MeldekortPanel } from "~/meldekort/MeldekortPanel";
 import { OverskriftPanel } from "~/person/OverskriftPanel";
 import { PersonopplysningerPanel } from "~/person/PersonopplysningerPanel";
 import { TidsvinduProvider, TidsvinduVelger } from "~/tidsvindu/Tidsvindu";
@@ -24,6 +25,9 @@ export default function OppslagBrukerSide() {
   );
   const visInntektOgYtelseOverlappPanel = useEnkeltFeatureFlagg(
     FeatureFlagg.INNTEKT_OG_YTELSE_OVERLAPP_PANEL,
+  );
+  const visMeldekortPanel = useEnkeltFeatureFlagg(
+    FeatureFlagg.VIS_MELDEKORT_PANEL,
   );
   return (
     <TidsvinduProvider>
@@ -69,6 +73,8 @@ export default function OppslagBrukerSide() {
             {visInntektsoppsummeringPanel && (
               <InntektsoppsummeringPanel promise={data.inntektInformasjon} />
             )}
+
+            {visMeldekortPanel && <MeldekortPanel promise={data.meldekort} />}
           </div>
         </PageBlock>
       </Page>

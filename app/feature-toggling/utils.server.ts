@@ -1,5 +1,6 @@
 import { startUnleash, type Unleash } from "unleash-client";
 import { env, isProd } from "~/config/env.server";
+import { logger } from "~/logging/logging";
 import { FeatureFlagg } from "./featureflagg";
 
 let unleash: Unleash;
@@ -27,6 +28,7 @@ export async function hentAlleFeatureFlagg(
   navIdent: string,
 ): Promise<Record<FeatureFlagg, boolean>> {
   if (!isProd) {
+    logger.info("Returnerer alle feature flaggene som påskrudd");
     // Hvis vi kjører lokalt eller tester, returnerer vi alle feature flaggene som påskrudd
     return Promise.resolve(
       Object.values(FeatureFlagg).reduce(
