@@ -4,13 +4,10 @@ import {
   Button,
   CopyButton,
   Heading,
-  Link,
   Skeleton,
   Timeline,
   Tooltip,
 } from "@navikt/ds-react";
-
-import { useSearchParams } from "react-router";
 
 import {
   ChevronLeftIcon,
@@ -31,7 +28,6 @@ import {
   PanelContainer,
   PanelContainerSkeleton,
 } from "~/paneler/PanelContainer";
-import { RouteConfig } from "~/routeConfig";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { formaterDato, forskjellIDager } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
@@ -62,7 +58,6 @@ type YtelserPanelMedDataProps = {
 };
 const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   const ytelser = use(promise);
-  const [searchParams, setSearchParams] = useSearchParams();
   const visYtelsesdetaljerModal = useEnkeltFeatureFlagg(
     FeatureFlagg.VIS_YTELSESDETALJER_MODAL,
   );
@@ -80,44 +75,24 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     }));
   }, [ytelser]);
 
-  const viserSiste10År = searchParams.get("utvidet") === "true";
-  const tittel = viserSiste10År
-    ? "Ytelser fra Nav siste 10 år"
-    : `Ytelser fra Nav siste ${tidsvindu}`;
-
   return (
     <PanelContainer
       title={
         <div className="flex items-center gap-2">
-          {tittel}
+          Ytelser fra Nav
           <Tooltip content="Visningen er basert på utbetalingstidspunkt fra Nav.">
             <InformationSquareIcon aria-hidden="true" />
           </Tooltip>
         </div>
       }
     >
-      <BodyShort spacing>
-        <Link
-          href={`${RouteConfig.OPPSLAG}?utvidet=${!viserSiste10År}`}
-          onClick={(e) => {
-            e.preventDefault();
-            setSearchParams((prev) => {
-              prev.set("utvidet", viserSiste10År ? "false" : "true");
-              return prev;
-            });
-          }}
-        >
-          Vis siste {viserSiste10År ? "3" : "10"} år
-        </Link>
-      </BodyShort>
       {harIngenYtelser ? (
         <Alert variant="info" className="w-fit">
-          Ingen ytelser registrert de siste {viserSiste10År ? "10" : "3"} årene.
+          Ingen ytelser registrert de siste {tidsvindu}.
         </Alert>
       ) : (
         <>
           <TidslinjeKontrollpanel
-            viserSiste10År={viserSiste10År}
             nåværendeVindu={nåværendeVindu}
             oppdaterVindu={oppdaterVindu}
           />
@@ -248,17 +223,15 @@ const YtelserPanelSkeleton = () => {
 type TidslinjeKontrollpanelProps = Pick<
   ReturnType<typeof useTidslinjevindu>,
   "nåværendeVindu" | "oppdaterVindu"
-> & {
-  viserSiste10År: boolean;
-};
+>;
 const TidslinjeKontrollpanel = ({
   nåværendeVindu,
   oppdaterVindu,
-  viserSiste10År,
 }: TidslinjeKontrollpanelProps) => {
   const nå = new Date();
   const dataCutoff = new Date(nå.getTime());
-  dataCutoff.setMonth(nå.getMonth() - (viserSiste10År ? 120 : 36));
+  const { tidsvinduIAntallMåneder } = useTidsvindu();
+  dataCutoff.setMonth(nå.getMonth() - tidsvinduIAntallMåneder ? 120 : 36);
 
   const kanFlytteForrigePeriode =
     forskjellIDager(nåværendeVindu.start, dataCutoff) >= 30;
@@ -374,7 +347,13 @@ function useTidslinjevindu() {
   const { tidsvinduIAntallMåneder } = useTidsvindu();
   const [tidsvinduOffset, setTidsvinduOffset] = useState(0);
   const hopp =
-    tidsvinduIAntallMåneder === 36 ? 6 : tidsvinduIAntallMåneder === 12 ? 3 : 1;
+    tidsvinduIAntallMåneder === 120
+      ? 12
+      : tidsvinduIAntallMåneder === 36
+        ? 6
+        : tidsvinduIAntallMåneder === 12
+          ? 3
+          : 1;
 
   const nå = new Date();
   const start = new Date(nå);
