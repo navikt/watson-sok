@@ -19,8 +19,11 @@ export const TidsvinduProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [tidsvindu, internalSetTidsvindu] = useState<TidsvinduPeriode>("3 år");
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const utvidet = searchParams.get("utvidet") === "true";
+  const [tidsvindu, internalSetTidsvindu] = useState<TidsvinduPeriode>(
+    utvidet ? "10 år" : "3 år",
+  );
   const context = useMemo(
     () => ({
       tidsvindu,
