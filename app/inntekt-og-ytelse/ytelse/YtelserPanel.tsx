@@ -231,7 +231,7 @@ const TidslinjeKontrollpanel = ({
   const nå = new Date();
   const dataCutoff = new Date(nå.getTime());
   const { tidsvinduIAntallMåneder } = useTidsvindu();
-  dataCutoff.setMonth(nå.getMonth() - tidsvinduIAntallMåneder ? 120 : 36);
+  dataCutoff.setMonth(nå.getMonth() - (tidsvinduIAntallMåneder ? 120 : 36));
 
   const kanFlytteForrigePeriode =
     forskjellIDager(nåværendeVindu.start, dataCutoff) >= 30;
