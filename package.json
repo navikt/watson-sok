@@ -20,7 +20,7 @@
     "test:e2e:headed": "playwright test --headed"
   },
   "dependencies": {
-    "@grafana/faro-react": "^1.19.0",
+    "@grafana/faro-react": "^2.1.0",
     "@navikt/aksel-icons": "^7.33.2",
     "@navikt/ds-css": "^7.33.2",
     "@navikt/ds-react": "^7.33.2",
