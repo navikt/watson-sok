@@ -1,8 +1,9 @@
 import { ToggleGroup } from "@navikt/ds-react";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { createContext, use, useMemo, useState } from "react";
+import { useSearchParams } from "react-router";
 
-type TidsvinduPeriode = "6 måneder" | "1 år" | "3 år";
+type TidsvinduPeriode = "6 måneder" | "1 år" | "3 år" | "10 år";
 
 type TidsvinduContextType = {
   tidsvindu: TidsvinduPeriode;
@@ -18,10 +19,22 @@ export const TidsvinduProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [tidsvindu, setTidsvindu] = useState<TidsvinduPeriode>("3 år");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const utvidet = searchParams.get("utvidet") === "true";
+  const [tidsvindu, internalSetTidsvindu] = useState<TidsvinduPeriode>(
+    utvidet ? "10 år" : "3 år",
+  );
   const context = useMemo(
-    () => ({ tidsvindu, setTidsvindu }),
-    [tidsvindu, setTidsvindu],
+    () => ({
+      tidsvindu,
+      setTidsvindu: (tidsvindu: TidsvinduPeriode) => {
+        internalSetTidsvindu(tidsvindu);
+        if (tidsvindu === "10 år") {
+          setSearchParams({ utvidet: "true" });
+        }
+      },
+    }),
+    [tidsvindu, setSearchParams],
   );
   return (
     <TidsvinduContext.Provider value={context}>
@@ -45,7 +58,9 @@ export const useTidsvindu = () => {
         ? 6
         : context.tidsvindu === "1 år"
           ? 12
-          : 36,
+          : context.tidsvindu === "3 år"
+            ? 36
+            : 120,
   };
 };
 
@@ -66,6 +81,7 @@ export const TidsvinduVelger = () => {
       <ToggleGroupItem value="6 måneder" label="6 mnd" />
       <ToggleGroupItem value="1 år" label="1 år" />
       <ToggleGroupItem value="3 år" label="3 år" />
+      <ToggleGroupItem value="10 år" label="10 år" />
     </ToggleGroup>
   );
 };

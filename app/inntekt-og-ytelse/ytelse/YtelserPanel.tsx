@@ -4,13 +4,10 @@ import {
   Button,
   CopyButton,
   Heading,
-  Link,
   Skeleton,
   Timeline,
   Tooltip,
 } from "@navikt/ds-react";
-
-import { useSearchParams } from "react-router";
 
 import {
   ChevronLeftIcon,
@@ -31,7 +28,6 @@ import {
   PanelContainer,
   PanelContainerSkeleton,
 } from "~/paneler/PanelContainer";
-import { RouteConfig } from "~/routeConfig";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { formaterDato, forskjellIDager } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
@@ -62,7 +58,6 @@ type YtelserPanelMedDataProps = {
 };
 const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   const ytelser = use(promise);
-  const [searchParams, setSearchParams] = useSearchParams();
   const visYtelsesdetaljerModal = useEnkeltFeatureFlagg(
     FeatureFlagg.VIS_YTELSESDETALJER_MODAL,
   );
@@ -80,44 +75,24 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
     }));
   }, [ytelser]);
 
-  const viserSiste10År = searchParams.get("utvidet") === "true";
-  const tittel = viserSiste10År
-    ? "Ytelser fra Nav siste 10 år"
-    : `Ytelser fra Nav siste ${tidsvindu}`;
-
   return (
     <PanelContainer
       title={
         <div className="flex items-center gap-2">
-          {tittel}
+          Ytelser fra Nav
           <Tooltip content="Visningen er basert på utbetalingstidspunkt fra Nav.">
             <InformationSquareIcon aria-hidden="true" />
           </Tooltip>
         </div>
       }
     >
-      <BodyShort spacing>
-        <Link
-          href={`${RouteConfig.OPPSLAG}?utvidet=${!viserSiste10År}`}
-          onClick={(e) => {
-            e.preventDefault();
-            setSearchParams((prev) => {
-              prev.set("utvidet", viserSiste10År ? "false" : "true");
-              return prev;
-            });
-          }}
-        >
-          Vis siste {viserSiste10År ? "3" : "10"} år
-        </Link>
-      </BodyShort>
       {harIngenYtelser ? (
         <Alert variant="info" className="w-fit">
-          Ingen ytelser registrert de siste {viserSiste10År ? "10" : "3"} årene.
+          Ingen ytelser registrert de siste {tidsvindu}.
         </Alert>
       ) : (
         <>
           <TidslinjeKontrollpanel
-            viserSiste10År={viserSiste10År}
             nåværendeVindu={nåværendeVindu}
             oppdaterVindu={oppdaterVindu}
           />
@@ -248,17 +223,15 @@ const YtelserPanelSkeleton = () => {
 type TidslinjeKontrollpanelProps = Pick<
   ReturnType<typeof useTidslinjevindu>,
   "nåværendeVindu" | "oppdaterVindu"
-> & {
-  viserSiste10År: boolean;
-};
+>;
 const TidslinjeKontrollpanel = ({
   nåværendeVindu,
   oppdaterVindu,
-  viserSiste10År,
 }: TidslinjeKontrollpanelProps) => {
   const nå = new Date();
   const dataCutoff = new Date(nå.getTime());
-  dataCutoff.setMonth(nå.getMonth() - (viserSiste10År ? 120 : 36));
+  const { tidsvinduIAntallMåneder } = useTidsvindu();
+  dataCutoff.setMonth(nå.getMonth() - (tidsvinduIAntallMåneder ? 120 : 36));
 
   const kanFlytteForrigePeriode =
     forskjellIDager(nåværendeVindu.start, dataCutoff) >= 30;
@@ -370,31 +343,62 @@ function grupperSammenhengendePerioder(
   return gruppert;
 }
 
+/**
+ * Hook for å navigere i tidslinjevisningen.
+ * Returnerer nåværende vindu og funksjon for å flytte frem/tilbake.
+ */
 function useTidslinjevindu() {
   const { tidsvinduIAntallMåneder } = useTidsvindu();
   const [tidsvinduOffset, setTidsvinduOffset] = useState(0);
-  const hopp =
-    tidsvinduIAntallMåneder === 36 ? 6 : tidsvinduIAntallMåneder === 12 ? 3 : 1;
+  const hopp = beregnHoppForTidsvindu(tidsvinduIAntallMåneder);
 
-  const nå = new Date();
-  const start = new Date(nå);
-  start.setMonth(nå.getMonth() - tidsvinduIAntallMåneder - tidsvinduOffset);
-  const slutt = new Date(nå);
-  slutt.setMonth(nå.getMonth() - tidsvinduOffset);
+  const nåværendeVindu = useMemo(
+    () => beregnVindu(tidsvinduIAntallMåneder, tidsvinduOffset),
+    [tidsvinduIAntallMåneder, tidsvinduOffset],
+  );
 
   function oppdaterVindu(retning: "forrige" | "neste" | "gjeldende") {
-    if (retning === "forrige") {
-      setTidsvinduOffset((prev) => Math.max(0, prev + hopp));
-    } else if (retning === "neste") {
-      setTidsvinduOffset((prev) => Math.max(0, prev - hopp));
-    } else {
-      setTidsvinduOffset(0);
+    switch (retning) {
+      case "forrige":
+        setTidsvinduOffset((prev) => prev + hopp);
+        break;
+      case "neste":
+        setTidsvinduOffset((prev) => Math.max(0, prev - hopp));
+        break;
+      case "gjeldende":
+        setTidsvinduOffset(0);
+        break;
     }
   }
-  return {
-    nåværendeVindu: { start, slutt },
-    oppdaterVindu,
-  };
+
+  return { nåværendeVindu, oppdaterVindu };
+}
+
+/** Beregner start- og sluttdato for tidsvinduet basert på antall måneder og offset. */
+function beregnVindu(tidsvinduIAntallMåneder: number, offset: number) {
+  const nå = new Date();
+  const start = new Date(nå);
+  start.setMonth(nå.getMonth() - tidsvinduIAntallMåneder - offset);
+  const slutt = new Date(nå);
+  slutt.setMonth(nå.getMonth() - offset);
+  return { start, slutt };
+}
+
+/**
+ * Beregner hvor mange måneder vi skal hoppe frem/tilbake i tidslinjen basert på tidsvinduets størrelse.
+ * Større tidsvindu gir større hopp for bedre navigering.
+ */
+function beregnHoppForTidsvindu(tidsvinduIAntallMåneder: number): number {
+  switch (tidsvinduIAntallMåneder) {
+    case 120:
+      return 12;
+    case 36:
+      return 6;
+    case 12:
+      return 3;
+    default:
+      return 1;
+  }
 }
 
 /**

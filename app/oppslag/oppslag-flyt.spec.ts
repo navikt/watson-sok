@@ -175,7 +175,7 @@ test.describe("Oppslag-flyt", () => {
     await expect(page).toHaveURL(/\/oppslag/);
 
     const ytelserOverskrift = page.getByRole("heading", {
-      name: /Ytelser fra Nav siste 3 år/i,
+      name: /Ytelser fra Nav/i,
     });
     await expect(ytelserOverskrift).toBeVisible();
 
@@ -209,7 +209,7 @@ test.describe("Oppslag-flyt", () => {
     await velgTidsvindu(/6 mnd/i);
     await expect(
       page.getByRole("heading", {
-        name: /Ytelser fra Nav siste 6 måneder/i,
+        name: /Ytelser fra Nav/i,
       }),
     ).toBeVisible();
     await expect.poll(hentTotalInntekt).toBe(414234);
@@ -220,7 +220,7 @@ test.describe("Oppslag-flyt", () => {
     await velgTidsvindu(/1 år/i);
     await expect(
       page.getByRole("heading", {
-        name: /Ytelser fra Nav siste 1 år/i,
+        name: /Ytelser fra Nav/i,
       }),
     ).toBeVisible();
     await expect.poll(hentTotalInntekt).toBe(770915);

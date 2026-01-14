@@ -7,12 +7,13 @@ export async function hentMeldekort({
   request,
   navCallId,
   traceLogging,
+  utvidet,
 }: BackendKallSignatur) {
   return gjørOppslagApiRequest({
     ident,
     request,
     navCallId,
-    endepunkt: "/oppslag/meldekort",
+    endepunkt: `/oppslag/meldekort?utvidet=${utvidet}`,
     schema: MeldekortResponsSchema,
     ekstraherFraMock: (mockData) => mockData.meldekort,
     traceLogging,

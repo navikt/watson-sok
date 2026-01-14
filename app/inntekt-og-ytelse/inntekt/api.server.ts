@@ -7,12 +7,13 @@ export async function hentInntekter({
   request,
   navCallId,
   traceLogging,
+  utvidet,
 }: BackendKallSignatur) {
   return gjørOppslagApiRequest({
     ident,
     request,
     navCallId,
-    endepunkt: "/oppslag/inntekt",
+    endepunkt: `/oppslag/inntekt?utvidet=${utvidet}`,
     schema: InntektInformasjonSchema,
     ekstraherFraMock: (mockData) => mockData.inntektInformasjon,
     traceLogging,

@@ -29,14 +29,16 @@ export async function oppslagLoader({ request }: LoaderFunctionArgs) {
     return redirect(RouteConfig.TILGANG);
   }
 
+  const utvidet = new URL(request.url).searchParams.get("utvidet") === "true";
+
   const params = {
     ident: søkedata.ident,
     request,
     navCallId: crypto.randomUUID(),
     traceLogging,
+    utvidet,
   };
 
-  const utvidet = new URL(request.url).searchParams.get("utvidet") === "true";
   return {
     miljø: env.ENVIRONMENT,
     erBegrensetTilgang:
@@ -50,9 +52,6 @@ export async function oppslagLoader({ request }: LoaderFunctionArgs) {
     arbeidsgiverInformasjon: hentArbeidsforhold(params),
     inntektInformasjon: hentInntekter(params),
     meldekort: hentMeldekort(params),
-    ytelser: hentYtelser({
-      ...params,
-      utvidet,
-    }),
+    ytelser: hentYtelser(params),
   };
 }
