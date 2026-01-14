@@ -14,10 +14,13 @@
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "unused": "knip",
-    "code-quality": "npm run lint && npm run prettier && npm run typecheck && npm run unused",
+    "code-quality": "concurrently -n lint,prettier,types,unused -c yellow,magenta,cyan,blue \"npm run lint\" \"npm run prettier\" \"npm run typecheck\" \"npm run unused\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:headed": "playwright test --headed"
+    "test:e2e:headed": "playwright test --headed",
+    "verify": "concurrently -n test,quality -c green,blue \"npm run test\" \"npm run code-quality\""
   },
   "dependencies": {
     "@grafana/faro-react": "^2.1.0",
@@ -44,8 +47,12 @@
     "zod": "^4.1.7"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.3.0",
     "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.56.1",
+    "concurrently": "^9.1.2",
+    "jsdom": "^26.1.0",
     "@react-router/dev": "^7.9.4",
     "@tailwindcss/vite": "^4.1.13",
     "@types/node": "^25.0.7",
@@ -63,6 +70,7 @@
     "typescript": "^5.9.3",
     "vite": "^7.1.11",
     "vite-plugin-devtools-json": "^1.0.0",
+    "vitest": "^3.2.4",
     "vite-tsconfig-paths": "^6.0.4"
   }
 }
