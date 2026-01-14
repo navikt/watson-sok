@@ -343,37 +343,62 @@ function grupperSammenhengendePerioder(
   return gruppert;
 }
 
+/**
+ * Hook for å navigere i tidslinjevisningen.
+ * Returnerer nåværende vindu og funksjon for å flytte frem/tilbake.
+ */
 function useTidslinjevindu() {
   const { tidsvinduIAntallMåneder } = useTidsvindu();
   const [tidsvinduOffset, setTidsvinduOffset] = useState(0);
-  const hopp =
-    tidsvinduIAntallMåneder === 120
-      ? 12
-      : tidsvinduIAntallMåneder === 36
-        ? 6
-        : tidsvinduIAntallMåneder === 12
-          ? 3
-          : 1;
+  const hopp = beregnHoppForTidsvindu(tidsvinduIAntallMåneder);
 
-  const nå = new Date();
-  const start = new Date(nå);
-  start.setMonth(nå.getMonth() - tidsvinduIAntallMåneder - tidsvinduOffset);
-  const slutt = new Date(nå);
-  slutt.setMonth(nå.getMonth() - tidsvinduOffset);
+  const nåværendeVindu = useMemo(
+    () => beregnVindu(tidsvinduIAntallMåneder, tidsvinduOffset),
+    [tidsvinduIAntallMåneder, tidsvinduOffset],
+  );
 
   function oppdaterVindu(retning: "forrige" | "neste" | "gjeldende") {
-    if (retning === "forrige") {
-      setTidsvinduOffset((prev) => Math.max(0, prev + hopp));
-    } else if (retning === "neste") {
-      setTidsvinduOffset((prev) => Math.max(0, prev - hopp));
-    } else {
-      setTidsvinduOffset(0);
+    switch (retning) {
+      case "forrige":
+        setTidsvinduOffset((prev) => prev + hopp);
+        break;
+      case "neste":
+        setTidsvinduOffset((prev) => Math.max(0, prev - hopp));
+        break;
+      case "gjeldende":
+        setTidsvinduOffset(0);
+        break;
     }
   }
-  return {
-    nåværendeVindu: { start, slutt },
-    oppdaterVindu,
-  };
+
+  return { nåværendeVindu, oppdaterVindu };
+}
+
+/** Beregner start- og sluttdato for tidsvinduet basert på antall måneder og offset. */
+function beregnVindu(tidsvinduIAntallMåneder: number, offset: number) {
+  const nå = new Date();
+  const start = new Date(nå);
+  start.setMonth(nå.getMonth() - tidsvinduIAntallMåneder - offset);
+  const slutt = new Date(nå);
+  slutt.setMonth(nå.getMonth() - offset);
+  return { start, slutt };
+}
+
+/**
+ * Beregner hvor mange måneder vi skal hoppe frem/tilbake i tidslinjen basert på tidsvinduets størrelse.
+ * Større tidsvindu gir større hopp for bedre navigering.
+ */
+function beregnHoppForTidsvindu(tidsvinduIAntallMåneder: number): number {
+  switch (tidsvinduIAntallMåneder) {
+    case 120:
+      return 12;
+    case 36:
+      return 6;
+    case 12:
+      return 3;
+    default:
+      return 1;
+  }
 }
 
 /**
