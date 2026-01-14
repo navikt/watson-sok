@@ -1,37 +1,40 @@
 import { defineConfig, devices } from "@playwright/test";
 
 /**
- * Playwright configuration for Watson Søk
- * See https://playwright.dev/docs/test-configuration
+ * Playwright-konfigurasjon for Watson Søk
+ * Se https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
   testDir: "./app",
 
-  /* Run tests in files in parallel */
+  /* Kjør kun .spec.ts filer, ikke .test.ts filer (de er for Vitest) */
+  testMatch: /.*\.spec\.(ts|tsx)$/,
+
+  /* Kjør tester i filer parallelt */
   fullyParallel: true,
 
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
+  /* Feil bygget på CI hvis du ved et uhell har lagt igjen test.only i kildekoden. */
   forbidOnly: !!process.env.CI,
 
-  /* Retry on CI only */
+  /* Prøv på nytt kun på CI */
   retries: process.env.CI ? 2 : 0,
 
-  /* Opt out of parallel tests on CI. */
+  /* Deaktiver parallelle tester på CI. */
   workers: process.env.CI ? 1 : undefined,
 
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  /* Reporter å bruke. Se https://playwright.dev/docs/test-reporters */
   reporter: "html",
 
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  /* Delte innstillinger for alle prosjektene nedenfor. Se https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
+    /* Base-URL å bruke i handlinger som `await page.goto('/')`. */
     baseURL: "http://localhost:5173",
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    /* Samle trace når feilende test prøves på nytt. Se https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
   },
 
-  /* Configure projects for major browsers */
+  /* Konfigurer prosjekter for hovednettlesere */
   projects: [
     {
       name: "chromium",
@@ -39,7 +42,7 @@ export default defineConfig({
     },
   ],
 
-  /* Run your local dev server before starting the tests */
+  /* Kjør lokal dev-server før testene starter */
   webServer: {
     command: "npm run dev",
     url: "http://localhost:5173",
