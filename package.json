@@ -14,13 +14,12 @@
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "unused": "knip",
-    "code-quality": "concurrently -n lint,prettier,types,unused -c yellow,magenta,cyan,blue \"npm run lint\" \"npm run prettier\" \"npm run typecheck\" \"npm run unused\"",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
-    "verify": "concurrently -n test,quality -c green,blue \"npm run test\" \"npm run code-quality\""
+    "verify": "concurrently -n test,lint,prettier,types,unused -c green,yellow,magenta,cyan,blue \"npm run test\" \"npm run lint\" \"npm run prettier\" \"npm run typecheck\" \"npm run unused\""
   },
   "dependencies": {
     "@grafana/faro-react": "^2.1.0",

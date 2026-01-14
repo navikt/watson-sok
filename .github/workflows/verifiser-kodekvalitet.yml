@@ -31,14 +31,5 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
-      - name: Kjør ESLint
-        run: npm run lint
-
-      - name: Kjør Prettier
-        run: npm run prettier
-
-      - name: Kjør typesjekk
-        run: npm run typecheck
-
-      - name: Kjør sjekk for ubrukt kode
-        run: npm run unused
+      - name: Verifiser kodekvalitet og kjør tester
+        run: npm run verify
