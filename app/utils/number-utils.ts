@@ -2,13 +2,22 @@
  * Formater desimaltall
  *
  * @param tall - Tallen som skal formateres
+ * @param minimumFractionDigits - Minimum antall desimaler (default: 2)
+ * @param maximumFractionDigits - Maksimum antall desimaler (default: 2)
  * @returns Formatert desimaltall
+ * @throws RangeError hvis minimumFractionDigits > maximumFractionDigits
  */
 export function formaterDesimaltall(
   tall: number,
   minimumFractionDigits = 2,
   maximumFractionDigits = 2,
 ): string {
+  if (minimumFractionDigits > maximumFractionDigits) {
+    throw new RangeError(
+      `minimumFractionDigits (${minimumFractionDigits}) kan ikke være større enn maximumFractionDigits (${maximumFractionDigits})`,
+    );
+  }
+
   return tall.toLocaleString("nb-NO", {
     minimumFractionDigits,
     maximumFractionDigits,
@@ -21,9 +30,11 @@ export function formaterDesimaltall(
  * @param tall - Tallen som skal formateres som prosent (mellom 0 og 100)
  * @returns Formatert prosent
  */
-export function formaterProsent(tall: number | unknown): string {
+export function formaterProsent(tall: number): string;
+export function formaterProsent<T>(tall: T): T;
+export function formaterProsent(tall: unknown): unknown {
   if (typeof tall !== "number") {
-    return tall as string;
+    return tall;
   }
 
   return (tall / 100).toLocaleString("nb-NO", {
@@ -37,14 +48,20 @@ export function formaterProsent(tall: number | unknown): string {
  * Formater beløp
  *
  * @param tall - Tallen som skal formateres
+ * @param maximumFractionDigits - Maksimum antall desimaler (default: 2)
  * @returns Formatert beløp
  */
 export function formaterBeløp(
-  tall: number | unknown,
+  tall: number,
+  maximumFractionDigits?: number,
+): string;
+export function formaterBeløp<T>(tall: T, maximumFractionDigits?: number): T;
+export function formaterBeløp(
+  tall: unknown,
   maximumFractionDigits = 2,
-): string {
+): unknown {
   if (typeof tall !== "number") {
-    return tall as string;
+    return tall;
   }
 
   return tall.toLocaleString("nb-NO", {
