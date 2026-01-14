@@ -15,6 +15,7 @@ import {
   PanelContainer,
   PanelContainerSkeleton,
 } from "~/paneler/PanelContainer";
+import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { formaterÅrMåned } from "~/utils/date-utils";
 import {
   formaterBeløp,
@@ -53,10 +54,15 @@ const InntektPanelMedData = ({
   const inntektInformasjon = use(promise);
   const ytelser = use(ytelserPromise);
   const [visYtelser, setVisYtelser] = useState(false);
+  const { tidsvinduIAntallMåneder } = useTidsvindu();
 
   const rader = useMemo(() => {
     const nå = new Date();
-    const cutoff = new Date(nå.getFullYear(), nå.getMonth() - 36, 1);
+    const cutoff = new Date(
+      nå.getFullYear(),
+      nå.getMonth() - tidsvinduIAntallMåneder,
+      1,
+    );
     const inntekterFraAareg = inntektInformasjon?.lønnsinntekt ?? [];
     const ytelserFraNav =
       ytelser?.flatMap((ytelse) =>
@@ -83,7 +89,12 @@ const InntektPanelMedData = ({
         }),
       )
       .reverse();
-  }, [inntektInformasjon?.lønnsinntekt, ytelser, visYtelser]);
+  }, [
+    inntektInformasjon?.lønnsinntekt,
+    ytelser,
+    visYtelser,
+    tidsvinduIAntallMåneder,
+  ]);
 
   const erTom = rader.length === 0;
 
