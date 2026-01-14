@@ -1,8 +1,8 @@
 import {
-  createReactRouterV6DataOptions,
   getWebInstrumentations,
   initializeFaro,
   ReactIntegration,
+  ReactRouterVersion,
   type Faro,
 } from "@grafana/faro-react";
 import { useEffect } from "react";
@@ -15,6 +15,8 @@ export function useFaro() {
   useEffect(() => {
     if (isProd && faroUrl) {
       initFaro(faroUrl);
+    } else {
+      console.log("Faro er avslått lokalt");
     }
   }, [isProd, faroUrl]);
 }
@@ -38,12 +40,14 @@ function initFaro(url: string) {
     instrumentations: [
       ...getWebInstrumentations({
         captureConsole: true,
-        captureConsoleDisabledLevels: [],
       }),
       new ReactIntegration({
-        router: createReactRouterV6DataOptions({
-          matchRoutes,
-        }),
+        router: {
+          version: ReactRouterVersion.V7_data_router,
+          dependencies: {
+            matchRoutes,
+          },
+        },
       }),
     ],
   });
