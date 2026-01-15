@@ -1,7 +1,5 @@
 import type { KnipConfig } from "knip";
 
-const config: KnipConfig = {
-  ignoreDependencies: ["@navikt/ds-css", "tailwindcss"],
-};
+const config: KnipConfig = {};
 
 export default config;

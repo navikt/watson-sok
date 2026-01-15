@@ -45,3 +45,9 @@ Kort veiledning for bidragsytere til Holmes oppslag-bruker. Hold koden enkel, do
 - Behold sikkerhetsheadere i `features/sikkerhet/headers.server.ts`; ikke svekk CSP uten vurdering.
 - Hemmeligheter i `.env` (se `.env.example`); aldri committ secrets.
 - Bruk auth-hjelpere i `features/auth` for tokenhåndtering/obo; rull ikke egen auth.
+
+## Ferdig er ferdig (Definition of Done)
+
+- Kjør `npm run verify` før en oppgave anses som ferdig.
+- Skriv tester for ny funksjonalitet (enhetstester og/eller e2e etter behov).
+- Følg TDD der det gir mening: skriv en feilende test først (rød), implementer (grønn), refaktorer.

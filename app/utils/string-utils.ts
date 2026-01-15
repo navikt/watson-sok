@@ -47,11 +47,11 @@ export function storFørsteBokstavPerOrd(
  */
 export function camelCaseTilNorsk(camelCaseStr: string | null) {
   if (!camelCaseStr) {
-    return "–";
+    return "";
   }
 
   const ord = camelCaseStr
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/([a-zæøå])([A-ZÆØÅ])/g, "$1 $2")
     .toLowerCase()
     .split(" ");
 
