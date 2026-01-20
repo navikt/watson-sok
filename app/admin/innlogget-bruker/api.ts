@@ -2,7 +2,7 @@ import type { LoaderFunctionArgs } from "react-router";
 import { getLoggedInUser } from "~/auth/access-token";
 
 const brukereSomHarTilgang = {
-  hansJacob: "M118976",
+  hansJacob: "M118946",
   kristofer: "S162301",
   snorri: "E176931",
   sturle: "H139079",
