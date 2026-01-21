@@ -1,5 +1,5 @@
 import type { LoaderFunctionArgs } from "react-router";
-import { hentInnloggetBruker } from "~/auth/innlogget-bruker";
+import { hentInnloggetBruker } from "~/auth/innlogget-bruker.server";
 import { env, isProd } from "~/config/env.server";
 import {
   hentAlleFeatureFlagg,
