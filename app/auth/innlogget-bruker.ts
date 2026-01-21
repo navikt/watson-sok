@@ -46,7 +46,7 @@ export async function hentInnloggetBruker({
     name: parseResult.name,
     navIdent: parseResult.NAVident,
     token: await getBackendOboToken(request),
-    organisasjoner: saksbehandlerInfo.organisasjoner?.join(", ") || "Ukjent"
+    organisasjoner: saksbehandlerInfo.organisasjoner?.join(", ") || "Ukjent",
   };
 }
 

@@ -79,7 +79,9 @@ export function FamiliemedlemmerModal({
                     action={RouteConfig.INDEX}
                     method="post"
                     onSubmit={() => {
-                      sporHendelse("søk familiemedlem", { organisasjoner: innloggetBruker.organisasjoner });
+                      sporHendelse("søk familiemedlem", {
+                        organisasjoner: innloggetBruker.organisasjoner,
+                      });
                       setLoadingIdent(personIdent);
                     }}
                   >

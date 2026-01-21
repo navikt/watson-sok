@@ -55,7 +55,9 @@ export default function Søkeside() {
             method="post"
             role="search"
             onSubmit={() => {
-              sporHendelse("søk landingsside", { organisasjoner: innloggetBruker.organisasjoner });
+              sporHendelse("søk landingsside", {
+                organisasjoner: innloggetBruker.organisasjoner,
+              });
               setIsLoading(true);
             }}
           >

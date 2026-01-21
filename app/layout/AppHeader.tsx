@@ -75,7 +75,9 @@ export function AppHeader() {
         action={RouteConfig.INDEX}
         className="items-center hidden md:flex ml-5"
         onSubmit={() => {
-          sporHendelse("søk header", { organisasjoner: innloggetBruker.organisasjoner });
+          sporHendelse("søk header", {
+            organisasjoner: innloggetBruker.organisasjoner,
+          });
           setIsLoading(true);
         }}
       >
