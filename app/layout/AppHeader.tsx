@@ -23,7 +23,7 @@ import { RouteConfig } from "~/routeConfig";
 import { useTheme } from "~/tema/ThemeContext";
 
 export function AppHeader() {
-  const user = useInnloggetBruker();
+  const innloggetBruker = useInnloggetBruker();
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
   const navigation = useNavigation();
@@ -75,7 +75,7 @@ export function AppHeader() {
         action={RouteConfig.INDEX}
         className="items-center hidden md:flex ml-5"
         onSubmit={() => {
-          sporHendelse("søk header");
+          sporHendelse("søk header", { organisasjoner: innloggetBruker.organisasjoner });
           setIsLoading(true);
         }}
       >
@@ -149,7 +149,7 @@ export function AppHeader() {
         </ActionMenu.Content>
       </ActionMenu>
 
-      <InternalHeader.User name={user?.name ?? "Saksbehandler"} />
+      <InternalHeader.User name={innloggetBruker?.name ?? "Saksbehandler"} />
     </InternalHeader>
   );
 }
