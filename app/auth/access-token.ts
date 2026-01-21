@@ -1,15 +1,7 @@
-import {
-  getToken,
-  parseAzureUserToken,
-  requestOboToken,
-  validateToken,
-} from "@navikt/oasis";
+import { getToken, requestOboToken, validateToken } from "@navikt/oasis";
 import { redirect } from "react-router";
-import { env, isDev, skalBrukeMockdata } from "~/config/env.server";
+import { env, isDev } from "~/config/env.server";
 import { logger } from "~/logging/logging";
-import { hentSaksbehandlerInfo } from "./api.server";
-
-
 
 /**
  * Returnerer et OBO-token for å kalle backend-APIene

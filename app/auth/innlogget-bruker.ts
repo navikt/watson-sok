@@ -1,6 +1,4 @@
-import {
-  parseAzureUserToken
-} from "@navikt/oasis";
+import { parseAzureUserToken } from "@navikt/oasis";
 import { redirect } from "react-router";
 import { skalBrukeMockdata } from "~/config/env.server";
 import { logger } from "~/logging/logging";
