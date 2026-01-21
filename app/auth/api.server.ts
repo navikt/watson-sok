@@ -6,8 +6,6 @@ export async function hentSaksbehandlerInfo(
   token: string,
 ): Promise<SaksbehandlerInfo> {
   try {
-
-
     const response = await fetch(`${BACKEND_API_URL}/meg`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -26,7 +24,6 @@ export async function hentSaksbehandlerInfo(
       };
     }
     return parsedData.data;
-
   } catch (error) {
     logger.error("Kunne ikke hente informasjon om saksbehandler", { error });
     return {
