@@ -1,4 +1,5 @@
-import { BodyLong, Detail, Link as NavLink, Theme } from "@navikt/ds-react";
+import { BooksIcon, LightBulbIcon, PersonIcon } from "@navikt/aksel-icons";
+import { Detail, Link as NavLink, Theme } from "@navikt/ds-react";
 import { Link, unstable_useRoute } from "react-router";
 import { RouteConfig } from "~/routeConfig";
 
@@ -9,11 +10,34 @@ export function AppFooter() {
     <div className="mt-8">
       <Theme theme="dark">
         <footer className="p-4">
-          <BodyLong align="center">
-            <NavLink as={Link} to={RouteConfig.PERSONVERN}>
-              Personvern
-            </NavLink>
-          </BodyLong>
+          <ul className="flex items-center justify-center gap-4 list-none mx-auto my-0">
+            <li className="flex items-center gap-2">
+              <BooksIcon aria-hidden="true" />
+              <NavLink
+                href="https://navno.sharepoint.com/sites/45/SitePages/Holmes.aspx"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Hjelp
+              </NavLink>
+            </li>
+            <li className="flex items-center gap-2">
+              <LightBulbIcon aria-hidden="true" />
+              <NavLink
+                href="https://watson-sok.ideas.aha.io"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Idéportal
+              </NavLink>
+            </li>
+            <li className="flex items-center gap-2">
+              <PersonIcon aria-hidden="true" />
+              <NavLink as={Link} to={RouteConfig.PERSONVERN}>
+                Personvern
+              </NavLink>
+            </li>
+          </ul>
           <Detail align="center" className="mt-2 text-text-subtle">
             Versjon: {appversjon}
           </Detail>

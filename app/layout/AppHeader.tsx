@@ -1,5 +1,6 @@
 import {
   BooksIcon,
+  LightBulbIcon,
   MenuGridIcon,
   MoonIcon,
   PersonIcon,
@@ -123,6 +124,15 @@ export function AppHeader() {
             icon={<BooksIcon />}
           >
             Hjelp
+          </ActionMenu.Item>
+          <ActionMenu.Item
+            as="a"
+            href="https://watson-sok.ideas.aha.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            icon={<LightBulbIcon />}
+          >
+            Idéportal
           </ActionMenu.Item>
 
           <ActionMenu.Item
