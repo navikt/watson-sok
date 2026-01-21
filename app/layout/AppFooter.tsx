@@ -10,7 +10,7 @@ export function AppFooter() {
     <div className="mt-8">
       <Theme theme="dark">
         <footer className="p-4">
-          <ul className="flex align-center justify-center gap-4 list-none mx-auto my-0">
+          <ul className="flex items-center justify-center gap-4 list-none mx-auto my-0">
             <li className="flex items-center gap-2">
               <BooksIcon aria-hidden="true" />
               <NavLink href="https://navno.sharepoint.com/sites/45/SitePages/Holmes.aspx" target="_blank" rel="noopener noreferrer">
