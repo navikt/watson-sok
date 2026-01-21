@@ -10,7 +10,7 @@ interface InnloggetBruker {
   name: string;
   navIdent: string;
   token: string;
-  organisasjoner: string[];
+  organisasjoner: string;
 }
 
 type HentInnloggetBrukerArgs = {
@@ -28,7 +28,7 @@ export async function hentInnloggetBruker({
       name: "Saks Behandlersen",
       navIdent: "S133337",
       token: "test",
-      organisasjoner: ["Ukjent"],
+      organisasjoner: "Ukjent",
     };
   }
   const token = await getValidToken(request);
@@ -40,13 +40,22 @@ export async function hentInnloggetBruker({
   }
 
   const saksbehandlerInfo = await hentSaksbehandlerInfo(token);
-  console.log(saksbehandlerInfo);
 
   return {
     preferredUsername: parseResult.preferred_username,
     name: parseResult.name,
     navIdent: parseResult.NAVident,
     token: await getBackendOboToken(request),
-    organisasjoner: saksbehandlerInfo.organisasjoner,
+    organisasjoner: saksbehandlerInfo.organisasjoner?.join(", ") || "Ukjent"
   };
+}
+
+import { unstable_useRoute } from "react-router";
+
+export function useInnloggetBruker() {
+  const rootLoaderData = unstable_useRoute("root");
+  if (!rootLoaderData?.loaderData?.user) {
+    throw new Error("Bruker ikke funnet i root-loader dataen");
+  }
+  return rootLoaderData.loaderData.user;
 }

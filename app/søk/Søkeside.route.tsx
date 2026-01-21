@@ -12,6 +12,7 @@ import { SearchButton } from "@navikt/ds-react/Search";
 import { useEffect, useState } from "react";
 import { Form, useActionData } from "react-router";
 import { sporHendelse } from "~/analytics/analytics";
+import { useInnloggetBruker } from "~/auth/innlogget-bruker";
 import { useMiljø } from "~/miljø/useMiljø";
 import { søkAction } from "./action.server";
 
@@ -19,6 +20,7 @@ export const action = søkAction;
 
 export default function Søkeside() {
   const actionData = useActionData<typeof action>();
+  const innloggetBruker = useInnloggetBruker();
   const miljø = useMiljø();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -53,7 +55,7 @@ export default function Søkeside() {
             method="post"
             role="search"
             onSubmit={() => {
-              sporHendelse("søk landingsside");
+              sporHendelse("søk landingsside", { organisasjoner: innloggetBruker.organisasjoner });
               setIsLoading(true);
             }}
           >
