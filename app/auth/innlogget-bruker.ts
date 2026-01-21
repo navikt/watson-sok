@@ -1,5 +1,5 @@
 import { parseAzureUserToken } from "@navikt/oasis";
-import { redirect } from "react-router";
+import { redirect, unstable_useRoute } from "react-router";
 import { skalBrukeMockdata } from "~/config/env.server";
 import { logger } from "~/logging/logging";
 import { getBackendOboToken, getValidToken } from "./access-token";
@@ -49,8 +49,6 @@ export async function hentInnloggetBruker({
     organisasjoner: saksbehandlerInfo.organisasjoner?.join(", ") || "Ukjent",
   };
 }
-
-import { unstable_useRoute } from "react-router";
 
 export function useInnloggetBruker() {
   const rootLoaderData = unstable_useRoute("root");
