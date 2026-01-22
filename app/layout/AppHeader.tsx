@@ -1,5 +1,6 @@
 import {
   BooksIcon,
+  LightBulbIcon,
   MenuGridIcon,
   MoonIcon,
   PersonIcon,
@@ -16,13 +17,13 @@ import { useEffect, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { Form, Link, useNavigate, useNavigation } from "react-router";
 import { sporHendelse } from "~/analytics/analytics";
-import { useUser } from "~/auth/useUser";
+import { useInnloggetBruker } from "~/auth/innlogget-bruker";
 import { useMiljø } from "~/miljø/useMiljø";
 import { RouteConfig } from "~/routeConfig";
 import { useTheme } from "~/tema/ThemeContext";
 
 export function AppHeader() {
-  const user = useUser();
+  const innloggetBruker = useInnloggetBruker();
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
   const navigation = useNavigation();
@@ -74,7 +75,9 @@ export function AppHeader() {
         action={RouteConfig.INDEX}
         className="items-center hidden md:flex ml-5"
         onSubmit={() => {
-          sporHendelse("søk header");
+          sporHendelse("søk header", {
+            organisasjoner: innloggetBruker.organisasjoner,
+          });
           setIsLoading(true);
         }}
       >
@@ -124,6 +127,15 @@ export function AppHeader() {
           >
             Hjelp
           </ActionMenu.Item>
+          <ActionMenu.Item
+            as="a"
+            href="https://watson-sok.ideas.aha.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            icon={<LightBulbIcon />}
+          >
+            Idéportal
+          </ActionMenu.Item>
 
           <ActionMenu.Item
             onSelect={() => {
@@ -139,7 +151,7 @@ export function AppHeader() {
         </ActionMenu.Content>
       </ActionMenu>
 
-      <InternalHeader.User name={user?.name ?? "Saksbehandler"} />
+      <InternalHeader.User name={innloggetBruker?.name ?? "Saksbehandler"} />
     </InternalHeader>
   );
 }

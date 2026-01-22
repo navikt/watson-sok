@@ -1,6 +1,6 @@
 import mixpanel from "mixpanel-browser";
 import { useEffect } from "react";
-import { useUser } from "~/auth/useUser";
+import { useInnloggetBruker } from "~/auth/innlogget-bruker";
 import { logger } from "~/logging/logging";
 import { useMiljø } from "~/miljø/useMiljø";
 type AnalyticsTagProps = {
@@ -8,7 +8,7 @@ type AnalyticsTagProps = {
 };
 
 export function AnalyticsTags({ sporingId }: AnalyticsTagProps) {
-  const { navIdent } = useUser();
+  const { navIdent } = useInnloggetBruker();
   const miljø = useMiljø();
   useEffect(() => {
     if (miljø !== "prod") {
