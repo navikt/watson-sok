@@ -6,7 +6,7 @@ export async function hentSaksbehandlerInfo(
   token: string,
 ): Promise<SaksbehandlerInfo> {
   try {
-    const response = await fetch(`${BACKEND_API_URL}/meg`, {
+    const response = await fetch(`${BACKEND_API_URL}/saksbehandler`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
