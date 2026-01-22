@@ -46,8 +46,6 @@ spec:
           {{#each CLAIM_GROUPS}}
           - id: {{this}}
           {{/each}}
-        extra:
-          - "NAVident"
     sidecar:
       enabled: true
       autoLogin: true

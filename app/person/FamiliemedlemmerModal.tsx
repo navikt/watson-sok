@@ -9,6 +9,7 @@ import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useRef, useState } from "react";
 import { Form } from "react-router";
 import { sporHendelse } from "~/analytics/analytics";
+import { useInnloggetBruker } from "~/auth/innlogget-bruker";
 import { RouteConfig } from "~/routeConfig";
 import {
   formaterFødselsnummer,
@@ -26,6 +27,7 @@ type FamiliemedlemmerModalProps = {
 export function FamiliemedlemmerModal({
   familiemedlemmer,
 }: FamiliemedlemmerModalProps) {
+  const innloggetBruker = useInnloggetBruker();
   const ref = useRef<HTMLDialogElement>(null);
   const familiemedlemmerListe = transformerTilSortertListe(familiemedlemmer);
   const [loadingIdent, setLoadingIdent] = useState<string | null>(null);
@@ -77,7 +79,9 @@ export function FamiliemedlemmerModal({
                     action={RouteConfig.INDEX}
                     method="post"
                     onSubmit={() => {
-                      sporHendelse("søk familiemedlem");
+                      sporHendelse("søk familiemedlem", {
+                        organisasjoner: innloggetBruker.organisasjoner,
+                      });
                       setLoadingIdent(personIdent);
                     }}
                   >

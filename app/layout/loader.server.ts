@@ -1,5 +1,5 @@
 import type { LoaderFunctionArgs } from "react-router";
-import { getLoggedInUser } from "~/auth/access-token";
+import { hentInnloggetBruker } from "~/auth/innlogget-bruker.server";
 import { env, isProd } from "~/config/env.server";
 import {
   hentAlleFeatureFlagg,
@@ -8,7 +8,7 @@ import {
 import { parseTheme, themeCookie } from "~/tema/ThemeCookie";
 
 export async function rootLoader({ request }: LoaderFunctionArgs) {
-  const user = await getLoggedInUser({ request });
+  const user = await hentInnloggetBruker({ request });
   const [featureFlagg, statusmelding, cookieValue] = await Promise.all([
     hentAlleFeatureFlagg(user.navIdent),
     hentStatusmeldingFeatureFlagg(),
