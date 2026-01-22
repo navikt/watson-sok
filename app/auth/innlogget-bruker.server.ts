@@ -1,5 +1,5 @@
 import { parseAzureUserToken } from "@navikt/oasis";
-import { redirect, unstable_useRoute } from "react-router";
+import { redirect } from "react-router";
 import { skalBrukeMockdata } from "~/config/env.server";
 import { logger } from "~/logging/logging";
 import { getBackendOboToken, getValidToken } from "./access-token";
