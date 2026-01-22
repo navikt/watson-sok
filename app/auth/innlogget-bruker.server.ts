@@ -39,13 +39,15 @@ export async function hentInnloggetBruker({
     throw redirect(`/oauth2/login`);
   }
 
-  const saksbehandlerInfo = await hentSaksbehandlerInfo(token);
+  const oboToken = await getBackendOboToken(request);
+
+  const saksbehandlerInfo = await hentSaksbehandlerInfo(oboToken);
 
   return {
     preferredUsername: parseResult.preferred_username,
     name: parseResult.name,
     navIdent: parseResult.NAVident,
-    token: await getBackendOboToken(request),
+    token: oboToken,
     organisasjoner: saksbehandlerInfo.organisasjoner?.join(", ") || "Ukjent",
   };
 }
