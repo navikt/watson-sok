@@ -12,11 +12,23 @@ export async function hentSaksbehandlerInfo(
       },
     });
     const json = await response.json();
-    const parsedData = SaksbehandlerInfoSchema.safeParse(json);
+    if (!json.data) {
+      logger.warn("Mottok feil fra saksbehandler-API", {
+        feilmelding: json.error,
+        status: response.status,
+      });
+      return {
+        navIdent: "",
+        organisasjoner: ["Ukjent"],
+      };
+    }
+    const parsedData = SaksbehandlerInfoSchema.safeParse(json.data);
     if (!parsedData.success) {
       logger.warn("Informasjon fra saksbehandler-API var ugyldig", {
         feilmelding: json.error,
         status: response.status,
+        parsingError: parsedData.error,
+        data: json,
       });
       return {
         navIdent: "",
