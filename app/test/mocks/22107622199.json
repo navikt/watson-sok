@@ -199,6 +199,7 @@
             "tom": "2024-03-15"
           },
           "beløp": 56230,
+          "bruttoBeløp": 60000,
           "kilde": "NAV",
           "info": "Sykemeldt etter skade under etterforskning i Oslo"
         }
@@ -213,6 +214,7 @@
             "tom": "2016-11-30"
           },
           "beløp": 112000,
+          "bruttoBeløp": 120000,
           "kilde": "NAV",
           "info": "Rehabilitering etter opphold i Sveits"
         }
