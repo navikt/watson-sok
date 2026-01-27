@@ -1,5 +1,6 @@
 import {
   Alert,
+  BodyLong,
   BodyShort,
   Button,
   CopyButton,
@@ -9,11 +10,7 @@ import {
   Tooltip,
 } from "@navikt/ds-react";
 
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  InformationSquareIcon,
-} from "@navikt/aksel-icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
 import {
   TimelinePeriod,
   TimelinePin,
@@ -76,16 +73,11 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   }, [ytelser]);
 
   return (
-    <PanelContainer
-      title={
-        <div className="flex items-center gap-2">
-          Ytelser fra Nav
-          <Tooltip content="Visningen er basert på utbetalingstidspunkt fra Nav.">
-            <InformationSquareIcon aria-hidden="true" />
-          </Tooltip>
-        </div>
-      }
-    >
+    <PanelContainer title="Ytelser fra Nav">
+      <BodyLong size="small">
+        Alle summer er netto utbetalt til bruker. Visningen er basert på
+        utbetalingstidspunkt fra Nav.
+      </BodyLong>
       {harIngenYtelser ? (
         <Alert variant="info" className="w-fit">
           Ingen ytelser registrert de siste {tidsvindu}.
