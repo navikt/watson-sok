@@ -72,7 +72,8 @@ export function YtelseUtbetalingerModal({
             <TableHeader>
               <TableRow>
                 <TableHeaderCell scope="col">Tidspunkt</TableHeaderCell>
-                <TableHeaderCell scope="col">Beløp</TableHeaderCell>
+                <TableHeaderCell scope="col">Beløp (brutto)</TableHeaderCell>
+                <TableHeaderCell scope="col">Beløp (netto)</TableHeaderCell>
                 <TableHeaderCell scope="col">Bilagsnummer</TableHeaderCell>
               </TableRow>
             </TableHeader>
@@ -85,6 +86,14 @@ export function YtelseUtbetalingerModal({
                   <TableRow key={`${periode.periode.fom}-${index}`}>
                     <TableDataCell className="whitespace-nowrap">
                       {tidspunkt}
+                    </TableDataCell>
+                    <TableDataCell
+                      align="right"
+                      className={
+                        periode.beløp < 0 ? "text-ax-danger-500" : undefined
+                      }
+                    >
+                      {formaterBeløp(periode.bruttoBeløp ?? 0, 0)}
                     </TableDataCell>
                     <TableDataCell
                       align="right"
