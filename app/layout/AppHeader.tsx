@@ -76,9 +76,7 @@ export function AppHeader() {
         className="items-center hidden md:flex ml-5"
         onSubmit={() => {
           sporHendelse("søk header", {
-            // Vi må "lure" proxyen til Umami til å ikke sensurere
-            // organisasjonsnavnene som personopplysninger ved å lowercase dem
-            organisasjoner: innloggetBruker.organisasjoner.toLowerCase(),
+            organisasjoner: innloggetBruker.organisasjoner,
           });
           setIsLoading(true);
         }}

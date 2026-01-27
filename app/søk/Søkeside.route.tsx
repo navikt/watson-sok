@@ -56,9 +56,7 @@ export default function Søkeside() {
             role="search"
             onSubmit={() => {
               sporHendelse("søk landingsside", {
-                // Vi må "lure" proxyen til Umami til å ikke sensurere
-                // organisasjonsnavnene som personopplysninger ved å lowercase dem
-                organisasjoner: innloggetBruker.organisasjoner.toLowerCase(),
+                organisasjoner: innloggetBruker.organisasjoner,
               });
               setIsLoading(true);
             }}

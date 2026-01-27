@@ -80,10 +80,7 @@ export function FamiliemedlemmerModal({
                     method="post"
                     onSubmit={() => {
                       sporHendelse("søk familiemedlem", {
-                        // Vi må "lure" proxyen til Umami til å ikke sensurere
-                        // organisasjonsnavnene som personopplysninger ved å lowercase dem
-                        organisasjoner:
-                          innloggetBruker.organisasjoner.toLowerCase(),
+                        organisasjoner: innloggetBruker.organisasjoner,
                       });
                       setLoadingIdent(personIdent);
                     }}
