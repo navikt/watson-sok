@@ -93,7 +93,7 @@ export function YtelseUtbetalingerModal({
                     <TableDataCell
                       align="right"
                       className={
-                        periode.bruttoBeløp !== null && periode.bruttoBeløp < 0
+                        periode.bruttoBeløp < 0
                           ? "text-ax-danger-500"
                           : undefined
                       }

@@ -293,7 +293,7 @@ function grupperSammenhengendePerioder(
   perioder: Array<{
     periode: { fom: string; tom: string };
     beløp: number;
-    bruttoBeløp: number | null;
+    bruttoBeløp: number;
   }>,
 ): GruppertPeriode[] {
   if (perioder.length === 0) {
@@ -309,7 +309,7 @@ function grupperSammenhengendePerioder(
   let nåværendeGruppe: GruppertPeriode = {
     fom: sortertePerioder[0].periode.fom,
     tom: sortertePerioder[0].periode.tom,
-    totalBeløp: sortertePerioder[0].bruttoBeløp ?? 0,
+    totalBeløp: sortertePerioder[0].bruttoBeløp,
   };
 
   for (let i = 1; i < sortertePerioder.length; i++) {
@@ -320,14 +320,14 @@ function grupperSammenhengendePerioder(
     // Hvis periodene er mindre enn 45 dager fra hverandre, utvid den nåværende gruppen
     if (dagerMellom < 45) {
       nåværendeGruppe.tom = sortertePerioder[i].periode.tom;
-      nåværendeGruppe.totalBeløp += sortertePerioder[i].bruttoBeløp ?? 0;
+      nåværendeGruppe.totalBeløp += sortertePerioder[i].bruttoBeløp;
     } else {
       // Ellers, lagre den nåværende gruppen og start en ny
       gruppert.push(nåværendeGruppe);
       nåværendeGruppe = {
         fom: sortertePerioder[i].periode.fom,
         tom: sortertePerioder[i].periode.tom,
-        totalBeløp: sortertePerioder[i].bruttoBeløp ?? 0,
+        totalBeløp: sortertePerioder[i].bruttoBeløp,
       };
     }
   }

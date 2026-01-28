@@ -8,7 +8,7 @@ const LukketPeriodeSchema = z.object({
 const StonadPeriodeSchema = z.object({
   periode: LukketPeriodeSchema,
   beløp: z.number(),
-  bruttoBeløp: z.number().nullable(),
+  bruttoBeløp: z.number(),
   kilde: z.string(),
   info: z.string().nullable(),
 });
