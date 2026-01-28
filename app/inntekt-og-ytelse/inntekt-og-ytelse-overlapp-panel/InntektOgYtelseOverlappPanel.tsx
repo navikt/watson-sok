@@ -55,8 +55,11 @@ const InntektOgYtelseOverlappPanelMedData = ({
   inntektPromise,
   ytelserPromise,
 }: InntektOgYtelseOverlappPanelMedDataProps) => {
-  const inntektInformasjon = use(inntektPromise);
-  const ytelser = use(ytelserPromise);
+  const promises = useMemo(
+    () => Promise.all([inntektPromise, ytelserPromise]),
+    [inntektPromise, ytelserPromise],
+  );
+  const [inntektInformasjon, ytelser] = use(promises);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [grafVisning, setGrafVisning] = useState<GrafVisning>("linje");
   const { tidsvinduIAntallMåneder } = useTidsvindu();
