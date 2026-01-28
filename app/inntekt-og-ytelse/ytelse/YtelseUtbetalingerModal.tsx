@@ -1,4 +1,4 @@
-import { BodyShort, Button, CopyButton, Table } from "@navikt/ds-react";
+import { BodyShort, Button, Table } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import {
   TableBody,
@@ -72,9 +72,8 @@ export function YtelseUtbetalingerModal({
             <TableHeader>
               <TableRow>
                 <TableHeaderCell scope="col">Tidspunkt</TableHeaderCell>
-                <TableHeaderCell scope="col">Beløp (brutto)</TableHeaderCell>
-                <TableHeaderCell scope="col">Beløp (netto)</TableHeaderCell>
-                <TableHeaderCell scope="col">Bilagsnummer</TableHeaderCell>
+                <TableHeaderCell scope="col" align="right">Beløp (brutto)</TableHeaderCell>
+                <TableHeaderCell scope="col" align="right">Beløp (netto)</TableHeaderCell>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -102,12 +101,6 @@ export function YtelseUtbetalingerModal({
                       }
                     >
                       {formaterBeløp(periode.beløp, 0)}
-                    </TableDataCell>
-                    <TableDataCell className="flex items-center gap-1">
-                      {periode.info ?? "–"}{" "}
-                      {periode.info && (
-                        <CopyButton copyText={periode.info} size="small" />
-                      )}
                     </TableDataCell>
                   </TableRow>
                 );
