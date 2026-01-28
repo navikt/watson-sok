@@ -1,4 +1,4 @@
-import { Alert, Skeleton, ToggleGroup } from "@navikt/ds-react";
+import { Alert, BodyLong, Skeleton, ToggleGroup } from "@navikt/ds-react";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useMemo, useState } from "react";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
@@ -55,8 +55,11 @@ const InntektOgYtelseOverlappPanelMedData = ({
   inntektPromise,
   ytelserPromise,
 }: InntektOgYtelseOverlappPanelMedDataProps) => {
-  const inntektInformasjon = use(inntektPromise);
-  const ytelser = use(ytelserPromise);
+  const promises = useMemo(
+    () => Promise.all([inntektPromise, ytelserPromise]),
+    [inntektPromise, ytelserPromise],
+  );
+  const [inntektInformasjon, ytelser] = use(promises);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [grafVisning, setGrafVisning] = useState<GrafVisning>("linje");
   const { tidsvinduIAntallMåneder } = useTidsvindu();
@@ -103,6 +106,9 @@ const InntektOgYtelseOverlappPanelMedData = ({
         </Alert>
       ) : (
         <div className="mt-4">
+          <BodyLong size="small">
+            Alle summer er brutto beløp til bruker
+          </BodyLong>
           <div className="flex justify-end absolute top-4 right-4">
             <ToggleGroup
               variant="neutral"

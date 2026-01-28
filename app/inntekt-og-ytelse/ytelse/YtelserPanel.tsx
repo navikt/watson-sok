@@ -1,5 +1,6 @@
 import {
   Alert,
+  BodyLong,
   BodyShort,
   Button,
   CopyButton,
@@ -9,11 +10,7 @@ import {
   Tooltip,
 } from "@navikt/ds-react";
 
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  InformationSquareIcon,
-} from "@navikt/aksel-icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
 import {
   TimelinePeriod,
   TimelinePin,
@@ -76,16 +73,10 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   }, [ytelser]);
 
   return (
-    <PanelContainer
-      title={
-        <div className="flex items-center gap-2">
-          Ytelser fra Nav
-          <Tooltip content="Visningen er basert på utbetalingstidspunkt fra Nav.">
-            <InformationSquareIcon aria-hidden="true" />
-          </Tooltip>
-        </div>
-      }
-    >
+    <PanelContainer title="Ytelser fra Nav">
+      <BodyLong size="small">
+        Visningen er basert på utbetalingstidspunkt fra Nav
+      </BodyLong>
       {harIngenYtelser ? (
         <Alert variant="info" className="w-fit">
           Ingen ytelser registrert de siste {tidsvindu}.
@@ -299,7 +290,11 @@ const TidslinjeKontrollpanel = ({
  * Beløpene for alle perioder i en gruppe summeres.
  */
 function grupperSammenhengendePerioder(
-  perioder: Array<{ periode: { fom: string; tom: string }; beløp: number }>,
+  perioder: Array<{
+    periode: { fom: string; tom: string };
+    beløp: number;
+    bruttoBeløp: number;
+  }>,
 ): GruppertPeriode[] {
   if (perioder.length === 0) {
     return [];
@@ -314,7 +309,7 @@ function grupperSammenhengendePerioder(
   let nåværendeGruppe: GruppertPeriode = {
     fom: sortertePerioder[0].periode.fom,
     tom: sortertePerioder[0].periode.tom,
-    totalBeløp: sortertePerioder[0].beløp,
+    totalBeløp: sortertePerioder[0].bruttoBeløp,
   };
 
   for (let i = 1; i < sortertePerioder.length; i++) {
@@ -325,14 +320,14 @@ function grupperSammenhengendePerioder(
     // Hvis periodene er mindre enn 45 dager fra hverandre, utvid den nåværende gruppen
     if (dagerMellom < 45) {
       nåværendeGruppe.tom = sortertePerioder[i].periode.tom;
-      nåværendeGruppe.totalBeløp += sortertePerioder[i].beløp;
+      nåværendeGruppe.totalBeløp += sortertePerioder[i].bruttoBeløp;
     } else {
       // Ellers, lagre den nåværende gruppen og start en ny
       gruppert.push(nåværendeGruppe);
       nåværendeGruppe = {
         fom: sortertePerioder[i].periode.fom,
         tom: sortertePerioder[i].periode.tom,
-        totalBeløp: sortertePerioder[i].beløp,
+        totalBeløp: sortertePerioder[i].bruttoBeløp,
       };
     }
   }

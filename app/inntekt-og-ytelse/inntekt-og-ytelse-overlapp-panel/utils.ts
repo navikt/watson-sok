@@ -79,7 +79,7 @@ function transformTilMånedligData(
   if (ytelser) {
     ytelser.forEach((ytelse) => {
       ytelse.perioder.forEach((periode) => {
-        const beløp = konverterTilTall(periode.beløp);
+        const beløp = konverterTilTall(periode.bruttoBeløp);
         if (beløp === null) {
           return;
         }
