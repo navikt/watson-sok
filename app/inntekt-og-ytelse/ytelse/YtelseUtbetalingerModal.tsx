@@ -72,8 +72,12 @@ export function YtelseUtbetalingerModal({
             <TableHeader>
               <TableRow>
                 <TableHeaderCell scope="col">Tidspunkt</TableHeaderCell>
-                <TableHeaderCell scope="col" align="right">Beløp (brutto)</TableHeaderCell>
-                <TableHeaderCell scope="col" align="right">Beløp (netto)</TableHeaderCell>
+                <TableHeaderCell scope="col" align="right">
+                  Beløp (brutto)
+                </TableHeaderCell>
+                <TableHeaderCell scope="col" align="right">
+                  Beløp (netto)
+                </TableHeaderCell>
               </TableRow>
             </TableHeader>
             <TableBody>
