@@ -4,6 +4,7 @@ import {
   ChevronRightIcon,
 } from "@navikt/aksel-icons";
 import {
+  Alert,
   BodyShort,
   Button,
   DatePicker,
@@ -11,94 +12,109 @@ import {
   Skeleton,
   Tooltip,
 } from "@navikt/ds-react";
-import { use, useEffect, useMemo, useState } from "react";
-import { ResolvingComponent } from "~/async/ResolvingComponent";
-import {
-  PanelContainer,
-  PanelContainerSkeleton,
-} from "~/paneler/PanelContainer";
+import { useEffect, useMemo, useState } from "react";
+import { useFetcher } from "react-router";
+import { FeatureFlagg } from "~/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
+import { RouteConfig } from "~/routeConfig";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { formaterDato, formaterTilIsoDato } from "~/utils/date-utils";
+import type { loader } from "./api.route";
 import type { AktivitetType, Dag, MeldekortRespons } from "./domene";
 
+type GyldigYtelse = "dagpenger";
+
 type MeldekortPanelProps = {
-  promise: Promise<MeldekortRespons | null | undefined>;
+  ytelse: GyldigYtelse;
 };
 
 /** Viser meldekort for dagpenger */
-export function MeldekortPanel({ promise }: MeldekortPanelProps) {
-  return (
-    <ResolvingComponent loadingFallback={<MeldekortPanelSkeleton />}>
-      <MeldekortPanelMedData promise={promise} />
-    </ResolvingComponent>
+export function MeldekortPanel({ ytelse }: MeldekortPanelProps) {
+  const erMeldekortPanelAktivert = useEnkeltFeatureFlagg(
+    FeatureFlagg.VIS_MELDEKORT_PANEL,
   );
-}
+  const fetcher = useFetcher<typeof loader>();
 
-type MeldekortPanelMedDataProps = {
-  promise: Promise<MeldekortRespons | null | undefined>;
-};
+  useEffect(() => {
+    if (erMeldekortPanelAktivert && fetcher.state === "idle" && !fetcher.data) {
+      fetcher.load(`${RouteConfig.API.MELDEKORT}?ytelse=${ytelse}`);
+    }
+  }, [erMeldekortPanelAktivert, fetcher, ytelse]);
 
-const MeldekortPanelMedData = ({ promise }: MeldekortPanelMedDataProps) => {
-  const meldekort = use(promise);
-
-  if (!meldekort || meldekort.length === 0) {
+  if (!erMeldekortPanelAktivert) {
     return null;
   }
 
-  return (
-    <PanelContainer title="Meldekort, dagpenger" betaFeature="meldekort">
-      <MeldekortVisning meldekort={meldekort} />
-    </PanelContainer>
-  );
-};
+  if (fetcher.state === "loading" || !fetcher.data) {
+    return <MeldekortPanelSkeleton />;
+  }
+
+  if ("error" in fetcher.data) {
+    return (
+      <Alert variant="error" size="small">
+        Kunne ikke hente meldekort: {fetcher.data.error}
+      </Alert>
+    );
+  }
+
+  const meldekort = fetcher.data;
+
+  if (!meldekort || meldekort.length === 0) {
+    return (
+      <Alert variant="info" size="small">
+        Ingen meldekort registrert.
+      </Alert>
+    );
+  }
+
+  return <MeldekortVisning meldekort={meldekort} />;
+}
 
 const MeldekortPanelSkeleton = () => {
   return (
-    <PanelContainerSkeleton title="Meldekort, dagpenger">
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-wrap items-start justify-between gap-2">
-          <div className="flex flex-col gap-1">
-            <Skeleton variant="text" width="220px" height="28px" />
-            <Skeleton variant="text" width="280px" height="20px" />
-          </div>
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap items-start justify-between gap-2">
+        <div className="flex flex-col gap-1">
+          <Skeleton variant="text" width="220px" height="28px" />
+          <Skeleton variant="text" width="280px" height="20px" />
         </div>
-        <div className="flex flex-col gap-3">
-          <div className="overflow-x-auto">
-            <div className="grid grid-cols-7 gap-3 mb-2">
-              {UKEDAGER.map((dag) => (
+      </div>
+      <div className="flex flex-col gap-3">
+        <div className="overflow-x-auto">
+          <div className="grid grid-cols-7 gap-3 mb-2">
+            {UKEDAGER.map((dag) => (
+              <BodyShort
+                className="font-semibold leading-tight mx-auto"
+                size="large"
+                key={dag}
+                as={Skeleton}
+                variant="text"
+              >
+                {dag}
+              </BodyShort>
+            ))}
+          </div>
+          <div className="grid grid-cols-7 gap-3">
+            {Array.from({ length: 14 }).map((_, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center gap-2 list-none"
+              >
+                <Skeleton variant="circle" className="w-16 h-16" />
                 <BodyShort
-                  className="font-semibold leading-tight mx-auto"
-                  size="large"
-                  key={dag}
+                  className="mx-auto"
+                  size="small"
                   as={Skeleton}
                   variant="text"
                 >
-                  {dag}
+                  En dato
                 </BodyShort>
-              ))}
-            </div>
-            <div className="grid grid-cols-7 gap-3">
-              {Array.from({ length: 14 }).map((_, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center gap-2 list-none"
-                >
-                  <Skeleton variant="circle" className="w-16 h-16" />
-                  <BodyShort
-                    className="mx-auto"
-                    size="small"
-                    as={Skeleton}
-                    variant="text"
-                  >
-                    En dato
-                  </BodyShort>
-                </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </PanelContainerSkeleton>
+    </div>
   );
 };
 
@@ -170,6 +186,9 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
     <div className="flex flex-col gap-3">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="flex flex-col gap-1">
+          <Heading level="2" size="medium">
+            Meldekort
+          </Heading>
           <Heading level="3" size="small">
             Periode {formaterDato(aktivtMeldekort.periode.fraOgMed)} –{" "}
             {formaterDato(aktivtMeldekort.periode.tilOgMed)}
@@ -181,7 +200,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
               : "Ukjent"}
           </BodyShort>
         </div>
-        <div className="flex flex-wrap items-center justify-end gap-2 absolute top-4 right-4">
+        <div className="flex flex-wrap items-center justify-end gap-2">
           <div className="flex items-center gap-0.5">
             <Button
               icon={

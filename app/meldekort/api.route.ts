@@ -1,6 +1,8 @@
 import { type LoaderFunctionArgs, data } from "react-router";
+import { logger } from "~/logging/logging";
+import { gjørOppslagApiRequest } from "~/oppslag/api/oppslagApiClient.server";
 import { hentSøkedataFraSession } from "~/søk/søkeinfoSession.server";
-import { hentMeldekort } from "./api.server";
+import { MeldekortResponsSchema } from "./domene";
 
 const GYLDIGE_YTELSER = ["dagpenger"] as const;
 type GyldigYtelse = (typeof GYLDIGE_YTELSER)[number];
@@ -9,6 +11,14 @@ function erGyldigYtelse(ytelse: string | null): ytelse is GyldigYtelse {
   return GYLDIGE_YTELSER.includes(ytelse as GyldigYtelse);
 }
 
+/**
+ * Resource route for å hente meldekort for en gitt ytelse
+ *
+ * Skal kalles med query parameter `ytelse`, for eksempel:
+ * `/api/meldekort?ytelse=dagpenger`
+ *
+ * @returns Liste over meldekort for den gitte ytelsen
+ */
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const ytelse = url.searchParams.get("ytelse");
@@ -38,13 +48,25 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const traceLogging = url.searchParams.get("traceLogging") === "true";
   const utvidet = url.searchParams.get("utvidet") === "true";
 
-  const meldekort = await hentMeldekort({
+  logger.info(`Henter meldekort for ${ytelse}`);
+
+  const meldekort = await gjørOppslagApiRequest({
     ident: søkedata.ident,
     request,
     navCallId: crypto.randomUUID(),
+    endepunkt: `/oppslag/meldekort?utvidet=${utvidet}`,
+    schema: MeldekortResponsSchema,
+    ekstraherFraMock: (mockData) => mockData.meldekort || [],
     traceLogging,
-    utvidet,
   });
+
+  if (meldekort) {
+    logger.info(`Hentet meldekort for ${ytelse}`, {
+      antall: meldekort?.length,
+    });
+  } else {
+    logger.info(`Ingen meldekort funnet for ${ytelse}`);
+  }
 
   return data(meldekort, {
     headers: {
