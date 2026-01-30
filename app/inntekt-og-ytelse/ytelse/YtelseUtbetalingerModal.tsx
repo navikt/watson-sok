@@ -70,7 +70,7 @@ export function YtelseUtbetalingerModal({
         heading: ytelse.stonadType,
       }}
     >
-      <ModalBody className="min-w-md flex flex-col gap-4">
+      <ModalBody className="min-w-md flex flex-col gap-8">
         {harMeldekort(ytelse.stonadType) && (
           <MeldekortPanel ytelse="dagpenger" />
         )}
@@ -80,7 +80,7 @@ export function YtelseUtbetalingerModal({
           </BodyShort>
         ) : (
           <Table size="small" zebraStripes stickyHeader>
-            <caption className="text-left text-sm font-semibold text-text-subtle mb-2">
+            <caption className="text-left text-2xl font-bold text-text-subtle mb-2">
               Alle utbetalinger i ytelsen
             </caption>
             <TableHeader>
