@@ -28,7 +28,7 @@ Nested routes load data in parallel automatically:
 createBrowserRouter([
   {
     path: "/",
-    loader: rootLoader,    // Loads in parallel
+    loader: rootLoader, // Loads in parallel
     children: [
       {
         path: "project/:id",

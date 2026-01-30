@@ -54,11 +54,11 @@ git log -p --all -S 'password' -- '*.kt' '*.ts' | head -100
 
 ## Related Agents
 
-| Agent | Use For |
-|-------|---------|
-| `@auth-agent` | JWT validation, TokenX flow, ID-porten, Maskinporten |
-| `@nais-agent` | accessPolicy, secrets, network policies |
-| `@observability-agent` | Security alerts, anomaly detection |
+| Agent                  | Use For                                              |
+| ---------------------- | ---------------------------------------------------- |
+| `@auth-agent`          | JWT validation, TokenX flow, ID-porten, Maskinporten |
+| `@nais-agent`          | accessPolicy, secrets, network policies              |
+| `@observability-agent` | Security alerts, anomaly detection                   |
 
 ## Nav Security Principles
 
@@ -160,10 +160,12 @@ spec:
 **NEVER commit secrets to Git.**
 
 Use [Nais Console](https://console.nav.cloud.nais.io/) to create and manage secrets for your team. See the official documentation:
+
 - [Create and manage secrets in Console](https://docs.nais.io/services/secrets/how-to/console/)
 - [Use a secret in your workload](https://docs.nais.io/services/secrets/how-to/workload/)
 
 **Creating a secret in Console:**
+
 1. Open [Nais Console](https://console.nav.cloud.nais.io/)
 2. Select your team
 3. Select the `Secrets` tab
@@ -234,12 +236,12 @@ spec:
 
 ### Authentication Strategy Overview
 
-| Scenario | Auth Method | Agent |
-|----------|-------------|-------|
-| Internal Nav employees | Azure AD | `@auth-agent` |
-| Citizen-facing services | ID-porten + TokenX | `@auth-agent` |
-| Machine-to-machine (external) | Maskinporten | `@auth-agent` |
-| Service-to-service (internal) | TokenX | `@auth-agent` |
+| Scenario                      | Auth Method        | Agent         |
+| ----------------------------- | ------------------ | ------------- |
+| Internal Nav employees        | Azure AD           | `@auth-agent` |
+| Citizen-facing services       | ID-porten + TokenX | `@auth-agent` |
+| Machine-to-machine (external) | Maskinporten       | `@auth-agent` |
+| Service-to-service (internal) | TokenX             | `@auth-agent` |
 
 ### Security Considerations for Auth
 
@@ -741,40 +743,47 @@ Use this checklist for security reviews. Specialized agents can help with specif
 
 ```markdown
 ## Authentication & Authorization (`@auth-agent` agent)
+
 - [ ] Authentication method chosen (Azure AD / TokenX / ID-porten)
 - [ ] Token validation implemented correctly
 - [ ] Authorization checks on all endpoints
 - [ ] Access policies defined in nais.yaml
 
 ## Network Security (`@nais-agent` agent)
+
 - [ ] Network policies defined (accessPolicy)
 - [ ] CORS configured for Nav domains only
 - [ ] HTTPS enforced
 - [ ] Rate limiting on sensitive endpoints
 
 ## Input Security
+
 - [ ] Input validation on all user inputs
 - [ ] Parameterized SQL queries (no string concatenation)
 - [ ] File upload validation (if applicable)
 - [ ] Path traversal prevention
 
 ## Secrets & Data
+
 - [ ] Secrets managed in [Nais Console](https://docs.nais.io/services/secrets/how-to/console/) (not in code)
 - [ ] Encryption at rest for sensitive data
 - [ ] No sensitive data in logs
 - [ ] Error messages don't leak sensitive info
 
 ## Audit & Compliance
+
 - [ ] Audit logging for personal data access (CEF format)
 - [ ] GDPR compliance (retention, deletion, anonymization)
 - [ ] Nav-Call-Id tracing implemented
 
 ## Security Scanning
+
 - [ ] Dependency scanning enabled (Dependabot/Snyk)
 - [ ] Container scanning enabled (Trivy)
 - [ ] No critical/high vulnerabilities
 
 ## Monitoring (`@observability-agent` agent)
+
 - [ ] Security alerts configured
 - [ ] Failed auth attempts monitored
 - [ ] Anomaly detection for sensitive endpoints
@@ -879,36 +888,36 @@ Security features must be accessible:
 
 ### Nav Slack Channels
 
-| Channel | Purpose |
-|---------|---------|
-| `#security-champion` | Security champion network discussions |
-| `#appsec` | Application security questions |
+| Channel                  | Purpose                                   |
+| ------------------------ | ----------------------------------------- |
+| `#security-champion`     | Security champion network discussions     |
+| `#appsec`                | Application security questions            |
 | `#auditlogging-arcsight` | Audit logging support (Team Auditlogging) |
-| `#nais` | Platform security questions |
-| `#pig-sikkerhet` | Security PIG (Product Interest Group) |
+| `#nais`                  | Platform security questions               |
+| `#pig-sikkerhet`         | Security PIG (Product Interest Group)     |
 
 ### Security Tools at Nav (Verktøy 🧰)
 
 From [sikkerhet.nav.no/docs/verktoy](https://sikkerhet.nav.no/docs/verktoy/):
 
-| Tool | Purpose | Docs |
-|------|---------|------|
-| **Chainguard** | Secure Docker base images | [chainguard-dockerimages](https://sikkerhet.nav.no/docs/verktoy/chainguard-dockerimages) |
-| **Dependabot** | Dependency scanning | [dependabot](https://sikkerhet.nav.no/docs/verktoy/dependabot) |
-| **GitHub Advanced Security** | Code scanning, secret detection | [github-advanced-security](https://sikkerhet.nav.no/docs/verktoy/github-advanced-security) |
-| **NAIS Console & Dependency-Track** | Risk analysis | [nais-console-dp-track](https://sikkerhet.nav.no/docs/verktoy/nais-console-dp-track) |
-| **Trivy** | Container image scanning | [trivy](https://sikkerhet.nav.no/docs/verktoy/trivy) |
-| **zizmor** | GitHub Actions scanning | [zizmor](https://sikkerhet.nav.no/docs/verktoy/zizmor) |
+| Tool                                | Purpose                         | Docs                                                                                       |
+| ----------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------ |
+| **Chainguard**                      | Secure Docker base images       | [chainguard-dockerimages](https://sikkerhet.nav.no/docs/verktoy/chainguard-dockerimages)   |
+| **Dependabot**                      | Dependency scanning             | [dependabot](https://sikkerhet.nav.no/docs/verktoy/dependabot)                             |
+| **GitHub Advanced Security**        | Code scanning, secret detection | [github-advanced-security](https://sikkerhet.nav.no/docs/verktoy/github-advanced-security) |
+| **NAIS Console & Dependency-Track** | Risk analysis                   | [nais-console-dp-track](https://sikkerhet.nav.no/docs/verktoy/nais-console-dp-track)       |
+| **Trivy**                           | Container image scanning        | [trivy](https://sikkerhet.nav.no/docs/verktoy/trivy)                                       |
+| **zizmor**                          | GitHub Actions scanning         | [zizmor](https://sikkerhet.nav.no/docs/verktoy/zizmor)                                     |
 
 ### Reference Implementations in navikt
 
-| Pattern | Repository | Description |
-|---------|------------|-------------|
-| CEF Audit Logging | navikt/macgyver | ArcSight-compatible audit logs |
-| Audit Library | navikt/dp-audit-logger | Reusable Dagpenger audit logger |
-| Rate Limiting | navikt/mulighetsrommet | Ktor rate limiting patterns |
-| File Upload | navikt/sosialhjelp-upload | Secure file validation |
-| Input Validation | navikt/sosialhjelp-innsyn-api | DTO validation patterns |
+| Pattern           | Repository                    | Description                     |
+| ----------------- | ----------------------------- | ------------------------------- |
+| CEF Audit Logging | navikt/macgyver               | ArcSight-compatible audit logs  |
+| Audit Library     | navikt/dp-audit-logger        | Reusable Dagpenger audit logger |
+| Rate Limiting     | navikt/mulighetsrommet        | Ktor rate limiting patterns     |
+| File Upload       | navikt/sosialhjelp-upload     | Secure file validation          |
+| Input Validation  | navikt/sosialhjelp-innsyn-api | DTO validation patterns         |
 
 ## Boundaries
 

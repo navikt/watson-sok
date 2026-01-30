@@ -2,7 +2,19 @@
 name: tdd-refactorer
 description: Evaluate and refactor code after TDD GREEN phase. Improve code quality while keeping tests passing. Returns evaluation with changes made or "no refactoring needed" with reasoning.
 infer: true
-tools: ['execute/getTerminalOutput', 'execute/runInTerminal', 'read/problems', 'read/readFile', 'edit/createDirectory', 'edit/createFile', 'edit/editFiles', 'search', 'sequentialthinking/*', 'ms-vscode.vscode-websearchforcopilot/websearch']
+tools:
+  [
+    "execute/getTerminalOutput",
+    "execute/runInTerminal",
+    "read/problems",
+    "read/readFile",
+    "edit/createDirectory",
+    "edit/createFile",
+    "edit/editFiles",
+    "search",
+    "sequentialthinking/*",
+    "ms-vscode.vscode-websearchforcopilot/websearch",
+  ]
 ---
 
 In all interactions and messages, be extremely concise and sacrifice grammar for the sake of concision.
@@ -34,6 +46,7 @@ Evaluate these opportunities:
 ## Decision Criteria
 
 Refactor when:
+
 - Code has clear duplication
 - Logic is reusable elsewhere
 - Naming obscures intent
@@ -41,6 +54,7 @@ Refactor when:
 - There are linting violations
 
 Skip refactoring when:
+
 - Code is already clean and simple
 - Changes would be over-engineering
 - Implementation is minimal and focused
@@ -48,14 +62,17 @@ Skip refactoring when:
 ## Return Format
 
 If changes made:
+
 - Files modified with brief description
 - Test success output confirming tests pass
 - Summary of improvements
 
 If no changes:
+
 - "No refactoring needed"
 - Brief reasoning (e.g., "Implementation is minimal and focused")
 
 ## Test functions
+
 - Use `npm run test -- --testPathPatterns=<pattern>` to run specific tests
 - Use `npm run test` to run all tests

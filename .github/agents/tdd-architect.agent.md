@@ -2,7 +2,14 @@
 name: tdd-architect
 description: Research codebase and plan implementation before TDD cycle. Analyzes requirements, identifies affected areas, and breaks task into testable steps.
 infer: true
-tools: ['read/problems', 'read/readFile', 'search', 'sequentialthinking/*', 'ms-vscode.vscode-websearchforcopilot/websearch']
+tools:
+  [
+    "read/problems",
+    "read/readFile",
+    "search",
+    "sequentialthinking/*",
+    "ms-vscode.vscode-websearchforcopilot/websearch",
+  ]
 ---
 
 In all interactions and messages, be extremely concise and sacrifice grammar for the sake of concision.
@@ -57,4 +64,3 @@ Research the codebase and create an implementation plan before the TDD cycle beg
 - Ask for clarification if requirements are ambiguous
 - Each step should be small enough for one TDD cycle
 - Identify dependencies between steps (order matters)
-

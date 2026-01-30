@@ -33,7 +33,9 @@ function RootErrorBoundary() {
   if (isRouteErrorResponse(error)) {
     return (
       <>
-        <h1>{error.status} {error.statusText}</h1>
+        <h1>
+          {error.status} {error.statusText}
+        </h1>
         <p>{error.data}</p>
       </>
     );
@@ -201,7 +203,7 @@ const About = React.lazy(() => import("./pages/About"));
       </React.Suspense>
     }
   />
-</Routes>
+</Routes>;
 ```
 
 ## Common Route Patterns
@@ -209,25 +211,33 @@ const About = React.lazy(() => import("./pages/About"));
 ### Optional Segments
 
 ```tsx
-{ path: ":lang?/categories" }     // Optional dynamic segment
-{ path: "users/:userId/edit?" }   // Optional static segment at end
+{
+  path: ":lang?/categories";
+} // Optional dynamic segment
+{
+  path: "users/:userId/edit?";
+} // Optional static segment at end
 ```
 
 ### Catch-All / Splat Routes
 
 ```tsx
-{ path: "files/*" }
+{
+  path: "files/*";
+}
 
 // Access splat in loader
 loader: ({ params }) => {
   const filePath = params["*"]; // "path/to/file.txt"
-}
+};
 ```
 
 ### Multiple Params
 
 ```tsx
-{ path: "users/:userId/posts/:postId" }
+{
+  path: "users/:userId/posts/:postId";
+}
 
 // params.userId, params.postId available in loader/component
 ```

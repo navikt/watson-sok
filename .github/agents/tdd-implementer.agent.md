@@ -2,7 +2,17 @@
 name: tdd-implementer
 description: Implement minimal code to pass failing tests for TDD GREEN phase. Write only what the test requires. Returns only after verifying test PASSES.
 infer: true
-tools: ['execute/getTerminalOutput', 'execute/runInTerminal', 'read/problems', 'read/readFile', 'edit/createDirectory', 'edit/createFile', 'edit/editFiles', 'search']
+tools:
+  [
+    "execute/getTerminalOutput",
+    "execute/runInTerminal",
+    "read/problems",
+    "read/readFile",
+    "edit/createDirectory",
+    "edit/createFile",
+    "edit/editFiles",
+    "search",
+  ]
 ---
 
 In all interactions and messages, be extremely concise and sacrifice grammar for the sake of concision.
@@ -29,10 +39,12 @@ Implement the minimal code needed to make the failing test pass.
 ## Return Format
 
 Return:
+
 - Files modified with brief description of changes
 - Test success output
 - Summary of the implementation
 
 ## Test functions
+
 - Use `npm run test -- --testPathPatterns=<pattern>` to run specific tests
 - Use `npm run test` to run all tests

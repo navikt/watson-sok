@@ -181,14 +181,14 @@ function TodoList() {
   const { todos } = useLoaderData();
   const fetcher = useFetcher();
 
-  const displayedTodos = todos.filter(todo => {
+  const displayedTodos = todos.filter((todo) => {
     const isDeleting = fetcher.formData?.get("id") === todo.id;
     return !isDeleting;
   });
 
   return (
     <ul>
-      {displayedTodos.map(todo => (
+      {displayedTodos.map((todo) => (
         <li key={todo.id}>
           {todo.title}
           <fetcher.Form method="post" action="/todos/delete">
