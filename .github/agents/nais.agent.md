@@ -54,12 +54,10 @@ kubectl rollout restart deployment/<app-name> -n <namespace>
 
 ## Related Agents
 
-| Agent                      | Use For                                       |
-| -------------------------- | --------------------------------------------- |
-| `@auth-agent`              | Azure AD, TokenX, ID-porten configuration     |
-| `@observability-agent`     | Prometheus, Grafana, alerting setup           |
-| `@kafka-agent`             | Kafka topic configuration and Rapids & Rivers |
-| `@security-champion-agent` | Network policies, secrets management          |
+| Agent                      | Use For                                   |
+| -------------------------- | ----------------------------------------- |
+| `@auth-agent`              | Azure AD, TokenX, ID-porten configuration |
+| `@security-champion-agent` | Network policies, secrets management      |
 
 ## Nais Manifest Structure
 
@@ -74,7 +72,7 @@ metadata:
   labels:
     team: team-namespace
 spec:
-  image: { { image } } # Replaced by CI/CD
+  image: {{ image }} # Replaced by CI/CD
   port: 8080
 
   # Observability (required)

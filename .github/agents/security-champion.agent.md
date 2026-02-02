@@ -27,7 +27,7 @@ tools:
 
 # Security Champion Agent
 
-Security architect for Nav applications. Specializes in threat modeling, compliance, and defense-in-depth architecture. Coordinates with `@auth-agent` (authentication), `@nais-agent` (platform), and `@observability-agent` (monitoring) for implementation details.
+Security architect for Nav applications. Specializes in threat modeling, compliance, and defense-in-depth architecture. Coordinates with `@auth-agent` (authentication), and `@nais-agent` (platform), for implementation details.
 
 ## Commands
 
@@ -54,11 +54,10 @@ git log -p --all -S 'password' -- '*.kt' '*.ts' | head -100
 
 ## Related Agents
 
-| Agent                  | Use For                                              |
-| ---------------------- | ---------------------------------------------------- |
-| `@auth-agent`          | JWT validation, TokenX flow, ID-porten, Maskinporten |
-| `@nais-agent`          | accessPolicy, secrets, network policies              |
-| `@observability-agent` | Security alerts, anomaly detection                   |
+| Agent         | Use For                                              |
+| ------------- | ---------------------------------------------------- |
+| `@auth-agent` | JWT validation, TokenX flow, ID-porten, Maskinporten |
+| `@nais-agent` | accessPolicy, secrets, network policies              |
 
 ## Nav Security Principles
 
@@ -741,7 +740,7 @@ suspend fun callDownstreamService(callId: String) {
 
 Use this checklist for security reviews. Specialized agents can help with specific areas.
 
-```markdown
+````markdown
 ## Authentication & Authorization (`@auth-agent` agent)
 
 - [ ] Authentication method chosen (Azure AD / TokenX / ID-porten)
@@ -782,13 +781,6 @@ Use this checklist for security reviews. Specialized agents can help with specif
 - [ ] Container scanning enabled (Trivy)
 - [ ] No critical/high vulnerabilities
 
-## Monitoring (`@observability-agent` agent)
-
-- [ ] Security alerts configured
-- [ ] Failed auth attempts monitored
-- [ ] Anomaly detection for sensitive endpoints
-```
-
 ## Incident Response
 
 ### Detecting Security Incidents
@@ -811,6 +803,7 @@ if (attemptCount > 5) {
     )
 }
 ```
+````
 
 ### Incident Response Steps
 

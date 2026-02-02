@@ -44,11 +44,11 @@ curl -s "$AZURE_OPENID_CONFIG_JWKS_URI" | jq '.keys | length'
 
 ## Related Agents
 
-| Agent | Use For |
-|-------|---------||
+| Agent                      | Use For                                         |
+| -------------------------- | ----------------------------------------------- |
 | `@security-champion-agent` | Holistic security architecture, threat modeling |
-| `@nais-agent` | accessPolicy, Nais manifest configuration |
-| `@observability-agent` | Auth failure monitoring and alerting |
+| `@nais-agent`              | accessPolicy, Nais manifest configuration       |
+| `@observability-agent`     | Auth failure monitoring and alerting            |
 
 ## Authentication Types
 

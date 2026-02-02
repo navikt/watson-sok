@@ -17,7 +17,7 @@ In all interactions and messages, be extremely concise and sacrifice grammar for
 
 # TDD Test Writer (RED Phase)
 
-Write a failing tests that verifies the requested feature behavior.
+Write a failing test that verifies the requested feature behavior.
 
 ## Process
 

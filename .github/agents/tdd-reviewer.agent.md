@@ -16,7 +16,7 @@ In all interactions and messages, be extremely concise and sacrifice grammar for
 
 # TDD Reviewer
 
-Evaluate the implementation for refactoring opportunities, issues and and logic flow
+Evaluate the implementation for refactoring opportunities, issues and logic flow
 
 ## Core Responsibilities
 

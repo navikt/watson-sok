@@ -61,9 +61,6 @@ GitHub Research (via MCP):
 | `@auth-agent`              | Authentication implementation details |
 | `@nais-agent`              | Platform and deployment specifics     |
 | `@security-champion-agent` | Security patterns and vulnerabilities |
-| `@aksel-agent`             | Design system patterns                |
-| `@kafka-agent`             | Event-driven architecture patterns    |
-| `@observability-agent`     | Monitoring and logging patterns       |
 
 ## Core Philosophy
 
