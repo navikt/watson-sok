@@ -39,7 +39,7 @@ export function MeldekortPanel({ ytelse }: MeldekortPanelProps) {
     if (erMeldekortPanelAktivert && fetcher.state === "idle" && !fetcher.data) {
       fetcher.load(`${RouteConfig.API.MELDEKORT}?ytelse=${ytelse}`);
     }
-  }, [erMeldekortPanelAktivert, fetcher, ytelse]);
+  }, [erMeldekortPanelAktivert, fetcher.state, fetcher.data, ytelse]);
 
   if (!erMeldekortPanelAktivert) {
     return null;
