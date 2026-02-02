@@ -63,7 +63,7 @@ kubectl rollout restart deployment/<app-name> -n <namespace>
 
 Every Nais application requires:
 
-```yaml
+```
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
