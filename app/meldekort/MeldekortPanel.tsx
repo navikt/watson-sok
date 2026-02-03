@@ -127,7 +127,7 @@ type MeldekortVisningProps = {
 const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
   const sorterteMeldekort = useMemo(
     () =>
-      [...meldekort].sort((a, b) =>
+      [...(meldekort ?? [])].sort((a, b) =>
         b.periode.fraOgMed.localeCompare(a.periode.fraOgMed),
       ),
     [meldekort],

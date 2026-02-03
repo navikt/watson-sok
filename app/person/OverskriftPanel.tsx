@@ -31,7 +31,7 @@ const OverskriftPanelMedData = ({ promise }: OverskriftPanelProps) => {
   }
   return (
     <Heading level="1" size="large" className="flex items-center gap-2 w-fit">
-      {storFørsteBokstavPerOrd(tilFulltNavn(personopplysninger.navn), true)}(
+      {storFørsteBokstavPerOrd(tilFulltNavn(personopplysninger.navn), true)} (
       {personopplysninger.alder}){personopplysninger.dødsdato ? ` (død)` : ""}
       {personopplysninger.adresseBeskyttelse !== "UGRADERT" && (
         <Tooltip
