@@ -30,7 +30,7 @@ Evaluate the implementation for refactoring opportunities and apply improvements
 3. Apply improvements if beneficial
 4. Clean up any redundant code, variables, or imports
 5. Fix any problems or linting issues reported by the IDE
-6. Run tests to verify it passes
+6. Run tests to verify they pass
 7. Return summary of changes or "no refactoring needed"
 
 ## Refactoring Checklist
