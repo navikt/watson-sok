@@ -230,7 +230,7 @@ const TidslinjeKontrollpanel = ({
 
   return (
     <div
-      className="flex justify-end items-center gap-2 mb-4 static md:absolute md:top-4 md:right-4"
+      className="flex justify-end items-center gap-2 mb-4 static ax-md:absolute ax-md:top-4 ax-md:right-4"
       aria-controls="timeline-dynamic"
       id="timeline-toolbar"
     >

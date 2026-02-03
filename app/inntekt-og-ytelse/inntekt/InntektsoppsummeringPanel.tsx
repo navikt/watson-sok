@@ -213,7 +213,7 @@ const InntektsoppsummeringPanelMedData = ({
         </Alert>
       ) : (
         <div className="flex flex-col gap-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 ax-md:grid-cols-2 gap-4">
             <StatistikkKort
               label={`Total inntekt (siste ${tidsvindu})`}
               verdi={formaterBeløp(aggregert.totalBeløp, 0)}
@@ -340,7 +340,7 @@ const StatistikkKort = ({
 const InntektsoppsummeringPanelSkeleton = () => (
   <PanelContainerSkeleton title="Inntektsoppsummering">
     <div className="flex flex-col gap-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 ax-md:grid-cols-2 gap-4">
         <Skeleton variant="rounded" height="6rem" />
         <Skeleton variant="rounded" height="6rem" />
       </div>
