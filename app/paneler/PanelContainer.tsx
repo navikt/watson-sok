@@ -38,7 +38,7 @@ export function PanelContainer({
           {betaFeature !== false && (
             <>
               <Tooltip content="Denne funksjonaliteten er under utvikling og kan endre seg.">
-                <Tag variant="alt1-filled" size="small">
+                <Tag data-color="meta-purple" variant="strong" size="small">
                   Beta
                 </Tag>
               </Tooltip>
@@ -47,7 +47,6 @@ export function PanelContainer({
           )}
         </div>
       )}
-
       {link && (
         <div className="md:absolute top-4 right-4 mb-4">
           <Link href={link.href} target="_blank">
