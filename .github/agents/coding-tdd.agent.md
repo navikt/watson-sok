@@ -25,11 +25,11 @@ You don't have editing tools. ALWAYS delegate work to the subagents. You are the
 
 ## Mandatory Workflow
 
-Every new feature MUST follow this strict 3-phase cycle. Do NOT skip phases.
-ALWAYS execute Red-Green-Refactor phases by subagents.
+Every new feature MUST follow this strict multi-phase cycle in order: PLAN → ORANGE → RED → GREEN → REFACTOR → REVIEW. Do NOT skip phases.
+ALWAYS execute these phases by the appropriate subagents, using Red-Green-Refactor as the core implementation loop.
 ALWAYS use the TDD flow, even for simple changes.
-Orange phase is always run first to establish baseline.
-Orange phase can be used as Red phase if existing tests fail.
+Orange phase runs immediately after PLAN to establish the baseline for existing tests and behavior.
+If existing tests already fail during the ORANGE phase, treat that state as the RED phase and proceed accordingly.
 IF, AND ONLY IF, the changes needed cannot be done with TDD, use the GREEN subagent to implement directly.
 ONLY supply the subagent with relevant context for the current phase. Never supply future phase context.
 You don't have editing tools. ALWAYS delegate work to subagents. You are the TDD coordinator.
