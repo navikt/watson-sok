@@ -236,6 +236,7 @@ const TidslinjeKontrollpanel = ({
     >
       <div className="flex gap-0.5 items-center">
         <Button
+          data-color="neutral"
           aria-label="Forrige periode"
           icon={
             <Tooltip
@@ -248,7 +249,7 @@ const TidslinjeKontrollpanel = ({
               <ChevronLeftIcon aria-hidden="true" />
             </Tooltip>
           }
-          variant="secondary-neutral"
+          variant="secondary"
           size="small"
           disabled={!kanFlytteForrigePeriode}
           onClick={() => {
@@ -259,6 +260,7 @@ const TidslinjeKontrollpanel = ({
           }}
         />
         <Button
+          data-color="neutral"
           disabled={!kanFlytteNestePeriode}
           aria-label="Neste periode"
           icon={
@@ -270,7 +272,7 @@ const TidslinjeKontrollpanel = ({
               <ChevronRightIcon aria-hidden="true" />
             </Tooltip>
           }
-          variant="secondary-neutral"
+          variant="secondary"
           size="small"
           onClick={() => {
             oppdaterVindu("neste");
