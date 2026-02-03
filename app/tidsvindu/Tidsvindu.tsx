@@ -71,7 +71,7 @@ export const TidsvinduVelger = () => {
   const { tidsvindu, setTidsvindu } = useTidsvindu();
   return (
     <ToggleGroup
-      variant="neutral"
+      data-color="neutral"
       size="small"
       value={tidsvindu}
       aria-label="Velg tidsvindu"
