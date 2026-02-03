@@ -91,6 +91,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
           <Timeline
             id="timeline-dynamic"
             aria-controls="timeline-toolbar"
+            className="overflow-x-hidden"
             startDate={nåværendeVindu.start}
             endDate={nåværendeVindu.slutt}
           >
