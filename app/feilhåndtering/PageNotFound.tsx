@@ -25,7 +25,7 @@ export function PageNotFound() {
         {`Fant ikke side – Watson Søk ${miljø !== "prod" ? `(${miljø})` : ""}`}
       </title>
       <PageBlock as="main" width="xl" gutters>
-        <Box paddingBlock="20 16" data-aksel-template="404-v2">
+        <Box paddingBlock="space-20 space-16" data-aksel-template="404-v2">
           <VStack gap="space-16">
             <VStack gap="space-12" align="start">
               <div>
