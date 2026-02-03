@@ -34,19 +34,21 @@ export function InternalServerError() {
                     utilgjengelig. Dette skyldes ikke noe du gjorde.
                   </BodyShort>
                   <BodyShort>Du kan prøve å</BodyShort>
-                  <List>
-                    <ListItem>
-                      vente noen minutter og{" "}
-                      <Link href="#" onClick={() => location.reload()}>
-                        laste siden på nytt
-                      </Link>
-                    </ListItem>
-                    <ListItem>
-                      <Link href="#" onClick={() => history.back()}>
-                        gå tilbake til forrige side
-                      </Link>
-                    </ListItem>
-                  </List>
+                  <Box marginBlock="space-16" asChild>
+                    <List>
+                      <ListItem>
+                        vente noen minutter og{" "}
+                        <Link href="#" onClick={() => location.reload()}>
+                          laste siden på nytt
+                        </Link>
+                      </ListItem>
+                      <ListItem>
+                        <Link href="#" onClick={() => history.back()}>
+                          gå tilbake til forrige side
+                        </Link>
+                      </ListItem>
+                    </List>
+                  </Box>
                   <BodyShort>
                     Hvis problemet vedvarer, kan du melde inn feil i Porten.
                   </BodyShort>

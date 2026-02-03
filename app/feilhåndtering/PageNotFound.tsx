@@ -36,14 +36,16 @@ export function PageNotFound() {
                   Denne siden kan være slettet eller flyttet, eller det er en
                   feil i lenken.
                 </BodyShort>
-                <List>
-                  <ListItem>Bruk gjerne søket eller menyen</ListItem>
-                  <ListItem>
-                    <NavLink as={Link} to={RouteConfig.INDEX}>
-                      Gå til forsiden
-                    </NavLink>
-                  </ListItem>
-                </List>
+                <Box marginBlock="space-16" asChild>
+                  <List>
+                    <ListItem>Bruk gjerne søket eller menyen</ListItem>
+                    <ListItem>
+                      <NavLink as={Link} to={RouteConfig.INDEX}>
+                        Gå til forsiden
+                      </NavLink>
+                    </ListItem>
+                  </List>
+                </Box>
               </div>
             </VStack>
           </VStack>
