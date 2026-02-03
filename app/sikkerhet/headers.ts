@@ -12,7 +12,7 @@ export function sikkerhetHeaders() {
       "style-src 'self' 'unsafe-inline'; " +
       "img-src 'self' data: https:; " +
       "font-src 'self' data: cdn.nav.no; " +
-      "connect-src 'self' telemetry.nav.no telemetry.ekstern.dev.nav.no umami.nav.no https://api-eu.mixpanel.com https://data-eu.mixpanel.com;" +
+      "connect-src 'self' telemetry.nav.no telemetry.ekstern.dev.nav.no umami.nav.no https://api-eu.mixpanel.com https://data-eu.mixpanel.com ws://localhost:4206;" +
       "frame-ancestors 'none'; " +
       "base-uri 'self'; " +
       "form-action 'self'",
