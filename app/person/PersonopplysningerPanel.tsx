@@ -70,7 +70,7 @@ const PersonopplysningerPanelMedData = ({
         beskrivelse: "Historikk",
       }}
     >
-      <dl className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr_2fr] 2xl:grid-cols-[1fr_2fr_1fr_2fr_1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7 [&>dt]:flex [&>dt]:items-center [&>dt]:min-h-7">
+      <dl className="grid grid-cols-1 ax-md:grid-cols-[1fr_2fr_1fr_2fr] ax-2xl:grid-cols-[1fr_2fr_1fr_2fr_1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-ax-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7 [&>dt]:flex [&>dt]:items-center [&>dt]:min-h-7">
         <dt>Navn</dt>
         <dd>
           {fulltNavn} <KopiKnapp copyText={fulltNavn} />
@@ -146,7 +146,7 @@ const PersonopplysningerPanelSkeleton = () => {
       title="Brukerinformasjon"
       link={{ href: "https://modia.nav.no", beskrivelse: "Historikk" }}
     >
-      <dl className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr_2fr] 2xl:grid-cols-[1fr_2fr_1fr_2fr_1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7">
+      <dl className="grid grid-cols-1 ax-md:grid-cols-[1fr_2fr_1fr_2fr] ax-2xl:grid-cols-[1fr_2fr_1fr_2fr_1fr_2fr] gap-x-4 gap-y-2 [&>dt]:font-ax-bold [&>dd]:flex [&>dd]:items-center [&>dd]:min-h-7">
         {linjer.map((_, idx) => (
           <Fragment key={idx}>
             <dt>

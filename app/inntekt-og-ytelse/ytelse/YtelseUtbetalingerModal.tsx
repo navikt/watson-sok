@@ -80,7 +80,7 @@ export function YtelseUtbetalingerModal({
           </BodyShort>
         ) : (
           <Table size="small" zebraStripes stickyHeader>
-            <caption className="text-left text-2xl font-bold text-text-subtle mb-2">
+            <caption className="text-left text-2xl font-bold text-ax-text-neutral-subtle mb-2">
               Alle utbetalinger i ytelsen
             </caption>
             <TableHeader>

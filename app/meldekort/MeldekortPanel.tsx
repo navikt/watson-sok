@@ -143,7 +143,7 @@ type MeldekortVisningProps = {
 const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
   const sorterteMeldekort = useMemo(
     () =>
-      [...meldekort].sort((a, b) =>
+      [...(meldekort ?? [])].sort((a, b) =>
         b.periode.fraOgMed.localeCompare(a.periode.fraOgMed),
       ),
     [meldekort],
@@ -203,6 +203,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
         <div className="flex flex-wrap items-center justify-end gap-2">
           <div className="flex items-center gap-0.5">
             <Button
+              data-color="neutral"
               icon={
                 <Tooltip
                   content={
@@ -215,7 +216,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
                 </Tooltip>
               }
               type="button"
-              variant="secondary-neutral"
+              variant="secondary"
               size="small"
               disabled={!kanGåTilForrige}
               aria-label="Forrige meldekort"
@@ -242,6 +243,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
               ]}
             >
               <Button
+                data-color="neutral"
                 aria-label="Velg dato"
                 icon={
                   <Tooltip content="Velg dato">
@@ -249,12 +251,13 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
                   </Tooltip>
                 }
                 type="button"
-                variant="secondary-neutral"
+                variant="secondary"
                 size="small"
                 onClick={onToggleDatepicker}
               />
             </DatePicker>
             <Button
+              data-color="neutral"
               icon={
                 <Tooltip
                   content={
@@ -265,7 +268,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
                 </Tooltip>
               }
               type="button"
-              variant="secondary-neutral"
+              variant="secondary"
               size="small"
               disabled={!kanGåTilNeste}
               aria-label="Neste meldekort"

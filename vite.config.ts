@@ -9,11 +9,11 @@ export default defineConfig({
   base: "/",
   plugins: [
     tailwindcss(),
-    reactRouterDevTools(),
+    process.env.NODE_ENV === "development" ? reactRouterDevTools() : null,
     reactRouter(),
-    ...(process.env.NODE_ENV === "development" ? [devtoolsJson()] : []),
+    process.env.NODE_ENV === "development" ? devtoolsJson() : null,
     tsconfigPaths(),
-  ],
+  ].filter(Boolean), // Fjern dev only plugins
   server: {
     hmr: {
       path: "/",

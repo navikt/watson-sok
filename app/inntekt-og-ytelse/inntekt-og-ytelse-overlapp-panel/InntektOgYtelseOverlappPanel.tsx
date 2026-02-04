@@ -111,7 +111,7 @@ const InntektOgYtelseOverlappPanelMedData = ({
           </BodyLong>
           <div className="flex justify-end absolute top-4 right-4">
             <ToggleGroup
-              variant="neutral"
+              data-color="neutral"
               size="small"
               value={grafVisning}
               aria-label="Velg grafvisning"
