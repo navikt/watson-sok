@@ -3,6 +3,7 @@ import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useMemo } from "react";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
+import { MeldekortProvider } from "~/meldekort/MeldekortContext";
 import { MeldekortPanel } from "~/meldekort/MeldekortPanel";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import type { Ytelse } from "../domene";
@@ -65,7 +66,7 @@ export function YtelsedetaljerModal({
   const visMeldekortTab =
     erMeldekortPanelAktivert && harMeldekort(ytelse.stonadType);
 
-  return (
+  const innhold = (
     <Modal
       width="medium"
       open={isOpen}
@@ -95,7 +96,7 @@ export function YtelsedetaljerModal({
           </Tabs.Panel>
           {visMeldekortTab && (
             <Tabs.Panel value="meldekort" className="pt-4">
-              <MeldekortPanel ytelse="dagpenger" />
+              <MeldekortPanel />
             </Tabs.Panel>
           )}
         </Tabs>
@@ -107,4 +108,10 @@ export function YtelsedetaljerModal({
       </ModalFooter>
     </Modal>
   );
+
+  if (visMeldekortTab) {
+    return <MeldekortProvider ytelse="dagpenger">{innhold}</MeldekortProvider>;
+  }
+
+  return innhold;
 }

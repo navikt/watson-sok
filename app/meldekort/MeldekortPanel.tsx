@@ -13,42 +13,28 @@ import {
   Tooltip,
 } from "@navikt/ds-react";
 import { useEffect, useMemo, useState } from "react";
-import { useFetcher } from "react-router";
-import { RouteConfig } from "~/routeConfig";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { formaterDato, formaterTilIsoDato } from "~/utils/date-utils";
-import type { loader } from "./api.route";
 import type { AktivitetType, Dag, MeldekortRespons } from "./domene";
-
-type GyldigYtelse = "dagpenger";
-
-type MeldekortPanelProps = {
-  ytelse: GyldigYtelse;
-};
+import { useMeldekort } from "./MeldekortContext";
 
 /** Viser meldekort for dagpenger */
-export function MeldekortPanel({ ytelse }: MeldekortPanelProps) {
-  const fetcher = useFetcher<typeof loader>();
+export function MeldekortPanel() {
+  const meldekortData = useMeldekort();
 
-  useEffect(() => {
-    if (fetcher.state === "idle" && !fetcher.data) {
-      fetcher.load(`${RouteConfig.API.MELDEKORT}?ytelse=${ytelse}`);
-    }
-  }, [fetcher.state, fetcher.data, fetcher.load, ytelse]);
-
-  if (fetcher.state === "loading" || !fetcher.data) {
+  if (meldekortData.status === "loading") {
     return <MeldekortPanelSkeleton />;
   }
 
-  if ("error" in fetcher.data) {
+  if (meldekortData.status === "error") {
     return (
       <Alert variant="error" size="small">
-        Kunne ikke hente meldekort: {fetcher.data.error}
+        Kunne ikke hente meldekort: {meldekortData.error}
       </Alert>
     );
   }
 
-  const meldekort = fetcher.data;
+  const { meldekort } = meldekortData;
 
   if (!meldekort || meldekort.length === 0) {
     return (
