@@ -59,7 +59,7 @@ type StatistikkKortSkeletonProps = {
 /**
  * Skeleton-versjon av StatistikkKort for lastetilstand.
  */
-export function StatistikkKortSkeleton({ label }: StatistikkKortSkeletonProps) {
+function StatistikkKortSkeleton({ label }: StatistikkKortSkeletonProps) {
   return (
     <div className="rounded-lg border border-ax-neutral-200 bg-ax-surface-subtle p-4">
       <Label as="span" size="small">

@@ -35,7 +35,7 @@ export function MeldekortProvider({
     if (fetcher.state === "idle" && !fetcher.data) {
       fetcher.load(`${RouteConfig.API.MELDEKORT}?ytelse=${ytelse}`);
     }
-  }, [fetcher.state, fetcher.data, fetcher.load, ytelse]);
+  }, [fetcher, ytelse]);
 
   const state: MeldekortState =
     fetcher.state === "loading" || !fetcher.data
