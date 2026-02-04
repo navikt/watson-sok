@@ -28,9 +28,9 @@ import {
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { formaterDato, forskjellIDager } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
+import { YtelsedetaljerModal } from "./detaljer/YtelsedetaljerModal";
 import type { Ytelse } from "./domene";
 import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
-import { YtelsedetaljerModal } from "./YtelsedetaljerModal";
 
 type GruppertPeriode = {
   fom: string;
