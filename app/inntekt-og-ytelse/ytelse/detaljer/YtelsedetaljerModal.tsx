@@ -81,7 +81,7 @@ export function YtelsedetaljerModal({
             )}
           </Tabs.List>
           <Tabs.Panel value="oppsummering" className="pt-4">
-            <OppsummeringPanel />
+            <OppsummeringPanel ytelse={ytelse} />
           </Tabs.Panel>
           <Tabs.Panel value="utbetalinger" className="pt-4">
             <UtbetalingerPanel

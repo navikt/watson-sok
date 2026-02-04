@@ -31,12 +31,7 @@ import { formaterBeløp } from "~/utils/number-utils";
 import { YtelsedetaljerModal } from "./detaljer/YtelsedetaljerModal";
 import type { Ytelse } from "./domene";
 import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
-
-type GruppertPeriode = {
-  fom: string;
-  tom: string;
-  totalBeløp: number;
-};
+import { grupperSammenhengendePerioder } from "./utils";
 
 type YtelserOversiktProps = {
   promise: Promise<Ytelse[] | null>;
@@ -286,60 +281,6 @@ const TidslinjeKontrollpanel = ({
     </div>
   );
 };
-
-/**
- * Grupperer sammenhengende perioder som er mindre enn 45 dager fra hverandre til en enkel periode.
- * Perioder sorteres etter startdato før gruppering.
- * Beløpene for alle perioder i en gruppe summeres.
- */
-function grupperSammenhengendePerioder(
-  perioder: Array<{
-    periode: { fom: string; tom: string };
-    beløp: number;
-    bruttoBeløp: number;
-  }>,
-): GruppertPeriode[] {
-  if (perioder.length === 0) {
-    return [];
-  }
-
-  // Sortér perioder etter startdato
-  const sortertePerioder = [...perioder].sort((a, b) =>
-    a.periode.fom.localeCompare(b.periode.fom),
-  );
-
-  const gruppert: GruppertPeriode[] = [];
-  let nåværendeGruppe: GruppertPeriode = {
-    fom: sortertePerioder[0].periode.fom,
-    tom: sortertePerioder[0].periode.tom,
-    totalBeløp: sortertePerioder[0].bruttoBeløp,
-  };
-
-  for (let i = 1; i < sortertePerioder.length; i++) {
-    const forrigeSlutt = new Date(nåværendeGruppe.tom);
-    const nåværendeStart = new Date(sortertePerioder[i].periode.fom);
-    const dagerMellom = forskjellIDager(forrigeSlutt, nåværendeStart);
-
-    // Hvis periodene er mindre enn 45 dager fra hverandre, utvid den nåværende gruppen
-    if (dagerMellom < 45) {
-      nåværendeGruppe.tom = sortertePerioder[i].periode.tom;
-      nåværendeGruppe.totalBeløp += sortertePerioder[i].bruttoBeløp;
-    } else {
-      // Ellers, lagre den nåværende gruppen og start en ny
-      gruppert.push(nåværendeGruppe);
-      nåværendeGruppe = {
-        fom: sortertePerioder[i].periode.fom,
-        tom: sortertePerioder[i].periode.tom,
-        totalBeløp: sortertePerioder[i].bruttoBeløp,
-      };
-    }
-  }
-
-  // Ikke glem å legge til den siste gruppen
-  gruppert.push(nåværendeGruppe);
-
-  return gruppert;
-}
 
 /**
  * Hook for å navigere i tidslinjevisningen.
