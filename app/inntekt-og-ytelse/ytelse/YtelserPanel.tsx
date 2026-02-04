@@ -91,6 +91,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
           <Timeline
             id="timeline-dynamic"
             aria-controls="timeline-toolbar"
+            className="overflow-x-hidden"
             startDate={nåværendeVindu.start}
             endDate={nåværendeVindu.slutt}
           >
@@ -230,12 +231,13 @@ const TidslinjeKontrollpanel = ({
 
   return (
     <div
-      className="flex justify-end items-center gap-2 mb-4 static md:absolute md:top-4 md:right-4"
+      className="flex justify-end items-center gap-2 mb-4 static ax-md:absolute ax-md:top-4 ax-md:right-4"
       aria-controls="timeline-dynamic"
       id="timeline-toolbar"
     >
       <div className="flex gap-0.5 items-center">
         <Button
+          data-color="neutral"
           aria-label="Forrige periode"
           icon={
             <Tooltip
@@ -248,7 +250,7 @@ const TidslinjeKontrollpanel = ({
               <ChevronLeftIcon aria-hidden="true" />
             </Tooltip>
           }
-          variant="secondary-neutral"
+          variant="secondary"
           size="small"
           disabled={!kanFlytteForrigePeriode}
           onClick={() => {
@@ -259,6 +261,7 @@ const TidslinjeKontrollpanel = ({
           }}
         />
         <Button
+          data-color="neutral"
           disabled={!kanFlytteNestePeriode}
           aria-label="Neste periode"
           icon={
@@ -270,7 +273,7 @@ const TidslinjeKontrollpanel = ({
               <ChevronRightIcon aria-hidden="true" />
             </Tooltip>
           }
-          variant="secondary-neutral"
+          variant="secondary"
           size="small"
           onClick={() => {
             oppdaterVindu("neste");

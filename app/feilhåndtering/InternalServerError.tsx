@@ -9,6 +9,7 @@ import {
   VStack,
 } from "@navikt/ds-react";
 import { ListItem } from "@navikt/ds-react/List";
+import { PageBlock } from "@navikt/ds-react/Page";
 import { AppFooter } from "~/layout/AppFooter";
 import { AppHeader } from "~/layout/AppHeader";
 
@@ -17,8 +18,8 @@ export function InternalServerError() {
     <Page footer={<AppFooter />}>
       <title>Feil – Watson Søk</title>
       <AppHeader />
-      <Page.Block as="main" width="xl" gutters>
-        <Box paddingBlock="20 8">
+      <PageBlock as="main" width="xl" gutters>
+        <Box paddingBlock="space-20 space-8">
           <HGrid columns="minmax(auto,600px)" data-aksel-template="500-v2">
             <VStack gap="space-16">
               <VStack gap="space-12" align="start">
@@ -34,19 +35,21 @@ export function InternalServerError() {
                     utilgjengelig. Dette skyldes ikke noe du gjorde.
                   </BodyShort>
                   <BodyShort>Du kan prøve å</BodyShort>
-                  <List>
-                    <ListItem>
-                      vente noen minutter og{" "}
-                      <Link href="#" onClick={() => location.reload()}>
-                        laste siden på nytt
-                      </Link>
-                    </ListItem>
-                    <ListItem>
-                      <Link href="#" onClick={() => history.back()}>
-                        gå tilbake til forrige side
-                      </Link>
-                    </ListItem>
-                  </List>
+                  <Box marginBlock="space-16" asChild>
+                    <List>
+                      <ListItem>
+                        vente noen minutter og{" "}
+                        <Link href="#" onClick={() => location.reload()}>
+                          laste siden på nytt
+                        </Link>
+                      </ListItem>
+                      <ListItem>
+                        <Link href="#" onClick={() => history.back()}>
+                          gå tilbake til forrige side
+                        </Link>
+                      </ListItem>
+                    </List>
+                  </Box>
                   <BodyShort>
                     Hvis problemet vedvarer, kan du melde inn feil i Porten.
                   </BodyShort>
@@ -68,7 +71,7 @@ export function InternalServerError() {
             </VStack>
           </HGrid>
         </Box>
-      </Page.Block>
+      </PageBlock>
       <Env />
     </Page>
   );

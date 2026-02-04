@@ -6,7 +6,13 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     include: ["app/**/*.test.{ts,tsx}"],
-    exclude: ["app/**/*.spec.ts", "**/node_modules/**", "**/dist/**"],
+    exclude: [
+      "app/**/*.spec.ts",
+      "**/build/**",
+      "**/test-results/**",
+      "**/.{idea,git,cache,output,temp}/**",
+      "**/{vite,vitest,eslint,prettier}.config.*",
+    ],
     globals: true,
   },
 });

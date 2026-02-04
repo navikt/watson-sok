@@ -39,7 +39,7 @@ const OverskriftPanelMedData = ({ promise }: OverskriftPanelProps) => {
             personopplysninger.adresseBeskyttelse,
           )}
         >
-          <Tag variant="error" size="small">
+          <Tag data-color="danger" variant="outline" size="small">
             Diskresjon
           </Tag>
         </Tooltip>
