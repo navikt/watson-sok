@@ -34,7 +34,7 @@ export function MeldekortPanel({ ytelse }: MeldekortPanelProps) {
     if (fetcher.state === "idle" && !fetcher.data) {
       fetcher.load(`${RouteConfig.API.MELDEKORT}?ytelse=${ytelse}`);
     }
-  }, [fetcher.state, fetcher.data, ytelse]);
+  }, [fetcher.state, fetcher.data, fetcher.load, ytelse]);
 
   if (fetcher.state === "loading" || !fetcher.data) {
     return <MeldekortPanelSkeleton />;
