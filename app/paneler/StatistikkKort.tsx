@@ -30,11 +30,7 @@ export function StatistikkKort({
         {verdi}
       </BodyShort>
       {beskrivelse && (
-        <BodyShort
-          size="small"
-          className="text-ax-text-subtle"
-          id={beskrivelseId}
-        >
+        <BodyShort size="small" id={beskrivelseId}>
           {beskrivelse}
         </BodyShort>
       )}
