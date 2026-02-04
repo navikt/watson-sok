@@ -5,11 +5,11 @@ import type { Ytelse } from "../domene";
 import { beregnYtelseStatistikk, formaterPeriode } from "../utils";
 
 type OppsummeringPanelProps = {
-  ytelse: Ytelse;
+  perioder: Ytelse["perioder"];
 };
 
-export function OppsummeringPanel({ ytelse }: OppsummeringPanelProps) {
-  const statistikk = beregnYtelseStatistikk(ytelse.perioder);
+export function OppsummeringPanel({ perioder }: OppsummeringPanelProps) {
+  const statistikk = beregnYtelseStatistikk(perioder);
 
   const størsteUtbetalingBeskrivelse = statistikk.størsteUtbetalingPeriode
     ? formaterPeriode(statistikk.størsteUtbetalingPeriode.periode, formaterDato)

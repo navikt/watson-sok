@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { MeldekortPanel } from "~/meldekort/MeldekortPanel";
+import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import type { Ytelse } from "../domene";
 import { OppsummeringPanel } from "./OppsummeringPanel";
 import { UtbetalingerPanel } from "./UtbetalingerPanel";
@@ -44,15 +45,18 @@ export function YtelsedetaljerModal({
   const erMeldekortPanelAktivert = useEnkeltFeatureFlagg(
     FeatureFlagg.VIS_MELDEKORT_PANEL,
   );
-  const sorterteUtbetalinger = useMemo(
-    () =>
-      ytelse
-        ? [...ytelse.perioder].sort((a, b) =>
-            b.periode.fom.localeCompare(a.periode.fom),
-          )
-        : [],
-    [ytelse],
-  );
+  const { tidsvinduIAntallMåneder } = useTidsvindu();
+
+  const filtrertePerioder = useMemo(() => {
+    if (!ytelse) return [];
+
+    const cutoff = new Date();
+    cutoff.setMonth(cutoff.getMonth() - tidsvinduIAntallMåneder);
+
+    return [...ytelse.perioder]
+      .filter((p) => new Date(p.periode.tom) >= cutoff)
+      .sort((a, b) => b.periode.fom.localeCompare(a.periode.fom));
+  }, [ytelse, tidsvinduIAntallMåneder]);
 
   if (!ytelse) {
     return null;
@@ -81,11 +85,11 @@ export function YtelsedetaljerModal({
             )}
           </Tabs.List>
           <Tabs.Panel value="oppsummering" className="pt-4">
-            <OppsummeringPanel ytelse={ytelse} />
+            <OppsummeringPanel perioder={filtrertePerioder} />
           </Tabs.Panel>
           <Tabs.Panel value="utbetalinger" className="pt-4">
             <UtbetalingerPanel
-              utbetalinger={sorterteUtbetalinger}
+              utbetalinger={filtrertePerioder}
               ytelsenavn={ytelse.stonadType}
             />
           </Tabs.Panel>
