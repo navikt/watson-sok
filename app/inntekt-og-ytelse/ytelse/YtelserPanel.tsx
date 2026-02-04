@@ -30,7 +30,7 @@ import { formaterDato, forskjellIDager } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
 import type { Ytelse } from "./domene";
 import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
-import { YtelseUtbetalingerModal } from "./YtelseUtbetalingerModal";
+import { YtelsedetaljerModal } from "./YtelsedetaljerModal";
 
 type GruppertPeriode = {
   fom: string;
@@ -175,7 +175,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
             })}
           </Timeline>
           {visYtelsesdetaljerModal && (
-            <YtelseUtbetalingerModal
+            <YtelsedetaljerModal
               ytelse={valgtYtelse}
               isOpen={Boolean(valgtYtelse)}
               onClose={() => setValgtYtelse(null)}

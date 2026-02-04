@@ -14,8 +14,6 @@ import {
 } from "@navikt/ds-react";
 import { useEffect, useMemo, useState } from "react";
 import { useFetcher } from "react-router";
-import { FeatureFlagg } from "~/feature-toggling/featureflagg";
-import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { RouteConfig } from "~/routeConfig";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { formaterDato, formaterTilIsoDato } from "~/utils/date-utils";
@@ -30,20 +28,13 @@ type MeldekortPanelProps = {
 
 /** Viser meldekort for dagpenger */
 export function MeldekortPanel({ ytelse }: MeldekortPanelProps) {
-  const erMeldekortPanelAktivert = useEnkeltFeatureFlagg(
-    FeatureFlagg.VIS_MELDEKORT_PANEL,
-  );
   const fetcher = useFetcher<typeof loader>();
 
   useEffect(() => {
-    if (erMeldekortPanelAktivert && fetcher.state === "idle" && !fetcher.data) {
+    if (fetcher.state === "idle" && !fetcher.data) {
       fetcher.load(`${RouteConfig.API.MELDEKORT}?ytelse=${ytelse}`);
     }
-  }, [erMeldekortPanelAktivert, fetcher.state, fetcher.data, ytelse]);
-
-  if (!erMeldekortPanelAktivert) {
-    return null;
-  }
+  }, [fetcher.state, fetcher.data, ytelse]);
 
   if (fetcher.state === "loading" || !fetcher.data) {
     return <MeldekortPanelSkeleton />;
