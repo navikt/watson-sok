@@ -20,21 +20,21 @@ import { useMeldekort } from "./MeldekortContext";
 
 /** Viser meldekort for dagpenger */
 export function MeldekortPanel() {
-  const meldekortData = useMeldekort();
+  const meldekortState = useMeldekort();
 
-  if (meldekortData.status === "loading") {
+  if (!meldekortState || meldekortState.status === "loading") {
     return <MeldekortPanelSkeleton />;
   }
 
-  if (meldekortData.status === "error") {
+  if (meldekortState.status === "error") {
     return (
       <Alert variant="error" size="small">
-        Kunne ikke hente meldekort: {meldekortData.error}
+        Kunne ikke hente meldekort: {meldekortState.error}
       </Alert>
     );
   }
 
-  const { meldekort } = meldekortData;
+  const { meldekort } = meldekortState;
 
   if (!meldekort || meldekort.length === 0) {
     return (

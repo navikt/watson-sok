@@ -53,12 +53,9 @@ export function MeldekortProvider({
 
 /**
  * Hook for å hente meldekort-data fra konteksten.
- * Må brukes innenfor en MeldekortProvider.
+ * Returnerer null hvis brukt utenfor MeldekortProvider.
  */
-export function useMeldekort(): MeldekortState {
+export function useMeldekort(): MeldekortState | null {
   const context = use(MeldekortContext);
-  if (!context) {
-    throw new Error("useMeldekort må brukes innenfor en MeldekortProvider");
-  }
-  return context.state;
+  return context?.state ?? null;
 }

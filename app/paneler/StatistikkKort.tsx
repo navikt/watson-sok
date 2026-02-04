@@ -1,4 +1,4 @@
-import { BodyShort, Label } from "@navikt/ds-react";
+import { BodyShort, Label, Skeleton } from "@navikt/ds-react";
 import { useId } from "react";
 
 type StatistikkKortProps = {
@@ -8,6 +8,8 @@ type StatistikkKortProps = {
   verdi: string;
   /** Valgfri tilleggstekst som vises under verdien */
   beskrivelse?: string;
+  /** Om kortet er i lastetilstand */
+  isLoading?: boolean;
 };
 
 /**
@@ -18,10 +20,15 @@ export function StatistikkKort({
   label,
   verdi,
   beskrivelse,
+  isLoading,
 }: StatistikkKortProps) {
   const id = useId();
   const labelId = `${id}-label`;
   const beskrivelseId = `${id}-beskrivelse`;
+
+  if (isLoading) {
+    return <StatistikkKortSkeleton label={label} />;
+  }
 
   return (
     <div className="rounded-lg border border-ax-neutral-200 bg-ax-surface-subtle p-4">
@@ -41,6 +48,24 @@ export function StatistikkKort({
           {beskrivelse}
         </BodyShort>
       )}
+    </div>
+  );
+}
+
+type StatistikkKortSkeletonProps = {
+  label: string;
+};
+
+/**
+ * Skeleton-versjon av StatistikkKort for lastetilstand.
+ */
+export function StatistikkKortSkeleton({ label }: StatistikkKortSkeletonProps) {
+  return (
+    <div className="rounded-lg border border-ax-neutral-200 bg-ax-surface-subtle p-4">
+      <Label as="span" size="small">
+        {label}
+      </Label>
+      <Skeleton variant="text" width="60%" height="32px" className="mb-2" />
     </div>
   );
 }
