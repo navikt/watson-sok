@@ -2,11 +2,18 @@ import { BodyShort, Label } from "@navikt/ds-react";
 import { useId } from "react";
 
 type StatistikkKortProps = {
+  /** Ledetekst som vises over verdien */
   label: string;
+  /** Hovedverdien som vises fremhevet */
   verdi: string;
+  /** Valgfri tilleggstekst som vises under verdien */
   beskrivelse?: string;
 };
 
+/**
+ * Kort som viser en statistikkverdi med ledetekst.
+ * Brukes for å presentere nøkkeltall i oppsummeringspaneler.
+ */
 export function StatistikkKort({
   label,
   verdi,
