@@ -6,13 +6,14 @@ import {
   Skeleton,
   Table,
 } from "@navikt/ds-react";
-import { use, useId, useMemo } from "react";
+import { use, useMemo } from "react";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import type { InntektInformasjon } from "~/inntekt-og-ytelse/inntekt/domene";
 import {
   PanelContainer,
   PanelContainerSkeleton,
 } from "~/paneler/PanelContainer";
+import { StatistikkKort } from "~/paneler/StatistikkKort";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { formaterÅrMåned } from "~/utils/date-utils";
 import {
@@ -296,44 +297,6 @@ const InntektsoppsummeringPanelMedData = ({
         </div>
       )}
     </PanelContainer>
-  );
-};
-
-const StatistikkKort = ({
-  label,
-  verdi,
-  beskrivelse,
-}: {
-  label: string;
-  verdi: string;
-  beskrivelse?: string;
-}) => {
-  const id = useId();
-  const labelId = `${id}-label`;
-  const beskrivelseId = `${id}-beskrivelse`;
-  return (
-    <div className="rounded-lg border border-ax-neutral-200 bg-ax-surface-subtle p-4">
-      <Label as="span" size="small" id={labelId}>
-        {label}
-      </Label>
-      <BodyShort
-        className="text-2xl font-semibold"
-        spacing
-        aria-labelledby={labelId}
-        aria-describedby={beskrivelse ? beskrivelseId : undefined}
-      >
-        {verdi}
-      </BodyShort>
-      {beskrivelse && (
-        <BodyShort
-          size="small"
-          className="text-ax-text-subtle"
-          id={beskrivelseId}
-        >
-          {beskrivelse}
-        </BodyShort>
-      )}
-    </div>
   );
 };
 

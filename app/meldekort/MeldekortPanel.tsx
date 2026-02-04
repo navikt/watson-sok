@@ -13,51 +13,28 @@ import {
   Tooltip,
 } from "@navikt/ds-react";
 import { useEffect, useMemo, useState } from "react";
-import { useFetcher } from "react-router";
-import { FeatureFlagg } from "~/feature-toggling/featureflagg";
-import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
-import { RouteConfig } from "~/routeConfig";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { formaterDato, formaterTilIsoDato } from "~/utils/date-utils";
-import type { loader } from "./api.route";
 import type { AktivitetType, Dag, MeldekortRespons } from "./domene";
-
-type GyldigYtelse = "dagpenger";
-
-type MeldekortPanelProps = {
-  ytelse: GyldigYtelse;
-};
+import { useMeldekort } from "./MeldekortContext";
 
 /** Viser meldekort for dagpenger */
-export function MeldekortPanel({ ytelse }: MeldekortPanelProps) {
-  const erMeldekortPanelAktivert = useEnkeltFeatureFlagg(
-    FeatureFlagg.VIS_MELDEKORT_PANEL,
-  );
-  const fetcher = useFetcher<typeof loader>();
+export function MeldekortPanel() {
+  const meldekortState = useMeldekort();
 
-  useEffect(() => {
-    if (erMeldekortPanelAktivert && fetcher.state === "idle" && !fetcher.data) {
-      fetcher.load(`${RouteConfig.API.MELDEKORT}?ytelse=${ytelse}`);
-    }
-  }, [erMeldekortPanelAktivert, fetcher.state, fetcher.data, ytelse]);
-
-  if (!erMeldekortPanelAktivert) {
-    return null;
-  }
-
-  if (fetcher.state === "loading" || !fetcher.data) {
+  if (!meldekortState || meldekortState.status === "loading") {
     return <MeldekortPanelSkeleton />;
   }
 
-  if ("error" in fetcher.data) {
+  if (meldekortState.status === "error") {
     return (
       <Alert variant="error" size="small">
-        Kunne ikke hente meldekort: {fetcher.data.error}
+        Kunne ikke hente meldekort: {meldekortState.error}
       </Alert>
     );
   }
 
-  const meldekort = fetcher.data;
+  const { meldekort } = meldekortState;
 
   if (!meldekort || meldekort.length === 0) {
     return (
