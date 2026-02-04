@@ -1,53 +1,18 @@
-import { useMemo } from "react";
 import { StatistikkKort } from "~/paneler/StatistikkKort";
 import { formaterDato } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
 import type { Ytelse } from "../domene";
-import { grupperSammenhengendePerioder } from "../utils";
+import { beregnYtelseStatistikk, formaterPeriode } from "../utils";
 
 type OppsummeringPanelProps = {
   ytelse: Ytelse;
 };
 
 export function OppsummeringPanel({ ytelse }: OppsummeringPanelProps) {
-  const statistikk = useMemo(() => {
-    const utbetalinger = ytelse.perioder.filter((p) => p.beløp >= 0);
-    const tilbakekrevinger = ytelse.perioder.filter((p) => p.beløp < 0);
-    const gruppertePerioder = grupperSammenhengendePerioder(ytelse.perioder);
-
-    const totalBrutto = ytelse.perioder.reduce(
-      (sum, p) => sum + (p.bruttoBeløp ?? 0),
-      0,
-    );
-    const totalNetto = ytelse.perioder.reduce((sum, p) => sum + p.beløp, 0);
-
-    const størsteUtbetalingPeriode = utbetalinger.reduce<
-      (typeof utbetalinger)[number] | null
-    >(
-      (max, p) =>
-        !max || (p.bruttoBeløp ?? 0) > (max.bruttoBeløp ?? 0) ? p : max,
-      null,
-    );
-
-    const gjennomsnittligUtbetaling =
-      utbetalinger.length > 0
-        ? utbetalinger.reduce((sum, p) => sum + (p.bruttoBeløp ?? 0), 0) /
-          utbetalinger.length
-        : 0;
-
-    return {
-      antallUtbetalinger: utbetalinger.length,
-      antallTilbakekrevinger: tilbakekrevinger.length,
-      antallPerioder: gruppertePerioder.length,
-      totalBrutto,
-      totalNetto,
-      størsteUtbetalingPeriode,
-      gjennomsnittligUtbetaling,
-    };
-  }, [ytelse.perioder]);
+  const statistikk = beregnYtelseStatistikk(ytelse.perioder);
 
   const størsteUtbetalingBeskrivelse = statistikk.størsteUtbetalingPeriode
-    ? formaterPeriode(statistikk.størsteUtbetalingPeriode.periode)
+    ? formaterPeriode(statistikk.størsteUtbetalingPeriode.periode, formaterDato)
     : undefined;
 
   return (
@@ -88,10 +53,4 @@ export function OppsummeringPanel({ ytelse }: OppsummeringPanelProps) {
       />
     </div>
   );
-}
-
-function formaterPeriode(periode: { fom: string; tom: string }): string {
-  const fom = formaterDato(periode.fom);
-  const tom = formaterDato(periode.tom);
-  return fom === tom ? fom : `${fom} – ${tom}`;
 }

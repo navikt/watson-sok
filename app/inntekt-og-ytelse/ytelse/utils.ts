@@ -6,6 +6,72 @@ export type GruppertPeriode = {
   totalBeløp: number;
 };
 
+type Periode = {
+  periode: { fom: string; tom: string };
+  beløp: number;
+  bruttoBeløp: number;
+};
+
+export type YtelseStatistikk = {
+  antallUtbetalinger: number;
+  antallTilbakekrevinger: number;
+  antallPerioder: number;
+  totalBrutto: number;
+  totalNetto: number;
+  størsteUtbetalingPeriode: Periode | null;
+  gjennomsnittligUtbetaling: number;
+};
+
+/**
+ * Beregner statistikk for en liste med ytelsesperioder.
+ */
+export function beregnYtelseStatistikk(perioder: Periode[]): YtelseStatistikk {
+  const utbetalinger = perioder.filter((p) => p.beløp >= 0);
+  const tilbakekrevinger = perioder.filter((p) => p.beløp < 0);
+  const gruppertePerioder = grupperSammenhengendePerioder(perioder);
+
+  const totalBrutto = perioder.reduce(
+    (sum, p) => sum + (p.bruttoBeløp ?? 0),
+    0,
+  );
+  const totalNetto = perioder.reduce((sum, p) => sum + p.beløp, 0);
+
+  const størsteUtbetalingPeriode = utbetalinger.reduce<Periode | null>(
+    (max, p) =>
+      !max || (p.bruttoBeløp ?? 0) > (max.bruttoBeløp ?? 0) ? p : max,
+    null,
+  );
+
+  const gjennomsnittligUtbetaling =
+    utbetalinger.length > 0
+      ? utbetalinger.reduce((sum, p) => sum + (p.bruttoBeløp ?? 0), 0) /
+        utbetalinger.length
+      : 0;
+
+  return {
+    antallUtbetalinger: utbetalinger.length,
+    antallTilbakekrevinger: tilbakekrevinger.length,
+    antallPerioder: gruppertePerioder.length,
+    totalBrutto,
+    totalNetto,
+    størsteUtbetalingPeriode,
+    gjennomsnittligUtbetaling,
+  };
+}
+
+/**
+ * Formaterer en periode som lesbar tekst.
+ * Returnerer kun én dato hvis fom og tom er like.
+ */
+export function formaterPeriode(
+  periode: { fom: string; tom: string },
+  formaterDato: (dato: string) => string,
+): string {
+  const fom = formaterDato(periode.fom);
+  const tom = formaterDato(periode.tom);
+  return fom === tom ? fom : `${fom} – ${tom}`;
+}
+
 /**
  * Grupperer sammenhengende perioder som er mindre enn 45 dager fra hverandre til en enkel periode.
  * Perioder sorteres etter startdato før gruppering.
