@@ -13,6 +13,8 @@ export const RouteConfig = {
   },
 
   API: {
+    MELDEKORT: "/api/meldekort",
+
     HEALTH: "/api/health",
     LOGGED_IN_USER: "/api/logged-in-user",
     THEME: "/api/theme",

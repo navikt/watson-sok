@@ -3,7 +3,6 @@ import { type LoaderFunctionArgs, redirect } from "react-router";
 import { hentArbeidsforhold } from "~/arbeidsforhold/api.server";
 import { hentInntekter } from "~/inntekt-og-ytelse/inntekt/api.server";
 import { hentYtelser } from "~/inntekt-og-ytelse/ytelse/api.server";
-import { hentMeldekort } from "~/meldekort/api.server";
 import { hentPersonopplysninger } from "~/person/api.server";
 import { RouteConfig } from "~/routeConfig";
 import { hentSøkedataFraSession } from "~/søk/søkeinfoSession.server";
@@ -51,7 +50,6 @@ export async function oppslagLoader({ request }: LoaderFunctionArgs) {
     personopplysninger: hentPersonopplysninger(params),
     arbeidsgiverInformasjon: hentArbeidsforhold(params),
     inntektInformasjon: hentInntekter(params),
-    meldekort: hentMeldekort(params),
     ytelser: hentYtelser(params),
   };
 }

@@ -8,9 +8,20 @@ import {
   TableRow,
 } from "@navikt/ds-react/Table";
 import { useMemo } from "react";
+import { MeldekortPanel } from "~/meldekort/MeldekortPanel";
 import { formaterDato } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
 import type { Ytelse } from "./domene";
+
+const YTELSER_MED_MELDEKORT = ["Dagpenger"] as const;
+
+function harMeldekort(
+  stonadType: string,
+): stonadType is (typeof YTELSER_MED_MELDEKORT)[number] {
+  return YTELSER_MED_MELDEKORT.some(
+    (ytelse) => stonadType.toLowerCase() === ytelse.toLowerCase(),
+  );
+}
 
 type YtelseUtbetalingerModalProps = {
   ytelse: Ytelse | null;
@@ -56,17 +67,20 @@ export function YtelseUtbetalingerModal({
       onClose={onClose}
       closeOnBackdropClick
       header={{
-        heading: `Utbetalinger for ${ytelse.stonadType}`,
+        heading: ytelse.stonadType,
       }}
     >
-      <ModalBody className="min-w-md">
+      <ModalBody className="min-w-md flex flex-col gap-8">
+        {harMeldekort(ytelse.stonadType) && (
+          <MeldekortPanel ytelse="dagpenger" />
+        )}
         {sorterteUtbetalinger.length === 0 ? (
           <BodyShort>
             Ingen utbetalinger registrert for denne ytelsen.
           </BodyShort>
         ) : (
           <Table size="small" zebraStripes stickyHeader>
-            <caption className="text-left text-sm font-semibold text-ax-text-neutral-subtle mb-2">
+            <caption className="text-left text-2xl font-bold text-ax-text-neutral-subtle mb-2">
               Alle utbetalinger i ytelsen
             </caption>
             <TableHeader>
