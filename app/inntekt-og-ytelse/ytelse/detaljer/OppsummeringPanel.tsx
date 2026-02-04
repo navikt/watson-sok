@@ -1,4 +1,6 @@
 import { useMemo } from "react";
+import { FeatureFlagg } from "~/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { useMeldekort } from "~/meldekort/MeldekortContext";
 import { StatistikkKort } from "~/paneler/StatistikkKort";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
@@ -15,6 +17,7 @@ export function OppsummeringPanel({ perioder }: OppsummeringPanelProps) {
   const statistikk = beregnYtelseStatistikk(perioder);
   const meldekortState = useMeldekort();
   const { tidsvinduIAntallMåneder } = useTidsvindu();
+  const visMeldekort = useEnkeltFeatureFlagg(FeatureFlagg.VIS_MELDEKORT_PANEL);
 
   const meldekortStatistikk = useMemo(() => {
     if (!meldekortState || meldekortState.status !== "success") {
@@ -43,6 +46,8 @@ export function OppsummeringPanel({ perioder }: OppsummeringPanelProps) {
   const størsteUtbetalingBeskrivelse = statistikk.størsteUtbetalingPeriode
     ? formaterPeriode(statistikk.størsteUtbetalingPeriode.periode, formaterDato)
     : undefined;
+
+  const meldekortLaster = meldekortState?.status === "loading";
 
   return (
     <div className="grid grid-cols-2 ax-md:grid-cols-3 gap-4">
@@ -80,22 +85,17 @@ export function OppsummeringPanel({ perioder }: OppsummeringPanelProps) {
         label="Snitt per utbetaling"
         verdi={formaterBeløp(statistikk.gjennomsnittligUtbetaling, 0)}
       />
-      {meldekortState?.status === "loading" && (
-        <>
-          <StatistikkKort label="Meldekort" verdi="" isLoading />
-          <StatistikkKort label="Timer ført på arbeid" verdi="" isLoading />
-        </>
-      )}
-      {meldekortStatistikk && (
+      {visMeldekort && meldekortState && (
         <>
           <StatistikkKort
-            label="Antall meldekort"
-            verdi={String(meldekortStatistikk.antallMeldekort)}
+            label="Meldekort"
+            verdi={String(meldekortStatistikk?.antallMeldekort ?? 0)}
+            isLoading={meldekortLaster}
           />
           <StatistikkKort
             label="Timer ført på arbeid"
-            verdi={`${meldekortStatistikk.totalArbeidstimer} t`}
-            beskrivelse="via meldekort"
+            verdi={`${meldekortStatistikk?.totalArbeidstimer ?? 0} t`}
+            isLoading={meldekortLaster}
           />
         </>
       )}
