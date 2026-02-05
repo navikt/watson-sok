@@ -11,6 +11,31 @@ type TidsvinduContextType = {
 };
 const TidsvinduContext = createContext<TidsvinduContextType | null>(null);
 
+/** Konverterer tidsvindu-periode til antall måneder */
+export function tidsvinduTilMåneder(tidsvindu: TidsvinduPeriode): number {
+  switch (tidsvindu) {
+    case "6 måneder":
+      return 6;
+    case "1 år":
+      return 12;
+    case "3 år":
+      return 36;
+    case "10 år":
+      return 120;
+  }
+}
+
+/** Beregner fra- og til-dato basert på antall måneder tilbake i tid */
+export function beregnTidsvinduDatoer(
+  antallMåneder: number,
+  nå: Date = new Date(),
+): { fraDato: Date; tilDato: Date } {
+  const tilDato = new Date(nå);
+  const fraDato = new Date(nå);
+  fraDato.setMonth(fraDato.getMonth() - antallMåneder);
+  return { fraDato, tilDato };
+}
+
 /**
  * Holder styr på hvilket tidsvindu som skal vises i visualiseringer
  */
@@ -51,16 +76,15 @@ export const useTidsvindu = () => {
   if (!context) {
     throw new Error("useTidsvindu må brukes innenfor en TidsvinduProvider");
   }
+
+  const tidsvinduIAntallMåneder = tidsvinduTilMåneder(context.tidsvindu);
+  const { fraDato, tilDato } = beregnTidsvinduDatoer(tidsvinduIAntallMåneder);
+
   return {
     ...context,
-    tidsvinduIAntallMåneder:
-      context.tidsvindu === "6 måneder"
-        ? 6
-        : context.tidsvindu === "1 år"
-          ? 12
-          : context.tidsvindu === "3 år"
-            ? 36
-            : 120,
+    tidsvinduIAntallMåneder,
+    fraDato,
+    tilDato,
   };
 };
 
