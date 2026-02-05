@@ -1,22 +1,21 @@
-import { ToggleGroup } from "@navikt/ds-react";
+import { DatePicker, ToggleGroup, useDatepicker } from "@navikt/ds-react";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { createContext, use, useMemo, useState } from "react";
 import { useSearchParams } from "react-router";
 
 type TidsvinduPeriode = "6 måneder" | "1 år" | "3 år" | "10 år" | "tilpasset";
+type PresetPeriode = Exclude<TidsvinduPeriode, "tilpasset">;
 
 type TidsvinduContextType = {
   fraDato: Date;
   tilDato: Date;
-  setTidsvindu: (tidsvindu: Exclude<TidsvinduPeriode, "tilpasset">) => void;
+  setTidsvindu: (tidsvindu: PresetPeriode) => void;
   setCustomDatoer: (fra: Date, til: Date) => TidsvinduValideringsfeil | null;
 };
 const TidsvinduContext = createContext<TidsvinduContextType | null>(null);
 
 /** Konverterer tidsvindu-periode til antall måneder */
-export function tidsvinduTilMåneder(
-  tidsvindu: Exclude<TidsvinduPeriode, "tilpasset">,
-): number {
+export function tidsvinduTilMåneder(tidsvindu: PresetPeriode): number {
   switch (tidsvindu) {
     case "6 måneder":
       return 6;
@@ -154,7 +153,7 @@ export const TidsvinduProvider = ({
     () => ({
       fraDato,
       tilDato,
-      setTidsvindu: (tidsvindu: Exclude<TidsvinduPeriode, "tilpasset">) => {
+      setTidsvindu: (tidsvindu: PresetPeriode) => {
         const måneder = tidsvinduTilMåneder(tidsvindu);
         const datoer = beregnTidsvinduDatoer(måneder);
         setFraDato(datoer.fraDato);
@@ -208,22 +207,100 @@ export const useTidsvindu = () => {
  * Lar brukeren velge hvor stort tidsvindu som skal vises i visualiseringer
  */
 export const TidsvinduVelger = () => {
-  const { tidsvindu, setTidsvindu } = useTidsvindu();
-  return (
-    <ToggleGroup
-      data-color="neutral"
-      size="small"
-      value={tidsvindu}
-      aria-label="Velg tidsvindu"
-      onChange={(value) =>
-        setTidsvindu(value as Exclude<TidsvinduPeriode, "tilpasset">)
+  const { tidsvindu, setTidsvindu, fraDato, tilDato, setCustomDatoer } =
+    useTidsvindu();
+  const [feilmelding, setFeilmelding] = useState<string | null>(null);
+  const [visCustom, setVisCustom] = useState(tidsvindu === "tilpasset");
+
+  const tiÅrTilbake = new Date();
+  tiÅrTilbake.setFullYear(tiÅrTilbake.getFullYear() - 10);
+  const iDag = new Date();
+
+  const fraDatoPicker = useDatepicker({
+    defaultSelected: fraDato,
+    fromDate: tiÅrTilbake,
+    toDate: iDag,
+    onDateChange: (dato) => {
+      if (dato) {
+        const feil = setCustomDatoer(dato, tilDato);
+        setFeilmelding(feilTilMelding(feil));
       }
-      className="bg-ax-bg-default rounded-lg w-fit"
-    >
-      <ToggleGroupItem value="6 måneder" label="6 mnd" />
-      <ToggleGroupItem value="1 år" label="1 år" />
-      <ToggleGroupItem value="3 år" label="3 år" />
-      <ToggleGroupItem value="10 år" label="10 år" />
-    </ToggleGroup>
+    },
+  });
+
+  const tilDatoPicker = useDatepicker({
+    defaultSelected: tilDato,
+    fromDate: tiÅrTilbake,
+    toDate: iDag,
+    onDateChange: (dato) => {
+      if (dato) {
+        const feil = setCustomDatoer(fraDato, dato);
+        setFeilmelding(feilTilMelding(feil));
+      }
+    },
+  });
+
+  const handleToggleChange = (value: string) => {
+    if (value === "tilpasset") {
+      setVisCustom(true);
+      return;
+    }
+    setVisCustom(false);
+    setFeilmelding(null);
+    setTidsvindu(value as PresetPeriode);
+  };
+
+  const aktivVerdi = visCustom ? "tilpasset" : tidsvindu;
+
+  return (
+    <div className="flex flex-col gap-2">
+      <ToggleGroup
+        data-color="neutral"
+        size="small"
+        value={aktivVerdi}
+        aria-label="Velg tidsvindu"
+        onChange={handleToggleChange}
+        className="bg-ax-bg-default rounded-lg w-fit"
+      >
+        <ToggleGroupItem value="6 måneder" label="6 mnd" />
+        <ToggleGroupItem value="1 år" label="1 år" />
+        <ToggleGroupItem value="3 år" label="3 år" />
+        <ToggleGroupItem value="10 år" label="10 år" />
+        <ToggleGroupItem value="tilpasset" label="Tilpasset" />
+      </ToggleGroup>
+
+      {visCustom && (
+        <div className="flex gap-4 items-end">
+          <DatePicker {...fraDatoPicker.datepickerProps} dropdownCaption>
+            <DatePicker.Input
+              {...fraDatoPicker.inputProps}
+              label="Fra dato"
+              size="small"
+              error={feilmelding}
+            />
+          </DatePicker>
+          <DatePicker {...tilDatoPicker.datepickerProps} dropdownCaption>
+            <DatePicker.Input
+              {...tilDatoPicker.inputProps}
+              label="Til dato"
+              size="small"
+            />
+          </DatePicker>
+        </div>
+      )}
+    </div>
   );
 };
+
+function feilTilMelding(feil: TidsvinduValideringsfeil | null): string | null {
+  switch (feil) {
+    case "fra-etter-til":
+      return "Fra-dato må være før til-dato";
+    case "for-langt-tilbake":
+      return "Kan ikke gå mer enn 10 år tilbake";
+    case "fremtidig-dato":
+      return "Kan ikke velge dato i fremtiden";
+    case null:
+      return null;
+  }
+}
