@@ -27,7 +27,7 @@ export function StatistikkKort({
   const beskrivelseId = `${id}-beskrivelse`;
 
   if (isLoading) {
-    return <StatistikkKortSkeleton label={label} />;
+    return <StatistikkKortSkeleton />;
   }
 
   return (
@@ -52,19 +52,13 @@ export function StatistikkKort({
   );
 }
 
-type StatistikkKortSkeletonProps = {
-  label: string;
-};
-
 /**
  * Skeleton-versjon av StatistikkKort for lastetilstand.
  */
-function StatistikkKortSkeleton({ label }: StatistikkKortSkeletonProps) {
+function StatistikkKortSkeleton() {
   return (
     <div className="rounded-lg border border-ax-neutral-200 bg-ax-surface-subtle p-4">
-      <Label as="span" size="small">
-        {label}
-      </Label>
+      <Skeleton variant="text" width="50%" height="20px" className="mb-1" />
       <Skeleton variant="text" width="60%" height="32px" className="mb-2" />
     </div>
   );
