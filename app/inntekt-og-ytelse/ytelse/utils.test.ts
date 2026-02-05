@@ -1,9 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  beregnYtelseStatistikk,
-  formaterPeriode,
-  grupperSammenhengendePerioder,
-} from "./utils";
+import { beregnYtelseStatistikk, grupperSammenhengendePerioder } from "./utils";
 
 function lagPeriode(fom: string, tom: string, bruttoBeløp = 1000, beløp = 800) {
   return { periode: { fom, tom }, beløp, bruttoBeløp };
@@ -147,8 +143,6 @@ describe("beregnYtelseStatistikk", () => {
       antallPerioder: 0,
       totalBrutto: 0,
       totalNetto: 0,
-      størsteUtbetalingPeriode: null,
-      gjennomsnittligUtbetaling: 0,
     });
   });
 
@@ -177,42 +171,6 @@ describe("beregnYtelseStatistikk", () => {
     expect(resultat.totalNetto).toBe(2300);
   });
 
-  it("finner største utbetaling basert på bruttoBeløp", () => {
-    const perioder = [
-      lagPeriode("2024-01-01", "2024-01-31", 1000, 800),
-      lagPeriode("2024-02-01", "2024-02-28", 3000, 2000),
-      lagPeriode("2024-03-01", "2024-03-31", 2000, 1500),
-    ];
-
-    const resultat = beregnYtelseStatistikk(perioder);
-
-    expect(resultat.størsteUtbetalingPeriode?.bruttoBeløp).toBe(3000);
-    expect(resultat.størsteUtbetalingPeriode?.periode.fom).toBe("2024-02-01");
-  });
-
-  it("ekskluderer tilbakekrevinger fra største utbetaling", () => {
-    const perioder = [
-      lagPeriode("2024-01-01", "2024-01-31", 1000, 800),
-      lagPeriode("2024-02-01", "2024-02-28", 5000, -500), // tilbakekreving med høy brutto
-    ];
-
-    const resultat = beregnYtelseStatistikk(perioder);
-
-    expect(resultat.størsteUtbetalingPeriode?.bruttoBeløp).toBe(1000);
-  });
-
-  it("beregner gjennomsnitt kun fra utbetalinger", () => {
-    const perioder = [
-      lagPeriode("2024-01-01", "2024-01-31", 1000, 800),
-      lagPeriode("2024-02-01", "2024-02-28", 2000, 1600),
-      lagPeriode("2024-03-01", "2024-03-31", 500, -500), // tilbakekreving
-    ];
-
-    const resultat = beregnYtelseStatistikk(perioder);
-
-    expect(resultat.gjennomsnittligUtbetaling).toBe(1500); // (1000 + 2000) / 2
-  });
-
   it("teller unike perioder via grupperSammenhengendePerioder", () => {
     const perioder = [
       lagPeriode("2024-01-01", "2024-01-31", 1000, 800),
@@ -223,28 +181,5 @@ describe("beregnYtelseStatistikk", () => {
     const resultat = beregnYtelseStatistikk(perioder);
 
     expect(resultat.antallPerioder).toBe(2);
-  });
-});
-
-describe("formaterPeriode", () => {
-  const mockFormaterDato = (dato: string) => {
-    const d = new Date(dato);
-    return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
-  };
-
-  it("returnerer kun én dato når fom og tom er like", () => {
-    const periode = { fom: "2024-01-15", tom: "2024-01-15" };
-
-    const resultat = formaterPeriode(periode, mockFormaterDato);
-
-    expect(resultat).toBe("15.1.2024");
-  });
-
-  it("returnerer periode-range når fom og tom er ulike", () => {
-    const periode = { fom: "2024-01-01", tom: "2024-01-31" };
-
-    const resultat = formaterPeriode(periode, mockFormaterDato);
-
-    expect(resultat).toBe("1.1.2024 – 31.1.2024");
   });
 });
