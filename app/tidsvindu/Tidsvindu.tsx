@@ -4,17 +4,17 @@ import { createContext, use, useMemo, useState } from "react";
 import { useSearchParams } from "react-router";
 
 type TidsvinduPeriode = "6 måneder" | "1 år" | "3 år" | "10 år" | "tilpasset";
+const PRESET_MÅNEDER = [6, 12, 36, 120] as const;
 
 type TidsvinduContextType = {
-  tidsvindu: TidsvinduPeriode;
-  setTidsvindu: (tidsvindu: TidsvinduPeriode) => void;
-  customFraDato: Date | null;
-  customTilDato: Date | null;
+  fraDato: Date;
+  tilDato: Date;
+  setTidsvindu: (tidsvindu: Exclude<TidsvinduPeriode, "tilpasset">) => void;
   setCustomDatoer: (fra: Date, til: Date) => void;
 };
 const TidsvinduContext = createContext<TidsvinduContextType | null>(null);
 
-/** Konverterer tidsvindu-periode til antall måneder (kun for preset-perioder) */
+/** Konverterer tidsvindu-periode til antall måneder */
 export function tidsvinduTilMåneder(
   tidsvindu: Exclude<TidsvinduPeriode, "tilpasset">,
 ): number {
@@ -49,6 +49,50 @@ export function beregnMånederMellomDatoer(fraDato: Date, tilDato: Date): number
   );
 }
 
+/** Deriverer hvilken preset som matcher datoene, eller "tilpasset" */
+export function utledTidsvinduPeriode(
+  fraDato: Date,
+  tilDato: Date,
+  nå: Date = new Date(),
+): TidsvinduPeriode {
+  // Sjekk om tilDato er dagens dato (samme dag)
+  const erTilDatoIDag =
+    tilDato.getFullYear() === nå.getFullYear() &&
+    tilDato.getMonth() === nå.getMonth() &&
+    tilDato.getDate() === nå.getDate();
+
+  if (!erTilDatoIDag) {
+    return "tilpasset";
+  }
+
+  const måneder = beregnMånederMellomDatoer(fraDato, tilDato);
+
+  // Sjekk også at dagen matcher (ikke bare måneden)
+  const forventetFraDato = new Date(nå);
+  forventetFraDato.setMonth(forventetFraDato.getMonth() - måneder);
+  const erFraDatoKorrekt =
+    fraDato.getFullYear() === forventetFraDato.getFullYear() &&
+    fraDato.getMonth() === forventetFraDato.getMonth() &&
+    fraDato.getDate() === forventetFraDato.getDate();
+
+  if (!erFraDatoKorrekt) {
+    return "tilpasset";
+  }
+
+  switch (måneder) {
+    case 6:
+      return "6 måneder";
+    case 12:
+      return "1 år";
+    case 36:
+      return "3 år";
+    case 120:
+      return "10 år";
+    default:
+      return "tilpasset";
+  }
+}
+
 /**
  * Holder styr på hvilket tidsvindu som skal vises i visualiseringer
  */
@@ -59,30 +103,31 @@ export const TidsvinduProvider = ({
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const utvidet = searchParams.get("utvidet") === "true";
-  const [tidsvindu, internalSetTidsvindu] = useState<TidsvinduPeriode>(
-    utvidet ? "10 år" : "3 år",
-  );
-  const [customFraDato, setCustomFraDato] = useState<Date | null>(null);
-  const [customTilDato, setCustomTilDato] = useState<Date | null>(null);
+
+  // Initialiser med preset basert på URL-param
+  const initialDatoer = beregnTidsvinduDatoer(utvidet ? 120 : 36);
+  const [fraDato, setFraDato] = useState<Date>(initialDatoer.fraDato);
+  const [tilDato, setTilDato] = useState<Date>(initialDatoer.tilDato);
 
   const context = useMemo(
     () => ({
-      tidsvindu,
-      setTidsvindu: (tidsvindu: TidsvinduPeriode) => {
-        internalSetTidsvindu(tidsvindu);
+      fraDato,
+      tilDato,
+      setTidsvindu: (tidsvindu: Exclude<TidsvinduPeriode, "tilpasset">) => {
+        const måneder = tidsvinduTilMåneder(tidsvindu);
+        const datoer = beregnTidsvinduDatoer(måneder);
+        setFraDato(datoer.fraDato);
+        setTilDato(datoer.tilDato);
         if (tidsvindu === "10 år") {
           setSearchParams({ utvidet: "true" });
         }
       },
-      customFraDato,
-      customTilDato,
       setCustomDatoer: (fra: Date, til: Date) => {
-        setCustomFraDato(fra);
-        setCustomTilDato(til);
-        internalSetTidsvindu("tilpasset");
+        setFraDato(fra);
+        setTilDato(til);
       },
     }),
-    [tidsvindu, customFraDato, customTilDato, setSearchParams],
+    [fraDato, tilDato, setSearchParams],
   );
   return (
     <TidsvinduContext.Provider value={context}>
@@ -100,36 +145,16 @@ export const useTidsvindu = () => {
     throw new Error("useTidsvindu må brukes innenfor en TidsvinduProvider");
   }
 
-  let fraDato: Date;
-  let tilDato: Date;
-
-  if (
-    context.tidsvindu === "tilpasset" &&
-    context.customFraDato &&
-    context.customTilDato
-  ) {
-    fraDato = context.customFraDato;
-    tilDato = context.customTilDato;
-  } else if (context.tidsvindu !== "tilpasset") {
-    const antallMåneder = tidsvinduTilMåneder(context.tidsvindu);
-    const datoer = beregnTidsvinduDatoer(antallMåneder);
-    fraDato = datoer.fraDato;
-    tilDato = datoer.tilDato;
-  } else {
-    // Tilpasset uten datoer satt - fall tilbake til 3 år
-    const datoer = beregnTidsvinduDatoer(36);
-    fraDato = datoer.fraDato;
-    tilDato = datoer.tilDato;
-  }
-
-  // Beregn antall måneder fra differansen mellom datoene
-  const tidsvinduIAntallMåneder = beregnMånederMellomDatoer(fraDato, tilDato);
+  const tidsvinduIAntallMåneder = beregnMånederMellomDatoer(
+    context.fraDato,
+    context.tilDato,
+  );
+  const tidsvindu = utledTidsvinduPeriode(context.fraDato, context.tilDato);
 
   return {
     ...context,
+    tidsvindu,
     tidsvinduIAntallMåneder,
-    fraDato,
-    tilDato,
   };
 };
 
@@ -144,7 +169,9 @@ export const TidsvinduVelger = () => {
       size="small"
       value={tidsvindu}
       aria-label="Velg tidsvindu"
-      onChange={(value) => setTidsvindu(value as TidsvinduPeriode)}
+      onChange={(value) =>
+        setTidsvindu(value as Exclude<TidsvinduPeriode, "tilpasset">)
+      }
       className="bg-ax-bg-default rounded-lg w-fit"
     >
       <ToggleGroupItem value="6 måneder" label="6 mnd" />
