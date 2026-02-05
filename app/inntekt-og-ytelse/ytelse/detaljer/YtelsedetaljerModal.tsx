@@ -1,6 +1,7 @@
 import { Button, Tabs } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useMemo } from "react";
+import { sporHendelse } from "~/analytics/analytics";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { MeldekortProvider } from "~/meldekort/MeldekortContext";
@@ -88,14 +89,44 @@ export function YtelsedetaljerModal({
           <Tabs.List>
             {visMeldekortTab ? (
               <>
-                <Tabs.Tab value="meldekort" label="Meldekort" />
-                <Tabs.Tab value="oppsummering" label="Oppsummering" />
-                <Tabs.Tab value="utbetalinger" label="Utbetalinger" />
+                <Tabs.Tab
+                  value="meldekort"
+                  label="Meldekort"
+                  onClick={() =>
+                    sporHendelse("ytelse modal tab meldekort åpnet")
+                  }
+                />
+                <Tabs.Tab
+                  value="oppsummering"
+                  label="Oppsummering"
+                  onClick={() =>
+                    sporHendelse("ytelse modal tab oppsummering åpnet")
+                  }
+                />
+                <Tabs.Tab
+                  value="utbetalinger"
+                  label="Utbetalinger"
+                  onClick={() =>
+                    sporHendelse("ytelse modal tab utbetalinger åpnet")
+                  }
+                />
               </>
             ) : (
               <>
-                <Tabs.Tab value="utbetalinger" label="Utbetalinger" />
-                <Tabs.Tab value="oppsummering" label="Oppsummering" />
+                <Tabs.Tab
+                  value="utbetalinger"
+                  label="Utbetalinger"
+                  onClick={() =>
+                    sporHendelse("ytelse modal tab utbetalinger åpnet")
+                  }
+                />
+                <Tabs.Tab
+                  value="oppsummering"
+                  label="Oppsummering"
+                  onClick={() =>
+                    sporHendelse("ytelse modal tab oppsummering åpnet")
+                  }
+                />
               </>
             )}
           </Tabs.List>

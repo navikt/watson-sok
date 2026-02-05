@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { beregnTidsvinduDatoer, tidsvinduTilMåneder } from "./Tidsvindu";
+import {
+  beregnMånederMellomDatoer,
+  beregnTidsvinduDatoer,
+  feilTilMelding,
+  tidsvinduTilMåneder,
+  utledTidsvinduPeriode,
+  validerTidsvinduDatoer,
+} from "./Tidsvindu";
 
 describe("tidsvinduTilMåneder", () => {
   it("returnerer 6 for '6 måneder'", () => {
@@ -82,5 +89,180 @@ describe("beregnTidsvinduDatoer", () => {
 
     expect(fraDato.getFullYear()).toBe(2023);
     expect(fraDato.getMonth()).toBe(10); // November
+  });
+});
+
+describe("beregnMånederMellomDatoer", () => {
+  it("returnerer 0 for samme måned", () => {
+    const fra = new Date("2024-06-01");
+    const til = new Date("2024-06-30");
+
+    expect(beregnMånederMellomDatoer(fra, til)).toBe(0);
+  });
+
+  it("beregner måneder innenfor samme år", () => {
+    const fra = new Date("2024-01-15");
+    const til = new Date("2024-06-15");
+
+    expect(beregnMånederMellomDatoer(fra, til)).toBe(5);
+  });
+
+  it("beregner måneder på tvers av år", () => {
+    const fra = new Date("2023-06-15");
+    const til = new Date("2024-06-15");
+
+    expect(beregnMånederMellomDatoer(fra, til)).toBe(12);
+  });
+
+  it("beregner måneder for 10 år", () => {
+    const fra = new Date("2014-06-15");
+    const til = new Date("2024-06-15");
+
+    expect(beregnMånederMellomDatoer(fra, til)).toBe(120);
+  });
+
+  it("håndterer tilpasset periode", () => {
+    const fra = new Date("2024-03-01");
+    const til = new Date("2024-05-15");
+
+    expect(beregnMånederMellomDatoer(fra, til)).toBe(2);
+  });
+});
+
+describe("utledTidsvinduPeriode", () => {
+  it("returnerer '6 måneder' for eksakt 6 måneder fra i dag", () => {
+    const nå = new Date("2024-06-15");
+    const { fraDato, tilDato } = beregnTidsvinduDatoer(6, nå);
+
+    expect(utledTidsvinduPeriode(fraDato, tilDato, nå)).toBe("6 måneder");
+  });
+
+  it("returnerer '1 år' for eksakt 12 måneder fra i dag", () => {
+    const nå = new Date("2024-06-15");
+    const { fraDato, tilDato } = beregnTidsvinduDatoer(12, nå);
+
+    expect(utledTidsvinduPeriode(fraDato, tilDato, nå)).toBe("1 år");
+  });
+
+  it("returnerer '3 år' for eksakt 36 måneder fra i dag", () => {
+    const nå = new Date("2024-06-15");
+    const { fraDato, tilDato } = beregnTidsvinduDatoer(36, nå);
+
+    expect(utledTidsvinduPeriode(fraDato, tilDato, nå)).toBe("3 år");
+  });
+
+  it("returnerer '10 år' for eksakt 120 måneder fra i dag", () => {
+    const nå = new Date("2024-06-15");
+    const { fraDato, tilDato } = beregnTidsvinduDatoer(120, nå);
+
+    expect(utledTidsvinduPeriode(fraDato, tilDato, nå)).toBe("10 år");
+  });
+
+  it("returnerer 'tilpasset' når tilDato ikke er i dag", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2024-01-15");
+    const tilDato = new Date("2024-05-15"); // Ikke i dag
+
+    expect(utledTidsvinduPeriode(fraDato, tilDato, nå)).toBe("tilpasset");
+  });
+
+  it("returnerer 'tilpasset' for ikke-standard antall måneder", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2024-02-15"); // 4 måneder
+    const tilDato = new Date("2024-06-15");
+
+    expect(utledTidsvinduPeriode(fraDato, tilDato, nå)).toBe("tilpasset");
+  });
+
+  it("returnerer 'tilpasset' når fraDato har feil dag", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2023-12-01"); // 6 måneder, men feil dag
+    const tilDato = new Date("2024-06-15");
+
+    expect(utledTidsvinduPeriode(fraDato, tilDato, nå)).toBe("tilpasset");
+  });
+});
+
+describe("validerTidsvinduDatoer", () => {
+  it("returnerer null for gyldige datoer", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2024-01-15");
+    const tilDato = new Date("2024-06-15");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBeNull();
+  });
+
+  it("returnerer 'fra-etter-til' når fra-dato er etter til-dato", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2024-07-15");
+    const tilDato = new Date("2024-06-15");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBe("fra-etter-til");
+  });
+
+  it("returnerer 'fremtidig-dato' når til-dato er i fremtiden", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2024-01-15");
+    const tilDato = new Date("2024-07-15");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBe("fremtidig-dato");
+  });
+
+  it("returnerer 'for-langt-tilbake' når fra-dato er mer enn 10 år tilbake", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2014-06-14"); // Én dag før 10-års grensen
+    const tilDato = new Date("2024-06-15");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBe(
+      "for-langt-tilbake",
+    );
+  });
+
+  it("godtar fra-dato på eksakt 10-års grensen", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2014-06-15"); // Eksakt 10 år
+    const tilDato = new Date("2024-06-15");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBeNull();
+  });
+
+  it("godtar til-dato på dagens dato", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2024-01-15");
+    const tilDato = new Date("2024-06-15"); // Samme dag som nå
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBeNull();
+  });
+
+  it("godtar datoer innenfor gyldig område", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2020-03-01");
+    const tilDato = new Date("2023-12-31");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBeNull();
+  });
+});
+
+describe("feilTilMelding", () => {
+  it("returnerer riktig melding for 'fra-etter-til'", () => {
+    expect(feilTilMelding("fra-etter-til")).toBe(
+      "Fra-dato må være før til-dato",
+    );
+  });
+
+  it("returnerer riktig melding for 'for-langt-tilbake'", () => {
+    expect(feilTilMelding("for-langt-tilbake")).toBe(
+      "Kan ikke gå mer enn 10 år tilbake",
+    );
+  });
+
+  it("returnerer riktig melding for 'fremtidig-dato'", () => {
+    expect(feilTilMelding("fremtidig-dato")).toBe(
+      "Kan ikke velge dato i fremtiden",
+    );
+  });
+
+  it("returnerer null når det ikke er feil", () => {
+    expect(feilTilMelding(null)).toBeNull();
   });
 });
