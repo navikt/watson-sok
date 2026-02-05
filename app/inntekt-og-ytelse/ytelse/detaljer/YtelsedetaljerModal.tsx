@@ -77,12 +77,19 @@ export function YtelsedetaljerModal({
       }}
     >
       <ModalBody className="min-w-md flex flex-col gap-8">
-        <Tabs defaultValue="oppsummering" fill>
+        <Tabs defaultValue={visMeldekortTab ? "meldekort" : "utbetalinger"} fill>
           <Tabs.List>
-            <Tabs.Tab value="oppsummering" label="Oppsummering" />
-            <Tabs.Tab value="utbetalinger" label="Utbetalinger" />
-            {visMeldekortTab && (
-              <Tabs.Tab value="meldekort" label="Meldekort" />
+            {visMeldekortTab ? (
+              <>
+                <Tabs.Tab value="meldekort" label="Meldekort" />
+                <Tabs.Tab value="oppsummering" label="Oppsummering" />
+                <Tabs.Tab value="utbetalinger" label="Utbetalinger" />
+              </>
+            ) : (
+              <>
+                <Tabs.Tab value="utbetalinger" label="Utbetalinger" />
+                <Tabs.Tab value="oppsummering" label="Oppsummering" />
+              </>
             )}
           </Tabs.List>
           <Tabs.Panel value="oppsummering" className="pt-4">
