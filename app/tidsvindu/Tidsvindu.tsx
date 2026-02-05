@@ -172,18 +172,20 @@ export const TidsvinduProvider = ({
         }
       },
       setCustomDatoer: (fra: Date, til: Date) => {
+        const feil = validerTidsvinduDatoer(fra, til);
+        if (feil) {
+          return feil;
+        }
+
+        setFraDato(fra);
+        setTilDato(til);
+
         const nå = new Date();
         const treÅrSiden = new Date(nå);
         treÅrSiden.setFullYear(treÅrSiden.getFullYear() - 3);
         const erUtvidet = til > treÅrSiden;
         setSearchParams(erUtvidet ? { utvidet: "true" } : {});
 
-        const feil = validerTidsvinduDatoer(fra, til);
-        if (feil) {
-          return feil;
-        }
-        setFraDato(fra);
-        setTilDato(til);
         return null;
       },
     }),
