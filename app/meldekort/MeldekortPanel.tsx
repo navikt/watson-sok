@@ -13,10 +13,13 @@ import {
   Tooltip,
 } from "@navikt/ds-react";
 import { useEffect, useMemo, useState } from "react";
+import { StatistikkKort } from "~/paneler/StatistikkKort";
+import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { formaterDato, formaterTilIsoDato } from "~/utils/date-utils";
 import type { AktivitetType, Dag, MeldekortRespons } from "./domene";
 import { useMeldekort } from "./MeldekortContext";
+import { beregnAktivitetStatistikk } from "./utils";
 
 /** Viser meldekort for dagpenger */
 export function MeldekortPanel() {
@@ -91,6 +94,36 @@ const MeldekortPanelSkeleton = () => {
           </div>
         </div>
       </div>
+      <div className="flex flex-col gap-4 mt-4">
+        <div>
+          <Skeleton
+            variant="text"
+            width="120px"
+            height="20px"
+            className="mb-2"
+          />
+          <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
+            <StatistikkKort label="Jobb" verdi="" isLoading />
+            <StatistikkKort label="Ferie" verdi="" isLoading />
+            <StatistikkKort label="Kurs" verdi="" isLoading />
+            <StatistikkKort label="Sykdom" verdi="" isLoading />
+          </div>
+        </div>
+        <div>
+          <Skeleton
+            variant="text"
+            width="120px"
+            height="20px"
+            className="mb-2"
+          />
+          <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
+            <StatistikkKort label="Jobb" verdi="" isLoading />
+            <StatistikkKort label="Ferie" verdi="" isLoading />
+            <StatistikkKort label="Kurs" verdi="" isLoading />
+            <StatistikkKort label="Sykdom" verdi="" isLoading />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -118,6 +151,7 @@ type MeldekortVisningProps = {
 };
 
 const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
+  const { fraDato: tidsvinduFra, tilDato: tidsvinduTil } = useTidsvindu();
   const sorterteMeldekort = useMemo(
     () =>
       [...(meldekort ?? [])].sort((a, b) =>
@@ -136,6 +170,19 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
   const aktivtMeldekort = sorterteMeldekort[aktivIndex];
   const kanGåTilForrige = aktivIndex < sorterteMeldekort.length - 1;
   const kanGåTilNeste = aktivIndex > 0;
+
+  const aktivtMeldekortStatistikk = useMemo(
+    () => beregnAktivitetStatistikk(aktivtMeldekort.dager),
+    [aktivtMeldekort],
+  );
+
+  const totalStatistikk = useMemo(() => {
+    const filtrerteMeldekort = sorterteMeldekort.filter(
+      (m) => new Date(m.periode.tilOgMed) >= tidsvinduFra,
+    );
+    const alleDager = filtrerteMeldekort.flatMap((m) => m.dager);
+    return beregnAktivitetStatistikk(alleDager);
+  }, [sorterteMeldekort, tidsvinduFra]);
 
   const velgRelevantMeldekort = (dato: Date | undefined) => {
     if (!dato) {
@@ -255,6 +302,55 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
         </div>
       </div>
       <MeldekortDager dager={aktivtMeldekort.dager} />
+      <div className="flex flex-col gap-4 mt-4">
+        <div>
+          <Heading level="3" size="xsmall" className="mb-2">
+            Dette meldekortet
+          </Heading>
+          <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
+            <StatistikkKort
+              label="Jobb"
+              verdi={`${aktivtMeldekortStatistikk.arbeidTimer} t`}
+            />
+            <StatistikkKort
+              label="Ferie"
+              verdi={`${aktivtMeldekortStatistikk.ferieDager} ${aktivtMeldekortStatistikk.ferieDager === 1 ? "dag" : "dager"}`}
+            />
+            <StatistikkKort
+              label="Kurs"
+              verdi={`${aktivtMeldekortStatistikk.kursDager} ${aktivtMeldekortStatistikk.kursDager === 1 ? "dag" : "dager"}`}
+            />
+            <StatistikkKort
+              label="Sykdom"
+              verdi={`${aktivtMeldekortStatistikk.sykdomDager} ${aktivtMeldekortStatistikk.sykdomDager === 1 ? "dag" : "dager"}`}
+            />
+          </div>
+        </div>
+        <div>
+          <Heading level="3" size="xsmall" className="mb-2">
+            Totalt fra {formaterDato(tidsvinduFra.toISOString())} til{" "}
+            {formaterDato(tidsvinduTil.toISOString())}
+          </Heading>
+          <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
+            <StatistikkKort
+              label="Jobb"
+              verdi={`${totalStatistikk.arbeidTimer} t`}
+            />
+            <StatistikkKort
+              label="Ferie"
+              verdi={`${totalStatistikk.ferieDager} ${totalStatistikk.ferieDager === 1 ? "dag" : "dager"}`}
+            />
+            <StatistikkKort
+              label="Kurs"
+              verdi={`${totalStatistikk.kursDager} ${totalStatistikk.kursDager === 1 ? "dag" : "dager"}`}
+            />
+            <StatistikkKort
+              label="Sykdom"
+              verdi={`${totalStatistikk.sykdomDager} ${totalStatistikk.sykdomDager === 1 ? "dag" : "dager"}`}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
