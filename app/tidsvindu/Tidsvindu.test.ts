@@ -4,6 +4,7 @@ import {
   beregnTidsvinduDatoer,
   tidsvinduTilMåneder,
   utledTidsvinduPeriode,
+  validerTidsvinduDatoer,
 } from "./Tidsvindu";
 
 describe("tidsvinduTilMåneder", () => {
@@ -178,5 +179,65 @@ describe("utledTidsvinduPeriode", () => {
     const tilDato = new Date("2024-06-15");
 
     expect(utledTidsvinduPeriode(fraDato, tilDato, nå)).toBe("tilpasset");
+  });
+});
+
+describe("validerTidsvinduDatoer", () => {
+  it("returnerer null for gyldige datoer", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2024-01-15");
+    const tilDato = new Date("2024-06-15");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBeNull();
+  });
+
+  it("returnerer 'fra-etter-til' når fra-dato er etter til-dato", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2024-07-15");
+    const tilDato = new Date("2024-06-15");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBe("fra-etter-til");
+  });
+
+  it("returnerer 'fremtidig-dato' når til-dato er i fremtiden", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2024-01-15");
+    const tilDato = new Date("2024-07-15");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBe("fremtidig-dato");
+  });
+
+  it("returnerer 'for-langt-tilbake' når fra-dato er mer enn 10 år tilbake", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2014-06-14"); // Én dag før 10-års grensen
+    const tilDato = new Date("2024-06-15");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBe(
+      "for-langt-tilbake",
+    );
+  });
+
+  it("godtar fra-dato på eksakt 10-års grensen", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2014-06-15"); // Eksakt 10 år
+    const tilDato = new Date("2024-06-15");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBeNull();
+  });
+
+  it("godtar til-dato på dagens dato", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2024-01-15");
+    const tilDato = new Date("2024-06-15"); // Samme dag som nå
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBeNull();
+  });
+
+  it("godtar datoer innenfor gyldig område", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2020-03-01");
+    const tilDato = new Date("2023-12-31");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBeNull();
   });
 });

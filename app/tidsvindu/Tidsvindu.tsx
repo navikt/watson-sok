@@ -4,13 +4,12 @@ import { createContext, use, useMemo, useState } from "react";
 import { useSearchParams } from "react-router";
 
 type TidsvinduPeriode = "6 måneder" | "1 år" | "3 år" | "10 år" | "tilpasset";
-const PRESET_MÅNEDER = [6, 12, 36, 120] as const;
 
 type TidsvinduContextType = {
   fraDato: Date;
   tilDato: Date;
   setTidsvindu: (tidsvindu: Exclude<TidsvinduPeriode, "tilpasset">) => void;
-  setCustomDatoer: (fra: Date, til: Date) => void;
+  setCustomDatoer: (fra: Date, til: Date) => TidsvinduValideringsfeil | null;
 };
 const TidsvinduContext = createContext<TidsvinduContextType | null>(null);
 
@@ -47,6 +46,48 @@ export function beregnMånederMellomDatoer(fraDato: Date, tilDato: Date): number
     (tilDato.getFullYear() - fraDato.getFullYear()) * 12 +
     (tilDato.getMonth() - fraDato.getMonth())
   );
+}
+
+export type TidsvinduValideringsfeil =
+  | "fra-etter-til"
+  | "for-langt-tilbake"
+  | "fremtidig-dato";
+
+/** Validerer at datoene er gyldige for tidsvindu */
+export function validerTidsvinduDatoer(
+  fraDato: Date,
+  tilDato: Date,
+  nå: Date = new Date(),
+): TidsvinduValideringsfeil | null {
+  // Fra-dato må være før til-dato
+  if (fraDato > tilDato) {
+    return "fra-etter-til";
+  }
+
+  // Til-dato kan ikke være i fremtiden
+  const iDag = new Date(nå.getFullYear(), nå.getMonth(), nå.getDate());
+  const tilDatoNormalisert = new Date(
+    tilDato.getFullYear(),
+    tilDato.getMonth(),
+    tilDato.getDate(),
+  );
+  if (tilDatoNormalisert > iDag) {
+    return "fremtidig-dato";
+  }
+
+  // Fra-dato kan ikke være mer enn 10 år tilbake
+  const tiÅrTilbake = new Date(nå);
+  tiÅrTilbake.setFullYear(tiÅrTilbake.getFullYear() - 10);
+  const tiÅrTilbakeNormalisert = new Date(
+    tiÅrTilbake.getFullYear(),
+    tiÅrTilbake.getMonth(),
+    tiÅrTilbake.getDate(),
+  );
+  if (fraDato < tiÅrTilbakeNormalisert) {
+    return "for-langt-tilbake";
+  }
+
+  return null;
 }
 
 /** Deriverer hvilken preset som matcher datoene, eller "tilpasset" */
@@ -123,8 +164,13 @@ export const TidsvinduProvider = ({
         }
       },
       setCustomDatoer: (fra: Date, til: Date) => {
+        const feil = validerTidsvinduDatoer(fra, til);
+        if (feil) {
+          return feil;
+        }
         setFraDato(fra);
         setTilDato(til);
+        return null;
       },
     }),
     [fraDato, tilDato, setSearchParams],
