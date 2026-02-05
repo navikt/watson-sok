@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { beregnTidsvinduDatoer, tidsvinduTilMåneder } from "./Tidsvindu";
+import {
+  beregnMånederMellomDatoer,
+  beregnTidsvinduDatoer,
+  tidsvinduTilMåneder,
+} from "./Tidsvindu";
 
 describe("tidsvinduTilMåneder", () => {
   it("returnerer 6 for '6 måneder'", () => {
@@ -82,5 +86,42 @@ describe("beregnTidsvinduDatoer", () => {
 
     expect(fraDato.getFullYear()).toBe(2023);
     expect(fraDato.getMonth()).toBe(10); // November
+  });
+});
+
+describe("beregnMånederMellomDatoer", () => {
+  it("returnerer 0 for samme måned", () => {
+    const fra = new Date("2024-06-01");
+    const til = new Date("2024-06-30");
+
+    expect(beregnMånederMellomDatoer(fra, til)).toBe(0);
+  });
+
+  it("beregner måneder innenfor samme år", () => {
+    const fra = new Date("2024-01-15");
+    const til = new Date("2024-06-15");
+
+    expect(beregnMånederMellomDatoer(fra, til)).toBe(5);
+  });
+
+  it("beregner måneder på tvers av år", () => {
+    const fra = new Date("2023-06-15");
+    const til = new Date("2024-06-15");
+
+    expect(beregnMånederMellomDatoer(fra, til)).toBe(12);
+  });
+
+  it("beregner måneder for 10 år", () => {
+    const fra = new Date("2014-06-15");
+    const til = new Date("2024-06-15");
+
+    expect(beregnMånederMellomDatoer(fra, til)).toBe(120);
+  });
+
+  it("håndterer tilpasset periode", () => {
+    const fra = new Date("2024-03-01");
+    const til = new Date("2024-05-15");
+
+    expect(beregnMånederMellomDatoer(fra, til)).toBe(2);
   });
 });
