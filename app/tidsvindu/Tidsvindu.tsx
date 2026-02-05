@@ -301,6 +301,7 @@ export const TidsvinduVelger = () => {
                 label="Fra dato"
                 size="small"
                 error={Boolean(feilmelding)}
+                aria-describedby={feilmelding ? errorId : undefined}
               />
             </DatePicker>
             <DatePicker {...tilDatoPicker.datepickerProps} dropdownCaption>
@@ -309,6 +310,7 @@ export const TidsvinduVelger = () => {
                 label="Til dato"
                 size="small"
                 error={Boolean(feilmelding)}
+                aria-describedby={feilmelding ? errorId : undefined}
               />
             </DatePicker>
           </div>
