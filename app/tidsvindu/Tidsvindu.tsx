@@ -298,7 +298,7 @@ export const TidsvinduVelger = () => {
                 {...fraDatoPicker.inputProps}
                 label="Fra dato"
                 size="small"
-                errorId={errorId}
+                error={Boolean(feilmelding)}
               />
             </DatePicker>
             <DatePicker {...tilDatoPicker.datepickerProps} dropdownCaption>
@@ -306,6 +306,7 @@ export const TidsvinduVelger = () => {
                 {...tilDatoPicker.inputProps}
                 label="Til dato"
                 size="small"
+                error={Boolean(feilmelding)}
               />
             </DatePicker>
           </div>
