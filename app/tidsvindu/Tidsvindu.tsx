@@ -8,6 +8,7 @@ import {
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { createContext, use, useId, useMemo, useState } from "react";
 import { useSearchParams } from "react-router";
+import { sporHendelse } from "~/analytics/analytics";
 
 type TidsvinduPeriode = "6 måneder" | "1 år" | "3 år" | "10 år" | "tilpasset";
 type PresetPeriode = Exclude<TidsvinduPeriode, "tilpasset">;
@@ -265,6 +266,7 @@ export const TidsvinduVelger = () => {
     setVisCustom(false);
     setFeilmelding(null);
     setTidsvindu(value as PresetPeriode);
+    sporHendelse("tidsvindu endret", { tidsvindu: value });
   };
 
   const aktivVerdi = visCustom ? "tilpasset" : tidsvindu;
