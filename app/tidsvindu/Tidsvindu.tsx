@@ -286,7 +286,7 @@ export const TidsvinduVelger = () => {
         <ToggleGroupItem
           value="tilpasset"
           aria-label="Tilpasset tidsvindu"
-          icon={<CalendarIcon />}
+          icon={<CalendarIcon aria-hidden />}
         />
       </ToggleGroup>
 
