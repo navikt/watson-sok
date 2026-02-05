@@ -1,6 +1,12 @@
-import { DatePicker, ToggleGroup, useDatepicker } from "@navikt/ds-react";
+import { CalendarIcon } from "@navikt/aksel-icons";
+import {
+  DatePicker,
+  ErrorMessage,
+  ToggleGroup,
+  useDatepicker,
+} from "@navikt/ds-react";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
-import { createContext, use, useMemo, useState } from "react";
+import { createContext, use, useId, useMemo, useState } from "react";
 import { useSearchParams } from "react-router";
 
 type TidsvinduPeriode = "6 måneder" | "1 år" | "3 år" | "10 år" | "tilpasset";
@@ -40,7 +46,10 @@ export function beregnTidsvinduDatoer(
 }
 
 /** Beregner antall måneder mellom to datoer */
-export function beregnMånederMellomDatoer(fraDato: Date, tilDato: Date): number {
+export function beregnMånederMellomDatoer(
+  fraDato: Date,
+  tilDato: Date,
+): number {
   return (
     (tilDato.getFullYear() - fraDato.getFullYear()) * 12 +
     (tilDato.getMonth() - fraDato.getMonth())
@@ -163,6 +172,12 @@ export const TidsvinduProvider = ({
         }
       },
       setCustomDatoer: (fra: Date, til: Date) => {
+        const nå = new Date();
+        const treÅrSiden = new Date(nå);
+        treÅrSiden.setFullYear(treÅrSiden.getFullYear() - 3);
+        const erUtvidet = til > treÅrSiden;
+        setSearchParams(erUtvidet ? { utvidet: "true" } : {});
+
         const feil = validerTidsvinduDatoer(fra, til);
         if (feil) {
           return feil;
@@ -252,8 +267,10 @@ export const TidsvinduVelger = () => {
 
   const aktivVerdi = visCustom ? "tilpasset" : tidsvindu;
 
+  const errorId = useId();
+
   return (
-    <div className="flex flex-col gap-2">
+    <div>
       <ToggleGroup
         data-color="neutral"
         size="small"
@@ -266,33 +283,46 @@ export const TidsvinduVelger = () => {
         <ToggleGroupItem value="1 år" label="1 år" />
         <ToggleGroupItem value="3 år" label="3 år" />
         <ToggleGroupItem value="10 år" label="10 år" />
-        <ToggleGroupItem value="tilpasset" label="Tilpasset" />
+        <ToggleGroupItem
+          value="tilpasset"
+          aria-label="Tilpasset tidsvindu"
+          icon={<CalendarIcon />}
+        />
       </ToggleGroup>
 
       {visCustom && (
-        <div className="flex gap-4 items-end">
-          <DatePicker {...fraDatoPicker.datepickerProps} dropdownCaption>
-            <DatePicker.Input
-              {...fraDatoPicker.inputProps}
-              label="Fra dato"
-              size="small"
-              error={feilmelding}
-            />
-          </DatePicker>
-          <DatePicker {...tilDatoPicker.datepickerProps} dropdownCaption>
-            <DatePicker.Input
-              {...tilDatoPicker.inputProps}
-              label="Til dato"
-              size="small"
-            />
-          </DatePicker>
+        <div className="flex flex-col gap-4 bg-ax-bg-default rounded-b-lg p-4 -mt-2 border border-ax-neutral-200">
+          <div className="flex gap-4">
+            <DatePicker {...fraDatoPicker.datepickerProps} dropdownCaption>
+              <DatePicker.Input
+                {...fraDatoPicker.inputProps}
+                label="Fra dato"
+                size="small"
+                errorId={errorId}
+              />
+            </DatePicker>
+            <DatePicker {...tilDatoPicker.datepickerProps} dropdownCaption>
+              <DatePicker.Input
+                {...tilDatoPicker.inputProps}
+                label="Til dato"
+                size="small"
+              />
+            </DatePicker>
+          </div>
+          {feilmelding && (
+            <ErrorMessage size="small" id={errorId} showIcon={true}>
+              {feilmelding}
+            </ErrorMessage>
+          )}
         </div>
       )}
     </div>
   );
 };
 
-function feilTilMelding(feil: TidsvinduValideringsfeil | null): string | null {
+export function feilTilMelding(
+  feil: TidsvinduValideringsfeil | null,
+): string | null {
   switch (feil) {
     case "fra-etter-til":
       return "Fra-dato må være før til-dato";

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   beregnMånederMellomDatoer,
   beregnTidsvinduDatoer,
+  feilTilMelding,
   tidsvinduTilMåneder,
   utledTidsvinduPeriode,
   validerTidsvinduDatoer,
@@ -239,5 +240,29 @@ describe("validerTidsvinduDatoer", () => {
     const tilDato = new Date("2023-12-31");
 
     expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBeNull();
+  });
+});
+
+describe("feilTilMelding", () => {
+  it("returnerer riktig melding for 'fra-etter-til'", () => {
+    expect(feilTilMelding("fra-etter-til")).toBe(
+      "Fra-dato må være før til-dato",
+    );
+  });
+
+  it("returnerer riktig melding for 'for-langt-tilbake'", () => {
+    expect(feilTilMelding("for-langt-tilbake")).toBe(
+      "Kan ikke gå mer enn 10 år tilbake",
+    );
+  });
+
+  it("returnerer riktig melding for 'fremtidig-dato'", () => {
+    expect(feilTilMelding("fremtidig-dato")).toBe(
+      "Kan ikke velge dato i fremtiden",
+    );
+  });
+
+  it("returnerer null når det ikke er feil", () => {
+    expect(feilTilMelding(null)).toBeNull();
   });
 });
