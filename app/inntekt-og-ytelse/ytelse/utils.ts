@@ -18,8 +18,6 @@ export type YtelseStatistikk = {
   antallPerioder: number;
   totalBrutto: number;
   totalNetto: number;
-  størsteUtbetalingPeriode: Periode | null;
-  gjennomsnittligUtbetaling: number;
 };
 
 /**
@@ -36,40 +34,13 @@ export function beregnYtelseStatistikk(perioder: Periode[]): YtelseStatistikk {
   );
   const totalNetto = perioder.reduce((sum, p) => sum + p.beløp, 0);
 
-  const størsteUtbetalingPeriode = utbetalinger.reduce<Periode | null>(
-    (max, p) =>
-      !max || (p.bruttoBeløp ?? 0) > (max.bruttoBeløp ?? 0) ? p : max,
-    null,
-  );
-
-  const gjennomsnittligUtbetaling =
-    utbetalinger.length > 0
-      ? utbetalinger.reduce((sum, p) => sum + (p.bruttoBeløp ?? 0), 0) /
-        utbetalinger.length
-      : 0;
-
   return {
     antallUtbetalinger: utbetalinger.length,
     antallTilbakekrevinger: tilbakekrevinger.length,
     antallPerioder: gruppertePerioder.length,
     totalBrutto,
     totalNetto,
-    størsteUtbetalingPeriode,
-    gjennomsnittligUtbetaling,
   };
-}
-
-/**
- * Formaterer en periode som lesbar tekst.
- * Returnerer kun én dato hvis fom og tom er like.
- */
-export function formaterPeriode(
-  periode: { fom: string; tom: string },
-  formaterDato: (dato: string) => string,
-): string {
-  const fom = formaterDato(periode.fom);
-  const tom = formaterDato(periode.tom);
-  return fom === tom ? fom : `${fom} – ${tom}`;
 }
 
 /**

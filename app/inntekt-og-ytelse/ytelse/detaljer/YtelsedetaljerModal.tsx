@@ -77,7 +77,10 @@ export function YtelsedetaljerModal({
       }}
     >
       <ModalBody className="min-w-md flex flex-col gap-8">
-        <Tabs defaultValue={visMeldekortTab ? "meldekort" : "utbetalinger"} fill>
+        <Tabs
+          defaultValue={visMeldekortTab ? "meldekort" : "utbetalinger"}
+          fill
+        >
           <Tabs.List>
             {visMeldekortTab ? (
               <>
