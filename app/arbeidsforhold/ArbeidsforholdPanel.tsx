@@ -1,9 +1,15 @@
 import {
-  ClipboardIcon,
   InformationSquareIcon,
   MenuElipsisVerticalIcon,
 } from "@navikt/aksel-icons";
-import { ActionMenu, Alert, Button, Skeleton, Table } from "@navikt/ds-react";
+import {
+  ActionMenu,
+  Alert,
+  Button,
+  CopyButton,
+  Skeleton,
+  Table,
+} from "@navikt/ds-react";
 import {
   ActionMenuContent,
   ActionMenuGroup,
@@ -163,8 +169,9 @@ const ArbeidsforholdPanelMedData = ({
                     >
                       <span className="inline-flex items-center gap-1">
                         {formaterOrgnummer(r.organisasjonsnummer)}
-                        <KopierOrgnummerKnapp
-                          organisasjonsnummer={r.organisasjonsnummer}
+                        <CopyButton
+                          copyText={r.organisasjonsnummer}
+                          size="xsmall"
                         />
                       </span>
                     </TableDataCell>
@@ -376,31 +383,6 @@ function useArbeidsforholdOverflow() {
     containerClassName,
     handleToggle,
   };
-}
-
-function KopierOrgnummerKnapp({
-  organisasjonsnummer,
-}: {
-  organisasjonsnummer: string;
-}) {
-  return (
-    <Button
-      variant="tertiary"
-      size="xsmall"
-      aria-label={`Kopier org.nr. ${organisasjonsnummer}`}
-      title="Kopier org.nr."
-      onClick={() => {
-        try {
-          navigator.clipboard.writeText(organisasjonsnummer);
-          sporHendelse("organisasjonsnummer kopiert");
-        } catch {
-          sporHendelse("organisasjonsnummer-kopiering feilet");
-        }
-      }}
-    >
-      <ClipboardIcon aria-hidden={true} />
-    </Button>
-  );
 }
 
 function mapArbeidsforholdType(type: string) {

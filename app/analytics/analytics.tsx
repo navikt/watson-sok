@@ -63,8 +63,6 @@ type Hendelse =
   | "søk familiemedlem"
   | "lenke trykket brønnøysundregistrene"
   | "handlinger for arbeidsforhold åpnet"
-  | "organisasjonsnummer kopiert"
-  | "organisasjonsnummer-kopiering feilet"
   | "tidslinje periode flyttet"
   | "tidslinje størrelse endret"
   | "tidsvindu endret"
