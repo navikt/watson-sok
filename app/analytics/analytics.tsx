@@ -22,17 +22,23 @@ export function sporHendelse(
   hendelse: Hendelse,
   data: Record<string, unknown> = {},
 ) {
-  if (process.env.NODE_ENV === "development") {
-    if (hendelse.length > 50) {
-      logger.warn(
-        `📊 [Analytics] Hendelse ${hendelse} er for lang. Maks lengde er 50 tegn, hendelsen er på ${hendelse.length} tegn.`,
-      );
+  try {
+    if (process.env.NODE_ENV === "development") {
+      if (hendelse.length > 50) {
+        logger.warn(
+          `📊 [Analytics] Hendelse ${hendelse} er for lang. Maks lengde er 50 tegn, hendelsen er på ${hendelse.length} tegn.`,
+        );
+      }
+      logger.info(`📊 [Analytics] ${hendelse}`, data);
+      return;
     }
-    logger.info(`📊 [Analytics] ${hendelse}`, data);
-    return;
-  }
-  if (typeof window !== "undefined" && window.umami) {
-    window.umami.track(hendelse.substring(0, 50), data); // Maks lengde er 50 tegn for Umami
+    if (typeof window !== "undefined" && window.umami) {
+      window.umami.track(hendelse.substring(0, 50), data); // Maks lengde er 50 tegn for Umami
+    }
+  } catch (error) {
+    logger.error(`📊 [Analytics] Feil ved sporing av hendelse: ${hendelse}`, {
+      error,
+    });
   }
 }
 
