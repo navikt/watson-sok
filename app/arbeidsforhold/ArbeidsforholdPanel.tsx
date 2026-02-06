@@ -28,7 +28,7 @@ import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { cn } from "~/utils/class-utils";
 import { formaterÅrMåned } from "~/utils/date-utils";
 import { formaterProsent } from "~/utils/number-utils";
-import { storFørsteBokstav } from "~/utils/string-utils";
+import { formaterOrgnummer, storFørsteBokstav } from "~/utils/string-utils";
 import type { ArbeidsgiverInformasjon } from "./domene";
 
 type ArbeidsforholdPanelProps = {
@@ -116,6 +116,9 @@ const ArbeidsforholdPanelMedData = ({
                     Arbeidsgiver
                   </TableHeaderCell>
                   <TableHeaderCell textSize="small" scope="col">
+                    Org.nr.
+                  </TableHeaderCell>
+                  <TableHeaderCell textSize="small" scope="col">
                     Start
                   </TableHeaderCell>
                   <TableHeaderCell textSize="small" scope="col">
@@ -158,6 +161,17 @@ const ArbeidsforholdPanelMedData = ({
                       className="whitespace-nowrap"
                       textSize="small"
                     >
+                      <span className="inline-flex items-center gap-1">
+                        {formaterOrgnummer(r.organisasjonsnummer)}
+                        <KopierOrgnummerKnapp
+                          organisasjonsnummer={r.organisasjonsnummer}
+                        />
+                      </span>
+                    </TableDataCell>
+                    <TableDataCell
+                      className="whitespace-nowrap"
+                      textSize="small"
+                    >
                       {formaterÅrMåned(r.start)}
                     </TableDataCell>
                     <TableDataCell
@@ -196,25 +210,6 @@ const ArbeidsforholdPanelMedData = ({
                           </Button>
                         </ActionMenuTrigger>
                         <ActionMenuContent>
-                          <ActionMenuGroup label="Handlinger">
-                            <ActionMenuItem
-                              icon={<ClipboardIcon />}
-                              onSelect={() => {
-                                try {
-                                  navigator.clipboard.writeText(
-                                    r.organisasjonsnummer,
-                                  );
-                                  sporHendelse("organisasjonsnummer kopiert");
-                                } catch {
-                                  sporHendelse(
-                                    "organisasjonsnummer-kopiering feilet",
-                                  );
-                                }
-                              }}
-                            >
-                              Kopier org.nr.
-                            </ActionMenuItem>
-                          </ActionMenuGroup>
                           <ActionMenuGroup label="Relevante lenker">
                             <ActionMenuItem
                               icon={<InformationSquareIcon />}
@@ -263,7 +258,7 @@ const ArbeidsforholdPanelMedData = ({
 };
 
 const ArbeidsforholdPanelSkeleton = () => {
-  const kolonner = Array.from({ length: 6 }, (_, index) => index);
+  const kolonner = Array.from({ length: 7 }, (_, index) => index);
   const rader = Array.from({ length: 5 }, (_, index) => index);
   return (
     <PanelContainerSkeleton title="Arbeidsforhold">
@@ -381,6 +376,31 @@ function useArbeidsforholdOverflow() {
     containerClassName,
     handleToggle,
   };
+}
+
+function KopierOrgnummerKnapp({
+  organisasjonsnummer,
+}: {
+  organisasjonsnummer: string;
+}) {
+  return (
+    <Button
+      variant="tertiary"
+      size="xsmall"
+      aria-label={`Kopier org.nr. ${organisasjonsnummer}`}
+      title="Kopier org.nr."
+      onClick={() => {
+        try {
+          navigator.clipboard.writeText(organisasjonsnummer);
+          sporHendelse("organisasjonsnummer kopiert");
+        } catch {
+          sporHendelse("organisasjonsnummer-kopiering feilet");
+        }
+      }}
+    >
+      <ClipboardIcon aria-hidden={true} />
+    </Button>
+  );
 }
 
 function mapArbeidsforholdType(type: string) {

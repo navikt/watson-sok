@@ -84,6 +84,17 @@ export function snakeCaseTilSetning(snakeCaseStr: string | null) {
 }
 
 /**
+ * Formaterer organisasjonsnummer i grupper på 3 (xxx xxx xxx).
+ * Returnerer original streng dersom den ikke er nøyaktig 9 siffer.
+ */
+export function formaterOrgnummer(orgnummer: string): string {
+  if (!/^\d{9}$/.test(orgnummer)) {
+    return orgnummer;
+  }
+  return `${orgnummer.slice(0, 3)} ${orgnummer.slice(3, 6)} ${orgnummer.slice(6)}`;
+}
+
+/**
  * Formaterer fødselsnummer til å ha mellomrom mellom de seks første og de fem siste sifrene
  *
  * @param fødselsnummer - Fødselsnummer som skal formateres
