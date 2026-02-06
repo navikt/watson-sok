@@ -153,7 +153,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
                           }
                           event.preventDefault();
                           setValgtYtelse(ytelse);
-                          sporHendelse("ytelse utbetalinger modal åpnet", {
+                          sporHendelse("ytelse modal åpnet", {
                             stonadType: ytelse.stonadType,
                           });
                         }}
