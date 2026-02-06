@@ -265,7 +265,7 @@ const ArbeidsforholdPanelMedData = ({
 };
 
 const ArbeidsforholdPanelSkeleton = () => {
-  const kolonner = Array.from({ length: 7 }, (_, index) => index);
+  const kolonner = Array.from({ length: 8 }, (_, index) => index);
   const rader = Array.from({ length: 5 }, (_, index) => index);
   return (
     <PanelContainerSkeleton title="Arbeidsforhold">
