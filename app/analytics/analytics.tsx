@@ -1,29 +1,9 @@
-import mixpanel from "mixpanel-browser";
-import { useEffect } from "react";
-import { useInnloggetBruker } from "~/auth/innlogget-bruker";
 import { logger } from "~/logging/logging";
-import { useMiljø } from "~/miljø/useMiljø";
 type AnalyticsTagProps = {
   sporingId: string;
 };
 
 export function AnalyticsTags({ sporingId }: AnalyticsTagProps) {
-  const { navIdent } = useInnloggetBruker();
-  const miljø = useMiljø();
-  useEffect(() => {
-    if (miljø !== "prod") {
-      return;
-    }
-    mixpanel.init("f5e4c5b5414a87e94d8d4182e4c458c2", {
-      autocapture: true,
-      track_pageview: true,
-      record_sessions_percent: 100,
-      api_host: "https://api-eu.mixpanel.com",
-    });
-    if (navIdent) {
-      mixpanel.identify(navIdent);
-    }
-  }, [navIdent, miljø]);
   return (
     <script
       defer
@@ -42,19 +22,24 @@ export function sporHendelse(
   hendelse: Hendelse,
   data: Record<string, unknown> = {},
 ) {
-  if (process.env.NODE_ENV === "development") {
-    if (hendelse.length > 50) {
-      logger.warn(
-        `📊 [Analytics] Hendelse ${hendelse} er for lang. Maks lengde er 50 tegn, hendelsen er på ${hendelse.length} tegn.`,
-      );
+  try {
+    if (process.env.NODE_ENV === "development") {
+      if (hendelse.length > 50) {
+        logger.warn(
+          `📊 [Analytics] Hendelse ${hendelse} er for lang. Maks lengde er 50 tegn, hendelsen er på ${hendelse.length} tegn.`,
+        );
+      }
+      logger.info(`📊 [Analytics] ${hendelse}`, data);
+      return;
     }
-    logger.info(`📊 [Analytics] ${hendelse}`, data);
-    return;
+    if (typeof window !== "undefined" && window.umami) {
+      window.umami.track(hendelse.substring(0, 50), data); // Maks lengde er 50 tegn for Umami
+    }
+  } catch (error) {
+    logger.error(`📊 [Analytics] Feil ved sporing av hendelse: ${hendelse}`, {
+      error,
+    });
   }
-  if (typeof window !== "undefined" && window.umami) {
-    window.umami.track(hendelse.substring(0, 50), data); // Maks lengde er 50 tegn for Umami
-  }
-  mixpanel.track(hendelse, data);
 }
 
 type Hendelse =
