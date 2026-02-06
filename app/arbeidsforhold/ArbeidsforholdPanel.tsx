@@ -1,9 +1,15 @@
 import {
-  ClipboardIcon,
   InformationSquareIcon,
   MenuElipsisVerticalIcon,
 } from "@navikt/aksel-icons";
-import { ActionMenu, Alert, Button, Skeleton, Table } from "@navikt/ds-react";
+import {
+  ActionMenu,
+  Alert,
+  Button,
+  CopyButton,
+  Skeleton,
+  Table,
+} from "@navikt/ds-react";
 import {
   ActionMenuContent,
   ActionMenuGroup,
@@ -28,7 +34,7 @@ import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { cn } from "~/utils/class-utils";
 import { formaterÅrMåned } from "~/utils/date-utils";
 import { formaterProsent } from "~/utils/number-utils";
-import { storFørsteBokstav } from "~/utils/string-utils";
+import { formaterOrgnummer, storFørsteBokstav } from "~/utils/string-utils";
 import type { ArbeidsgiverInformasjon } from "./domene";
 
 type ArbeidsforholdPanelProps = {
@@ -116,6 +122,9 @@ const ArbeidsforholdPanelMedData = ({
                     Arbeidsgiver
                   </TableHeaderCell>
                   <TableHeaderCell textSize="small" scope="col">
+                    Org.nr.
+                  </TableHeaderCell>
+                  <TableHeaderCell textSize="small" scope="col">
                     Start
                   </TableHeaderCell>
                   <TableHeaderCell textSize="small" scope="col">
@@ -158,6 +167,18 @@ const ArbeidsforholdPanelMedData = ({
                       className="whitespace-nowrap"
                       textSize="small"
                     >
+                      <span className="inline-flex items-center gap-1">
+                        {formaterOrgnummer(r.organisasjonsnummer)}
+                        <CopyButton
+                          copyText={r.organisasjonsnummer}
+                          size="xsmall"
+                        />
+                      </span>
+                    </TableDataCell>
+                    <TableDataCell
+                      className="whitespace-nowrap"
+                      textSize="small"
+                    >
                       {formaterÅrMåned(r.start)}
                     </TableDataCell>
                     <TableDataCell
@@ -196,25 +217,6 @@ const ArbeidsforholdPanelMedData = ({
                           </Button>
                         </ActionMenuTrigger>
                         <ActionMenuContent>
-                          <ActionMenuGroup label="Handlinger">
-                            <ActionMenuItem
-                              icon={<ClipboardIcon />}
-                              onSelect={() => {
-                                try {
-                                  navigator.clipboard.writeText(
-                                    r.organisasjonsnummer,
-                                  );
-                                  sporHendelse("organisasjonsnummer kopiert");
-                                } catch {
-                                  sporHendelse(
-                                    "organisasjonsnummer-kopiering feilet",
-                                  );
-                                }
-                              }}
-                            >
-                              Kopier org.nr.
-                            </ActionMenuItem>
-                          </ActionMenuGroup>
                           <ActionMenuGroup label="Relevante lenker">
                             <ActionMenuItem
                               icon={<InformationSquareIcon />}
@@ -263,7 +265,7 @@ const ArbeidsforholdPanelMedData = ({
 };
 
 const ArbeidsforholdPanelSkeleton = () => {
-  const kolonner = Array.from({ length: 6 }, (_, index) => index);
+  const kolonner = Array.from({ length: 8 }, (_, index) => index);
   const rader = Array.from({ length: 5 }, (_, index) => index);
   return (
     <PanelContainerSkeleton title="Arbeidsforhold">
