@@ -29,9 +29,9 @@ export default function PersonvernSide() {
         </BodyLong>
         <BodyLong spacing>
           I tillegg til å journalføre alle søk, lagrer vi også informasjon om
-          hvordan du bruker tjenesten i tjenestene Umami og Mixpanel. Dette
-          gjøres for å kvantitativt analysere bruk av tjenesten, slik at vi kan
-          videreutvikle og forbedre den. Eksempler på hva vi samler inn er:
+          hvordan du bruker tjenesten i tjenesten Umami. Dette gjøres for å
+          kvantitativt analysere bruk av tjenesten, slik at vi kan videreutvikle
+          og forbedre den. Eksempler på hva vi samler inn er:
         </BodyLong>
         <div className="mb-4">
           <Box marginBlock="space-16" asChild>
