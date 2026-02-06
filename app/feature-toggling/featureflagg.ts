@@ -6,4 +6,5 @@ export enum FeatureFlagg {
   VIS_YTELSESDETALJER_MODAL = "vis-ytelsesdetaljer-modal",
   VIS_MELDEKORT_PANEL = "vis-meldekort-panel",
   STATUSMELDING = "statusmelding",
+  CUSTOM_DATO = "custom-dato",
 }

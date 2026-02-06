@@ -9,6 +9,8 @@ import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { createContext, use, useId, useMemo, useState } from "react";
 import { useSearchParams } from "react-router";
 import { sporHendelse } from "~/analytics/analytics";
+import { FeatureFlagg } from "~/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 
 type TidsvinduPeriode = "6 måneder" | "1 år" | "3 år" | "10 år" | "tilpasset";
 type PresetPeriode = Exclude<TidsvinduPeriode, "tilpasset">;
@@ -229,6 +231,7 @@ export const TidsvinduVelger = () => {
     useTidsvindu();
   const [feilmelding, setFeilmelding] = useState<string | null>(null);
   const [visCustom, setVisCustom] = useState(tidsvindu === "tilpasset");
+  const erCustomDatoAktivert = useEnkeltFeatureFlagg(FeatureFlagg.CUSTOM_DATO);
 
   const tiÅrTilbake = new Date();
   tiÅrTilbake.setFullYear(tiÅrTilbake.getFullYear() - 10);
@@ -287,11 +290,13 @@ export const TidsvinduVelger = () => {
         <ToggleGroupItem value="1 år" label="1 år" />
         <ToggleGroupItem value="3 år" label="3 år" />
         <ToggleGroupItem value="10 år" label="10 år" />
-        <ToggleGroupItem
-          value="tilpasset"
-          aria-label="Tilpasset tidsvindu"
-          icon={<CalendarIcon aria-hidden />}
-        />
+        {erCustomDatoAktivert && (
+          <ToggleGroupItem
+            value="tilpasset"
+            aria-label="Tilpasset tidsvindu"
+            icon={<CalendarIcon aria-hidden />}
+          />
+        )}
       </ToggleGroup>
 
       {visCustom && (
