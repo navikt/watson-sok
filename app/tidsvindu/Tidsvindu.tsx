@@ -18,6 +18,8 @@ type PresetPeriode = Exclude<TidsvinduPeriode, "tilpasset">;
 type TidsvinduContextType = {
   fraDato: Date;
   tilDato: Date;
+  erTilpassetVisning: boolean;
+  setErTilpassetVisning: (value: boolean) => void;
   setTidsvindu: (tidsvindu: PresetPeriode) => void;
   setCustomDatoer: (fra: Date, til: Date) => TidsvinduValideringsfeil | null;
 };
@@ -160,16 +162,20 @@ export const TidsvinduProvider = ({
   const initialDatoer = beregnTidsvinduDatoer(utvidet ? 120 : 36);
   const [fraDato, setFraDato] = useState<Date>(initialDatoer.fraDato);
   const [tilDato, setTilDato] = useState<Date>(initialDatoer.tilDato);
+  const [erTilpassetVisning, setErTilpassetVisning] = useState(false);
 
   const context = useMemo(
     () => ({
       fraDato,
       tilDato,
+      erTilpassetVisning,
+      setErTilpassetVisning,
       setTidsvindu: (tidsvindu: PresetPeriode) => {
         const måneder = tidsvinduTilMåneder(tidsvindu);
         const datoer = beregnTidsvinduDatoer(måneder);
         setFraDato(datoer.fraDato);
         setTilDato(datoer.tilDato);
+        setErTilpassetVisning(false);
         if (tidsvindu === "10 år") {
           setSearchParams({ utvidet: "true" });
         }
@@ -186,13 +192,14 @@ export const TidsvinduProvider = ({
         const nå = new Date();
         const treÅrSiden = new Date(nå);
         treÅrSiden.setFullYear(treÅrSiden.getFullYear() - 3);
-        const erUtvidet = fra > treÅrSiden;
-        setSearchParams(erUtvidet ? { utvidet: "true" } : {});
+        if (fra < treÅrSiden) {
+          setSearchParams({ utvidet: "true" });
+        }
 
         return null;
       },
     }),
-    [fraDato, tilDato, setSearchParams],
+    [fraDato, tilDato, erTilpassetVisning, setSearchParams],
   );
   return (
     <TidsvinduContext.Provider value={context}>
@@ -227,10 +234,16 @@ export const useTidsvindu = () => {
  * Lar brukeren velge hvor stort tidsvindu som skal vises i visualiseringer
  */
 export const TidsvinduVelger = () => {
-  const { tidsvindu, setTidsvindu, fraDato, tilDato, setCustomDatoer } =
-    useTidsvindu();
+  const {
+    tidsvindu,
+    setTidsvindu,
+    fraDato,
+    tilDato,
+    setCustomDatoer,
+    erTilpassetVisning,
+    setErTilpassetVisning,
+  } = useTidsvindu();
   const [feilmelding, setFeilmelding] = useState<string | null>(null);
-  const [visCustom, setVisCustom] = useState(tidsvindu === "tilpasset");
   const erCustomDatoAktivert = useEnkeltFeatureFlagg(FeatureFlagg.CUSTOM_DATO);
 
   const tiÅrTilbake = new Date();
@@ -263,16 +276,16 @@ export const TidsvinduVelger = () => {
 
   const handleToggleChange = (value: string) => {
     if (value === "tilpasset") {
-      setVisCustom(true);
+      setErTilpassetVisning(true);
       return;
     }
-    setVisCustom(false);
+    setErTilpassetVisning(false);
     setFeilmelding(null);
     setTidsvindu(value as PresetPeriode);
     sporHendelse("tidsvindu endret", { tidsvindu: value });
   };
 
-  const aktivVerdi = visCustom ? "tilpasset" : tidsvindu;
+  const aktivVerdi = erTilpassetVisning ? "tilpasset" : tidsvindu;
 
   const errorId = useId();
 
@@ -299,7 +312,7 @@ export const TidsvinduVelger = () => {
         )}
       </ToggleGroup>
 
-      {visCustom && (
+      {erTilpassetVisning && (
         <div className="flex flex-col gap-4 bg-ax-bg-default rounded-b-lg p-4 -mt-2 border border-ax-neutral-200">
           <div className="flex gap-4">
             <DatePicker {...fraDatoPicker.datepickerProps} dropdownCaption>

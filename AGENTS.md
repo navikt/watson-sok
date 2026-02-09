@@ -48,6 +48,6 @@ Kort veiledning for bidragsytere til Holmes oppslag-bruker. Hold koden enkel, do
 
 ## Ferdig er ferdig (Definition of Done)
 
-- Kjør `npm run verify` før en oppgave anses som ferdig.
+- Kjør `npm run verify` før en oppgave anses som ferdig. Bruk alltid denne kommandoen for å validere endringer – ikke kjør individuelle steg (typecheck, lint osv.) separat.
 - Skriv tester for ny funksjonalitet (enhetstester og/eller e2e etter behov).
 - Følg TDD der det gir mening: skriv en feilende test først (rød), implementer (grønn), refaktorer.
