@@ -15,14 +15,17 @@ export default [
   ]),
 
   // API routes
-  route(RouteConfig.API.HEALTH, "monitorering/helsesjekk/api.ts"),
-  route(RouteConfig.API.LOGGED_IN_USER, "admin/innlogget-bruker/api.ts"),
+  route(RouteConfig.API.HEALTH, "monitorering/helsesjekk/api.route.ts"),
+  route(RouteConfig.API.LOGGED_IN_USER, "admin/innlogget-bruker/api.route.ts"),
   route(RouteConfig.API.MELDEKORT, "meldekort/api.route.ts"),
-  route(RouteConfig.API.THEME, "tema/api.ts"),
-  route(RouteConfig.API.VERSION, "versjonsvarsling/api.ts"),
+  route(RouteConfig.API.THEME, "tema/api.route.ts"),
+  route(RouteConfig.API.VERSION, "versjonsvarsling/api.route.ts"),
 
   // Well-known routes
-  route(RouteConfig.WELL_KNOWN.SECURITY_TXT, "sikkerhet/well-known/api.ts"),
+  route(
+    RouteConfig.WELL_KNOWN.SECURITY_TXT,
+    "sikkerhet/well-known/api.route.ts",
+  ),
 
   // Fallback 404 route
   route("*", "feilhåndtering/404.route.tsx"),

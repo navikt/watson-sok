@@ -30,15 +30,15 @@ Kort veiledning for bidragsytere til Holmes oppslag-bruker. Hold koden enkel, do
 
 ## Testing
 
-- Plasser både enhetstester (`*.test.tsx`) og ende-til-ende-tester (`*.spec.ts`) tester ved siden av koden de tester under `app`
+- Plasser både enhetstester (`*.test.tsx`) og ende-til-ende-tester (`*.spec.ts`) ved siden av koden de tester under `app`.
 - Navngiv e2e-filer etter brukerflyt (f.eks. `sok-oppslag.spec.ts`).
-- Kjør tester kun via `npm run verify` (for enhetstester) eller `npm run test:e2e` (for e2e); ikke kjør individuelle testkommandoer direkte.
+- Kjør tester og øvrige kvalitetssjekker via `npm run verify` (samlet sjekk: enhetstester, lint, typecheck, unused, osv.) eller `npm run test:e2e` (for e2e); ikke kjør individuelle testkommandoer direkte.
 
 ## Sikkerhet og konfig
 
 - Behold sikkerhetsheadere i `features/sikkerhet/headers.server.ts`; ikke svekk CSP uten vurdering.
 - Hemmeligheter i `.env` (se `.env.example`); aldri committ secrets.
-- Bruk auth-hjelpere i `features/auth` for tokenhåndtering/obo;
+- Bruk auth-hjelpere i `features/auth` for tokenhåndtering/obo.
 
 ## Ferdig er ferdig (Definition of Done)
 
@@ -51,7 +51,7 @@ Kort veiledning for bidragsytere til Holmes oppslag-bruker. Hold koden enkel, do
 - Om du må gjøre større antakelser for å gjennomføre en oppgave, stopp og spør om avklaringer.
 - Foretrekk alltid komponenter fra `@navikt/ds-react` for å lage konsistente brukeropplevelser.
 - Unngå å legge til nye dependencies uten god grunn; begrunn alltid hvorfor før du går videre.
-- Hold filer og komponenter så enkle som mulig
-  – om en komponent blir for stor, vurder å dele den opp.
+- Hold filer og komponenter så enkle som mulig:
+  - om en komponent blir for stor, vurder å dele den opp.
   - om en fil blir for lang, vurder å splitte den opp i mindre deler.
-- Dokumenter alle funksjoner eller komponenter med JSDoc-kommentarer for å forklare formål og bruk. For eksporterte komponenter, og spesielt de som har mer enn ett brukssted, ta alltid med minst ett eksempel.
+- Dokumenter eksporterte funksjoner og komponenter med JSDoc-kommentarer for å forklare formål og bruk.
