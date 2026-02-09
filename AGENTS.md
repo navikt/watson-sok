@@ -5,7 +5,7 @@ Kort veiledning for bidragsytere til Holmes oppslag-bruker. Hold koden enkel, do
 ## Prosjektstruktur og moduler
 
 - Kildekode: `app/` med feature-pakking (f.eks. `features/oppslag`, `features/person`, `features/inntekt-og-ytelse`, `features/arbeidsforhold`) og tverrgående (`features/auth`, `features/tema`, `features/layout`, `features/monitorering`).
-- Ruter: `app/routes/*` er tynne shells som re-eksporterer fra features.
+- Ruter: `app/**/*.route.ts(x)` er selve routes. Alle ruter er spesifisert i `app/routes.ts`.
 - Mocks/fixtures: samle i `features/testing` når felles testdata trengs.
 - Statiske ressurser: `public/`. Globale stiler: `app/globals.css`.
 
@@ -30,24 +30,28 @@ Kort veiledning for bidragsytere til Holmes oppslag-bruker. Hold koden enkel, do
 
 ## Testing
 
-- Plasser tester ved siden av koden eller i `__tests__` under feature.
+- Plasser både enhetstester (`*.test.tsx`) og ende-til-ende-tester (`*.spec.ts`) tester ved siden av koden de tester under `app`
 - Navngiv e2e-filer etter brukerflyt (f.eks. `sok-oppslag.spec.ts`).
-- Kjør minst `npm run lint` og `npm run typecheck` før PR; e2e når flyt/UI endres.
-
-## Commits og pull requests
-
-- Commits: korte, imperativt formulerte beskrivelser (f.eks. `Flytt oppslag-API til featurepakke`).
-- PR-innhold: hva/hvorfor, relevante issues, risikovurdering, og skjermbilder/GIF for UI-endringer.
-- Hold PR-er små og domenefokuserte; unngå “grab bag”.
+- Kjør tester kun via `npm run verify` (for enhetstester) eller `npm run test:e2e` (for e2e); ikke kjør individuelle testkommandoer direkte.
 
 ## Sikkerhet og konfig
 
 - Behold sikkerhetsheadere i `features/sikkerhet/headers.server.ts`; ikke svekk CSP uten vurdering.
 - Hemmeligheter i `.env` (se `.env.example`); aldri committ secrets.
-- Bruk auth-hjelpere i `features/auth` for tokenhåndtering/obo; rull ikke egen auth.
+- Bruk auth-hjelpere i `features/auth` for tokenhåndtering/obo;
 
 ## Ferdig er ferdig (Definition of Done)
 
 - Kjør `npm run verify` før en oppgave anses som ferdig. Bruk alltid denne kommandoen for å validere endringer – ikke kjør individuelle steg (typecheck, lint osv.) separat.
 - Skriv tester for ny funksjonalitet (enhetstester og/eller e2e etter behov).
 - Følg TDD der det gir mening: skriv en feilende test først (rød), implementer (grønn), refaktorer.
+
+## Andre retningslinjer
+
+- Om du må gjøre større antakelser for å gjennomføre en oppgave, stopp og spør om avklaringer.
+- Foretrekk alltid komponenter fra `@navikt/ds-react` for å lage konsistente brukeropplevelser.
+- Unngå å legge til nye dependencies uten god grunn; begrunn alltid hvorfor før du går videre.
+- Hold filer og komponenter så enkle som mulig
+  – om en komponent blir for stor, vurder å dele den opp.
+  - om en fil blir for lang, vurder å splitte den opp i mindre deler.
+- Dokumenter alle funksjoner eller komponenter med JSDoc-kommentarer for å forklare formål og bruk. For eksporterte komponenter, og spesielt de som har mer enn ett brukssted, ta alltid med minst ett eksempel.
