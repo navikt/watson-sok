@@ -12,6 +12,12 @@ import {
   Skeleton,
   Tooltip,
 } from "@navikt/ds-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionHeader,
+  AccordionItem,
+} from "@navikt/ds-react/Accordion";
 import { useEffect, useMemo, useState } from "react";
 import { StatistikkKort } from "~/paneler/StatistikkKort";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
@@ -53,77 +59,17 @@ export function MeldekortPanel() {
 const MeldekortPanelSkeleton = () => {
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex flex-wrap items-start justify-between gap-2">
-        <div className="flex flex-col gap-1">
-          <Skeleton variant="text" width="220px" height="28px" />
-          <Skeleton variant="text" width="280px" height="20px" />
+      <Skeleton variant="text" width="220px" height="28px" />
+      <div>
+        <Skeleton variant="text" width="120px" height="20px" className="mb-2" />
+        <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
+          <StatistikkKort label="Jobb" verdi="" isLoading />
+          <StatistikkKort label="Ferie" verdi="" isLoading />
+          <StatistikkKort label="Kurs" verdi="" isLoading />
+          <StatistikkKort label="Sykdom" verdi="" isLoading />
         </div>
       </div>
-      <div className="flex flex-col gap-3">
-        <div className="overflow-x-auto">
-          <div className="grid grid-cols-7 gap-3 mb-2">
-            {UKEDAGER.map((dag) => (
-              <BodyShort
-                className="font-semibold leading-tight mx-auto"
-                size="large"
-                key={dag}
-                as={Skeleton}
-                variant="text"
-              >
-                {dag}
-              </BodyShort>
-            ))}
-          </div>
-          <div className="grid grid-cols-7 gap-3">
-            {Array.from({ length: 14 }).map((_, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center gap-2 list-none"
-              >
-                <Skeleton variant="circle" className="w-16 h-16" />
-                <BodyShort
-                  className="mx-auto"
-                  size="small"
-                  as={Skeleton}
-                  variant="text"
-                >
-                  En dato
-                </BodyShort>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-col gap-4 mt-4">
-        <div>
-          <Skeleton
-            variant="text"
-            width="120px"
-            height="20px"
-            className="mb-2"
-          />
-          <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
-            <StatistikkKort label="Jobb" verdi="" isLoading />
-            <StatistikkKort label="Ferie" verdi="" isLoading />
-            <StatistikkKort label="Kurs" verdi="" isLoading />
-            <StatistikkKort label="Sykdom" verdi="" isLoading />
-          </div>
-        </div>
-        <div>
-          <Skeleton
-            variant="text"
-            width="120px"
-            height="20px"
-            className="mb-2"
-          />
-          <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
-            <StatistikkKort label="Jobb" verdi="" isLoading />
-            <StatistikkKort label="Ferie" verdi="" isLoading />
-            <StatistikkKort label="Kurs" verdi="" isLoading />
-            <StatistikkKort label="Sykdom" verdi="" isLoading />
-          </div>
-        </div>
-      </div>
+      <Skeleton variant="rounded" width="100%" height="48px" />
     </div>
   );
 };
@@ -208,149 +154,158 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex flex-wrap items-start justify-between gap-2">
-        <div className="flex flex-col gap-1">
-          <Heading level="2" size="medium">
-            Meldekort
-          </Heading>
-          <Heading level="3" size="small">
-            Periode {formaterDato(aktivtMeldekort.periode.fraOgMed)} –{" "}
-            {formaterDato(aktivtMeldekort.periode.tilOgMed)}
-          </Heading>
-          <BodyShort size="small">
-            Meldekort-ID: {aktivtMeldekort.id} – Meldedato:{" "}
-            {aktivtMeldekort.meldedato
-              ? formaterDato(aktivtMeldekort.meldedato)
-              : "Ukjent"}
-          </BodyShort>
-        </div>
-        <div className="flex flex-wrap items-center justify-end gap-2">
-          <div className="flex items-center gap-0.5">
-            <Button
-              data-color="neutral"
-              icon={
-                <Tooltip
-                  content={
-                    kanGåTilForrige
-                      ? "Forrige meldekort"
-                      : "Ingen eldre meldekort"
-                  }
-                >
-                  <ChevronLeftIcon aria-hidden="true" />
-                </Tooltip>
-              }
-              type="button"
-              variant="secondary"
-              size="small"
-              disabled={!kanGåTilForrige}
-              aria-label="Forrige meldekort"
-              onClick={() => setAktivIndex((index) => index + 1)}
-            />
-            <DatePicker
-              open={erDatepickerÅpen}
-              onClose={onToggleDatepicker}
-              onSelect={(dato) => {
-                velgRelevantMeldekort(dato);
-                onToggleDatepicker();
-              }}
-              dropdownCaption={true}
-              fromDate={fraDato}
-              toDate={tilDato}
-              disabled={[
-                { before: fraDato, after: tilDato },
-                (date) =>
-                  !tilgjengeligeDager.some(
-                    (tilgjengeligDag) =>
-                      formaterTilIsoDato(tilgjengeligDag) ===
-                      formaterTilIsoDato(date),
-                  ),
-              ]}
-            >
-              <Button
-                data-color="neutral"
-                aria-label="Velg dato"
-                icon={
-                  <Tooltip content="Velg dato">
-                    <CalendarIcon aria-hidden="true" />
-                  </Tooltip>
-                }
-                type="button"
-                variant="secondary"
-                size="small"
-                onClick={onToggleDatepicker}
-              />
-            </DatePicker>
-            <Button
-              data-color="neutral"
-              icon={
-                <Tooltip
-                  content={
-                    kanGåTilNeste ? "Neste meldekort" : "Ingen nyere meldekort"
-                  }
-                >
-                  <ChevronRightIcon aria-hidden="true" />
-                </Tooltip>
-              }
-              type="button"
-              variant="secondary"
-              size="small"
-              disabled={!kanGåTilNeste}
-              aria-label="Neste meldekort"
-              onClick={() => setAktivIndex((index) => index - 1)}
-            />
-          </div>
+      <Heading level="2" size="medium">
+        Meldekort
+      </Heading>
+      <div>
+        <Heading level="3" size="xsmall" className="mb-2">
+          Totalt fra {formaterDato(tidsvinduFra.toISOString())} til{" "}
+          {formaterDato(tidsvinduTil.toISOString())}
+        </Heading>
+        <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
+          <StatistikkKort
+            label="Jobb"
+            verdi={`${totalStatistikk.arbeidTimer} t`}
+          />
+          <StatistikkKort
+            label="Ferie"
+            verdi={`${totalStatistikk.ferieDager} ${totalStatistikk.ferieDager === 1 ? "dag" : "dager"}`}
+          />
+          <StatistikkKort
+            label="Kurs"
+            verdi={`${totalStatistikk.kursDager} ${totalStatistikk.kursDager === 1 ? "dag" : "dager"}`}
+          />
+          <StatistikkKort
+            label="Sykdom"
+            verdi={`${totalStatistikk.sykdomDager} ${totalStatistikk.sykdomDager === 1 ? "dag" : "dager"}`}
+          />
         </div>
       </div>
-      <MeldekortDager dager={aktivtMeldekort.dager} />
-      <div className="flex flex-col gap-4 mt-4">
-        <div>
-          <Heading level="3" size="xsmall" className="mb-2">
-            Dette meldekortet
-          </Heading>
-          <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
-            <StatistikkKort
-              label="Jobb"
-              verdi={`${aktivtMeldekortStatistikk.arbeidTimer} t`}
-            />
-            <StatistikkKort
-              label="Ferie"
-              verdi={`${aktivtMeldekortStatistikk.ferieDager} ${aktivtMeldekortStatistikk.ferieDager === 1 ? "dag" : "dager"}`}
-            />
-            <StatistikkKort
-              label="Kurs"
-              verdi={`${aktivtMeldekortStatistikk.kursDager} ${aktivtMeldekortStatistikk.kursDager === 1 ? "dag" : "dager"}`}
-            />
-            <StatistikkKort
-              label="Sykdom"
-              verdi={`${aktivtMeldekortStatistikk.sykdomDager} ${aktivtMeldekortStatistikk.sykdomDager === 1 ? "dag" : "dager"}`}
-            />
-          </div>
-        </div>
-        <div>
-          <Heading level="3" size="xsmall" className="mb-2">
-            Totalt fra {formaterDato(tidsvinduFra.toISOString())} til{" "}
-            {formaterDato(tidsvinduTil.toISOString())}
-          </Heading>
-          <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
-            <StatistikkKort
-              label="Jobb"
-              verdi={`${totalStatistikk.arbeidTimer} t`}
-            />
-            <StatistikkKort
-              label="Ferie"
-              verdi={`${totalStatistikk.ferieDager} ${totalStatistikk.ferieDager === 1 ? "dag" : "dager"}`}
-            />
-            <StatistikkKort
-              label="Kurs"
-              verdi={`${totalStatistikk.kursDager} ${totalStatistikk.kursDager === 1 ? "dag" : "dager"}`}
-            />
-            <StatistikkKort
-              label="Sykdom"
-              verdi={`${totalStatistikk.sykdomDager} ${totalStatistikk.sykdomDager === 1 ? "dag" : "dager"}`}
-            />
-          </div>
-        </div>
-      </div>
+      <Accordion>
+        <AccordionItem>
+          <AccordionHeader>Vis individuelle meldekort</AccordionHeader>
+          <AccordionContent>
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <div className="flex flex-col gap-1">
+                  <Heading level="3" size="small">
+                    Periode {formaterDato(aktivtMeldekort.periode.fraOgMed)} –{" "}
+                    {formaterDato(aktivtMeldekort.periode.tilOgMed)}
+                  </Heading>
+                  <BodyShort size="small">
+                    Meldekort-ID: {aktivtMeldekort.id} – Meldedato:{" "}
+                    {aktivtMeldekort.meldedato
+                      ? formaterDato(aktivtMeldekort.meldedato)
+                      : "Ukjent"}
+                  </BodyShort>
+                </div>
+                <div className="flex flex-wrap items-center justify-end gap-2">
+                  <div className="flex items-center gap-0.5">
+                    <Button
+                      data-color="neutral"
+                      icon={
+                        <Tooltip
+                          content={
+                            kanGåTilForrige
+                              ? "Forrige meldekort"
+                              : "Ingen eldre meldekort"
+                          }
+                        >
+                          <ChevronLeftIcon aria-hidden="true" />
+                        </Tooltip>
+                      }
+                      type="button"
+                      variant="secondary"
+                      size="small"
+                      disabled={!kanGåTilForrige}
+                      aria-label="Forrige meldekort"
+                      onClick={() => setAktivIndex((index) => index + 1)}
+                    />
+                    <DatePicker
+                      open={erDatepickerÅpen}
+                      onClose={onToggleDatepicker}
+                      onSelect={(dato) => {
+                        velgRelevantMeldekort(dato);
+                        onToggleDatepicker();
+                      }}
+                      dropdownCaption={true}
+                      fromDate={fraDato}
+                      toDate={tilDato}
+                      disabled={[
+                        { before: fraDato, after: tilDato },
+                        (date) =>
+                          !tilgjengeligeDager.some(
+                            (tilgjengeligDag) =>
+                              formaterTilIsoDato(tilgjengeligDag) ===
+                              formaterTilIsoDato(date),
+                          ),
+                      ]}
+                    >
+                      <Button
+                        data-color="neutral"
+                        aria-label="Velg dato"
+                        icon={
+                          <Tooltip content="Velg dato">
+                            <CalendarIcon aria-hidden="true" />
+                          </Tooltip>
+                        }
+                        type="button"
+                        variant="secondary"
+                        size="small"
+                        onClick={onToggleDatepicker}
+                      />
+                    </DatePicker>
+                    <Button
+                      data-color="neutral"
+                      icon={
+                        <Tooltip
+                          content={
+                            kanGåTilNeste
+                              ? "Neste meldekort"
+                              : "Ingen nyere meldekort"
+                          }
+                        >
+                          <ChevronRightIcon aria-hidden="true" />
+                        </Tooltip>
+                      }
+                      type="button"
+                      variant="secondary"
+                      size="small"
+                      disabled={!kanGåTilNeste}
+                      aria-label="Neste meldekort"
+                      onClick={() => setAktivIndex((index) => index - 1)}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <Heading level="3" size="xsmall" className="mb-2">
+                  Dette meldekortet
+                </Heading>
+                <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
+                  <StatistikkKort
+                    label="Jobb"
+                    verdi={`${aktivtMeldekortStatistikk.arbeidTimer} t`}
+                  />
+                  <StatistikkKort
+                    label="Ferie"
+                    verdi={`${aktivtMeldekortStatistikk.ferieDager} ${aktivtMeldekortStatistikk.ferieDager === 1 ? "dag" : "dager"}`}
+                  />
+                  <StatistikkKort
+                    label="Kurs"
+                    verdi={`${aktivtMeldekortStatistikk.kursDager} ${aktivtMeldekortStatistikk.kursDager === 1 ? "dag" : "dager"}`}
+                  />
+                  <StatistikkKort
+                    label="Sykdom"
+                    verdi={`${aktivtMeldekortStatistikk.sykdomDager} ${aktivtMeldekortStatistikk.sykdomDager === 1 ? "dag" : "dager"}`}
+                  />
+                </div>
+              </div>
+              <MeldekortDager dager={aktivtMeldekort.dager} />
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </div>
   );
 };
