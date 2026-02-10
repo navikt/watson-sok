@@ -72,7 +72,11 @@ const YtelserPanelMedData = ({
   const harIngenYtelser = !ytelser || ytelser.length === 0;
   const { nåværendeVindu, oppdaterVindu } = useTidslinjevindu();
   const tilbakekrevinger = useTilbakekrevinger(ytelser, nåværendeVindu);
-  const [valgtYtelse, setValgtYtelse] = useState<Ytelse | null>(null);
+  const [valgtYtelsePeriode, setValgtYtelsePeriode] = useState<{
+    ytelse: Ytelse;
+    fraDato: string;
+    tilDato: string;
+  } | null>(null);
   const { tidsvindu } = useTidsvindu();
 
   const ytelserMedGruppertePerioder = useMemo(() => {
@@ -206,7 +210,11 @@ const YtelserPanelMedData = ({
                               return;
                             }
                             event.preventDefault();
-                            setValgtYtelse(ytelse);
+                            setValgtYtelsePeriode({
+                              ytelse,
+                              fraDato: gruppertPeriode.fom,
+                              tilDato: gruppertPeriode.tom,
+                            });
                             sporHendelse("ytelse modal åpnet", {
                               stonadType: ytelse.stonadType,
                             });
@@ -226,9 +234,11 @@ const YtelserPanelMedData = ({
           </div>
           {visYtelsesdetaljerModal && (
             <YtelsedetaljerModal
-              ytelse={valgtYtelse}
-              isOpen={Boolean(valgtYtelse)}
-              onClose={() => setValgtYtelse(null)}
+              ytelse={valgtYtelsePeriode?.ytelse ?? null}
+              fraDato={valgtYtelsePeriode?.fraDato ?? ""}
+              tilDato={valgtYtelsePeriode?.tilDato ?? ""}
+              isOpen={Boolean(valgtYtelsePeriode)}
+              onClose={() => setValgtYtelsePeriode(null)}
             />
           )}
         </>

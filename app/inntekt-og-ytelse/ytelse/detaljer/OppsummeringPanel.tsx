@@ -3,19 +3,23 @@ import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { useMeldekort } from "~/meldekort/MeldekortContext";
 import { StatistikkKort } from "~/paneler/StatistikkKort";
-import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { formaterBeløp } from "~/utils/number-utils";
 import type { Ytelse } from "../domene";
 import { beregnYtelseStatistikk } from "../utils";
 
 type OppsummeringPanelProps = {
   perioder: Ytelse["perioder"];
+  fraDato: string;
+  tilDato: string;
 };
 
-export function OppsummeringPanel({ perioder }: OppsummeringPanelProps) {
+export function OppsummeringPanel({
+  perioder,
+  fraDato,
+  tilDato,
+}: OppsummeringPanelProps) {
   const statistikk = beregnYtelseStatistikk(perioder);
   const meldekortState = useMeldekort();
-  const { tidsvinduIAntallMåneder } = useTidsvindu();
   const visMeldekort = useEnkeltFeatureFlagg(FeatureFlagg.VIS_MELDEKORT_PANEL);
 
   const meldekortStatistikk = useMemo(() => {
@@ -23,11 +27,13 @@ export function OppsummeringPanel({ perioder }: OppsummeringPanelProps) {
       return null;
     }
 
-    const cutoff = new Date();
-    cutoff.setMonth(cutoff.getMonth() - tidsvinduIAntallMåneder);
+    const fra = new Date(fraDato);
+    const til = new Date(tilDato);
 
     const filtrerteMeldekort = meldekortState.meldekort.filter(
-      (m) => new Date(m.periode.tilOgMed) >= cutoff,
+      (m) =>
+        new Date(m.periode.tilOgMed) >= fra &&
+        new Date(m.periode.fraOgMed) <= til,
     );
 
     const totalArbeidstimer = filtrerteMeldekort
@@ -39,7 +45,7 @@ export function OppsummeringPanel({ perioder }: OppsummeringPanelProps) {
     return {
       totalArbeidstimer,
     };
-  }, [meldekortState, tidsvinduIAntallMåneder]);
+  }, [meldekortState, fraDato, tilDato]);
 
   const meldekortLaster = meldekortState?.status === "loading";
 
