@@ -5,19 +5,22 @@ import {
   hentAlleFeatureFlagg,
   hentStatusmeldingFeatureFlagg,
 } from "~/feature-toggling/utils.server";
-import { parseTheme, themeCookie } from "~/tema/ThemeCookie";
+import {
+  parsePreferanser,
+  preferanserCookie,
+} from "~/preferanser/PreferanserCookie";
 
 export async function rootLoader({ request }: LoaderFunctionArgs) {
   const user = await hentInnloggetBruker({ request });
   const [featureFlagg, statusmelding, cookieValue] = await Promise.all([
     hentAlleFeatureFlagg(user.navIdent),
     hentStatusmeldingFeatureFlagg(),
-    themeCookie.parse(request.headers.get("Cookie")),
+    preferanserCookie.parse(request.headers.get("Cookie")),
   ]);
-  const initialTheme = parseTheme(cookieValue);
+  const initialPreferanser = parsePreferanser(cookieValue);
   return {
     user,
-    initialTheme,
+    initialPreferanser,
     envs: {
       isProd,
       faroUrl: env.FARO_URL,

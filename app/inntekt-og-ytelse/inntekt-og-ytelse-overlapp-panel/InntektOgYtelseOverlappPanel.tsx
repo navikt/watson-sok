@@ -6,6 +6,7 @@ import {
   PanelContainer,
   PanelContainerSkeleton,
 } from "~/paneler/PanelContainer";
+import { usePreferanser } from "~/preferanser/PreferanserContext";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { GrafLegend } from "./GrafLegend";
 import { HoverInfoboks } from "./HoverInfoboks";
@@ -13,11 +14,7 @@ import { Linjegraf } from "./Linjegraf";
 import { SkjultTabell } from "./SkjultTabell";
 import { Stolpediagram } from "./Stolpediagram";
 import { GRAF_HØYDE } from "./konstanter";
-import type {
-  GrafData,
-  GrafVisning,
-  InntektOgYtelseOverlappPanelProps,
-} from "./typer";
+import type { GrafData, InntektOgYtelseOverlappPanelProps } from "./typer";
 import { useMånedligData } from "./utils";
 
 /**
@@ -61,7 +58,7 @@ const InntektOgYtelseOverlappPanelMedData = ({
   );
   const [inntektInformasjon, ytelser] = use(promises);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [grafVisning, setGrafVisning] = useState<GrafVisning>("linje");
+  const { grafVisning, setGrafVisning } = usePreferanser();
   const { tidsvinduIAntallMåneder } = useTidsvindu();
   const månedligData = useMånedligData(inntektInformasjon, ytelser);
 
@@ -115,7 +112,7 @@ const InntektOgYtelseOverlappPanelMedData = ({
               size="small"
               value={grafVisning}
               aria-label="Velg grafvisning"
-              onChange={(value) => setGrafVisning(value as GrafVisning)}
+              onChange={(value) => setGrafVisning(value as "linje" | "stolpe")}
             >
               <ToggleGroupItem value="linje" label="Linjer" />
               <ToggleGroupItem value="stolpe" label="Stolper" />

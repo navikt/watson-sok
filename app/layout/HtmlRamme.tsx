@@ -1,17 +1,20 @@
 import { FaroErrorBoundary } from "@grafana/faro-react";
 import { Links, Meta, Scripts, ScrollRestoration } from "react-router";
 import { AnalyticsTags } from "~/analytics/analytics";
-import { ThemeProvider } from "~/tema/ThemeContext";
-import type { Theme } from "~/tema/ThemeCookie";
+import { PreferanserProvider } from "~/preferanser/PreferanserContext";
+import {
+  type Preferanser,
+  defaultPreferanser,
+} from "~/preferanser/PreferanserCookie";
 
 type HtmlRammeProps = {
   children: React.ReactNode;
-  initialTheme?: Theme;
+  initialPreferanser?: Preferanser;
   umamiSiteId: string;
 };
 export function HtmlRamme({
   children,
-  initialTheme = "light",
+  initialPreferanser = defaultPreferanser,
   umamiSiteId,
 }: HtmlRammeProps) {
   return (
@@ -26,7 +29,9 @@ export function HtmlRamme({
       </head>
       <body className="flex flex-col min-h-screen">
         <FaroErrorBoundary>
-          <ThemeProvider defaultTheme={initialTheme}>{children}</ThemeProvider>
+          <PreferanserProvider defaultPreferanser={initialPreferanser}>
+            {children}
+          </PreferanserProvider>
         </FaroErrorBoundary>
         <ScrollRestoration />
         <Scripts />

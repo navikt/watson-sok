@@ -18,7 +18,7 @@ export default [
   route(RouteConfig.API.HEALTH, "monitorering/helsesjekk/api.route.ts"),
   route(RouteConfig.API.LOGGED_IN_USER, "admin/innlogget-bruker/api.route.ts"),
   route(RouteConfig.API.MELDEKORT, "meldekort/api.route.ts"),
-  route(RouteConfig.API.THEME, "tema/api.route.ts"),
+  route(RouteConfig.API.PREFERANSER, "preferanser/api.route.ts"),
   route(RouteConfig.API.VERSION, "versjonsvarsling/api.route.ts"),
 
   // Well-known routes
