@@ -6,7 +6,7 @@ import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { MeldekortProvider } from "~/meldekort/MeldekortContext";
 import { MeldekortPanel } from "~/meldekort/MeldekortPanel";
-import { TidsvinduVelger, useTidsvindu } from "~/tidsvindu/Tidsvindu";
+import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import type { Ytelse } from "../domene";
 import { OppsummeringPanel } from "./OppsummeringPanel";
 import { UtbetalingerPanel } from "./UtbetalingerPanel";
@@ -79,9 +79,6 @@ export function YtelsedetaljerModal({
       placement="top"
     >
       <ModalBody className="min-w-md flex flex-col gap-8">
-        <div className="flex flex-row justify-end">
-          <TidsvinduVelger />
-        </div>
         <Tabs
           defaultValue={visMeldekortTab ? "meldekort" : "utbetalinger"}
           fill
