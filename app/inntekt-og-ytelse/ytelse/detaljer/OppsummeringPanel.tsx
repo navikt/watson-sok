@@ -51,10 +51,6 @@ export function OppsummeringPanel({
 
   return (
     <div className="grid grid-cols-2 ax-md:grid-cols-3 gap-4">
-      <StatistikkKort
-        label="Utbetalinger"
-        verdi={String(statistikk.antallUtbetalinger)}
-      />
       {statistikk.antallTilbakekrevinger > 0 && (
         <StatistikkKort
           label="Tilbakekrevinger"
