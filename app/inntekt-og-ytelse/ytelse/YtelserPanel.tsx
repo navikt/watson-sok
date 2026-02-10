@@ -68,7 +68,7 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   }, [ytelser]);
 
   return (
-    <PanelContainer title="Ytelser fra Nav">
+    <PanelContainer title="Ytelser fra Nav" className="overflow-x-clip">
       <BodyLong size="small">
         Visningen er basert på utbetalingstidspunkt fra Nav
       </BodyLong>
@@ -86,7 +86,6 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
           <Timeline
             id="timeline-dynamic"
             aria-controls="timeline-toolbar"
-            className="overflow-x-hidden"
             startDate={nåværendeVindu.start}
             endDate={nåværendeVindu.slutt}
           >
