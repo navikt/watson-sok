@@ -92,10 +92,7 @@ const InntektOgYtelseOverlappPanelMedData = ({
   const erTom = !grafData || grafData.data.length === 0;
 
   return (
-    <PanelContainer
-      title="Inntekt og ytelsesutbetalinger over tid"
-      betaFeature="inntekt-ytelse-visualisering"
-    >
+    <PanelContainer title="Inntekt og ytelsesutbetalinger over tid">
       {erTom ? (
         <Alert variant="info">
           Ingen inntekter eller ytelser funnet for de siste{" "}

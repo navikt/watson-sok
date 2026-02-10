@@ -202,10 +202,7 @@ const InntektsoppsummeringPanelMedData = ({
   const harIngenInntekter = !aggregert;
 
   return (
-    <PanelContainer
-      title="Inntekts&shy;oppsummering"
-      betaFeature="inntektsoppsummering"
-    >
+    <PanelContainer title="Inntekts&shy;oppsummering">
       {harIngenInntekter ? (
         <Alert variant="info">
           Ingen utbetalinger registrert{" "}
