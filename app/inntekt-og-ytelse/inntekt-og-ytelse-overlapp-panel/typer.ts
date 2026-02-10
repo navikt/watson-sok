@@ -39,8 +39,6 @@ export type GrafData = {
   maksVerdi: number;
 };
 
-export type GrafVisning = "linje" | "stolpe";
-
 export type HoverHandler = {
   onEnter: () => void;
   onLeave: () => void;

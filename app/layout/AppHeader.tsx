@@ -19,13 +19,13 @@ import { Form, Link, useNavigate, useNavigation } from "react-router";
 import { sporHendelse } from "~/analytics/analytics";
 import { useInnloggetBruker } from "~/auth/innlogget-bruker";
 import { useMiljø } from "~/miljø/useMiljø";
+import { usePreferanser } from "~/preferanser/PreferanserContext";
 import { RouteConfig } from "~/routeConfig";
-import { useTheme } from "~/tema/ThemeContext";
 
 export function AppHeader() {
   const innloggetBruker = useInnloggetBruker();
   const navigate = useNavigate();
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = usePreferanser();
   const navigation = useNavigation();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [metaKey, setMetaKey] = useState<"⌘" | "ctrl">("ctrl");
