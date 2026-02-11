@@ -21,6 +21,7 @@ export function SnarveierHjelpModal({ ref }: SnarveierHjelpModalProps) {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key !== "?") return;
+
       const target = e.target as HTMLElement | null;
       if (target && INPUT_TAGS.has(target.tagName)) return;
 

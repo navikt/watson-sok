@@ -22,15 +22,18 @@ async function gåTilOppslag(page: Page) {
     /Inntekts\S*oppsummering/,
   ];
   for (const navn of panelOverskrifter) {
-    await expect(
-      page.getByRole("heading", { name: navn }),
-    ).toBeVisible({ timeout: 15000 });
+    await expect(page.getByRole("heading", { name: navn })).toBeVisible({
+      timeout: 15000,
+    });
   }
 }
 
 test.describe("Tastatursnarveier", () => {
   test.beforeEach(async ({ page }) => {
     await gåTilOppslag(page);
+    // Reset fokus til body for å unngå flaky tester
+    await page.locator("body").focus();
+    await expect(page.locator("body")).toBeFocused();
   });
 
   test("Alt+1–6 navigerer til riktig panel", async ({ page }) => {
@@ -84,6 +87,8 @@ test.describe("Tastatursnarveier", () => {
       ).toBeVisible();
     });
 
+    await page.waitForTimeout(1000); // Gi tid til animasjon før tilgjengelighetssjekk
+
     await sjekkTilgjengelighet(page);
   });
 
@@ -118,7 +123,7 @@ test.describe("Tastatursnarveier", () => {
     await test.step("Trykk ? (Shift++)", async () => {
       // Klikk på body for å sikre at fokus ikke er i et input-felt
       await page.locator("body").click();
-      await page.keyboard.press("Shift++");
+      await page.keyboard.press("?");
       await expect(
         page.getByRole("dialog", { name: /Tastatursnarveier/i }),
       ).toBeVisible();

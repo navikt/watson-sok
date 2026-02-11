@@ -57,7 +57,10 @@ export function FamiliemedlemmerModal({
       </Link>
       <Modal
         ref={ref}
-        header={{ heading: "Familiemedlemmer", icon: <PersonTallShortIcon /> }}
+        header={{
+          heading: "Familiemedlemmer",
+          icon: <PersonTallShortIcon aria-hidden />,
+        }}
         closeOnBackdropClick
       >
         <ModalBody className="min-w-md">
