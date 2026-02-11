@@ -18,6 +18,8 @@ type PanelContainerProps = {
   id?: string;
   /** aria-keyshortcuts for å indikere tilgjengelig tastatursnarvei */
   "aria-keyshortcuts"?: string;
+  /** Valgfri keydown-handler for panelet */
+  onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
 };
 
 /**
@@ -31,12 +33,14 @@ export function PanelContainer({
   className = "",
   id,
   "aria-keyshortcuts": ariaKeyShortcuts,
+  onKeyDown,
 }: PanelContainerProps) {
   return (
     <section
       id={id}
       tabIndex={id ? -1 : undefined}
       aria-keyshortcuts={ariaKeyShortcuts}
+      onKeyDown={onKeyDown}
       className={`border border-ax-neutral-400 rounded-xl p-4 relative h-fit ${className} ${id ? "scroll-mt-4 focus:outline-2 focus:outline-ax-border-focus focus:outline-offset-2" : ""}`}
     >
       {title && (

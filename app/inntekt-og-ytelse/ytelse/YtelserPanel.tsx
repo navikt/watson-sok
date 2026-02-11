@@ -89,6 +89,16 @@ const YtelserPanelMedData = ({
       className="overflow-x-clip"
       id={panelId}
       aria-keyshortcuts={ariaKeyShortcuts}
+      onKeyDown={(e) => {
+        if (e.key !== "ArrowDown" || e.target !== e.currentTarget) return;
+        const førstePeriode = e.currentTarget.querySelector<HTMLButtonElement>(
+          "button.aksel-timeline__period--clickable",
+        );
+        if (førstePeriode) {
+          e.preventDefault();
+          førstePeriode.focus();
+        }
+      }}
     >
       <BodyLong size="small">
         Visningen er basert på utbetalingstidspunkt fra Nav
