@@ -186,28 +186,32 @@ const YtelserPanelMedData = ({
                   <TimelineRow
                     key={ytelse.stonadType}
                     label={
-                      <Button
-                        variant="tertiary"
-                        size="small"
-                        onClick={() => {
-                          if (!visYtelsesdetaljerModal) {
-                            return;
-                          }
-                          setValgtYtelsePeriode({
-                            ytelse,
-                            fraDato: ytelse.gruppertePerioder[0].fom,
-                            tilDato:
-                              ytelse.gruppertePerioder[
-                                ytelse.gruppertePerioder.length - 1
-                              ].tom,
-                          });
-                          sporHendelse("ytelse modal åpnet", {
-                            stonadType: ytelse.stonadType,
-                          });
-                        }}
-                      >
-                        {ytelse.stonadType}
-                      </Button>
+                      <Tooltip content="Trykk for å se detaljer for alle perioder">
+                        <Button
+                          variant="tertiary"
+                          size="small"
+                          onClick={() => {
+                            if (!visYtelsesdetaljerModal) {
+                              return;
+                            }
+                            setValgtYtelsePeriode({
+                              ytelse,
+                              fraDato: ytelse.gruppertePerioder[0].fom,
+                              tilDato:
+                                ytelse.gruppertePerioder[
+                                  ytelse.gruppertePerioder.length - 1
+                                ].tom,
+                            });
+                            sporHendelse("ytelse modal åpnet", {
+                              stonadType: ytelse.stonadType,
+                            });
+                          }}
+                        >
+                          <span className="inline-block max-w-[20ch] truncate">
+                            {ytelse.stonadType}
+                          </span>
+                        </Button>
+                      </Tooltip>
                     }
                   >
                     {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
