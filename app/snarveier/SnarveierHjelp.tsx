@@ -29,7 +29,7 @@ export function SnarveierHjelpModal({
         <ModalBody className="min-w-sm flex flex-col gap-6">
           <div className="flex items-center gap-2">
             <Tag variant="info" size="small">
-              Ctrl + K
+              Alt + K
             </Tag>
             <span className="text-sm">Søk etter bruker</span>
           </div>
