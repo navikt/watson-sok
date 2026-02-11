@@ -57,11 +57,12 @@ export function YtelsedetaljerModal({
   const filtrertePerioder = useMemo(() => {
     if (!ytelse) return [];
 
+    const fra = new Date(fraDato);
+    const til = new Date(tilDato);
+
     return [...ytelse.perioder]
       .filter(
-        (p) =>
-          new Date(p.periode.tom) >= new Date(fraDato) &&
-          new Date(p.periode.fom) <= new Date(tilDato),
+        (p) => new Date(p.periode.tom) >= fra && new Date(p.periode.fom) <= til,
       )
       .sort((a, b) => b.periode.fom.localeCompare(a.periode.fom));
   }, [ytelse, fraDato, tilDato]);

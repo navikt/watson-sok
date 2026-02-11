@@ -23,7 +23,11 @@ export function OppsummeringPanel({
   const visMeldekort = useEnkeltFeatureFlagg(FeatureFlagg.VIS_MELDEKORT_PANEL);
 
   const meldekortStatistikk = useMemo(() => {
-    if (!visMeldekort || !meldekortState || meldekortState.status !== "success") {
+    if (
+      !visMeldekort ||
+      !meldekortState ||
+      meldekortState.status !== "success"
+    ) {
       return null;
     }
 
