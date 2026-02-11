@@ -6,7 +6,7 @@ import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { MeldekortProvider } from "~/meldekort/MeldekortContext";
 import { MeldekortPanel } from "~/meldekort/MeldekortPanel";
-import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
+import { formaterDato } from "~/utils/date-utils";
 import type { Ytelse } from "../domene";
 import { OppsummeringPanel } from "./OppsummeringPanel";
 import { UtbetalingerPanel } from "./UtbetalingerPanel";
@@ -23,6 +23,8 @@ function harMeldekort(
 
 type YtelsedetaljerModalProps = {
   ytelse: Ytelse | null;
+  fraDato: string;
+  tilDato: string;
   isOpen: boolean;
   onClose: () => void;
 };
@@ -34,6 +36,8 @@ type YtelsedetaljerModalProps = {
  * ```tsx
  * <YtelsedetaljerModal
  *   ytelse={ytelse}
+ *   fraDato="2025-01-01"
+ *   tilDato="2025-06-01"
  *   isOpen={valgt}
  *   onClose={() => setValgt(false)}
  * />
@@ -41,24 +45,27 @@ type YtelsedetaljerModalProps = {
  */
 export function YtelsedetaljerModal({
   ytelse,
+  fraDato,
+  tilDato,
   isOpen,
   onClose,
 }: YtelsedetaljerModalProps) {
   const erMeldekortPanelAktivert = useEnkeltFeatureFlagg(
     FeatureFlagg.VIS_MELDEKORT_PANEL,
   );
-  const { tidsvinduIAntallMåneder } = useTidsvindu();
 
   const filtrertePerioder = useMemo(() => {
     if (!ytelse) return [];
 
-    const cutoff = new Date();
-    cutoff.setMonth(cutoff.getMonth() - tidsvinduIAntallMåneder);
+    const fra = new Date(fraDato);
+    const til = new Date(tilDato);
 
     return [...ytelse.perioder]
-      .filter((p) => new Date(p.periode.tom) >= cutoff)
+      .filter(
+        (p) => new Date(p.periode.tom) >= fra && new Date(p.periode.fom) <= til,
+      )
       .sort((a, b) => b.periode.fom.localeCompare(a.periode.fom));
-  }, [ytelse, tidsvinduIAntallMåneder]);
+  }, [ytelse, fraDato, tilDato]);
 
   if (!ytelse) {
     return null;
@@ -74,7 +81,7 @@ export function YtelsedetaljerModal({
       onClose={onClose}
       closeOnBackdropClick
       header={{
-        heading: ytelse.stonadType,
+        heading: `${ytelse.stonadType} (${formaterDato(fraDato)} – ${formaterDato(tilDato)})`,
       }}
       placement="top"
     >
@@ -128,7 +135,11 @@ export function YtelsedetaljerModal({
             )}
           </Tabs.List>
           <Tabs.Panel value="oppsummering" className="pt-4">
-            <OppsummeringPanel perioder={filtrertePerioder} />
+            <OppsummeringPanel
+              perioder={filtrertePerioder}
+              fraDato={fraDato}
+              tilDato={tilDato}
+            />
           </Tabs.Panel>
           <Tabs.Panel value="utbetalinger" className="pt-4">
             <UtbetalingerPanel
@@ -138,7 +149,7 @@ export function YtelsedetaljerModal({
           </Tabs.Panel>
           {visMeldekortTab && (
             <Tabs.Panel value="meldekort" className="pt-4">
-              <MeldekortPanel />
+              <MeldekortPanel fraDato={fraDato} tilDato={tilDato} />
             </Tabs.Panel>
           )}
         </Tabs>

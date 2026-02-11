@@ -72,7 +72,11 @@ const YtelserPanelMedData = ({
   const harIngenYtelser = !ytelser || ytelser.length === 0;
   const { nåværendeVindu, oppdaterVindu } = useTidslinjevindu();
   const tilbakekrevinger = useTilbakekrevinger(ytelser, nåværendeVindu);
-  const [valgtYtelse, setValgtYtelse] = useState<Ytelse | null>(null);
+  const [valgtYtelsePeriode, setValgtYtelsePeriode] = useState<{
+    ytelse: Ytelse;
+    fraDato: string;
+    tilDato: string;
+  } | null>(null);
   const { tidsvindu } = useTidsvindu();
 
   const ytelserMedGruppertePerioder = useMemo(() => {
@@ -181,8 +185,34 @@ const YtelserPanelMedData = ({
                 return (
                   <TimelineRow
                     key={ytelse.stonadType}
-                    label={ytelse.stonadType}
-                    icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
+                    label={
+                      <Tooltip content="Trykk for å se detaljer for alle perioder">
+                        <Button
+                          variant="tertiary"
+                          size="small"
+                          onClick={() => {
+                            if (!visYtelsesdetaljerModal) {
+                              return;
+                            }
+                            setValgtYtelsePeriode({
+                              ytelse,
+                              fraDato: ytelse.gruppertePerioder[0].fom,
+                              tilDato:
+                                ytelse.gruppertePerioder[
+                                  ytelse.gruppertePerioder.length - 1
+                                ].tom,
+                            });
+                            sporHendelse("ytelse modal åpnet", {
+                              stonadType: ytelse.stonadType,
+                            });
+                          }}
+                        >
+                          <span className="inline-block max-w-[20ch] truncate">
+                            {ytelse.stonadType}
+                          </span>
+                        </Button>
+                      </Tooltip>
+                    }
                   >
                     {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
                       const fomDate = new Date(gruppertPeriode.fom);
@@ -201,12 +231,16 @@ const YtelserPanelMedData = ({
                           end={tomDate}
                           status="success"
                           icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
-                          onSelectPeriod={(event) => {
+                          onClick={(event) => {
                             if (!visYtelsesdetaljerModal) {
                               return;
                             }
                             event.preventDefault();
-                            setValgtYtelse(ytelse);
+                            setValgtYtelsePeriode({
+                              ytelse,
+                              fraDato: gruppertPeriode.fom,
+                              tilDato: gruppertPeriode.tom,
+                            });
                             sporHendelse("ytelse modal åpnet", {
                               stonadType: ytelse.stonadType,
                             });
@@ -226,9 +260,11 @@ const YtelserPanelMedData = ({
           </div>
           {visYtelsesdetaljerModal && (
             <YtelsedetaljerModal
-              ytelse={valgtYtelse}
-              isOpen={Boolean(valgtYtelse)}
-              onClose={() => setValgtYtelse(null)}
+              ytelse={valgtYtelsePeriode?.ytelse ?? null}
+              fraDato={valgtYtelsePeriode?.fraDato ?? ""}
+              tilDato={valgtYtelsePeriode?.tilDato ?? ""}
+              isOpen={Boolean(valgtYtelsePeriode)}
+              onClose={() => setValgtYtelsePeriode(null)}
             />
           )}
         </>

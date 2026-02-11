@@ -20,15 +20,19 @@ import {
 } from "@navikt/ds-react/Accordion";
 import { useEffect, useMemo, useState } from "react";
 import { StatistikkKort } from "~/paneler/StatistikkKort";
-import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { formaterDato, formaterTilIsoDato } from "~/utils/date-utils";
 import type { AktivitetType, Dag, MeldekortRespons } from "./domene";
 import { useMeldekort } from "./MeldekortContext";
 import { beregnAktivitetStatistikk } from "./utils";
 
+type MeldekortPanelProps = {
+  fraDato: string;
+  tilDato: string;
+};
+
 /** Viser meldekort for dagpenger */
-export function MeldekortPanel() {
+export function MeldekortPanel({ fraDato, tilDato }: MeldekortPanelProps) {
   const meldekortState = useMeldekort();
 
   if (!meldekortState || meldekortState.status === "loading") {
@@ -53,7 +57,13 @@ export function MeldekortPanel() {
     );
   }
 
-  return <MeldekortVisning meldekort={meldekort} />;
+  return (
+    <MeldekortVisning
+      meldekort={meldekort}
+      fraDato={fraDato}
+      tilDato={tilDato}
+    />
+  );
 }
 
 const MeldekortPanelSkeleton = () => {
@@ -94,17 +104,26 @@ function mapAktivitetstype(type: AktivitetType) {
 
 type MeldekortVisningProps = {
   meldekort: MeldekortRespons;
+  fraDato: string;
+  tilDato: string;
 };
 
-const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
-  const { fraDato: tidsvinduFra, tilDato: tidsvinduTil } = useTidsvindu();
-  const sorterteMeldekort = useMemo(
-    () =>
-      [...(meldekort ?? [])].sort((a, b) =>
-        b.periode.fraOgMed.localeCompare(a.periode.fraOgMed),
-      ),
-    [meldekort],
-  );
+const MeldekortVisning = ({
+  meldekort,
+  fraDato,
+  tilDato,
+}: MeldekortVisningProps) => {
+  const sorterteMeldekort = useMemo(() => {
+    const periodeFra = new Date(fraDato);
+    const periodeTil = new Date(tilDato);
+    return [...(meldekort ?? [])]
+      .filter(
+        (m) =>
+          new Date(m.periode.tilOgMed) >= periodeFra &&
+          new Date(m.periode.fraOgMed) <= periodeTil,
+      )
+      .sort((a, b) => b.periode.fraOgMed.localeCompare(a.periode.fraOgMed));
+  }, [meldekort, fraDato, tilDato]);
   const [aktivIndex, setAktivIndex] = useState(0);
   useEffect(() => {
     setAktivIndex(0);
@@ -113,22 +132,29 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
   const { erÅpen: erDatepickerÅpen, onToggle: onToggleDatepicker } =
     useDisclosure(false);
 
-  const aktivtMeldekort = sorterteMeldekort[aktivIndex];
-  const kanGåTilForrige = aktivIndex < sorterteMeldekort.length - 1;
-  const kanGåTilNeste = aktivIndex > 0;
+  const aktivtMeldekort = sorterteMeldekort[aktivIndex] ?? null;
 
   const aktivtMeldekortStatistikk = useMemo(
-    () => beregnAktivitetStatistikk(aktivtMeldekort.dager),
+    () =>
+      aktivtMeldekort ? beregnAktivitetStatistikk(aktivtMeldekort.dager) : null,
     [aktivtMeldekort],
   );
 
   const totalStatistikk = useMemo(() => {
-    const filtrerteMeldekort = sorterteMeldekort.filter(
-      (m) => new Date(m.periode.tilOgMed) >= tidsvinduFra,
-    );
-    const alleDager = filtrerteMeldekort.flatMap((m) => m.dager);
+    const alleDager = sorterteMeldekort.flatMap((m) => m.dager);
     return beregnAktivitetStatistikk(alleDager);
-  }, [sorterteMeldekort, tidsvinduFra]);
+  }, [sorterteMeldekort]);
+
+  if (sorterteMeldekort.length === 0 || !aktivtMeldekort) {
+    return (
+      <Alert variant="info" size="small">
+        Ingen meldekort i denne perioden.
+      </Alert>
+    );
+  }
+
+  const kanGåTilForrige = aktivIndex < sorterteMeldekort.length - 1;
+  const kanGåTilNeste = aktivIndex > 0;
 
   const velgRelevantMeldekort = (dato: Date | undefined) => {
     if (!dato) {
@@ -144,10 +170,10 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
     }
   };
 
-  const fraDato = new Date(
+  const datepickerFraDato = new Date(
     sorterteMeldekort[sorterteMeldekort.length - 1].periode.fraOgMed,
   );
-  const tilDato = new Date(sorterteMeldekort[0].periode.tilOgMed);
+  const datepickerTilDato = new Date(sorterteMeldekort[0].periode.tilOgMed);
   const tilgjengeligeDager = sorterteMeldekort.flatMap((meldekort) =>
     meldekort.dager.map((dag) => new Date(dag.dato)),
   );
@@ -159,8 +185,7 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
       </Heading>
       <div>
         <Heading level="3" size="xsmall" className="mb-2">
-          Totalt fra {formaterDato(tidsvinduFra.toISOString())} til{" "}
-          {formaterDato(tidsvinduTil.toISOString())}
+          Totalt fra {formaterDato(fraDato)} til {formaterDato(tilDato)}
         </Heading>
         <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
           <StatistikkKort
@@ -229,10 +254,10 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
                         onToggleDatepicker();
                       }}
                       dropdownCaption={true}
-                      fromDate={fraDato}
-                      toDate={tilDato}
+                      fromDate={datepickerFraDato}
+                      toDate={datepickerTilDato}
                       disabled={[
-                        { before: fraDato, after: tilDato },
+                        { before: datepickerFraDato, after: datepickerTilDato },
                         (date) =>
                           !tilgjengeligeDager.some(
                             (tilgjengeligDag) =>
@@ -285,19 +310,19 @@ const MeldekortVisning = ({ meldekort }: MeldekortVisningProps) => {
                 <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
                   <StatistikkKort
                     label="Jobb"
-                    verdi={`${aktivtMeldekortStatistikk.arbeidTimer} t`}
+                    verdi={`${aktivtMeldekortStatistikk?.arbeidTimer ?? 0} t`}
                   />
                   <StatistikkKort
                     label="Ferie"
-                    verdi={`${aktivtMeldekortStatistikk.ferieDager} ${aktivtMeldekortStatistikk.ferieDager === 1 ? "dag" : "dager"}`}
+                    verdi={`${aktivtMeldekortStatistikk?.ferieDager ?? 0} ${aktivtMeldekortStatistikk?.ferieDager === 1 ? "dag" : "dager"}`}
                   />
                   <StatistikkKort
                     label="Kurs"
-                    verdi={`${aktivtMeldekortStatistikk.kursDager} ${aktivtMeldekortStatistikk.kursDager === 1 ? "dag" : "dager"}`}
+                    verdi={`${aktivtMeldekortStatistikk?.kursDager ?? 0} ${aktivtMeldekortStatistikk?.kursDager === 1 ? "dag" : "dager"}`}
                   />
                   <StatistikkKort
                     label="Sykdom"
-                    verdi={`${aktivtMeldekortStatistikk.sykdomDager} ${aktivtMeldekortStatistikk.sykdomDager === 1 ? "dag" : "dager"}`}
+                    verdi={`${aktivtMeldekortStatistikk?.sykdomDager ?? 0} ${aktivtMeldekortStatistikk?.sykdomDager === 1 ? "dag" : "dager"}`}
                   />
                 </div>
               </div>

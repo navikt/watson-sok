@@ -1,6 +1,6 @@
 import { forskjellIDager } from "~/utils/date-utils";
 
-export type GruppertPeriode = {
+type GruppertPeriode = {
   fom: string;
   tom: string;
   totalBeløp: number;
@@ -12,7 +12,7 @@ type Periode = {
   bruttoBeløp: number;
 };
 
-export type YtelseStatistikk = {
+type YtelseStatistikk = {
   antallUtbetalinger: number;
   antallTilbakekrevinger: number;
   antallPerioder: number;
