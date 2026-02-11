@@ -26,6 +26,8 @@ import { useMånedligData } from "./utils";
 export function InntektOgYtelseOverlappPanel({
   inntektPromise,
   ytelserPromise,
+  panelId,
+  ariaKeyShortcuts,
 }: InntektOgYtelseOverlappPanelProps) {
   return (
     <ResolvingComponent
@@ -34,6 +36,8 @@ export function InntektOgYtelseOverlappPanel({
       <InntektOgYtelseOverlappPanelMedData
         inntektPromise={inntektPromise}
         ytelserPromise={ytelserPromise}
+        panelId={panelId}
+        ariaKeyShortcuts={ariaKeyShortcuts}
       />
     </ResolvingComponent>
   );
@@ -51,6 +55,8 @@ type InntektOgYtelseOverlappPanelMedDataProps =
 const InntektOgYtelseOverlappPanelMedData = ({
   inntektPromise,
   ytelserPromise,
+  panelId,
+  ariaKeyShortcuts,
 }: InntektOgYtelseOverlappPanelMedDataProps) => {
   const promises = useMemo(
     () => Promise.all([inntektPromise, ytelserPromise]),
@@ -95,6 +101,8 @@ const InntektOgYtelseOverlappPanelMedData = ({
     <PanelContainer
       title="Inntekt og ytelsesutbetalinger over tid"
       betaFeature="inntekt-ytelse-visualisering"
+      id={panelId}
+      aria-keyshortcuts={ariaKeyShortcuts}
     >
       {erTom ? (
         <Alert variant="info">

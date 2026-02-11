@@ -290,14 +290,17 @@ export const TidsvinduVelger = () => {
   const errorId = useId();
 
   return (
-    <div>
+    <div className="rounded-lg w-fit">
       <ToggleGroup
         data-color="neutral"
         size="small"
         value={aktivVerdi}
         aria-label="Velg tidsvindu"
         onChange={handleToggleChange}
-        className="bg-ax-bg-default rounded-lg w-fit"
+        className="scroll-mt-4 bg-ax-bg-default rounded-lg w-fit"
+        id="tidsvindu-velger"
+        tabIndex={-1}
+        aria-keyshortcuts="Alt+T"
       >
         <ToggleGroupItem value="6 måneder" label="6 mnd" />
         <ToggleGroupItem value="1 år" label="1 år" />

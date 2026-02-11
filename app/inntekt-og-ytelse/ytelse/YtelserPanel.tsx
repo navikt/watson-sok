@@ -35,20 +35,36 @@ import { grupperSammenhengendePerioder } from "./utils";
 
 type YtelserOversiktProps = {
   promise: Promise<Ytelse[] | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
 
-export function YtelserPanel({ promise }: YtelserOversiktProps) {
+export function YtelserPanel({
+  promise,
+  panelId,
+  ariaKeyShortcuts,
+}: YtelserOversiktProps) {
   return (
     <ResolvingComponent loadingFallback={<YtelserPanelSkeleton />}>
-      <YtelserPanelMedData promise={promise} />
+      <YtelserPanelMedData
+        promise={promise}
+        panelId={panelId}
+        ariaKeyShortcuts={ariaKeyShortcuts}
+      />
     </ResolvingComponent>
   );
 }
 
 type YtelserPanelMedDataProps = {
   promise: Promise<Ytelse[] | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
-const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
+const YtelserPanelMedData = ({
+  promise,
+  panelId,
+  ariaKeyShortcuts,
+}: YtelserPanelMedDataProps) => {
   const ytelser = use(promise);
   const visYtelsesdetaljerModal = useEnkeltFeatureFlagg(
     FeatureFlagg.VIS_YTELSESDETALJER_MODAL,
@@ -68,7 +84,22 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   }, [ytelser]);
 
   return (
-    <PanelContainer title="Ytelser fra Nav" className="overflow-x-clip">
+    <PanelContainer
+      title="Ytelser fra Nav"
+      className="overflow-x-clip"
+      id={panelId}
+      aria-keyshortcuts={ariaKeyShortcuts}
+      onKeyDown={(e) => {
+        if (e.key !== "ArrowDown" || e.target !== e.currentTarget) return;
+        const førstePeriode = e.currentTarget.querySelector<HTMLButtonElement>(
+          "button.aksel-timeline__period--clickable",
+        );
+        if (førstePeriode) {
+          e.preventDefault();
+          førstePeriode.focus();
+        }
+      }}
+    >
       <BodyLong size="small">
         Visningen er basert på utbetalingstidspunkt fra Nav
       </BodyLong>
@@ -83,91 +114,116 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
             oppdaterVindu={oppdaterVindu}
           />
 
-          <Timeline
-            id="timeline-dynamic"
-            aria-controls="timeline-toolbar"
-            startDate={nåværendeVindu.start}
-            endDate={nåværendeVindu.slutt}
-          >
-            {tilbakekrevinger.map((tilbakebetaling) => (
-              <TimelinePin
-                key={tilbakebetaling.info}
-                date={new Date(tilbakebetaling.periode.fom)}
-              >
-                <Heading level="3" size="small">
-                  Tilbakekreving
-                </Heading>
-                <BodyShort spacing>
-                  <strong>Periode:</strong>{" "}
-                  {formaterDato(tilbakebetaling.periode.fom)} –{" "}
-                  {formaterDato(tilbakebetaling.periode.tom)}
-                  <br />
-                  <strong>Beløp:</strong>{" "}
-                  {formaterBeløp(Math.abs(tilbakebetaling.beløp))}
-                  <br />
-                  <span className="flex items-center gap-1">
-                    <strong>Bilagsnummer:</strong>{" "}
-                    {tilbakebetaling.info ?? "Ikke tilgjengelig"}{" "}
-                    {tilbakebetaling.info && (
-                      <CopyButton
-                        copyText={tilbakebetaling.info}
-                        size="xsmall"
-                        className="inline-block ml-1"
-                      />
-                    )}
-                  </span>
-                </BodyShort>
-                <BodyShort className="text-ax-danger-500">
-                  Vedtak, Se Gosys
-                </BodyShort>
-              </TimelinePin>
-            ))}
-            {ytelserMedGruppertePerioder.map((ytelse) => {
-              return (
-                <TimelineRow
-                  key={ytelse.stonadType}
-                  label={ytelse.stonadType}
-                  icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
-                >
-                  {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
-                    const fomDate = new Date(gruppertPeriode.fom);
-                    const tomDate = new Date(gruppertPeriode.tom);
-                    const fomFormatert = formaterDato(gruppertPeriode.fom);
-                    const tomFormatert = formaterDato(gruppertPeriode.tom);
-                    const beløpFormatert = formaterBeløp(
-                      gruppertPeriode.totalBeløp,
-                      0,
-                    );
+          <div
+            onKeyDownCapture={(e) => {
+              const target = e.target;
+              if (
+                !(target instanceof HTMLButtonElement) ||
+                !target.classList.contains("aksel-timeline__period--clickable")
+              )
+                return;
 
-                    return (
-                      <TimelinePeriod
-                        key={`${ytelse.stonadType}-${index}`}
-                        start={fomDate}
-                        end={tomDate}
-                        status="success"
-                        icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
-                        onSelectPeriod={(event) => {
-                          if (!visYtelsesdetaljerModal) {
-                            return;
-                          }
-                          event.preventDefault();
-                          setValgtYtelse(ytelse);
-                          sporHendelse("ytelse modal åpnet", {
-                            stonadType: ytelse.stonadType,
-                          });
-                        }}
-                      >
-                        <BodyShort>
-                          {fomFormatert} – {tomFormatert}
-                        </BodyShort>
-                        <BodyShort>Sum: {beløpFormatert}</BodyShort>
-                      </TimelinePeriod>
-                    );
-                  })}
-                </TimelineRow>
-              );
-            })}
-          </Timeline>
+              if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+                e.preventDefault();
+                const rad = target.closest("ol");
+                if (!rad) return;
+                const perioder = Array.from(
+                  rad.querySelectorAll<HTMLButtonElement>(
+                    "button.aksel-timeline__period--clickable",
+                  ),
+                );
+                const idx = perioder.indexOf(target);
+                const neste = e.key === "ArrowRight" ? idx + 1 : idx - 1;
+                perioder[neste]?.focus();
+              }
+            }}
+          >
+            <Timeline
+              id="timeline-dynamic"
+              aria-controls="timeline-toolbar"
+              startDate={nåværendeVindu.start}
+              endDate={nåværendeVindu.slutt}
+            >
+              {tilbakekrevinger.map((tilbakebetaling) => (
+                <TimelinePin
+                  key={tilbakebetaling.info}
+                  date={new Date(tilbakebetaling.periode.fom)}
+                >
+                  <Heading level="3" size="small">
+                    Tilbakekreving
+                  </Heading>
+                  <BodyShort spacing>
+                    <strong>Periode:</strong>{" "}
+                    {formaterDato(tilbakebetaling.periode.fom)} –{" "}
+                    {formaterDato(tilbakebetaling.periode.tom)}
+                    <br />
+                    <strong>Beløp:</strong>{" "}
+                    {formaterBeløp(Math.abs(tilbakebetaling.beløp))}
+                    <br />
+                    <span className="flex items-center gap-1">
+                      <strong>Bilagsnummer:</strong>{" "}
+                      {tilbakebetaling.info ?? "Ikke tilgjengelig"}{" "}
+                      {tilbakebetaling.info && (
+                        <CopyButton
+                          copyText={tilbakebetaling.info}
+                          size="xsmall"
+                          className="inline-block ml-1"
+                        />
+                      )}
+                    </span>
+                  </BodyShort>
+                  <BodyShort className="text-ax-danger-500">
+                    Vedtak, Se Gosys
+                  </BodyShort>
+                </TimelinePin>
+              ))}
+              {ytelserMedGruppertePerioder.map((ytelse) => {
+                return (
+                  <TimelineRow
+                    key={ytelse.stonadType}
+                    label={ytelse.stonadType}
+                    icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
+                  >
+                    {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
+                      const fomDate = new Date(gruppertPeriode.fom);
+                      const tomDate = new Date(gruppertPeriode.tom);
+                      const fomFormatert = formaterDato(gruppertPeriode.fom);
+                      const tomFormatert = formaterDato(gruppertPeriode.tom);
+                      const beløpFormatert = formaterBeløp(
+                        gruppertPeriode.totalBeløp,
+                        0,
+                      );
+
+                      return (
+                        <TimelinePeriod
+                          key={`${ytelse.stonadType}-${index}`}
+                          start={fomDate}
+                          end={tomDate}
+                          status="success"
+                          icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
+                          onSelectPeriod={(event) => {
+                            if (!visYtelsesdetaljerModal) {
+                              return;
+                            }
+                            event.preventDefault();
+                            setValgtYtelse(ytelse);
+                            sporHendelse("ytelse modal åpnet", {
+                              stonadType: ytelse.stonadType,
+                            });
+                          }}
+                        >
+                          <BodyShort>
+                            {fomFormatert} – {tomFormatert}
+                          </BodyShort>
+                          <BodyShort>Sum: {beløpFormatert}</BodyShort>
+                        </TimelinePeriod>
+                      );
+                    })}
+                  </TimelineRow>
+                );
+              })}
+            </Timeline>
+          </div>
           {visYtelsesdetaljerModal && (
             <YtelsedetaljerModal
               ytelse={valgtYtelse}

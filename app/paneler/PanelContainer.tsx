@@ -14,6 +14,12 @@ type PanelContainerProps = {
     beskrivelse: string;
   };
   className?: string;
+  /** Unik ID for panelet, brukes bl.a. av tastatursnarveier */
+  id?: string;
+  /** aria-keyshortcuts for å indikere tilgjengelig tastatursnarvei */
+  "aria-keyshortcuts"?: string;
+  /** Valgfri keydown-handler for panelet */
+  onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
 };
 
 /**
@@ -25,10 +31,17 @@ export function PanelContainer({
   link,
   betaFeature = false,
   className = "",
+  id,
+  "aria-keyshortcuts": ariaKeyShortcuts,
+  onKeyDown,
 }: PanelContainerProps) {
   return (
     <section
-      className={`border border-ax-neutral-400 rounded-xl p-4 relative h-fit ${className}`}
+      id={id}
+      tabIndex={id ? -1 : undefined}
+      aria-keyshortcuts={ariaKeyShortcuts}
+      onKeyDown={onKeyDown}
+      className={`border border-ax-neutral-400 rounded-xl p-4 relative h-fit ${className} ${id ? "scroll-mt-4 focus:outline-2 focus:outline-ax-border-focus focus:outline-offset-2" : ""}`}
     >
       {title && (
         <div className="flex items-center gap-2 mb-4">

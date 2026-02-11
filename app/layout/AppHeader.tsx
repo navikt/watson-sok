@@ -1,5 +1,6 @@
 import {
   BooksIcon,
+  InformationSquareIcon,
   LightBulbIcon,
   MenuGridIcon,
   MoonIcon,
@@ -15,35 +16,36 @@ import {
 } from "@navikt/ds-react";
 import { useEffect, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import { Form, Link, useNavigate, useNavigation } from "react-router";
+import {
+  Form,
+  Link,
+  useLocation,
+  useNavigate,
+  useNavigation,
+} from "react-router";
 import { sporHendelse } from "~/analytics/analytics";
 import { useInnloggetBruker } from "~/auth/innlogget-bruker";
 import { useMiljø } from "~/miljø/useMiljø";
 import { usePreferanser } from "~/preferanser/PreferanserContext";
 import { RouteConfig } from "~/routeConfig";
+import { SnarveierHjelpModal } from "~/snarveier/SnarveierHjelp";
 
 export function AppHeader() {
   const innloggetBruker = useInnloggetBruker();
   const navigate = useNavigate();
+  const location = useLocation();
+  const erPåOppslag = location.pathname.startsWith(RouteConfig.OPPSLAG);
   const { theme, toggleTheme } = usePreferanser();
   const navigation = useNavigation();
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const [metaKey, setMetaKey] = useState<"⌘" | "ctrl">("ctrl");
+  const snarveierModalRef = useRef<HTMLDialogElement>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  useHotkeys("mod+k", (event) => {
+  useHotkeys("mod+k, alt+k", (event) => {
     event.preventDefault();
     event.stopPropagation();
     searchInputRef.current?.focus();
   });
-
-  useEffect(() => {
-    if (navigator.userAgent.includes("Macintosh")) {
-      setMetaKey("⌘");
-    } else {
-      setMetaKey("ctrl");
-    }
-  }, []);
 
   useEffect(() => {
     if (navigation.state === "idle") {
@@ -85,7 +87,7 @@ export function AppHeader() {
           ref={searchInputRef}
           name="ident"
           size="small"
-          placeholder={`Søk på bruker (${metaKey}+k)`}
+          placeholder={`Søk på bruker (alt + k)`}
           label="Fødselsnummer eller D-nummer på bruker"
           autoComplete="off"
           htmlSize={20}
@@ -148,10 +150,23 @@ export function AppHeader() {
           >
             Bruk {theme === "light" ? "mørke" : "lyse"} farger
           </ActionMenu.Item>
+
+          {erPåOppslag && (
+            <>
+              <ActionMenu.Divider />
+              <ActionMenu.Item
+                onSelect={() => snarveierModalRef.current?.showModal()}
+                icon={<InformationSquareIcon />}
+              >
+                Tastatursnarveier
+              </ActionMenu.Item>
+            </>
+          )}
         </ActionMenu.Content>
       </ActionMenu>
 
       <InternalHeader.User name={innloggetBruker?.name ?? "Saksbehandler"} />
+      {erPåOppslag && <SnarveierHjelpModal ref={snarveierModalRef} />}
     </InternalHeader>
   );
 }

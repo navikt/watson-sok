@@ -48,14 +48,19 @@ export function FamiliemedlemmerModal({
     <>
       <Link
         as="button"
+        id="familiemedlemmer-åpne"
         onClick={() => ref.current?.showModal()}
         className="text-left p-0"
+        aria-keyshortcuts="Alt+F"
       >
         {oppsummering}
       </Link>
       <Modal
         ref={ref}
-        header={{ heading: "Familiemedlemmer", icon: <PersonTallShortIcon /> }}
+        header={{
+          heading: "Familiemedlemmer",
+          icon: <PersonTallShortIcon aria-hidden />,
+        }}
         closeOnBackdropClick
       >
         <ModalBody className="min-w-md">

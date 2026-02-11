@@ -26,6 +26,8 @@ import { camelCaseTilNorsk } from "~/utils/string-utils";
 
 type InntektsoppsummeringPanelProps = {
   promise: Promise<InntektInformasjon | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
 
 type AggregertInntekt = {
@@ -67,19 +69,29 @@ const TOPP_UTBETALERE_ANTALL = 3;
 
 export function InntektsoppsummeringPanel({
   promise,
+  panelId,
+  ariaKeyShortcuts,
 }: InntektsoppsummeringPanelProps) {
   return (
     <ResolvingComponent loadingFallback={<InntektsoppsummeringPanelSkeleton />}>
-      <InntektsoppsummeringPanelMedData promise={promise} />
+      <InntektsoppsummeringPanelMedData
+        promise={promise}
+        panelId={panelId}
+        ariaKeyShortcuts={ariaKeyShortcuts}
+      />
     </ResolvingComponent>
   );
 }
 
 type InntektsoppsummeringPanelMedDataProps = {
   promise: Promise<InntektInformasjon | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
 const InntektsoppsummeringPanelMedData = ({
   promise,
+  panelId,
+  ariaKeyShortcuts,
 }: InntektsoppsummeringPanelMedDataProps) => {
   const inntektInformasjon = use(promise);
   const { tidsvinduIAntallMåneder, tidsvindu } = useTidsvindu();
@@ -205,6 +217,8 @@ const InntektsoppsummeringPanelMedData = ({
     <PanelContainer
       title="Inntekts&shy;oppsummering"
       betaFeature="inntektsoppsummering"
+      id={panelId}
+      aria-keyshortcuts={ariaKeyShortcuts}
     >
       {harIngenInntekter ? (
         <Alert variant="info">

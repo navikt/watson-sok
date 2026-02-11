@@ -39,21 +39,35 @@ import type { ArbeidsgiverInformasjon } from "./domene";
 
 type ArbeidsforholdPanelProps = {
   promise: Promise<ArbeidsgiverInformasjon | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
 
-export function ArbeidsforholdPanel({ promise }: ArbeidsforholdPanelProps) {
+export function ArbeidsforholdPanel({
+  promise,
+  panelId,
+  ariaKeyShortcuts,
+}: ArbeidsforholdPanelProps) {
   return (
     <ResolvingComponent loadingFallback={<ArbeidsforholdPanelSkeleton />}>
-      <ArbeidsforholdPanelMedData promise={promise} />
+      <ArbeidsforholdPanelMedData
+        promise={promise}
+        panelId={panelId}
+        ariaKeyShortcuts={ariaKeyShortcuts}
+      />
     </ResolvingComponent>
   );
 }
 
 type ArbeidsforholdPanelMedDataProps = {
   promise: Promise<ArbeidsgiverInformasjon | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
 const ArbeidsforholdPanelMedData = ({
   promise,
+  panelId,
+  ariaKeyShortcuts,
 }: ArbeidsforholdPanelMedDataProps) => {
   const arbeidsgiverInformasjon = use(promise);
 
@@ -102,7 +116,11 @@ const ArbeidsforholdPanelMedData = ({
   });
 
   return (
-    <PanelContainer title="Arbeidsforhold">
+    <PanelContainer
+      title="Arbeidsforhold"
+      id={panelId}
+      aria-keyshortcuts={ariaKeyShortcuts}
+    >
       {sammenslåtteArbeidsforhold.length === 0 ? (
         <Alert variant="info" className="h-fit">
           Ingen arbeidsforhold funnet.

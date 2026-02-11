@@ -61,4 +61,5 @@ type Hendelse =
   | "skjermingsbegrunnelse utfylt"
   | "skjermingsbegrunnelse avbrutt"
   | "endre tema"
-  | "tilbakemelding";
+  | "tilbakemelding"
+  | "hotkey brukt";

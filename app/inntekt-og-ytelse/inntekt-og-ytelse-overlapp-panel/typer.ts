@@ -4,6 +4,8 @@ import type { Ytelse } from "~/inntekt-og-ytelse/ytelse/domene";
 export type InntektOgYtelseOverlappPanelProps = {
   inntektPromise: Promise<InntektInformasjon | null>;
   ytelserPromise: Promise<Ytelse[] | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
 
 export type MånedligData = {

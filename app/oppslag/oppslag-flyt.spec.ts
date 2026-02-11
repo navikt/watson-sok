@@ -8,7 +8,6 @@ test.describe("Oppslag-flyt", () => {
     // Test med gyldig 11-sifret fødselsnummer (mock)
     const testFnr = "98765432101";
 
-    // Steg 1: Gå til landingssiden
     await test.step("Navigere til landingsside", async () => {
       await page.goto("/");
 
@@ -24,7 +23,6 @@ test.describe("Oppslag-flyt", () => {
       await sjekkTilgjengelighet(page);
     });
 
-    // Steg 2: Fyll ut og send inn søkeskjema
     await test.step("Fylle ut søkeskjema med testbruker", async () => {
       const mainContent = page.locator("#maincontent");
       // Finn søkefeltet
@@ -39,7 +37,6 @@ test.describe("Oppslag-flyt", () => {
       await søkeknapp.click();
     });
 
-    // Steg 3: Verifiser at oppslag-siden vises
     await test.step("Verifisere at oppslag-siden lastes", async () => {
       // Vent til URL endres til /oppslag
       await expect(page).toHaveURL(/\/oppslag/);
@@ -48,7 +45,6 @@ test.describe("Oppslag-flyt", () => {
       await sjekkTilgjengelighet(page);
     });
 
-    // Steg 4: Verifiser at OverskriftPanel vises
     await test.step("Verifisere at overskriftpanel vises", async () => {
       // Vent på at et panel med brukerinfo vises
       // Dette kan være et heading eller annet identifiserbart element
@@ -60,7 +56,6 @@ test.describe("Oppslag-flyt", () => {
       await sjekkTilgjengelighet(page);
     });
 
-    // Steg 5: Verifiser at BrukerinformasjonPanel vises
     await test.step("Verifisere at brukerinformasjonpanel vises", async () => {
       // Se etter panel med brukerinformasjon
       // Kan være overskrift som "Brukerinformasjon" eller lignende
@@ -75,11 +70,10 @@ test.describe("Oppslag-flyt", () => {
       await sjekkTilgjengelighet(page);
     });
 
-    // Steg 6: Verifiser at ArbeidsforholdPanel vises
     await test.step("Verifisere at arbeidsforholdpanel vises", async () => {
       // Se etter arbeidsforhold-relatert innhold
       const arbeidsforholdPanel = page
-        .getByText(/arbeidsgiver|arbeidsforhold|ansettelse/i)
+        .getByRole("heading", { name: "Arbeidsforhold" })
         .first();
 
       // Vent til panelet er synlig
@@ -89,11 +83,10 @@ test.describe("Oppslag-flyt", () => {
       await sjekkTilgjengelighet(page);
     });
 
-    // Steg 7: Verifiser at YtelserPanel vises
     await test.step("Verifisere at ytelserpanel vises", async () => {
       // Se etter ytelser-relatert innhold
       const ytelserPanel = page
-        .getByText(/ytelse|stønad|dagpenger|sykepenger/i)
+        .getByRole("heading", { name: "Ytelser fra Nav" })
         .first();
 
       // Vent til panelet er synlig
@@ -103,10 +96,26 @@ test.describe("Oppslag-flyt", () => {
       await sjekkTilgjengelighet(page);
     });
 
-    // Steg 8: Verifiser at InntektPanel vises
+    await test.step("Verifisere at ytelserpanel vises", async () => {
+      // Se etter ytelser-relatert innhold
+      const ytelserPanel = page
+        .getByRole("heading", {
+          name: "Inntekt og ytelsesutbetalinger over tid",
+        })
+        .first();
+
+      // Vent til panelet er synlig
+      await expect(ytelserPanel).toBeVisible({ timeout: 10000 });
+
+      // Sjekk tilgjengelighet
+      await sjekkTilgjengelighet(page);
+    });
+
     await test.step("Verifisere at inntektpanel vises", async () => {
       // Se etter inntekt-relatert innhold
-      const inntektPanel = page.getByText(/inntekt|lønn|beløp/i).first();
+      const inntektPanel = page
+        .getByRole("heading", { name: "Inntekt" })
+        .first();
 
       // Vent til panelet er synlig
       await expect(inntektPanel).toBeVisible({ timeout: 10000 });
@@ -115,16 +124,14 @@ test.describe("Oppslag-flyt", () => {
       await sjekkTilgjengelighet(page);
     });
 
-    // Steg 9: Verifiser at InntektsoppsummeringPanel vises og fungerer
     await test.step("Verifisere at inntektsoppsummeringpanel vises og er universelt utformet", async () => {
       const panelHeading = page.getByRole("heading", {
-        name: /inntektsoppsummering/i,
+        name: "Inntektsoppsummering",
       });
       await expect(panelHeading).toBeVisible({ timeout: 10000 });
       await sjekkTilgjengelighet(page);
     });
 
-    // Steg 10: Siste tilgjengelighetskontroll av hele siden
     await test.step("Endelig tilgjengelighetskontroll", async () => {
       // Vent litt for å sikre at alt innhold er lastet
       await page.waitForTimeout(1000);
