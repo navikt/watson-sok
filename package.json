@@ -64,7 +64,6 @@
     "knip": "^5.66.0",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.2.0",
-    "react-router-devtools": "^5.1.6",
     "typescript": "^5.9.3",
     "vite": "^7.1.11",
     "vite-plugin-devtools-json": "^1.0.0",
