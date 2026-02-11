@@ -20,10 +20,18 @@ export function SnarveierHjelpModal({ ref }: SnarveierHjelpModalProps) {
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key !== "?") return;
+      if (e.key !== "?") {
+        return;
+      }
 
       const target = e.target as HTMLElement | null;
-      if (target && INPUT_TAGS.has(target.tagName)) return;
+      if (target && INPUT_TAGS.has(target.tagName)) {
+        return;
+      }
+
+      if (ref.current?.open) {
+        return;
+      }
 
       e.preventDefault();
       sporHendelse("hotkey brukt", { hotkey: "?" });
