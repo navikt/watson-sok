@@ -1,15 +1,11 @@
-import { useEffect, useRef } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { sporHendelse } from "~/analytics/analytics";
-import { SnarveierHjelpModal } from "./SnarveierHjelp";
-import { PanelId, hentSnarveierGruppert } from "./snarveier";
+import { PanelId } from "./snarveier";
 import { usePanelNavigering } from "./usePanelNavigering";
 
 const FORRIGE_PERIODE_KNAPP_LABEL = "Forrige periode";
 const NESTE_PERIODE_KNAPP_LABEL = "Neste periode";
 const FAMILIEMEDLEMMER_MODAL_ID = "familiemedlemmer-åpne";
-
-const INPUT_TAGS = new Set(["INPUT", "TEXTAREA", "SELECT"]);
 
 function spor(hotkey: string) {
   sporHendelse("hotkey brukt", { hotkey });
@@ -17,12 +13,10 @@ function spor(hotkey: string) {
 
 /**
  * Registrerer alle tastatursnarveier for oppslagssiden.
- * Rendrer også snarvei-hjelp-modalen.
+ * Rendrer ingen JSX – modalen eies av AppHeader.
  */
 export function Snarveier() {
   const { navigerTilPanel } = usePanelNavigering();
-  const hjelpModalRef = useRef<HTMLDialogElement>(null);
-  const gruppert = hentSnarveierGruppert();
 
   // Panel-snarveier (Alt+1–6)
   useHotkeys("alt+1", (e) => {
@@ -95,20 +89,5 @@ export function Snarveier() {
     }
   });
 
-  // Vis hjelp-modal (?) — bruker keydown med event.key for å fungere på alle tastaturlayouter
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key !== "?") return;
-      const target = e.target as HTMLElement | null;
-      if (target && INPUT_TAGS.has(target.tagName)) return;
-
-      e.preventDefault();
-      spor("?");
-      hjelpModalRef.current?.showModal();
-    }
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  return <SnarveierHjelpModal ref={hjelpModalRef} gruppert={gruppert} />;
+  return null;
 }

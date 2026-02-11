@@ -25,6 +25,8 @@ import { RouteConfig } from "~/routeConfig";
 import { SnarveierHjelpModal } from "~/snarveier/SnarveierHjelp";
 import { hentSnarveierGruppert } from "~/snarveier/snarveier";
 
+const INPUT_TAGS = new Set(["INPUT", "TEXTAREA", "SELECT"]);
+
 export function AppHeader() {
   const innloggetBruker = useInnloggetBruker();
   const navigate = useNavigate();
@@ -33,7 +35,6 @@ export function AppHeader() {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const snarveierModalRef = useRef<HTMLDialogElement>(null);
   const snarveierGruppert = hentSnarveierGruppert();
-  const [metaKey, setMetaKey] = useState<"⌘" | "ctrl">("ctrl");
   const [isLoading, setIsLoading] = useState(false);
 
   useHotkeys("mod+k, alt+k", (event) => {
@@ -42,12 +43,19 @@ export function AppHeader() {
     searchInputRef.current?.focus();
   });
 
+  // Vis snarveier-hjelp (?) — bruker keydown med event.key for å fungere på alle tastaturlayouter
   useEffect(() => {
-    if (navigator.userAgent.includes("Macintosh")) {
-      setMetaKey("⌘");
-    } else {
-      setMetaKey("ctrl");
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key !== "?") return;
+      const target = e.target as HTMLElement | null;
+      if (target && INPUT_TAGS.has(target.tagName)) return;
+
+      e.preventDefault();
+      sporHendelse("hotkey brukt", { hotkey: "?" });
+      snarveierModalRef.current?.showModal();
     }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   useEffect(() => {
@@ -90,7 +98,7 @@ export function AppHeader() {
           ref={searchInputRef}
           name="ident"
           size="small"
-          placeholder={`Søk på bruker (${metaKey}+k)`}
+          placeholder={`Søk på bruker (alt + k)`}
           label="Fødselsnummer eller D-nummer på bruker"
           autoComplete="off"
           htmlSize={20}

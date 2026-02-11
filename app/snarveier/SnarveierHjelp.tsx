@@ -1,5 +1,5 @@
 import { InformationSquareIcon } from "@navikt/aksel-icons";
-import { Button, Heading, Tag, Theme } from "@navikt/ds-react";
+import { Button, Heading, Theme } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { hentSnarveierGruppert, kategoriTilNavn } from "./snarveier";
 
@@ -27,13 +27,6 @@ export function SnarveierHjelpModal({
         closeOnBackdropClick
       >
         <ModalBody className="min-w-sm flex flex-col gap-6">
-          <div className="flex items-center gap-2">
-            <Tag variant="info" size="small">
-              Alt + K
-            </Tag>
-            <span className="text-sm">Søk etter bruker</span>
-          </div>
-
           {(Object.keys(gruppert) as (keyof typeof gruppert)[]).map(
             (kategori) => {
               const snarveier = gruppert[kategori];
