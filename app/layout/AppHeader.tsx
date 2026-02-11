@@ -16,7 +16,13 @@ import {
 } from "@navikt/ds-react";
 import { useEffect, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import { Form, Link, useNavigate, useNavigation } from "react-router";
+import {
+  Form,
+  Link,
+  useLocation,
+  useNavigate,
+  useNavigation,
+} from "react-router";
 import { sporHendelse } from "~/analytics/analytics";
 import { useInnloggetBruker } from "~/auth/innlogget-bruker";
 import { useMiljø } from "~/miljø/useMiljø";
@@ -27,6 +33,8 @@ import { SnarveierHjelpModal } from "~/snarveier/SnarveierHjelp";
 export function AppHeader() {
   const innloggetBruker = useInnloggetBruker();
   const navigate = useNavigate();
+  const location = useLocation();
+  const erPåOppslag = location.pathname.startsWith(RouteConfig.OPPSLAG);
   const { theme, toggleTheme } = usePreferanser();
   const navigation = useNavigation();
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -143,18 +151,22 @@ export function AppHeader() {
             Bruk {theme === "light" ? "mørke" : "lyse"} farger
           </ActionMenu.Item>
 
-          <ActionMenu.Divider />
-          <ActionMenu.Item
-            onSelect={() => snarveierModalRef.current?.showModal()}
-            icon={<InformationSquareIcon />}
-          >
-            Tastatursnarveier
-          </ActionMenu.Item>
+          {erPåOppslag && (
+            <>
+              <ActionMenu.Divider />
+              <ActionMenu.Item
+                onSelect={() => snarveierModalRef.current?.showModal()}
+                icon={<InformationSquareIcon />}
+              >
+                Tastatursnarveier
+              </ActionMenu.Item>
+            </>
+          )}
         </ActionMenu.Content>
       </ActionMenu>
 
       <InternalHeader.User name={innloggetBruker?.name ?? "Saksbehandler"} />
-      <SnarveierHjelpModal ref={snarveierModalRef} />
+      {erPåOppslag && <SnarveierHjelpModal ref={snarveierModalRef} />}
     </InternalHeader>
   );
 }
