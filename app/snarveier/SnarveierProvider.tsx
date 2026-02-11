@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
+import { sporHendelse } from "~/analytics/analytics";
 import { SnarveierHjelpModal } from "./SnarveierHjelp";
 import { PanelId, hentSnarveierGruppert } from "./snarveier";
 import { usePanelNavigering } from "./usePanelNavigering";
@@ -9,6 +10,10 @@ const NESTE_PERIODE_KNAPP_LABEL = "Neste periode";
 const FAMILIEMEDLEMMER_MODAL_ID = "familiemedlemmer-åpne";
 
 const INPUT_TAGS = new Set(["INPUT", "TEXTAREA", "SELECT"]);
+
+function spor(hotkey: string) {
+  sporHendelse("hotkey brukt", { hotkey });
+}
 
 /**
  * Registrerer alle tastatursnarveier for oppslagssiden.
@@ -22,38 +27,46 @@ export function Snarveier() {
   // Panel-snarveier (Alt+1–6)
   useHotkeys("alt+1", (e) => {
     e.preventDefault();
+    spor("alt+1");
     navigerTilPanel(PanelId.BRUKERINFORMASJON);
   });
   useHotkeys("alt+2", (e) => {
     e.preventDefault();
+    spor("alt+2");
     navigerTilPanel(PanelId.YTELSER);
   });
   useHotkeys("alt+3", (e) => {
     e.preventDefault();
+    spor("alt+3");
     navigerTilPanel(PanelId.INNTEKT_OG_YTELSE_OVERLAPP);
   });
   useHotkeys("alt+4", (e) => {
     e.preventDefault();
+    spor("alt+4");
     navigerTilPanel(PanelId.ARBEIDSFORHOLD);
   });
   useHotkeys("alt+5", (e) => {
     e.preventDefault();
+    spor("alt+5");
     navigerTilPanel(PanelId.INNTEKT);
   });
   useHotkeys("alt+6", (e) => {
     e.preventDefault();
+    spor("alt+6");
     navigerTilPanel(PanelId.INNTEKTSOPPSUMMERING);
   });
 
   // Fokuser tidsvindu-velger (Alt+T)
   useHotkeys("alt+t", (e) => {
     e.preventDefault();
+    spor("alt+t");
     navigerTilPanel(PanelId.TIDSVINDU);
   });
 
   // Åpne familiemedlemmer-modal (Alt+F)
   useHotkeys("alt+f", (e) => {
     e.preventDefault();
+    spor("alt+f");
     const knapp = document.getElementById(FAMILIEMEDLEMMER_MODAL_ID);
     if (knapp instanceof HTMLButtonElement) {
       knapp.click();
@@ -63,6 +76,7 @@ export function Snarveier() {
   // Tidslinje-navigering (Alt+← og Alt+→)
   useHotkeys("alt+left", (e) => {
     e.preventDefault();
+    spor("alt+left");
     const knapp = document.querySelector<HTMLButtonElement>(
       `button[aria-label="${FORRIGE_PERIODE_KNAPP_LABEL}"]`,
     );
@@ -72,6 +86,7 @@ export function Snarveier() {
   });
   useHotkeys("alt+right", (e) => {
     e.preventDefault();
+    spor("alt+right");
     const knapp = document.querySelector<HTMLButtonElement>(
       `button[aria-label="${NESTE_PERIODE_KNAPP_LABEL}"]`,
     );
@@ -88,6 +103,7 @@ export function Snarveier() {
       if (target && INPUT_TAGS.has(target.tagName)) return;
 
       e.preventDefault();
+      spor("?");
       hjelpModalRef.current?.showModal();
     }
     document.addEventListener("keydown", handleKeyDown);
