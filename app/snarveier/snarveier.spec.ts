@@ -1,19 +1,31 @@
-import { expect, test } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
 import { sjekkTilgjengelighet } from "../test/uu-util";
 
 const testFnr = "98765432101";
 
-/** Navigerer til oppslagssiden med testbruker og venter på at panelene lastes. */
-async function gåTilOppslag(page: import("@playwright/test").Page) {
+/** Navigerer til oppslagssiden med testbruker og venter på at alle paneler er lastet. */
+async function gåTilOppslag(page: Page) {
   await page.goto("/");
   const mainContent = page.locator("#maincontent");
   const søkefelt = mainContent.getByLabel(/Fødsels- eller D-nummer/i);
   await søkefelt.fill(testFnr);
   await mainContent.getByRole("button", { name: /søk/i }).click();
   await expect(page).toHaveURL(/\/oppslag/);
-  await expect(
-    page.getByRole("heading", { name: /Ytelser fra Nav/i }),
-  ).toBeVisible({ timeout: 10000 });
+
+  // Vent på at alle paneler er ferdig lastet
+  const panelOverskrifter = [
+    /Brukerinformasjon/,
+    /Ytelser fra Nav/,
+    /Inntekt og ytelsesutbetalinger over tid/,
+    /Arbeidsforhold/,
+    /^Inntekt$/,
+    /Inntekts\S*oppsummering/,
+  ];
+  for (const navn of panelOverskrifter) {
+    await expect(
+      page.getByRole("heading", { name: navn }),
+    ).toBeVisible({ timeout: 15000 });
+  }
 }
 
 test.describe("Tastatursnarveier", () => {

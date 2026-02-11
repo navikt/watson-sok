@@ -10,7 +10,7 @@ const MOCK_DIR = path.join(process.cwd(), "app", "test", "mocks");
  * Hvis mock-dataen ikke følger skjemaet, kastes en feil.
  */
 export async function getMockedResponseByFødselsnummer(fødselsnummer: string) {
-  await new Promise((resolve) => setTimeout(resolve, Math.random() * 3000));
+  await new Promise((resolve) => setTimeout(resolve, Math.random() * 1000));
 
   if (!fødselsnummer?.trim()) {
     throw new Error("Fødselsnummer er påkrevd");
