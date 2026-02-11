@@ -36,7 +36,7 @@ export function AppHeader() {
   const [metaKey, setMetaKey] = useState<"⌘" | "ctrl">("ctrl");
   const [isLoading, setIsLoading] = useState(false);
 
-  useHotkeys("mod+k", (event) => {
+  useHotkeys("mod+k, alt+k", (event) => {
     event.preventDefault();
     event.stopPropagation();
     searchInputRef.current?.focus();

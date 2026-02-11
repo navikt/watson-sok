@@ -67,6 +67,12 @@ export const SNARVEIER: Record<string, SnarveierKonfigurasjon> = {
     kategori: "paneler",
     ariaKeyShortcuts: "Alt+6",
   },
+  "alt+k": {
+    tast: "alt+k",
+    tastLabel: "Alt + K",
+    beskrivelse: "Fokuser søkefeltet",
+    kategori: "handlinger",
+  },
   "alt+f": {
     tast: "alt+f",
     tastLabel: "Alt + F",
