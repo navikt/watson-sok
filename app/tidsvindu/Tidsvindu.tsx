@@ -61,7 +61,7 @@ export function beregnMånederMellomDatoer(
   );
 }
 
-export type TidsvinduValideringsfeil =
+type TidsvinduValideringsfeil =
   | "fra-etter-til"
   | "for-langt-tilbake"
   | "fremtidig-dato";

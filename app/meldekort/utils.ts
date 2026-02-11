@@ -1,6 +1,6 @@
 import type { Dag } from "./domene";
 
-export type AktivitetStatistikk = {
+type AktivitetStatistikk = {
   arbeidTimer: number;
   ferieDager: number;
   kursDager: number;
