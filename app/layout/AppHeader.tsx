@@ -23,9 +23,6 @@ import { useMiljø } from "~/miljø/useMiljø";
 import { usePreferanser } from "~/preferanser/PreferanserContext";
 import { RouteConfig } from "~/routeConfig";
 import { SnarveierHjelpModal } from "~/snarveier/SnarveierHjelp";
-import { hentSnarveierGruppert } from "~/snarveier/snarveier";
-
-const INPUT_TAGS = new Set(["INPUT", "TEXTAREA", "SELECT"]);
 
 export function AppHeader() {
   const innloggetBruker = useInnloggetBruker();
@@ -34,7 +31,6 @@ export function AppHeader() {
   const navigation = useNavigation();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const snarveierModalRef = useRef<HTMLDialogElement>(null);
-  const snarveierGruppert = hentSnarveierGruppert();
   const [isLoading, setIsLoading] = useState(false);
 
   useHotkeys("mod+k, alt+k", (event) => {
@@ -42,21 +38,6 @@ export function AppHeader() {
     event.stopPropagation();
     searchInputRef.current?.focus();
   });
-
-  // Vis snarveier-hjelp (?) — bruker keydown med event.key for å fungere på alle tastaturlayouter
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key !== "?") return;
-      const target = e.target as HTMLElement | null;
-      if (target && INPUT_TAGS.has(target.tagName)) return;
-
-      e.preventDefault();
-      sporHendelse("hotkey brukt", { hotkey: "?" });
-      snarveierModalRef.current?.showModal();
-    }
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
   useEffect(() => {
     if (navigation.state === "idle") {
@@ -173,10 +154,7 @@ export function AppHeader() {
       </ActionMenu>
 
       <InternalHeader.User name={innloggetBruker?.name ?? "Saksbehandler"} />
-      <SnarveierHjelpModal
-        ref={snarveierModalRef}
-        gruppert={snarveierGruppert}
-      />
+      <SnarveierHjelpModal ref={snarveierModalRef} />
     </InternalHeader>
   );
 }

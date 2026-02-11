@@ -1,21 +1,36 @@
 import { InformationSquareIcon } from "@navikt/aksel-icons";
 import { Button, Heading, Theme } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
+import { useEffect } from "react";
+import { sporHendelse } from "~/analytics/analytics";
 import { hentSnarveierGruppert, kategoriTilNavn } from "./snarveier";
+
+const INPUT_TAGS = new Set(["INPUT", "TEXTAREA", "SELECT"]);
 
 type SnarveierHjelpModalProps = {
   ref: React.RefObject<HTMLDialogElement | null>;
-  gruppert: ReturnType<typeof hentSnarveierGruppert>;
 };
 
 /**
- * Selve modalen som viser snarveier, gruppert etter kategori.
- * Eksponerer ref så den kan åpnes programmatisk av Snarveier-komponenten.
+ * Selvdrevet modal som viser tastatursnarveier gruppert etter kategori.
+ * Lytter på `?`-tasten for å åpne seg selv, og kan også åpnes programmatisk via ref.
  */
-export function SnarveierHjelpModal({
-  ref,
-  gruppert,
-}: SnarveierHjelpModalProps) {
+export function SnarveierHjelpModal({ ref }: SnarveierHjelpModalProps) {
+  const gruppert = hentSnarveierGruppert();
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key !== "?") return;
+      const target = e.target as HTMLElement | null;
+      if (target && INPUT_TAGS.has(target.tagName)) return;
+
+      e.preventDefault();
+      sporHendelse("hotkey brukt", { hotkey: "?" });
+      ref.current?.showModal();
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [ref]);
   return (
     <Theme theme="light">
       <Modal
