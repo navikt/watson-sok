@@ -10,6 +10,8 @@ import { InntektsoppsummeringPanel } from "~/inntekt-og-ytelse/inntekt/Inntektso
 import { YtelserPanel } from "~/inntekt-og-ytelse/ytelse/YtelserPanel";
 import { OverskriftPanel } from "~/person/OverskriftPanel";
 import { PersonopplysningerPanel } from "~/person/PersonopplysningerPanel";
+import { Snarveier } from "~/snarveier/SnarveierProvider";
+import { PanelId, SNARVEIER } from "~/snarveier/snarveier";
 import { TidsvinduProvider, TidsvinduVelger } from "~/tidsvindu/Tidsvindu";
 import { oppslagLoader } from "./loader.server";
 import { oppslagMeta } from "./meta";
@@ -46,32 +48,57 @@ export default function OppslagBrukerSide() {
               </BodyShort>
             </Alert>
           )}
-          <PersonopplysningerPanel promise={data.personopplysninger} />
-          <YtelserPanel promise={data.ytelser} />
+          <PersonopplysningerPanel
+            promise={data.personopplysninger}
+            panelId={PanelId.BRUKERINFORMASJON}
+            ariaKeyShortcuts={SNARVEIER["alt+1"].ariaKeyShortcuts}
+          />
+          <YtelserPanel
+            promise={data.ytelser}
+            panelId={PanelId.YTELSER}
+            ariaKeyShortcuts={SNARVEIER["alt+2"].ariaKeyShortcuts}
+          />
           {visInntektOgYtelseOverlappPanel ? (
             <div className="grid grid-cols-1 min-[1800px]:grid-cols-2 gap-4">
               <InntektOgYtelseOverlappPanel
                 inntektPromise={data.inntektInformasjon}
                 ytelserPromise={data.ytelser}
+                panelId={PanelId.INNTEKT_OG_YTELSE_OVERLAPP}
+                ariaKeyShortcuts={SNARVEIER["alt+3"].ariaKeyShortcuts}
               />
-              <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
+              <ArbeidsforholdPanel
+                promise={data.arbeidsgiverInformasjon}
+                panelId={PanelId.ARBEIDSFORHOLD}
+                ariaKeyShortcuts={SNARVEIER["alt+4"].ariaKeyShortcuts}
+              />
             </div>
           ) : (
-            <ArbeidsforholdPanel promise={data.arbeidsgiverInformasjon} />
+            <ArbeidsforholdPanel
+              promise={data.arbeidsgiverInformasjon}
+              panelId={PanelId.ARBEIDSFORHOLD}
+              ariaKeyShortcuts={SNARVEIER["alt+4"].ariaKeyShortcuts}
+            />
           )}
 
           <div className="grid grid-cols-1 ax-md:grid-cols-2 gap-4">
             <InntektPanel
               promise={data.inntektInformasjon}
               ytelserPromise={data.ytelser}
+              panelId={PanelId.INNTEKT}
+              ariaKeyShortcuts={SNARVEIER["alt+5"].ariaKeyShortcuts}
             />
 
             {visInntektsoppsummeringPanel && (
-              <InntektsoppsummeringPanel promise={data.inntektInformasjon} />
+              <InntektsoppsummeringPanel
+                promise={data.inntektInformasjon}
+                panelId={PanelId.INNTEKTSOPPSUMMERING}
+                ariaKeyShortcuts={SNARVEIER["alt+6"].ariaKeyShortcuts}
+              />
             )}
           </div>
         </PageBlock>
       </Page>
+      <Snarveier />
     </TidsvinduProvider>
   );
 }

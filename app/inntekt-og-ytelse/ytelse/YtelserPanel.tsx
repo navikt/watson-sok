@@ -35,20 +35,36 @@ import { grupperSammenhengendePerioder } from "./utils";
 
 type YtelserOversiktProps = {
   promise: Promise<Ytelse[] | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
 
-export function YtelserPanel({ promise }: YtelserOversiktProps) {
+export function YtelserPanel({
+  promise,
+  panelId,
+  ariaKeyShortcuts,
+}: YtelserOversiktProps) {
   return (
     <ResolvingComponent loadingFallback={<YtelserPanelSkeleton />}>
-      <YtelserPanelMedData promise={promise} />
+      <YtelserPanelMedData
+        promise={promise}
+        panelId={panelId}
+        ariaKeyShortcuts={ariaKeyShortcuts}
+      />
     </ResolvingComponent>
   );
 }
 
 type YtelserPanelMedDataProps = {
   promise: Promise<Ytelse[] | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
-const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
+const YtelserPanelMedData = ({
+  promise,
+  panelId,
+  ariaKeyShortcuts,
+}: YtelserPanelMedDataProps) => {
   const ytelser = use(promise);
   const visYtelsesdetaljerModal = useEnkeltFeatureFlagg(
     FeatureFlagg.VIS_YTELSESDETALJER_MODAL,
@@ -68,7 +84,12 @@ const YtelserPanelMedData = ({ promise }: YtelserPanelMedDataProps) => {
   }, [ytelser]);
 
   return (
-    <PanelContainer title="Ytelser fra Nav" className="overflow-x-clip">
+    <PanelContainer
+      title="Ytelser fra Nav"
+      className="overflow-x-clip"
+      id={panelId}
+      aria-keyshortcuts={ariaKeyShortcuts}
+    >
       <BodyLong size="small">
         Visningen er basert på utbetalingstidspunkt fra Nav
       </BodyLong>

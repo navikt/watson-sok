@@ -19,23 +19,37 @@ import { tilFulltNavn } from "./utils/navn-utils";
 
 type PersonopplysningerProps = {
   promise: Promise<PersonInformasjon | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
 /**
  * Komponent som viser personlig informasjon om en bruker
  */
-export function PersonopplysningerPanel({ promise }: PersonopplysningerProps) {
+export function PersonopplysningerPanel({
+  promise,
+  panelId,
+  ariaKeyShortcuts,
+}: PersonopplysningerProps) {
   return (
     <ResolvingComponent loadingFallback={<PersonopplysningerPanelSkeleton />}>
-      <PersonopplysningerPanelMedData promise={promise} />
+      <PersonopplysningerPanelMedData
+        promise={promise}
+        panelId={panelId}
+        ariaKeyShortcuts={ariaKeyShortcuts}
+      />
     </ResolvingComponent>
   );
 }
 
 type PersonopplysningerPanelMedDataProps = {
   promise: Promise<PersonInformasjon | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
 const PersonopplysningerPanelMedData = ({
   promise,
+  panelId,
+  ariaKeyShortcuts,
 }: PersonopplysningerPanelMedDataProps) => {
   const personopplysninger = use(promise);
   const { loaderData: rootData } = unstable_useRoute("root");
@@ -44,6 +58,8 @@ const PersonopplysningerPanelMedData = ({
     return (
       <PanelContainer
         title="Brukerinformasjon"
+        id={panelId}
+        aria-keyshortcuts={ariaKeyShortcuts}
         link={{
           href: "https://modiapersonoversikt.intern.nav.no/person/oversikt",
           beskrivelse: "Historikk",
@@ -65,6 +81,8 @@ const PersonopplysningerPanelMedData = ({
   return (
     <PanelContainer
       title="Brukerinformasjon"
+      id={panelId}
+      aria-keyshortcuts={ariaKeyShortcuts}
       link={{
         href: `${rootData.envs.modiaUrl}/person/oversikt`,
         beskrivelse: "Historikk",

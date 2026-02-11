@@ -34,11 +34,23 @@ const warnStyle: CSSProperties = {
 type InntektPanelProps = {
   promise: Promise<InntektInformasjon | null>;
   ytelserPromise: Promise<Ytelse[] | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
-export function InntektPanel({ promise, ytelserPromise }: InntektPanelProps) {
+export function InntektPanel({
+  promise,
+  ytelserPromise,
+  panelId,
+  ariaKeyShortcuts,
+}: InntektPanelProps) {
   return (
     <ResolvingComponent loadingFallback={<InntektPanelSkeleton />}>
-      <InntektPanelMedData promise={promise} ytelserPromise={ytelserPromise} />
+      <InntektPanelMedData
+        promise={promise}
+        ytelserPromise={ytelserPromise}
+        panelId={panelId}
+        ariaKeyShortcuts={ariaKeyShortcuts}
+      />
     </ResolvingComponent>
   );
 }
@@ -46,10 +58,14 @@ export function InntektPanel({ promise, ytelserPromise }: InntektPanelProps) {
 type InntektPanelMedDataProps = {
   promise: Promise<InntektInformasjon | null>;
   ytelserPromise: Promise<Ytelse[] | null>;
+  panelId?: string;
+  ariaKeyShortcuts?: string;
 };
 const InntektPanelMedData = ({
   promise,
   ytelserPromise,
+  panelId,
+  ariaKeyShortcuts,
 }: InntektPanelMedDataProps) => {
   const inntektInformasjon = use(promise);
   const ytelser = use(ytelserPromise);
@@ -99,7 +115,12 @@ const InntektPanelMedData = ({
   const erTom = rader.length === 0;
 
   return (
-    <PanelContainer title="Inntekt" className="overflow-y-clip">
+    <PanelContainer
+      title="Inntekt"
+      className="overflow-y-clip"
+      id={panelId}
+      aria-keyshortcuts={ariaKeyShortcuts}
+    >
       {erTom ? (
         <Alert variant="info">
           Ingen lønnsutbetalinger funnet for de siste 3 årene.

@@ -1,5 +1,6 @@
 import {
   BooksIcon,
+  InformationSquareIcon,
   LightBulbIcon,
   MenuGridIcon,
   MoonIcon,
@@ -21,6 +22,8 @@ import { useInnloggetBruker } from "~/auth/innlogget-bruker";
 import { useMiljø } from "~/miljø/useMiljø";
 import { usePreferanser } from "~/preferanser/PreferanserContext";
 import { RouteConfig } from "~/routeConfig";
+import { SnarveierHjelpModal } from "~/snarveier/SnarveierHjelp";
+import { hentSnarveierGruppert } from "~/snarveier/snarveier";
 
 export function AppHeader() {
   const innloggetBruker = useInnloggetBruker();
@@ -28,6 +31,8 @@ export function AppHeader() {
   const { theme, toggleTheme } = usePreferanser();
   const navigation = useNavigation();
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const snarveierModalRef = useRef<HTMLDialogElement>(null);
+  const snarveierGruppert = hentSnarveierGruppert();
   const [metaKey, setMetaKey] = useState<"⌘" | "ctrl">("ctrl");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -148,10 +153,22 @@ export function AppHeader() {
           >
             Bruk {theme === "light" ? "mørke" : "lyse"} farger
           </ActionMenu.Item>
+
+          <ActionMenu.Divider />
+          <ActionMenu.Item
+            onSelect={() => snarveierModalRef.current?.showModal()}
+            icon={<InformationSquareIcon />}
+          >
+            Tastatursnarveier
+          </ActionMenu.Item>
         </ActionMenu.Content>
       </ActionMenu>
 
       <InternalHeader.User name={innloggetBruker?.name ?? "Saksbehandler"} />
+      <SnarveierHjelpModal
+        ref={snarveierModalRef}
+        gruppert={snarveierGruppert}
+      />
     </InternalHeader>
   );
 }

@@ -290,7 +290,12 @@ export const TidsvinduVelger = () => {
   const errorId = useId();
 
   return (
-    <div>
+    <div
+      id="tidsvindu-velger"
+      tabIndex={-1}
+      aria-keyshortcuts="Alt+T"
+      className="scroll-mt-4 focus:outline-2 focus:outline-ax-border-focus focus:outline-offset-2 rounded-lg w-fit"
+    >
       <ToggleGroup
         data-color="neutral"
         size="small"

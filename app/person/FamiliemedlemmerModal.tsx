@@ -48,8 +48,10 @@ export function FamiliemedlemmerModal({
     <>
       <Link
         as="button"
+        id="familiemedlemmer-åpne"
         onClick={() => ref.current?.showModal()}
         className="text-left p-0"
+        aria-keyshortcuts="Alt+F"
       >
         {oppsummering}
       </Link>
