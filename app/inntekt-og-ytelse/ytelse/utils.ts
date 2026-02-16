@@ -1,4 +1,5 @@
 import { forskjellIDager } from "~/utils/date-utils";
+import type { Ytelse } from "./domene";
 
 type GruppertPeriode = {
   fom: string;
@@ -91,4 +92,54 @@ export function grupperSammenhengendePerioder(
   gruppert.push(nåværendeGruppe);
 
   return gruppert;
+}
+
+export type TilbakekrevingMedYtelse = {
+  stonadType: string;
+  beløp: number;
+  periode: { fom: string; tom: string };
+  info: string | null;
+};
+
+export type GruppertTilbakekreving = {
+  fom: string;
+  tilbakekrevinger: TilbakekrevingMedYtelse[];
+};
+
+/**
+ * Filtrerer ut tilbakekrevinger (negative beløp) fra ytelser innenfor et tidsvindu,
+ * og grupperer dem per startdato (`fom`).
+ */
+export function grupperTilbakekrevinger(
+  ytelser: Ytelse[] | null,
+  vindu: { start: Date; slutt: Date },
+): GruppertTilbakekreving[] {
+  const alle: TilbakekrevingMedYtelse[] =
+    ytelser?.flatMap((ytelse) =>
+      ytelse.perioder
+        .filter(
+          (periode) =>
+            periode.beløp < 0 &&
+            new Date(periode.periode.fom) >= vindu.start &&
+            new Date(periode.periode.tom) <= vindu.slutt,
+        )
+        .map((periode) => ({
+          stonadType: ytelse.stonadType,
+          beløp: periode.beløp,
+          periode: periode.periode,
+          info: periode.info,
+        })),
+    ) ?? [];
+
+  const perDato = new Map<string, TilbakekrevingMedYtelse[]>();
+  for (const t of alle) {
+    const gruppe = perDato.get(t.periode.fom) ?? [];
+    gruppe.push(t);
+    perDato.set(t.periode.fom, gruppe);
+  }
+
+  return Array.from(perDato.entries()).map(([fom, tilbakekrevinger]) => ({
+    fom,
+    tilbakekrevinger,
+  }));
 }

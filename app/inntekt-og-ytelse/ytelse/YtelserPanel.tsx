@@ -29,7 +29,11 @@ import { formaterBeløp } from "~/utils/number-utils";
 import { YtelsedetaljerModal } from "./detaljer/YtelsedetaljerModal";
 import type { Ytelse } from "./domene";
 import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
-import { grupperSammenhengendePerioder } from "./utils";
+import {
+  type GruppertTilbakekreving,
+  grupperSammenhengendePerioder,
+  grupperTilbakekrevinger,
+} from "./utils";
 
 type YtelserOversiktProps = {
   promise: Promise<Ytelse[] | null>;
@@ -428,50 +432,12 @@ function beregnHoppForTidsvindu(tidsvinduIAntallMåneder: number): number {
  * Returnerer tilbakekrevinger innenfor valgt vindu, gruppert per startdato.
  * Inkluderer ytelsesnavn (`stonadType`) for hver tilbakekreving.
  */
-type TilbakekrevingMedYtelse = {
-  stonadType: string;
-  beløp: number;
-  periode: { fom: string; tom: string };
-  info: string | null;
-};
-
-type GruppertTilbakekreving = {
-  fom: string;
-  tilbakekrevinger: TilbakekrevingMedYtelse[];
-};
-
 function useTilbakekrevinger(
   ytelser: Ytelse[] | null,
   nåværendeVindu: { start: Date; slutt: Date },
 ): GruppertTilbakekreving[] {
-  return useMemo(() => {
-    const alle: TilbakekrevingMedYtelse[] =
-      ytelser?.flatMap((ytelse) =>
-        ytelse.perioder
-          .filter(
-            (periode) =>
-              periode.beløp < 0 &&
-              new Date(periode.periode.fom) >= nåværendeVindu.start &&
-              new Date(periode.periode.tom) <= nåværendeVindu.slutt,
-          )
-          .map((periode) => ({
-            stonadType: ytelse.stonadType,
-            beløp: periode.beløp,
-            periode: periode.periode,
-            info: periode.info,
-          })),
-      ) ?? [];
-
-    const perDato = new Map<string, TilbakekrevingMedYtelse[]>();
-    for (const t of alle) {
-      const gruppe = perDato.get(t.periode.fom) ?? [];
-      gruppe.push(t);
-      perDato.set(t.periode.fom, gruppe);
-    }
-
-    return Array.from(perDato.entries()).map(([fom, tilbakekrevinger]) => ({
-      fom,
-      tilbakekrevinger,
-    }));
-  }, [ytelser, nåværendeVindu]);
+  return useMemo(
+    () => grupperTilbakekrevinger(ytelser, nåværendeVindu),
+    [ytelser, nåværendeVindu],
+  );
 }
