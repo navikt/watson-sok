@@ -2,8 +2,6 @@ import { Alert, BodyShort, Heading } from "@navikt/ds-react";
 import { Page, PageBlock } from "@navikt/ds-react/Page";
 import { useLoaderData } from "react-router";
 import { ArbeidsforholdPanel } from "~/arbeidsforhold/ArbeidsforholdPanel";
-import { FeatureFlagg } from "~/feature-toggling/featureflagg";
-import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { InntektOgYtelseOverlappPanel } from "~/inntekt-og-ytelse/inntekt-og-ytelse-overlapp-panel/InntektOgYtelseOverlappPanel";
 import { InntektPanel } from "~/inntekt-og-ytelse/inntekt/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/inntekt-og-ytelse/inntekt/InntektsoppsummeringPanel";
@@ -21,12 +19,6 @@ export const meta = oppslagMeta;
 
 export default function OppslagBrukerSide() {
   const data = useLoaderData<typeof oppslagLoader>();
-  const visInntektsoppsummeringPanel = useEnkeltFeatureFlagg(
-    FeatureFlagg.INNTEKTSOPPSUMMERING_PANEL,
-  );
-  const visInntektOgYtelseOverlappPanel = useEnkeltFeatureFlagg(
-    FeatureFlagg.INNTEKT_OG_YTELSE_OVERLAPP_PANEL,
-  );
   return (
     <TidsvinduProvider>
       <Page>
@@ -58,27 +50,19 @@ export default function OppslagBrukerSide() {
             panelId={PanelId.YTELSER}
             ariaKeyShortcuts={SNARVEIER["alt+2"].ariaKeyShortcuts}
           />
-          {visInntektOgYtelseOverlappPanel ? (
-            <div className="grid grid-cols-1 min-[1800px]:grid-cols-2 gap-4">
-              <InntektOgYtelseOverlappPanel
-                inntektPromise={data.inntektInformasjon}
-                ytelserPromise={data.ytelser}
-                panelId={PanelId.INNTEKT_OG_YTELSE_OVERLAPP}
-                ariaKeyShortcuts={SNARVEIER["alt+3"].ariaKeyShortcuts}
-              />
-              <ArbeidsforholdPanel
-                promise={data.arbeidsgiverInformasjon}
-                panelId={PanelId.ARBEIDSFORHOLD}
-                ariaKeyShortcuts={SNARVEIER["alt+4"].ariaKeyShortcuts}
-              />
-            </div>
-          ) : (
+          <div className="grid grid-cols-1 min-[1800px]:grid-cols-2 gap-4">
+            <InntektOgYtelseOverlappPanel
+              inntektPromise={data.inntektInformasjon}
+              ytelserPromise={data.ytelser}
+              panelId={PanelId.INNTEKT_OG_YTELSE_OVERLAPP}
+              ariaKeyShortcuts={SNARVEIER["alt+3"].ariaKeyShortcuts}
+            />
             <ArbeidsforholdPanel
               promise={data.arbeidsgiverInformasjon}
               panelId={PanelId.ARBEIDSFORHOLD}
               ariaKeyShortcuts={SNARVEIER["alt+4"].ariaKeyShortcuts}
             />
-          )}
+          </div>
 
           <div className="grid grid-cols-1 ax-md:grid-cols-2 gap-4">
             <InntektPanel
@@ -88,13 +72,11 @@ export default function OppslagBrukerSide() {
               ariaKeyShortcuts={SNARVEIER["alt+5"].ariaKeyShortcuts}
             />
 
-            {visInntektsoppsummeringPanel && (
-              <InntektsoppsummeringPanel
-                promise={data.inntektInformasjon}
-                panelId={PanelId.INNTEKTSOPPSUMMERING}
-                ariaKeyShortcuts={SNARVEIER["alt+6"].ariaKeyShortcuts}
-              />
-            )}
+            <InntektsoppsummeringPanel
+              promise={data.inntektInformasjon}
+              panelId={PanelId.INNTEKTSOPPSUMMERING}
+              ariaKeyShortcuts={SNARVEIER["alt+6"].ariaKeyShortcuts}
+            />
           </div>
         </PageBlock>
       </Page>
