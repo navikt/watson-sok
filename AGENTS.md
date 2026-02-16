@@ -31,7 +31,7 @@ Kort veiledning for bidragsytere til Holmes oppslag-bruker. Hold koden enkel, do
   - Trailing commas overalt (`all`).
   - Maks 80 tegn linjebredde.
   - 2 spaces innrykk.
-  - Parenteser rundt eneste arrow function-parameter: `(x) => x`.
+  - Parenteser rundt enkelt arrow function-parameter: `(x) => x`.
 - A11y som default: riktige labels, fokusrekkefølge, ARIA der nødvendig.
 
 ## Testing
