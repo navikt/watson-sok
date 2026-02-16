@@ -25,7 +25,13 @@ Kort veiledning for bidragsytere til Holmes oppslag-bruker. Hold koden enkel, do
 - TypeScript strict; React 19 + React Router v7.
 - Skriv på norsk; velg åpenbare løsninger fremfor smarte triks.
 - Legg utils nær feature; bruk `features/common` kun for genuint delte helpers. Sti-alias `~/*` peker til `app/*`.
-- Følg Prettier/ESLint; ingen manuell linjeformattering. Indentasjon: 2 spaces.
+- Følg Prettier/ESLint; ingen manuell linjeformattering. Prettier-configen er standard (ingen overrides), som betyr:
+  - Doble anførselstegn (`"`) — ikke enkle.
+  - Semikolon etter alle statements.
+  - Trailing commas overalt (`all`).
+  - Maks 80 tegn linjebredde.
+  - 2 spaces innrykk.
+  - Parenteser rundt eneste arrow function-parameter: `(x) => x`.
 - A11y som default: riktige labels, fokusrekkefølge, ARIA der nødvendig.
 
 ## Testing
