@@ -100,7 +100,6 @@ const InntektOgYtelseOverlappPanelMedData = ({
   return (
     <PanelContainer
       title="Inntekt og ytelsesutbetalinger over tid"
-      betaFeature="inntekt-ytelse-visualisering"
       id={panelId}
       aria-keyshortcuts={ariaKeyShortcuts}
     >

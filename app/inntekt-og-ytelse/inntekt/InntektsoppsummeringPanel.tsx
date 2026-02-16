@@ -216,7 +216,6 @@ const InntektsoppsummeringPanelMedData = ({
   return (
     <PanelContainer
       title="Inntekts&shy;oppsummering"
-      betaFeature="inntektsoppsummering"
       id={panelId}
       aria-keyshortcuts={ariaKeyShortcuts}
     >
