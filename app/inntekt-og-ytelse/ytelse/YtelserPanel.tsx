@@ -143,34 +143,40 @@ const YtelserPanelMedData = ({
               startDate={nåværendeVindu.start}
               endDate={nåværendeVindu.slutt}
             >
-              {tilbakekrevinger.map((tilbakebetaling) => (
-                <TimelinePin
-                  key={tilbakebetaling.info}
-                  date={new Date(tilbakebetaling.periode.fom)}
-                >
+              {tilbakekrevinger.map((gruppe) => (
+                <TimelinePin key={gruppe.fom} date={new Date(gruppe.fom)}>
                   <Heading level="3" size="small">
-                    Tilbakekreving
+                    {gruppe.tilbakekrevinger.length === 1
+                      ? "Tilbakekreving"
+                      : `${gruppe.tilbakekrevinger.length} tilbakekrevinger`}
                   </Heading>
-                  <BodyShort spacing>
-                    <strong>Periode:</strong>{" "}
-                    {formaterDato(tilbakebetaling.periode.fom)} –{" "}
-                    {formaterDato(tilbakebetaling.periode.tom)}
-                    <br />
-                    <strong>Beløp:</strong>{" "}
-                    {formaterBeløp(Math.abs(tilbakebetaling.beløp))}
-                    <br />
-                    <span className="flex items-center gap-1">
-                      <strong>Bilagsnummer:</strong>{" "}
-                      {tilbakebetaling.info ?? "Ikke tilgjengelig"}{" "}
-                      {tilbakebetaling.info && (
-                        <CopyButton
-                          copyText={tilbakebetaling.info}
-                          size="xsmall"
-                          className="inline-block ml-1"
-                        />
-                      )}
-                    </span>
-                  </BodyShort>
+                  {gruppe.tilbakekrevinger.map((tilbakebetaling, index) => (
+                    <BodyShort
+                      key={`${tilbakebetaling.stonadType}-${index}`}
+                      spacing={index === gruppe.tilbakekrevinger.length - 1}
+                    >
+                      <strong>Ytelse:</strong> {tilbakebetaling.stonadType}
+                      <br />
+                      <strong>Periode:</strong>{" "}
+                      {formaterDato(tilbakebetaling.periode.fom)} –{" "}
+                      {formaterDato(tilbakebetaling.periode.tom)}
+                      <br />
+                      <strong>Beløp:</strong>{" "}
+                      {formaterBeløp(Math.abs(tilbakebetaling.beløp))}
+                      <br />
+                      <span className="flex items-center gap-1">
+                        <strong>Bilagsnummer:</strong>{" "}
+                        {tilbakebetaling.info ?? "Ikke tilgjengelig"}{" "}
+                        {tilbakebetaling.info && (
+                          <CopyButton
+                            copyText={tilbakebetaling.info}
+                            size="xsmall"
+                            className="inline-block ml-1"
+                          />
+                        )}
+                      </span>
+                    </BodyShort>
+                  ))}
                   <BodyShort className="text-ax-danger-500">
                     Vedtak, Se Gosys
                   </BodyShort>
@@ -419,25 +425,53 @@ function beregnHoppForTidsvindu(tidsvinduIAntallMåneder: number): number {
 }
 
 /**
- * Returnerer filtrerte tilbakekrevinger innenfor valgt vindu dersom funksjonen er aktivert via feature-flagg.
- *
- * @example
- * const tilbakekrevinger = useTilbakekrevinger(ytelser, { start: new Date("2024-01-01"), slutt: new Date("2024-06-30") });
+ * Returnerer tilbakekrevinger innenfor valgt vindu, gruppert per startdato.
+ * Inkluderer ytelsesnavn (`stonadType`) for hver tilbakekreving.
  */
+type TilbakekrevingMedYtelse = {
+  stonadType: string;
+  beløp: number;
+  periode: { fom: string; tom: string };
+  info: string | null;
+};
+
+type GruppertTilbakekreving = {
+  fom: string;
+  tilbakekrevinger: TilbakekrevingMedYtelse[];
+};
+
 function useTilbakekrevinger(
   ytelser: Ytelse[] | null,
   nåværendeVindu: { start: Date; slutt: Date },
-) {
+): GruppertTilbakekreving[] {
   return useMemo(() => {
-    return (
-      ytelser
-        ?.flatMap((ytelse) => ytelse.perioder)
-        .filter(
-          (periode) =>
-            periode.beløp < 0 &&
-            new Date(periode.periode.fom) >= nåværendeVindu.start &&
-            new Date(periode.periode.tom) <= nåværendeVindu.slutt,
-        ) ?? []
-    );
+    const alle: TilbakekrevingMedYtelse[] =
+      ytelser?.flatMap((ytelse) =>
+        ytelse.perioder
+          .filter(
+            (periode) =>
+              periode.beløp < 0 &&
+              new Date(periode.periode.fom) >= nåværendeVindu.start &&
+              new Date(periode.periode.tom) <= nåværendeVindu.slutt,
+          )
+          .map((periode) => ({
+            stonadType: ytelse.stonadType,
+            beløp: periode.beløp,
+            periode: periode.periode,
+            info: periode.info,
+          })),
+      ) ?? [];
+
+    const perDato = new Map<string, TilbakekrevingMedYtelse[]>();
+    for (const t of alle) {
+      const gruppe = perDato.get(t.periode.fom) ?? [];
+      gruppe.push(t);
+      perDato.set(t.periode.fom, gruppe);
+    }
+
+    return Array.from(perDato.entries()).map(([fom, tilbakekrevinger]) => ({
+      fom,
+      tilbakekrevinger,
+    }));
   }, [ytelser, nåværendeVindu]);
 }
