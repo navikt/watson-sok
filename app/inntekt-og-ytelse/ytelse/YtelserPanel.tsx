@@ -19,8 +19,6 @@ import {
 import { use, useMemo, useState } from "react";
 import { sporHendelse } from "~/analytics/analytics";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
-import { FeatureFlagg } from "~/feature-toggling/featureflagg";
-import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import {
   PanelContainer,
   PanelContainerSkeleton,
@@ -66,9 +64,6 @@ const YtelserPanelMedData = ({
   ariaKeyShortcuts,
 }: YtelserPanelMedDataProps) => {
   const ytelser = use(promise);
-  const visYtelsesdetaljerModal = useEnkeltFeatureFlagg(
-    FeatureFlagg.VIS_YTELSESDETALJER_MODAL,
-  );
   const harIngenYtelser = !ytelser || ytelser.length === 0;
   const { nåværendeVindu, oppdaterVindu } = useTidslinjevindu();
   const tilbakekrevinger = useTilbakekrevinger(ytelser, nåværendeVindu);
@@ -191,9 +186,6 @@ const YtelserPanelMedData = ({
                           variant="tertiary"
                           size="small"
                           onClick={() => {
-                            if (!visYtelsesdetaljerModal) {
-                              return;
-                            }
                             setValgtYtelsePeriode({
                               ytelse,
                               fraDato: ytelse.gruppertePerioder[0].fom,
@@ -232,9 +224,6 @@ const YtelserPanelMedData = ({
                           status="success"
                           icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
                           onClick={(event) => {
-                            if (!visYtelsesdetaljerModal) {
-                              return;
-                            }
                             event.preventDefault();
                             setValgtYtelsePeriode({
                               ytelse,
@@ -258,15 +247,13 @@ const YtelserPanelMedData = ({
               })}
             </Timeline>
           </div>
-          {visYtelsesdetaljerModal && (
-            <YtelsedetaljerModal
-              ytelse={valgtYtelsePeriode?.ytelse ?? null}
-              fraDato={valgtYtelsePeriode?.fraDato ?? ""}
-              tilDato={valgtYtelsePeriode?.tilDato ?? ""}
-              isOpen={Boolean(valgtYtelsePeriode)}
-              onClose={() => setValgtYtelsePeriode(null)}
-            />
-          )}
+          <YtelsedetaljerModal
+            ytelse={valgtYtelsePeriode?.ytelse ?? null}
+            fraDato={valgtYtelsePeriode?.fraDato ?? ""}
+            tilDato={valgtYtelsePeriode?.tilDato ?? ""}
+            isOpen={Boolean(valgtYtelsePeriode)}
+            onClose={() => setValgtYtelsePeriode(null)}
+          />
         </>
       )}
     </PanelContainer>
@@ -441,15 +428,7 @@ function useTilbakekrevinger(
   ytelser: Ytelse[] | null,
   nåværendeVindu: { start: Date; slutt: Date },
 ) {
-  const visTilbakebetalingIdentifikatorer = useEnkeltFeatureFlagg(
-    FeatureFlagg.VIS_TILBAKEBETALING_IDENTIFIKATORER,
-  );
-
   return useMemo(() => {
-    if (!visTilbakebetalingIdentifikatorer) {
-      return [];
-    }
-
     return (
       ytelser
         ?.flatMap((ytelse) => ytelse.perioder)
@@ -460,5 +439,5 @@ function useTilbakekrevinger(
             new Date(periode.periode.tom) <= nåværendeVindu.slutt,
         ) ?? []
     );
-  }, [visTilbakebetalingIdentifikatorer, ytelser, nåværendeVindu]);
+  }, [ytelser, nåværendeVindu]);
 }
