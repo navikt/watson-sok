@@ -17,6 +17,7 @@ import {
   TimelineRow,
 } from "@navikt/ds-react/Timeline";
 import { use, useMemo, useState } from "react";
+import { useSearchParams } from "react-router";
 import { sporHendelse } from "~/analytics/analytics";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import {
@@ -304,8 +305,9 @@ const TidslinjeKontrollpanel = ({
   oppdaterVindu,
 }: TidslinjeKontrollpanelProps) => {
   const nå = new Date();
-  const { tidsvinduIAntallMåneder } = useTidsvindu();
-  const dataCutoff = beregnDatagrense(nå, tidsvinduIAntallMåneder);
+  const [searchParams] = useSearchParams();
+  const utvidet = searchParams.get("utvidet") === "true";
+  const dataCutoff = beregnDatagrense(nå, beregnMaksNavigering(utvidet));
 
   const kanFlytteForrigePeriode =
     forskjellIDager(nåværendeVindu.start, dataCutoff) >= 30;
@@ -454,4 +456,9 @@ export function beregnDatagrense(
   const grense = new Date(nå.getTime());
   grense.setMonth(nå.getMonth() - tidsvinduIAntallMåneder);
   return grense;
+}
+
+/** Returnerer maks antall måneder man kan navigere tilbake i tidslinjen. */
+export function beregnMaksNavigering(utvidet: boolean): number {
+  return utvidet ? 120 : 36;
 }

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   beregnDatagrense,
   beregnHoppForTidsvindu,
+  beregnMaksNavigering,
   beregnVindu,
 } from "./YtelserPanel";
 
@@ -80,5 +81,15 @@ describe("beregnVindu", () => {
       const diffMåneder = diffMs / (1000 * 60 * 60 * 24 * 30.44);
       expect(diffMåneder).toBeCloseTo(måneder, 0);
     }
+  });
+});
+
+describe("beregnMaksNavigering", () => {
+  it("returnerer 120 måneder (10 år) når utvidet er true", () => {
+    expect(beregnMaksNavigering(true)).toBe(120);
+  });
+
+  it("returnerer 36 måneder (3 år) når utvidet er false", () => {
+    expect(beregnMaksNavigering(false)).toBe(36);
   });
 });
