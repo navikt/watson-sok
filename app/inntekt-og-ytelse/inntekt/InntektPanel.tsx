@@ -67,6 +67,28 @@ const InntektPanelMedData = ({
   panelId,
   ariaKeyShortcuts,
 }: InntektPanelMedDataProps) => {
+  return (
+    <PanelContainer
+      title="Inntekt"
+      className="overflow-y-clip"
+      id={panelId}
+      aria-keyshortcuts={ariaKeyShortcuts}
+    >
+      <InntektPanelInnhold promise={promise} ytelserPromise={ytelserPromise} />
+    </PanelContainer>
+  );
+};
+
+type InntektPanelInnholdProps = {
+  promise: Promise<InntektInformasjon | null>;
+  ytelserPromise: Promise<Ytelse[] | null>;
+};
+
+/** Innholdet i inntektpanelet – uten PanelContainer-wrapper */
+export function InntektPanelInnhold({
+  promise,
+  ytelserPromise,
+}: InntektPanelInnholdProps) {
   const inntektInformasjon = use(promise);
   const ytelser = use(ytelserPromise);
   const [visYtelser, setVisYtelser] = useState(false);
@@ -115,12 +137,7 @@ const InntektPanelMedData = ({
   const erTom = rader.length === 0;
 
   return (
-    <PanelContainer
-      title="Inntekt"
-      className="overflow-y-clip"
-      id={panelId}
-      aria-keyshortcuts={ariaKeyShortcuts}
-    >
+    <>
       {erTom ? (
         <Alert variant="info">
           Ingen lønnsutbetalinger funnet for de siste 3 årene.
@@ -229,9 +246,9 @@ const InntektPanelMedData = ({
           </div>
         </div>
       )}
-    </PanelContainer>
+    </>
   );
-};
+}
 
 const InntektPanelSkeleton = () => {
   const kolonner = Array.from({ length: 5 }, (_, index) => index);

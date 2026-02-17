@@ -3,7 +3,7 @@ import { Page, PageBlock } from "@navikt/ds-react/Page";
 import { useLoaderData } from "react-router";
 import { ArbeidsforholdPanel } from "~/arbeidsforhold/ArbeidsforholdPanel";
 import { InntektOgYtelseOverlappPanel } from "~/inntekt-og-ytelse/inntekt-og-ytelse-overlapp-panel/InntektOgYtelseOverlappPanel";
-import { InntektPanel } from "~/inntekt-og-ytelse/inntekt/InntektPanel";
+import { InntektOgNæringsinntektPanel } from "~/inntekt-og-ytelse/inntekt/InntektOgNæringsinntektPanel";
 import { InntektsoppsummeringPanel } from "~/inntekt-og-ytelse/inntekt/InntektsoppsummeringPanel";
 import { YtelserPanel } from "~/inntekt-og-ytelse/ytelse/YtelserPanel";
 import { OverskriftPanel } from "~/person/OverskriftPanel";
@@ -65,9 +65,10 @@ export default function OppslagBrukerSide() {
           </div>
 
           <div className="grid grid-cols-1 ax-md:grid-cols-2 gap-4">
-            <InntektPanel
+            <InntektOgNæringsinntektPanel
               promise={data.inntektInformasjon}
               ytelserPromise={data.ytelser}
+              næringsinntektPromise={data.næringsinntekt}
               panelId={PanelId.INNTEKT}
               ariaKeyShortcuts={SNARVEIER["alt+5"].ariaKeyShortcuts}
             />
