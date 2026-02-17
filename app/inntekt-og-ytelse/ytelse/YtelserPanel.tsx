@@ -157,7 +157,7 @@ const YtelserPanelMedData = ({
                   {gruppe.tilbakekrevinger.map((tilbakebetaling, index) => (
                     <BodyShort
                       key={`${tilbakebetaling.stonadType}-${index}`}
-                      spacing={index === gruppe.tilbakekrevinger.length - 1}
+                      spacing={index !== gruppe.tilbakekrevinger.length - 1}
                     >
                       <strong>Ytelse:</strong> {tilbakebetaling.stonadType}
                       <br />
