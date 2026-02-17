@@ -17,6 +17,7 @@ import {
   TimelineRow,
 } from "@navikt/ds-react/Timeline";
 import { use, useMemo, useState } from "react";
+import { useSearchParams } from "react-router";
 import { sporHendelse } from "~/analytics/analytics";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import {
@@ -304,9 +305,9 @@ const TidslinjeKontrollpanel = ({
   oppdaterVindu,
 }: TidslinjeKontrollpanelProps) => {
   const nå = new Date();
-  const dataCutoff = new Date(nå.getTime());
-  const { tidsvinduIAntallMåneder } = useTidsvindu();
-  dataCutoff.setMonth(nå.getMonth() - (tidsvinduIAntallMåneder ? 120 : 36));
+  const [searchParams] = useSearchParams();
+  const utvidet = searchParams.get("utvidet") === "true";
+  const dataCutoff = beregnDatagrense(nå, beregnMaksNavigering(utvidet));
 
   const kanFlytteForrigePeriode =
     forskjellIDager(nåværendeVindu.start, dataCutoff) >= 30;
@@ -402,8 +403,11 @@ function useTidslinjevindu() {
 }
 
 /** Beregner start- og sluttdato for tidsvinduet basert på antall måneder og offset. */
-function beregnVindu(tidsvinduIAntallMåneder: number, offset: number) {
-  const nå = new Date();
+export function beregnVindu(
+  tidsvinduIAntallMåneder: number,
+  offset: number,
+  nå = new Date(),
+) {
   const start = new Date(nå);
   start.setMonth(nå.getMonth() - tidsvinduIAntallMåneder - offset);
   const slutt = new Date(nå);
@@ -415,7 +419,9 @@ function beregnVindu(tidsvinduIAntallMåneder: number, offset: number) {
  * Beregner hvor mange måneder vi skal hoppe frem/tilbake i tidslinjen basert på tidsvinduets størrelse.
  * Større tidsvindu gir større hopp for bedre navigering.
  */
-function beregnHoppForTidsvindu(tidsvinduIAntallMåneder: number): number {
+export function beregnHoppForTidsvindu(
+  tidsvinduIAntallMåneder: number,
+): number {
   switch (tidsvinduIAntallMåneder) {
     case 120:
       return 12;
@@ -440,4 +446,19 @@ function useTilbakekrevinger(
     () => grupperTilbakekrevinger(ytelser, nåværendeVindu),
     [ytelser, nåværendeVindu],
   );
+}
+
+/** Beregner eldste dato vi har data for, basert på tidsvinduets størrelse. */
+export function beregnDatagrense(
+  nå: Date,
+  tidsvinduIAntallMåneder: number,
+): Date {
+  const grense = new Date(nå.getTime());
+  grense.setMonth(nå.getMonth() - tidsvinduIAntallMåneder);
+  return grense;
+}
+
+/** Returnerer maks antall måneder man kan navigere tilbake i tidslinjen. */
+export function beregnMaksNavigering(utvidet: boolean): number {
+  return utvidet ? 120 : 36;
 }
