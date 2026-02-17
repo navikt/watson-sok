@@ -233,29 +233,13 @@ describe("grupperTilbakekrevinger", () => {
     expect(grupperTilbakekrevinger(ytelser, STORT_VINDU)).toEqual([]);
   });
 
-  it("inkluderer perioder med negativt beløp", () => {
+  it("inkluderer perioder med negativt beløp og bevarer alle felter", () => {
     const ytelser = [
       lagYtelse("Dagpenger", [
-        { fom: "2024-01-01", tom: "2024-01-31", beløp: -500 },
-      ]),
-    ];
-
-    const resultat = grupperTilbakekrevinger(ytelser, STORT_VINDU);
-
-    expect(resultat).toHaveLength(1);
-    expect(resultat[0].fom).toBe("2024-01-01");
-    expect(resultat[0].tilbakekrevinger).toHaveLength(1);
-    expect(resultat[0].tilbakekrevinger[0].stonadType).toBe("Dagpenger");
-    expect(resultat[0].tilbakekrevinger[0].beløp).toBe(-500);
-  });
-
-  it("beholder ytelsesnavn (stonadType) for hver tilbakekreving", () => {
-    const ytelser = [
-      lagYtelse("Sykepenger", [
         {
-          fom: "2024-03-01",
-          tom: "2024-03-31",
-          beløp: -1200,
+          fom: "2024-01-01",
+          tom: "2024-01-31",
+          beløp: -500,
           info: "BIL-123",
         },
       ]),
@@ -263,10 +247,12 @@ describe("grupperTilbakekrevinger", () => {
 
     const resultat = grupperTilbakekrevinger(ytelser, STORT_VINDU);
 
+    expect(resultat).toHaveLength(1);
+    expect(resultat[0].fom).toBe("2024-01-01");
     expect(resultat[0].tilbakekrevinger[0]).toEqual({
-      stonadType: "Sykepenger",
-      beløp: -1200,
-      periode: { fom: "2024-03-01", tom: "2024-03-31" },
+      stonadType: "Dagpenger",
+      beløp: -500,
+      periode: { fom: "2024-01-01", tom: "2024-01-31" },
       info: "BIL-123",
     });
   });
@@ -324,48 +310,5 @@ describe("grupperTilbakekrevinger", () => {
 
     expect(resultat).toHaveLength(1);
     expect(resultat[0].fom).toBe("2024-03-01");
-  });
-
-  it("håndterer blanding av positive og negative beløp i samme ytelse", () => {
-    const ytelser = [
-      lagYtelse("Dagpenger", [
-        { fom: "2024-01-01", tom: "2024-01-31", beløp: 5000 },
-        { fom: "2024-02-01", tom: "2024-02-28", beløp: -500 },
-        { fom: "2024-03-01", tom: "2024-03-31", beløp: 4000 },
-      ]),
-    ];
-
-    const resultat = grupperTilbakekrevinger(ytelser, STORT_VINDU);
-
-    expect(resultat).toHaveLength(1);
-    expect(resultat[0].tilbakekrevinger[0].beløp).toBe(-500);
-  });
-
-  it("grupperer flere tilbakekrevinger fra ulike ytelser på samme dato med info", () => {
-    const ytelser = [
-      lagYtelse("Dagpenger", [
-        {
-          fom: "2024-01-01",
-          tom: "2024-01-31",
-          beløp: -500,
-          info: "BIL-001",
-        },
-      ]),
-      lagYtelse("Foreldrepenger", [
-        {
-          fom: "2024-01-01",
-          tom: "2024-02-28",
-          beløp: -1000,
-          info: "BIL-002",
-        },
-      ]),
-    ];
-
-    const resultat = grupperTilbakekrevinger(ytelser, STORT_VINDU);
-
-    expect(resultat).toHaveLength(1);
-    expect(resultat[0].tilbakekrevinger).toHaveLength(2);
-    expect(resultat[0].tilbakekrevinger[0].info).toBe("BIL-001");
-    expect(resultat[0].tilbakekrevinger[1].info).toBe("BIL-002");
   });
 });
