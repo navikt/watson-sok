@@ -1,6 +1,7 @@
 import z from "zod";
 import { ArbeidsgiverInformasjonSchema } from "~/arbeidsforhold/domene";
 import { InntektInformasjonSchema } from "~/inntekt-og-ytelse/inntekt/domene";
+import { PensjonsgivendeInntektSchema } from "~/inntekt-og-ytelse/naeringsinntekt/domene";
 import { YtelserInformasjonSchema } from "~/inntekt-og-ytelse/ytelse/domene";
 import { MeldekortResponsSchema } from "~/meldekort/domene";
 import { PersonInformasjonSchema } from "~/person/domene";
@@ -16,6 +17,7 @@ export const MockOppslagBrukerResponsSchema = z.object({
   inntektInformasjon: InntektInformasjonSchema.nullable(),
   meldekort: MeldekortResponsSchema.nullish(),
   stønader: YtelserInformasjonSchema.nullable(),
+  pensjonsgivendeInntekt: PensjonsgivendeInntektSchema.nullish(),
 });
 
 export type MockOppslagBrukerRespons = z.infer<

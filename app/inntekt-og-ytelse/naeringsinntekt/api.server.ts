@@ -1,10 +1,21 @@
-import type { NæringsinntektPost } from "./domene";
+import { gjørOppslagApiRequest, type BackendKallSignatur } from "~/oppslag/api";
+import { PensjonsgivendeInntektSchema } from "./domene";
 
-/** Henter næringsinntekt for en gitt ident (mock-implementasjon) */
-export async function hentNæringsinntekt(): Promise<NæringsinntektPost[]> {
-  const inneværendeÅr = new Date().getFullYear();
-  return Array.from({ length: 10 }, (_, i) => ({
-    år: inneværendeÅr - i,
-    beløp: Math.round(200_000 + Math.random() * 300_000),
-  }));
+/** Henter pensjonsgivende inntekt for en gitt ident */
+export async function hentPensjonsgivendeInntekt({
+  ident,
+  request,
+  navCallId,
+  traceLogging,
+  utvidet,
+}: BackendKallSignatur) {
+  return gjørOppslagApiRequest({
+    ident,
+    request,
+    navCallId,
+    endepunkt: `/oppslag/pensjonsgivende-inntekt?utvidet=${utvidet}`,
+    schema: PensjonsgivendeInntektSchema,
+    ekstraherFraMock: (mockData) => mockData.pensjonsgivendeInntekt ?? [],
+    traceLogging,
+  });
 }

@@ -1,8 +1,15 @@
 import { z } from "zod";
 
-export const NæringsinntektPostSchema = z.object({
-  år: z.number(),
-  beløp: z.number(),
+export const PensjonsgivendeInntektPostSchema = z.object({
+  inntektsår: z.string(),
+  næringsinntekt: z.number(),
+  lønnsinntekt: z.number(),
 });
 
-export type NæringsinntektPost = z.infer<typeof NæringsinntektPostSchema>;
+export const PensjonsgivendeInntektSchema = z.array(
+  PensjonsgivendeInntektPostSchema,
+);
+
+export type PensjonsgivendeInntektPost = z.infer<
+  typeof PensjonsgivendeInntektPostSchema
+>;

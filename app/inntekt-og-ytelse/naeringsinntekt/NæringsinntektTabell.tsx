@@ -9,13 +9,13 @@ import {
 import { use } from "react";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import { formaterBeløp } from "~/utils/number-utils";
-import type { NæringsinntektPost } from "./domene";
+import type { PensjonsgivendeInntektPost } from "./domene";
 
 type NæringsinntektTabellProps = {
-  promise: Promise<NæringsinntektPost[]>;
+  promise: Promise<PensjonsgivendeInntektPost[]>;
 };
 
-/** Tabell som viser næringsinntekt per år */
+/** Tabell som viser pensjonsgivende inntekt per år */
 export function NæringsinntektTabell({ promise }: NæringsinntektTabellProps) {
   return (
     <ResolvingComponent
@@ -27,11 +27,13 @@ export function NæringsinntektTabell({ promise }: NæringsinntektTabellProps) {
 }
 
 function NæringsinntektTabellMedData({ promise }: NæringsinntektTabellProps) {
-  const næringsinntekter = use(promise);
+  const poster = use(promise);
 
-  if (næringsinntekter.length === 0) {
+  if (poster.length === 0) {
     return (
-      <Alert variant="info">Ingen næringsinntekt funnet for siste 10 år.</Alert>
+      <Alert variant="info">
+        Ingen pensjonsgivende inntekt funnet for siste 10 år.
+      </Alert>
     );
   }
 
@@ -40,21 +42,27 @@ function NæringsinntektTabellMedData({ promise }: NæringsinntektTabellProps) {
       <TableHeader>
         <TableRow>
           <TableHeaderCell scope="col" textSize="small">
-            År
+            Inntektsår
           </TableHeaderCell>
           <TableHeaderCell scope="col" align="right" textSize="small">
-            Inntekt
+            Næringsinntekt
+          </TableHeaderCell>
+          <TableHeaderCell scope="col" align="right" textSize="small">
+            Lønnsinntekt
           </TableHeaderCell>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {næringsinntekter.map((post) => (
-          <TableRow key={post.år}>
+        {poster.map((post) => (
+          <TableRow key={post.inntektsår}>
             <TableHeaderCell scope="row" textSize="small">
-              {post.år}
+              {post.inntektsår}
             </TableHeaderCell>
             <TableDataCell align="right" textSize="small">
-              {formaterBeløp(post.beløp)}
+              {formaterBeløp(post.næringsinntekt)}
+            </TableDataCell>
+            <TableDataCell align="right" textSize="small">
+              {formaterBeløp(post.lønnsinntekt)}
             </TableDataCell>
           </TableRow>
         ))}

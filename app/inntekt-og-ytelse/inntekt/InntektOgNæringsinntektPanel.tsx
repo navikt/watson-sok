@@ -7,7 +7,7 @@ import {
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
-import type { NæringsinntektPost } from "~/inntekt-og-ytelse/naeringsinntekt/domene";
+import type { PensjonsgivendeInntektPost } from "~/inntekt-og-ytelse/naeringsinntekt/domene";
 import { NæringsinntektTabell } from "~/inntekt-og-ytelse/naeringsinntekt/NæringsinntektTabell";
 import type { Ytelse } from "~/inntekt-og-ytelse/ytelse/domene";
 import { PanelContainer } from "~/paneler/PanelContainer";
@@ -17,7 +17,7 @@ import { InntektPanel, InntektPanelInnhold } from "./InntektPanel";
 type InntektOgNæringsinntektPanelProps = {
   promise: Promise<InntektInformasjon | null>;
   ytelserPromise: Promise<Ytelse[] | null>;
-  næringsinntektPromise: Promise<NæringsinntektPost[]>;
+  næringsinntektPromise: Promise<PensjonsgivendeInntektPost[]>;
   panelId?: string;
   ariaKeyShortcuts?: string;
 };
