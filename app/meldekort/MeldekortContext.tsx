@@ -1,5 +1,5 @@
 import { createContext, use, useEffect, type ReactNode } from "react";
-import { useFetcher } from "react-router";
+import { useFetcher, useSearchParams } from "react-router";
 import { RouteConfig } from "~/routeConfig";
 import type { loader } from "./api.route";
 import type { MeldekortRespons } from "./domene";
@@ -30,12 +30,16 @@ export function MeldekortProvider({
   children,
 }: MeldekortProviderProps) {
   const fetcher = useFetcher<typeof loader>();
+  const [searchParams] = useSearchParams();
+  const traceLogging = searchParams.get("traceLogging") === "true";
 
   useEffect(() => {
     if (fetcher.state === "idle" && !fetcher.data) {
-      fetcher.load(`${RouteConfig.API.MELDEKORT}?ytelse=${ytelse}`);
+      fetcher.load(
+        `${RouteConfig.API.MELDEKORT}?ytelse=${ytelse}&traceLogging=${traceLogging}`,
+      );
     }
-  }, [fetcher, ytelse]);
+  }, [fetcher, ytelse, traceLogging]);
 
   const state: MeldekortState =
     fetcher.state === "loading" || !fetcher.data
