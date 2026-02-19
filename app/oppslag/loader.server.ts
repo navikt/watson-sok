@@ -1,7 +1,11 @@
 import { env } from "process";
 import { type LoaderFunctionArgs, redirect } from "react-router";
 import { hentArbeidsforhold } from "~/arbeidsforhold/api.server";
+import { hentInnloggetBruker } from "~/auth/innlogget-bruker.server";
+import { FeatureFlagg } from "~/feature-toggling/featureflagg";
+import { hentAlleFeatureFlagg } from "~/feature-toggling/utils.server";
 import { hentInntekter } from "~/inntekt-og-ytelse/inntekt/api.server";
+import { hentPensjonsgivendeInntekt } from "~/inntekt-og-ytelse/naeringsinntekt/api.server";
 import { hentYtelser } from "~/inntekt-og-ytelse/ytelse/api.server";
 import { hentPersonopplysninger } from "~/person/api.server";
 import { RouteConfig } from "~/routeConfig";
@@ -38,6 +42,9 @@ export async function oppslagLoader({ request }: LoaderFunctionArgs) {
     utvidet,
   };
 
+  const { navIdent } = await hentInnloggetBruker({ request });
+  const featureFlagg = await hentAlleFeatureFlagg(navIdent);
+
   return {
     miljø: env.ENVIRONMENT,
     erBegrensetTilgang:
@@ -51,5 +58,8 @@ export async function oppslagLoader({ request }: LoaderFunctionArgs) {
     arbeidsgiverInformasjon: hentArbeidsforhold(params),
     inntektInformasjon: hentInntekter(params),
     ytelser: hentYtelser(params),
+    næringsinntekt: featureFlagg[FeatureFlagg.NAERINGSINNTEKT]
+      ? hentPensjonsgivendeInntekt(params)
+      : Promise.resolve([]),
   };
 }
