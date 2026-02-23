@@ -1,4 +1,4 @@
-import { Accordion, Skeleton } from "@navikt/ds-react";
+import { Accordion, InlineMessage, Skeleton } from "@navikt/ds-react";
 import {
   AccordionContent,
   AccordionHeader,
@@ -66,6 +66,9 @@ export function InntektOgNæringsinntektPanel({
         <AccordionItem>
           <AccordionHeader>Næringsinntekt</AccordionHeader>
           <AccordionContent>
+            <InlineMessage status="info">
+              Informasjonen om nærings- og lønnsinntekt hentes fra Skatteetaten.
+            </InlineMessage>
             <NæringsinntektTabell promise={næringsinntektPromise} />
           </AccordionContent>
         </AccordionItem>
