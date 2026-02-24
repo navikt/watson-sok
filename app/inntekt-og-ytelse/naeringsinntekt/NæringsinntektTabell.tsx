@@ -47,9 +47,6 @@ function NæringsinntektTabellMedData({ promise }: NæringsinntektTabellProps) {
           <TableHeaderCell scope="col" align="right" textSize="small">
             Næringsinntekt
           </TableHeaderCell>
-          <TableHeaderCell scope="col" align="right" textSize="small">
-            Lønnsinntekt
-          </TableHeaderCell>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -60,9 +57,6 @@ function NæringsinntektTabellMedData({ promise }: NæringsinntektTabellProps) {
             </TableHeaderCell>
             <TableDataCell align="right" textSize="small">
               {formaterBeløp(post.næringsinntekt)}
-            </TableDataCell>
-            <TableDataCell align="right" textSize="small">
-              {formaterBeløp(post.lønnsinntekt)}
             </TableDataCell>
           </TableRow>
         ))}
