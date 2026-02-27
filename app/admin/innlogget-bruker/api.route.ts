@@ -2,10 +2,8 @@ import type { LoaderFunctionArgs } from "react-router";
 import { hentInnloggetBruker } from "~/auth/innlogget-bruker.server";
 
 const brukereSomHarTilgang = {
-  hansJacob: "M118946",
   kristofer: "S162301",
   snorri: "E176931",
-  sturle: "H139079",
   espen: "E170973",
   // Testbruker vi bruker i dev
   devTestbruker: "Z994531",
