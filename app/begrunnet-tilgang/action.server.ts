@@ -3,11 +3,13 @@ import {
   redirectDocument,
   type ActionFunctionArgs,
 } from "react-router";
+
 import { RouteConfig } from "~/routeConfig";
 import {
   hentSøkedataFraSession,
   lagreSøkeinfoPåSession,
 } from "~/søk/søkeinfoSession.server";
+
 import { loggBegrunnetTilgang } from "./api.server";
 
 export async function tilgangAction({ request }: ActionFunctionArgs) {

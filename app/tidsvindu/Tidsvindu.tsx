@@ -8,6 +8,7 @@ import {
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { createContext, use, useId, useMemo, useState } from "react";
 import { useSearchParams } from "react-router";
+
 import { sporHendelse } from "~/analytics/analytics";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";

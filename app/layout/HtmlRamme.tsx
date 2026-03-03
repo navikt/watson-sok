@@ -1,5 +1,6 @@
 import { FaroErrorBoundary } from "@grafana/faro-react";
 import { Links, Meta, Scripts, ScrollRestoration } from "react-router";
+
 import { AnalyticsTags } from "~/analytics/analytics";
 import { PreferanserProvider } from "~/preferanser/PreferanserContext";
 import {

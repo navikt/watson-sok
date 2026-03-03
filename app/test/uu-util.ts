@@ -1,6 +1,5 @@
-import type { Page } from "@playwright/test";
-
 import { AxeBuilder } from "@axe-core/playwright";
+import type { Page } from "@playwright/test";
 import { expect } from "@playwright/test";
 
 export const sjekkTilgjengelighet = async (page: Page) => {

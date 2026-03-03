@@ -1,4 +1,5 @@
 import { expect, type Page, test } from "@playwright/test";
+
 import { sjekkTilgjengelighet } from "../test/uu-util";
 
 const testFnr = "98765432101";

@@ -1,6 +1,7 @@
 import { Alert, BodyShort, Heading } from "@navikt/ds-react";
 import { Page, PageBlock } from "@navikt/ds-react/Page";
 import { useLoaderData } from "react-router";
+
 import { ArbeidsforholdPanel } from "~/arbeidsforhold/ArbeidsforholdPanel";
 import { InntektOgYtelseOverlappPanel } from "~/inntekt-og-ytelse/inntekt-og-ytelse-overlapp-panel/InntektOgYtelseOverlappPanel";
 import { InntektPanel } from "~/inntekt-og-ytelse/inntekt/InntektPanel";
@@ -8,9 +9,10 @@ import { InntektsoppsummeringPanel } from "~/inntekt-og-ytelse/inntekt/Inntektso
 import { YtelserPanel } from "~/inntekt-og-ytelse/ytelse/YtelserPanel";
 import { OverskriftPanel } from "~/person/OverskriftPanel";
 import { PersonopplysningerPanel } from "~/person/PersonopplysningerPanel";
-import { Snarveier } from "~/snarveier/SnarveierProvider";
 import { PanelId, SNARVEIER } from "~/snarveier/snarveier";
+import { Snarveier } from "~/snarveier/SnarveierProvider";
 import { TidsvinduProvider, TidsvinduVelger } from "~/tidsvindu/Tidsvindu";
+
 import { oppslagLoader } from "./loader.server";
 import { oppslagMeta } from "./meta";
 

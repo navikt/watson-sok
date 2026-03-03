@@ -1,5 +1,7 @@
 import { useHotkeys } from "react-hotkeys-hook";
+
 import { sporHendelse } from "~/analytics/analytics";
+
 import { PanelId } from "./snarveier";
 import { usePanelNavigering } from "./usePanelNavigering";
 

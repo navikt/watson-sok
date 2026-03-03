@@ -1,7 +1,9 @@
 import { Theme } from "@navikt/ds-react";
 import { createContext, useContext, useState } from "react";
+
 import { logger } from "~/logging/logging";
 import { RouteConfig } from "~/routeConfig";
+
 import {
   type GrafVisning,
   type Preferanser,

@@ -2,6 +2,7 @@ import { BellIcon } from "@navikt/aksel-icons";
 import { BodyLong, Button } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useEffect, useRef, useState } from "react";
+
 import { sporHendelse } from "~/analytics/analytics";
 import { logger } from "~/logging/logging";
 import { RouteConfig } from "~/routeConfig";

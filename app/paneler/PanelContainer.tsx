@@ -1,5 +1,6 @@
 import { ExternalLinkIcon } from "@navikt/aksel-icons";
 import { Heading, Link, Skeleton, Tag, Tooltip } from "@navikt/ds-react";
+
 import { Feedback } from "./feedback/Feedback";
 
 type PanelContainerProps = {

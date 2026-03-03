@@ -1,6 +1,8 @@
 import { useMemo } from "react";
+
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { konverterTilTall } from "~/utils/number-utils";
+
 import { ANTALL_GRID_LINJER, MIN_LABEL_AVSTAND } from "./konstanter";
 import type {
   GridLinje,

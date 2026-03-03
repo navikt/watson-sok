@@ -14,9 +14,11 @@ import {
   useNavigate,
   useNavigation,
 } from "react-router";
+
 import { sporHendelse } from "~/analytics/analytics";
 import { useMiljø } from "~/miljø/useMiljø";
 import { RouteConfig } from "~/routeConfig";
+
 import { tilgangAction } from "./action.server";
 import { tilgangLoader } from "./loader.server";
 

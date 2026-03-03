@@ -7,6 +7,7 @@ import {
   Table,
 } from "@navikt/ds-react";
 import { use, useMemo } from "react";
+
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import type { InntektInformasjon } from "~/inntekt-og-ytelse/inntekt/domene";
 import {

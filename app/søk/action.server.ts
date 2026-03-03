@@ -1,6 +1,8 @@
 import { data, redirectDocument, type ActionFunctionArgs } from "react-router";
+
 import { logger } from "~/logging/logging";
 import { RouteConfig } from "~/routeConfig";
+
 import { sjekkEksistensOgTilgang } from "./api.server";
 import {
   hentSøkedataFraSession,
