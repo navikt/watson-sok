@@ -1,6 +1,7 @@
 import { Alert, CopyButton, Skeleton, Tooltip } from "@navikt/ds-react";
 import { Fragment, use } from "react";
 import { unstable_useRoute } from "react-router";
+
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import {
   PanelContainer,
@@ -12,6 +13,7 @@ import {
   storFørsteBokstav,
   storFørsteBokstavPerOrd,
 } from "~/utils/string-utils";
+
 import type { PersonInformasjon } from "./domene";
 import { FamiliemedlemmerModal } from "./FamiliemedlemmerModal";
 import { formaterAdresse } from "./utils/adresse-utils";

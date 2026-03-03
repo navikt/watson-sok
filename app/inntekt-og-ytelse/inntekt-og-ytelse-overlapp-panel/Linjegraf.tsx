@@ -1,6 +1,7 @@
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { formaterÅrMåned } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
+
 import {
   GRAF_BREDDE,
   GRAF_HØYDE,

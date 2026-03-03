@@ -6,8 +6,10 @@ import {
   TableHeaderCell,
   TableRow,
 } from "@navikt/ds-react/Table";
+
 import { formaterDato } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
+
 import type { Ytelse } from "../domene";
 
 type UtbetalingerPanelProps = {

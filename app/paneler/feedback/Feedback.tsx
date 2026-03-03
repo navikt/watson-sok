@@ -1,6 +1,7 @@
 import { ThumbDownIcon, ThumbUpIcon } from "@navikt/aksel-icons";
 import { BodyShort, Button, Tooltip } from "@navikt/ds-react";
 import { useState } from "react";
+
 import { sporHendelse } from "~/analytics/analytics";
 import { cn } from "~/utils/class-utils";
 

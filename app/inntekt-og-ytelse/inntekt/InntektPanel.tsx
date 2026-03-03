@@ -8,6 +8,7 @@ import {
   TableRow,
 } from "@navikt/ds-react/Table";
 import { use, useMemo, useState, type CSSProperties } from "react";
+
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import type { Ytelse } from "~/inntekt-og-ytelse/ytelse/domene";
 import { mapYtelsestypeTilIkon } from "~/inntekt-og-ytelse/ytelse/mapYtelsestypeTilIkon";
@@ -23,6 +24,7 @@ import {
   konverterTilTall,
 } from "~/utils/number-utils";
 import { camelCaseTilNorsk, storFørsteBokstav } from "~/utils/string-utils";
+
 import type { InntektInformasjon } from "./domene";
 
 // Highlight-stil for celler i rad med flere versjoner

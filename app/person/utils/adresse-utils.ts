@@ -1,9 +1,9 @@
-import type { Adresse, NorskAdresse, UtenlandskAdresse } from "../domene";
-
 import {
   storFørsteBokstav,
   storFørsteBokstavPerOrd,
 } from "~/utils/string-utils";
+
+import type { Adresse, NorskAdresse, UtenlandskAdresse } from "../domene";
 
 /**
  * Formaterer et adresse-objekt til en norsk adresse eller utenlandsk adresse
