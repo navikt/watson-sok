@@ -2516,5 +2516,57 @@
     "pensjonEllerTrygd": [],
     "ytelseFraOffentlige": []
   },
-  "stønader": []
+  "stønader": [],
+  "pensjonsgivendeInntekt": [
+    {
+      "inntektsår": "2025",
+      "næringsinntekt": 385000,
+      "lønnsinntekt": 520000
+    },
+    {
+      "inntektsår": "2024",
+      "næringsinntekt": 362000,
+      "lønnsinntekt": 498000
+    },
+    {
+      "inntektsår": "2023",
+      "næringsinntekt": 341000,
+      "lønnsinntekt": 475000
+    },
+    {
+      "inntektsår": "2022",
+      "næringsinntekt": 318000,
+      "lønnsinntekt": 460000
+    },
+    {
+      "inntektsår": "2021",
+      "næringsinntekt": 295000,
+      "lønnsinntekt": 442000
+    },
+    {
+      "inntektsår": "2020",
+      "næringsinntekt": 278000,
+      "lønnsinntekt": 430000
+    },
+    {
+      "inntektsår": "2019",
+      "næringsinntekt": 260000,
+      "lønnsinntekt": 415000
+    },
+    {
+      "inntektsår": "2018",
+      "næringsinntekt": 245000,
+      "lønnsinntekt": 398000
+    },
+    {
+      "inntektsår": "2017",
+      "næringsinntekt": 230000,
+      "lønnsinntekt": 380000
+    },
+    {
+      "inntektsår": "2016",
+      "næringsinntekt": 215000,
+      "lønnsinntekt": 365000
+    }
+  ]
 }
