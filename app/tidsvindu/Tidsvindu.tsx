@@ -178,7 +178,7 @@ export const TidsvinduProvider = ({
         setTilDato(datoer.tilDato);
         setErTilpassetVisning(false);
         if (tidsvindu === "10 år") {
-          setSearchParams({ utvidet: "true" });
+          setSearchParams((prev) => ({ ...prev, utvidet: "true" }));
         }
       },
       setCustomDatoer: (fra: Date, til: Date) => {
