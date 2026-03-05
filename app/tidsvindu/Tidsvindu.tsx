@@ -194,7 +194,7 @@ export const TidsvinduProvider = ({
         const treÅrSiden = new Date(nå);
         treÅrSiden.setFullYear(treÅrSiden.getFullYear() - 3);
         if (fra < treÅrSiden) {
-          setSearchParams({ utvidet: "true" });
+          setSearchParams((prev) => ({ ...prev, utvidet: "true" }));
         }
 
         return null;
