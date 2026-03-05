@@ -34,14 +34,15 @@ export function MeldekortProvider({
   const fetcher = useFetcher<typeof loader>();
   const [searchParams] = useSearchParams();
   const traceLogging = searchParams.get("traceLogging") === "true";
+  const utvidet = searchParams.get("utvidet") === "true";
 
   useEffect(() => {
     if (fetcher.state === "idle" && !fetcher.data) {
       fetcher.load(
-        `${RouteConfig.API.MELDEKORT}?ytelse=${ytelse}&traceLogging=${traceLogging}`,
+        `${RouteConfig.API.MELDEKORT}?ytelse=${ytelse}&traceLogging=${traceLogging}&utvidet=${utvidet}`,
       );
     }
-  }, [fetcher, ytelse, traceLogging]);
+  }, [fetcher, ytelse, traceLogging, utvidet]);
 
   const state: MeldekortState =
     fetcher.state === "loading" || !fetcher.data
