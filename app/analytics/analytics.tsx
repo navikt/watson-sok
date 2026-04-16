@@ -1,14 +1,21 @@
 import { logger } from "~/logging/logging";
+
+const DEFAULT_SPORING_HOST_URL = "https://reops-event-proxy.nav.no";
+
 type AnalyticsTagProps = {
+  hostUrl?: string;
   sporingId: string;
 };
 
-export function AnalyticsTags({ sporingId }: AnalyticsTagProps) {
+export function AnalyticsTags({
+  hostUrl = DEFAULT_SPORING_HOST_URL,
+  sporingId,
+}: AnalyticsTagProps) {
   return (
     <script
       defer
       src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
-      data-host-url="https://umami.nav.no"
+      data-host-url={hostUrl}
       data-website-id={sporingId}
     />
   );
