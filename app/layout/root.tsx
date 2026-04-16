@@ -13,6 +13,7 @@ export default function Root() {
   return (
     <HtmlRamme
       initialPreferanser={initialPreferanser}
+      sporingHostUrl={envs.sporingHostUrl}
       umamiSiteId={envs.umamiSiteId}
     >
       <Versjonsvarsling gjeldendeVersjon={envs.appversjon} />

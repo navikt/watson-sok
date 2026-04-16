@@ -63,8 +63,16 @@ export const BACKEND_API_URL =
       ? "https://nav-persondata-api.intern.dev.nav.no"
       : "http://nav-persondata-api";
 
+const PROD_SPORING_HOST_URL = "https://reops-event-proxy.nav.no";
+const DEV_SPORING_HOST_URL = "https://reops-event-proxy.ekstern.dev.nav.no";
+
 export const isProd = env.NODE_ENV === "production";
 export const isDev = env.NODE_ENV === "development";
+
+export const SPORING_HOST_URL =
+  env.ENVIRONMENT === "prod" ? PROD_SPORING_HOST_URL : DEV_SPORING_HOST_URL;
+export const FARO_CSP_SOURCE = new URL(env.FARO_URL).origin;
+export const SPORING_CSP_SOURCE = new URL(SPORING_HOST_URL).origin;
 
 export const skalBrukeMockdata =
   env.ENVIRONMENT === "local-mock" || env.ENVIRONMENT === "demo";
