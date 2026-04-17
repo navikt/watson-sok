@@ -10,7 +10,7 @@ const envSchema = z.object({
     .enum(["local-backend", "local-dev", "local-mock", "demo", "dev", "prod"])
     .describe("The environment the app is running in"),
   CLUSTER: z.string().describe("The cluster the app is running in"),
-  FARO_URL: z.string().describe("The URL of the Faro instance"),
+  FARO_URL: z.url().describe("The URL of the Faro instance"),
   UMAMI_SITE_ID: z.string().describe("The ID of the Umami instance"),
   IDENT_SESSION_SECRET: z.string().describe("The secret for the ident session"),
   MODIA_URL: z.string().describe("The URL of the Modia instance"),
