@@ -1,16 +1,11 @@
 import { logger } from "~/logging/logging";
 
-const DEFAULT_SPORING_HOST_URL = "https://reops-event-proxy.nav.no";
-
 type AnalyticsTagProps = {
-  hostUrl?: string;
+  hostUrl: string;
   sporingId: string;
 };
 
-export function AnalyticsTags({
-  hostUrl = DEFAULT_SPORING_HOST_URL,
-  sporingId,
-}: AnalyticsTagProps) {
+export function AnalyticsTags({ hostUrl, sporingId }: AnalyticsTagProps) {
   return (
     <script
       defer

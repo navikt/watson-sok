@@ -28,7 +28,7 @@ export function HtmlRamme({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <Meta />
         <Links />
-        {umamiSiteId && (
+        {umamiSiteId && sporingHostUrl && (
           <AnalyticsTags hostUrl={sporingHostUrl} sporingId={umamiSiteId} />
         )}
       </head>
