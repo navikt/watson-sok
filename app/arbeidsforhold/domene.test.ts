@@ -15,7 +15,7 @@ function lagGyldigArbeidsforhold() {
             stillingsprosent: 100,
             antallTimerPrUke: 37.5,
             periode: {
-              fom: "2024-01",
+              fom: "2024-01-15",
               tom: null,
             },
             yrke: "UTVIKLER",
@@ -28,7 +28,7 @@ function lagGyldigArbeidsforhold() {
 }
 
 describe("ArbeidsgiverInformasjonSchema", () => {
-  it("godtar år-måned-format i arbeidsforholdsperioder", () => {
+  it("godtar ISO-datoformat i arbeidsforholdsperioder", () => {
     const resultat = ArbeidsgiverInformasjonSchema.safeParse(
       lagGyldigArbeidsforhold(),
     );
@@ -36,7 +36,7 @@ describe("ArbeidsgiverInformasjonSchema", () => {
     expect(resultat.success).toBe(true);
   });
 
-  it("avviser datoformat med dag i fom", () => {
+  it("avviser år-måned-format uten dag i fom", () => {
     const resultat = ArbeidsgiverInformasjonSchema.safeParse({
       ...lagGyldigArbeidsforhold(),
       løpendeArbeidsforhold: [
@@ -47,7 +47,7 @@ describe("ArbeidsgiverInformasjonSchema", () => {
               ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0]
                 .ansettelsesDetaljer[0],
               periode: {
-                fom: "2024-01-01",
+                fom: "2024-01",
                 tom: null,
               },
             },
@@ -70,7 +70,7 @@ describe("ArbeidsgiverInformasjonSchema", () => {
               ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0]
                 .ansettelsesDetaljer[0],
               periode: {
-                fom: "2024-01",
+                fom: "2024-01-15",
                 tom: "",
               },
             },
@@ -93,7 +93,53 @@ describe("ArbeidsgiverInformasjonSchema", () => {
               ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0]
                 .ansettelsesDetaljer[0],
               periode: {
-                fom: "2024-13",
+                fom: "2024-13-01",
+                tom: null,
+              },
+            },
+          ],
+        },
+      ],
+    });
+
+    expect(resultat.success).toBe(false);
+  });
+
+  it("avviser ugyldig dag i tom", () => {
+    const resultat = ArbeidsgiverInformasjonSchema.safeParse({
+      ...lagGyldigArbeidsforhold(),
+      løpendeArbeidsforhold: [
+        {
+          ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0],
+          ansettelsesDetaljer: [
+            {
+              ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0]
+                .ansettelsesDetaljer[0],
+              periode: {
+                fom: "2024-01-15",
+                tom: "2024-02-32",
+              },
+            },
+          ],
+        },
+      ],
+    });
+
+    expect(resultat.success).toBe(false);
+  });
+
+  it("avviser kalenderugyldig dato", () => {
+    const resultat = ArbeidsgiverInformasjonSchema.safeParse({
+      ...lagGyldigArbeidsforhold(),
+      løpendeArbeidsforhold: [
+        {
+          ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0],
+          ansettelsesDetaljer: [
+            {
+              ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0]
+                .ansettelsesDetaljer[0],
+              periode: {
+                fom: "2024-02-31",
                 tom: null,
               },
             },

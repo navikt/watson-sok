@@ -49,7 +49,7 @@ describe("lagArbeidsforholdRader", () => {
           id: "løpende-1",
           arbeidsgiver: "Løpende AS",
           organisasjonsnummer: "123456789",
-          fom: "2024-01",
+          fom: "2024-01-01",
           tom: null,
         }),
       ],
@@ -58,7 +58,7 @@ describe("lagArbeidsforholdRader", () => {
           id: "historikk-1",
           arbeidsgiver: "Historikk AS",
           organisasjonsnummer: "987654321",
-          fom: "2024-05",
+          fom: "2024-05-01",
           tom: null,
         }),
       ],
@@ -82,7 +82,7 @@ describe("lagArbeidsforholdRader", () => {
           id: "løpende-1",
           arbeidsgiver: "Samme Arbeidsgiver",
           organisasjonsnummer: "123456789",
-          fom: "2024-02",
+          fom: "2024-02-01",
           tom: null,
         }),
       ],
@@ -91,16 +91,16 @@ describe("lagArbeidsforholdRader", () => {
           id: "historikk-1",
           arbeidsgiver: "Samme Arbeidsgiver",
           organisasjonsnummer: "123456789",
-          fom: "2024-01",
-          tom: "2024-01",
+          fom: "2024-01-01",
+          tom: "2024-01-31",
         }),
       ],
     });
 
     expect(arbeidsforhold).toHaveLength(2);
     expect(arbeidsforhold.map((rad) => rad.start)).toEqual([
-      "2024-02",
-      "2024-01",
+      "2024-02-01",
+      "2024-01-01",
     ]);
   });
 
@@ -112,15 +112,15 @@ describe("lagArbeidsforholdRader", () => {
           id: "historikk-1",
           arbeidsgiver: "Historisk Arbeidsgiver",
           organisasjonsnummer: "123456789",
-          fom: "2024-01",
-          tom: "2024-01",
+          fom: "2024-01-01",
+          tom: "2024-01-31",
         }),
         lagArbeidsgiverData({
           id: "historikk-1",
           arbeidsgiver: "Historisk Arbeidsgiver",
           organisasjonsnummer: "123456789",
-          fom: "2024-02",
-          tom: "2024-03",
+          fom: "2024-02-01",
+          tom: "2024-03-31",
         }),
       ],
     });
@@ -128,9 +128,57 @@ describe("lagArbeidsforholdRader", () => {
     expect(arbeidsforhold).toHaveLength(1);
     expect(arbeidsforhold[0]).toMatchObject({
       arbeidsgiver: "Historisk Arbeidsgiver",
-      start: "2024-01",
-      slutt: "2024-03",
+      start: "2024-01-01",
+      slutt: "2024-03-31",
       løpende: false,
     });
+  });
+
+  it("slår ikke sammen perioder med opphold på mer enn én dag", () => {
+    const arbeidsforhold = lagArbeidsforholdRader({
+      løpendeArbeidsforhold: [],
+      historikk: [
+        lagArbeidsgiverData({
+          id: "historikk-1",
+          arbeidsgiver: "Historisk Arbeidsgiver",
+          organisasjonsnummer: "123456789",
+          fom: "2024-01-01",
+          tom: "2024-01-31",
+        }),
+        lagArbeidsgiverData({
+          id: "historikk-1",
+          arbeidsgiver: "Historisk Arbeidsgiver",
+          organisasjonsnummer: "123456789",
+          fom: "2024-02-03",
+          tom: "2024-03-31",
+        }),
+      ],
+    });
+
+    expect(arbeidsforhold).toHaveLength(2);
+  });
+
+  it("slår ikke sammen overlappende perioder", () => {
+    const arbeidsforhold = lagArbeidsforholdRader({
+      løpendeArbeidsforhold: [],
+      historikk: [
+        lagArbeidsgiverData({
+          id: "historikk-1",
+          arbeidsgiver: "Historisk Arbeidsgiver",
+          organisasjonsnummer: "123456789",
+          fom: "2024-01-01",
+          tom: "2024-02-02",
+        }),
+        lagArbeidsgiverData({
+          id: "historikk-1",
+          arbeidsgiver: "Historisk Arbeidsgiver",
+          organisasjonsnummer: "123456789",
+          fom: "2024-02-01",
+          tom: "2024-03-31",
+        }),
+      ],
+    });
+
+    expect(arbeidsforhold).toHaveLength(2);
   });
 });

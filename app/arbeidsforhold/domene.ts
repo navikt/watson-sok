@@ -1,10 +1,19 @@
 import { z } from "zod";
 
-const årMånedSchema = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/);
+const isoDatoSchema = z
+  .string()
+  .regex(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/)
+  .refine((value) => {
+    const dato = new Date(`${value}T00:00:00.000Z`);
+
+    return (
+      !Number.isNaN(dato.getTime()) && dato.toISOString().slice(0, 10) === value
+    );
+  });
 
 const ÅpenPeriodeSchema = z.object({
-  fom: årMånedSchema,
-  tom: årMånedSchema.nullable(),
+  fom: isoDatoSchema,
+  tom: isoDatoSchema.nullable(),
 });
 
 const AnsettelsesDetaljSchema = z.object({
