@@ -33,7 +33,7 @@ import {
 } from "~/paneler/PanelContainer";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { cn } from "~/utils/class-utils";
-import { forskjellIDager, formaterDato } from "~/utils/date-utils";
+import { formaterÅrMåned } from "~/utils/date-utils";
 import { formaterProsent } from "~/utils/number-utils";
 import { formaterOrgnummer, storFørsteBokstav } from "~/utils/string-utils";
 
@@ -183,13 +183,13 @@ const ArbeidsforholdPanelMedData = ({
                       className="whitespace-nowrap"
                       textSize="small"
                     >
-                      {formaterDato(r.start)}
+                      {formaterÅrMåned(r.start)}
                     </TableDataCell>
                     <TableDataCell
                       className="whitespace-nowrap"
                       textSize="small"
                     >
-                      {r.slutt ? formaterDato(r.slutt) : "–"}
+                      {formaterÅrMåned(r.slutt)}
                     </TableDataCell>
                     <TableDataCell align="right" textSize="small">
                       {formaterProsent(r.stillingsprosent ?? "-")}
@@ -414,23 +414,42 @@ function mapYrke(yrke: string) {
   }
 }
 
-// Sjekker om to perioder er sammenhengende (32 dager eller mindre mellom dem)
+function parseÅrMåned(periode: string) {
+  const match = periode.match(/^(\d{4})-(\d{2})$/);
+
+  if (!match) {
+    return null;
+  }
+
+  return {
+    år: Number(match[1]),
+    måned: Number(match[2]),
+  };
+}
+
+function nesteÅrMåned(periode: string) {
+  const parsed = parseÅrMåned(periode);
+
+  if (!parsed) {
+    return null;
+  }
+
+  const { år, måned } = parsed;
+  const nesteMåned = måned === 12 ? 1 : måned + 1;
+  const nesteÅr = måned === 12 ? år + 1 : år;
+
+  return `${nesteÅr}-${String(nesteMåned).padStart(2, "0")}`;
+}
+
 function erPerioderSammenhengende(
   sluttDato: string | null,
   startDato: string,
 ): boolean {
-  if (!sluttDato) return false; // Hvis første periode er pågående, er de ikke sammenhengende
-
-  const slutt = new Date(`${sluttDato}T00:00:00.000Z`);
-  const start = new Date(`${startDato}T00:00:00.000Z`);
-
-  if (Number.isNaN(slutt.getTime()) || Number.isNaN(start.getTime())) {
+  if (!sluttDato) {
     return false;
   }
 
-  return (
-    start.getTime() > slutt.getTime() && forskjellIDager(slutt, start) === 1
-  );
+  return nesteÅrMåned(sluttDato) === startDato;
 }
 
 export function lagArbeidsforholdRader(
@@ -461,8 +480,8 @@ function lagRaderFraArbeidsforhold(
       id: ag.id,
       arbeidsgiver: ag.arbeidsgiver,
       organisasjonsnummer: ag.organisasjonsnummer,
-      start: ag.ansettelsesperiode.fom,
-      slutt: ag.ansettelsesperiode.tom,
+      start: detalj.periode.fom,
+      slutt: detalj.periode.tom,
       stillingsprosent: detalj.stillingsprosent ?? null,
       arbeidsforholdType: detalj.type ?? null,
       yrke: detalj.yrke,
