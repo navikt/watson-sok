@@ -55,6 +55,7 @@ Kort veiledning for bidragsytere til Holmes oppslag-bruker. Hold koden enkel, do
 ## Andre retningslinjer
 
 - Om du må gjøre større antakelser for å gjennomføre en oppgave, stopp og spør om avklaringer.
+- Alle PR-er skal skrives på norsk, uten unntak.
 - Foretrekk alltid komponenter fra `@navikt/ds-react` for å lage konsistente brukeropplevelser.
 - Importer sub-komponenter fra egne entry points i `@navikt/ds-react`, f.eks. `import { AccordionItem, AccordionHeader, AccordionContent } from "@navikt/ds-react/Accordion"` – ikke bruk dot-notation (`Accordion.Item`).
 - Unngå å legge til nye dependencies uten god grunn; begrunn alltid hvorfor før du går videre.
