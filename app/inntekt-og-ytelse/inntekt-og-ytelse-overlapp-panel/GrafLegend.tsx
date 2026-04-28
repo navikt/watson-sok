@@ -1,4 +1,5 @@
 import { BodyShort } from "@navikt/ds-react";
+
 import { STANDARD_FARGER } from "./konstanter";
 
 /**

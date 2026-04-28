@@ -1,5 +1,6 @@
 import { BACKEND_API_URL } from "~/config/env.server";
 import { logger } from "~/logging/logging";
+
 import { SaksbehandlerInfoSchema, type SaksbehandlerInfo } from "./domene";
 
 export async function hentSaksbehandlerInfo(

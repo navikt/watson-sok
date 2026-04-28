@@ -1,6 +1,7 @@
 import type { LoaderFunctionArgs } from "react-router";
+
 import { hentInnloggetBruker } from "~/auth/innlogget-bruker.server";
-import { env, isProd } from "~/config/env.server";
+import { env, isProd, SPORING_HOST_URL } from "~/config/env.server";
 import {
   hentAlleFeatureFlagg,
   hentStatusmeldingFeatureFlagg,
@@ -24,6 +25,7 @@ export async function rootLoader({ request }: LoaderFunctionArgs) {
     envs: {
       isProd,
       faroUrl: env.FARO_URL,
+      sporingHostUrl: SPORING_HOST_URL,
       umamiSiteId: env.UMAMI_SITE_ID,
       modiaUrl: env.MODIA_URL,
       appversjon: env.APP_VERSION,

@@ -1,6 +1,8 @@
 import { Heading } from "@navikt/ds-react";
+
 import { formaterÅrMåned } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
+
 import type { MånedligData } from "./typer";
 
 type SkjultTabellProps = {

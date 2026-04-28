@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { cn } from "./class-utils";
 
 describe("cn", () => {
@@ -42,7 +43,9 @@ describe("cn", () => {
       cn(
         "btn",
         "btn-primary",
+        // oxlint-disable-next-line eslint/no-constant-binary-expression
         true && "btn-large",
+        // oxlint-disable-next-line eslint/no-constant-binary-expression
         false && "btn-disabled",
         undefined,
         "mt-4",

@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+
 import { sjekkTilgjengelighet } from "../test/uu-util";
 
 test.describe("Begrunnelse-flyt for skjermet bruker", () => {

@@ -1,7 +1,9 @@
 import { type LoaderFunctionArgs, data } from "react-router";
+
 import { logger } from "~/logging/logging";
 import { gjørOppslagApiRequest } from "~/oppslag/api/oppslagApiClient.server";
 import { hentSøkedataFraSession } from "~/søk/søkeinfoSession.server";
+
 import { MeldekortResponsSchema } from "./domene";
 
 const GYLDIGE_YTELSER = ["dagpenger"] as const;

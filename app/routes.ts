@@ -3,6 +3,7 @@ import {
   route,
   type RouteConfig as RouteConfigType,
 } from "@react-router/dev/routes";
+
 import { RouteConfig } from "./routeConfig";
 
 export default [

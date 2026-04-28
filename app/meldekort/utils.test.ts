@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import type { Dag } from "./domene";
 import { beregnAktivitetStatistikk } from "./utils";
 

@@ -1,12 +1,14 @@
 import { Button, Tabs } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useMemo } from "react";
+
 import { sporHendelse } from "~/analytics/analytics";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { MeldekortProvider } from "~/meldekort/MeldekortContext";
 import { MeldekortPanel } from "~/meldekort/MeldekortPanel";
 import { formaterDato } from "~/utils/date-utils";
+
 import type { Ytelse } from "../domene";
 import { OppsummeringPanel } from "./OppsummeringPanel";
 import { UtbetalingerPanel } from "./UtbetalingerPanel";

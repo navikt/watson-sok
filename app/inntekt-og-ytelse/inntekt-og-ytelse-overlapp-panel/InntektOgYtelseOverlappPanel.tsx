@@ -1,6 +1,7 @@
 import { Alert, BodyLong, Skeleton, ToggleGroup } from "@navikt/ds-react";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { use, useMemo, useState } from "react";
+
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import {
   PanelContainer,
@@ -8,12 +9,13 @@ import {
 } from "~/paneler/PanelContainer";
 import { usePreferanser } from "~/preferanser/PreferanserContext";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
+
 import { GrafLegend } from "./GrafLegend";
 import { HoverInfoboks } from "./HoverInfoboks";
+import { GRAF_HØYDE } from "./konstanter";
 import { Linjegraf } from "./Linjegraf";
 import { SkjultTabell } from "./SkjultTabell";
 import { Stolpediagram } from "./Stolpediagram";
-import { GRAF_HØYDE } from "./konstanter";
 import type { GrafData, InntektOgYtelseOverlappPanelProps } from "./typer";
 import { useMånedligData } from "./utils";
 

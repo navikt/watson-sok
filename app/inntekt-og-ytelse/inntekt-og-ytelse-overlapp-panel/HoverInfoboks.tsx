@@ -1,7 +1,9 @@
 import { BodyShort } from "@navikt/ds-react";
+
 import { formaterÅrMåned } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
 import { storFørsteBokstav } from "~/utils/string-utils";
+
 import type { MånedligData } from "./typer";
 
 type HoverInfoboksProps = {

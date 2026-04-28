@@ -8,6 +8,7 @@ import { BodyShort, Button, Link } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useRef, useState } from "react";
 import { Form } from "react-router";
+
 import { sporHendelse } from "~/analytics/analytics";
 import { useInnloggetBruker } from "~/auth/innlogget-bruker";
 import { RouteConfig } from "~/routeConfig";
@@ -15,6 +16,7 @@ import {
   formaterFødselsnummer,
   snakeCaseTilSetning,
 } from "~/utils/string-utils";
+
 import { beregnAlderFraFødselsEllerDnummer } from "./utils/personident-utils";
 
 type FamiliemedlemmerModalProps = {

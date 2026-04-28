@@ -1,4 +1,5 @@
 import { Outlet, useLoaderData } from "react-router";
+
 import "~/globals.css";
 import { useFaro } from "~/monitorering/faro";
 import { Versjonsvarsling } from "~/versjonsvarsling/Versjonsvarsling";
@@ -12,6 +13,7 @@ export default function Root() {
   return (
     <HtmlRamme
       initialPreferanser={initialPreferanser}
+      sporingHostUrl={envs.sporingHostUrl}
       umamiSiteId={envs.umamiSiteId}
     >
       <Versjonsvarsling gjeldendeVersjon={envs.appversjon} />

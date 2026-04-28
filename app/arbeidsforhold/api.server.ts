@@ -1,4 +1,5 @@
 import { gjørOppslagApiRequest, type BackendKallSignatur } from "~/oppslag/api";
+
 import { ArbeidsgiverInformasjonSchema } from "./domene";
 
 /** Henter arbeidsgivere for en gitt ident */

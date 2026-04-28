@@ -1,4 +1,5 @@
 import z from "zod";
+
 import { getBackendOboToken } from "~/auth/access-token";
 import { BACKEND_API_URL, skalBrukeMockdata } from "~/config/env.server";
 import { logger } from "~/logging/logging";

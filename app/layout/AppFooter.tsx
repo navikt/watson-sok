@@ -1,6 +1,7 @@
 import { BooksIcon, LightBulbIcon, PersonIcon } from "@navikt/aksel-icons";
 import { Detail, Link as NavLink, Theme } from "@navikt/ds-react";
 import { Link, unstable_useRoute } from "react-router";
+
 import { RouteConfig } from "~/routeConfig";
 
 export function AppFooter() {

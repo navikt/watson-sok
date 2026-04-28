@@ -1,6 +1,7 @@
 import { act, render, screen } from "@testing-library/react";
 import * as reactRouterModule from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+
 import { InfoBanner } from "./InfoBanner";
 
 // Mock dependencies

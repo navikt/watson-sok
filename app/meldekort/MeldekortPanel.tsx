@@ -19,9 +19,11 @@ import {
   AccordionItem,
 } from "@navikt/ds-react/Accordion";
 import { useEffect, useMemo, useState } from "react";
+
 import { StatistikkKort } from "~/paneler/StatistikkKort";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { formaterDato, formaterTilIsoDato } from "~/utils/date-utils";
+
 import type { AktivitetType, Dag, MeldekortRespons } from "./domene";
 import { useMeldekort } from "./MeldekortContext";
 import { beregnAktivitetStatistikk } from "./utils";

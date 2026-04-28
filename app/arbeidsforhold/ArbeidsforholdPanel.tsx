@@ -24,6 +24,7 @@ import {
   TableRow,
 } from "@navikt/ds-react/Table";
 import { use, useEffect, useId, useMemo, useRef, useState } from "react";
+
 import { sporHendelse } from "~/analytics/analytics";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import {
@@ -35,6 +36,7 @@ import { cn } from "~/utils/class-utils";
 import { formaterÅrMåned } from "~/utils/date-utils";
 import { formaterProsent } from "~/utils/number-utils";
 import { formaterOrgnummer, storFørsteBokstav } from "~/utils/string-utils";
+
 import type { ArbeidsgiverInformasjon } from "./domene";
 
 type ArbeidsforholdPanelProps = {

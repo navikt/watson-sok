@@ -1,7 +1,9 @@
 import { Heading, Skeleton, Tag, Tooltip } from "@navikt/ds-react";
 import { use } from "react";
+
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import { storFørsteBokstavPerOrd } from "~/utils/string-utils";
+
 import type { PersonInformasjon } from "./domene";
 import { tilFulltNavn } from "./utils/navn-utils";
 

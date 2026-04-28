@@ -1,4 +1,5 @@
 import { data } from "react-router";
+
 import { PageNotFound } from "~/feilhåndtering/PageNotFound";
 
 export const loader = () => {

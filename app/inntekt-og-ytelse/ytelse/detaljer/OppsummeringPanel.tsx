@@ -1,9 +1,11 @@
 import { useMemo } from "react";
+
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { useMeldekort } from "~/meldekort/MeldekortContext";
 import { StatistikkKort } from "~/paneler/StatistikkKort";
 import { formaterBeløp } from "~/utils/number-utils";
+
 import type { Ytelse } from "../domene";
 import { beregnYtelseStatistikk } from "../utils";
 

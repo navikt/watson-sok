@@ -4,6 +4,7 @@
 
 import { rootLoader } from "~/layout/loader.server";
 import { default as RootRoute } from "~/layout/root";
+
 import { RootErrorBoundary } from "./layout/ErrorBoundary";
 import { sikkerhetHeaders } from "./sikkerhet/headers";
 

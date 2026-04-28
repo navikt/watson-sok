@@ -8,6 +8,7 @@ import {
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
 import { createContext, use, useId, useMemo, useState } from "react";
 import { useSearchParams } from "react-router";
+
 import { sporHendelse } from "~/analytics/analytics";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
@@ -177,7 +178,7 @@ export const TidsvinduProvider = ({
         setTilDato(datoer.tilDato);
         setErTilpassetVisning(false);
         if (tidsvindu === "10 år") {
-          setSearchParams({ utvidet: "true" });
+          setSearchParams((prev) => ({ ...prev, utvidet: "true" }));
         }
       },
       setCustomDatoer: (fra: Date, til: Date) => {
@@ -193,7 +194,7 @@ export const TidsvinduProvider = ({
         const treÅrSiden = new Date(nå);
         treÅrSiden.setFullYear(treÅrSiden.getFullYear() - 3);
         if (fra < treÅrSiden) {
-          setSearchParams({ utvidet: "true" });
+          setSearchParams((prev) => ({ ...prev, utvidet: "true" }));
         }
 
         return null;

@@ -1,5 +1,6 @@
 import { getToken, requestOboToken, validateToken } from "@navikt/oasis";
 import { redirect } from "react-router";
+
 import { env, isDev } from "~/config/env.server";
 import { logger } from "~/logging/logging";
 

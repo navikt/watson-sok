@@ -23,6 +23,7 @@ import {
   useNavigate,
   useNavigation,
 } from "react-router";
+
 import { sporHendelse } from "~/analytics/analytics";
 import { useInnloggetBruker } from "~/auth/innlogget-bruker";
 import { useMiljø } from "~/miljø/useMiljø";

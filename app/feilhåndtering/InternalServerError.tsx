@@ -10,6 +10,7 @@ import {
 } from "@navikt/ds-react";
 import { ListItem } from "@navikt/ds-react/List";
 import { PageBlock } from "@navikt/ds-react/Page";
+
 import { AppFooter } from "~/layout/AppFooter";
 import { AppHeader } from "~/layout/AppHeader";
 

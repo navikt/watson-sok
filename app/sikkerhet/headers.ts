@@ -1,4 +1,8 @@
-import { isProd } from "~/config/env.server";
+import {
+  FARO_CSP_SOURCE,
+  isProd,
+  SPORING_CSP_SOURCE,
+} from "~/config/env.server";
 
 export function sikkerhetHeaders() {
   return {
@@ -14,7 +18,7 @@ export function sikkerhetHeaders() {
       "style-src 'self' 'unsafe-inline'; " +
       "img-src 'self' data: https:; " +
       "font-src 'self' data: cdn.nav.no; " +
-      `connect-src 'self' telemetry.nav.no telemetry.ekstern.dev.nav.no umami.nav.no${isProd ? "" : " ws://localhost:4206"};` +
+      `connect-src 'self' ${FARO_CSP_SOURCE} ${SPORING_CSP_SOURCE}${isProd ? "" : " ws://localhost:4206"}; ` +
       "frame-ancestors 'none'; " +
       "base-uri 'self'; " +
       "form-action 'self'",

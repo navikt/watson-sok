@@ -1,4 +1,5 @@
 import z from "zod";
+
 import { ArbeidsgiverInformasjonSchema } from "~/arbeidsforhold/domene";
 import { InntektInformasjonSchema } from "~/inntekt-og-ytelse/inntekt/domene";
 import { PensjonsgivendeInntektSchema } from "~/inntekt-og-ytelse/naeringsinntekt/domene";

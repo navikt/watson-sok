@@ -1,6 +1,7 @@
 import { BodyLong, Box, Heading, Link, List, Page } from "@navikt/ds-react";
 import { ListItem } from "@navikt/ds-react/List";
 import { PageBlock } from "@navikt/ds-react/Page";
+
 import { useMiljø } from "~/miljø/useMiljø";
 
 export default function PersonvernSide() {

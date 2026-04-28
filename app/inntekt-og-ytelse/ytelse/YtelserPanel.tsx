@@ -1,3 +1,4 @@
+import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
 import {
   Alert,
   BodyLong,
@@ -9,8 +10,6 @@ import {
   Timeline,
   Tooltip,
 } from "@navikt/ds-react";
-
-import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
 import {
   TimelinePeriod,
   TimelinePin,
@@ -18,6 +17,7 @@ import {
 } from "@navikt/ds-react/Timeline";
 import { use, useMemo, useState } from "react";
 import { useSearchParams } from "react-router";
+
 import { sporHendelse } from "~/analytics/analytics";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import {
@@ -27,6 +27,7 @@ import {
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 import { formaterDato, forskjellIDager } from "~/utils/date-utils";
 import { formaterBeløp } from "~/utils/number-utils";
+
 import { YtelsedetaljerModal } from "./detaljer/YtelsedetaljerModal";
 import type { Ytelse } from "./domene";
 import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";

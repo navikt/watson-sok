@@ -2,7 +2,9 @@ import { InformationSquareIcon } from "@navikt/aksel-icons";
 import { Button, Heading, Theme } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useEffect, type RefObject } from "react";
+
 import { sporHendelse } from "~/analytics/analytics";
+
 import { hentSnarveierGruppert, kategoriTilNavn } from "./snarveier";
 
 const INPUT_TAGS = new Set(["INPUT", "TEXTAREA", "SELECT"]);

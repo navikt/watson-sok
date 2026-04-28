@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import { logger } from "~/logging/logging";
 
 const envSchema = z.object({
@@ -9,7 +10,7 @@ const envSchema = z.object({
     .enum(["local-backend", "local-dev", "local-mock", "demo", "dev", "prod"])
     .describe("The environment the app is running in"),
   CLUSTER: z.string().describe("The cluster the app is running in"),
-  FARO_URL: z.string().describe("The URL of the Faro instance"),
+  FARO_URL: z.url().describe("The URL of the Faro instance"),
   UMAMI_SITE_ID: z.string().describe("The ID of the Umami instance"),
   IDENT_SESSION_SECRET: z.string().describe("The secret for the ident session"),
   MODIA_URL: z.string().describe("The URL of the Modia instance"),
@@ -62,8 +63,16 @@ export const BACKEND_API_URL =
       ? "https://nav-persondata-api.intern.dev.nav.no"
       : "http://nav-persondata-api";
 
+const PROD_SPORING_HOST_URL = "https://reops-event-proxy.nav.no";
+const DEV_SPORING_HOST_URL = "https://reops-event-proxy.ekstern.dev.nav.no";
+
 export const isProd = env.NODE_ENV === "production";
 export const isDev = env.NODE_ENV === "development";
+
+export const SPORING_HOST_URL =
+  env.ENVIRONMENT === "prod" ? PROD_SPORING_HOST_URL : DEV_SPORING_HOST_URL;
+export const FARO_CSP_SOURCE = new URL(env.FARO_URL).origin;
+export const SPORING_CSP_SOURCE = new URL(SPORING_HOST_URL).origin;
 
 export const skalBrukeMockdata =
   env.ENVIRONMENT === "local-mock" || env.ENVIRONMENT === "demo";
