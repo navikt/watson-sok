@@ -36,6 +36,10 @@
         "arbeidsgiver": "SAUEFABRIKK",
         "organisasjonsnummer": "896929119",
         "adresse": "OPALV 75, 5252 SØREIDGREND",
+        "ansettelsesperiode": {
+          "fom": "2000-08-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -53,6 +57,10 @@
         "arbeidsgiver": "SJOKKERENDE ELEKTRIKER",
         "organisasjonsnummer": "947064649",
         "adresse": "DRIVHUSVEGEN 40, 9027 RAMFJORDBOTN",
+        "ansettelsesperiode": {
+          "fom": "2020-08-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",

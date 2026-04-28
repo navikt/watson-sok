@@ -44,6 +44,10 @@
         "arbeidsgiver": "SELSKAP COMPANY AS",
         "organisasjonsnummer": "99999999",
         "adresse": "SVEI  6, 0581",
+        "ansettelsesperiode": {
+          "fom": "2025-03-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -63,6 +67,10 @@
         "arbeidsgiver": " TOTAL RENOVERIG",
         "organisasjonsnummer": "912873420",
         "adresse": "LITEN VEI 77, 1263",
+        "ansettelsesperiode": {
+          "fom": "2017-01-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -90,6 +98,10 @@
         "arbeidsgiver": " AVD OSLO",
         "organisasjonsnummer": "992856386",
         "adresse": " 13, 0164",
+        "ansettelsesperiode": {
+          "fom": "2015-03-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -127,6 +139,10 @@
         "arbeidsgiver": "ARBEIDSGIVER",
         "organisasjonsnummer": "974553376",
         "adresse": " 2, 1337",
+        "ansettelsesperiode": {
+          "fom": "2015-01-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -194,6 +210,10 @@
         "arbeidsgiver": " HOVEDKONTOR",
         "organisasjonsnummer": "973092367",
         "adresse": "Lakkegata 23, 0187",
+        "ansettelsesperiode": {
+          "fom": "2015-10-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -261,6 +281,10 @@
         "arbeidsgiver": " HOVEDKONTOR",
         "organisasjonsnummer": "973092367",
         "adresse": "Lakkegata 23, 0187",
+        "ansettelsesperiode": {
+          "fom": "2022-05-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -298,6 +322,10 @@
         "arbeidsgiver": " HOVEDKONTOR",
         "organisasjonsnummer": "973092367",
         "adresse": "Lakkegata 23, 0187",
+        "ansettelsesperiode": {
+          "fom": "2019-04-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",

@@ -11,16 +11,23 @@ const isoDatoSchema = z
     );
   });
 
+const isoMånedSchema = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/);
+
 const ÅpenPeriodeSchema = z.object({
   fom: isoDatoSchema,
   tom: isoDatoSchema.nullable(),
+});
+
+const ÅpenMånedsPeriodeSchema = z.object({
+  fom: isoMånedSchema,
+  tom: isoMånedSchema.nullable(),
 });
 
 const AnsettelsesDetaljSchema = z.object({
   type: z.string(),
   stillingsprosent: z.number().nullable(),
   antallTimerPrUke: z.number().nullable(),
-  periode: ÅpenPeriodeSchema,
+  periode: ÅpenMånedsPeriodeSchema,
   yrke: z.string().nullable(),
 });
 
@@ -28,6 +35,7 @@ const ArbeidsforholdSchema = z.object({
   id: z.string().optional(),
   arbeidsgiver: z.string(),
   organisasjonsnummer: z.string(),
+  ansettelsesperiode: ÅpenPeriodeSchema,
   ansettelsesDetaljer: z.array(AnsettelsesDetaljSchema),
 });
 

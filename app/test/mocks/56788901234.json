@@ -41,6 +41,10 @@
         "arbeidsgiver": "litrn",
         "organisasjonsnummer": "932590883",
         "adresse": "Svennebyveien 1B, 2019",
+        "ansettelsesperiode": {
+          "fom": "2025-07-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -60,6 +64,10 @@
         "arbeidsgiver": "TRANSPORT AS",
         "organisasjonsnummer": "22222222",
         "adresse": "7b, 2020",
+        "ansettelsesperiode": {
+          "fom": "2024-01-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -77,6 +85,10 @@
         "arbeidsgiver": "LITEN OG STOR2",
         "organisasjonsnummer": "927900483",
         "adresse": "Gamleveien 88, 1461",
+        "ansettelsesperiode": {
+          "fom": "2023-12-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",

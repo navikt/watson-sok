@@ -9,13 +9,17 @@ function lagGyldigArbeidsforhold() {
         id: "1",
         arbeidsgiver: "Arbeidsgiver AS",
         organisasjonsnummer: "123456789",
+        ansettelsesperiode: {
+          fom: "2024-01-15",
+          tom: null,
+        },
         ansettelsesDetaljer: [
           {
             type: "Ordinaer",
             stillingsprosent: 100,
             antallTimerPrUke: 37.5,
             periode: {
-              fom: "2024-01-15",
+              fom: "2024-01",
               tom: null,
             },
             yrke: "UTVIKLER",
@@ -28,7 +32,7 @@ function lagGyldigArbeidsforhold() {
 }
 
 describe("ArbeidsgiverInformasjonSchema", () => {
-  it("godtar ISO-datoformat i arbeidsforholdsperioder", () => {
+  it("godtar gyldig arbeidsforhold med ansettelsesperiode og månedsperiode i detaljer", () => {
     const resultat = ArbeidsgiverInformasjonSchema.safeParse(
       lagGyldigArbeidsforhold(),
     );
@@ -36,7 +40,30 @@ describe("ArbeidsgiverInformasjonSchema", () => {
     expect(resultat.success).toBe(true);
   });
 
-  it("avviser år-måned-format uten dag i fom", () => {
+  it("avviser dag-nivå ISO-dato i ansettelsesDetaljer.periode.fom", () => {
+    const resultat = ArbeidsgiverInformasjonSchema.safeParse({
+      ...lagGyldigArbeidsforhold(),
+      løpendeArbeidsforhold: [
+        {
+          ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0],
+          ansettelsesDetaljer: [
+            {
+              ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0]
+                .ansettelsesDetaljer[0],
+              periode: {
+                fom: "2024-01-15",
+                tom: null,
+              },
+            },
+          ],
+        },
+      ],
+    });
+
+    expect(resultat.success).toBe(false);
+  });
+
+  it("avviser tom streng i ansettelsesDetaljer.periode.tom", () => {
     const resultat = ArbeidsgiverInformasjonSchema.safeParse({
       ...lagGyldigArbeidsforhold(),
       løpendeArbeidsforhold: [
@@ -48,29 +75,6 @@ describe("ArbeidsgiverInformasjonSchema", () => {
                 .ansettelsesDetaljer[0],
               periode: {
                 fom: "2024-01",
-                tom: null,
-              },
-            },
-          ],
-        },
-      ],
-    });
-
-    expect(resultat.success).toBe(false);
-  });
-
-  it("avviser tom streng i tom", () => {
-    const resultat = ArbeidsgiverInformasjonSchema.safeParse({
-      ...lagGyldigArbeidsforhold(),
-      løpendeArbeidsforhold: [
-        {
-          ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0],
-          ansettelsesDetaljer: [
-            {
-              ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0]
-                .ansettelsesDetaljer[0],
-              periode: {
-                fom: "2024-01-15",
                 tom: "",
               },
             },
@@ -82,7 +86,7 @@ describe("ArbeidsgiverInformasjonSchema", () => {
     expect(resultat.success).toBe(false);
   });
 
-  it("avviser ugyldig måned i fom", () => {
+  it("avviser ugyldig måned i ansettelsesDetaljer.periode.fom", () => {
     const resultat = ArbeidsgiverInformasjonSchema.safeParse({
       ...lagGyldigArbeidsforhold(),
       løpendeArbeidsforhold: [
@@ -93,7 +97,7 @@ describe("ArbeidsgiverInformasjonSchema", () => {
               ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0]
                 .ansettelsesDetaljer[0],
               periode: {
-                fom: "2024-13-01",
+                fom: "2024-13",
                 tom: null,
               },
             },
@@ -105,7 +109,7 @@ describe("ArbeidsgiverInformasjonSchema", () => {
     expect(resultat.success).toBe(false);
   });
 
-  it("avviser ugyldig dag i tom", () => {
+  it("avviser ugyldig måned i ansettelsesDetaljer.periode.tom", () => {
     const resultat = ArbeidsgiverInformasjonSchema.safeParse({
       ...lagGyldigArbeidsforhold(),
       løpendeArbeidsforhold: [
@@ -116,8 +120,8 @@ describe("ArbeidsgiverInformasjonSchema", () => {
               ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0]
                 .ansettelsesDetaljer[0],
               periode: {
-                fom: "2024-01-15",
-                tom: "2024-02-32",
+                fom: "2024-01",
+                tom: "2024-13",
               },
             },
           ],
@@ -128,22 +132,50 @@ describe("ArbeidsgiverInformasjonSchema", () => {
     expect(resultat.success).toBe(false);
   });
 
-  it("avviser kalenderugyldig dato", () => {
+  it("avviser år-måned-format i ansettelsesperiode.fom", () => {
     const resultat = ArbeidsgiverInformasjonSchema.safeParse({
       ...lagGyldigArbeidsforhold(),
       løpendeArbeidsforhold: [
         {
           ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0],
-          ansettelsesDetaljer: [
-            {
-              ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0]
-                .ansettelsesDetaljer[0],
-              periode: {
-                fom: "2024-02-31",
-                tom: null,
-              },
-            },
-          ],
+          ansettelsesperiode: {
+            fom: "2024-01",
+            tom: null,
+          },
+        },
+      ],
+    });
+
+    expect(resultat.success).toBe(false);
+  });
+
+  it("avviser kalenderugyldig dato i ansettelsesperiode.fom", () => {
+    const resultat = ArbeidsgiverInformasjonSchema.safeParse({
+      ...lagGyldigArbeidsforhold(),
+      løpendeArbeidsforhold: [
+        {
+          ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0],
+          ansettelsesperiode: {
+            fom: "2024-02-31",
+            tom: null,
+          },
+        },
+      ],
+    });
+
+    expect(resultat.success).toBe(false);
+  });
+
+  it("avviser tom streng i ansettelsesperiode.tom", () => {
+    const resultat = ArbeidsgiverInformasjonSchema.safeParse({
+      ...lagGyldigArbeidsforhold(),
+      løpendeArbeidsforhold: [
+        {
+          ...lagGyldigArbeidsforhold().løpendeArbeidsforhold[0],
+          ansettelsesperiode: {
+            fom: "2024-01-15",
+            tom: "",
+          },
         },
       ],
     });

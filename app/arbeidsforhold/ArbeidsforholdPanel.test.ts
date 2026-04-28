@@ -26,14 +26,18 @@ function lagArbeidsgiverData({
     id,
     arbeidsgiver,
     organisasjonsnummer,
+    ansettelsesperiode: {
+      fom,
+      tom,
+    },
     ansettelsesDetaljer: [
       {
         type,
         stillingsprosent,
         antallTimerPrUke: 37.5,
         periode: {
-          fom,
-          tom,
+          fom: fom.slice(0, 7),
+          tom: tom ? tom.slice(0, 7) : null,
         },
         yrke,
       },

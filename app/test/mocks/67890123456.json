@@ -45,6 +45,10 @@
         "arbeidsgiver": "BEDRIFT",
         "organisasjonsnummer": "666666666",
         "adresse": "VEG 666666666",
+        "ansettelsesperiode": {
+          "fom": "2023-02-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Frilanser",
@@ -64,6 +68,10 @@
         "arbeidsgiver": "NOK ET STED",
         "organisasjonsnummer": "5555",
         "adresse": "5555, 5555",
+        "ansettelsesperiode": {
+          "fom": "2022-07-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -111,6 +119,10 @@
         "arbeidsgiver": " AS",
         "organisasjonsnummer": "927345374",
         "adresse": "Olafiagangen 5, 0188",
+        "ansettelsesperiode": {
+          "fom": "2022-09-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Frilanser",
@@ -128,6 +140,10 @@
         "arbeidsgiver": " NORGE AS",
         "organisasjonsnummer": "923231668",
         "adresse": "Olafiagangen 5, 0188",
+        "ansettelsesperiode": {
+          "fom": "2023-02-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Frilanser",
@@ -145,6 +161,10 @@
         "arbeidsgiver": " AS",
         "organisasjonsnummer": "927345374",
         "adresse": "Olafiagangen 5, 0188",
+        "ansettelsesperiode": {
+          "fom": "2022-06-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -182,6 +202,10 @@
         "arbeidsgiver": "AS AVD OFFICE",
         "organisasjonsnummer": "920729738",
         "adresse": "Kongens gate 4, 0153",
+        "ansettelsesperiode": {
+          "fom": "2022-12-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Frilanser",

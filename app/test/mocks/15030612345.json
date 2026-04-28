@@ -48,6 +48,10 @@
         "arbeidsgiver": "SVINDAL ENTREPRENØR AS",
         "organisasjonsnummer": "912345678",
         "adresse": "Industriveien 42, 1482 NITTEDAL",
+        "ansettelsesperiode": {
+          "fom": "2025-02-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
