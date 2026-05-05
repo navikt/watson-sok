@@ -60,7 +60,7 @@
     "oxfmt": "^0.36.0",
     "oxlint": "^1.51.0",
     "typescript": "^5.9.3",
-    "vite": "^7.1.11",
+    "vite": "^7.3.2",
     "vite-plugin-devtools-json": "^1.0.0",
     "vite-tsconfig-paths": "^6.0.4",
     "vitest": "^4.0.18"
