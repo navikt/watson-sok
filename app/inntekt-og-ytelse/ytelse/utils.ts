@@ -95,7 +95,7 @@ export function grupperSammenhengendePerioder(
   return gruppert;
 }
 
-export type TilbakekrevingMedYtelse = {
+type TilbakekrevingMedYtelse = {
   stonadType: string;
   beløp: number;
   periode: { fom: string; tom: string };
