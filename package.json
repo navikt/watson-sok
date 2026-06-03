@@ -28,8 +28,8 @@
     "@navikt/ds-react": "^8.2.0",
     "@navikt/ds-tailwind": "^8.2.0",
     "@navikt/oasis": "^4.1.0",
-    "@react-router/node": "^7.9.4",
-    "@react-router/serve": "^7.9.4",
+    "@react-router/node": "^7.16.0",
+    "@react-router/serve": "^7.16.0",
     "@tailwindcss/postcss": "^4.1.13",
     "autoprefixer": "^10.4.21",
     "isbot": "^5",
@@ -39,7 +39,7 @@
     "react-dom": "^19.2.3",
     "react-error-boundary": "^6.0.0",
     "react-hotkeys-hook": "^5.2.0",
-    "react-router": "^7.9.4",
+    "react-router": "^7.16.0",
     "tailwindcss": "^4.1.13",
     "unleash-client": "^6.7.0",
     "zod": "^4.1.7"
@@ -47,7 +47,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.56.1",
-    "@react-router/dev": "^7.9.4",
+    "@react-router/dev": "^7.16.0",
     "@tailwindcss/vite": "^4.1.13",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.3.0",
