@@ -52,19 +52,23 @@ export const PersonInformasjonSchema = z.object({
     "STRENGT_FORTROLIG",
     "STRENGT_FORTROLIG_UTLAND",
   ]),
-  familemedlemmer: z.record(
-    z.string(),
-    z.enum([
-      "BARN",
-      "GIFT",
-      "FAR",
-      "MOR",
-      "SKILT",
-      "SEPARERT",
-      "REGISTRERT_PARTNER",
-      "SEPARERT_PARTNER",
-      "SKILT_PARTNER",
-    ]),
+  familemedlemmer: z.array(
+    z.object({
+      ident: z.string(),
+      rolle: z.string(),
+      fornavn: z.string().nullable().optional(),
+      mellomnavn: z.string().nullable().optional(),
+      etternavn: z.string().nullable().optional(),
+      fødselsdato: z.string().nullable().optional(),
+      adresseBeskyttelse: z
+        .enum([
+          "UGRADERT",
+          "FORTROLIG",
+          "STRENGT_FORTROLIG",
+          "STRENGT_FORTROLIG_UTLAND",
+        ])
+        .optional(),
+    }),
   ),
   statsborgerskap: z.array(z.string()),
   sivilstand: z.string().nullable(),
