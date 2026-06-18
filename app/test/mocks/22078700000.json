@@ -30,9 +30,7 @@
         "rolle": "GIFT"
       }
     ],
-    "statsborgerskap": [
-      "NORGE"
-    ],
+    "statsborgerskap": ["NORGE"],
     "navn": {
       "fornavn": "SNEDIG-FJES",
       "mellomnavn": "MOTVEKT",

@@ -35,9 +35,7 @@
       }
     ],
     "adresseBeskyttelse": "FORTROLIG",
-    "statsborgerskap": [
-      "SYRIA"
-    ],
+    "statsborgerskap": ["SYRIA"],
     "navn": {
       "fornavn": "DONALD",
       "mellomnavn": null,

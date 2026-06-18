@@ -39,9 +39,7 @@
         "rolle": "BARN"
       }
     ],
-    "statsborgerskap": [
-      "NORGE"
-    ],
+    "statsborgerskap": ["NORGE"],
     "sivilstand": "UGIFT",
     "alder": 19,
     "fødselsdato": "2006-03-15",

@@ -18,9 +18,7 @@
         "rolle": "GIFT"
       }
     ],
-    "statsborgerskap": [
-      "PAKISTAN"
-    ],
+    "statsborgerskap": ["PAKISTAN"],
     "navn": {
       "fornavn": "KULT",
       "mellomnavn": null,

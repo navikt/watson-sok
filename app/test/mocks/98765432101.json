@@ -30,9 +30,7 @@
         "rolle": "SEPARERT"
       }
     ],
-    "statsborgerskap": [
-      "NORGE"
-    ],
+    "statsborgerskap": ["NORGE"],
     "navn": {
       "fornavn": "HEISAN",
       "mellomnavn": null,

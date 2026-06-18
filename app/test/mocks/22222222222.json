@@ -30,9 +30,7 @@
         "rolle": "SKILT"
       }
     ],
-    "statsborgerskap": [
-      "NORGE"
-    ],
+    "statsborgerskap": ["NORGE"],
     "navn": {
       "fornavn": "TYNN",
       "mellomnavn": "LITEN",
