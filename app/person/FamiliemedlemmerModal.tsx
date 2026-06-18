@@ -17,18 +17,11 @@ import {
   snakeCaseTilSetning,
 } from "~/utils/string-utils";
 
+import type { PersonInformasjon } from "./domene";
 import { beregnAlderFraFødselsEllerDnummer } from "./utils/personident-utils";
 
 type FamiliemedlemmerModalProps = {
-  familiemedlemmer: Array<{
-    ident: string;
-    rolle: string;
-    fornavn?: string | null;
-    mellomnavn?: string | null;
-    etternavn?: string | null;
-    fødselsdato?: string | null;
-    adresseBeskyttelse?: string;
-  }>;
+  familiemedlemmer: PersonInformasjon["familemedlemmer"];
 };
 
 /**
@@ -155,14 +148,7 @@ function mapTypeTilIkon(type: string) {
   }
 }
 
-type Familiemedlem = {
-  ident: string;
-  rolle: string;
-  fornavn?: string | null;
-  mellomnavn?: string | null;
-  etternavn?: string | null;
-  fødselsdato?: string | null;
-};
+type Familiemedlem = PersonInformasjon["familemedlemmer"][number];
 
 /**
  * Sorterer familiemedlemmer etter rolle
@@ -181,11 +167,11 @@ function sorterFamiliemedlemmer(
  *
  * @example
  * const medlemmer = [
- *   { personIdent: "123", type: "BARN" },
- *   { personIdent: "456", type: "PARTNER" }
+ *   { ident: "123", rolle: "BARN" },
+ *   { ident: "456", rolle: "GIFT" }
  * ];
  * const barn = hentBarn(medlemmer);
- * // Returns: [{ personIdent: "123", type: "BARN" }]
+ * // Returns: [{ ident: "123", rolle: "BARN" }]
  */
 function hentBarn(familiemedlemmerListe: Familiemedlem[]): Familiemedlem[] {
   return familiemedlemmerListe.filter(({ rolle }) => rolle === "BARN");
@@ -199,8 +185,8 @@ function hentBarn(familiemedlemmerListe: Familiemedlem[]): Familiemedlem[] {
  *
  * @example
  * const barn = [
- *   { personIdent: "01012010", type: "BARN" },
- *   { personIdent: "01012015", type: "BARN" }
+ *   { ident: "01012010", rolle: "BARN" },
+ *   { ident: "01012015", rolle: "BARN" }
  * ];
  * const stat = beregnBarnAlder(barn);
  * // Returns: { yngste: 9, eldste: 14 }
