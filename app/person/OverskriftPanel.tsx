@@ -35,10 +35,10 @@ const OverskriftPanelMedData = ({ promise }: OverskriftPanelProps) => {
     <Heading level="1" size="large" className="flex items-center gap-2 w-fit">
       {storFørsteBokstavPerOrd(tilFulltNavn(personopplysninger.navn), true)} (
       {personopplysninger.alder}){personopplysninger.dødsdato ? ` (død)` : ""}
-      {personopplysninger.adresseBeskyttelse !== "UGRADERT" && (
+      {personopplysninger.adressebeskyttelse !== "UGRADERT" && (
         <Tooltip
           content={lagAdressebeskyttelseBeskrivelse(
-            personopplysninger.adresseBeskyttelse,
+            personopplysninger.adressebeskyttelse,
           )}
         >
           <Tag data-color="danger" variant="outline" size="small">
@@ -67,9 +67,9 @@ const OverskriftPanelError = () => {
 };
 
 function lagAdressebeskyttelseBeskrivelse(
-  adresseBeskyttelse: PersonInformasjon["adresseBeskyttelse"],
+  adressebeskyttelse: PersonInformasjon["adressebeskyttelse"],
 ): string {
-  switch (adresseBeskyttelse) {
+  switch (adressebeskyttelse) {
     case "FORTROLIG":
       return "Brukeren har fortrolig adresse";
     case "STRENGT_FORTROLIG":
