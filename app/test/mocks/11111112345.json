@@ -8,8 +8,10 @@
   },
   "personInformasjon": {
     "aktørId": "11111112345",
-    "familemedlemmer": {},
-    "statsborgerskap": ["NORGE"],
+    "familemedlemmer": [],
+    "statsborgerskap": [
+      "NORGE"
+    ],
     "navn": {
       "fornavn": "TEST",
       "mellomnavn": null,

@@ -25,12 +25,23 @@
       "utenlandskAdresse": null
     },
     "adresseBeskyttelse": "UGRADERT",
-    "familemedlemmer": {
-      "10057012345": "FAR",
-      "15068012345": "MOR",
-      "22122412345": "BARN"
-    },
-    "statsborgerskap": ["NORGE"],
+    "familemedlemmer": [
+      {
+        "ident": "10057012345",
+        "rolle": "FAR"
+      },
+      {
+        "ident": "15068012345",
+        "rolle": "MOR"
+      },
+      {
+        "ident": "22122412345",
+        "rolle": "BARN"
+      }
+    ],
+    "statsborgerskap": [
+      "NORGE"
+    ],
     "sivilstand": "UGIFT",
     "alder": 19,
     "fødselsdato": "2006-03-15",
@@ -51,7 +62,7 @@
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
-            "stillingsprosent": 100.0,
+            "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2025-02",
@@ -73,7 +84,7 @@
         "stillingsprosent": "100",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 75000.0,
+        "beløp": 75000,
         "harFlereVersjoner": false
       },
       {
@@ -83,7 +94,7 @@
         "stillingsprosent": "100",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 75000.0,
+        "beløp": 75000,
         "harFlereVersjoner": false
       },
       {
@@ -93,7 +104,7 @@
         "stillingsprosent": "100",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 75000.0,
+        "beløp": 75000,
         "harFlereVersjoner": false
       },
       {
@@ -103,7 +114,7 @@
         "stillingsprosent": "100",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 75000.0,
+        "beløp": 75000,
         "harFlereVersjoner": false
       },
       {
@@ -113,7 +124,7 @@
         "stillingsprosent": "100",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 75000.0,
+        "beløp": 75000,
         "harFlereVersjoner": false
       },
       {
@@ -123,7 +134,7 @@
         "stillingsprosent": "100",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 75000.0,
+        "beløp": 75000,
         "harFlereVersjoner": false
       },
       {
@@ -133,7 +144,7 @@
         "stillingsprosent": "100",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 75000.0,
+        "beløp": 75000,
         "harFlereVersjoner": false
       },
       {
@@ -143,7 +154,7 @@
         "stillingsprosent": "100",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 75000.0,
+        "beløp": 75000,
         "harFlereVersjoner": false
       },
       {
@@ -153,7 +164,7 @@
         "stillingsprosent": "100",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 75000.0,
+        "beløp": 75000,
         "harFlereVersjoner": false
       },
       {
@@ -163,7 +174,7 @@
         "stillingsprosent": "100",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 75000.0,
+        "beløp": 75000,
         "harFlereVersjoner": false
       }
     ],

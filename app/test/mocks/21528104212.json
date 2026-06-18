@@ -23,8 +23,10 @@
       }
     },
     "adresseBeskyttelse": "UGRADERT",
-    "familemedlemmer": {},
-    "statsborgerskap": ["NORGE"],
+    "familemedlemmer": [],
+    "statsborgerskap": [
+      "NORGE"
+    ],
     "sivilstand": null,
     "alder": 51,
     "fødselsdato": "1974-05-21",
