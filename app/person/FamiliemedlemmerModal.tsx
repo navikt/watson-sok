@@ -75,52 +75,55 @@ export function FamiliemedlemmerModal({
       >
         <ModalBody className="min-w-md">
           <div className="flex flex-col gap-2">
-            {familiemedlemmerListe.map(({ ident, rolle, fornavn, etternavn }) => (
-              <div
-                className="rounded-md border border-ax-neutral-400 p-2 flex justify-between items-center"
-                key={ident}
-              >
-                <div>
-                  {mapTypeTilIkon(rolle)}&nbsp;{snakeCaseTilSetning(rolle)}:&nbsp;
-                  {fornavn || etternavn
-                    ? `${fornavn ?? ""} ${etternavn ?? ""}`.trim() + " "
-                    : ""}
-                  {formaterFødselsnummer(ident)}&nbsp;(
-                  {beregnAlderFraFødselsEllerDnummer(ident, rolle === "BARN")}
-                  &nbsp; år)
-                </div>
-                {ident && ident !== "Ukjent" && (
-                  <Form
-                    action={RouteConfig.INDEX}
-                    method="post"
-                    onSubmit={() => {
-                      sporHendelse("søk familiemedlem", {
-                        organisasjoner: innloggetBruker.organisasjoner,
-                      });
-                      setLoadingIdent(ident);
-                    }}
-                  >
-                    <input type="hidden" name="ident" value={ident} />
-                    <Button
-                      variant="tertiary"
-                      size="small"
-                      type="submit"
-                      loading={loadingIdent === ident}
-                      disabled={loadingIdent === ident}
-                      icon={
-                        <FileSearchIcon
-                          aria-hidden={true}
-                          className="inline-block"
-                          title="Søk etter familiemedlem"
-                        />
-                      }
+            {familiemedlemmerListe.map(
+              ({ ident, rolle, fornavn, etternavn }) => (
+                <div
+                  className="rounded-md border border-ax-neutral-400 p-2 flex justify-between items-center"
+                  key={ident}
+                >
+                  <div>
+                    {mapTypeTilIkon(rolle)}&nbsp;{snakeCaseTilSetning(rolle)}
+                    :&nbsp;
+                    {fornavn || etternavn
+                      ? `${fornavn ?? ""} ${etternavn ?? ""}`.trim() + " "
+                      : ""}
+                    {formaterFødselsnummer(ident)}&nbsp;(
+                    {beregnAlderFraFødselsEllerDnummer(ident, rolle === "BARN")}
+                    &nbsp; år)
+                  </div>
+                  {ident && ident !== "Ukjent" && (
+                    <Form
+                      action={RouteConfig.INDEX}
+                      method="post"
+                      onSubmit={() => {
+                        sporHendelse("søk familiemedlem", {
+                          organisasjoner: innloggetBruker.organisasjoner,
+                        });
+                        setLoadingIdent(ident);
+                      }}
                     >
-                      Slå opp
-                    </Button>
-                  </Form>
-                )}
-              </div>
-            ))}
+                      <input type="hidden" name="ident" value={ident} />
+                      <Button
+                        variant="tertiary"
+                        size="small"
+                        type="submit"
+                        loading={loadingIdent === ident}
+                        disabled={loadingIdent === ident}
+                        icon={
+                          <FileSearchIcon
+                            aria-hidden={true}
+                            className="inline-block"
+                            title="Søk etter familiemedlem"
+                          />
+                        }
+                      >
+                        Slå opp
+                      </Button>
+                    </Form>
+                  )}
+                </div>
+              ),
+            )}
           </div>
         </ModalBody>
         <ModalFooter>
@@ -167,9 +170,7 @@ type Familiemedlem = {
 function sorterFamiliemedlemmer(
   familiemedlemmer: FamiliemedlemmerModalProps["familiemedlemmer"],
 ): Familiemedlem[] {
-  return [...familiemedlemmer].sort((a, b) =>
-    a.rolle.localeCompare(b.rolle),
-  );
+  return [...familiemedlemmer].sort((a, b) => a.rolle.localeCompare(b.rolle));
 }
 
 /**
