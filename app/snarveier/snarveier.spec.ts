@@ -93,6 +93,9 @@ test.describe("Tastatursnarveier", () => {
       await expect(dialog.getByText(/Ola Nordmann/i)).toBeVisible();
       await expect(dialog.getByText(/Kari Nordmann/i)).toBeVisible();
       await expect(dialog.getByText(/Liten Nordmann/i)).toBeVisible();
+      await expect(dialog.getByText(/Far/i).first()).toBeVisible();
+      await expect(dialog.getByText(/Mor/i).first()).toBeVisible();
+      await expect(dialog.getByText(/Barn/i).first()).toBeVisible();
     });
 
     await page.waitForTimeout(1000); // Gi tid til animasjon før tilgjengelighetssjekk

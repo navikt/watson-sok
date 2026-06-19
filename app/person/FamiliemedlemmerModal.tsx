@@ -69,7 +69,7 @@ export function FamiliemedlemmerModal({
         <ModalBody className="min-w-md">
           <div className="flex flex-col gap-2">
             {familiemedlemmerListe.map(
-              ({ ident, rolle, fornavn, etternavn }) => (
+              ({ ident, rolle, fornavn, etternavn, adresseBeskyttelse }) => (
                 <div
                   className="rounded-md border border-ax-neutral-400 p-2 flex justify-between items-center"
                   key={ident}
@@ -77,7 +77,7 @@ export function FamiliemedlemmerModal({
                   <div>
                     {mapTypeTilIkon(rolle)}&nbsp;{snakeCaseTilSetning(rolle)}
                     :&nbsp;
-                    {fornavn || etternavn
+                    {!adresseBeskyttelse && (fornavn || etternavn)
                       ? `${fornavn ?? ""} ${etternavn ?? ""}`.trim() + " "
                       : ""}
                     {formaterFødselsnummer(ident)}&nbsp;(
