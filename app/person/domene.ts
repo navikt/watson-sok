@@ -82,7 +82,7 @@ export const PersonInformasjonSchema = z.object({
           "STRENGT_FORTROLIG",
           "STRENGT_FORTROLIG_UTLAND",
         ])
-        .optional(),
+        .nullish(),
     }),
   ),
   statsborgerskap: z.array(z.string()),
