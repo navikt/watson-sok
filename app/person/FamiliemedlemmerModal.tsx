@@ -77,7 +77,10 @@ export function FamiliemedlemmerModal({
                   <div>
                     {mapTypeTilIkon(rolle)}&nbsp;{snakeCaseTilSetning(rolle)}
                     :&nbsp;
-                    {!adresseBeskyttelse && (fornavn || etternavn)
+                    {adresseBeskyttelse !== "FORTROLIG" &&
+                    adresseBeskyttelse !== "STRENGT_FORTROLIG" &&
+                    adresseBeskyttelse !== "STRENGT_FORTROLIG_UTLAND" &&
+                    (fornavn || etternavn)
                       ? `${fornavn ?? ""} ${etternavn ?? ""}`.trim() + " "
                       : ""}
                     {formaterFødselsnummer(ident)}&nbsp;(
