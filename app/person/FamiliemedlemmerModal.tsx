@@ -69,7 +69,14 @@ export function FamiliemedlemmerModal({
         <ModalBody className="min-w-md">
           <div className="flex flex-col gap-2">
             {familiemedlemmerListe.map(
-              ({ ident, rolle, fornavn, etternavn, adressebeskyttelse }) => (
+              ({
+                ident,
+                rolle,
+                fornavn,
+                mellomnavn,
+                etternavn,
+                adressebeskyttelse,
+              }) => (
                 <div
                   className="rounded-md border border-ax-neutral-400 p-2 flex justify-between items-center"
                   key={ident}
@@ -80,14 +87,16 @@ export function FamiliemedlemmerModal({
                     {adressebeskyttelse !== "FORTROLIG" &&
                     adressebeskyttelse !== "STRENGT_FORTROLIG" &&
                     adressebeskyttelse !== "STRENGT_FORTROLIG_UTLAND" &&
-                    (fornavn || etternavn)
-                      ? `${fornavn ?? ""} ${etternavn ?? ""}`.trim() + " "
+                    (fornavn || mellomnavn || etternavn)
+                      ? [fornavn, mellomnavn, etternavn]
+                          .filter(Boolean)
+                          .join(" ") + " "
                       : ""}
                     {formaterFødselsnummer(ident)}&nbsp;(
                     {beregnAlderFraFødselsEllerDnummer(ident, rolle === "BARN")}
                     &nbsp; år)
                   </div>
-                  {ident && ident !== "Ukjent" && (
+                  {ident !== "Ukjent" && (
                     <Form
                       action={RouteConfig.INDEX}
                       method="post"

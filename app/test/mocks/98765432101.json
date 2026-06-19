@@ -53,6 +53,15 @@
         "etternavn": null,
         "fødselsdato": null,
         "adressebeskyttelse": null
+      },
+      {
+        "ident": "15067000000",
+        "rolle": "BARN",
+        "fornavn": "Skjermet",
+        "mellomnavn": null,
+        "etternavn": "Person",
+        "fødselsdato": "2000-06-15",
+        "adressebeskyttelse": "FORTROLIG"
       }
     ],
     "statsborgerskap": ["NORGE"],

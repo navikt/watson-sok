@@ -98,6 +98,11 @@ test.describe("Tastatursnarveier", () => {
       await expect(dialog.getByText(/Barn/i).first()).toBeVisible();
     });
 
+    await test.step("Modal skjuler navn for FORTROLIG familiemedlem", async () => {
+      const dialog = page.getByRole("dialog", { name: /Familiemedlemmer/i });
+      await expect(dialog.getByText(/Skjermet Person/i)).not.toBeVisible();
+    });
+
     await page.waitForTimeout(1000); // Gi tid til animasjon før tilgjengelighetssjekk
 
     await sjekkTilgjengelighet(page);
