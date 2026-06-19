@@ -55,22 +55,24 @@ export const PersonInformasjonSchema = z.object({
   familemedlemmer: z.array(
     z.object({
       ident: z.string(),
-      rolle: z.enum([
-        "BARN",
-        "MOR",
-        "FAR",
-        "MEDMOR",
-        "GIFT",
-        "UGIFT",
-        "SKILT",
-        "SEPARERT",
-        "ENKE_ELLER_ENKEMANN",
-        "REGISTRERT_PARTNER",
-        "SEPARERT_PARTNER",
-        "SKILT_PARTNER",
-        "GJENLEVENDE_PARTNER",
-        "Ukjent",
-      ]),
+      rolle: z
+        .enum([
+          "BARN",
+          "MOR",
+          "FAR",
+          "MEDMOR",
+          "GIFT",
+          "UGIFT",
+          "SKILT",
+          "SEPARERT",
+          "ENKE_ELLER_ENKEMANN",
+          "REGISTRERT_PARTNER",
+          "SEPARERT_PARTNER",
+          "SKILT_PARTNER",
+          "GJENLEVENDE_PARTNER",
+          "Ukjent",
+        ])
+        .catch("Ukjent"),
       fornavn: z.string().nullable().optional(),
       mellomnavn: z.string().nullable().optional(),
       etternavn: z.string().nullable().optional(),
@@ -82,6 +84,7 @@ export const PersonInformasjonSchema = z.object({
           "STRENGT_FORTROLIG",
           "STRENGT_FORTROLIG_UTLAND",
         ])
+        .catch("UGRADERT")
         .nullish(),
     }),
   ),
