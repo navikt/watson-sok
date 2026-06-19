@@ -34,7 +34,7 @@
         "rolle": "SKILT"
       }
     ],
-    "adresseBeskyttelse": "FORTROLIG",
+    "adressebeskyttelse": "FORTROLIG",
     "statsborgerskap": ["SYRIA"],
     "navn": {
       "fornavn": "DONALD",

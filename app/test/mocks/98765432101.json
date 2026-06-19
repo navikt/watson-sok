@@ -16,7 +16,7 @@
         "mellomnavn": null,
         "etternavn": "Nordmann",
         "fødselsdato": "1949-01-01",
-        "adresseBeskyttelse": null
+        "adressebeskyttelse": null
       },
       {
         "ident": "01025500000",
@@ -25,7 +25,7 @@
         "mellomnavn": null,
         "etternavn": "Nordmann",
         "fødselsdato": "1955-02-01",
-        "adresseBeskyttelse": null
+        "adressebeskyttelse": null
       },
       {
         "ident": "11082000000",
@@ -34,7 +34,7 @@
         "mellomnavn": null,
         "etternavn": "Nordmann",
         "fødselsdato": "2020-08-11",
-        "adresseBeskyttelse": null
+        "adressebeskyttelse": null
       },
       {
         "ident": "04052200000",
@@ -43,7 +43,7 @@
         "mellomnavn": null,
         "etternavn": null,
         "fødselsdato": "2022-05-04",
-        "adresseBeskyttelse": null
+        "adressebeskyttelse": null
       },
       {
         "ident": "20028700000",
@@ -52,7 +52,7 @@
         "mellomnavn": null,
         "etternavn": null,
         "fødselsdato": null,
-        "adresseBeskyttelse": null
+        "adressebeskyttelse": null
       }
     ],
     "statsborgerskap": ["NORGE"],
@@ -72,7 +72,7 @@
       },
       "utenlandskAdresse": null
     },
-    "adresseBeskyttelse": "UGRADERT",
+    "adressebeskyttelse": "UGRADERT",
     "sivilstand": "SEPARERT",
     "alder": 39,
     "fødselsdato": "1986-05-09",
