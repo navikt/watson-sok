@@ -3,13 +3,18 @@ import { logger } from "~/logging/logging";
 type AnalyticsTagProps = {
   hostUrl: string;
   sporingId: string;
+  sporingScriptUrl: string;
 };
 
-export function AnalyticsTags({ hostUrl, sporingId }: AnalyticsTagProps) {
+export function AnalyticsTags({
+  hostUrl,
+  sporingId,
+  sporingScriptUrl,
+}: AnalyticsTagProps) {
   return (
     <script
       defer
-      src="https://cdn.nav.no/team-researchops/sporing/sporing.js"
+      src={sporingScriptUrl}
       data-host-url={hostUrl}
       data-website-id={sporingId}
     />

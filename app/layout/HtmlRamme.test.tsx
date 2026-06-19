@@ -19,11 +19,27 @@ vi.mock("react-router", async () => {
 describe("HtmlRamme", () => {
   it("rendrer ikke analytics-script når sporingHostUrl mangler", () => {
     const html = renderToStaticMarkup(
-      <HtmlRamme umamiSiteId="site-id">
+      <HtmlRamme
+        umamiSiteId="site-id"
+        sporingScriptUrl="https://cdn.nav.no/team-researchops/sporing/sporing-dev.js"
+      >
         <div>Innhold</div>
       </HtmlRamme>,
     );
 
-    expect(html).not.toContain("team-researchops/sporing/sporing.js");
+    expect(html).not.toContain("team-researchops/sporing/sporing");
+  });
+
+  it("rendrer ikke analytics-script når sporingScriptUrl mangler", () => {
+    const html = renderToStaticMarkup(
+      <HtmlRamme
+        umamiSiteId="site-id"
+        sporingHostUrl="https://reops-event-proxy.ekstern.dev.nav.no"
+      >
+        <div>Innhold</div>
+      </HtmlRamme>,
+    );
+
+    expect(html).not.toContain("team-researchops/sporing/sporing");
   });
 });

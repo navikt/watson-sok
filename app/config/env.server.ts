@@ -69,6 +69,12 @@ const DEV_SPORING_HOST_URL = "https://reops-event-proxy.ekstern.dev.nav.no";
 export const isProd = env.NODE_ENV === "production";
 export const isDev = env.NODE_ENV === "development";
 
+export const SPORING_SCRIPT_URL = env.ENVIRONMENT.startsWith("local")
+  ? null
+  : env.ENVIRONMENT === "prod"
+    ? "https://cdn.nav.no/team-researchops/sporing/sporing.js"
+    : "https://cdn.nav.no/team-researchops/sporing/sporing-dev.js";
+
 export const SPORING_HOST_URL =
   env.ENVIRONMENT === "prod" ? PROD_SPORING_HOST_URL : DEV_SPORING_HOST_URL;
 export const FARO_CSP_SOURCE = new URL(env.FARO_URL).origin;
