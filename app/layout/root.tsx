@@ -14,6 +14,7 @@ export default function Root() {
     <HtmlRamme
       initialPreferanser={initialPreferanser}
       sporingHostUrl={envs.sporingHostUrl}
+      sporingScriptUrl={envs.sporingScriptUrl}
       umamiSiteId={envs.umamiSiteId}
     >
       <Versjonsvarsling gjeldendeVersjon={envs.appversjon} />

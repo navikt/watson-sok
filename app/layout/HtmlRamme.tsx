@@ -12,12 +12,14 @@ type HtmlRammeProps = {
   children: React.ReactNode;
   initialPreferanser?: Preferanser;
   sporingHostUrl?: string;
+  sporingScriptUrl?: string | null;
   umamiSiteId: string;
 };
 export function HtmlRamme({
   children,
   initialPreferanser = defaultPreferanser,
   sporingHostUrl,
+  sporingScriptUrl,
   umamiSiteId,
 }: HtmlRammeProps) {
   return (
@@ -28,8 +30,8 @@ export function HtmlRamme({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <Meta />
         <Links />
-        {umamiSiteId && sporingHostUrl && (
-          <AnalyticsTags hostUrl={sporingHostUrl} sporingId={umamiSiteId} />
+        {umamiSiteId && sporingHostUrl && sporingScriptUrl && (
+          <AnalyticsTags hostUrl={sporingHostUrl} sporingScriptUrl={sporingScriptUrl} sporingId={umamiSiteId} />
         )}
       </head>
       <body className="flex flex-col min-h-screen">

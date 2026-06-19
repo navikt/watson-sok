@@ -24,6 +24,6 @@ describe("HtmlRamme", () => {
       </HtmlRamme>,
     );
 
-    expect(html).not.toContain("team-researchops/sporing/sporing.js");
+    expect(html).not.toContain("team-researchops/sporing/sporing");
   });
 });

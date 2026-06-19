@@ -9,6 +9,7 @@ describe("AnalyticsTags", () => {
       <AnalyticsTags
         sporingId="site-id"
         hostUrl="https://reops-event-proxy.nav.no"
+        sporingScriptUrl="https://cdn.nav.no/team-researchops/sporing/sporing.js"
       />,
     );
 
