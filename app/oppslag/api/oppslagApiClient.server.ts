@@ -100,7 +100,8 @@ export async function gjørOppslagApiRequest<T>({
         error: z.treeifyError(parsedData.error),
       });
       throw new OppslagApiError(
-        "Ugyldig data fra baksystem: " + z.treeifyError(parsedData.error),
+        "Ugyldig data fra baksystem: " +
+          JSON.stringify(z.treeifyError(parsedData.error), null, 2),
       );
     }
 
