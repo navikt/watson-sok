@@ -88,6 +88,13 @@ test.describe("Tastatursnarveier", () => {
       ).toBeVisible();
     });
 
+    await test.step("Modal viser familiemedlemmer med navn og rolle", async () => {
+      const dialog = page.getByRole("dialog", { name: /Familiemedlemmer/i });
+      await expect(dialog.getByText(/Ola Nordmann/i)).toBeVisible();
+      await expect(dialog.getByText(/Kari Nordmann/i)).toBeVisible();
+      await expect(dialog.getByText(/Liten Nordmann/i)).toBeVisible();
+    });
+
     await page.waitForTimeout(1000); // Gi tid til animasjon før tilgjengelighetssjekk
 
     await sjekkTilgjengelighet(page);

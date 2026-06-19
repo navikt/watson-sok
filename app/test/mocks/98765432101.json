@@ -11,23 +11,48 @@
     "familemedlemmer": [
       {
         "ident": "01014900000",
-        "rolle": "FAR"
+        "rolle": "FAR",
+        "fornavn": "Ola",
+        "mellomnavn": null,
+        "etternavn": "Nordmann",
+        "fødselsdato": "1949-01-01",
+        "adresseBeskyttelse": null
       },
       {
         "ident": "01025500000",
-        "rolle": "MOR"
+        "rolle": "MOR",
+        "fornavn": "Kari",
+        "mellomnavn": null,
+        "etternavn": "Nordmann",
+        "fødselsdato": "1955-02-01",
+        "adresseBeskyttelse": null
       },
       {
         "ident": "11082000000",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": "Liten",
+        "mellomnavn": null,
+        "etternavn": "Nordmann",
+        "fødselsdato": "2020-08-11",
+        "adresseBeskyttelse": null
       },
       {
         "ident": "04052200000",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": null,
+        "mellomnavn": null,
+        "etternavn": null,
+        "fødselsdato": "2022-05-04",
+        "adresseBeskyttelse": null
       },
       {
         "ident": "20028700000",
-        "rolle": "SEPARERT"
+        "rolle": "SEPARERT",
+        "fornavn": null,
+        "mellomnavn": null,
+        "etternavn": null,
+        "fødselsdato": null,
+        "adresseBeskyttelse": null
       }
     ],
     "statsborgerskap": ["NORGE"],
