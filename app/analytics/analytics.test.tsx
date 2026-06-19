@@ -19,4 +19,20 @@ describe("AnalyticsTags", () => {
       "https://reops-event-proxy.nav.no",
     );
   });
+
+  it("bruker konfigurert sporingsscript-url", () => {
+    const { container } = render(
+      <AnalyticsTags
+        sporingId="site-id"
+        hostUrl="https://reops-event-proxy.nav.no"
+        sporingScriptUrl="https://cdn.nav.no/team-researchops/sporing/sporing-dev.js"
+      />,
+    );
+
+    const scriptTag = container.querySelector("script");
+
+    expect(scriptTag?.getAttribute("src")).toBe(
+      "https://cdn.nav.no/team-researchops/sporing/sporing-dev.js",
+    );
+  });
 });
