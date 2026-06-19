@@ -84,7 +84,7 @@ export const PersonInformasjonSchema = z.object({
           "STRENGT_FORTROLIG",
           "STRENGT_FORTROLIG_UTLAND",
         ])
-        .catch("UGRADERT")
+        .catch("STRENGT_FORTROLIG")
         .nullish(),
     }),
   ),
