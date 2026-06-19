@@ -6,7 +6,11 @@ type AnalyticsTagProps = {
   sporingScriptUrl: string;
 };
 
-export function AnalyticsTags({ hostUrl, sporingId, sporingScriptUrl }: AnalyticsTagProps) {
+export function AnalyticsTags({
+  hostUrl,
+  sporingId,
+  sporingScriptUrl,
+}: AnalyticsTagProps) {
   return (
     <script
       defer

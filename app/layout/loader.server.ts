@@ -1,7 +1,12 @@
 import type { LoaderFunctionArgs } from "react-router";
 
 import { hentInnloggetBruker } from "~/auth/innlogget-bruker.server";
-import { env, isProd, SPORING_HOST_URL, SPORING_SCRIPT_URL } from "~/config/env.server";
+import {
+  env,
+  isProd,
+  SPORING_HOST_URL,
+  SPORING_SCRIPT_URL,
+} from "~/config/env.server";
 import {
   hentAlleFeatureFlagg,
   hentStatusmeldingFeatureFlagg,

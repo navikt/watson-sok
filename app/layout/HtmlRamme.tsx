@@ -31,7 +31,11 @@ export function HtmlRamme({
         <Meta />
         <Links />
         {umamiSiteId && sporingHostUrl && sporingScriptUrl && (
-          <AnalyticsTags hostUrl={sporingHostUrl} sporingScriptUrl={sporingScriptUrl} sporingId={umamiSiteId} />
+          <AnalyticsTags
+            hostUrl={sporingHostUrl}
+            sporingScriptUrl={sporingScriptUrl}
+            sporingId={umamiSiteId}
+          />
         )}
       </head>
       <body className="flex flex-col min-h-screen">
