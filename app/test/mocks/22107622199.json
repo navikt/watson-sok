@@ -25,11 +25,17 @@
         "landkode": "GB"
       }
     },
-    "adresseBeskyttelse": "UGRADERT",
-    "familemedlemmer": {
-      "05055014587": "FAR",
-      "23065229845": "MOR"
-    },
+    "adressebeskyttelse": "UGRADERT",
+    "familemedlemmer": [
+      {
+        "ident": "05055014587",
+        "rolle": "FAR"
+      },
+      {
+        "ident": "23065229845",
+        "rolle": "MOR"
+      }
+    ],
     "statsborgerskap": ["STORBRITANNIA", "NORGE"],
     "sivilstand": "UGIFT",
     "alder": 48,
@@ -45,7 +51,7 @@
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
-            "stillingsprosent": 100.0,
+            "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2018-08",
@@ -55,8 +61,8 @@
           },
           {
             "type": "Permisjon",
-            "stillingsprosent": 0.0,
-            "antallTimerPrUke": 0.0,
+            "stillingsprosent": 0,
+            "antallTimerPrUke": 0,
             "periode": {
               "fom": "2024-02",
               "tom": "2024-03"
@@ -72,8 +78,8 @@
         "ansettelsesDetaljer": [
           {
             "type": "Konsulent",
-            "stillingsprosent": 40.0,
-            "antallTimerPrUke": 15.0,
+            "stillingsprosent": 40,
+            "antallTimerPrUke": 15,
             "periode": {
               "fom": "2021-05",
               "tom": null
@@ -91,7 +97,7 @@
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
-            "stillingsprosent": 60.0,
+            "stillingsprosent": 60,
             "antallTimerPrUke": 22.5,
             "periode": {
               "fom": "2015-01",
@@ -108,7 +114,7 @@
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
-            "stillingsprosent": 100.0,
+            "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2011-04",

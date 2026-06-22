@@ -17,10 +17,11 @@ import {
   snakeCaseTilSetning,
 } from "~/utils/string-utils";
 
+import type { PersonInformasjon } from "./domene";
 import { beregnAlderFraFødselsEllerDnummer } from "./utils/personident-utils";
 
 type FamiliemedlemmerModalProps = {
-  familiemedlemmer: Record<string, string>;
+  familiemedlemmer: PersonInformasjon["familemedlemmer"];
 };
 
 /**
@@ -31,7 +32,7 @@ export function FamiliemedlemmerModal({
 }: FamiliemedlemmerModalProps) {
   const innloggetBruker = useInnloggetBruker();
   const ref = useRef<HTMLDialogElement>(null);
-  const familiemedlemmerListe = transformerTilSortertListe(familiemedlemmer);
+  const familiemedlemmerListe = sorterFamiliemedlemmer(familiemedlemmer);
   const [loadingIdent, setLoadingIdent] = useState<string | null>(null);
 
   if (familiemedlemmerListe.length === 0) {
@@ -67,52 +68,67 @@ export function FamiliemedlemmerModal({
       >
         <ModalBody className="min-w-md">
           <div className="flex flex-col gap-2">
-            {familiemedlemmerListe.map(({ personIdent, type }) => (
-              <div
-                className="rounded-md border border-ax-neutral-400 p-2 flex justify-between items-center"
-                key={personIdent}
-              >
-                <div>
-                  {mapTypeTilIkon(type)}&nbsp;{snakeCaseTilSetning(type)}:&nbsp;
-                  {formaterFødselsnummer(personIdent)}&nbsp;(
-                  {beregnAlderFraFødselsEllerDnummer(
-                    personIdent,
-                    type === "BARN",
-                  )}
-                  &nbsp; år)
-                </div>
-                {personIdent && personIdent !== "Ukjent" && (
-                  <Form
-                    action={RouteConfig.INDEX}
-                    method="post"
-                    onSubmit={() => {
-                      sporHendelse("søk familiemedlem", {
-                        organisasjoner: innloggetBruker.organisasjoner,
-                      });
-                      setLoadingIdent(personIdent);
-                    }}
-                  >
-                    <input type="hidden" name="ident" value={personIdent} />
-                    <Button
-                      variant="tertiary"
-                      size="small"
-                      type="submit"
-                      loading={loadingIdent === personIdent}
-                      disabled={loadingIdent === personIdent}
-                      icon={
-                        <FileSearchIcon
-                          aria-hidden={true}
-                          className="inline-block"
-                          title="Søk etter familiemedlem"
-                        />
-                      }
+            {familiemedlemmerListe.map(
+              ({
+                ident,
+                rolle,
+                fornavn,
+                mellomnavn,
+                etternavn,
+                adressebeskyttelse,
+              }) => (
+                <div
+                  className="rounded-md border border-ax-neutral-400 p-2 flex justify-between items-center"
+                  key={ident}
+                >
+                  <div>
+                    {mapTypeTilIkon(rolle)}&nbsp;{snakeCaseTilSetning(rolle)}
+                    :&nbsp;
+                    {adressebeskyttelse !== "FORTROLIG" &&
+                    adressebeskyttelse !== "STRENGT_FORTROLIG" &&
+                    adressebeskyttelse !== "STRENGT_FORTROLIG_UTLAND" &&
+                    (fornavn || mellomnavn || etternavn)
+                      ? [fornavn, mellomnavn, etternavn]
+                          .filter(Boolean)
+                          .join(" ") + " "
+                      : ""}
+                    {formaterFødselsnummer(ident)}&nbsp;(
+                    {beregnAlderFraFødselsEllerDnummer(ident, rolle === "BARN")}
+                    &nbsp; år)
+                  </div>
+                  {ident !== "Ukjent" && (
+                    <Form
+                      action={RouteConfig.INDEX}
+                      method="post"
+                      onSubmit={() => {
+                        sporHendelse("søk familiemedlem", {
+                          organisasjoner: innloggetBruker.organisasjoner,
+                        });
+                        setLoadingIdent(ident);
+                      }}
                     >
-                      Slå opp
-                    </Button>
-                  </Form>
-                )}
-              </div>
-            ))}
+                      <input type="hidden" name="ident" value={ident} />
+                      <Button
+                        variant="tertiary"
+                        size="small"
+                        type="submit"
+                        loading={loadingIdent === ident}
+                        disabled={loadingIdent === ident}
+                        icon={
+                          <FileSearchIcon
+                            aria-hidden={true}
+                            className="inline-block"
+                            title="Søk etter familiemedlem"
+                          />
+                        }
+                      >
+                        Slå opp
+                      </Button>
+                    </Form>
+                  )}
+                </div>
+              ),
+            )}
           </div>
         </ModalBody>
         <ModalFooter>
@@ -144,28 +160,15 @@ function mapTypeTilIkon(type: string) {
   }
 }
 
-type Familiemedlem = {
-  personIdent: string;
-  type: string;
-};
+type Familiemedlem = PersonInformasjon["familemedlemmer"][number];
 
 /**
- * Transformerer familiemedlemmer-record til sortert liste
- *
- * @param familiemedlemmer - Record med personIdent som nøkkel og type som verdi
- * @returns Sortert liste av familiemedlemmer
- *
- * @example
- * const medlemmer = { "12345678901": "BARN", "98765432109": "PARTNER" };
- * const liste = transformerTilSortertListe(medlemmer);
- * // Returns: [{ personIdent: "12345678901", type: "BARN" }, ...]
+ * Sorterer familiemedlemmer etter rolle
  */
-function transformerTilSortertListe(
-  familiemedlemmer: Record<string, string>,
+function sorterFamiliemedlemmer(
+  familiemedlemmer: FamiliemedlemmerModalProps["familiemedlemmer"],
 ): Familiemedlem[] {
-  return Object.entries(familiemedlemmer)
-    .map(([personIdent, type]) => ({ personIdent, type }))
-    .sort((a, b) => a.type.localeCompare(b.type));
+  return [...familiemedlemmer].sort((a, b) => a.rolle.localeCompare(b.rolle));
 }
 
 /**
@@ -176,14 +179,14 @@ function transformerTilSortertListe(
  *
  * @example
  * const medlemmer = [
- *   { personIdent: "123", type: "BARN" },
- *   { personIdent: "456", type: "PARTNER" }
+ *   { ident: "123", rolle: "BARN" },
+ *   { ident: "456", rolle: "GIFT" }
  * ];
  * const barn = hentBarn(medlemmer);
- * // Returns: [{ personIdent: "123", type: "BARN" }]
+ * // Returns: [{ ident: "123", rolle: "BARN" }]
  */
 function hentBarn(familiemedlemmerListe: Familiemedlem[]): Familiemedlem[] {
-  return familiemedlemmerListe.filter(({ type }) => type === "BARN");
+  return familiemedlemmerListe.filter(({ rolle }) => rolle === "BARN");
 }
 
 /**
@@ -194,8 +197,8 @@ function hentBarn(familiemedlemmerListe: Familiemedlem[]): Familiemedlem[] {
  *
  * @example
  * const barn = [
- *   { personIdent: "01012010", type: "BARN" },
- *   { personIdent: "01012015", type: "BARN" }
+ *   { ident: "01012010", rolle: "BARN" },
+ *   { ident: "01012015", rolle: "BARN" }
  * ];
  * const stat = beregnBarnAlder(barn);
  * // Returns: { yngste: 9, eldste: 14 }
@@ -208,8 +211,8 @@ function beregnBarnAlder(barn: Familiemedlem[]): {
     return null;
   }
 
-  const aldre = barn.map(({ personIdent }) =>
-    beregnAlderFraFødselsEllerDnummer(personIdent, true),
+  const aldre = barn.map(({ ident }) =>
+    beregnAlderFraFødselsEllerDnummer(ident, true),
   );
 
   return {

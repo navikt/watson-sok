@@ -99,9 +99,7 @@ export async function gjørOppslagApiRequest<T>({
       logger.error("Mottok ugyldig data fra baksystem", {
         error: z.treeifyError(parsedData.error),
       });
-      throw new OppslagApiError(
-        "Ugyldig data fra baksystem: " + z.treeifyError(parsedData.error),
-      );
+      throw new OppslagApiError("Ugyldig data fra baksystem");
     }
 
     return parsedData.data;

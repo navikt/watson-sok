@@ -8,7 +8,7 @@
   },
   "personInformasjon": {
     "aktørId": "11111112345",
-    "familemedlemmer": {},
+    "familemedlemmer": [],
     "statsborgerskap": ["NORGE"],
     "navn": {
       "fornavn": "TEST",
@@ -26,7 +26,7 @@
       },
       "utenlandskAdresse": null
     },
-    "adresseBeskyttelse": "UGRADERT",
+    "adressebeskyttelse": "UGRADERT",
     "sivilstand": "UGIFT",
     "alder": 35,
     "fødselsdato": "1990-04-11",

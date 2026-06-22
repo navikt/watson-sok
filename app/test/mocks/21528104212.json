@@ -22,8 +22,8 @@
         "poststed": "SØREIDGREND"
       }
     },
-    "adresseBeskyttelse": "UGRADERT",
-    "familemedlemmer": {},
+    "adressebeskyttelse": "UGRADERT",
+    "familemedlemmer": [],
     "statsborgerskap": ["NORGE"],
     "sivilstand": null,
     "alder": 51,

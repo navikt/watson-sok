@@ -8,15 +8,33 @@
   },
   "personInformasjon": {
     "aktørId": "67890123456",
-    "familemedlemmer": {
-      "15122300000": "BARN",
-      "01031400000": "BARN",
-      "29021600000": "BARN",
-      "26051800000": "BARN",
-      "18021200000": "BARN",
-      "20029100000": "SKILT"
-    },
-    "adresseBeskyttelse": "FORTROLIG",
+    "familemedlemmer": [
+      {
+        "ident": "15122300000",
+        "rolle": "BARN"
+      },
+      {
+        "ident": "01031400000",
+        "rolle": "BARN"
+      },
+      {
+        "ident": "29021600000",
+        "rolle": "BARN"
+      },
+      {
+        "ident": "26051800000",
+        "rolle": "BARN"
+      },
+      {
+        "ident": "18021200000",
+        "rolle": "BARN"
+      },
+      {
+        "ident": "20029100000",
+        "rolle": "SKILT"
+      }
+    ],
+    "adressebeskyttelse": "FORTROLIG",
     "statsborgerskap": ["SYRIA"],
     "navn": {
       "fornavn": "DONALD",
@@ -48,7 +66,7 @@
         "ansettelsesDetaljer": [
           {
             "type": "Frilanser",
-            "stillingsprosent": 27.0,
+            "stillingsprosent": 27,
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2023-02",
@@ -67,7 +85,7 @@
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
-            "stillingsprosent": 100.0,
+            "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2024-09",
@@ -77,7 +95,7 @@
           },
           {
             "type": "Ordinaer",
-            "stillingsprosent": 100.0,
+            "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2023-06",
@@ -87,8 +105,8 @@
           },
           {
             "type": "Ordinaer",
-            "stillingsprosent": 10.0,
-            "antallTimerPrUke": 4.0,
+            "stillingsprosent": 10,
+            "antallTimerPrUke": 4,
             "periode": {
               "fom": "2023-05",
               "tom": "2023-05"
@@ -97,8 +115,8 @@
           },
           {
             "type": "Ordinaer",
-            "stillingsprosent": 10.0,
-            "antallTimerPrUke": 4.0,
+            "stillingsprosent": 10,
+            "antallTimerPrUke": 4,
             "periode": {
               "fom": "2022-07",
               "tom": "2023-04"
@@ -148,7 +166,7 @@
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
-            "stillingsprosent": 5.0,
+            "stillingsprosent": 5,
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2022-08",
@@ -158,7 +176,7 @@
           },
           {
             "type": "Ordinaer",
-            "stillingsprosent": 5.0,
+            "stillingsprosent": 5,
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2022-07",
@@ -168,7 +186,7 @@
           },
           {
             "type": "Ordinaer",
-            "stillingsprosent": 5.0,
+            "stillingsprosent": 5,
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2022-06",
@@ -185,7 +203,7 @@
         "ansettelsesDetaljer": [
           {
             "type": "Frilanser",
-            "stillingsprosent": 100.0,
+            "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2025-01",
@@ -195,7 +213,7 @@
           },
           {
             "type": "Frilanser",
-            "stillingsprosent": 100.0,
+            "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2022-12",
@@ -256,7 +274,7 @@
         "stillingsprosent": "",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 3030.0,
+        "beløp": 3030,
         "harFlereVersjoner": false
       },
       {
@@ -326,7 +344,7 @@
         "stillingsprosent": "",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 23809.0,
+        "beløp": 23809,
         "harFlereVersjoner": false
       },
       {
@@ -356,7 +374,7 @@
         "stillingsprosent": "",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 23809.0,
+        "beløp": 23809,
         "harFlereVersjoner": false
       },
       {
@@ -366,7 +384,7 @@
         "stillingsprosent": "",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 23809.0,
+        "beløp": 23809,
         "harFlereVersjoner": false
       },
       {
@@ -376,7 +394,7 @@
         "stillingsprosent": "",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 17857.0,
+        "beløp": 17857,
         "harFlereVersjoner": false
       },
       {
@@ -396,7 +414,7 @@
         "stillingsprosent": "",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 23809.0,
+        "beløp": 23809,
         "harFlereVersjoner": false
       },
       {
@@ -426,7 +444,7 @@
         "stillingsprosent": "",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 15000.0,
+        "beløp": 15000,
         "harFlereVersjoner": false
       },
       {
@@ -456,7 +474,7 @@
         "stillingsprosent": "",
         "lønnstype": "tips",
         "antall": null,
-        "beløp": 260.0,
+        "beløp": 260,
         "harFlereVersjoner": false
       },
       {
@@ -475,8 +493,8 @@
         "arbeidsforhold": "",
         "stillingsprosent": "",
         "lønnstype": "timeloenn",
-        "antall": 97.0,
-        "beløp": 8840.0,
+        "antall": 97,
+        "beløp": 8840,
         "harFlereVersjoner": false
       },
       {
@@ -516,7 +534,7 @@
         "stillingsprosent": "",
         "lønnstype": "tips",
         "antall": null,
-        "beløp": 180.0,
+        "beløp": 180,
         "harFlereVersjoner": false
       },
       {
@@ -526,7 +544,7 @@
         "stillingsprosent": "",
         "lønnstype": "timeloenn",
         "antall": 74.5,
-        "beløp": 12665.0,
+        "beløp": 12665,
         "harFlereVersjoner": false
       },
       {
@@ -575,8 +593,8 @@
         "arbeidsforhold": "",
         "stillingsprosent": "",
         "lønnstype": "timeloenn",
-        "antall": 141.0,
-        "beløp": 23970.0,
+        "antall": 141,
+        "beløp": 23970,
         "harFlereVersjoner": false
       },
       {
@@ -616,7 +634,7 @@
         "stillingsprosent": "",
         "lønnstype": "tips",
         "antall": null,
-        "beløp": 10.0,
+        "beløp": 10,
         "harFlereVersjoner": false
       },
       {
@@ -626,7 +644,7 @@
         "stillingsprosent": "",
         "lønnstype": "timeloenn",
         "antall": 136.5,
-        "beløp": 23205.0,
+        "beløp": 23205,
         "harFlereVersjoner": false
       },
       {
@@ -666,7 +684,7 @@
         "stillingsprosent": "",
         "lønnstype": "fastloenn",
         "antall": null,
-        "beløp": 23375.0,
+        "beløp": 23375,
         "harFlereVersjoner": false
       },
       {
@@ -695,8 +713,8 @@
         "arbeidsforhold": "",
         "stillingsprosent": "",
         "lønnstype": "timeloenn",
-        "antall": 145.0,
-        "beløp": 24650.0,
+        "antall": 145,
+        "beløp": 24650,
         "harFlereVersjoner": false
       },
       {
@@ -726,7 +744,7 @@
         "stillingsprosent": "",
         "lønnstype": "tips",
         "antall": null,
-        "beløp": 60.0,
+        "beløp": 60,
         "harFlereVersjoner": true
       },
       {
@@ -735,8 +753,8 @@
         "arbeidsforhold": "",
         "stillingsprosent": "",
         "lønnstype": "timeloenn",
-        "antall": 30.0,
-        "beløp": 5400.0,
+        "antall": 30,
+        "beløp": 5400,
         "harFlereVersjoner": false
       },
       {
@@ -766,7 +784,7 @@
         "stillingsprosent": "",
         "lønnstype": "tips",
         "antall": null,
-        "beløp": 10.0,
+        "beløp": 10,
         "harFlereVersjoner": true
       },
       {
@@ -796,7 +814,7 @@
         "stillingsprosent": "",
         "lønnstype": "tips",
         "antall": null,
-        "beløp": 30.0,
+        "beløp": 30,
         "harFlereVersjoner": true
       },
       {
@@ -846,7 +864,7 @@
         "stillingsprosent": "",
         "lønnstype": "tips",
         "antall": null,
-        "beløp": 10.0,
+        "beløp": 10,
         "harFlereVersjoner": false
       },
       {
@@ -865,8 +883,8 @@
         "arbeidsforhold": "",
         "stillingsprosent": "",
         "lønnstype": "timeloenn",
-        "antall": 15.0,
-        "beløp": 2700.0,
+        "antall": 15,
+        "beløp": 2700,
         "harFlereVersjoner": false
       },
       {
@@ -913,7 +931,7 @@
             "fom": "2022-12-01",
             "tom": "2022-12-31"
           },
-          "beløp": 4838.0,
+          "beløp": 4838,
           "bruttoBeløp": 5400,
           "kilde": "SOKOS",
           "info": "737406645"
@@ -923,7 +941,7 @@
             "fom": "2023-01-01",
             "tom": "2023-01-31"
           },
-          "beløp": 4838.0,
+          "beløp": 4838,
           "bruttoBeløp": 5400,
           "kilde": "SOKOS",
           "info": "737406645"
@@ -933,7 +951,7 @@
             "fom": "2023-02-01",
             "tom": "2023-02-28"
           },
-          "beløp": 4838.0,
+          "beløp": 4838,
           "bruttoBeløp": 5400,
           "kilde": "SOKOS",
           "info": "737406645"
@@ -943,7 +961,7 @@
             "fom": "2023-03-01",
             "tom": "2023-03-31"
           },
-          "beløp": 4972.0,
+          "beløp": 4972,
           "bruttoBeløp": 5400,
           "kilde": "SOKOS",
           "info": "737406645"
@@ -953,7 +971,7 @@
             "fom": "2023-04-01",
             "tom": "2023-04-30"
           },
-          "beløp": 4972.0,
+          "beløp": 4972,
           "bruttoBeløp": 5400,
           "kilde": "SOKOS",
           "info": "737406645"
@@ -963,7 +981,7 @@
             "fom": "2023-05-01",
             "tom": "2023-05-31"
           },
-          "beløp": 4972.0,
+          "beløp": 4972,
           "bruttoBeløp": 5400,
           "kilde": "SOKOS",
           "info": "737406645"
@@ -973,7 +991,7 @@
             "fom": "2023-06-01",
             "tom": "2023-06-30"
           },
-          "beløp": 4972.0,
+          "beløp": 4972,
           "bruttoBeløp": 5400,
           "kilde": "SOKOS",
           "info": "737406646"
@@ -983,7 +1001,7 @@
             "fom": "2023-07-01",
             "tom": "2023-07-31"
           },
-          "beløp": 5696.0,
+          "beløp": 5696,
           "bruttoBeløp": 6300,
           "kilde": "SOKOS",
           "info": "740373321"
@@ -993,7 +1011,7 @@
             "fom": "2023-08-01",
             "tom": "2023-08-31"
           },
-          "beløp": 5696.0,
+          "beløp": 5696,
           "bruttoBeløp": 6300,
           "kilde": "SOKOS",
           "info": "743340148"
@@ -1003,7 +1021,7 @@
             "fom": "2023-09-01",
             "tom": "2023-09-30"
           },
-          "beløp": 5696.0,
+          "beløp": 5696,
           "bruttoBeløp": 6300,
           "kilde": "SOKOS",
           "info": "746303168"
@@ -1013,7 +1031,7 @@
             "fom": "2023-10-01",
             "tom": "2023-10-31"
           },
-          "beløp": 5696.0,
+          "beløp": 5696,
           "bruttoBeløp": 6300,
           "kilde": "SOKOS",
           "info": "749354192"
@@ -1023,7 +1041,7 @@
             "fom": "2023-11-01",
             "tom": "2023-11-30"
           },
-          "beløp": 5696.0,
+          "beløp": 5696,
           "bruttoBeløp": 6300,
           "kilde": "SOKOS",
           "info": "752375173"
@@ -1033,7 +1051,7 @@
             "fom": "2023-12-01",
             "tom": "2023-12-31"
           },
-          "beløp": 5696.0,
+          "beløp": 5696,
           "bruttoBeløp": 6300,
           "kilde": "SOKOS",
           "info": "755060003"
@@ -1043,7 +1061,7 @@
             "fom": "2024-01-01",
             "tom": "2024-01-31"
           },
-          "beløp": 6296.0,
+          "beløp": 6296,
           "bruttoBeløp": 6900,
           "kilde": "SOKOS",
           "info": "758560250"
@@ -1053,7 +1071,7 @@
             "fom": "2024-02-01",
             "tom": "2024-02-29"
           },
-          "beløp": 6296.0,
+          "beløp": 6296,
           "bruttoBeløp": 6900,
           "kilde": "SOKOS",
           "info": "761629545"
@@ -1063,7 +1081,7 @@
             "fom": "2023-07-01",
             "tom": "2023-07-31"
           },
-          "beløp": 0.0,
+          "beløp": 0,
           "bruttoBeløp": 0,
           "kilde": "SOKOS",
           "info": "13633170"
@@ -1073,7 +1091,7 @@
             "fom": "2023-08-01",
             "tom": "2023-08-31"
           },
-          "beløp": 0.0,
+          "beløp": 0,
           "bruttoBeløp": 0,
           "kilde": "SOKOS",
           "info": "13633170"
@@ -1083,7 +1101,7 @@
             "fom": "2023-09-01",
             "tom": "2023-09-30"
           },
-          "beløp": 0.0,
+          "beløp": 0,
           "bruttoBeløp": 0,
           "kilde": "SOKOS",
           "info": "13633170"
@@ -1093,7 +1111,7 @@
             "fom": "2023-10-01",
             "tom": "2023-10-31"
           },
-          "beløp": 0.0,
+          "beløp": 0,
           "bruttoBeløp": 0,
           "kilde": "SOKOS",
           "info": "13633170"
@@ -1103,7 +1121,7 @@
             "fom": "2023-11-01",
             "tom": "2023-11-30"
           },
-          "beløp": 0.0,
+          "beløp": 0,
           "bruttoBeløp": 0,
           "kilde": "SOKOS",
           "info": "13633170"
@@ -1113,7 +1131,7 @@
             "fom": "2023-12-01",
             "tom": "2023-12-31"
           },
-          "beløp": 0.0,
+          "beløp": 0,
           "bruttoBeløp": 0,
           "kilde": "SOKOS",
           "info": "13633170"
@@ -1123,7 +1141,7 @@
             "fom": "2024-01-01",
             "tom": "2024-01-31"
           },
-          "beløp": 0.0,
+          "beløp": 0,
           "bruttoBeløp": 0,
           "kilde": "SOKOS",
           "info": "13633170"
@@ -1133,7 +1151,7 @@
             "fom": "2024-02-01",
             "tom": "2024-02-29"
           },
-          "beløp": 0.0,
+          "beløp": 0,
           "bruttoBeløp": 0,
           "kilde": "SOKOS",
           "info": "13633170"
@@ -1148,7 +1166,7 @@
             "fom": "2023-10-09",
             "tom": "2023-10-31"
           },
-          "beløp": 13309.0,
+          "beløp": 13309,
           "bruttoBeløp": 14800,
           "kilde": "SOKOS",
           "info": "751760726"
@@ -1158,7 +1176,7 @@
             "fom": "2023-11-01",
             "tom": "2023-11-13"
           },
-          "beløp": 7046.0,
+          "beløp": 7046,
           "bruttoBeløp": 7800,
           "kilde": "SOKOS",
           "info": "751923715"
@@ -1168,7 +1186,7 @@
             "fom": "2023-11-14",
             "tom": "2023-11-30"
           },
-          "beløp": 10178.0,
+          "beløp": 10178,
           "bruttoBeløp": 11200,
           "kilde": "SOKOS",
           "info": "755602189"
@@ -1178,7 +1196,7 @@
             "fom": "2023-12-01",
             "tom": "2023-12-18"
           },
-          "beløp": 8481.0,
+          "beløp": 8481,
           "bruttoBeløp": 9400,
           "kilde": "SOKOS",
           "info": "755602189"
@@ -1188,7 +1206,7 @@
             "fom": "2023-12-19",
             "tom": "2023-12-31"
           },
-          "beløp": 7248.0,
+          "beløp": 7248,
           "bruttoBeløp": 8000,
           "kilde": "SOKOS",
           "info": "757797295"
@@ -1198,7 +1216,7 @@
             "fom": "2024-01-01",
             "tom": "2024-01-07"
           },
-          "beløp": 3933.0,
+          "beløp": 3933,
           "bruttoBeløp": 4300,
           "kilde": "SOKOS",
           "info": "758093914"
@@ -1208,7 +1226,7 @@
             "fom": "2024-01-08",
             "tom": "2024-01-21"
           },
-          "beløp": 7866.0,
+          "beløp": 7866,
           "bruttoBeløp": 8600,
           "kilde": "SOKOS",
           "info": "758826786"
@@ -1218,7 +1236,7 @@
             "fom": "2024-01-22",
             "tom": "2024-01-31"
           },
-          "beløp": 6015.0,
+          "beløp": 6015,
           "bruttoBeløp": 6600,
           "kilde": "SOKOS",
           "info": "760807810"
@@ -1228,7 +1246,7 @@
             "fom": "2024-02-01",
             "tom": "2024-02-04"
           },
-          "beløp": 1677.0,
+          "beløp": 1677,
           "bruttoBeløp": 1800,
           "kilde": "SOKOS",
           "info": "761178602"
@@ -1238,7 +1256,7 @@
             "fom": "2024-02-05",
             "tom": "2024-02-18"
           },
-          "beløp": 6816.0,
+          "beløp": 6816,
           "bruttoBeløp": 7600,
           "kilde": "SOKOS",
           "info": "762020509"
@@ -1248,7 +1266,7 @@
             "fom": "2024-02-19",
             "tom": "2024-02-29"
           },
-          "beløp": 6134.0,
+          "beløp": 6134,
           "bruttoBeløp": 6800,
           "kilde": "SOKOS",
           "info": "763880494"
@@ -1258,7 +1276,7 @@
             "fom": "2024-03-01",
             "tom": "2024-03-17"
           },
-          "beløp": 7497.0,
+          "beløp": 7497,
           "bruttoBeløp": 8300,
           "kilde": "SOKOS",
           "info": "764912013"
@@ -1268,7 +1286,7 @@
             "fom": "2024-03-18",
             "tom": "2024-03-28"
           },
-          "beløp": 6134.0,
+          "beløp": 6134,
           "bruttoBeløp": 6800,
           "kilde": "SOKOS",
           "info": "765256791"
@@ -1283,7 +1301,7 @@
             "fom": "2024-04-01",
             "tom": "2024-04-30"
           },
-          "beløp": 20291.0,
+          "beløp": 20291,
           "bruttoBeløp": 22000,
           "kilde": "SOKOS",
           "info": "770370676"
@@ -1293,7 +1311,7 @@
             "fom": "2024-05-01",
             "tom": "2024-05-10"
           },
-          "beløp": 8117.0,
+          "beløp": 8117,
           "bruttoBeløp": 9000,
           "kilde": "SOKOS",
           "info": "770370676"
@@ -1303,7 +1321,7 @@
             "fom": "2024-05-13",
             "tom": "2024-05-24"
           },
-          "beløp": 10146.0,
+          "beløp": 10146,
           "bruttoBeløp": 11200,
           "kilde": "SOKOS",
           "info": "771381096"
@@ -1313,7 +1331,7 @@
             "fom": "2024-05-27",
             "tom": "2024-05-31"
           },
-          "beløp": 5073.0,
+          "beløp": 5073,
           "bruttoBeløp": 5600,
           "kilde": "SOKOS",
           "info": "771932018"
@@ -1323,7 +1341,7 @@
             "fom": "2024-06-03",
             "tom": "2024-06-07"
           },
-          "beløp": 5073.0,
+          "beløp": 5073,
           "bruttoBeløp": 5600,
           "kilde": "SOKOS",
           "info": "771932018"
@@ -1333,7 +1351,7 @@
             "fom": "2024-06-10",
             "tom": "2024-06-21"
           },
-          "beløp": 10146.0,
+          "beløp": 10146,
           "bruttoBeløp": 11200,
           "kilde": "SOKOS",
           "info": "773994759"
@@ -1343,7 +1361,7 @@
             "fom": "2024-06-24",
             "tom": "2024-06-28"
           },
-          "beløp": 5073.0,
+          "beløp": 5073,
           "bruttoBeløp": 5600,
           "kilde": "SOKOS",
           "info": "775008887"
@@ -1353,7 +1371,7 @@
             "fom": "2024-07-01",
             "tom": "2024-07-05"
           },
-          "beløp": 5073.0,
+          "beløp": 5073,
           "bruttoBeløp": 5600,
           "kilde": "SOKOS",
           "info": "775008887"
@@ -1363,7 +1381,7 @@
             "fom": "2024-07-08",
             "tom": "2024-07-19"
           },
-          "beløp": 10146.0,
+          "beløp": 10146,
           "bruttoBeløp": 11200,
           "kilde": "SOKOS",
           "info": "777224802"
@@ -1373,7 +1391,7 @@
             "fom": "2024-07-22",
             "tom": "2024-07-31"
           },
-          "beløp": 8117.0,
+          "beløp": 8117,
           "bruttoBeløp": 9000,
           "kilde": "SOKOS",
           "info": "778262594"
@@ -1383,7 +1401,7 @@
             "fom": "2024-08-01",
             "tom": "2024-08-02"
           },
-          "beløp": 2030.0,
+          "beløp": 2030,
           "bruttoBeløp": 2200,
           "kilde": "SOKOS",
           "info": "778262594"
@@ -1393,7 +1411,7 @@
             "fom": "2024-08-05",
             "tom": "2024-08-16"
           },
-          "beløp": 10146.0,
+          "beløp": 10146,
           "bruttoBeløp": 11200,
           "kilde": "SOKOS",
           "info": "780210218"
@@ -1403,7 +1421,7 @@
             "fom": "2024-08-19",
             "tom": "2024-08-31"
           },
-          "beløp": 10146.0,
+          "beløp": 10146,
           "bruttoBeløp": 11200,
           "kilde": "SOKOS",
           "info": "781271746"
@@ -1413,7 +1431,7 @@
             "fom": "2024-09-01",
             "tom": "2024-09-01"
           },
-          "beløp": 0.0,
+          "beløp": 0,
           "bruttoBeløp": 0,
           "kilde": "SOKOS",
           "info": "781271746"
@@ -1423,7 +1441,7 @@
             "fom": "2024-09-02",
             "tom": "2024-09-15"
           },
-          "beløp": 10146.0,
+          "beløp": 10146,
           "bruttoBeløp": 11200,
           "kilde": "SOKOS",
           "info": "783234115"
@@ -1433,7 +1451,7 @@
             "fom": "2024-09-16",
             "tom": "2024-09-29"
           },
-          "beløp": 10694.0,
+          "beløp": 10694,
           "bruttoBeløp": 11800,
           "kilde": "SOKOS",
           "info": "784237709"
@@ -1443,7 +1461,7 @@
             "fom": "2024-09-30",
             "tom": "2024-09-30"
           },
-          "beløp": 1070.0,
+          "beløp": 1070,
           "bruttoBeløp": 1200,
           "kilde": "SOKOS",
           "info": "786258988"
@@ -1453,7 +1471,7 @@
             "fom": "2024-10-01",
             "tom": "2024-10-13"
           },
-          "beløp": 9625.0,
+          "beløp": 9625,
           "bruttoBeløp": 10600,
           "kilde": "SOKOS",
           "info": "786258988"
@@ -1463,7 +1481,7 @@
             "fom": "2024-10-14",
             "tom": "2024-10-27"
           },
-          "beløp": 10694.0,
+          "beløp": 10694,
           "bruttoBeløp": 11800,
           "kilde": "SOKOS",
           "info": "787294678"
@@ -1473,7 +1491,7 @@
             "fom": "2024-10-28",
             "tom": "2024-10-31"
           },
-          "beløp": 4278.0,
+          "beløp": 4278,
           "bruttoBeløp": 4700,
           "kilde": "SOKOS",
           "info": "789325752"
@@ -1483,7 +1501,7 @@
             "fom": "2024-11-01",
             "tom": "2024-11-10"
           },
-          "beløp": 6417.0,
+          "beløp": 6417,
           "bruttoBeløp": 7100,
           "kilde": "SOKOS",
           "info": "789325752"
@@ -1493,7 +1511,7 @@
             "fom": "2024-11-11",
             "tom": "2024-11-24"
           },
-          "beløp": 10694.0,
+          "beløp": 10694,
           "bruttoBeløp": 11800,
           "kilde": "SOKOS",
           "info": "790424547"
@@ -1503,7 +1521,7 @@
             "fom": "2024-11-25",
             "tom": "2024-11-30"
           },
-          "beløp": 6855.0,
+          "beløp": 6855,
           "bruttoBeløp": 7600,
           "kilde": "SOKOS",
           "info": "792428473"
@@ -1513,7 +1531,7 @@
             "fom": "2024-12-01",
             "tom": "2024-12-08"
           },
-          "beløp": 6855.0,
+          "beløp": 6855,
           "bruttoBeløp": 7600,
           "kilde": "SOKOS",
           "info": "792428473"
@@ -1523,7 +1541,7 @@
             "fom": "2024-12-09",
             "tom": "2024-12-22"
           },
-          "beløp": 10694.0,
+          "beløp": 10694,
           "bruttoBeløp": 11800,
           "kilde": "SOKOS",
           "info": "793464145"
@@ -1533,7 +1551,7 @@
             "fom": "2024-12-23",
             "tom": "2024-12-31"
           },
-          "beløp": 7198.0,
+          "beløp": 7198,
           "bruttoBeløp": 8000,
           "kilde": "SOKOS",
           "info": "793715600"
@@ -1543,7 +1561,7 @@
             "fom": "2025-01-01",
             "tom": "2025-01-05"
           },
-          "beløp": 3096.0,
+          "beløp": 3096,
           "bruttoBeløp": 3400,
           "kilde": "SOKOS",
           "info": "793715600"
@@ -1553,7 +1571,7 @@
             "fom": "2025-01-06",
             "tom": "2025-01-19"
           },
-          "beløp": 10320.0,
+          "beløp": 10320,
           "bruttoBeløp": 11400,
           "kilde": "SOKOS",
           "info": "795729426"
@@ -1563,7 +1581,7 @@
             "fom": "2025-01-20",
             "tom": "2025-01-31"
           },
-          "beløp": 10320.0,
+          "beløp": 10320,
           "bruttoBeløp": 11400,
           "kilde": "SOKOS",
           "info": "796764034"
@@ -1573,7 +1591,7 @@
             "fom": "2025-02-01",
             "tom": "2025-02-02"
           },
-          "beløp": 0.0,
+          "beløp": 0,
           "bruttoBeløp": 0,
           "kilde": "SOKOS",
           "info": "796764034"
@@ -1583,7 +1601,7 @@
             "fom": "2025-02-03",
             "tom": "2025-02-16"
           },
-          "beløp": 10320.0,
+          "beløp": 10320,
           "bruttoBeløp": 11400,
           "kilde": "SOKOS",
           "info": "798806679"
@@ -1593,7 +1611,7 @@
             "fom": "2025-02-17",
             "tom": "2025-02-28"
           },
-          "beløp": 10320.0,
+          "beløp": 10320,
           "bruttoBeløp": 11400,
           "kilde": "SOKOS",
           "info": "799863765"
@@ -1603,7 +1621,7 @@
             "fom": "2025-03-01",
             "tom": "2025-03-02"
           },
-          "beløp": 0.0,
+          "beløp": 0,
           "bruttoBeløp": 0,
           "kilde": "SOKOS",
           "info": "799863765"
@@ -1613,7 +1631,7 @@
             "fom": "2025-03-03",
             "tom": "2025-03-16"
           },
-          "beløp": 10320.0,
+          "beløp": 10320,
           "bruttoBeløp": 11400,
           "kilde": "SOKOS",
           "info": "801970456"
@@ -1623,7 +1641,7 @@
             "fom": "2025-03-17",
             "tom": "2025-03-30"
           },
-          "beløp": 10320.0,
+          "beløp": 10320,
           "bruttoBeløp": 11400,
           "kilde": "SOKOS",
           "info": "802998326"
@@ -1633,7 +1651,7 @@
             "fom": "2025-03-31",
             "tom": "2025-03-31"
           },
-          "beløp": 1032.0,
+          "beløp": 1032,
           "bruttoBeløp": 1140,
           "kilde": "SOKOS",
           "info": "805094428"
@@ -1643,7 +1661,7 @@
             "fom": "2025-04-01",
             "tom": "2025-04-13"
           },
-          "beløp": 9288.0,
+          "beløp": 9288,
           "bruttoBeløp": 10200,
           "kilde": "SOKOS",
           "info": "805094428"
@@ -1653,7 +1671,7 @@
             "fom": "2025-04-14",
             "tom": "2025-04-27"
           },
-          "beløp": 10320.0,
+          "beløp": 10320,
           "bruttoBeløp": 11400,
           "kilde": "SOKOS",
           "info": "806106559"
@@ -1663,7 +1681,7 @@
             "fom": "2025-04-28",
             "tom": "2025-04-30"
           },
-          "beløp": 3096.0,
+          "beløp": 3096,
           "bruttoBeløp": 3400,
           "kilde": "SOKOS",
           "info": "808173489"
@@ -1673,7 +1691,7 @@
             "fom": "2025-05-01",
             "tom": "2025-05-11"
           },
-          "beløp": 7224.0,
+          "beløp": 7224,
           "bruttoBeløp": 8000,
           "kilde": "SOKOS",
           "info": "808173489"
@@ -1683,7 +1701,7 @@
             "fom": "2025-05-12",
             "tom": "2025-05-25"
           },
-          "beløp": 10320.0,
+          "beløp": 10320,
           "bruttoBeløp": 11400,
           "kilde": "SOKOS",
           "info": "809430065"
@@ -1693,7 +1711,7 @@
             "fom": "2025-05-26",
             "tom": "2025-05-31"
           },
-          "beløp": 5160.0,
+          "beløp": 5160,
           "bruttoBeløp": 5700,
           "kilde": "SOKOS",
           "info": "809911265"
@@ -1703,7 +1721,7 @@
             "fom": "2025-06-01",
             "tom": "2025-06-08"
           },
-          "beløp": 5160.0,
+          "beløp": 5160,
           "bruttoBeløp": 5700,
           "kilde": "SOKOS",
           "info": "809911265"
@@ -1713,7 +1731,7 @@
             "fom": "2025-06-16",
             "tom": "2025-06-16"
           },
-          "beløp": 24486.0,
+          "beløp": 24486,
           "bruttoBeløp": 27000,
           "kilde": "SOKOS",
           "info": "811814593"
@@ -1723,7 +1741,7 @@
             "fom": "2025-06-09",
             "tom": "2025-06-22"
           },
-          "beløp": 10320.0,
+          "beløp": 10320,
           "bruttoBeløp": 11400,
           "kilde": "SOKOS",
           "info": "812109491"
@@ -1733,7 +1751,7 @@
             "fom": "2025-06-23",
             "tom": "2025-06-30"
           },
-          "beløp": 6192.0,
+          "beløp": 6192,
           "bruttoBeløp": 6800,
           "kilde": "SOKOS",
           "info": "813137806"
@@ -1743,7 +1761,7 @@
             "fom": "2025-07-01",
             "tom": "2025-07-06"
           },
-          "beløp": 4128.0,
+          "beløp": 4128,
           "bruttoBeløp": 4600,
           "kilde": "SOKOS",
           "info": "813137806"
@@ -1753,7 +1771,7 @@
             "fom": "2025-07-07",
             "tom": "2025-07-20"
           },
-          "beløp": 10320.0,
+          "beløp": 10320,
           "bruttoBeløp": 11400,
           "kilde": "SOKOS",
           "info": "815148149"
@@ -1763,7 +1781,7 @@
             "fom": "2025-07-21",
             "tom": "2025-07-31"
           },
-          "beløp": 9288.0,
+          "beløp": 9288,
           "bruttoBeløp": 10200,
           "kilde": "SOKOS",
           "info": "816211270"
@@ -1773,7 +1791,7 @@
             "fom": "2025-08-01",
             "tom": "2025-08-03"
           },
-          "beløp": 1032.0,
+          "beløp": 1032,
           "bruttoBeløp": 1140,
           "kilde": "SOKOS",
           "info": "816211270"
@@ -1783,7 +1801,7 @@
             "fom": "2025-08-04",
             "tom": "2025-08-17"
           },
-          "beløp": 10320.0,
+          "beløp": 10320,
           "bruttoBeløp": 11400,
           "kilde": "SOKOS",
           "info": "818215477"
@@ -1793,7 +1811,7 @@
             "fom": "2025-08-18",
             "tom": "2025-08-31"
           },
-          "beløp": 10320.0,
+          "beløp": 10320,
           "bruttoBeløp": 11400,
           "kilde": "SOKOS",
           "info": "819245655"
@@ -1803,7 +1821,7 @@
             "fom": "2025-09-01",
             "tom": "2025-09-14"
           },
-          "beløp": 7170.0,
+          "beløp": 7170,
           "bruttoBeløp": 8000,
           "kilde": "SOKOS",
           "info": "821365359"
@@ -1818,7 +1836,7 @@
             "fom": "2024-05-01",
             "tom": "2024-05-31"
           },
-          "beløp": 4365.0,
+          "beløp": 4365,
           "bruttoBeløp": 4800,
           "kilde": "SOKOS",
           "info": "770532772"
@@ -1828,7 +1846,7 @@
             "fom": "2025-05-01",
             "tom": "2025-05-31"
           },
-          "beløp": 4509.0,
+          "beløp": 4509,
           "bruttoBeløp": 5000,
           "kilde": "SOKOS",
           "info": "808578858"
