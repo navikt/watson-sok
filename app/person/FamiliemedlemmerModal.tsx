@@ -32,7 +32,8 @@ export function FamiliemedlemmerModal({
 }: FamiliemedlemmerModalProps) {
   const innloggetBruker = useInnloggetBruker();
   const ref = useRef<HTMLDialogElement>(null);
-  const familiemedlemmerListe = normaliserOgSorterFamiliemedlemmer(familiemedlemmer);
+  const familiemedlemmerListe =
+    normaliserOgSorterFamiliemedlemmer(familiemedlemmer);
   const [loadingIdent, setLoadingIdent] = useState<string | null>(null);
 
   if (familiemedlemmerListe.length === 0) {
