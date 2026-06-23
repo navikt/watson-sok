@@ -79,7 +79,7 @@ describe("PersonInformasjonSchema — familemedlemmer", () => {
     expect(liste[0].rolle).toBe("Ukjent");
   });
 
-  it("array-format: ukjent adressebeskyttelse får 'UGRADERT' via .catch()", () => {
+  it("array-format: ukjent adressebeskyttelse får 'STRENGT_FORTROLIG' via .catch() (privacy-first)", () => {
     const data = {
       ...basePerson,
       familemedlemmer: [
@@ -98,7 +98,7 @@ describe("PersonInformasjonSchema — familemedlemmer", () => {
     const liste = result.data.familemedlemmer as Array<{
       adressebeskyttelse?: string | null;
     }>;
-    expect(liste[0].adressebeskyttelse).toBe("UGRADERT");
+    expect(liste[0].adressebeskyttelse).toBe("STRENGT_FORTROLIG");
   });
 
   it("tom liste godkjennes som ny array-struktur", () => {
@@ -113,5 +113,19 @@ describe("PersonInformasjonSchema — familemedlemmer", () => {
 
     const result = PersonInformasjonSchema.safeParse(data);
     expect(result.success).toBe(true);
+  });
+
+  it("record-format: ukjent rolle normaliseres til 'Ukjent' via .catch()", () => {
+    const data = {
+      ...basePerson,
+      familemedlemmer: { "11111111111": "UKJENT_ROLLE_FRA_PDL" },
+    };
+
+    const result = PersonInformasjonSchema.safeParse(data);
+    expect(result.success).toBe(true);
+    if (!result.success) return;
+
+    const record = result.data.familemedlemmer as Record<string, string>;
+    expect(record["11111111111"]).toBe("Ukjent");
   });
 });

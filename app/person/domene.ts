@@ -42,26 +42,28 @@ const NavKontorSchema = z.object({
   type: z.string(),
 });
 
+const RolleSchema = z
+  .enum([
+    "BARN",
+    "MOR",
+    "FAR",
+    "MEDMOR",
+    "GIFT",
+    "UGIFT",
+    "SKILT",
+    "SEPARERT",
+    "ENKE_ELLER_ENKEMANN",
+    "REGISTRERT_PARTNER",
+    "SEPARERT_PARTNER",
+    "SKILT_PARTNER",
+    "GJENLEVENDE_PARTNER",
+    "Ukjent",
+  ])
+  .catch("Ukjent");
+
 const FamiliemedlemSchema = z.object({
   ident: z.string(),
-  rolle: z
-    .enum([
-      "BARN",
-      "MOR",
-      "FAR",
-      "MEDMOR",
-      "GIFT",
-      "UGIFT",
-      "SKILT",
-      "SEPARERT",
-      "ENKE_ELLER_ENKEMANN",
-      "REGISTRERT_PARTNER",
-      "SEPARERT_PARTNER",
-      "SKILT_PARTNER",
-      "GJENLEVENDE_PARTNER",
-      "Ukjent",
-    ])
-    .catch("Ukjent"),
+  rolle: RolleSchema,
   fornavn: z.string().nullable().optional(),
   mellomnavn: z.string().nullable().optional(),
   etternavn: z.string().nullable().optional(),
@@ -73,7 +75,7 @@ const FamiliemedlemSchema = z.object({
       "STRENGT_FORTROLIG",
       "STRENGT_FORTROLIG_UTLAND",
     ])
-    .catch("UGRADERT")
+    .catch("STRENGT_FORTROLIG")
     .nullish(),
 });
 
@@ -91,7 +93,7 @@ export const PersonInformasjonSchema = z.object({
   ]),
   familemedlemmer: z.union([
     z.array(FamiliemedlemSchema),
-    z.record(z.string(), z.string()),
+    z.record(z.string(), RolleSchema),
   ]),
   statsborgerskap: z.array(z.string()),
   sivilstand: z.string().nullable(),

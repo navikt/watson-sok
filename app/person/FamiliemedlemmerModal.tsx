@@ -174,7 +174,7 @@ function normaliserOgSorterFamiliemedlemmer(
     return [...familiemedlemmer].sort((a, b) => a.rolle.localeCompare(b.rolle));
   }
   return Object.entries(familiemedlemmer)
-    .map(([ident, rolle]) => ({ ident, rolle: rolle as Familiemedlem["rolle"] }))
+    .map(([ident, rolle]) => ({ ident, rolle }))
     .sort((a, b) => a.rolle.localeCompare(b.rolle));
 }
 
