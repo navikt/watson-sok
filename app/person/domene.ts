@@ -42,6 +42,43 @@ const NavKontorSchema = z.object({
   type: z.string(),
 });
 
+const FamiliemedlemSchema = z.object({
+  ident: z.string(),
+  rolle: z
+    .enum([
+      "BARN",
+      "MOR",
+      "FAR",
+      "MEDMOR",
+      "GIFT",
+      "UGIFT",
+      "SKILT",
+      "SEPARERT",
+      "ENKE_ELLER_ENKEMANN",
+      "REGISTRERT_PARTNER",
+      "SEPARERT_PARTNER",
+      "SKILT_PARTNER",
+      "GJENLEVENDE_PARTNER",
+      "Ukjent",
+    ])
+    .catch("Ukjent"),
+  fornavn: z.string().nullable().optional(),
+  mellomnavn: z.string().nullable().optional(),
+  etternavn: z.string().nullable().optional(),
+  fødselsdato: z.string().nullable().optional(),
+  adressebeskyttelse: z
+    .enum([
+      "UGRADERT",
+      "FORTROLIG",
+      "STRENGT_FORTROLIG",
+      "STRENGT_FORTROLIG_UTLAND",
+    ])
+    .catch("UGRADERT")
+    .nullish(),
+});
+
+export type Familiemedlem = z.infer<typeof FamiliemedlemSchema>;
+
 export const PersonInformasjonSchema = z.object({
   navn: NavnSchema,
   aktørId: z.string().nullable(),
@@ -52,42 +89,10 @@ export const PersonInformasjonSchema = z.object({
     "STRENGT_FORTROLIG",
     "STRENGT_FORTROLIG_UTLAND",
   ]),
-  familemedlemmer: z.array(
-    z.object({
-      ident: z.string(),
-      rolle: z
-        .enum([
-          "BARN",
-          "MOR",
-          "FAR",
-          "MEDMOR",
-          "GIFT",
-          "UGIFT",
-          "SKILT",
-          "SEPARERT",
-          "ENKE_ELLER_ENKEMANN",
-          "REGISTRERT_PARTNER",
-          "SEPARERT_PARTNER",
-          "SKILT_PARTNER",
-          "GJENLEVENDE_PARTNER",
-          "Ukjent",
-        ])
-        .catch("Ukjent"),
-      fornavn: z.string().nullable().optional(),
-      mellomnavn: z.string().nullable().optional(),
-      etternavn: z.string().nullable().optional(),
-      fødselsdato: z.string().nullable().optional(),
-      adressebeskyttelse: z
-        .enum([
-          "UGRADERT",
-          "FORTROLIG",
-          "STRENGT_FORTROLIG",
-          "STRENGT_FORTROLIG_UTLAND",
-        ])
-        .catch("STRENGT_FORTROLIG")
-        .nullish(),
-    }),
-  ),
+  familemedlemmer: z.union([
+    z.array(FamiliemedlemSchema),
+    z.record(z.string(), z.string()),
+  ]),
   statsborgerskap: z.array(z.string()),
   sivilstand: z.string().nullable(),
   alder: z.number(),
