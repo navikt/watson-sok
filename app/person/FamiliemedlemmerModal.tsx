@@ -165,7 +165,7 @@ function mapTypeTilIkon(type: string) {
  * Normaliserer begge formater (array fra nytt API eller Record fra gammelt API)
  * til en intern sortert liste.
  *
- * @param familiemedlemmer - Array (ny format, flag PÅ) eller Record<ident, rolle> (gammel format, flag AV)
+ * @param familiemedlemmer - Array (nytt format, flagg PÅ) eller Record<ident, rolle> (gammelt format, flagg AV)
  * @returns Normalisert og sortert liste av familiemedlemmer
  */
 function normaliserOgSorterFamiliemedlemmer(
