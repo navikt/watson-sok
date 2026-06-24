@@ -17,7 +17,7 @@ import {
   snakeCaseTilSetning,
 } from "~/utils/string-utils";
 
-import type { PersonInformasjon } from "./domene";
+import type { Familiemedlem, PersonInformasjon } from "./domene";
 import { beregnAlderFraFødselsEllerDnummer } from "./utils/personident-utils";
 
 type FamiliemedlemmerModalProps = {
@@ -32,7 +32,8 @@ export function FamiliemedlemmerModal({
 }: FamiliemedlemmerModalProps) {
   const innloggetBruker = useInnloggetBruker();
   const ref = useRef<HTMLDialogElement>(null);
-  const familiemedlemmerListe = sorterFamiliemedlemmer(familiemedlemmer);
+  const familiemedlemmerListe =
+    normaliserOgSorterFamiliemedlemmer(familiemedlemmer);
   const [loadingIdent, setLoadingIdent] = useState<string | null>(null);
 
   if (familiemedlemmerListe.length === 0) {
@@ -160,15 +161,22 @@ function mapTypeTilIkon(type: string) {
   }
 }
 
-type Familiemedlem = PersonInformasjon["familemedlemmer"][number];
-
 /**
- * Sorterer familiemedlemmer etter rolle
+ * Normaliserer begge formater (array fra nytt API eller Record fra gammelt API)
+ * til en intern sortert liste.
+ *
+ * @param familiemedlemmer - Array (nytt format, flagg PÅ) eller Record<ident, rolle> (gammelt format, flagg AV)
+ * @returns Normalisert og sortert liste av familiemedlemmer
  */
-function sorterFamiliemedlemmer(
+function normaliserOgSorterFamiliemedlemmer(
   familiemedlemmer: FamiliemedlemmerModalProps["familiemedlemmer"],
 ): Familiemedlem[] {
-  return [...familiemedlemmer].sort((a, b) => a.rolle.localeCompare(b.rolle));
+  if (Array.isArray(familiemedlemmer)) {
+    return [...familiemedlemmer].sort((a, b) => a.rolle.localeCompare(b.rolle));
+  }
+  return Object.entries(familiemedlemmer)
+    .map(([ident, rolle]) => ({ ident, rolle }))
+    .sort((a, b) => a.rolle.localeCompare(b.rolle));
 }
 
 /**
