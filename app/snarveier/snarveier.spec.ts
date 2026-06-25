@@ -7,11 +7,15 @@ const testFnr = "98765432101";
 /** Navigerer til oppslagssiden med testbruker og venter på at alle paneler er lastet. */
 async function gåTilOppslag(page: Page) {
   await page.goto("/");
+  await page.waitForLoadState("networkidle");
   const mainContent = page.locator("#maincontent");
   const søkefelt = mainContent.getByLabel(/Fødsels- eller D-nummer/i);
+  await søkefelt.waitFor({ state: "visible" });
   await søkefelt.fill(testFnr);
-  await mainContent.getByRole("button", { name: /søk/i }).click();
-  await expect(page).toHaveURL(/\/oppslag/);
+  await Promise.all([
+    page.waitForURL(/\/oppslag/, { timeout: 15000 }),
+    mainContent.getByRole("button", { name: /søk/i }).click(),
+  ]);
 
   // Vent på at alle paneler er ferdig lastet
   const panelOverskrifter = [
