@@ -67,9 +67,11 @@ export default function OppslagBrukerSide() {
             />
           </div>
 
-          <MeldekortOppsummeringPanel
-            arbeidsgiverInformasjonPromise={data.arbeidsgiverInformasjon}
-          />
+          <div className="grid grid-cols-1 min-[1800px]:grid-cols-2 gap-4">
+            <MeldekortOppsummeringPanel
+              arbeidsgiverInformasjonPromise={data.arbeidsgiverInformasjon}
+            />
+          </div>
 
           <div className="grid grid-cols-1 ax-md:grid-cols-2 gap-4">
             <InntektPanel

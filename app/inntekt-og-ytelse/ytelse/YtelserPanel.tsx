@@ -202,42 +202,47 @@ const YtelserPanelMedData = ({
               ))}
               {ytelserMedGruppertePerioder.map((ytelse) => {
                 const erDagpenger = harMeldekortYtelse(ytelse.stonadType);
+
+                const radEtikett = (
+                  <Tooltip content="Trykk for å se detaljer for alle perioder">
+                    <Button
+                      variant="tertiary"
+                      size="small"
+                      onClick={() => {
+                        setValgtYtelsePeriode({
+                          ytelse,
+                          fraDato: ytelse.gruppertePerioder[0].fom,
+                          tilDato:
+                            ytelse.gruppertePerioder[
+                              ytelse.gruppertePerioder.length - 1
+                            ].tom,
+                        });
+                        sporHendelse("ytelse modal åpnet", {
+                          stonadType: ytelse.stonadType,
+                        });
+                      }}
+                    >
+                      <span className="inline-block max-w-[20ch] truncate">
+                        {ytelse.stonadType}
+                      </span>
+                    </Button>
+                  </Tooltip>
+                );
+
+                if (erDagpenger) {
+                  return (
+                    <MeldekortProvider key={ytelse.stonadType} ytelse="dagpenger">
+                      <DagpengerTimelineRow
+                        ytelse={ytelse}
+                        etikett={radEtikett}
+                        onSetValgtYtelse={setValgtYtelsePeriode}
+                      />
+                    </MeldekortProvider>
+                  );
+                }
+
                 return (
-                  <TimelineRow
-                    key={ytelse.stonadType}
-                    label={
-                      <div className="flex items-center gap-1">
-                        <Tooltip content="Trykk for å se detaljer for alle perioder">
-                          <Button
-                            variant="tertiary"
-                            size="small"
-                            onClick={() => {
-                              setValgtYtelsePeriode({
-                                ytelse,
-                                fraDato: ytelse.gruppertePerioder[0].fom,
-                                tilDato:
-                                  ytelse.gruppertePerioder[
-                                    ytelse.gruppertePerioder.length - 1
-                                  ].tom,
-                              });
-                              sporHendelse("ytelse modal åpnet", {
-                                stonadType: ytelse.stonadType,
-                              });
-                            }}
-                          >
-                            <span className="inline-block max-w-[20ch] truncate">
-                              {ytelse.stonadType}
-                            </span>
-                          </Button>
-                        </Tooltip>
-                        {erDagpenger && (
-                          <MeldekortProvider ytelse="dagpenger">
-                            <MeldekortAntallTag />
-                          </MeldekortProvider>
-                        )}
-                      </div>
-                    }
-                  >
+                  <TimelineRow key={ytelse.stonadType} label={radEtikett}>
                     {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
                       const fomDate = new Date(gruppertPeriode.fom);
                       const tomDate = new Date(gruppertPeriode.tom);
@@ -247,13 +252,12 @@ const YtelserPanelMedData = ({
                         gruppertPeriode.totalBeløp,
                         0,
                       );
-
                       return (
                         <TimelinePeriod
                           key={`${ytelse.stonadType}-${index}`}
                           start={fomDate}
                           end={tomDate}
-                          status={erDagpenger ? "info" : "success"}
+                          status="success"
                           icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
                           onClick={(event) => {
                             event.preventDefault();
@@ -292,24 +296,75 @@ const YtelserPanelMedData = ({
   );
 };
 
-/** Viser antall meldekort som blå Tag med info-ikon — kun synlig når flagget er på */
-function MeldekortAntallTag() {
+type DagpengerTimelineRowProps = {
+  ytelse: Ytelse & { gruppertePerioder: ReturnType<typeof grupperSammenhengendePerioder> };
+  etikett: React.ReactNode;
+  onSetValgtYtelse: (v: {
+    ytelse: Ytelse;
+    fraDato: string;
+    tilDato: string;
+  } | null) => void;
+};
+
+/**
+ * Dagpenger-rad med blå perioder og meldekort-antall i periodepopoveren.
+ * Må rendres inne i MeldekortProvider.
+ */
+function DagpengerTimelineRow({
+  ytelse,
+  etikett,
+  onSetValgtYtelse,
+}: DagpengerTimelineRowProps) {
   const erAktivert = useEnkeltFeatureFlagg(FeatureFlagg.VIS_MELDEKORT_PANEL);
   const meldekortState = useMeldekort();
 
-  if (!erAktivert) return null;
-  if (!meldekortState || meldekortState.status !== "success") return null;
-
-  const antall = meldekortState.meldekort.length;
-  if (antall === 0) return null;
+  const antallMeldekort =
+    erAktivert && meldekortState?.status === "success"
+      ? meldekortState.meldekort.length
+      : null;
 
   return (
-    <Tooltip content={`${antall} meldekort registrert`}>
-      <Tag variant="info" size="xsmall" className="cursor-default">
-        <InformationSquareIcon aria-hidden />
-        {antall}
-      </Tag>
-    </Tooltip>
+    <TimelineRow label={etikett}>
+      {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
+        const fomDate = new Date(gruppertPeriode.fom);
+        const tomDate = new Date(gruppertPeriode.tom);
+        const fomFormatert = formaterDato(gruppertPeriode.fom);
+        const tomFormatert = formaterDato(gruppertPeriode.tom);
+        const beløpFormatert = formaterBeløp(gruppertPeriode.totalBeløp, 0);
+
+        return (
+          <TimelinePeriod
+            key={`${ytelse.stonadType}-${index}`}
+            start={fomDate}
+            end={tomDate}
+            status="info"
+            icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
+            onClick={(event) => {
+              event.preventDefault();
+              onSetValgtYtelse({
+                ytelse,
+                fraDato: gruppertPeriode.fom,
+                tilDato: gruppertPeriode.tom,
+              });
+              sporHendelse("ytelse modal åpnet", {
+                stonadType: ytelse.stonadType,
+              });
+            }}
+          >
+            <BodyShort>
+              {fomFormatert} – {tomFormatert}
+            </BodyShort>
+            <BodyShort>Sum: {beløpFormatert}</BodyShort>
+            {antallMeldekort !== null && antallMeldekort > 0 && (
+              <BodyShort className="flex items-center gap-1 mt-1">
+                <InformationSquareIcon aria-hidden />
+                {antallMeldekort} meldekort levert
+              </BodyShort>
+            )}
+          </TimelinePeriod>
+        );
+      })}
+    </TimelineRow>
   );
 }
 
