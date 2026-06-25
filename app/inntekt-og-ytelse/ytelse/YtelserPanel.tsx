@@ -1,4 +1,4 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
+import { ChevronLeftIcon, ChevronRightIcon, InformationSquareIcon } from "@navikt/aksel-icons";
 import {
   Alert,
   BodyLong,
@@ -7,6 +7,7 @@ import {
   CopyButton,
   Heading,
   Skeleton,
+  Tag,
   Timeline,
   Tooltip,
 } from "@navikt/ds-react";
@@ -20,6 +21,9 @@ import { useSearchParams } from "react-router";
 
 import { sporHendelse } from "~/analytics/analytics";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
+import { FeatureFlagg } from "~/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
+import { MeldekortProvider, useMeldekort } from "~/meldekort/MeldekortContext";
 import {
   PanelContainer,
   PanelContainerSkeleton,
@@ -36,6 +40,14 @@ import {
   grupperSammenhengendePerioder,
   grupperTilbakekrevinger,
 } from "./utils";
+
+const YTELSER_MED_MELDEKORT = ["dagpenger"];
+
+function harMeldekortYtelse(stonadType: string): boolean {
+  return YTELSER_MED_MELDEKORT.some(
+    (y) => stonadType.toLowerCase() === y.toLowerCase(),
+  );
+}
 
 type YtelserOversiktProps = {
   promise: Promise<Ytelse[] | null>;
@@ -189,33 +201,41 @@ const YtelserPanelMedData = ({
                 </TimelinePin>
               ))}
               {ytelserMedGruppertePerioder.map((ytelse) => {
+                const erDagpenger = harMeldekortYtelse(ytelse.stonadType);
                 return (
                   <TimelineRow
                     key={ytelse.stonadType}
                     label={
-                      <Tooltip content="Trykk for å se detaljer for alle perioder">
-                        <Button
-                          variant="tertiary"
-                          size="small"
-                          onClick={() => {
-                            setValgtYtelsePeriode({
-                              ytelse,
-                              fraDato: ytelse.gruppertePerioder[0].fom,
-                              tilDato:
-                                ytelse.gruppertePerioder[
-                                  ytelse.gruppertePerioder.length - 1
-                                ].tom,
-                            });
-                            sporHendelse("ytelse modal åpnet", {
-                              stonadType: ytelse.stonadType,
-                            });
-                          }}
-                        >
-                          <span className="inline-block max-w-[20ch] truncate">
-                            {ytelse.stonadType}
-                          </span>
-                        </Button>
-                      </Tooltip>
+                      <div className="flex items-center gap-1">
+                        <Tooltip content="Trykk for å se detaljer for alle perioder">
+                          <Button
+                            variant="tertiary"
+                            size="small"
+                            onClick={() => {
+                              setValgtYtelsePeriode({
+                                ytelse,
+                                fraDato: ytelse.gruppertePerioder[0].fom,
+                                tilDato:
+                                  ytelse.gruppertePerioder[
+                                    ytelse.gruppertePerioder.length - 1
+                                  ].tom,
+                              });
+                              sporHendelse("ytelse modal åpnet", {
+                                stonadType: ytelse.stonadType,
+                              });
+                            }}
+                          >
+                            <span className="inline-block max-w-[20ch] truncate">
+                              {ytelse.stonadType}
+                            </span>
+                          </Button>
+                        </Tooltip>
+                        {erDagpenger && (
+                          <MeldekortProvider ytelse="dagpenger">
+                            <MeldekortAntallTag />
+                          </MeldekortProvider>
+                        )}
+                      </div>
                     }
                   >
                     {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
@@ -233,7 +253,7 @@ const YtelserPanelMedData = ({
                           key={`${ytelse.stonadType}-${index}`}
                           start={fomDate}
                           end={tomDate}
-                          status="success"
+                          status={erDagpenger ? "info" : "success"}
                           icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
                           onClick={(event) => {
                             event.preventDefault();
@@ -271,6 +291,27 @@ const YtelserPanelMedData = ({
     </PanelContainer>
   );
 };
+
+/** Viser antall meldekort som blå Tag med info-ikon — kun synlig når flagget er på */
+function MeldekortAntallTag() {
+  const erAktivert = useEnkeltFeatureFlagg(FeatureFlagg.VIS_MELDEKORT_PANEL);
+  const meldekortState = useMeldekort();
+
+  if (!erAktivert) return null;
+  if (!meldekortState || meldekortState.status !== "success") return null;
+
+  const antall = meldekortState.meldekort.length;
+  if (antall === 0) return null;
+
+  return (
+    <Tooltip content={`${antall} meldekort registrert`}>
+      <Tag variant="info" size="xsmall" className="cursor-default">
+        <InformationSquareIcon aria-hidden />
+        {antall}
+      </Tag>
+    </Tooltip>
+  );
+}
 
 const YtelserPanelSkeleton = () => {
   const ytelser = Array.from({ length: 3 }, (_, index) => index);

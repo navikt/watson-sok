@@ -1,19 +1,30 @@
 import { formaterÅrMåned } from "~/utils/date-utils";
+import {
+  lagTopprundetPath,
+  lagXLabels,
+} from "~/inntekt-og-ytelse/inntekt-og-ytelse-overlapp-panel/utils";
+import {
+  GRAF_BREDDE,
+  GRAF_HØYDE,
+  PADDING,
+} from "~/inntekt-og-ytelse/inntekt-og-ytelse-overlapp-panel/konstanter";
 
 import type { TimerPerMåned } from "./utils";
 
-const GRAF_BREDDE = 800;
-const GRAF_HØYDE = 240;
-const PADDING = { top: 20, right: 20, bottom: 40, left: 60 };
+const AA_FARGE = "var(--ax-bg-brand-blue-strong)";
+const AA_FARGE_STROKE = "var(--ax-bg-brand-blue-strong-hover)";
+const MK_FARGE = "var(--ax-bg-brand-beige-strong)";
+const MK_FARGE_STROKE = "var(--ax-bg-brand-beige-strong-hover)";
+const BAR_MELLOMROM = 2;
+const RADIUS = 3;
 const ANTALL_GRID_LINJER = 5;
-const MINIMUM_MAKSTIMER = 40;
 
 type Props = {
   data: TimerPerMåned[];
 };
 
 /**
- * Linjegraf som viser AA-registrerte timer og meldekort-timer per måned.
+ * Stolpediagram (side-by-side) som viser AA-registrerte timer og meldekort-timer per måned.
  * Måneder med avvik på mer enn 20 % markeres med en advarsel.
  */
 export function TimerSammenligningGraf({ data }: Props) {
@@ -24,7 +35,7 @@ export function TimerSammenligningGraf({ data }: Props) {
 
   const maksTimer = Math.max(
     ...data.flatMap((d) => [d.mkTimer, d.aaTimer]),
-    MINIMUM_MAKSTIMER,
+    40,
   );
 
   const xScale = (i: number) =>
@@ -33,152 +44,169 @@ export function TimerSammenligningGraf({ data }: Props) {
   const yScale = (v: number) =>
     PADDING.top + grafHøyde - (v / maksTimer) * grafHøyde;
 
-  const lagSti = (getter: (d: TimerPerMåned) => number) =>
-    data
-      .map((d, i) => `${i === 0 ? "M" : "L"} ${xScale(i)} ${yScale(getter(d))}`)
-      .join(" ");
-
   const gridLinjer = Array.from({ length: ANTALL_GRID_LINJER }, (_, i) => {
-    const verdi = (maksTimer * (i + 1)) / ANTALL_GRID_LINJER;
+    const verdi =
+      (maksTimer / (ANTALL_GRID_LINJER - 1)) * (ANTALL_GRID_LINJER - 1 - i);
     return { verdi: Math.round(verdi), y: yScale(verdi) };
   });
 
+  const xLabelsMedPlass = lagXLabels(
+    data.map((d) => ({ periode: d.måned, inntekt: 0, ytelse: 0 })),
+    xScale,
+  );
+
+  const barGroupWidth = Math.min(
+    40,
+    Math.max(14, grafBredde / data.length / 1.8),
+  );
+  const barWidth = (barGroupWidth - BAR_MELLOMROM) / 2;
+  const baseY = PADDING.top + grafHøyde;
+
   return (
     <div className="flex flex-col gap-2">
-      <div
-        className="flex gap-4 text-sm"
-        aria-label="Grafforklaring"
-        role="note"
-      >
+      <div className="flex gap-4 text-sm" role="note">
         <span className="flex items-center gap-2">
-          <svg width="24" height="4" aria-hidden="true">
-            <line
-              x1="0"
-              y1="2"
-              x2="24"
-              y2="2"
-              stroke="var(--ax-bg-brand-blue-strong)"
-              strokeWidth="2"
-            />
+          <svg width="16" height="12" aria-hidden="true">
+            <rect x="0" y="0" width="16" height="12" rx="2" fill={AA_FARGE} />
           </svg>
           AA-registrerte timer
         </span>
         <span className="flex items-center gap-2">
-          <svg width="24" height="4" aria-hidden="true">
-            <line
-              x1="0"
-              y1="2"
-              x2="24"
-              y2="2"
-              stroke="var(--ax-bg-brand-beige-strong)"
-              strokeWidth="2"
-              strokeDasharray="6 3"
-            />
+          <svg width="16" height="12" aria-hidden="true">
+            <rect x="0" y="0" width="16" height="12" rx="2" fill={MK_FARGE} />
           </svg>
           Meldekort-timer
         </span>
         {data.some((d) => d.harAvvik) && (
-          <span className="flex items-center gap-1" aria-live="polite">
-            ⚠️ Avvik mellom AA-timer og meldekort-timer
-          </span>
+          <span className="flex items-center gap-1">⚠️ Avvik oppdaget</span>
         )}
       </div>
 
-      <svg
-        viewBox={`0 0 ${GRAF_BREDDE} ${GRAF_HØYDE}`}
-        className="w-full"
-        role="img"
-        aria-label="Linjegraf som sammenligner AA-registrerte timer og meldekort-timer per måned"
-      >
-        {/* Gridlinjer og Y-akse-etiketter */}
-        {gridLinjer.map((linje) => (
-          <g key={linje.verdi}>
-            <line
-              x1={PADDING.left}
-              x2={GRAF_BREDDE - PADDING.right}
-              y1={linje.y}
-              y2={linje.y}
-              stroke="var(--ax-border-neutral-subtle)"
-              strokeDasharray="4 4"
-            />
-            <text
-              x={PADDING.left - 6}
-              y={linje.y}
-              textAnchor="end"
-              dominantBaseline="middle"
-              fontSize="11"
-              fill="var(--ax-text-neutral-subtle)"
-            >
-              {linje.verdi}t
-            </text>
+      <div className="overflow-x-auto">
+        <svg
+          viewBox={`0 0 ${GRAF_BREDDE} ${GRAF_HØYDE}`}
+          preserveAspectRatio="xMidYMid meet"
+          className="w-full h-auto min-h-[240px]"
+          role="img"
+          aria-label="Stolpediagram som sammenligner AA-registrerte timer og meldekort-timer per måned"
+        >
+          <g aria-hidden="true">
+            {gridLinjer.map((grid) => (
+              <g key={grid.verdi}>
+                <line
+                  x1={PADDING.left}
+                  y1={grid.y}
+                  x2={PADDING.left + grafBredde}
+                  y2={grid.y}
+                  stroke="var(--ax-neutral-300)"
+                  strokeWidth="1"
+                  strokeDasharray="4 4"
+                />
+                <text
+                  x={PADDING.left - 8}
+                  y={grid.y + 4}
+                  textAnchor="end"
+                  fontSize="10"
+                  fill="var(--ax-text-default)"
+                >
+                  {grid.verdi}t
+                </text>
+              </g>
+            ))}
           </g>
-        ))}
 
-        {/* X-akse-etiketter */}
-        {data.map((d, i) => (
-          <text
-            key={d.måned}
-            x={xScale(i)}
-            y={GRAF_HØYDE - PADDING.bottom / 2}
-            textAnchor="middle"
-            fontSize="11"
-            fill="var(--ax-text-neutral-subtle)"
-          >
-            {formaterÅrMåned(d.måned)}
-          </text>
-        ))}
+          <line
+            x1={PADDING.left}
+            y1={baseY}
+            x2={PADDING.left + grafBredde}
+            y2={baseY}
+            stroke="var(--ax-neutral-600)"
+            strokeWidth="1"
+            aria-hidden="true"
+          />
 
-        {/* AA-timer-linje */}
-        <path
-          d={lagSti((d) => d.aaTimer)}
-          fill="none"
-          stroke="var(--ax-bg-brand-blue-strong)"
-          strokeWidth="2"
-        />
-
-        {/* MK-timer-linje (stiplet) */}
-        <path
-          d={lagSti((d) => d.mkTimer)}
-          fill="none"
-          stroke="var(--ax-bg-brand-beige-strong)"
-          strokeWidth="2"
-          strokeDasharray="6 3"
-        />
-
-        {/* Datapunkter */}
-        {data.map((d, i) => (
-          <g key={d.måned}>
-            <circle
-              cx={xScale(i)}
-              cy={yScale(d.aaTimer)}
-              r="3"
-              fill="var(--ax-bg-brand-blue-strong)"
-            />
-            <circle
-              cx={xScale(i)}
-              cy={yScale(d.mkTimer)}
-              r="3"
-              fill="var(--ax-bg-brand-beige-strong)"
-            />
+          <g aria-hidden="true">
+            {xLabelsMedPlass.map((label) => (
+              <text
+                key={label.periode}
+                x={label.x}
+                y={baseY + 18}
+                textAnchor="middle"
+                fontSize="10"
+                fill="var(--ax-text-default)"
+              >
+                {formaterÅrMåned(label.periode)}
+              </text>
+            ))}
           </g>
-        ))}
 
-        {/* Avviksmarkering */}
-        {data.map((d, i) =>
-          d.harAvvik ? (
-            <text
-              key={`avvik-${d.måned}`}
-              x={xScale(i)}
-              y={Math.min(yScale(d.mkTimer), yScale(d.aaTimer)) - 8}
-              textAnchor="middle"
-              fontSize="14"
-              aria-label={`Avvik i ${formaterÅrMåned(d.måned)}`}
-            >
-              ⚠️
-            </text>
-          ) : null,
-        )}
-      </svg>
+          <line
+            x1={PADDING.left}
+            y1={PADDING.top}
+            x2={PADDING.left}
+            y2={baseY}
+            stroke="var(--ax-neutral-600)"
+            strokeWidth="1"
+            aria-hidden="true"
+          />
+
+          {data.map((d, i) => {
+            const xCenter = xScale(i);
+            const aaBarX = xCenter - barGroupWidth / 2;
+            const mkBarX = aaBarX + barWidth + BAR_MELLOMROM;
+            const aaHøyde = (d.aaTimer / maksTimer) * grafHøyde;
+            const mkHøyde = (d.mkTimer / maksTimer) * grafHøyde;
+            const avvikY = Math.min(baseY - aaHøyde, baseY - mkHøyde) - 10;
+
+            return (
+              <g
+                key={d.måned}
+                aria-label={`${formaterÅrMåned(d.måned)}: AA ${Math.round(d.aaTimer)}t, MK ${Math.round(d.mkTimer)}t`}
+              >
+                {d.aaTimer > 0 && (
+                  <path
+                    d={lagTopprundetPath(
+                      aaBarX,
+                      baseY - aaHøyde,
+                      barWidth,
+                      aaHøyde,
+                      RADIUS,
+                    )}
+                    fill={AA_FARGE}
+                    stroke={AA_FARGE_STROKE}
+                    strokeWidth="1"
+                  />
+                )}
+                {d.mkTimer > 0 && (
+                  <path
+                    d={lagTopprundetPath(
+                      mkBarX,
+                      baseY - mkHøyde,
+                      barWidth,
+                      mkHøyde,
+                      RADIUS,
+                    )}
+                    fill={MK_FARGE}
+                    stroke={MK_FARGE_STROKE}
+                    strokeWidth="1"
+                  />
+                )}
+                {d.harAvvik && (
+                  <text
+                    x={xCenter}
+                    y={avvikY}
+                    textAnchor="middle"
+                    fontSize="13"
+                    aria-label={`Avvik i ${formaterÅrMåned(d.måned)}`}
+                  >
+                    ⚠️
+                  </text>
+                )}
+              </g>
+            );
+          })}
+        </svg>
+      </div>
     </div>
   );
 }
