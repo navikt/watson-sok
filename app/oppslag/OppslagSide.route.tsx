@@ -49,6 +49,7 @@ export default function OppslagBrukerSide() {
           />
           <YtelserPanel
             promise={data.ytelser}
+            arbeidsgiverInformasjonPromise={data.arbeidsgiverInformasjon}
             panelId={PanelId.YTELSER}
             ariaKeyShortcuts={SNARVEIER["alt+2"].ariaKeyShortcuts}
           />

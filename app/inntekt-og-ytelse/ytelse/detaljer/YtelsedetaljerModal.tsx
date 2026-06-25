@@ -3,6 +3,7 @@ import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useMemo } from "react";
 
 import { sporHendelse } from "~/analytics/analytics";
+import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { MeldekortProvider } from "~/meldekort/MeldekortContext";
@@ -27,6 +28,7 @@ type YtelsedetaljerModalProps = {
   ytelse: Ytelse | null;
   fraDato: string;
   tilDato: string;
+  arbeidsgiverInformasjon: ArbeidsgiverInformasjon | null;
   isOpen: boolean;
   onClose: () => void;
 };
@@ -49,6 +51,7 @@ export function YtelsedetaljerModal({
   ytelse,
   fraDato,
   tilDato,
+  arbeidsgiverInformasjon,
   isOpen,
   onClose,
 }: YtelsedetaljerModalProps) {
@@ -141,6 +144,7 @@ export function YtelsedetaljerModal({
               perioder={filtrertePerioder}
               fraDato={fraDato}
               tilDato={tilDato}
+              arbeidsgiverInformasjon={arbeidsgiverInformasjon}
             />
           </Tabs.Panel>
           <Tabs.Panel value="utbetalinger" className="pt-4">

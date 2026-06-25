@@ -36,15 +36,18 @@ import {
   grupperSammenhengendePerioder,
   grupperTilbakekrevinger,
 } from "./utils";
+import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
 
 type YtelserOversiktProps = {
   promise: Promise<Ytelse[] | null>;
+  arbeidsgiverInformasjonPromise: Promise<ArbeidsgiverInformasjon | null>;
   panelId?: string;
   ariaKeyShortcuts?: string;
 };
 
 export function YtelserPanel({
   promise,
+  arbeidsgiverInformasjonPromise,
   panelId,
   ariaKeyShortcuts,
 }: YtelserOversiktProps) {
@@ -52,6 +55,7 @@ export function YtelserPanel({
     <ResolvingComponent loadingFallback={<YtelserPanelSkeleton />}>
       <YtelserPanelMedData
         promise={promise}
+        arbeidsgiverInformasjonPromise={arbeidsgiverInformasjonPromise}
         panelId={panelId}
         ariaKeyShortcuts={ariaKeyShortcuts}
       />
@@ -61,15 +65,18 @@ export function YtelserPanel({
 
 type YtelserPanelMedDataProps = {
   promise: Promise<Ytelse[] | null>;
+  arbeidsgiverInformasjonPromise: Promise<ArbeidsgiverInformasjon | null>;
   panelId?: string;
   ariaKeyShortcuts?: string;
 };
 const YtelserPanelMedData = ({
   promise,
+  arbeidsgiverInformasjonPromise,
   panelId,
   ariaKeyShortcuts,
 }: YtelserPanelMedDataProps) => {
   const ytelser = use(promise);
+  const arbeidsgiverInformasjon = use(arbeidsgiverInformasjonPromise);
   const harIngenYtelser = !ytelser || ytelser.length === 0;
   const { nåværendeVindu, oppdaterVindu } = useTidslinjevindu();
   const tilbakekrevinger = useTilbakekrevinger(ytelser, nåværendeVindu);
@@ -263,6 +270,7 @@ const YtelserPanelMedData = ({
             ytelse={valgtYtelsePeriode?.ytelse ?? null}
             fraDato={valgtYtelsePeriode?.fraDato ?? ""}
             tilDato={valgtYtelsePeriode?.tilDato ?? ""}
+            arbeidsgiverInformasjon={arbeidsgiverInformasjon}
             isOpen={Boolean(valgtYtelsePeriode)}
             onClose={() => setValgtYtelsePeriode(null)}
           />
