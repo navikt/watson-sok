@@ -155,6 +155,7 @@ const YtelserPanelMedData = ({
               }
             }}
           >
+            <MeldekortProvider ytelse="dagpenger">
             <Timeline
               id="timeline-dynamic"
               aria-controls="timeline-toolbar"
@@ -231,13 +232,12 @@ const YtelserPanelMedData = ({
 
                 if (erDagpenger) {
                   return (
-                    <MeldekortProvider key={ytelse.stonadType} ytelse="dagpenger">
-                      <DagpengerTimelineRow
-                        ytelse={ytelse}
-                        etikett={radEtikett}
-                        onSetValgtYtelse={setValgtYtelsePeriode}
-                      />
-                    </MeldekortProvider>
+                    <DagpengerTimelineRow
+                      key={ytelse.stonadType}
+                      ytelse={ytelse}
+                      etikett={radEtikett}
+                      onSetValgtYtelse={setValgtYtelsePeriode}
+                    />
                   );
                 }
 
@@ -282,6 +282,7 @@ const YtelserPanelMedData = ({
                 );
               })}
             </Timeline>
+            </MeldekortProvider>
           </div>
           <YtelsedetaljerModal
             ytelse={valgtYtelsePeriode?.ytelse ?? null}

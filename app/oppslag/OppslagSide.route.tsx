@@ -65,9 +65,6 @@ export default function OppslagBrukerSide() {
               panelId={PanelId.ARBEIDSFORHOLD}
               ariaKeyShortcuts={SNARVEIER["alt+4"].ariaKeyShortcuts}
             />
-          </div>
-
-          <div className="grid grid-cols-1 min-[1800px]:grid-cols-2 gap-4">
             <MeldekortOppsummeringPanel
               arbeidsgiverInformasjonPromise={data.arbeidsgiverInformasjon}
             />
