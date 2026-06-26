@@ -169,19 +169,39 @@ export function TimerSammenligningGraf({ data }: Props) {
                 key={d.måned}
                 aria-label={`${etikett}: AA ${Math.round(d.aaTimer)}t, MK ${Math.round(d.mkTimer)}t${d.harAvvik ? `, avvik ${avvikVerdi}t` : ""}`}
               >
-                {/* Avvik-markering med verdi */}
-                {d.harAvvik && (
-                  <text
-                    x={labelX}
-                    y={Math.min(baseY - aaHøyde, baseY - mkHøyde) - 8}
-                    textAnchor="middle"
-                    fontSize="10"
-                    fontWeight="600"
-                    fill={MK_FARGE}
-                  >
-                    ▲ {avvikVerdi}
-                  </text>
-                )}
+                {/* Avvik-markering med ikon og verdi */}
+                {d.harAvvik &&
+                  (() => {
+                    const ikonStørrelse = 14;
+                    const ikonSkala = ikonStørrelse / 24;
+                    const markerY =
+                      Math.min(baseY - aaHøyde, baseY - mkHøyde) -
+                      ikonStørrelse -
+                      6;
+                    const ikonX = labelX - ikonStørrelse - 2;
+                    return (
+                      <g fill={MK_FARGE}>
+                        {/* ExclamationmarkTriangleFillIcon — Aksel SVG path (24x24 viewBox) */}
+                        <g
+                          transform={`translate(${ikonX}, ${markerY}) scale(${ikonSkala})`}
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M12 2.25a.75.75 0 0 1 .656.387l9.527 17.25A.75.75 0 0 1 21.526 21H2.474a.75.75 0 0 1-.657-1.113l9.526-17.25A.75.75 0 0 1 12 2.25M12 8.75a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0v-4a.75.75 0 0 1 .75-.75m-1 7.75a1 1 0 1 1 2 0 1 1 0 0 1-2 0"
+                          />
+                        </g>
+                        <text
+                          x={ikonX + ikonStørrelse + 3}
+                          y={markerY + ikonStørrelse - 2}
+                          fontSize="10"
+                          fontWeight="600"
+                        >
+                          {avvikVerdi}
+                        </text>
+                      </g>
+                    );
+                  })()}
 
                 {aaHøyde > 0 && (
                   <path
