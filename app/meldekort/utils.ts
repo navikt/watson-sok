@@ -96,7 +96,7 @@ function beregnAaTimerForMåned(
 }
 
 function harTimerAvvik(mkTimer: number, aaTimer: number): boolean {
-  if (aaTimer === 0) return mkTimer > 0;
+  if (aaTimer === 0) return false; // Ingen AA-timer å sammenligne med
   return (Math.abs(aaTimer - mkTimer) / aaTimer) * 100 >= AVVIKSTERSKEL_PROSENT;
 }
 

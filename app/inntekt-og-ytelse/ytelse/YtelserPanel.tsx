@@ -303,7 +303,11 @@ function YtelserTimeline({
                   start={fomDate}
                   end={tomDate}
                   status={periodeFarge}
-                  icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
+                  icon={
+                    erDagpenger && erMeldekortAktivert
+                      ? <InformationSquareIcon aria-label="Meldekort registrert" />
+                      : mapYtelsestypeTilIkon(ytelse.stonadType)
+                  }
                   onClick={(event) => {
                     event.preventDefault();
                     setValgtYtelsePeriode({
