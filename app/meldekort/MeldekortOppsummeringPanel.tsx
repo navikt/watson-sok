@@ -1,5 +1,5 @@
 import { InformationSquareIcon } from "@navikt/aksel-icons";
-import { BodyShort, Heading, Skeleton } from "@navikt/ds-react";
+import { BodyShort, Skeleton } from "@navikt/ds-react";
 import { use, useMemo } from "react";
 
 import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
@@ -74,7 +74,7 @@ function MeldekortOppsummeringPanelInnhold({
   const laster = !meldekortState || meldekortState.status === "loading";
 
   return (
-    <PanelContainer title="Meldekort – Dagpenger">
+    <PanelContainer title="AA-timer vs meldekort-timer per måned">
       <div className="flex flex-col gap-4">
         {/* Blå infopølse med antall meldekort */}
         <div className="flex items-center gap-2 rounded-full px-4 py-2 w-fit bg-[var(--ax-bg-brand-blue-moderate)]">
@@ -97,10 +97,7 @@ function MeldekortOppsummeringPanelInnhold({
         )}
         {!laster && timerData && timerData.length > 0 && (
           <>
-            <Heading level="3" size="small">
-              Oppsummering · {tidsvindu}
-            </Heading>
-            <BodyShort size="small" className="text-ax-text-neutral-subtle">
+            <BodyShort size="small" className="text-[var(--ax-text-subtle)]">
               Avvik mellom AA-registrerte timer og timer oppgitt i meldekort kan
               indikere feilutbetaling.
             </BodyShort>
