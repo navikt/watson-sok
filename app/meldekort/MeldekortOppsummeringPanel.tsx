@@ -15,6 +15,7 @@ import {
   PanelContainerSkeleton,
 } from "~/paneler/PanelContainer";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
+import { formaterTilIsoDato } from "~/utils/date-utils";
 
 type Props = {
   arbeidsgiverInformasjonPromise: Promise<ArbeidsgiverInformasjon | null>;
@@ -78,8 +79,8 @@ function MeldekortOppsummeringPanelInnhold({
     tilDato: tilDatoDate,
   } = useTidsvindu();
 
-  const fraDato = fraDatoDate.toISOString().slice(0, 10);
-  const tilDato = tilDatoDate.toISOString().slice(0, 10);
+  const fraDato = formaterTilIsoDato(fraDatoDate);
+  const tilDato = formaterTilIsoDato(tilDatoDate);
 
   const antallMeldekort = useMemo(() => {
     if (!meldekortState || meldekortState.status !== "success") return null;
@@ -102,6 +103,7 @@ function MeldekortOppsummeringPanelInnhold({
   }, [arbeidsgiverInformasjon, meldekortState, fraDato, tilDato]);
 
   const laster = !meldekortState || meldekortState.status === "loading";
+  const harFeil = meldekortState?.status === "error";
 
   return (
     <PanelContainer title="AA-timer vs meldekort-timer per måned">
@@ -114,6 +116,10 @@ function MeldekortOppsummeringPanelInnhold({
           />
           {laster ? (
             <Skeleton width={200} height={20} />
+          ) : harFeil ? (
+            <BodyShort className="text-[var(--ax-text-brand-blue-strong)] font-medium">
+              Kunne ikke hente meldekort
+            </BodyShort>
           ) : (
             <BodyShort className="text-[var(--ax-text-brand-blue-strong)] font-medium">
               {antallMeldekort ?? 0} meldekort levert siste {tidsvindu}

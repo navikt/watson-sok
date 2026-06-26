@@ -1,8 +1,8 @@
 import type { TimerPerMåned } from "./utils";
 
-const AA_FARGE = "#2B6CB0"; // Nav blå
-const MK_FARGE = "#DD6B20"; // Oransje/amber — matcher Figma
-const AVVIK_HIGHLIGHT = "#FEFCBF"; // Gul bakgrunn på avvik-kolonne
+const AA_FARGE = "var(--ax-blue-600)";
+const MK_FARGE = "var(--ax-orange-600)";
+const AVVIK_HIGHLIGHT = "var(--ax-yellow-200)";
 const ANTALL_GRID_LINJER = 5;
 const SLOT_BREDDE = 52;
 const BAR_MELLOMROM = 4;
@@ -94,7 +94,7 @@ export function TimerSammenligningGraf({ data }: Props) {
           viewBox={`0 0 ${totalBredde} ${GRAF_HØYDE}`}
           width={Math.max(totalBredde, 400)}
           height={GRAF_HØYDE}
-          role="img"
+          role="group"
           aria-label="Stolpediagram som sammenligner AA-registrerte timer og meldekort-timer per måned"
         >
           {/* Gul bakgrunn for avvik-kolonner */}
@@ -167,6 +167,7 @@ export function TimerSammenligningGraf({ data }: Props) {
             return (
               <g
                 key={d.måned}
+                role="img"
                 aria-label={`${etikett}: AA ${Math.round(d.aaTimer)}t, MK ${Math.round(d.mkTimer)}t${d.harAvvik ? `, avvik ${avvikVerdi}t` : ""}`}
               >
                 {/* Avvik-markering med ikon og verdi */}

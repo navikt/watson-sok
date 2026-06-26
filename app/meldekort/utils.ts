@@ -41,14 +41,17 @@ export function aggregerTimerPerMåned(
   });
 }
 
+/** Parser en "YYYY-MM-DD"-streng som lokal dato, unngår UTC-forskyvning. */
+function parseDatoLokal(datoStreng: string): Date {
+  const [år, mnd, dag] = datoStreng.split("-").map(Number);
+  return new Date(år, mnd - 1, dag);
+}
+
 function genererMåneder(fraDato: string, tilDato: string): string[] {
   const måneder: string[] = [];
-  const til = new Date(tilDato);
-  const gjeldende = new Date(
-    new Date(fraDato).getFullYear(),
-    new Date(fraDato).getMonth(),
-    1,
-  );
+  const fra = parseDatoLokal(fraDato);
+  const til = parseDatoLokal(tilDato);
+  const gjeldende = new Date(fra.getFullYear(), fra.getMonth(), 1);
 
   while (gjeldende <= til) {
     måneder.push(
@@ -78,8 +81,6 @@ function beregnAaTimerForMåned(
   const [år, mnd] = måned.split("-").map(Number);
   const førsteDag = new Date(år, mnd - 1, 1);
   const sisteDag = new Date(år, mnd, 0);
-  // Antall uker i måneden basert på antall dager
-  const antallUker = sisteDag.getDate() / 7;
 
   let totalTimer = 0;
 
@@ -87,14 +88,26 @@ function beregnAaTimerForMåned(
     for (const detalj of forhold.ansettelsesDetaljer) {
       if (!detalj.antallTimerPrUke) continue;
 
-      const fom = new Date(detalj.periode.fom);
-      const tom = detalj.periode.tom ? new Date(detalj.periode.tom) : null;
+      const fom = parseDatoLokal(detalj.periode.fom);
+      const tom = detalj.periode.tom
+        ? parseDatoLokal(detalj.periode.tom)
+        : null;
 
       const erAktivIMåned =
         fom <= sisteDag && (tom === null || tom >= førsteDag);
-      if (erAktivIMåned) {
-        totalTimer += detalj.antallTimerPrUke * antallUker;
-      }
+      if (!erAktivIMåned) continue;
+
+      // Pro-rater basert på faktiske dager arbeidsforholdet er aktivt i måneden
+      const effektivFom = fom > førsteDag ? fom : førsteDag;
+      const effektivTom = tom !== null && tom < sisteDag ? tom : sisteDag;
+      const antallDager =
+        Math.round(
+          (effektivTom.getTime() - effektivFom.getTime()) /
+            (1000 * 60 * 60 * 24),
+        ) + 1;
+      const antallUker = antallDager / 7;
+
+      totalTimer += detalj.antallTimerPrUke * antallUker;
     }
   }
 

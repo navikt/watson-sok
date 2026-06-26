@@ -94,6 +94,9 @@ const YtelserPanelMedData = ({
     tilDato: string;
   } | null>(null);
   const { tidsvindu } = useTidsvindu();
+  const erMeldekortAktivert = useEnkeltFeatureFlagg(
+    FeatureFlagg.VIS_MELDEKORT_PANEL,
+  );
 
   const ytelserMedGruppertePerioder = useMemo(() => {
     if (!ytelser) return [];
@@ -158,14 +161,23 @@ const YtelserPanelMedData = ({
               }
             }}
           >
-            <MeldekortProvider ytelse="dagpenger">
+            {erMeldekortAktivert ? (
+              <MeldekortProvider ytelse="dagpenger">
+                <YtelserTimeline
+                  tilbakekrevinger={tilbakekrevinger}
+                  ytelserMedGruppertePerioder={ytelserMedGruppertePerioder}
+                  nåværendeVindu={nåværendeVindu}
+                  setValgtYtelsePeriode={setValgtYtelsePeriode}
+                />
+              </MeldekortProvider>
+            ) : (
               <YtelserTimeline
                 tilbakekrevinger={tilbakekrevinger}
                 ytelserMedGruppertePerioder={ytelserMedGruppertePerioder}
                 nåværendeVindu={nåværendeVindu}
                 setValgtYtelsePeriode={setValgtYtelsePeriode}
               />
-            </MeldekortProvider>
+            )}
           </div>
           <YtelsedetaljerModal
             ytelse={valgtYtelsePeriode?.ytelse ?? null}
@@ -261,8 +273,9 @@ function YtelserTimeline({
 
       {ytelserMedGruppertePerioder.map((ytelse) => {
         const erDagpenger = harMeldekortYtelse(ytelse.stonadType);
-        const periodeFarge =
-          erDagpenger && erMeldekortAktivert ? "info" : "success";
+        const harMeldekortForYtelse =
+          erDagpenger && antallMeldekort !== null && antallMeldekort > 0;
+        const periodeFarge = harMeldekortForYtelse ? "info" : "success";
 
         const radEtikett = (
           <Tooltip content="Trykk for å se detaljer for alle perioder">
@@ -309,7 +322,7 @@ function YtelserTimeline({
                   end={tomDate}
                   status={periodeFarge}
                   icon={
-                    erDagpenger && erMeldekortAktivert ? (
+                    harMeldekortForYtelse ? (
                       <InformationSquareIcon aria-label="Meldekort registrert" />
                     ) : (
                       mapYtelsestypeTilIkon(ytelse.stonadType)
