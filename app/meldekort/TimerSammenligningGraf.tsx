@@ -161,7 +161,7 @@ export function TimerSammenligningGraf({ data }: Props) {
                     textAnchor="middle"
                     fontSize="10"
                     fontWeight="600"
-                    fill="#744210"
+                  fill={MK_FARGE}
                   >
                     ▲ {avvikVerdi}
                   </text>
