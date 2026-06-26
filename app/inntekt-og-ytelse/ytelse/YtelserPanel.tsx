@@ -329,7 +329,8 @@ function YtelserTimeline({
                     antallMeldekort > 0 && (
                       <BodyShort className="flex items-center gap-1 mt-1">
                         <InformationSquareIcon aria-hidden />
-                        {antallMeldekort} meldekort levert
+                        {antallMeldekort} meldekort
+                        <ChevronRightIcon aria-hidden />
                       </BodyShort>
                     )}
                 </TimelinePeriod>
