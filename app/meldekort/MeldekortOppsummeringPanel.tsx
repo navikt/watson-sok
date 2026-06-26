@@ -3,13 +3,17 @@ import { BodyShort, Skeleton } from "@navikt/ds-react";
 import { use, useMemo } from "react";
 
 import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
+import { ResolvingComponent } from "~/async/ResolvingComponent";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { MeldekortProvider } from "~/meldekort/MeldekortContext";
 import { useMeldekort } from "~/meldekort/MeldekortContext";
 import { TimerSammenligningGraf } from "~/meldekort/TimerSammenligningGraf";
 import { aggregerTimerPerMåned } from "~/meldekort/utils";
-import { PanelContainer } from "~/paneler/PanelContainer";
+import {
+  PanelContainer,
+  PanelContainerSkeleton,
+} from "~/paneler/PanelContainer";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 
 type Props = {
@@ -17,7 +21,7 @@ type Props = {
 };
 
 /**
- * Viser sammenstilling av meldekort-timer og AA-registrerte timer som linjegraf.
+ * Viser sammenstilling av meldekort-timer og AA-registrerte timer som stolpediagram.
  * Panelet er synlig på hovedsiden og vises kun når feature-flagget er aktivt.
  */
 export function MeldekortOppsummeringPanel({
@@ -27,6 +31,28 @@ export function MeldekortOppsummeringPanel({
 
   if (!erAktivert) return null;
 
+  return (
+    <ResolvingComponent
+      loadingFallback={
+        <PanelContainerSkeleton title="AA-timer vs meldekort-timer per måned">
+          <Skeleton variant="rounded" height={240} className="w-full" />
+        </PanelContainerSkeleton>
+      }
+    >
+      <MeldekortOppsummeringPanelMedData
+        arbeidsgiverInformasjonPromise={arbeidsgiverInformasjonPromise}
+      />
+    </ResolvingComponent>
+  );
+}
+
+type MedDataProps = {
+  arbeidsgiverInformasjonPromise: Promise<ArbeidsgiverInformasjon | null>;
+};
+
+function MeldekortOppsummeringPanelMedData({
+  arbeidsgiverInformasjonPromise,
+}: MedDataProps) {
   const arbeidsgiverInformasjon = use(arbeidsgiverInformasjonPromise);
 
   return (

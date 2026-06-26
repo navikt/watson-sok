@@ -89,7 +89,7 @@ export function TimerSammenligningGraf({ data }: Props) {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto" tabIndex={0}>
         <svg
           viewBox={`0 0 ${totalBredde} ${GRAF_HØYDE}`}
           width={Math.max(totalBredde, 400)}
