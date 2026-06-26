@@ -97,6 +97,7 @@ function beregnAaTimerForMåned(
 
 function harTimerAvvik(mkTimer: number, aaTimer: number): boolean {
   if (aaTimer === 0) return false; // Ingen AA-timer å sammenligne med
+  if (mkTimer === 0) return false; // Ingen meldekort-timer — ikke sammenlignbart
   return (Math.abs(aaTimer - mkTimer) / aaTimer) * 100 >= AVVIKSTERSKEL_PROSENT;
 }
 

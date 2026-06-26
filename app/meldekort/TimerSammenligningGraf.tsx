@@ -146,7 +146,7 @@ export function TimerSammenligningGraf({ data }: Props) {
             const mkHøyde = Math.max(0, (d.mkTimer / gridTopp) * grafHøyde);
             const labelX = slotX + SLOT_BREDDE / 2;
             const etikett = formaterMånedEtikett(d.måned, data[i - 1]?.måned);
-            const avvikVerdi = Math.abs(Math.round(d.aaTimer - d.mkTimer));
+            const avvikVerdi = Math.round(d.aaTimer - d.mkTimer);
 
             return (
               <g

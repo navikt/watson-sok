@@ -226,7 +226,7 @@ describe("aggregerTimerPerMåned", () => {
   it("markerer avvik når MK-timer avviker mer enn 20 % fra AA-timer", () => {
     const meldekort: MeldekortRespons = [
       lagMeldekort("2025-01-01", "2025-01-14", [
-        { dato: "2025-01-06", timer: 0 },
+        { dato: "2025-01-06", timer: 10 }, // Meldekort har timer — avvik kan beregnes
       ]),
     ];
     const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(37.5, "2025-01-01");
@@ -239,6 +239,24 @@ describe("aggregerTimerPerMåned", () => {
     );
 
     expect(resultat[0].harAvvik).toBe(true);
+  });
+
+  it("markerer ikke avvik når MK-timer er 0 (ingen meldekort-data)", () => {
+    const meldekort: MeldekortRespons = [
+      lagMeldekort("2025-01-01", "2025-01-14", [
+        { dato: "2025-01-06", timer: 0 },
+      ]),
+    ];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(37.5, "2025-01-01");
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat[0].harAvvik).toBe(false);
   });
 
   it("markerer ikke avvik når differansen er under terskelen", () => {
