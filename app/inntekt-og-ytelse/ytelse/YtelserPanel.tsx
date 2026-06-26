@@ -156,132 +156,12 @@ const YtelserPanelMedData = ({
             }}
           >
             <MeldekortProvider ytelse="dagpenger">
-            <Timeline
-              id="timeline-dynamic"
-              aria-controls="timeline-toolbar"
-              startDate={nåværendeVindu.start}
-              endDate={nåværendeVindu.slutt}
-            >
-              {tilbakekrevinger.map((gruppe) => (
-                <TimelinePin key={gruppe.fom} date={new Date(gruppe.fom)}>
-                  <Heading level="3" size="small">
-                    {gruppe.tilbakekrevinger.length === 1
-                      ? "Tilbakekreving"
-                      : `${gruppe.tilbakekrevinger.length} tilbakekrevinger`}
-                  </Heading>
-                  {gruppe.tilbakekrevinger.map((tilbakebetaling, index) => (
-                    <BodyShort
-                      key={`${tilbakebetaling.stonadType}-${index}`}
-                      spacing={index !== gruppe.tilbakekrevinger.length - 1}
-                    >
-                      <strong>Ytelse:</strong> {tilbakebetaling.stonadType}
-                      <br />
-                      <strong>Periode:</strong>{" "}
-                      {formaterDato(tilbakebetaling.periode.fom)} –{" "}
-                      {formaterDato(tilbakebetaling.periode.tom)}
-                      <br />
-                      <strong>Beløp:</strong>{" "}
-                      {formaterBeløp(Math.abs(tilbakebetaling.beløp))}
-                      <br />
-                      <span className="flex items-center gap-1">
-                        <strong>Bilagsnummer:</strong>{" "}
-                        {tilbakebetaling.info ?? "Ikke tilgjengelig"}{" "}
-                        {tilbakebetaling.info && (
-                          <CopyButton
-                            copyText={tilbakebetaling.info}
-                            size="xsmall"
-                            className="inline-block ml-1"
-                          />
-                        )}
-                      </span>
-                    </BodyShort>
-                  ))}
-                  <BodyShort className="text-ax-danger-500">
-                    Vedtak, Se Gosys
-                  </BodyShort>
-                </TimelinePin>
-              ))}
-              {ytelserMedGruppertePerioder.map((ytelse) => {
-                const erDagpenger = harMeldekortYtelse(ytelse.stonadType);
-
-                const radEtikett = (
-                  <Tooltip content="Trykk for å se detaljer for alle perioder">
-                    <Button
-                      variant="tertiary"
-                      size="small"
-                      onClick={() => {
-                        setValgtYtelsePeriode({
-                          ytelse,
-                          fraDato: ytelse.gruppertePerioder[0].fom,
-                          tilDato:
-                            ytelse.gruppertePerioder[
-                              ytelse.gruppertePerioder.length - 1
-                            ].tom,
-                        });
-                        sporHendelse("ytelse modal åpnet", {
-                          stonadType: ytelse.stonadType,
-                        });
-                      }}
-                    >
-                      <span className="inline-block max-w-[20ch] truncate">
-                        {ytelse.stonadType}
-                      </span>
-                    </Button>
-                  </Tooltip>
-                );
-
-                if (erDagpenger) {
-                  return (
-                    <DagpengerTimelineRow
-                      key={ytelse.stonadType}
-                      ytelse={ytelse}
-                      etikett={radEtikett}
-                      onSetValgtYtelse={setValgtYtelsePeriode}
-                    />
-                  );
-                }
-
-                return (
-                  <TimelineRow key={ytelse.stonadType} label={radEtikett}>
-                    {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
-                      const fomDate = new Date(gruppertPeriode.fom);
-                      const tomDate = new Date(gruppertPeriode.tom);
-                      const fomFormatert = formaterDato(gruppertPeriode.fom);
-                      const tomFormatert = formaterDato(gruppertPeriode.tom);
-                      const beløpFormatert = formaterBeløp(
-                        gruppertPeriode.totalBeløp,
-                        0,
-                      );
-                      return (
-                        <TimelinePeriod
-                          key={`${ytelse.stonadType}-${index}`}
-                          start={fomDate}
-                          end={tomDate}
-                          status="success"
-                          icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
-                          onClick={(event) => {
-                            event.preventDefault();
-                            setValgtYtelsePeriode({
-                              ytelse,
-                              fraDato: gruppertPeriode.fom,
-                              tilDato: gruppertPeriode.tom,
-                            });
-                            sporHendelse("ytelse modal åpnet", {
-                              stonadType: ytelse.stonadType,
-                            });
-                          }}
-                        >
-                          <BodyShort>
-                            {fomFormatert} – {tomFormatert}
-                          </BodyShort>
-                          <BodyShort>Sum: {beløpFormatert}</BodyShort>
-                        </TimelinePeriod>
-                      );
-                    })}
-                  </TimelineRow>
-                );
-              })}
-            </Timeline>
+              <YtelserTimeline
+                tilbakekrevinger={tilbakekrevinger}
+                ytelserMedGruppertePerioder={ytelserMedGruppertePerioder}
+                nåværendeVindu={nåværendeVindu}
+                setValgtYtelsePeriode={setValgtYtelsePeriode}
+              />
             </MeldekortProvider>
           </div>
           <YtelsedetaljerModal
@@ -297,75 +177,164 @@ const YtelserPanelMedData = ({
   );
 };
 
-type DagpengerTimelineRowProps = {
-  ytelse: Ytelse & { gruppertePerioder: ReturnType<typeof grupperSammenhengendePerioder> };
-  etikett: React.ReactNode;
-  onSetValgtYtelse: (v: {
-    ytelse: Ytelse;
-    fraDato: string;
-    tilDato: string;
-  } | null) => void;
+type YtelserTimelineProps = {
+  tilbakekrevinger: GruppertTilbakekreving[];
+  ytelserMedGruppertePerioder: Array<
+    Ytelse & { gruppertePerioder: ReturnType<typeof grupperSammenhengendePerioder> }
+  >;
+  nåværendeVindu: { start: Date; slutt: Date };
+  setValgtYtelsePeriode: (
+    v: { ytelse: Ytelse; fraDato: string; tilDato: string } | null,
+  ) => void;
 };
 
 /**
- * Dagpenger-rad med blå perioder og meldekort-antall i periodepopoveren.
- * Må rendres inne i MeldekortProvider.
+ * Rendres inni MeldekortProvider slik at useMeldekort() er tilgjengelig.
+ * Alle TimelineRow-er er direkte barn av Timeline — nødvendig fordi Timeline
+ * bruker React.Children og filtrerer på componentType === "row".
  */
-function DagpengerTimelineRow({
-  ytelse,
-  etikett,
-  onSetValgtYtelse,
-}: DagpengerTimelineRowProps) {
-  const erAktivert = useEnkeltFeatureFlagg(FeatureFlagg.VIS_MELDEKORT_PANEL);
+function YtelserTimeline({
+  tilbakekrevinger,
+  ytelserMedGruppertePerioder,
+  nåværendeVindu,
+  setValgtYtelsePeriode,
+}: YtelserTimelineProps) {
+  const erMeldekortAktivert = useEnkeltFeatureFlagg(
+    FeatureFlagg.VIS_MELDEKORT_PANEL,
+  );
   const meldekortState = useMeldekort();
 
   const antallMeldekort =
-    erAktivert && meldekortState?.status === "success"
+    erMeldekortAktivert && meldekortState?.status === "success"
       ? meldekortState.meldekort.length
       : null;
 
   return (
-    <TimelineRow label={etikett}>
-      {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
-        const fomDate = new Date(gruppertPeriode.fom);
-        const tomDate = new Date(gruppertPeriode.tom);
-        const fomFormatert = formaterDato(gruppertPeriode.fom);
-        const tomFormatert = formaterDato(gruppertPeriode.tom);
-        const beløpFormatert = formaterBeløp(gruppertPeriode.totalBeløp, 0);
+    <Timeline
+      id="timeline-dynamic"
+      aria-controls="timeline-toolbar"
+      startDate={nåværendeVindu.start}
+      endDate={nåværendeVindu.slutt}
+    >
+      {tilbakekrevinger.map((gruppe) => (
+        <TimelinePin key={gruppe.fom} date={new Date(gruppe.fom)}>
+          <Heading level="3" size="small">
+            {gruppe.tilbakekrevinger.length === 1
+              ? "Tilbakekreving"
+              : `${gruppe.tilbakekrevinger.length} tilbakekrevinger`}
+          </Heading>
+          {gruppe.tilbakekrevinger.map((tilbakebetaling, index) => (
+            <BodyShort
+              key={`${tilbakebetaling.stonadType}-${index}`}
+              spacing={index !== gruppe.tilbakekrevinger.length - 1}
+            >
+              <strong>Ytelse:</strong> {tilbakebetaling.stonadType}
+              <br />
+              <strong>Periode:</strong>{" "}
+              {formaterDato(tilbakebetaling.periode.fom)} –{" "}
+              {formaterDato(tilbakebetaling.periode.tom)}
+              <br />
+              <strong>Beløp:</strong>{" "}
+              {formaterBeløp(Math.abs(tilbakebetaling.beløp))}
+              <br />
+              <span className="flex items-center gap-1">
+                <strong>Bilagsnummer:</strong>{" "}
+                {tilbakebetaling.info ?? "Ikke tilgjengelig"}{" "}
+                {tilbakebetaling.info && (
+                  <CopyButton
+                    copyText={tilbakebetaling.info}
+                    size="xsmall"
+                    className="inline-block ml-1"
+                  />
+                )}
+              </span>
+            </BodyShort>
+          ))}
+          <BodyShort className="text-ax-danger-500">Vedtak, Se Gosys</BodyShort>
+        </TimelinePin>
+      ))}
+
+      {ytelserMedGruppertePerioder.map((ytelse) => {
+        const erDagpenger = harMeldekortYtelse(ytelse.stonadType);
+        const periodeFarge =
+          erDagpenger && erMeldekortAktivert ? "info" : "success";
+
+        const radEtikett = (
+          <Tooltip content="Trykk for å se detaljer for alle perioder">
+            <Button
+              variant="tertiary"
+              size="small"
+              onClick={() => {
+                setValgtYtelsePeriode({
+                  ytelse,
+                  fraDato: ytelse.gruppertePerioder[0].fom,
+                  tilDato:
+                    ytelse.gruppertePerioder[
+                      ytelse.gruppertePerioder.length - 1
+                    ].tom,
+                });
+                sporHendelse("ytelse modal åpnet", {
+                  stonadType: ytelse.stonadType,
+                });
+              }}
+            >
+              <span className="inline-block max-w-[20ch] truncate">
+                {ytelse.stonadType}
+              </span>
+            </Button>
+          </Tooltip>
+        );
 
         return (
-          <TimelinePeriod
-            key={`${ytelse.stonadType}-${index}`}
-            start={fomDate}
-            end={tomDate}
-            status="info"
-            icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
-            onClick={(event) => {
-              event.preventDefault();
-              onSetValgtYtelse({
-                ytelse,
-                fraDato: gruppertPeriode.fom,
-                tilDato: gruppertPeriode.tom,
-              });
-              sporHendelse("ytelse modal åpnet", {
-                stonadType: ytelse.stonadType,
-              });
-            }}
-          >
-            <BodyShort>
-              {fomFormatert} – {tomFormatert}
-            </BodyShort>
-            <BodyShort>Sum: {beløpFormatert}</BodyShort>
-            {antallMeldekort !== null && antallMeldekort > 0 && (
-              <BodyShort className="flex items-center gap-1 mt-1">
-                <InformationSquareIcon aria-hidden />
-                {antallMeldekort} meldekort levert
-              </BodyShort>
-            )}
-          </TimelinePeriod>
+          <TimelineRow key={ytelse.stonadType} label={radEtikett}>
+            {ytelse.gruppertePerioder.map((gruppertPeriode, index) => {
+              const fomDate = new Date(gruppertPeriode.fom);
+              const tomDate = new Date(gruppertPeriode.tom);
+              const fomFormatert = formaterDato(gruppertPeriode.fom);
+              const tomFormatert = formaterDato(gruppertPeriode.tom);
+              const beløpFormatert = formaterBeløp(
+                gruppertPeriode.totalBeløp,
+                0,
+              );
+
+              return (
+                <TimelinePeriod
+                  key={`${ytelse.stonadType}-${index}`}
+                  start={fomDate}
+                  end={tomDate}
+                  status={periodeFarge}
+                  icon={mapYtelsestypeTilIkon(ytelse.stonadType)}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setValgtYtelsePeriode({
+                      ytelse,
+                      fraDato: gruppertPeriode.fom,
+                      tilDato: gruppertPeriode.tom,
+                    });
+                    sporHendelse("ytelse modal åpnet", {
+                      stonadType: ytelse.stonadType,
+                    });
+                  }}
+                >
+                  <BodyShort>
+                    {fomFormatert} – {tomFormatert}
+                  </BodyShort>
+                  <BodyShort>Sum: {beløpFormatert}</BodyShort>
+                  {erDagpenger &&
+                    antallMeldekort !== null &&
+                    antallMeldekort > 0 && (
+                      <BodyShort className="flex items-center gap-1 mt-1">
+                        <InformationSquareIcon aria-hidden />
+                        {antallMeldekort} meldekort levert
+                      </BodyShort>
+                    )}
+                </TimelinePeriod>
+              );
+            })}
+          </TimelineRow>
         );
       })}
-    </TimelineRow>
+    </Timeline>
   );
 }
 

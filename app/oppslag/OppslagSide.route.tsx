@@ -60,13 +60,13 @@ export default function OppslagBrukerSide() {
               panelId={PanelId.INNTEKT_OG_YTELSE_OVERLAPP}
               ariaKeyShortcuts={SNARVEIER["alt+3"].ariaKeyShortcuts}
             />
+            <MeldekortOppsummeringPanel
+              arbeidsgiverInformasjonPromise={data.arbeidsgiverInformasjon}
+            />
             <ArbeidsforholdPanel
               promise={data.arbeidsgiverInformasjon}
               panelId={PanelId.ARBEIDSFORHOLD}
               ariaKeyShortcuts={SNARVEIER["alt+4"].ariaKeyShortcuts}
-            />
-            <MeldekortOppsummeringPanel
-              arbeidsgiverInformasjonPromise={data.arbeidsgiverInformasjon}
             />
           </div>
 
