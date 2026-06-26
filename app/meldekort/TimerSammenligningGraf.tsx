@@ -1,7 +1,7 @@
 import type { TimerPerMåned } from "./utils";
 
-const AA_FARGE = "#2B6CB0";       // Nav blå
-const MK_FARGE = "#DD6B20";       // Oransje/amber — matcher Figma
+const AA_FARGE = "#2B6CB0"; // Nav blå
+const MK_FARGE = "#DD6B20"; // Oransje/amber — matcher Figma
 const AVVIK_HIGHLIGHT = "#FEFCBF"; // Gul bakgrunn på avvik-kolonne
 const ANTALL_GRID_LINJER = 5;
 const SLOT_BREDDE = 52;
@@ -38,7 +38,20 @@ function topprundetRektangel(
 function formaterMånedEtikett(måned: string, forrige?: string): string {
   // måned format: "2025-06"
   const [år, mndNum] = måned.split("-");
-  const måneder = ["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des"];
+  const måneder = [
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "mai",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "okt",
+    "nov",
+    "des",
+  ];
   const mndNavn = måneder[parseInt(mndNum) - 1];
   // Vis år kun på første måned i nytt år (eller første i serien)
   if (!forrige || forrige.split("-")[0] !== år) {
@@ -60,7 +73,10 @@ export function TimerSammenligningGraf({ data }: Props) {
   const totalBredde = data.length * SLOT_BREDDE + PADDING.left + PADDING.right;
   const baseY = PADDING.top + grafHøyde;
 
-  const maksTimer = Math.max(...data.flatMap((d) => [d.mkTimer, d.aaTimer]), 20);
+  const maksTimer = Math.max(
+    ...data.flatMap((d) => [d.mkTimer, d.aaTimer]),
+    20,
+  );
   const gridTopp = Math.ceil(maksTimer / 10) * 10;
 
   const yScale = (v: number) =>
@@ -161,7 +177,7 @@ export function TimerSammenligningGraf({ data }: Props) {
                     textAnchor="middle"
                     fontSize="10"
                     fontWeight="600"
-                  fill={MK_FARGE}
+                    fill={MK_FARGE}
                   >
                     ▲ {avvikVerdi}
                   </text>
@@ -169,14 +185,26 @@ export function TimerSammenligningGraf({ data }: Props) {
 
                 {aaHøyde > 0 && (
                   <path
-                    d={topprundetRektangel(aaBarX, baseY - aaHøyde, barWidth, aaHøyde, BAR_RADIUS)}
+                    d={topprundetRektangel(
+                      aaBarX,
+                      baseY - aaHøyde,
+                      barWidth,
+                      aaHøyde,
+                      BAR_RADIUS,
+                    )}
                     fill={AA_FARGE}
                   />
                 )}
 
                 {mkHøyde > 0 && (
                   <path
-                    d={topprundetRektangel(mkBarX, baseY - mkHøyde, barWidth, mkHøyde, BAR_RADIUS)}
+                    d={topprundetRektangel(
+                      mkBarX,
+                      baseY - mkHøyde,
+                      barWidth,
+                      mkHøyde,
+                      BAR_RADIUS,
+                    )}
                     fill={MK_FARGE}
                   />
                 )}

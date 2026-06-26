@@ -32,7 +32,12 @@ export function aggregerTimerPerMåned(
   return genererMåneder(fraDato, tilDato).map((måned) => {
     const mkTimer = beregnMkTimerForMåned(meldekort, måned);
     const aaTimer = beregnAaTimerForMåned(arbeidsgiverInformasjon, måned);
-    return { måned, mkTimer, aaTimer, harAvvik: harTimerAvvik(mkTimer, aaTimer) };
+    return {
+      måned,
+      mkTimer,
+      aaTimer,
+      harAvvik: harTimerAvvik(mkTimer, aaTimer),
+    };
   });
 }
 
@@ -85,7 +90,8 @@ function beregnAaTimerForMåned(
       const fom = new Date(detalj.periode.fom);
       const tom = detalj.periode.tom ? new Date(detalj.periode.tom) : null;
 
-      const erAktivIMåned = fom <= sisteDag && (tom === null || tom >= førsteDag);
+      const erAktivIMåned =
+        fom <= sisteDag && (tom === null || tom >= førsteDag);
       if (erAktivIMåned) {
         totalTimer += detalj.antallTimerPrUke * antallUker;
       }

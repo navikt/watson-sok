@@ -162,7 +162,10 @@ function lagArbeidsgiverInformasjon(
 describe("aggregerTimerPerMåned", () => {
   it("returnerer riktig antall måneder i perioden", () => {
     const meldekort: MeldekortRespons = [];
-    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(37.5, "2025-01-01");
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(
+      37.5,
+      "2025-01-01",
+    );
 
     const resultat = aggregerTimerPerMåned(
       meldekort,
@@ -172,7 +175,11 @@ describe("aggregerTimerPerMåned", () => {
     );
 
     expect(resultat).toHaveLength(3);
-    expect(resultat.map((r) => r.måned)).toEqual(["2025-01", "2025-02", "2025-03"]);
+    expect(resultat.map((r) => r.måned)).toEqual([
+      "2025-01",
+      "2025-02",
+      "2025-03",
+    ]);
   });
 
   it("summerer MK-timer korrekt per måned", () => {
@@ -196,7 +203,10 @@ describe("aggregerTimerPerMåned", () => {
 
   it("beregner AA-timer basert på antallTimerPrUke og dager i måneden", () => {
     const meldekort: MeldekortRespons = [];
-    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(37.5, "2025-01-01");
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(
+      37.5,
+      "2025-01-01",
+    );
 
     const resultat = aggregerTimerPerMåned(
       meldekort,
@@ -211,7 +221,11 @@ describe("aggregerTimerPerMåned", () => {
 
   it("inkluderer ikke AA-timer for ansettelsesforhold utenfor perioden", () => {
     const meldekort: MeldekortRespons = [];
-    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(37.5, "2025-01-01", "2025-01-15");
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(
+      37.5,
+      "2025-01-01",
+      "2025-01-15",
+    );
 
     const resultat = aggregerTimerPerMåned(
       meldekort,
@@ -229,7 +243,10 @@ describe("aggregerTimerPerMåned", () => {
         { dato: "2025-01-06", timer: 10 }, // Meldekort har timer — avvik kan beregnes
       ]),
     ];
-    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(37.5, "2025-01-01");
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(
+      37.5,
+      "2025-01-01",
+    );
 
     const resultat = aggregerTimerPerMåned(
       meldekort,
@@ -247,7 +264,10 @@ describe("aggregerTimerPerMåned", () => {
         { dato: "2025-01-06", timer: 0 },
       ]),
     ];
-    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(37.5, "2025-01-01");
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(
+      37.5,
+      "2025-01-01",
+    );
 
     const resultat = aggregerTimerPerMåned(
       meldekort,

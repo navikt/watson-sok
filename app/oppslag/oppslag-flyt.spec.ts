@@ -38,7 +38,6 @@ test.describe("Oppslag-flyt", () => {
     });
 
     await test.step("Verifisere at oppslag-siden lastes", async () => {
-
       // Sjekk tilgjengelighet på oppslag-siden
       await sjekkTilgjengelighet(page);
     });

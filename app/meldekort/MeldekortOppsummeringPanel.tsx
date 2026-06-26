@@ -6,9 +6,9 @@ import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { MeldekortProvider } from "~/meldekort/MeldekortContext";
+import { useMeldekort } from "~/meldekort/MeldekortContext";
 import { TimerSammenligningGraf } from "~/meldekort/TimerSammenligningGraf";
 import { aggregerTimerPerMåned } from "~/meldekort/utils";
-import { useMeldekort } from "~/meldekort/MeldekortContext";
 import { PanelContainer } from "~/paneler/PanelContainer";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
 
@@ -46,7 +46,11 @@ function MeldekortOppsummeringPanelInnhold({
   arbeidsgiverInformasjon,
 }: InnholdProps) {
   const meldekortState = useMeldekort();
-  const { tidsvindu, fraDato: fraDatoDate, tilDato: tilDatoDate } = useTidsvindu();
+  const {
+    tidsvindu,
+    fraDato: fraDatoDate,
+    tilDato: tilDatoDate,
+  } = useTidsvindu();
 
   const fraDato = fraDatoDate.toISOString().slice(0, 10);
   const tilDato = tilDatoDate.toISOString().slice(0, 10);

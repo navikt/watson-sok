@@ -1,4 +1,8 @@
-import { ChevronLeftIcon, ChevronRightIcon, InformationSquareIcon } from "@navikt/aksel-icons";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  InformationSquareIcon,
+} from "@navikt/aksel-icons";
 import {
   Alert,
   BodyLong,
@@ -7,7 +11,6 @@ import {
   CopyButton,
   Heading,
   Skeleton,
-  Tag,
   Timeline,
   Tooltip,
 } from "@navikt/ds-react";
@@ -180,7 +183,9 @@ const YtelserPanelMedData = ({
 type YtelserTimelineProps = {
   tilbakekrevinger: GruppertTilbakekreving[];
   ytelserMedGruppertePerioder: Array<
-    Ytelse & { gruppertePerioder: ReturnType<typeof grupperSammenhengendePerioder> }
+    Ytelse & {
+      gruppertePerioder: ReturnType<typeof grupperSammenhengendePerioder>;
+    }
   >;
   nåværendeVindu: { start: Date; slutt: Date };
   setValgtYtelsePeriode: (
@@ -304,9 +309,11 @@ function YtelserTimeline({
                   end={tomDate}
                   status={periodeFarge}
                   icon={
-                    erDagpenger && erMeldekortAktivert
-                      ? <InformationSquareIcon aria-label="Meldekort registrert" />
-                      : mapYtelsestypeTilIkon(ytelse.stonadType)
+                    erDagpenger && erMeldekortAktivert ? (
+                      <InformationSquareIcon aria-label="Meldekort registrert" />
+                    ) : (
+                      mapYtelsestypeTilIkon(ytelse.stonadType)
+                    )
                   }
                   onClick={(event) => {
                     event.preventDefault();
