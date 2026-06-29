@@ -89,7 +89,12 @@ export function TimerSammenligningGraf({ data }: Props) {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="overflow-x-auto" tabIndex={0}>
+      <div
+        className="overflow-x-auto"
+        tabIndex={0}
+        role="region"
+        aria-label="Stolpediagram — horisontal scroll"
+      >
         <svg
           viewBox={`0 0 ${totalBredde} ${GRAF_HØYDE}`}
           width={Math.max(totalBredde, 400)}
@@ -198,7 +203,9 @@ export function TimerSammenligningGraf({ data }: Props) {
                           fontSize="10"
                           fontWeight="600"
                         >
-                          {avvikVerdi}
+                          {avvikVerdi > 0
+                            ? `▲ ${avvikVerdi}`
+                            : `▼ ${Math.abs(avvikVerdi)}`}
                         </text>
                       </g>
                     );

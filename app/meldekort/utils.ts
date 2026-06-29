@@ -104,14 +104,11 @@ function beregnAaTimerForMåned(
         fom <= sisteDag && (tom === null || tom >= førsteDag);
       if (!erAktivIMåned) continue;
 
-      // Pro-rater basert på faktiske dager arbeidsforholdet er aktivt i måneden
+      // Pro-rater basert på faktiske dager — effektivFom/Tom er alltid i samme måned
+      // så getDate()-diff er DST-sikker og unngår ms-aritmetikk
       const effektivFom = fom > førsteDag ? fom : førsteDag;
       const effektivTom = tom !== null && tom < sisteDag ? tom : sisteDag;
-      const antallDager =
-        Math.round(
-          (effektivTom.getTime() - effektivFom.getTime()) /
-            (1000 * 60 * 60 * 24),
-        ) + 1;
+      const antallDager = effektivTom.getDate() - effektivFom.getDate() + 1;
       const antallUker = antallDager / 7;
 
       totalTimer += detalj.antallTimerPrUke * antallUker;

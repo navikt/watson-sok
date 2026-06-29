@@ -204,7 +204,7 @@ type YtelserTimelineProps = {
 };
 
 /**
- * Rendres inni MeldekortProvider slik at useMeldekort() er tilgjengelig.
+ * Rendres inni MeldekortProvider når feature-flagget er aktivt, ellers uten provider.
  * Alle TimelineRow-er er direkte barn av Timeline — nødvendig fordi Timeline
  * bruker React.Children og filtrerer på componentType === "row".
  */

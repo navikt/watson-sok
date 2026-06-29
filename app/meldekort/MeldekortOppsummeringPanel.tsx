@@ -6,8 +6,7 @@ import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
-import { MeldekortProvider } from "~/meldekort/MeldekortContext";
-import { useMeldekort } from "~/meldekort/MeldekortContext";
+import { MeldekortProvider, useMeldekort } from "~/meldekort/MeldekortContext";
 import { TimerSammenligningGraf } from "~/meldekort/TimerSammenligningGraf";
 import { aggregerTimerPerMåned } from "~/meldekort/utils";
 import {
