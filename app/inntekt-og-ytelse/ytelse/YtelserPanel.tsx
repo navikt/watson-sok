@@ -94,9 +94,7 @@ const YtelserPanelMedData = ({
     tilDato: string;
   } | null>(null);
   const { tidsvindu } = useTidsvindu();
-  const erMeldekortAktivert = useEnkeltFeatureFlagg(
-    FeatureFlagg.VIS_MELDEKORT_PANEL,
-  );
+  const erMeldekortAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
 
   const ytelserMedGruppertePerioder = useMemo(() => {
     if (!ytelser) return [];
@@ -216,9 +214,7 @@ function YtelserTimeline({
   nåværendeVindu,
   setValgtYtelsePeriode,
 }: YtelserTimelineProps) {
-  const erMeldekortAktivert = useEnkeltFeatureFlagg(
-    FeatureFlagg.VIS_MELDEKORT_PANEL,
-  );
+  const erMeldekortAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
   const meldekortState = useMeldekort();
 
   const antallMeldekort =

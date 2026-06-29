@@ -22,7 +22,7 @@ export function OppsummeringPanel({
 }: OppsummeringPanelProps) {
   const statistikk = beregnYtelseStatistikk(perioder);
   const meldekortState = useMeldekort();
-  const visMeldekort = useEnkeltFeatureFlagg(FeatureFlagg.VIS_MELDEKORT_PANEL);
+  const visMeldekort = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
 
   const meldekortStatistikk = useMemo(() => {
     if (

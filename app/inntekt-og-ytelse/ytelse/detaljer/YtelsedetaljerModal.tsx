@@ -53,7 +53,7 @@ export function YtelsedetaljerModal({
   onClose,
 }: YtelsedetaljerModalProps) {
   const erMeldekortPanelAktivert = useEnkeltFeatureFlagg(
-    FeatureFlagg.VIS_MELDEKORT_PANEL,
+    FeatureFlagg.RELEASE_1_2,
   );
 
   const filtrertePerioder = useMemo(() => {

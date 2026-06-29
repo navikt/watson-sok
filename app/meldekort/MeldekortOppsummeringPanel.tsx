@@ -28,7 +28,7 @@ type Props = {
 export function MeldekortOppsummeringPanel({
   arbeidsgiverInformasjonPromise,
 }: Props) {
-  const erAktivert = useEnkeltFeatureFlagg(FeatureFlagg.VIS_MELDEKORT_PANEL);
+  const erAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
 
   if (!erAktivert) return null;
 
