@@ -1,8 +1,8 @@
 import type { TimerPerMåned } from "./utils";
 
-const AA_FARGE = "var(--ax-blue-600)";
-const MK_FARGE = "var(--ax-orange-600)";
-const AVVIK_HIGHLIGHT = "var(--ax-yellow-200)";
+const AA_FARGE = "var(--ax-brand-blue-800)";
+const MK_FARGE = "var(--ax-warning-500)";
+const AVVIK_HIGHLIGHT = "var(--ax-warning-200)";
 const ANTALL_GRID_LINJER = 5;
 const SLOT_BREDDE = 52;
 const BAR_MELLOMROM = 4;
