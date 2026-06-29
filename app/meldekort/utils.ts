@@ -41,10 +41,17 @@ export function aggregerTimerPerMåned(
   });
 }
 
-/** Parser en "YYYY-MM-DD"-streng som lokal dato, unngår UTC-forskyvning. */
+/** Parser en "YYYY-MM-DD"- eller "YYYY-MM"-streng som lokal dato, unngår UTC-forskyvning. */
 function parseDatoLokal(datoStreng: string): Date {
-  const [år, mnd, dag] = datoStreng.split("-").map(Number);
+  const deler = datoStreng.split("-").map(Number);
+  const [år, mnd, dag = 1] = deler;
   return new Date(år, mnd - 1, dag);
+}
+
+/** Parser "YYYY-MM" som siste dag i måneden (brukes for tom-dato). */
+function parseMånedSlutt(datoStreng: string): Date {
+  const [år, mnd] = datoStreng.split("-").map(Number);
+  return new Date(år, mnd, 0); // dag 0 = siste dag i forrige måned
 }
 
 function genererMåneder(fraDato: string, tilDato: string): string[] {
@@ -90,7 +97,7 @@ function beregnAaTimerForMåned(
 
       const fom = parseDatoLokal(detalj.periode.fom);
       const tom = detalj.periode.tom
-        ? parseDatoLokal(detalj.periode.tom)
+        ? parseMånedSlutt(detalj.periode.tom)
         : null;
 
       const erAktivIMåned =
