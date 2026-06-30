@@ -7,7 +7,6 @@ import { InntektOgYtelseOverlappPanel } from "~/inntekt-og-ytelse/inntekt-og-yte
 import { InntektPanel } from "~/inntekt-og-ytelse/inntekt/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/inntekt-og-ytelse/inntekt/InntektsoppsummeringPanel";
 import { YtelserPanel } from "~/inntekt-og-ytelse/ytelse/YtelserPanel";
-import { MeldekortOppsummeringPanel } from "~/meldekort/MeldekortOppsummeringPanel";
 import { OverskriftPanel } from "~/person/OverskriftPanel";
 import { PersonopplysningerPanel } from "~/person/PersonopplysningerPanel";
 import { PanelId, SNARVEIER } from "~/snarveier/snarveier";
@@ -49,6 +48,7 @@ export default function OppslagBrukerSide() {
             ariaKeyShortcuts={SNARVEIER["alt+1"].ariaKeyShortcuts}
           />
           <YtelserPanel
+            arbeidsgiverInformasjonPromise={data.arbeidsgiverInformasjon}
             promise={data.ytelser}
             panelId={PanelId.YTELSER}
             ariaKeyShortcuts={SNARVEIER["alt+2"].ariaKeyShortcuts}
@@ -59,9 +59,6 @@ export default function OppslagBrukerSide() {
               ytelserPromise={data.ytelser}
               panelId={PanelId.INNTEKT_OG_YTELSE_OVERLAPP}
               ariaKeyShortcuts={SNARVEIER["alt+3"].ariaKeyShortcuts}
-            />
-            <MeldekortOppsummeringPanel
-              arbeidsgiverInformasjonPromise={data.arbeidsgiverInformasjon}
             />
             <ArbeidsforholdPanel
               promise={data.arbeidsgiverInformasjon}
