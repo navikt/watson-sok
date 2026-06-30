@@ -237,7 +237,7 @@ describe("aggregerTimerPerMåned", () => {
     expect(resultat[0].aaTimer).toBe(0);
   });
 
-  it("markerer avvik når MK-timer avviker mer enn 20 % fra AA-timer", () => {
+  it("markerer avvik når MK-timer avviker mer enn 5 % fra AA-timer", () => {
     const meldekort: MeldekortRespons = [
       lagMeldekort("2025-01-01", "2025-01-14", [
         { dato: "2025-01-06", timer: 10 }, // Meldekort har timer — avvik kan beregnes
