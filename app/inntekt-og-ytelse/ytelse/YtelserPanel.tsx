@@ -53,12 +53,14 @@ function harMeldekortYtelse(stonadType: string): boolean {
 }
 
 type YtelserOversiktProps = {
+  arbeidsgiverInformasjonPromise?: Promise<import("~/arbeidsforhold/domene").ArbeidsgiverInformasjon | null>;
   promise: Promise<Ytelse[] | null>;
   panelId?: string;
   ariaKeyShortcuts?: string;
 };
 
 export function YtelserPanel({
+  arbeidsgiverInformasjonPromise,
   promise,
   panelId,
   ariaKeyShortcuts,
@@ -66,6 +68,7 @@ export function YtelserPanel({
   return (
     <ResolvingComponent loadingFallback={<YtelserPanelSkeleton />}>
       <YtelserPanelMedData
+        arbeidsgiverInformasjonPromise={arbeidsgiverInformasjonPromise}
         promise={promise}
         panelId={panelId}
         ariaKeyShortcuts={ariaKeyShortcuts}
@@ -75,11 +78,13 @@ export function YtelserPanel({
 }
 
 type YtelserPanelMedDataProps = {
+  arbeidsgiverInformasjonPromise?: Promise<import("~/arbeidsforhold/domene").ArbeidsgiverInformasjon | null>;
   promise: Promise<Ytelse[] | null>;
   panelId?: string;
   ariaKeyShortcuts?: string;
 };
 const YtelserPanelMedData = ({
+  arbeidsgiverInformasjonPromise,
   promise,
   panelId,
   ariaKeyShortcuts,
@@ -178,6 +183,7 @@ const YtelserPanelMedData = ({
             )}
           </div>
           <YtelsedetaljerModal
+            arbeidsgiverInformasjonPromise={arbeidsgiverInformasjonPromise}
             ytelse={valgtYtelsePeriode?.ytelse ?? null}
             fraDato={valgtYtelsePeriode?.fraDato ?? ""}
             tilDato={valgtYtelsePeriode?.tilDato ?? ""}
