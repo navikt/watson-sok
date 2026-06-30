@@ -26,22 +26,18 @@ test.describe("Oppslag-flyt", () => {
 
     await test.step("Fylle ut søkeskjema med testbruker", async () => {
       const mainContent = page.locator("#maincontent");
-      // Finn søkefeltet
       const søkefelt = mainContent.getByLabel(/Fødsels- eller D-nummer/i);
       await expect(søkefelt).toBeVisible();
-
-      // Fyll inn fødselsnummer
       await søkefelt.fill(testFnr);
 
-      // Trykk på søkeknappen
       const søkeknapp = mainContent.getByRole("button", { name: /søk/i });
-      await søkeknapp.click();
+      await Promise.all([
+        page.waitForURL(/\/oppslag/, { timeout: 15000 }),
+        søkeknapp.click(),
+      ]);
     });
 
     await test.step("Verifisere at oppslag-siden lastes", async () => {
-      // Vent til URL endres til /oppslag
-      await expect(page).toHaveURL(/\/oppslag/);
-
       // Sjekk tilgjengelighet på oppslag-siden
       await sjekkTilgjengelighet(page);
     });
@@ -175,12 +171,15 @@ test.describe("Oppslag-flyt", () => {
     await page.clock.setFixedTime(new Date("2025-07-01T12:00:00Z"));
 
     await page.goto("/");
+    await page.waitForLoadState("networkidle");
     const mainContent = page.locator("#maincontent");
     const søkefelt = mainContent.getByLabel(/Fødsels- eller D-nummer/i);
+    await søkefelt.waitFor({ state: "visible" });
     await søkefelt.fill("98765432101");
-    await mainContent.getByRole("button", { name: /søk/i }).click();
-
-    await expect(page).toHaveURL(/\/oppslag/);
+    await Promise.all([
+      page.waitForURL(/\/oppslag/, { timeout: 15000 }),
+      mainContent.getByRole("button", { name: /søk/i }).click(),
+    ]);
 
     const ytelserOverskrift = page.getByRole("heading", {
       name: /Ytelser fra Nav/i,
