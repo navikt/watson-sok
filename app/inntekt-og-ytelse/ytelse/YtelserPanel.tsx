@@ -53,7 +53,9 @@ function harMeldekortYtelse(stonadType: string): boolean {
 }
 
 type YtelserOversiktProps = {
-  arbeidsgiverInformasjonPromise?: Promise<import("~/arbeidsforhold/domene").ArbeidsgiverInformasjon | null>;
+  arbeidsgiverInformasjonPromise?: Promise<
+    import("~/arbeidsforhold/domene").ArbeidsgiverInformasjon | null
+  >;
   promise: Promise<Ytelse[] | null>;
   panelId?: string;
   ariaKeyShortcuts?: string;
@@ -78,7 +80,9 @@ export function YtelserPanel({
 }
 
 type YtelserPanelMedDataProps = {
-  arbeidsgiverInformasjonPromise?: Promise<import("~/arbeidsforhold/domene").ArbeidsgiverInformasjon | null>;
+  arbeidsgiverInformasjonPromise?: Promise<
+    import("~/arbeidsforhold/domene").ArbeidsgiverInformasjon | null
+  >;
   promise: Promise<Ytelse[] | null>;
   panelId?: string;
   ariaKeyShortcuts?: string;

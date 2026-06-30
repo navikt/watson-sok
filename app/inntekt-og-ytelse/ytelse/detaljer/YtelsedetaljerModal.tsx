@@ -25,7 +25,9 @@ function harMeldekort(
 }
 
 type YtelsedetaljerModalProps = {
-  arbeidsgiverInformasjonPromise?: Promise<import("~/arbeidsforhold/domene").ArbeidsgiverInformasjon | null>;
+  arbeidsgiverInformasjonPromise?: Promise<
+    import("~/arbeidsforhold/domene").ArbeidsgiverInformasjon | null
+  >;
   ytelse: Ytelse | null;
   fraDato: string;
   tilDato: string;
@@ -157,7 +159,9 @@ export function YtelsedetaljerModal({
               <MeldekortPanel fraDato={fraDato} tilDato={tilDato} />
               {arbeidsgiverInformasjonPromise && (
                 <MeldekortOppsummeringPanel
-                  arbeidsgiverInformasjonPromise={arbeidsgiverInformasjonPromise}
+                  arbeidsgiverInformasjonPromise={
+                    arbeidsgiverInformasjonPromise
+                  }
                 />
               )}
             </Tabs.Panel>
