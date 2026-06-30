@@ -38,21 +38,10 @@ function topprundetRektangel(
 function formaterMånedEtikett(måned: string, forrige?: string): string {
   // måned format: "2025-06"
   const [år, mndNum] = måned.split("-");
-  const måneder = [
-    "jan",
-    "feb",
-    "mar",
-    "apr",
-    "mai",
-    "jun",
-    "jul",
-    "aug",
-    "sep",
-    "okt",
-    "nov",
-    "des",
-  ];
-  const mndNavn = måneder[parseInt(mndNum) - 1];
+  const dato = new Date(parseInt(år), parseInt(mndNum) - 1, 1);
+  const mndNavn = new Intl.DateTimeFormat("nb-NO", { month: "short" }).format(
+    dato,
+  );
   // Vis år kun på første måned i nytt år (eller første i serien)
   if (!forrige || forrige.split("-")[0] !== år) {
     return `${mndNavn} ${år.slice(2)}`;
@@ -69,7 +58,7 @@ export function TimerSammenligningGraf({ data }: Props) {
   if (data.length === 0) return null;
 
   const grafHøyde = GRAF_HØYDE - PADDING.top - PADDING.bottom;
-  const barWidth = (SLOT_BREDDE - BAR_MELLOMROM * 3) / 2;
+  const barBredde = (SLOT_BREDDE - BAR_MELLOMROM * 3) / 2;
   const totalBredde = data.length * SLOT_BREDDE + PADDING.left + PADDING.right;
   const baseY = PADDING.top + grafHøyde;
 
@@ -162,7 +151,7 @@ export function TimerSammenligningGraf({ data }: Props) {
           {data.map((d, i) => {
             const slotX = PADDING.left + i * SLOT_BREDDE;
             const aaBarX = slotX + BAR_MELLOMROM;
-            const mkBarX = aaBarX + barWidth + BAR_MELLOMROM;
+            const mkBarX = aaBarX + barBredde + BAR_MELLOMROM;
             const aaHøyde = Math.max(0, (d.aaTimer / gridTopp) * grafHøyde);
             const mkHøyde = Math.max(0, (d.mkTimer / gridTopp) * grafHøyde);
             const labelX = slotX + SLOT_BREDDE / 2;
@@ -216,7 +205,7 @@ export function TimerSammenligningGraf({ data }: Props) {
                     d={topprundetRektangel(
                       aaBarX,
                       baseY - aaHøyde,
-                      barWidth,
+                      barBredde,
                       aaHøyde,
                       BAR_RADIUS,
                     )}
@@ -229,7 +218,7 @@ export function TimerSammenligningGraf({ data }: Props) {
                     d={topprundetRektangel(
                       mkBarX,
                       baseY - mkHøyde,
-                      barWidth,
+                      barBredde,
                       mkHøyde,
                       BAR_RADIUS,
                     )}
