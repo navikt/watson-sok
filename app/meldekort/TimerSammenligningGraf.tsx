@@ -4,11 +4,11 @@ const AA_FARGE = "var(--ax-brand-blue-800)";
 const MK_FARGE = "var(--ax-warning-500)";
 const AVVIK_HIGHLIGHT = "var(--ax-warning-200)";
 const ANTALL_GRID_LINJER = 5;
-const SLOT_BREDDE = 52;
+const SLOT_BREDDE = 64;
 const BAR_MELLOMROM = 4;
 const BAR_RADIUS = 2;
-const PADDING = { top: 40, right: 16, bottom: 52, left: 48 };
-const GRAF_HØYDE = 280;
+const PADDING = { top: 44, right: 16, bottom: 56, left: 52 };
+const GRAF_HØYDE = 320;
 
 type Props = {
   data: TimerPerMåned[];
@@ -127,7 +127,7 @@ export function TimerSammenligningGraf({ data }: Props) {
                   x={PADDING.left - 6}
                   y={grid.y + 4}
                   textAnchor="end"
-                  fontSize="11"
+                  fontSize="13"
                   fill="var(--ax-text-subtle)"
                 >
                   {grid.verdi}t
@@ -189,12 +189,10 @@ export function TimerSammenligningGraf({ data }: Props) {
                         <text
                           x={ikonX + ikonStørrelse + 3}
                           y={markerY + ikonStørrelse - 2}
-                          fontSize="10"
+                          fontSize="12"
                           fontWeight="600"
                         >
-                          {avvikVerdi > 0
-                            ? `▲ ${avvikVerdi}`
-                            : `▼ ${Math.abs(avvikVerdi)}`}
+                          {Math.abs(avvikVerdi)}t
                         </text>
                       </g>
                     );
@@ -229,9 +227,9 @@ export function TimerSammenligningGraf({ data }: Props) {
                 {/* X-akse etikett */}
                 <text
                   x={labelX}
-                  y={baseY + 16}
+                  y={baseY + 18}
                   textAnchor="middle"
-                  fontSize="10"
+                  fontSize="12"
                   fill="var(--ax-text-subtle)"
                 >
                   {etikett}
