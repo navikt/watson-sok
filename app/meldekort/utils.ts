@@ -16,8 +16,8 @@ export type TimerPerMåned = {
   harAvvik: boolean;
 };
 
-// 20 % avvik er valgt som en rimelig standard. Bør avklares med fagansvarlig.
-const AVVIKSTERSKEL_PROSENT = 20;
+// 5 % avvik er avklart med fagansvarlig som rimelig terskel (ref. SEARCH-28).
+const AVVIKSTERSKEL_PROSENT = 5;
 
 /**
  * Sammenstiller meldekort-timer og AA-register-timer per kalendermåned.
