@@ -6,6 +6,7 @@ import { sporHendelse } from "~/analytics/analytics";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { MeldekortProvider } from "~/meldekort/MeldekortContext";
+import { MeldekortOppsummeringPanel } from "~/meldekort/MeldekortOppsummeringPanel";
 import { MeldekortPanel } from "~/meldekort/MeldekortPanel";
 import { formaterDato } from "~/utils/date-utils";
 
@@ -24,6 +25,7 @@ function harMeldekort(
 }
 
 type YtelsedetaljerModalProps = {
+  arbeidsgiverInformasjonPromise?: Promise<import("~/arbeidsforhold/domene").ArbeidsgiverInformasjon | null>;
   ytelse: Ytelse | null;
   fraDato: string;
   tilDato: string;
@@ -46,6 +48,7 @@ type YtelsedetaljerModalProps = {
  * ```
  */
 export function YtelsedetaljerModal({
+  arbeidsgiverInformasjonPromise,
   ytelse,
   fraDato,
   tilDato,
@@ -150,8 +153,13 @@ export function YtelsedetaljerModal({
             />
           </Tabs.Panel>
           {visMeldekortTab && (
-            <Tabs.Panel value="meldekort" className="pt-4">
+            <Tabs.Panel value="meldekort" className="pt-4 flex flex-col gap-6">
               <MeldekortPanel fraDato={fraDato} tilDato={tilDato} />
+              {arbeidsgiverInformasjonPromise && (
+                <MeldekortOppsummeringPanel
+                  arbeidsgiverInformasjonPromise={arbeidsgiverInformasjonPromise}
+                />
+              )}
             </Tabs.Panel>
           )}
         </Tabs>
