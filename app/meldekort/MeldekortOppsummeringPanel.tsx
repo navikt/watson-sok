@@ -64,13 +64,13 @@ function MeldekortOppsummeringPanelMedData({
   );
 }
 
-type InnholdProps = {
+type MeldekortOppsummeringPanelInnholdProps = {
   arbeidsgiverInformasjon: ArbeidsgiverInformasjon | null;
 };
 
 function MeldekortOppsummeringPanelInnhold({
   arbeidsgiverInformasjon,
-}: InnholdProps) {
+}: MeldekortOppsummeringPanelInnholdProps) {
   const meldekortState = useMeldekort();
   const {
     tidsvindu,
