@@ -38,6 +38,10 @@
         "arbeidsgiver": "ACME AS",
         "organisasjonsnummer": "999000001",
         "adresse": "Oslo",
+        "ansettelsesperiode": {
+          "fom": "2020-01-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -75,6 +79,10 @@
         "arbeidsgiver": "TECH CORP",
         "organisasjonsnummer": "999000002",
         "adresse": "Bergen",
+        "ansettelsesperiode": {
+          "fom": "2021-01-01",
+          "tom": "2023-06-30"
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -122,6 +130,10 @@
         "arbeidsgiver": "DESIGN STUDIO",
         "organisasjonsnummer": "999000003",
         "adresse": "Trondheim",
+        "ansettelsesperiode": {
+          "fom": "2019-01-01",
+          "tom": "2021-03-31"
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -159,6 +171,10 @@
         "arbeidsgiver": "STARTUP INC",
         "organisasjonsnummer": "999000004",
         "adresse": "Stavanger",
+        "ansettelsesperiode": {
+          "fom": "2018-01-01",
+          "tom": "2018-12-31"
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -186,6 +202,10 @@
         "arbeidsgiver": "FREELANCE AS",
         "organisasjonsnummer": "999000005",
         "adresse": "Oslo",
+        "ansettelsesperiode": {
+          "fom": "2023-01-01",
+          "tom": "2024-12-31"
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Frilanser",

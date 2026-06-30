@@ -39,6 +39,19 @@ import { formaterOrgnummer, storFørsteBokstav } from "~/utils/string-utils";
 
 import type { ArbeidsgiverInformasjon } from "./domene";
 
+type ArbeidsforholdRad = {
+  key: string;
+  id?: string;
+  arbeidsgiver: string;
+  organisasjonsnummer: string;
+  start: string;
+  slutt: string | null;
+  stillingsprosent: number | null;
+  arbeidsforholdType: string | null;
+  yrke: string | null;
+  løpende: boolean;
+};
+
 type ArbeidsforholdPanelProps = {
   promise: Promise<ArbeidsgiverInformasjon | null>;
   panelId?: string;
@@ -72,6 +85,10 @@ const ArbeidsforholdPanelMedData = ({
   ariaKeyShortcuts,
 }: ArbeidsforholdPanelMedDataProps) => {
   const arbeidsgiverInformasjon = use(promise);
+  const sammenslåtteArbeidsforhold = useMemo(
+    () => lagArbeidsforholdRader(arbeidsgiverInformasjon),
+    [arbeidsgiverInformasjon],
+  );
 
   const {
     tabellContainerRef,
@@ -83,39 +100,6 @@ const ArbeidsforholdPanelMedData = ({
     containerClassName,
     handleToggle,
   } = useArbeidsforholdOverflow();
-
-  const løpende = arbeidsgiverInformasjon?.løpendeArbeidsforhold ?? [];
-  const historikk = arbeidsgiverInformasjon?.historikk ?? [];
-
-  // Flater ut alle (arbeidsgiver x ansettelsesDetalj) til rad-objekter
-  const arbeidsforhold = [...løpende, ...historikk].flatMap((ag) =>
-    (ag.ansettelsesDetaljer ?? []).map((detalj, idx) => ({
-      key: `${ag.id ?? ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}`,
-      id: ag.id,
-      arbeidsgiver: ag.arbeidsgiver,
-      organisasjonsnummer: ag.organisasjonsnummer,
-      start: detalj.periode.fom,
-      slutt: detalj.periode.tom,
-      stillingsprosent: detalj.stillingsprosent ?? null,
-      arbeidsforholdType: detalj.type ?? null,
-      yrke: detalj.yrke,
-      løpende: !detalj.periode.tom,
-    })),
-  );
-
-  const sammenslåtteArbeidsforhold = useMemo(
-    () => slåSammenTilstøtendePerioder(arbeidsforhold),
-    [arbeidsforhold],
-  );
-
-  // Sortér løpende arbeidsforhold først, deretter etter nyeste start
-  sammenslåtteArbeidsforhold.sort((a, b) => {
-    // Løpende arbeidsforhold først
-    if (a.løpende && !b.løpende) return -1;
-    if (!a.løpende && b.løpende) return 1;
-    // Deretter sortér etter nyeste start
-    return a.start > b.start ? -1 : a.start < b.start ? 1 : 0;
-  });
 
   return (
     <PanelContainer
@@ -205,7 +189,7 @@ const ArbeidsforholdPanelMedData = ({
                       className="whitespace-nowrap"
                       textSize="small"
                     >
-                      {r.slutt ? formaterÅrMåned(r.slutt) : "–"}
+                      {formaterÅrMåned(r.slutt)}
                     </TableDataCell>
                     <TableDataCell align="right" textSize="small">
                       {formaterProsent(r.stillingsprosent ?? "-")}
@@ -285,16 +269,16 @@ const ArbeidsforholdPanelMedData = ({
 };
 
 const ArbeidsforholdPanelSkeleton = () => {
-  const kolonner = Array.from({ length: 8 }, (_, index) => index);
-  const rader = Array.from({ length: 5 }, (_, index) => index);
+  const kolonner = Array.from({ length: 8 }, (_, index) => `kolonne-${index}`);
+  const rader = Array.from({ length: 5 }, (_, index) => `rad-${index}`);
   return (
     <PanelContainerSkeleton title="Arbeidsforhold">
       <Table size="medium" stickyHeader={true}>
         <TableHeader>
           <TableRow>
-            {kolonner.map((_, idx) => (
+            {kolonner.map((kolonne) => (
               <TableHeaderCell
-                key={idx}
+                key={kolonne}
                 textSize="small"
                 scope="col"
                 aria-hidden={true}
@@ -305,10 +289,14 @@ const ArbeidsforholdPanelSkeleton = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {rader.map((_, idx) => (
-            <TableRow key={idx}>
-              {kolonner.map((_, idx) => (
-                <TableDataCell key={idx} textSize="small" aria-hidden={true}>
+          {rader.map((rad) => (
+            <TableRow key={rad}>
+              {kolonner.map((kolonne) => (
+                <TableDataCell
+                  key={`${rad}-${kolonne}`}
+                  textSize="small"
+                  aria-hidden={true}
+                >
                   <Skeleton variant="text" width="100%" />
                 </TableDataCell>
               ))}
@@ -426,54 +414,86 @@ function mapYrke(yrke: string) {
   }
 }
 
-// Sjekker om to perioder er sammenhengende (32 dager eller mindre mellom dem)
+function parseÅrMåned(periode: string) {
+  const match = periode.match(/^(\d{4})-(\d{2})$/);
+
+  if (!match) {
+    return null;
+  }
+
+  return {
+    år: Number(match[1]),
+    måned: Number(match[2]),
+  };
+}
+
+function nesteÅrMåned(periode: string) {
+  const parsed = parseÅrMåned(periode);
+
+  if (!parsed) {
+    return null;
+  }
+
+  const { år, måned } = parsed;
+  const nesteMåned = måned === 12 ? 1 : måned + 1;
+  const nesteÅr = måned === 12 ? år + 1 : år;
+
+  return `${nesteÅr}-${String(nesteMåned).padStart(2, "0")}`;
+}
+
 function erPerioderSammenhengende(
   sluttDato: string | null,
   startDato: string,
 ): boolean {
-  if (!sluttDato) return false; // Hvis første periode er pågående, er de ikke sammenhengende
+  if (!sluttDato) {
+    return false;
+  }
 
-  // Parse datoer (format: YYYY-MM) og regn ut forskjellen i dager
-  const slutt = new Date(`${sluttDato}-01`);
-  const start = new Date(`${startDato}-01`);
+  return nesteÅrMåned(sluttDato) === startDato;
+}
 
-  const diffMs = start.getTime() - slutt.getTime();
-  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+export function lagArbeidsforholdRader(
+  arbeidsgiverInformasjon: ArbeidsgiverInformasjon | null | undefined,
+) {
+  const løpende = arbeidsgiverInformasjon?.løpendeArbeidsforhold ?? [];
+  const historikk = arbeidsgiverInformasjon?.historikk ?? [];
 
-  return diffDays > 0 && diffDays <= 32;
+  const arbeidsforhold = [
+    ...lagRaderFraArbeidsforhold(løpende, true),
+    ...lagRaderFraArbeidsforhold(historikk, false),
+  ];
+
+  return slåSammenTilstøtendePerioder(arbeidsforhold).sort((a, b) => {
+    if (a.løpende && !b.løpende) return -1;
+    if (!a.løpende && b.løpende) return 1;
+    return a.start > b.start ? -1 : a.start < b.start ? 1 : 0;
+  });
+}
+
+function lagRaderFraArbeidsforhold(
+  arbeidsforhold: ArbeidsgiverInformasjon["løpendeArbeidsforhold"],
+  løpende: boolean,
+): ArbeidsforholdRad[] {
+  return arbeidsforhold.flatMap((ag) =>
+    (ag.ansettelsesDetaljer ?? []).map((detalj, idx) => ({
+      key: `${ag.id ?? ag.organisasjonsnummer ?? ag.arbeidsgiver}-${detalj.periode.fom}-${detalj.periode.tom ?? "pågår"}-${idx}`,
+      id: ag.id,
+      arbeidsgiver: ag.arbeidsgiver,
+      organisasjonsnummer: ag.organisasjonsnummer,
+      start: detalj.periode.fom,
+      slutt: detalj.periode.tom,
+      stillingsprosent: detalj.stillingsprosent ?? null,
+      arbeidsforholdType: detalj.type ?? null,
+      yrke: detalj.yrke,
+      løpende,
+    })),
+  );
 }
 
 // Slår sammen sammenhengende arbeidsforhold for samme arbeidsgiver
-function slåSammenTilstøtendePerioder(
-  rader: Array<{
-    key: string;
-    id?: string;
-    arbeidsgiver: string;
-    organisasjonsnummer: string;
-    start: string;
-    slutt: string | null;
-    stillingsprosent: number | null;
-    arbeidsforholdType: string | null;
-    yrke: string | null;
-    løpende: boolean;
-  }>,
-) {
+function slåSammenTilstøtendePerioder(rader: ArbeidsforholdRad[]) {
   // Gruppér etter arbeidsgiver (bruker id eller organisasjonsnummer om id ikke finnes)
-  const gruppert = new Map<
-    string,
-    Array<{
-      key: string;
-      id?: string;
-      arbeidsgiver: string;
-      organisasjonsnummer: string;
-      start: string;
-      slutt: string | null;
-      stillingsprosent: number | null;
-      arbeidsforholdType: string | null;
-      yrke: string | null;
-      løpende: boolean;
-    }>
-  >();
+  const gruppert = new Map<string, ArbeidsforholdRad[]>();
 
   for (const rad of rader) {
     const nøkkel = rad.id ?? rad.organisasjonsnummer ?? rad.arbeidsgiver;
@@ -503,6 +523,7 @@ function slåSammenTilstøtendePerioder(
         nesteRad.start,
       );
       const harSammeDetaljer =
+        tmpSammenslått.løpende === nesteRad.løpende &&
         tmpSammenslått.stillingsprosent === nesteRad.stillingsprosent &&
         tmpSammenslått.arbeidsforholdType === nesteRad.arbeidsforholdType &&
         tmpSammenslått.yrke === nesteRad.yrke;

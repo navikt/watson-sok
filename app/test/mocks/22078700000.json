@@ -59,6 +59,10 @@
         "arbeidsgiver": "BORETTSLAGET AS",
         "organisasjonsnummer": "911922933",
         "adresse": "c/o Enqvist Boligforvaltning AS, 0569",
+        "ansettelsesperiode": {
+          "fom": "2020-08-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Frilanser",
@@ -76,6 +80,10 @@
         "arbeidsgiver": "PREMIUM KONSULENTER AS",
         "organisasjonsnummer": "919293918",
         "adresse": "Shedden , 0150",
+        "ansettelsesperiode": {
+          "fom": "2015-01-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -273,6 +281,10 @@
         "arbeidsgiver": "RABATTO AS",
         "organisasjonsnummer": "987654321",
         "adresse": "Bryggekaia 1, 4014",
+        "ansettelsesperiode": {
+          "fom": "2025-08-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -292,6 +304,10 @@
         "arbeidsgiver": "ARBEIDS- OG VELFERDSDIREKTORATET AVD FYRSTIKKALLÉEN",
         "organisasjonsnummer": "912998827",
         "adresse": "Fyrstikkalléen 1, 0661",
+        "ansettelsesperiode": {
+          "fom": "2024-05-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Frilanser",
@@ -309,6 +325,10 @@
         "arbeidsgiver": "RABATTO AS",
         "organisasjonsnummer": "987654321",
         "adresse": "Bryggekaia 1, 4014",
+        "ansettelsesperiode": {
+          "fom": "2023-03-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",

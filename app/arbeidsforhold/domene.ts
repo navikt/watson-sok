@@ -1,15 +1,33 @@
 import { z } from "zod";
 
+const isoDatoSchema = z
+  .string()
+  .regex(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/)
+  .refine((value) => {
+    const dato = new Date(`${value}T00:00:00.000Z`);
+
+    return (
+      !Number.isNaN(dato.getTime()) && dato.toISOString().slice(0, 10) === value
+    );
+  });
+
+const isoMånedSchema = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/);
+
 const ÅpenPeriodeSchema = z.object({
-  fom: z.string(),
-  tom: z.string().nullable(),
+  fom: isoDatoSchema,
+  tom: isoDatoSchema.nullable(),
+});
+
+const ÅpenMånedsPeriodeSchema = z.object({
+  fom: isoMånedSchema,
+  tom: isoMånedSchema.nullable(),
 });
 
 const AnsettelsesDetaljSchema = z.object({
   type: z.string(),
   stillingsprosent: z.number().nullable(),
   antallTimerPrUke: z.number().nullable(),
-  periode: ÅpenPeriodeSchema,
+  periode: ÅpenMånedsPeriodeSchema,
   yrke: z.string().nullable(),
 });
 
@@ -17,6 +35,7 @@ const ArbeidsforholdSchema = z.object({
   id: z.string().optional(),
   arbeidsgiver: z.string(),
   organisasjonsnummer: z.string(),
+  ansettelsesperiode: ÅpenPeriodeSchema,
   ansettelsesDetaljer: z.array(AnsettelsesDetaljSchema),
 });
 

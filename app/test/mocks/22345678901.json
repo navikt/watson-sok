@@ -59,6 +59,10 @@
         "arbeidsgiver": "KULT STED",
         "organisasjonsnummer": "11111111111",
         "adresse": "ETT STED",
+        "ansettelsesperiode": {
+          "fom": "2015-01-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -118,6 +122,10 @@
         "arbeidsgiver": "KULT STED 2",
         "organisasjonsnummer": "222222222",
         "adresse": "LITEN VEI",
+        "ansettelsesperiode": {
+          "fom": "2017-01-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -165,6 +173,10 @@
         "arbeidsgiver": "KULT STED 2",
         "organisasjonsnummer": "222222222",
         "adresse": "LITEN VEI",
+        "ansettelsesperiode": {
+          "fom": "2022-01-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",

@@ -26,6 +26,10 @@ describe("formaterDato", () => {
     expect(formaterDato("2023-01-15")).toBe("15. jan. 2023");
     expect(formaterDato("2023-12-31")).toBe("31. des. 2023");
   });
+
+  it("returnerer input for ugyldig dato", () => {
+    expect(formaterDato("2024-13-01")).toBe("2024-13-01");
+  });
 });
 
 describe("formaterTilIsoDato", () => {

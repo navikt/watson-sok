@@ -48,6 +48,10 @@
         "arbeidsgiver": "221B Etterforskning AS",
         "organisasjonsnummer": "926122199",
         "adresse": "Pilestredet 56, 0167 OSLO",
+        "ansettelsesperiode": {
+          "fom": "2018-08-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -75,6 +79,10 @@
         "arbeidsgiver": "Scotland Yard Konsulenttjenester",
         "organisasjonsnummer": "912188700",
         "adresse": "New Scotland Yard, Victoria Embankment, London",
+        "ansettelsesperiode": {
+          "fom": "2021-05-01",
+          "tom": null
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Konsulent",
@@ -94,6 +102,10 @@
         "arbeidsgiver": "MI5 Analytikerteam",
         "organisasjonsnummer": "910154321",
         "adresse": "Thames House, Millbank, London",
+        "ansettelsesperiode": {
+          "fom": "2015-01-01",
+          "tom": "2017-12-31"
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
@@ -111,6 +123,10 @@
         "arbeidsgiver": "Deerstalker Research",
         "organisasjonsnummer": "913775221",
         "adresse": "Karl Johans gate 22, 0159 OSLO",
+        "ansettelsesperiode": {
+          "fom": "2011-04-01",
+          "tom": "2014-12-31"
+        },
         "ansettelsesDetaljer": [
           {
             "type": "Ordinaer",
