@@ -173,7 +173,7 @@ export function TimerSammenligningGraf({ data }: Props) {
                       Math.min(baseY - aaHøyde, baseY - mkHøyde) -
                       ikonStørrelse -
                       6;
-                    const ikonX = labelX - ikonStørrelse - 2;
+                    const ikonX = aaBarX;
                     return (
                       <g fill={MK_FARGE}>
                         {/* ExclamationmarkTriangleFillIcon — Aksel SVG path (24x24 viewBox) */}
@@ -189,7 +189,7 @@ export function TimerSammenligningGraf({ data }: Props) {
                         <text
                           x={ikonX + ikonStørrelse + 3}
                           y={markerY + ikonStørrelse - 2}
-                          fontSize="12"
+                          fontSize="14"
                           fontWeight="600"
                         >
                           {Math.abs(avvikVerdi)}t
