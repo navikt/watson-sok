@@ -14,7 +14,7 @@ export const RouteConfig = {
 
   API: {
     MELDEKORT: "/api/meldekort",
-    FRA_WATSON_SAK: "/api/søk-fra-watson-sak",
+    FRA_WATSON_SAK: "/api/eksternt-søk",
 
     HEALTH: "/api/health",
     LOGGED_IN_USER: "/api/logged-in-user",
