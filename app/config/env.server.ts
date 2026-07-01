@@ -14,6 +14,10 @@ const envSchema = z.object({
   UMAMI_SITE_ID: z.string().describe("The ID of the Umami instance"),
   IDENT_SESSION_SECRET: z.string().describe("The secret for the ident session"),
   MODIA_URL: z.string().describe("The URL of the Modia instance"),
+  WATSON_SAK_URL: z
+    .string()
+    .optional()
+    .describe("Base-URL for Watson Sak. Brukes til Origin-validering på /api/søk-fra-watson-sak."),
   DEVELOPMENT_OAUTH_TOKEN: z
     .string()
     .optional()

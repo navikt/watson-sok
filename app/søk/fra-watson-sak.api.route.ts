@@ -1,5 +1,6 @@
 import { redirectDocument, type ActionFunctionArgs } from "react-router";
 
+import { env } from "~/config/env.server";
 import { logger } from "~/logging/logging";
 import { RouteConfig } from "~/routeConfig";
 
@@ -17,6 +18,12 @@ import { lagreSøkeinfoPåSession } from "./søkeinfoSession.server";
  * Brukere uten aktiv session vil bli sendt til forsiden etter innlogging.
  */
 export async function action({ request }: ActionFunctionArgs) {
+  const origin = request.headers.get("origin");
+  if (env.WATSON_SAK_URL && origin && origin !== env.WATSON_SAK_URL) {
+    logger.warn("Avvist forespørsel fra ukjent opprinnelse", { origin });
+    return redirectDocument(RouteConfig.INDEX);
+  }
+
   const formData = await request.formData();
   const ident = formData.get("ident")?.toString().replace(/\s+/g, "");
 
