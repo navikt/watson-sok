@@ -67,5 +67,7 @@ spec:
       value: {{ENVIRONMENT}}
     - name: MODIA_URL
       value: {{MODIA_URL}}
+    - name: WATSON_SAK_URL
+      value: {{WATSON_SAK_URL}}
     - name: APP_VERSION
       value: {{APP_VERSION}}

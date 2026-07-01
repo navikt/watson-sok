@@ -168,7 +168,7 @@ test.describe("Oppslag-flyt", () => {
   });
 
   test("skal oppdatere paneler når tidsvindu endres", async ({ page }) => {
-    await page.clock.setFixedTime(new Date("2025-07-01T12:00:00Z"));
+    await page.clock.install({ time: new Date("2025-07-01T12:00:00Z") });
 
     await page.goto("/");
     await page.waitForLoadState("networkidle");
