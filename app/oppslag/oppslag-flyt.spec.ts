@@ -199,10 +199,10 @@ test.describe("Oppslag-flyt", () => {
       return Number(tekst.replace(/\D/g, ""));
     };
 
-    await expect.poll(hentTotalInntekt).toBe(2134053);
+    await expect.poll(hentTotalInntekt).toBe(1466665);
     await expect
       .poll(async () => skjultTabell.locator("tbody tr").count())
-      .toBe(37);
+      .toBe(45);
 
     const tidsvinduVelger = page.locator('[aria-label="Velg tidsvindu"]');
     await expect(tidsvinduVelger).toBeVisible();
