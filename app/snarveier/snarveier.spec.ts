@@ -36,7 +36,7 @@ async function gåTilOppslag(page: Page) {
 test.describe("Tastatursnarveier", () => {
   test.beforeEach(async ({ page }) => {
     await gåTilOppslag(page);
-    // Bring tab to front og reset fokus til body for å unngå flaky tester
+    // Henter tabben i forgrunnen og nullstiller fokus for å unngå flaky tester
     await page.bringToFront();
     await page.locator("body").focus();
     await expect(page.locator("body")).toBeFocused();
