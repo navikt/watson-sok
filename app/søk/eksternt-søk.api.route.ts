@@ -55,7 +55,10 @@ export async function action({ request }: ActionFunctionArgs) {
       });
     }
 
-    if (eksistensOgTilgang.tilgang === "OK" || eksistensOgTilgang.harUtvidetTilgang) {
+    if (
+      eksistensOgTilgang.tilgang === "OK" ||
+      eksistensOgTilgang.harUtvidetTilgang
+    ) {
       return redirectDocument(RouteConfig.OPPSLAG, {
         headers: { "Set-Cookie": cookie },
       });

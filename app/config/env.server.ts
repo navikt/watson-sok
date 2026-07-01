@@ -17,7 +17,9 @@ const envSchema = z.object({
   WATSON_SAK_URL: z
     .string()
     .optional()
-    .describe("Base-URL for Watson Sak. Brukes til Origin-validering på /api/søk-fra-watson-sak."),
+    .describe(
+      "Base-URL for Watson Sak. Brukes til Origin-validering på /api/søk-fra-watson-sak.",
+    ),
   DEVELOPMENT_OAUTH_TOKEN: z
     .string()
     .optional()
