@@ -92,26 +92,50 @@ function beregnAaTimerForMåned(
   let totalTimer = 0;
 
   for (const forhold of arbeidsgiverInformasjon.løpendeArbeidsforhold) {
-    for (const detalj of forhold.ansettelsesDetaljer) {
-      if (!detalj.antallTimerPrUke) continue;
+    // Bruk timerMedTimeloenn (faktisk timelønnet-data per måned) når tilgjengelig.
+    // Faller tilbake til antallTimerPrUke (kontraktstimer) hvis ikke eksponert av backend ennå.
+    if (forhold.timerMedTimeloenn && forhold.timerMedTimeloenn.length > 0) {
+      for (const timerEntry of forhold.timerMedTimeloenn) {
+        if (!timerEntry.fraOgMed) continue;
 
-      const fom = parseDatoLokal(detalj.periode.fom);
-      const tom = detalj.periode.tom
-        ? parseMånedSlutt(detalj.periode.tom)
-        : null;
+        const fom = parseDatoLokal(timerEntry.fraOgMed + "-01");
+        const tom = timerEntry.tilOgMed
+          ? parseMånedSlutt(timerEntry.tilOgMed)
+          : null;
 
-      const erAktivIMåned =
-        fom <= sisteDag && (tom === null || tom >= førsteDag);
-      if (!erAktivIMåned) continue;
+        const erAktivIMåned =
+          fom <= sisteDag && (tom === null || tom >= førsteDag);
+        if (!erAktivIMåned) continue;
 
-      // Pro-rater basert på faktiske dager — effektivFom/Tom er alltid i samme måned
-      // så getDate()-diff er DST-sikker og unngår ms-aritmetikk
-      const effektivFom = fom > førsteDag ? fom : førsteDag;
-      const effektivTom = tom !== null && tom < sisteDag ? tom : sisteDag;
-      const antallDager = effektivTom.getDate() - effektivFom.getDate() + 1;
-      const antallUker = antallDager / 7;
+        const effektivFom = fom > førsteDag ? fom : førsteDag;
+        const effektivTom = tom !== null && tom < sisteDag ? tom : sisteDag;
+        const antallDager = effektivTom.getDate() - effektivFom.getDate() + 1;
+        const antallUker = antallDager / 7;
 
-      totalTimer += detalj.antallTimerPrUke * antallUker;
+        totalTimer += timerEntry.antall * antallUker;
+      }
+    } else {
+      for (const detalj of forhold.ansettelsesDetaljer) {
+        if (!detalj.antallTimerPrUke) continue;
+
+        const fom = parseDatoLokal(detalj.periode.fom);
+        const tom = detalj.periode.tom
+          ? parseMånedSlutt(detalj.periode.tom)
+          : null;
+
+        const erAktivIMåned =
+          fom <= sisteDag && (tom === null || tom >= førsteDag);
+        if (!erAktivIMåned) continue;
+
+        // Pro-rater basert på faktiske dager — effektivFom/Tom er alltid i samme måned
+        // så getDate()-diff er DST-sikker og unngår ms-aritmetikk
+        const effektivFom = fom > førsteDag ? fom : førsteDag;
+        const effektivTom = tom !== null && tom < sisteDag ? tom : sisteDag;
+        const antallDager = effektivTom.getDate() - effektivFom.getDate() + 1;
+        const antallUker = antallDager / 7;
+
+        totalTimer += detalj.antallTimerPrUke * antallUker;
+      }
     }
   }
 
