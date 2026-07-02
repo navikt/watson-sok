@@ -64,7 +64,7 @@ export const env = envResult.data;
 
 export const BACKEND_API_URL =
   env.ENVIRONMENT === "local-backend"
-    ? "http://localhost:8080"
+    ? "http://localhost:8081"
     : env.ENVIRONMENT === "local-dev"
       ? "https://nav-persondata-api.intern.dev.nav.no"
       : "http://nav-persondata-api";
