@@ -159,6 +159,30 @@ function lagArbeidsgiverInformasjon(
   };
 }
 
+function lagArbeidsgiverInformasjonMedTimeloenn(
+  timerPrUkePrMåned: Array<{
+    antall: number;
+    fraOgMed: string;
+    tilOgMed?: string | null;
+  }>,
+): ArbeidsgiverInformasjon {
+  return {
+    løpendeArbeidsforhold: [
+      {
+        arbeidsgiver: "Testbedriften AS",
+        organisasjonsnummer: "123456789",
+        ansettelsesDetaljer: [],
+        timerMedTimeloenn: timerPrUkePrMåned.map((t) => ({
+          antall: t.antall,
+          fraOgMed: t.fraOgMed,
+          tilOgMed: t.tilOgMed ?? null,
+        })),
+      },
+    ],
+    historikk: [],
+  };
+}
+
 describe("aggregerTimerPerMåned", () => {
   it("returnerer riktig antall måneder i perioden", () => {
     const meldekort: MeldekortRespons = [];
@@ -310,5 +334,56 @@ describe("aggregerTimerPerMåned", () => {
 
     expect(resultat[0].aaTimer).toBe(0);
     expect(resultat[0].mkTimer).toBe(0);
+  });
+});
+
+describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
+  it("bruker timerMedTimeloenn når tilgjengelig, i stedet for antallTimerPrUke", () => {
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
+      { antall: 20, fraOgMed: "2025-01" },
+    ]);
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    // 31 dager / 7 × 20 t/uke
+    expect(resultat[0].aaTimer).toBeCloseTo((31 / 7) * 20, 1);
+  });
+
+  it("inkluderer ikke timelønnet-timer utenfor perioden", () => {
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
+      { antall: 20, fraOgMed: "2025-01", tilOgMed: "2025-01" },
+    ]);
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-02-01",
+      "2025-02-28",
+    );
+
+    expect(resultat[0].aaTimer).toBe(0);
+  });
+
+  it("håndterer løpende timelønnet-avtale (tilOgMed null)", () => {
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
+      { antall: 37.5, fraOgMed: "2025-01", tilOgMed: null },
+    ]);
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-03-01",
+      "2025-03-31",
+    );
+
+    expect(resultat[0].aaTimer).toBeCloseTo((31 / 7) * 37.5, 1);
   });
 });

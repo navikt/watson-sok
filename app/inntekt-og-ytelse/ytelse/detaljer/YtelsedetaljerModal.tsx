@@ -162,6 +162,8 @@ export function YtelsedetaljerModal({
                   arbeidsgiverInformasjonPromise={
                     arbeidsgiverInformasjonPromise
                   }
+                  fraDato={fraDato}
+                  tilDato={tilDato}
                 />
               )}
             </Tabs.Panel>

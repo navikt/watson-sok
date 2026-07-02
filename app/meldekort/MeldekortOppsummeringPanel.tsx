@@ -14,10 +14,13 @@ import {
   PanelContainerSkeleton,
 } from "~/paneler/PanelContainer";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
-import { formaterTilIsoDato } from "~/utils/date-utils";
+import { formaterDato, formaterTilIsoDato } from "~/utils/date-utils";
 
 type Props = {
   arbeidsgiverInformasjonPromise: Promise<ArbeidsgiverInformasjon | null>;
+  /** Overskriver tidsvindu — brukes når panelet er knyttet til en ytelse med kjent periode */
+  fraDato?: string;
+  tilDato?: string;
 };
 
 /**
@@ -26,6 +29,8 @@ type Props = {
  */
 export function MeldekortOppsummeringPanel({
   arbeidsgiverInformasjonPromise,
+  fraDato,
+  tilDato,
 }: Props) {
   const erAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
 
@@ -41,6 +46,8 @@ export function MeldekortOppsummeringPanel({
     >
       <MeldekortOppsummeringPanelMedData
         arbeidsgiverInformasjonPromise={arbeidsgiverInformasjonPromise}
+        fraDato={fraDato}
+        tilDato={tilDato}
       />
     </ResolvingComponent>
   );
@@ -48,10 +55,14 @@ export function MeldekortOppsummeringPanel({
 
 type MedDataProps = {
   arbeidsgiverInformasjonPromise: Promise<ArbeidsgiverInformasjon | null>;
+  fraDato?: string;
+  tilDato?: string;
 };
 
 function MeldekortOppsummeringPanelMedData({
   arbeidsgiverInformasjonPromise,
+  fraDato,
+  tilDato,
 }: MedDataProps) {
   const arbeidsgiverInformasjon = use(arbeidsgiverInformasjonPromise);
 
@@ -59,6 +70,8 @@ function MeldekortOppsummeringPanelMedData({
     <MeldekortProvider ytelse="dagpenger">
       <MeldekortOppsummeringPanelInnhold
         arbeidsgiverInformasjon={arbeidsgiverInformasjon}
+        fraDato={fraDato}
+        tilDato={tilDato}
       />
     </MeldekortProvider>
   );
@@ -66,17 +79,24 @@ function MeldekortOppsummeringPanelMedData({
 
 type MeldekortOppsummeringPanelInnholdProps = {
   arbeidsgiverInformasjon: ArbeidsgiverInformasjon | null;
+  fraDato?: string;
+  tilDato?: string;
 };
 
 function MeldekortOppsummeringPanelInnhold({
   arbeidsgiverInformasjon,
+  fraDato: fraDatoProp,
+  tilDato: tilDatoProp,
 }: MeldekortOppsummeringPanelInnholdProps) {
   const meldekortState = useMeldekort();
   const {
     tidsvindu,
-    fraDato: fraDatoDate,
-    tilDato: tilDatoDate,
+    fraDato: fraDatoTidsvindu,
+    tilDato: tilDatoTidsvindu,
   } = useTidsvindu();
+
+  const fraDatoDate = fraDatoProp ? new Date(fraDatoProp) : fraDatoTidsvindu;
+  const tilDatoDate = tilDatoProp ? new Date(tilDatoProp) : tilDatoTidsvindu;
 
   const fraDato = formaterTilIsoDato(fraDatoDate);
   const tilDato = formaterTilIsoDato(tilDatoDate);
@@ -104,6 +124,10 @@ function MeldekortOppsummeringPanelInnhold({
   const laster = !meldekortState || meldekortState.status === "loading";
   const harFeil = meldekortState?.status === "error";
 
+  const periodeText = fraDatoProp
+    ? `fra ${formaterDato(fraDato)}`
+    : `siste ${tidsvindu}`;
+
   return (
     <PanelContainer title="AA-timer vs meldekort-timer per måned">
       <div className="flex flex-col gap-4">
@@ -121,7 +145,7 @@ function MeldekortOppsummeringPanelInnhold({
             </BodyShort>
           ) : (
             <BodyShort className="text-[var(--ax-text-brand-blue-strong)] font-medium">
-              {antallMeldekort ?? 0} meldekort levert siste {tidsvindu}
+              {antallMeldekort ?? 0} meldekort levert {periodeText}
             </BodyShort>
           )}
         </div>
