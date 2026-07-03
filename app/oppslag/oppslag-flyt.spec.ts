@@ -207,13 +207,13 @@ test.describe("Oppslag-flyt", () => {
     const tidsvinduVelger = page.locator('[aria-label="Velg tidsvindu"]');
     await expect(tidsvinduVelger).toBeVisible();
 
-    const velgTidsvindu = async (label: string | RegExp) => {
-      const valg = tidsvinduVelger.getByText(label);
+    const velgTidsvindu = async (label: string) => {
+      const valg = tidsvinduVelger.getByRole("radio", { name: label, exact: true });
       await expect(valg).toBeVisible();
       await valg.click();
     };
 
-    await velgTidsvindu(/6 mnd/i);
+    await velgTidsvindu("6 mnd");
     await expect(
       page.getByRole("heading", {
         name: /Ytelser fra Nav/i,
@@ -224,7 +224,7 @@ test.describe("Oppslag-flyt", () => {
       .poll(async () => skjultTabell.locator("tbody tr").count())
       .toBe(7);
 
-    await velgTidsvindu(/1 år/i);
+    await velgTidsvindu("1 år");
     await expect(
       page.getByRole("heading", {
         name: /Ytelser fra Nav/i,
@@ -235,7 +235,7 @@ test.describe("Oppslag-flyt", () => {
       .poll(async () => skjultTabell.locator("tbody tr").count())
       .toBe(13);
 
-    await velgTidsvindu(/3 år/i);
+    await velgTidsvindu("3 år");
     await expect(ytelserOverskrift).toBeVisible();
     await expect.poll(hentTotalInntekt).toBe(2134053);
     await expect
