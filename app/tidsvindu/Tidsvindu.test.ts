@@ -25,6 +25,10 @@ describe("tidsvinduTilMåneder", () => {
   it("returnerer 120 for '10 år'", () => {
     expect(tidsvinduTilMåneder("10 år")).toBe(120);
   });
+
+  it("returnerer 156 for '13 år'", () => {
+    expect(tidsvinduTilMåneder("13 år")).toBe(156);
+  });
 });
 
 describe("beregnTidsvinduDatoer", () => {
@@ -159,6 +163,13 @@ describe("utledTidsvinduPeriode", () => {
     expect(utledTidsvinduPeriode(fraDato, tilDato, nå)).toBe("10 år");
   });
 
+  it("returnerer '13 år' for eksakt 156 måneder fra i dag", () => {
+    const nå = new Date("2024-06-15");
+    const { fraDato, tilDato } = beregnTidsvinduDatoer(156, nå);
+
+    expect(utledTidsvinduPeriode(fraDato, tilDato, nå)).toBe("13 år");
+  });
+
   it("returnerer 'tilpasset' når tilDato ikke er i dag", () => {
     const nå = new Date("2024-06-15");
     const fraDato = new Date("2024-01-15");
@@ -209,9 +220,9 @@ describe("validerTidsvinduDatoer", () => {
     expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBe("fremtidig-dato");
   });
 
-  it("returnerer 'for-langt-tilbake' når fra-dato er mer enn 10 år tilbake", () => {
+  it("returnerer 'for-langt-tilbake' når fra-dato er mer enn 13 år tilbake", () => {
     const nå = new Date("2024-06-15");
-    const fraDato = new Date("2014-06-14"); // Én dag før 10-års grensen
+    const fraDato = new Date("2011-06-14"); // Én dag før 13-års grensen
     const tilDato = new Date("2024-06-15");
 
     expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBe(
@@ -219,9 +230,17 @@ describe("validerTidsvinduDatoer", () => {
     );
   });
 
-  it("godtar fra-dato på eksakt 10-års grensen", () => {
+  it("godtar fra-dato på eksakt 13-års grensen", () => {
     const nå = new Date("2024-06-15");
-    const fraDato = new Date("2014-06-15"); // Eksakt 10 år
+    const fraDato = new Date("2011-06-15"); // Eksakt 13 år
+    const tilDato = new Date("2024-06-15");
+
+    expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBeNull();
+  });
+
+  it("godtar fra-dato mellom 10 og 13 år tilbake", () => {
+    const nå = new Date("2024-06-15");
+    const fraDato = new Date("2013-06-15"); // 11 år
     const tilDato = new Date("2024-06-15");
 
     expect(validerTidsvinduDatoer(fraDato, tilDato, nå)).toBeNull();
@@ -253,7 +272,7 @@ describe("feilTilMelding", () => {
 
   it("returnerer riktig melding for 'for-langt-tilbake'", () => {
     expect(feilTilMelding("for-langt-tilbake")).toBe(
-      "Kan ikke gå mer enn 10 år tilbake",
+      "Kan ikke gå mer enn 13 år tilbake",
     );
   });
 

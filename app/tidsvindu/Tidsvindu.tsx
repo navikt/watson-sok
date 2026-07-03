@@ -13,7 +13,13 @@ import { sporHendelse } from "~/analytics/analytics";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 
-type TidsvinduPeriode = "6 måneder" | "1 år" | "3 år" | "10 år" | "tilpasset";
+type TidsvinduPeriode =
+  | "6 måneder"
+  | "1 år"
+  | "3 år"
+  | "10 år"
+  | "13 år"
+  | "tilpasset";
 type PresetPeriode = Exclude<TidsvinduPeriode, "tilpasset">;
 
 type TidsvinduContextType = {
@@ -37,6 +43,8 @@ export function tidsvinduTilMåneder(tidsvindu: PresetPeriode): number {
       return 36;
     case "10 år":
       return 120;
+    case "13 år":
+      return 156;
   }
 }
 
@@ -89,15 +97,15 @@ export function validerTidsvinduDatoer(
     return "fremtidig-dato";
   }
 
-  // Fra-dato kan ikke være mer enn 10 år tilbake
-  const tiÅrTilbake = new Date(nå);
-  tiÅrTilbake.setFullYear(tiÅrTilbake.getFullYear() - 10);
-  const tiÅrTilbakeNormalisert = new Date(
-    tiÅrTilbake.getFullYear(),
-    tiÅrTilbake.getMonth(),
-    tiÅrTilbake.getDate(),
+  // Fra-dato kan ikke være mer enn 13 år tilbake
+  const trettenÅrTilbake = new Date(nå);
+  trettenÅrTilbake.setFullYear(trettenÅrTilbake.getFullYear() - 13);
+  const trettenÅrTilbakeNormalisert = new Date(
+    trettenÅrTilbake.getFullYear(),
+    trettenÅrTilbake.getMonth(),
+    trettenÅrTilbake.getDate(),
   );
-  if (fraDato < tiÅrTilbakeNormalisert) {
+  if (fraDato < trettenÅrTilbakeNormalisert) {
     return "for-langt-tilbake";
   }
 
@@ -143,6 +151,8 @@ export function utledTidsvinduPeriode(
       return "3 år";
     case 120:
       return "10 år";
+    case 156:
+      return "13 år";
     default:
       return "tilpasset";
   }
@@ -160,7 +170,7 @@ export const TidsvinduProvider = ({
   const utvidet = searchParams.get("utvidet") === "true";
 
   // Initialiser med preset basert på URL-param
-  const initialDatoer = beregnTidsvinduDatoer(utvidet ? 120 : 36);
+  const initialDatoer = beregnTidsvinduDatoer(utvidet ? 156 : 36);
   const [fraDato, setFraDato] = useState<Date>(initialDatoer.fraDato);
   const [tilDato, setTilDato] = useState<Date>(initialDatoer.tilDato);
   const [erTilpassetVisning, setErTilpassetVisning] = useState(false);
@@ -177,7 +187,7 @@ export const TidsvinduProvider = ({
         setFraDato(datoer.fraDato);
         setTilDato(datoer.tilDato);
         setErTilpassetVisning(false);
-        if (tidsvindu === "10 år") {
+        if (tidsvindu === "10 år" || tidsvindu === "13 år") {
           setSearchParams((prev) => ({ ...prev, utvidet: "true" }));
         }
       },
@@ -246,14 +256,15 @@ export const TidsvinduVelger = () => {
   } = useTidsvindu();
   const [feilmelding, setFeilmelding] = useState<string | null>(null);
   const erCustomDatoAktivert = useEnkeltFeatureFlagg(FeatureFlagg.CUSTOM_DATO);
+  const erTrettenÅrAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
 
-  const tiÅrTilbake = new Date();
-  tiÅrTilbake.setFullYear(tiÅrTilbake.getFullYear() - 10);
+  const trettenÅrTilbake = new Date();
+  trettenÅrTilbake.setFullYear(trettenÅrTilbake.getFullYear() - 13);
   const iDag = new Date();
 
   const fraDatoPicker = useDatepicker({
     defaultSelected: fraDato,
-    fromDate: tiÅrTilbake,
+    fromDate: trettenÅrTilbake,
     toDate: iDag,
     onDateChange: (dato) => {
       if (dato) {
@@ -265,7 +276,7 @@ export const TidsvinduVelger = () => {
 
   const tilDatoPicker = useDatepicker({
     defaultSelected: tilDato,
-    fromDate: tiÅrTilbake,
+    fromDate: trettenÅrTilbake,
     toDate: iDag,
     onDateChange: (dato) => {
       if (dato) {
@@ -307,6 +318,9 @@ export const TidsvinduVelger = () => {
         <ToggleGroupItem value="1 år" label="1 år" />
         <ToggleGroupItem value="3 år" label="3 år" />
         <ToggleGroupItem value="10 år" label="10 år" />
+        {erTrettenÅrAktivert && (
+          <ToggleGroupItem value="13 år" label="13 år" />
+        )}
         {erCustomDatoAktivert && (
           <ToggleGroupItem
             value="tilpasset"
@@ -356,7 +370,7 @@ export function feilTilMelding(
     case "fra-etter-til":
       return "Fra-dato må være før til-dato";
     case "for-langt-tilbake":
-      return "Kan ikke gå mer enn 10 år tilbake";
+      return "Kan ikke gå mer enn 13 år tilbake";
     case "fremtidig-dato":
       return "Kan ikke velge dato i fremtiden";
     case null:

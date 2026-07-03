@@ -86,8 +86,8 @@ describe("beregnVindu", () => {
 });
 
 describe("beregnMaksNavigering", () => {
-  it("returnerer 120 måneder (10 år) når utvidet er true", () => {
-    expect(beregnMaksNavigering(true)).toBe(120);
+  it("returnerer 156 måneder (13 år) når utvidet er true", () => {
+    expect(beregnMaksNavigering(true)).toBe(156);
   });
 
   it("returnerer 36 måneder (3 år) når utvidet er false", () => {

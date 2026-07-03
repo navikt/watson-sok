@@ -558,5 +558,5 @@ export function beregnDatagrense(
 
 /** Returnerer maks antall måneder man kan navigere tilbake i tidslinjen. */
 export function beregnMaksNavigering(utvidet: boolean): number {
-  return utvidet ? 120 : 36;
+  return utvidet ? 156 : 36;
 }
