@@ -405,7 +405,11 @@ const TidslinjeKontrollpanel = ({
   const nå = new Date();
   const [searchParams] = useSearchParams();
   const utvidet = searchParams.get("utvidet") === "true";
-  const dataCutoff = beregnDatagrense(nå, beregnMaksNavigering(utvidet));
+  const erTrettenÅrAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
+  const dataCutoff = beregnDatagrense(
+    nå,
+    beregnMaksNavigering(utvidet, erTrettenÅrAktivert),
+  );
 
   const kanFlytteForrigePeriode =
     forskjellIDager(nåværendeVindu.start, dataCutoff) >= 30;
@@ -558,6 +562,10 @@ export function beregnDatagrense(
 }
 
 /** Returnerer maks antall måneder man kan navigere tilbake i tidslinjen. */
-export function beregnMaksNavigering(utvidet: boolean): number {
-  return utvidet ? 156 : 36;
+export function beregnMaksNavigering(
+  utvidet: boolean,
+  erTrettenÅrAktivert: boolean = true,
+): number {
+  if (!utvidet) return 36;
+  return erTrettenÅrAktivert ? 156 : 120;
 }

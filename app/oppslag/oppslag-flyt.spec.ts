@@ -208,7 +208,10 @@ test.describe("Oppslag-flyt", () => {
     await expect(tidsvinduVelger).toBeVisible();
 
     const velgTidsvindu = async (label: string) => {
-      const valg = tidsvinduVelger.getByRole("radio", { name: label, exact: true });
+      const valg = tidsvinduVelger.getByRole("radio", {
+        name: label,
+        exact: true,
+      });
       await expect(valg).toBeVisible();
       await valg.click();
     };

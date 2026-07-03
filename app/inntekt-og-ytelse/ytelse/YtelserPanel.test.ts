@@ -90,11 +90,17 @@ describe("beregnVindu", () => {
 });
 
 describe("beregnMaksNavigering", () => {
-  it("returnerer 156 måneder (13 år) når utvidet er true", () => {
-    expect(beregnMaksNavigering(true)).toBe(156);
+  it("returnerer 156 måneder (13 år) når utvidet er true og flagg er på", () => {
+    expect(beregnMaksNavigering(true, true)).toBe(156);
+  });
+
+  it("returnerer 120 måneder (10 år) når utvidet er true og flagg er av", () => {
+    expect(beregnMaksNavigering(true, false)).toBe(120);
   });
 
   it("returnerer 36 måneder (3 år) når utvidet er false", () => {
     expect(beregnMaksNavigering(false)).toBe(36);
+    expect(beregnMaksNavigering(false, true)).toBe(36);
+    expect(beregnMaksNavigering(false, false)).toBe(36);
   });
 });

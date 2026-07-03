@@ -80,6 +80,7 @@ export function validerTidsvinduDatoer(
   fraDato: Date,
   tilDato: Date,
   nå: Date = new Date(),
+  maksÅr: number = 13,
 ): TidsvinduValideringsfeil | null {
   // Fra-dato må være før til-dato
   if (fraDato > tilDato) {
@@ -97,15 +98,15 @@ export function validerTidsvinduDatoer(
     return "fremtidig-dato";
   }
 
-  // Fra-dato kan ikke være mer enn 13 år tilbake
-  const trettenÅrTilbake = new Date(nå);
-  trettenÅrTilbake.setFullYear(trettenÅrTilbake.getFullYear() - 13);
-  const trettenÅrTilbakeNormalisert = new Date(
-    trettenÅrTilbake.getFullYear(),
-    trettenÅrTilbake.getMonth(),
-    trettenÅrTilbake.getDate(),
+  // Fra-dato kan ikke være mer enn maksÅr tilbake
+  const grenseTilbake = new Date(nå);
+  grenseTilbake.setFullYear(grenseTilbake.getFullYear() - maksÅr);
+  const grenseTilbakeNormalisert = new Date(
+    grenseTilbake.getFullYear(),
+    grenseTilbake.getMonth(),
+    grenseTilbake.getDate(),
   );
-  if (fraDato < trettenÅrTilbakeNormalisert) {
+  if (fraDato < grenseTilbakeNormalisert) {
     return "for-langt-tilbake";
   }
 
@@ -199,7 +200,8 @@ export const TidsvinduProvider = ({
         }
       },
       setCustomDatoer: (fra: Date, til: Date) => {
-        const feil = validerTidsvinduDatoer(fra, til);
+        const maksÅr = erTrettenÅrAktivert ? 13 : 10;
+        const feil = validerTidsvinduDatoer(fra, til, new Date(), maksÅr);
         if (feil) {
           return feil;
         }
@@ -282,7 +284,7 @@ export const TidsvinduVelger = () => {
     onDateChange: (dato) => {
       if (dato) {
         const feil = setCustomDatoer(dato, tilDato);
-        setFeilmelding(feilTilMelding(feil));
+        setFeilmelding(feilTilMelding(feil, erTrettenÅrAktivert ? 13 : 10));
       }
     },
   });
@@ -294,7 +296,7 @@ export const TidsvinduVelger = () => {
     onDateChange: (dato) => {
       if (dato) {
         const feil = setCustomDatoer(fraDato, dato);
-        setFeilmelding(feilTilMelding(feil));
+        setFeilmelding(feilTilMelding(feil, erTrettenÅrAktivert ? 13 : 10));
       }
     },
   });
@@ -376,12 +378,13 @@ export const TidsvinduVelger = () => {
 
 export function feilTilMelding(
   feil: TidsvinduValideringsfeil | null,
+  maksÅr: number = 13,
 ): string | null {
   switch (feil) {
     case "fra-etter-til":
       return "Fra-dato må være før til-dato";
     case "for-langt-tilbake":
-      return "Kan ikke gå mer enn 13 år tilbake";
+      return `Kan ikke gå mer enn ${maksÅr} år tilbake`;
     case "fremtidig-dato":
       return "Kan ikke velge dato i fremtiden";
     case null:
