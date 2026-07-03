@@ -521,6 +521,7 @@ export function beregnHoppForTidsvindu(
   tidsvinduIAntallMåneder: number,
 ): number {
   switch (tidsvinduIAntallMåneder) {
+    case 156:
     case 120:
       return 12;
     case 36:

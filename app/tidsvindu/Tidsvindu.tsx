@@ -168,9 +168,12 @@ export const TidsvinduProvider = ({
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const utvidet = searchParams.get("utvidet") === "true";
+  const erTrettenÅrAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
 
-  // Initialiser med preset basert på URL-param
-  const initialDatoer = beregnTidsvinduDatoer(utvidet ? 156 : 36);
+  // Initialiser med preset basert på URL-param og feature flag
+  const initialDatoer = beregnTidsvinduDatoer(
+    utvidet ? (erTrettenÅrAktivert ? 156 : 120) : 36,
+  );
   const [fraDato, setFraDato] = useState<Date>(initialDatoer.fraDato);
   const [tilDato, setTilDato] = useState<Date>(initialDatoer.tilDato);
   const [erTilpassetVisning, setErTilpassetVisning] = useState(false);
@@ -188,7 +191,11 @@ export const TidsvinduProvider = ({
         setTilDato(datoer.tilDato);
         setErTilpassetVisning(false);
         if (tidsvindu === "10 år" || tidsvindu === "13 år") {
-          setSearchParams((prev) => ({ ...prev, utvidet: "true" }));
+          setSearchParams((prev) => {
+            const next = new URLSearchParams(prev);
+            next.set("utvidet", "true");
+            return next;
+          });
         }
       },
       setCustomDatoer: (fra: Date, til: Date) => {
@@ -204,7 +211,11 @@ export const TidsvinduProvider = ({
         const treÅrSiden = new Date(nå);
         treÅrSiden.setFullYear(treÅrSiden.getFullYear() - 3);
         if (fra < treÅrSiden) {
-          setSearchParams((prev) => ({ ...prev, utvidet: "true" }));
+          setSearchParams((prev) => {
+            const next = new URLSearchParams(prev);
+            next.set("utvidet", "true");
+            return next;
+          });
         }
 
         return null;
@@ -258,13 +269,15 @@ export const TidsvinduVelger = () => {
   const erCustomDatoAktivert = useEnkeltFeatureFlagg(FeatureFlagg.CUSTOM_DATO);
   const erTrettenÅrAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
 
-  const trettenÅrTilbake = new Date();
-  trettenÅrTilbake.setFullYear(trettenÅrTilbake.getFullYear() - 13);
+  const maksÅrTilbake = new Date();
+  maksÅrTilbake.setFullYear(
+    maksÅrTilbake.getFullYear() - (erTrettenÅrAktivert ? 13 : 10),
+  );
   const iDag = new Date();
 
   const fraDatoPicker = useDatepicker({
     defaultSelected: fraDato,
-    fromDate: trettenÅrTilbake,
+    fromDate: maksÅrTilbake,
     toDate: iDag,
     onDateChange: (dato) => {
       if (dato) {
@@ -276,7 +289,7 @@ export const TidsvinduVelger = () => {
 
   const tilDatoPicker = useDatepicker({
     defaultSelected: tilDato,
-    fromDate: trettenÅrTilbake,
+    fromDate: maksÅrTilbake,
     toDate: iDag,
     onDateChange: (dato) => {
       if (dato) {
@@ -318,9 +331,7 @@ export const TidsvinduVelger = () => {
         <ToggleGroupItem value="1 år" label="1 år" />
         <ToggleGroupItem value="3 år" label="3 år" />
         <ToggleGroupItem value="10 år" label="10 år" />
-        {erTrettenÅrAktivert && (
-          <ToggleGroupItem value="13 år" label="13 år" />
-        )}
+        {erTrettenÅrAktivert && <ToggleGroupItem value="13 år" label="13 år" />}
         {erCustomDatoAktivert && (
           <ToggleGroupItem
             value="tilpasset"
