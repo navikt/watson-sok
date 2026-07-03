@@ -92,20 +92,26 @@ function beregnAaTimerForMåned(
   let totalTimer = 0;
 
   for (const forhold of arbeidsgiverInformasjon.løpendeArbeidsforhold) {
-    // Bruk timerMedTimeloenn (faktisk timelønnet-data per måned) når tilgjengelig.
-    // Faller tilbake til antallTimerPrUke (kontraktstimer) hvis ikke eksponert av backend ennå.
-    if (forhold.timerMedTimeloenn && forhold.timerMedTimeloenn.length > 0) {
-      for (const timerEntry of forhold.timerMedTimeloenn) {
-        if (!timerEntry.fraOgMed) continue;
-
+    // Finn timerMedTimeloenn-entries som er aktive akkurat denne måneden.
+    // Sjekker per måned (ikke per forhold) slik at vi faller tilbake til
+    // antallTimerPrUke for måneder som ikke dekkes av timelønnet-data.
+    const aktiveTimeloennEntries = (forhold.timerMedTimeloenn ?? []).filter(
+      (timerEntry) => {
+        if (!timerEntry.fraOgMed) return false;
         const fom = parseDatoLokal(timerEntry.fraOgMed + "-01");
         const tom = timerEntry.tilOgMed
           ? parseMånedSlutt(timerEntry.tilOgMed)
           : null;
+        return fom <= sisteDag && (tom === null || tom >= førsteDag);
+      },
+    );
 
-        const erAktivIMåned =
-          fom <= sisteDag && (tom === null || tom >= førsteDag);
-        if (!erAktivIMåned) continue;
+    if (aktiveTimeloennEntries.length > 0) {
+      for (const timerEntry of aktiveTimeloennEntries) {
+        const fom = parseDatoLokal(timerEntry.fraOgMed + "-01");
+        const tom = timerEntry.tilOgMed
+          ? parseMånedSlutt(timerEntry.tilOgMed)
+          : null;
 
         const effektivFom = fom > førsteDag ? fom : førsteDag;
         const effektivTom = tom !== null && tom < sisteDag ? tom : sisteDag;
