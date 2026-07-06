@@ -371,6 +371,43 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
     expect(resultat[0].aaTimer).toBe(0);
   });
 
+  it("viser 0 timer for timelønnet person uten data for måneden (ingen fallback)", () => {
+    // Scenario: personen er timelønnet (timerMedTimeloenn er definert),
+    // men har kun data for jan-25. For feb-25 skal vi vise 0 — ikke falle
+    // tilbake til antallTimerPrUke (avklart med fagperson).
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [
+        {
+          arbeidsgiver: "Testbedriften AS",
+          organisasjonsnummer: "123456789",
+          timerMedTimeloenn: [
+            { antall: 20, fraOgMed: "2025-01", tilOgMed: "2025-01" },
+          ],
+          ansettelsesDetaljer: [
+            {
+              type: "Ordinaer",
+              stillingsprosent: null,
+              antallTimerPrUke: 37.5,
+              yrke: null,
+              periode: { fom: "2024-01-01", tom: null },
+            },
+          ],
+        },
+      ],
+      historikk: [],
+    };
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-02-01",
+      "2025-02-28",
+    );
+
+    expect(resultat[0].aaTimer).toBe(0);
+  });
+
   it("håndterer løpende timelønnet-avtale (tilOgMed null)", () => {
     const meldekort: MeldekortRespons = [];
     const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
