@@ -371,9 +371,10 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
     expect(resultat[0].aaTimer).toBe(0);
   });
 
-  it("faller tilbake til antallTimerPrUke for måneder uten timelønnet-data", () => {
-    // Scenario: personen har timerMedTimeloenn for jan-25, men vi spør om feb-25.
-    // Forholdets ansettelsesDetaljer har 37.5 t/uke. Skal bruke det som fallback.
+  it("viser 0 timer for timelønnet person uten data for måneden (ingen fallback)", () => {
+    // Scenario: personen er timelønnet (timerMedTimeloenn er definert),
+    // men har kun data for jan-25. For feb-25 skal vi vise 0 — ikke falle
+    // tilbake til antallTimerPrUke (avklart med fagperson).
     const meldekort: MeldekortRespons = [];
     const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
       løpendeArbeidsforhold: [
@@ -404,8 +405,7 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
       "2025-02-28",
     );
 
-    // Feb 2025 har 28 dager: 28/7 × 37.5 = 150 timer
-    expect(resultat[0].aaTimer).toBeCloseTo((28 / 7) * 37.5, 1);
+    expect(resultat[0].aaTimer).toBe(0);
   });
 
   it("håndterer løpende timelønnet-avtale (tilOgMed null)", () => {

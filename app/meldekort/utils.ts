@@ -92,21 +92,20 @@ function beregnAaTimerForMåned(
   let totalTimer = 0;
 
   for (const forhold of arbeidsgiverInformasjon.løpendeArbeidsforhold) {
-    // Finn timerMedTimeloenn-entries som er aktive akkurat denne måneden.
-    // Sjekker per måned (ikke per forhold) slik at vi faller tilbake til
-    // antallTimerPrUke for måneder som ikke dekkes av timelønnet-data.
-    const aktiveTimeloennEntries = (forhold.timerMedTimeloenn ?? []).filter(
-      (timerEntry) => {
-        if (!timerEntry.fraOgMed) return false;
-        const fom = parseDatoLokal(timerEntry.fraOgMed + "-01");
-        const tom = timerEntry.tilOgMed
-          ? parseMånedSlutt(timerEntry.tilOgMed)
-          : null;
-        return fom <= sisteDag && (tom === null || tom >= førsteDag);
-      },
-    );
+    // Hvis timerMedTimeloenn er definert på forholdet er personen timelønnet.
+    // Da bruker vi aldri antallTimerPrUke som fallback — måneder uten data gir 0.
+    if (forhold.timerMedTimeloenn != null) {
+      const aktiveTimeloennEntries = forhold.timerMedTimeloenn.filter(
+        (timerEntry) => {
+          if (!timerEntry.fraOgMed) return false;
+          const fom = parseDatoLokal(timerEntry.fraOgMed + "-01");
+          const tom = timerEntry.tilOgMed
+            ? parseMånedSlutt(timerEntry.tilOgMed)
+            : null;
+          return fom <= sisteDag && (tom === null || tom >= førsteDag);
+        },
+      );
 
-    if (aktiveTimeloennEntries.length > 0) {
       for (const timerEntry of aktiveTimeloennEntries) {
         const fom = parseDatoLokal(timerEntry.fraOgMed + "-01");
         const tom = timerEntry.tilOgMed
