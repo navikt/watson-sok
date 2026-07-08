@@ -1,5 +1,5 @@
 import { InformationSquareIcon } from "@navikt/aksel-icons";
-import { BodyShort, Skeleton } from "@navikt/ds-react";
+import { Alert, BodyShort, Skeleton } from "@navikt/ds-react";
 import { use, useMemo } from "react";
 
 import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
@@ -166,9 +166,9 @@ function MeldekortOppsummeringPanelInnhold({
           </>
         )}
         {!laster && !harFeil && !harTimer && (
-          <BodyShort className="text-[var(--ax-text-subtle)]">
-            Ingen timer å vise for valgt periode.
-          </BodyShort>
+          <Alert variant="info" size="small" inline>
+            Ingen data tilgjengelig for valgt periode.
+          </Alert>
         )}
       </div>
     </PanelContainer>
