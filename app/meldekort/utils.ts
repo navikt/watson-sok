@@ -92,9 +92,9 @@ function beregnAaTimerForMåned(
   let totalTimer = 0;
 
   for (const forhold of arbeidsgiverInformasjon.løpendeArbeidsforhold) {
-    // Hvis timerMedTimeloenn er definert og ikke-tom er personen timelønnet.
+    // Hvis timerMedTimeloenn er definert på forholdet er personen timelønnet.
     // Da bruker vi aldri antallTimerPrUke som fallback — måneder uten data gir 0.
-    if (forhold.timerMedTimeloenn != null && forhold.timerMedTimeloenn.length > 0) {
+    if (forhold.timerMedTimeloenn != null) {
       const aktiveTimeloennEntries = forhold.timerMedTimeloenn.filter(
         (timerEntry) => {
           if (!timerEntry.fraOgMed) return false;
