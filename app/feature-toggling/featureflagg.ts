@@ -5,4 +5,5 @@ export enum FeatureFlagg {
 
   STATUSMELDING = "statusmelding",
   CUSTOM_DATO = "custom-dato",
+  NAERINGSINNTEKT = "naeringsinntekt",
 }
