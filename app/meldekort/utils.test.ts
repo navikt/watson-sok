@@ -423,4 +423,39 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
 
     expect(resultat[0].aaTimer).toBeCloseTo((31 / 7) * 37.5, 1);
   });
+
+  it("faller tilbake til antallTimerPrUke når timerMedTimeloenn er tom liste", () => {
+    // Nav-persondata-api returnerer alltid timerMedTimeloenn: [] (aldri null)
+    // for fastansatte. Tom liste betyr ikke timelønnet — bruk antallTimerPrUke.
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [
+        {
+          arbeidsgiver: "Nav Testbedrift AS",
+          organisasjonsnummer: "123456789",
+          timerMedTimeloenn: [],
+          ansettelsesDetaljer: [
+            {
+              type: "Ordinaer",
+              stillingsprosent: 100,
+              antallTimerPrUke: 37.5,
+              yrke: "Systemutvikler",
+              periode: { fom: "2020-01", tom: null },
+            },
+          ],
+        },
+      ],
+      historikk: [],
+    };
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2024-04-01",
+      "2024-04-30",
+    );
+
+    // 30 dager / 7 × 37.5 t/uke
+    expect(resultat[0].aaTimer).toBeCloseTo((30 / 7) * 37.5, 1);
+  });
 });
