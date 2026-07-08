@@ -156,14 +156,14 @@ function MeldekortOppsummeringPanelInnhold({
           <Skeleton variant="rounded" height={240} className="w-full" />
         )}
         {!laster && !harFeil && harMkTimer && (
-            <>
-              <BodyShort size="small">
-                Avvik mellom AA-registrerte timer og timer oppgitt i meldekort
-                kan indikere feilutbetaling.
-              </BodyShort>
-              <TimerSammenligningGraf data={timerData!} />
-            </>
-          )}
+          <>
+            <BodyShort size="small">
+              Avvik mellom AA-registrerte timer og timer oppgitt i meldekort kan
+              indikere feilutbetaling.
+            </BodyShort>
+            <TimerSammenligningGraf data={timerData!} />
+          </>
+        )}
         {!laster && !harFeil && timerData !== null && !harMkTimer && (
           <BodyShort className="text-[var(--ax-text-subtle)]">
             Ingen timer å vise for valgt periode.
