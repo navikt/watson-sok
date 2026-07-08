@@ -128,7 +128,7 @@ export function TimerSammenligningGraf({ data }: Props) {
                   y={grid.y + 4}
                   textAnchor="end"
                   fontSize="14"
-                  fill="var(--ax-text-default)"
+                  fill="var(--ax-text-subtle)"
                 >
                   {grid.verdi}t
                 </text>
@@ -230,7 +230,7 @@ export function TimerSammenligningGraf({ data }: Props) {
                   y={baseY + 20}
                   textAnchor="middle"
                   fontSize="14"
-                  fill="var(--ax-text-default)"
+                  fill="var(--ax-text-subtle)"
                 >
                   {etikett}
                 </text>
