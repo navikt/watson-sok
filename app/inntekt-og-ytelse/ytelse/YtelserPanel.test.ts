@@ -36,6 +36,10 @@ describe("beregnDatagrense", () => {
 });
 
 describe("beregnHoppForTidsvindu", () => {
+  it("hopper 12 måneder for 13-årsvisning", () => {
+    expect(beregnHoppForTidsvindu(156)).toBe(12);
+  });
+
   it("hopper 12 måneder for 10-årsvisning", () => {
     expect(beregnHoppForTidsvindu(120)).toBe(12);
   });
@@ -76,7 +80,7 @@ describe("beregnVindu", () => {
   });
 
   it("vinduets bredde matcher tidsvinduIAntallMåneder", () => {
-    for (const måneder of [6, 12, 36, 120]) {
+    for (const måneder of [6, 12, 36, 120, 156]) {
       const vindu = beregnVindu(måneder, 0, nå);
       const diffMs = vindu.slutt.getTime() - vindu.start.getTime();
       const diffMåneder = diffMs / (1000 * 60 * 60 * 24 * 30.44);
@@ -86,11 +90,17 @@ describe("beregnVindu", () => {
 });
 
 describe("beregnMaksNavigering", () => {
-  it("returnerer 120 måneder (10 år) når utvidet er true", () => {
-    expect(beregnMaksNavigering(true)).toBe(120);
+  it("returnerer 156 måneder (13 år) når utvidet er true og flagg er på", () => {
+    expect(beregnMaksNavigering(true, true)).toBe(156);
+  });
+
+  it("returnerer 120 måneder (10 år) når utvidet er true og flagg er av", () => {
+    expect(beregnMaksNavigering(true, false)).toBe(120);
   });
 
   it("returnerer 36 måneder (3 år) når utvidet er false", () => {
     expect(beregnMaksNavigering(false)).toBe(36);
+    expect(beregnMaksNavigering(false, true)).toBe(36);
+    expect(beregnMaksNavigering(false, false)).toBe(36);
   });
 });

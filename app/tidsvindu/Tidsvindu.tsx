@@ -13,7 +13,13 @@ import { sporHendelse } from "~/analytics/analytics";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 
-type TidsvinduPeriode = "6 måneder" | "1 år" | "3 år" | "10 år" | "tilpasset";
+type TidsvinduPeriode =
+  | "6 måneder"
+  | "1 år"
+  | "3 år"
+  | "10 år"
+  | "13 år"
+  | "tilpasset";
 type PresetPeriode = Exclude<TidsvinduPeriode, "tilpasset">;
 
 type TidsvinduContextType = {
@@ -37,6 +43,8 @@ export function tidsvinduTilMåneder(tidsvindu: PresetPeriode): number {
       return 36;
     case "10 år":
       return 120;
+    case "13 år":
+      return 156;
   }
 }
 
@@ -72,6 +80,7 @@ export function validerTidsvinduDatoer(
   fraDato: Date,
   tilDato: Date,
   nå: Date = new Date(),
+  maksÅr: number = 13,
 ): TidsvinduValideringsfeil | null {
   // Fra-dato må være før til-dato
   if (fraDato > tilDato) {
@@ -89,15 +98,15 @@ export function validerTidsvinduDatoer(
     return "fremtidig-dato";
   }
 
-  // Fra-dato kan ikke være mer enn 10 år tilbake
-  const tiÅrTilbake = new Date(nå);
-  tiÅrTilbake.setFullYear(tiÅrTilbake.getFullYear() - 10);
-  const tiÅrTilbakeNormalisert = new Date(
-    tiÅrTilbake.getFullYear(),
-    tiÅrTilbake.getMonth(),
-    tiÅrTilbake.getDate(),
+  // Fra-dato kan ikke være mer enn maksÅr tilbake
+  const grenseTilbake = new Date(nå);
+  grenseTilbake.setFullYear(grenseTilbake.getFullYear() - maksÅr);
+  const grenseTilbakeNormalisert = new Date(
+    grenseTilbake.getFullYear(),
+    grenseTilbake.getMonth(),
+    grenseTilbake.getDate(),
   );
-  if (fraDato < tiÅrTilbakeNormalisert) {
+  if (fraDato < grenseTilbakeNormalisert) {
     return "for-langt-tilbake";
   }
 
@@ -143,6 +152,8 @@ export function utledTidsvinduPeriode(
       return "3 år";
     case 120:
       return "10 år";
+    case 156:
+      return "13 år";
     default:
       return "tilpasset";
   }
@@ -158,9 +169,12 @@ export const TidsvinduProvider = ({
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const utvidet = searchParams.get("utvidet") === "true";
+  const erTrettenÅrAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
 
-  // Initialiser med preset basert på URL-param
-  const initialDatoer = beregnTidsvinduDatoer(utvidet ? 120 : 36);
+  // Initialiser med preset basert på URL-param og feature flag
+  const initialDatoer = beregnTidsvinduDatoer(
+    utvidet ? (erTrettenÅrAktivert ? 156 : 120) : 36,
+  );
   const [fraDato, setFraDato] = useState<Date>(initialDatoer.fraDato);
   const [tilDato, setTilDato] = useState<Date>(initialDatoer.tilDato);
   const [erTilpassetVisning, setErTilpassetVisning] = useState(false);
@@ -177,12 +191,17 @@ export const TidsvinduProvider = ({
         setFraDato(datoer.fraDato);
         setTilDato(datoer.tilDato);
         setErTilpassetVisning(false);
-        if (tidsvindu === "10 år") {
-          setSearchParams((prev) => ({ ...prev, utvidet: "true" }));
+        if (tidsvindu === "10 år" || tidsvindu === "13 år") {
+          setSearchParams((prev) => {
+            const next = new URLSearchParams(prev);
+            next.set("utvidet", "true");
+            return next;
+          });
         }
       },
       setCustomDatoer: (fra: Date, til: Date) => {
-        const feil = validerTidsvinduDatoer(fra, til);
+        const maksÅr = erTrettenÅrAktivert ? 13 : 10;
+        const feil = validerTidsvinduDatoer(fra, til, new Date(), maksÅr);
         if (feil) {
           return feil;
         }
@@ -194,7 +213,11 @@ export const TidsvinduProvider = ({
         const treÅrSiden = new Date(nå);
         treÅrSiden.setFullYear(treÅrSiden.getFullYear() - 3);
         if (fra < treÅrSiden) {
-          setSearchParams((prev) => ({ ...prev, utvidet: "true" }));
+          setSearchParams((prev) => {
+            const next = new URLSearchParams(prev);
+            next.set("utvidet", "true");
+            return next;
+          });
         }
 
         return null;
@@ -246,31 +269,34 @@ export const TidsvinduVelger = () => {
   } = useTidsvindu();
   const [feilmelding, setFeilmelding] = useState<string | null>(null);
   const erCustomDatoAktivert = useEnkeltFeatureFlagg(FeatureFlagg.CUSTOM_DATO);
+  const erTrettenÅrAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
 
-  const tiÅrTilbake = new Date();
-  tiÅrTilbake.setFullYear(tiÅrTilbake.getFullYear() - 10);
+  const maksÅrTilbake = new Date();
+  maksÅrTilbake.setFullYear(
+    maksÅrTilbake.getFullYear() - (erTrettenÅrAktivert ? 13 : 10),
+  );
   const iDag = new Date();
 
   const fraDatoPicker = useDatepicker({
     defaultSelected: fraDato,
-    fromDate: tiÅrTilbake,
+    fromDate: maksÅrTilbake,
     toDate: iDag,
     onDateChange: (dato) => {
       if (dato) {
         const feil = setCustomDatoer(dato, tilDato);
-        setFeilmelding(feilTilMelding(feil));
+        setFeilmelding(feilTilMelding(feil, erTrettenÅrAktivert ? 13 : 10));
       }
     },
   });
 
   const tilDatoPicker = useDatepicker({
     defaultSelected: tilDato,
-    fromDate: tiÅrTilbake,
+    fromDate: maksÅrTilbake,
     toDate: iDag,
     onDateChange: (dato) => {
       if (dato) {
         const feil = setCustomDatoer(fraDato, dato);
-        setFeilmelding(feilTilMelding(feil));
+        setFeilmelding(feilTilMelding(feil, erTrettenÅrAktivert ? 13 : 10));
       }
     },
   });
@@ -307,6 +333,7 @@ export const TidsvinduVelger = () => {
         <ToggleGroupItem value="1 år" label="1 år" />
         <ToggleGroupItem value="3 år" label="3 år" />
         <ToggleGroupItem value="10 år" label="10 år" />
+        {erTrettenÅrAktivert && <ToggleGroupItem value="13 år" label="13 år" />}
         {erCustomDatoAktivert && (
           <ToggleGroupItem
             value="tilpasset"
@@ -351,12 +378,13 @@ export const TidsvinduVelger = () => {
 
 export function feilTilMelding(
   feil: TidsvinduValideringsfeil | null,
+  maksÅr: number = 13,
 ): string | null {
   switch (feil) {
     case "fra-etter-til":
       return "Fra-dato må være før til-dato";
     case "for-langt-tilbake":
-      return "Kan ikke gå mer enn 10 år tilbake";
+      return `Kan ikke gå mer enn ${maksÅr} år tilbake`;
     case "fremtidig-dato":
       return "Kan ikke velge dato i fremtiden";
     case null:
