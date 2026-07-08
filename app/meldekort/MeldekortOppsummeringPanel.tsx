@@ -123,6 +123,7 @@ function MeldekortOppsummeringPanelInnhold({
 
   const laster = !meldekortState || meldekortState.status === "loading";
   const harFeil = meldekortState?.status === "error";
+  const harMkTimer = timerData?.some((d) => d.mkTimer > 0) ?? false;
 
   const periodeText = fraDatoProp
     ? `fra ${formaterDato(fraDato)}`
@@ -154,19 +155,16 @@ function MeldekortOppsummeringPanelInnhold({
         {laster && (
           <Skeleton variant="rounded" height={240} className="w-full" />
         )}
-        {!laster &&
-          !harFeil &&
-          timerData &&
-          timerData.some((d) => d.mkTimer > 0) && (
+        {!laster && !harFeil && harMkTimer && (
             <>
               <BodyShort size="small">
                 Avvik mellom AA-registrerte timer og timer oppgitt i meldekort
                 kan indikere feilutbetaling.
               </BodyShort>
-              <TimerSammenligningGraf data={timerData} />
+              <TimerSammenligningGraf data={timerData!} />
             </>
           )}
-        {!laster && !harFeil && (!timerData || timerData.length === 0) && (
+        {!laster && !harFeil && timerData !== null && !harMkTimer && (
           <BodyShort className="text-[var(--ax-text-subtle)]">
             Ingen timer å vise for valgt periode.
           </BodyShort>
