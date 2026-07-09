@@ -8,7 +8,7 @@ import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { MeldekortProvider, useMeldekort } from "~/meldekort/MeldekortContext";
 import { TimerSammenligningGraf } from "~/meldekort/TimerSammenligningGraf";
-import { aggregerTimerPerMåned } from "~/meldekort/utils";
+import { aggregerTimerPerMåned, erTimelønnet } from "~/meldekort/utils";
 import {
   PanelContainer,
   PanelContainerSkeleton,
@@ -123,6 +123,8 @@ function MeldekortOppsummeringPanelInnhold({
 
   const laster = !meldekortState || meldekortState.status === "loading";
   const harFeil = meldekortState?.status === "error";
+  const erTimelønnetBruker =
+    arbeidsgiverInformasjon != null && erTimelønnet(arbeidsgiverInformasjon);
   const harTimer =
     timerData?.some((d) => d.mkTimer > 0 || d.aaTimer > 0) ?? false;
 
@@ -156,7 +158,21 @@ function MeldekortOppsummeringPanelInnhold({
         {laster && (
           <Skeleton variant="rounded" height={240} className="w-full" />
         )}
-        {!laster && !harFeil && harTimer && (
+        {!laster && !harFeil && arbeidsgiverInformasjon == null && (
+          <Alert variant="info" size="small" inline>
+            Ingen data tilgjengelig for valgt periode.
+          </Alert>
+        )}
+        {!laster &&
+          !harFeil &&
+          arbeidsgiverInformasjon != null &&
+          !erTimelønnetBruker && (
+            <Alert variant="info" size="small" inline>
+              Ingen timer fra AA-registeret å vise. Timer vises kun for
+              timelønnede.
+            </Alert>
+          )}
+        {!laster && !harFeil && erTimelønnetBruker && harTimer && (
           <>
             <BodyShort size="small">
               Avvik mellom AA-registrerte timer og timer oppgitt i meldekort kan
@@ -165,7 +181,7 @@ function MeldekortOppsummeringPanelInnhold({
             <TimerSammenligningGraf data={timerData!} />
           </>
         )}
-        {!laster && !harFeil && !harTimer && (
+        {!laster && !harFeil && erTimelønnetBruker && !harTimer && (
           <Alert variant="info" size="small" inline>
             Ingen data tilgjengelig for valgt periode.
           </Alert>
