@@ -19,9 +19,13 @@ export type TimerPerMåned = {
 // 5 % avvik er avklart med fagansvarlig som rimelig terskel (ref. SEARCH-28).
 const AVVIKSTERSKEL_PROSENT = 5;
 
+type Arbeidsforhold = ArbeidsgiverInformasjon["løpendeArbeidsforhold"][number];
+
 function harTimeloennIForhold(
-  forhold: ArbeidsgiverInformasjon["løpendeArbeidsforhold"][number],
-): boolean {
+  forhold: Arbeidsforhold,
+): forhold is Arbeidsforhold & {
+  timerMedTimeloenn: NonNullable<Arbeidsforhold["timerMedTimeloenn"]>;
+} {
   return (
     forhold.timerMedTimeloenn != null && forhold.timerMedTimeloenn.length > 0
   );

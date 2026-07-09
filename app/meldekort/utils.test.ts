@@ -473,70 +473,32 @@ describe("erTimelønnet", () => {
     expect(erTimelønnet(info)).toBe(false);
   });
 
-  it("returnerer false når timerMedTimeloenn er undefined", () => {
-    const info: ArbeidsgiverInformasjon = {
-      løpendeArbeidsforhold: [
-        {
-          arbeidsgiver: "Testarbeidsgiver",
-          yrke: "Systemutvikler",
-          periode: { fom: "2024-01", tom: null },
-          timerMedTimeloenn: undefined,
-        },
-      ],
-      historikk: [],
-    };
+  it("returnerer false når timerMedTimeloenn ikke er satt (fastlønnet)", () => {
+    const info = lagArbeidsgiverInformasjon(37.5, "2024-01-01");
     expect(erTimelønnet(info)).toBe(false);
   });
 
   it("returnerer false når timerMedTimeloenn er tom liste", () => {
-    const info: ArbeidsgiverInformasjon = {
-      løpendeArbeidsforhold: [
-        {
-          arbeidsgiver: "Testarbeidsgiver",
-          yrke: "Systemutvikler",
-          periode: { fom: "2024-01", tom: null },
-          timerMedTimeloenn: [],
-        },
-      ],
-      historikk: [],
-    };
+    const info = lagArbeidsgiverInformasjonMedTimeloenn([]);
     expect(erTimelønnet(info)).toBe(false);
   });
 
-  it("returnerer true når minst ett arbeidsforhold har timerMedTimeloenn-data", () => {
-    const info: ArbeidsgiverInformasjon = {
-      løpendeArbeidsforhold: [
-        {
-          arbeidsgiver: "Testarbeidsgiver",
-          yrke: "Systemutvikler",
-          periode: { fom: "2024-01", tom: null },
-          timerMedTimeloenn: [
-            { antallTimer: 37.5, fraOgMed: "2024-01", tilOgMed: null },
-          ],
-        },
-      ],
-      historikk: [],
-    };
+  it("returnerer true når arbeidsforholdet har timerMedTimeloenn-data", () => {
+    const info = lagArbeidsgiverInformasjonMedTimeloenn([
+      { antall: 37.5, fraOgMed: "2024-01" },
+    ]);
     expect(erTimelønnet(info)).toBe(true);
   });
 
   it("returnerer true når kun ett av flere arbeidsforhold er timelønnet", () => {
+    const fastlønnet = lagArbeidsgiverInformasjon(37.5, "2024-01-01");
+    const timelønnet = lagArbeidsgiverInformasjonMedTimeloenn([
+      { antall: 20, fraOgMed: "2024-01" },
+    ]);
     const info: ArbeidsgiverInformasjon = {
       løpendeArbeidsforhold: [
-        {
-          arbeidsgiver: "Fastlønnet AS",
-          yrke: "Konsulent",
-          periode: { fom: "2024-01", tom: null },
-          timerMedTimeloenn: [],
-        },
-        {
-          arbeidsgiver: "Timelønnet AS",
-          yrke: "Utvikler",
-          periode: { fom: "2024-01", tom: null },
-          timerMedTimeloenn: [
-            { antallTimer: 20, fraOgMed: "2024-01", tilOgMed: null },
-          ],
-        },
+        ...fastlønnet.løpendeArbeidsforhold,
+        ...timelønnet.løpendeArbeidsforhold,
       ],
       historikk: [],
     };

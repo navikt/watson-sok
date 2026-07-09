@@ -158,12 +158,20 @@ function MeldekortOppsummeringPanelInnhold({
         {laster && (
           <Skeleton variant="rounded" height={240} className="w-full" />
         )}
-        {!laster && !harFeil && !erTimelønnetBruker && (
+        {!laster && !harFeil && arbeidsgiverInformasjon == null && (
           <Alert variant="info" size="small" inline>
-            Ingen timer fra AA-registeret å vise. Timer vises kun for
-            timelønnede.
+            Ingen data tilgjengelig for valgt periode.
           </Alert>
         )}
+        {!laster &&
+          !harFeil &&
+          arbeidsgiverInformasjon != null &&
+          !erTimelønnetBruker && (
+            <Alert variant="info" size="small" inline>
+              Ingen timer fra AA-registeret å vise. Timer vises kun for
+              timelønnede.
+            </Alert>
+          )}
         {!laster && !harFeil && erTimelønnetBruker && harTimer && (
           <>
             <BodyShort size="small">
