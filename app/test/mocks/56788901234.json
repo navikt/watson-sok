@@ -53,7 +53,7 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2025-07",
+              "fom": "2025-07-01",
               "tom": null
             },
             "yrke": "ADMINISTRASJONSKONSULENT (KONTORARBEID)"
@@ -72,7 +72,7 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2024-01",
+              "fom": "2024-01-01",
               "tom": null
             },
             "yrke": "SJÅFØR (BUDBIL)"
@@ -89,7 +89,7 @@
             "stillingsprosent": 50,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2024-11",
+              "fom": "2024-11-01",
               "tom": null
             },
             "yrke": "SERVITØR"
@@ -99,8 +99,8 @@
             "stillingsprosent": 10,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2023-12",
-              "tom": "2024-05"
+              "fom": "2023-12-01",
+              "tom": "2024-05-01"
             },
             "yrke": "SERVITØR"
           },
@@ -109,8 +109,8 @@
             "stillingsprosent": 10,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2024-06",
-              "tom": "2024-06"
+              "fom": "2024-06-01",
+              "tom": "2024-06-01"
             },
             "yrke": "SERVITØR"
           },
@@ -119,8 +119,8 @@
             "stillingsprosent": 40,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2024-07",
-              "tom": "2024-08"
+              "fom": "2024-07-01",
+              "tom": "2024-08-01"
             },
             "yrke": "SERVITØR"
           },
@@ -129,8 +129,8 @@
             "stillingsprosent": 50,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2024-09",
-              "tom": "2024-10"
+              "fom": "2024-09-01",
+              "tom": "2024-10-01"
             },
             "yrke": "SERVITØR"
           }

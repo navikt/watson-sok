@@ -43,7 +43,7 @@
             "antallTimerPrUke": 37.5,
             "yrke": null,
             "periode": {
-              "fom": "2000-08",
+              "fom": "2000-08-01",
               "tom": null
             }
           }
@@ -60,7 +60,7 @@
             "antallTimerPrUke": 37.5,
             "yrke": null,
             "periode": {
-              "fom": "2020-08",
+              "fom": "2020-08-01",
               "tom": null
             }
           }

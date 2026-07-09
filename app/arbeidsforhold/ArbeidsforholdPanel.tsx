@@ -33,7 +33,7 @@ import {
 } from "~/paneler/PanelContainer";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { cn } from "~/utils/class-utils";
-import { formaterÅrMåned } from "~/utils/date-utils";
+import { formaterDato } from "~/utils/date-utils";
 import { formaterProsent } from "~/utils/number-utils";
 import { formaterOrgnummer, storFørsteBokstav } from "~/utils/string-utils";
 
@@ -199,13 +199,13 @@ const ArbeidsforholdPanelMedData = ({
                       className="whitespace-nowrap"
                       textSize="small"
                     >
-                      {formaterÅrMåned(r.start)}
+                      {formaterDato(r.start)}
                     </TableDataCell>
                     <TableDataCell
                       className="whitespace-nowrap"
                       textSize="small"
                     >
-                      {r.slutt ? formaterÅrMåned(r.slutt) : "–"}
+                      {r.slutt ? formaterDato(r.slutt) : "–"}
                     </TableDataCell>
                     <TableDataCell align="right" textSize="small">
                       {formaterProsent(r.stillingsprosent ?? "-")}
@@ -433,9 +433,8 @@ function erPerioderSammenhengende(
 ): boolean {
   if (!sluttDato) return false; // Hvis første periode er pågående, er de ikke sammenhengende
 
-  // Parse datoer (format: YYYY-MM) og regn ut forskjellen i dager
-  const slutt = new Date(`${sluttDato}-01`);
-  const start = new Date(`${startDato}-01`);
+  const slutt = new Date(sluttDato);
+  const start = new Date(startDato);
 
   const diffMs = start.getTime() - slutt.getTime();
   const diffDays = diffMs / (1000 * 60 * 60 * 24);

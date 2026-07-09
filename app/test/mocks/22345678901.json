@@ -65,7 +65,7 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2023-01",
+              "fom": "2023-01-01",
               "tom": null
             },
             "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
@@ -75,8 +75,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2015-01",
-              "tom": "2018-12"
+              "fom": "2015-01-01",
+              "tom": "2018-12-01"
             },
             "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
           },
@@ -85,8 +85,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2019-01",
-              "tom": "2020-12"
+              "fom": "2019-01-01",
+              "tom": "2020-12-01"
             },
             "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
           },
@@ -95,8 +95,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2021-01",
-              "tom": "2021-12"
+              "fom": "2021-01-01",
+              "tom": "2021-12-01"
             },
             "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
           },
@@ -105,8 +105,8 @@
             "stillingsprosent": 80,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2022-01",
-              "tom": "2022-12"
+              "fom": "2022-01-01",
+              "tom": "2022-12-01"
             },
             "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
           }
@@ -124,7 +124,7 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2021-01",
+              "fom": "2021-01-01",
               "tom": null
             },
             "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
@@ -134,8 +134,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2020-06",
-              "tom": "2020-12"
+              "fom": "2020-06-01",
+              "tom": "2020-12-01"
             },
             "yrke": "DAGLIG LEDER (IKKE-SPESIFISERT NÆRINGSOMRÅDE - FÆRRE ENN 10 ANSATTE - PRIVAT VIRKSOMHET)"
           },
@@ -144,8 +144,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2019-01",
-              "tom": "2020-05"
+              "fom": "2019-01-01",
+              "tom": "2020-05-01"
             },
             "yrke": "FRISØR"
           },
@@ -154,8 +154,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2017-01",
-              "tom": "2018-12"
+              "fom": "2017-01-01",
+              "tom": "2018-12-01"
             },
             "yrke": "FRISØR"
           }
@@ -171,7 +171,7 @@
             "stillingsprosent": 50,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2022-01",
+              "fom": "2022-01-01",
               "tom": null
             },
             "yrke": "LEDER (FRISØRSALONG - FÆRRE ENN 10 ANSATTE- PRIVAT VIRKSOMHET)"
