@@ -19,6 +19,14 @@ export type TimerPerMåned = {
 // 5 % avvik er avklart med fagansvarlig som rimelig terskel (ref. SEARCH-28).
 const AVVIKSTERSKEL_PROSENT = 5;
 
+function harTimeloennIForhold(
+  forhold: ArbeidsgiverInformasjon["løpendeArbeidsforhold"][number],
+): boolean {
+  return (
+    forhold.timerMedTimeloenn != null && forhold.timerMedTimeloenn.length > 0
+  );
+}
+
 /**
  * Returnerer true dersom personen har innrapporterte timelønnet-timer
  * i minst ett løpende arbeidsforhold. Brukes til å skjule AA-timer-grafen
@@ -28,8 +36,7 @@ export function erTimelønnet(
   arbeidsgiverInformasjon: ArbeidsgiverInformasjon,
 ): boolean {
   return arbeidsgiverInformasjon.løpendeArbeidsforhold.some(
-    (forhold) =>
-      forhold.timerMedTimeloenn != null && forhold.timerMedTimeloenn.length > 0,
+    harTimeloennIForhold,
   );
 }
 
@@ -108,10 +115,7 @@ function beregnAaTimerForMåned(
   for (const forhold of arbeidsgiverInformasjon.løpendeArbeidsforhold) {
     // Hvis timerMedTimeloenn er definert og ikke-tom er personen timelønnet.
     // Da bruker vi aldri antallTimerPrUke som fallback — måneder uten data gir 0.
-    if (
-      forhold.timerMedTimeloenn != null &&
-      forhold.timerMedTimeloenn.length > 0
-    ) {
+    if (harTimeloennIForhold(forhold)) {
       const aktiveTimeloennEntries = forhold.timerMedTimeloenn.filter(
         (timerEntry) => {
           if (!timerEntry.fraOgMed) return false;

@@ -3,7 +3,11 @@ import { describe, expect, it } from "vitest";
 import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
 
 import type { Dag, MeldekortRespons } from "./domene";
-import { aggregerTimerPerMåned, beregnAktivitetStatistikk } from "./utils";
+import {
+  aggregerTimerPerMåned,
+  beregnAktivitetStatistikk,
+  erTimelønnet,
+} from "./utils";
 
 function lagDag(dagIndex: number, aktiviteter: Dag["aktiviteter"] = []): Dag {
   return {
@@ -457,5 +461,85 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
 
     // 30 dager / 7 × 37.5 t/uke
     expect(resultat[0].aaTimer).toBeCloseTo((30 / 7) * 37.5, 1);
+  });
+});
+
+describe("erTimelønnet", () => {
+  it("returnerer false når ingen arbeidsforhold finnes", () => {
+    const info: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [],
+      historikk: [],
+    };
+    expect(erTimelønnet(info)).toBe(false);
+  });
+
+  it("returnerer false når timerMedTimeloenn er undefined", () => {
+    const info: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [
+        {
+          arbeidsgiver: "Testarbeidsgiver",
+          yrke: "Systemutvikler",
+          periode: { fom: "2024-01", tom: null },
+          timerMedTimeloenn: undefined,
+        },
+      ],
+      historikk: [],
+    };
+    expect(erTimelønnet(info)).toBe(false);
+  });
+
+  it("returnerer false når timerMedTimeloenn er tom liste", () => {
+    const info: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [
+        {
+          arbeidsgiver: "Testarbeidsgiver",
+          yrke: "Systemutvikler",
+          periode: { fom: "2024-01", tom: null },
+          timerMedTimeloenn: [],
+        },
+      ],
+      historikk: [],
+    };
+    expect(erTimelønnet(info)).toBe(false);
+  });
+
+  it("returnerer true når minst ett arbeidsforhold har timerMedTimeloenn-data", () => {
+    const info: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [
+        {
+          arbeidsgiver: "Testarbeidsgiver",
+          yrke: "Systemutvikler",
+          periode: { fom: "2024-01", tom: null },
+          timerMedTimeloenn: [
+            { antallTimer: 37.5, fraOgMed: "2024-01", tilOgMed: null },
+          ],
+        },
+      ],
+      historikk: [],
+    };
+    expect(erTimelønnet(info)).toBe(true);
+  });
+
+  it("returnerer true når kun ett av flere arbeidsforhold er timelønnet", () => {
+    const info: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [
+        {
+          arbeidsgiver: "Fastlønnet AS",
+          yrke: "Konsulent",
+          periode: { fom: "2024-01", tom: null },
+          timerMedTimeloenn: [],
+        },
+        {
+          arbeidsgiver: "Timelønnet AS",
+          yrke: "Utvikler",
+          periode: { fom: "2024-01", tom: null },
+          timerMedTimeloenn: [
+            { antallTimer: 20, fraOgMed: "2024-01", tilOgMed: null },
+          ],
+        },
+      ],
+      historikk: [],
+    };
+    expect(erTimelønnet(info)).toBe(true);
   });
 });
