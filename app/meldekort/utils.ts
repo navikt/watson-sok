@@ -20,6 +20,20 @@ export type TimerPerMåned = {
 const AVVIKSTERSKEL_PROSENT = 5;
 
 /**
+ * Returnerer true dersom personen har innrapporterte timelønnet-timer
+ * i minst ett løpende arbeidsforhold. Brukes til å skjule AA-timer-grafen
+ * for fastlønnede der antallTimerPrUke ikke er faktisk innrapporterte timer.
+ */
+export function erTimelønnet(
+  arbeidsgiverInformasjon: ArbeidsgiverInformasjon,
+): boolean {
+  return arbeidsgiverInformasjon.løpendeArbeidsforhold.some(
+    (forhold) =>
+      forhold.timerMedTimeloenn != null && forhold.timerMedTimeloenn.length > 0,
+  );
+}
+
+/**
  * Sammenstiller meldekort-timer og AA-register-timer per kalendermåned.
  * Avvik markeres der differansen overstiger terskelen.
  */
