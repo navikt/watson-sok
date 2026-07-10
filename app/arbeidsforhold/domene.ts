@@ -14,14 +14,14 @@ const AnsettelsesDetaljSchema = z.object({
 });
 
 /**
- * Timer rapportert for timelønnet-arbeid per rapporteringsperiode.
- * Eksponeres av nav-persondata-api når tilgjengelig fra AAREG.
- * Format for fraOgMed/tilOgMed: "YYYY-MM"
+ * Timer rapportert for timelønnet-arbeid per opptjeningsperiode.
+ * Eksponeres av nav-persondata-api fra AAREG.
+ * Format for startdato/sluttdato: "YYYY-MM-DD"
  */
 const TimerMedTimeloennSchema = z.object({
   antall: z.number(),
-  fraOgMed: z.string().optional(),
-  tilOgMed: z.string().nullish(),
+  startdato: z.string().optional(),
+  sluttdato: z.string().nullish(),
 });
 
 type TimerMedTimeloenn = z.infer<typeof TimerMedTimeloennSchema>;
