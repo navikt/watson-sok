@@ -122,7 +122,6 @@ function beregnAaTimerForMåned(
     if (harTimeloennIForhold(forhold)) {
       const aktiveTimeloennEntries = forhold.timerMedTimeloenn.filter(
         (timerEntry) => {
-          if (!timerEntry.startdato) return false;
           const fom = parseDatoLokal(timerEntry.startdato);
           const tom = timerEntry.sluttdato
             ? parseDatoLokal(timerEntry.sluttdato)
@@ -132,7 +131,7 @@ function beregnAaTimerForMåned(
       );
 
       for (const timerEntry of aktiveTimeloennEntries) {
-        const fom = parseDatoLokal(timerEntry.startdato!);
+        const fom = parseDatoLokal(timerEntry.startdato);
         const tom = timerEntry.sluttdato
           ? parseDatoLokal(timerEntry.sluttdato)
           : null;

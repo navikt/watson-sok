@@ -20,7 +20,7 @@ const AnsettelsesDetaljSchema = z.object({
  */
 const TimerMedTimeloennSchema = z.object({
   antall: z.number(),
-  startdato: z.string().optional(),
+  startdato: z.string(),
   sluttdato: z.string().nullish(),
 });
 

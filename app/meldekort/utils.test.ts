@@ -164,7 +164,7 @@ function lagArbeidsgiverInformasjon(
 }
 
 function lagArbeidsgiverInformasjonMedTimeloenn(
-  timerPrUkePrPeriode: Array<{
+  timeroppføringer: Array<{
     antall: number;
     startdato: string;
     sluttdato?: string | null;
@@ -176,7 +176,7 @@ function lagArbeidsgiverInformasjonMedTimeloenn(
         arbeidsgiver: "Testbedriften AS",
         organisasjonsnummer: "123456789",
         ansettelsesDetaljer: [],
-        timerMedTimeloenn: timerPrUkePrPeriode.map((t) => ({
+        timerMedTimeloenn: timeroppføringer.map((t) => ({
           antall: t.antall,
           startdato: t.startdato,
           sluttdato: t.sluttdato ?? null,
