@@ -164,10 +164,10 @@ function lagArbeidsgiverInformasjon(
 }
 
 function lagArbeidsgiverInformasjonMedTimeloenn(
-  timerPrUkePrMåned: Array<{
+  timeroppføringer: Array<{
     antall: number;
-    fraOgMed: string;
-    tilOgMed?: string | null;
+    startdato: string;
+    sluttdato?: string | null;
   }>,
 ): ArbeidsgiverInformasjon {
   return {
@@ -176,10 +176,10 @@ function lagArbeidsgiverInformasjonMedTimeloenn(
         arbeidsgiver: "Testbedriften AS",
         organisasjonsnummer: "123456789",
         ansettelsesDetaljer: [],
-        timerMedTimeloenn: timerPrUkePrMåned.map((t) => ({
+        timerMedTimeloenn: timeroppføringer.map((t) => ({
           antall: t.antall,
-          fraOgMed: t.fraOgMed,
-          tilOgMed: t.tilOgMed ?? null,
+          startdato: t.startdato,
+          sluttdato: t.sluttdato ?? null,
         })),
       },
     ],
@@ -345,7 +345,7 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
   it("bruker timerMedTimeloenn når tilgjengelig, i stedet for antallTimerPrUke", () => {
     const meldekort: MeldekortRespons = [];
     const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
-      { antall: 20, fraOgMed: "2025-01" },
+      { antall: 20, startdato: "2025-01-01" },
     ]);
 
     const resultat = aggregerTimerPerMåned(
@@ -362,7 +362,7 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
   it("inkluderer ikke timelønnet-timer utenfor perioden", () => {
     const meldekort: MeldekortRespons = [];
     const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
-      { antall: 20, fraOgMed: "2025-01", tilOgMed: "2025-01" },
+      { antall: 20, startdato: "2025-01-01", sluttdato: "2025-01-31" },
     ]);
 
     const resultat = aggregerTimerPerMåned(
@@ -386,7 +386,7 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
           arbeidsgiver: "Testbedriften AS",
           organisasjonsnummer: "123456789",
           timerMedTimeloenn: [
-            { antall: 20, fraOgMed: "2025-01", tilOgMed: "2025-01" },
+            { antall: 20, startdato: "2025-01-01", sluttdato: "2025-01-31" },
           ],
           ansettelsesDetaljer: [
             {
@@ -412,10 +412,10 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
     expect(resultat[0].aaTimer).toBe(0);
   });
 
-  it("håndterer løpende timelønnet-avtale (tilOgMed null)", () => {
+  it("håndterer løpende timelønnet-avtale (sluttdato null)", () => {
     const meldekort: MeldekortRespons = [];
     const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
-      { antall: 37.5, fraOgMed: "2025-01", tilOgMed: null },
+      { antall: 37.5, startdato: "2025-01-01", sluttdato: null },
     ]);
 
     const resultat = aggregerTimerPerMåned(
@@ -485,7 +485,7 @@ describe("erTimelønnet", () => {
 
   it("returnerer true når arbeidsforholdet har timerMedTimeloenn-data", () => {
     const info = lagArbeidsgiverInformasjonMedTimeloenn([
-      { antall: 37.5, fraOgMed: "2024-01" },
+      { antall: 37.5, startdato: "2024-01-01" },
     ]);
     expect(erTimelønnet(info)).toBe(true);
   });
@@ -493,7 +493,7 @@ describe("erTimelønnet", () => {
   it("returnerer true når kun ett av flere arbeidsforhold er timelønnet", () => {
     const fastlønnet = lagArbeidsgiverInformasjon(37.5, "2024-01-01");
     const timelønnet = lagArbeidsgiverInformasjonMedTimeloenn([
-      { antall: 20, fraOgMed: "2024-01" },
+      { antall: 20, startdato: "2024-01-01" },
     ]);
     const info: ArbeidsgiverInformasjon = {
       løpendeArbeidsforhold: [
