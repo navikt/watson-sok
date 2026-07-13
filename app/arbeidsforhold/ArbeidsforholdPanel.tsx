@@ -27,13 +27,15 @@ import { use, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { sporHendelse } from "~/analytics/analytics";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
+import { FeatureFlagg } from "~/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import {
   PanelContainer,
   PanelContainerSkeleton,
 } from "~/paneler/PanelContainer";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { cn } from "~/utils/class-utils";
-import { formaterDato } from "~/utils/date-utils";
+import { formaterDato, formaterÅrMåned } from "~/utils/date-utils";
 import { formaterProsent } from "~/utils/number-utils";
 import { formaterOrgnummer, storFørsteBokstav } from "~/utils/string-utils";
 
@@ -84,6 +86,8 @@ const ArbeidsforholdPanelMedData = ({
     handleToggle,
   } = useArbeidsforholdOverflow();
 
+  const visEksakteDatoer = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_3);
+
   const løpende = arbeidsgiverInformasjon?.løpendeArbeidsforhold ?? [];
   const historikk = arbeidsgiverInformasjon?.historikk ?? [];
 
@@ -104,8 +108,8 @@ const ArbeidsforholdPanelMedData = ({
   );
 
   const sammenslåtteArbeidsforhold = useMemo(
-    () => slåSammenTilstøtendePerioder(arbeidsforhold),
-    [arbeidsforhold],
+    () => slåSammenTilstøtendePerioder(arbeidsforhold, visEksakteDatoer),
+    [arbeidsforhold, visEksakteDatoer],
   );
 
   // Sortér løpende arbeidsforhold først, deretter etter nyeste start
@@ -199,13 +203,19 @@ const ArbeidsforholdPanelMedData = ({
                       className="whitespace-nowrap"
                       textSize="small"
                     >
-                      {formaterDato(r.start)}
+                      {visEksakteDatoer
+                        ? formaterDato(r.start)
+                        : formaterÅrMåned(r.start?.substring(0, 7))}
                     </TableDataCell>
                     <TableDataCell
                       className="whitespace-nowrap"
                       textSize="small"
                     >
-                      {r.slutt ? formaterDato(r.slutt) : "–"}
+                      {r.slutt
+                        ? visEksakteDatoer
+                          ? formaterDato(r.slutt)
+                          : formaterÅrMåned(r.slutt?.substring(0, 7))
+                        : "–"}
                     </TableDataCell>
                     <TableDataCell align="right" textSize="small">
                       {formaterProsent(r.stillingsprosent ?? "-")}
@@ -428,10 +438,12 @@ function mapYrke(yrke: string) {
 
 // Sjekker om to perioder er sammenhengende.
 // Med eksakte YYYY-MM-DD-datoer fra AAREG betyr «sammenhengende» at neste periode
-// starter dagen etter forrige slutter (diffDays === 1).
+// starter dagen etter forrige slutter (maxDiffDays === 1).
+// Med YYYY-MM (v1.2-format) er datoer normalisert til første i måneden → terskel 32.
 function erPerioderSammenhengende(
   sluttDato: string | null,
   startDato: string,
+  maxDiffDays: number,
 ): boolean {
   if (!sluttDato) return false; // Hvis første periode er pågående, er de ikke sammenhengende
 
@@ -441,7 +453,7 @@ function erPerioderSammenhengende(
   const diffMs = start.getTime() - slutt.getTime();
   const diffDays = diffMs / (1000 * 60 * 60 * 24);
 
-  return diffDays > 0 && diffDays <= 1;
+  return diffDays > 0 && diffDays <= maxDiffDays;
 }
 
 // Slår sammen sammenhengende arbeidsforhold for samme arbeidsgiver
@@ -458,6 +470,7 @@ function slåSammenTilstøtendePerioder(
     yrke: string | null;
     løpende: boolean;
   }>,
+  visEksakteDatoer: boolean,
 ) {
   // Gruppér etter arbeidsgiver (bruker id eller organisasjonsnummer om id ikke finnes)
   const gruppert = new Map<
@@ -502,6 +515,7 @@ function slåSammenTilstøtendePerioder(
       const erSammenhengendeTid = erPerioderSammenhengende(
         tmpSammenslått.slutt,
         nesteRad.start,
+        visEksakteDatoer ? 1 : 32,
       );
       const harSammeDetaljer =
         tmpSammenslått.stillingsprosent === nesteRad.stillingsprosent &&
