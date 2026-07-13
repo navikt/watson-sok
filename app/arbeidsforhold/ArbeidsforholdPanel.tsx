@@ -426,7 +426,8 @@ function mapYrke(yrke: string) {
   }
 }
 
-// Sjekker om to perioder er sammenhengende (32 dager eller mindre mellom dem)
+// Sjekker om to perioder er sammenhengende (påfølgende dager, maks 1 dags gap).
+// Datoer er eksakte YYYY-MM-DD-datoer fra AAREG (ansettelsesperiode.startdato/sluttdato).
 function erPerioderSammenhengende(
   sluttDato: string | null,
   startDato: string,
@@ -439,7 +440,7 @@ function erPerioderSammenhengende(
   const diffMs = start.getTime() - slutt.getTime();
   const diffDays = diffMs / (1000 * 60 * 60 * 24);
 
-  return diffDays > 0 && diffDays <= 32;
+  return diffDays > 0 && diffDays <= 1;
 }
 
 // Slår sammen sammenhengende arbeidsforhold for samme arbeidsgiver
