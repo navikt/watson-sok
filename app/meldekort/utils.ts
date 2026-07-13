@@ -122,19 +122,18 @@ function beregnAaTimerForMåned(
     if (harTimeloennIForhold(forhold)) {
       const aktiveTimeloennEntries = forhold.timerMedTimeloenn.filter(
         (timerEntry) => {
-          if (!timerEntry.fraOgMed) return false;
-          const fom = parseDatoLokal(timerEntry.fraOgMed + "-01");
-          const tom = timerEntry.tilOgMed
-            ? parseMånedSlutt(timerEntry.tilOgMed)
+          const fom = parseDatoLokal(timerEntry.startdato);
+          const tom = timerEntry.sluttdato
+            ? parseDatoLokal(timerEntry.sluttdato)
             : null;
           return fom <= sisteDag && (tom === null || tom >= førsteDag);
         },
       );
 
       for (const timerEntry of aktiveTimeloennEntries) {
-        const fom = parseDatoLokal(timerEntry.fraOgMed + "-01");
-        const tom = timerEntry.tilOgMed
-          ? parseMånedSlutt(timerEntry.tilOgMed)
+        const fom = parseDatoLokal(timerEntry.startdato);
+        const tom = timerEntry.sluttdato
+          ? parseDatoLokal(timerEntry.sluttdato)
           : null;
 
         const effektivFom = fom > førsteDag ? fom : førsteDag;
