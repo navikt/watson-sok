@@ -129,7 +129,7 @@
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2017-01-01",
-              "tom": "2017-12-01"
+              "tom": "2017-12-20"
             },
             "yrke": "FRISØR"
           }
@@ -145,7 +145,7 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2015-11-01",
+              "fom": "2015-11-10",
               "tom": null
             },
             "yrke": "KUNDESERVICEMEDARBEIDER (SALG)"
@@ -156,7 +156,7 @@
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2015-09-01",
-              "tom": "2015-10-01"
+              "tom": "2015-10-12"
             },
             "yrke": "KUNDESERVICEMEDARBEIDER (SALG)"
           },
@@ -166,7 +166,7 @@
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2015-03-01",
-              "tom": "2015-08-01"
+              "tom": "2015-08-28"
             },
             "yrke": "KUNDESERVICEMEDARBEIDER (SALG)"
           }
@@ -202,8 +202,8 @@
             "stillingsprosent": 0,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2017-12-01",
-              "tom": "2017-12-01"
+              "fom": "2017-12-20",
+              "tom": "2017-12-20"
             },
             "yrke": "SAKSBEHANDLER 2 (KONSULENT OFF.ADM.)"
           },
@@ -223,7 +223,7 @@
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2015-06-01",
-              "tom": "2015-08-01"
+              "tom": "2015-08-28"
             },
             "yrke": "SAKSBEHANDLER 2 (KONSULENT OFF.ADM.)"
           },
@@ -233,7 +233,7 @@
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2015-01-01",
-              "tom": "2015-05-01"
+              "tom": "2015-05-29"
             },
             "yrke": "SAKSBEHANDLER 2 (KONSULENT OFF.ADM.)"
           }
@@ -259,8 +259,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 35,
             "periode": {
-              "fom": "2015-10-01",
-              "tom": "2016-03-01"
+              "fom": "2015-10-12",
+              "tom": "2016-03-31"
             },
             "yrke": "KONSULENT (ØKONOMI - PRIVAT VIRKSOMHET)"
           },
@@ -269,7 +269,7 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 35,
             "periode": {
-              "fom": "2016-04-01",
+              "fom": "2016-04-04",
               "tom": "2017-02-01"
             },
             "yrke": "KONSULENT (ØKONOMI - PRIVAT VIRKSOMHET)"
@@ -280,7 +280,7 @@
             "antallTimerPrUke": 35,
             "periode": {
               "fom": "2017-03-01",
-              "tom": "2017-12-01"
+              "tom": "2017-12-20"
             },
             "yrke": "KONSULENT (ØKONOMI - PRIVAT VIRKSOMHET)"
           },

@@ -44,8 +44,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2020-01-01",
-              "tom": "2020-12-01"
+              "fom": "2020-01-15",
+              "tom": "2020-12-31"
             },
             "yrke": "UTVIKLER"
           },
@@ -54,8 +54,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2021-01-01",
-              "tom": "2021-12-01"
+              "fom": "2021-01-04",
+              "tom": "2021-12-31"
             },
             "yrke": "UTVIKLER"
           },
@@ -81,8 +81,8 @@
             "stillingsprosent": 50,
             "antallTimerPrUke": 18.75,
             "periode": {
-              "fom": "2021-01-01",
-              "tom": "2021-06-01"
+              "fom": "2021-01-04",
+              "tom": "2021-06-30"
             },
             "yrke": "KONSULENT"
           },
@@ -91,8 +91,8 @@
             "stillingsprosent": 80,
             "antallTimerPrUke": 30,
             "periode": {
-              "fom": "2021-07-01",
-              "tom": "2021-12-01"
+              "fom": "2021-07-05",
+              "tom": "2021-12-31"
             },
             "yrke": "KONSULENT"
           },
@@ -102,7 +102,7 @@
             "antallTimerPrUke": 30,
             "periode": {
               "fom": "2022-01-01",
-              "tom": "2022-12-01"
+              "tom": "2022-12-31"
             },
             "yrke": "KONSULENT"
           },
@@ -112,7 +112,7 @@
             "antallTimerPrUke": 30,
             "periode": {
               "fom": "2023-01-01",
-              "tom": "2023-06-01"
+              "tom": "2023-06-15"
             },
             "yrke": "KONSULENT"
           }
@@ -129,7 +129,7 @@
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2019-01-01",
-              "tom": "2019-12-01"
+              "tom": "2019-12-31"
             },
             "yrke": "DESIGNER"
           },
@@ -138,8 +138,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2020-01-01",
-              "tom": "2020-12-01"
+              "fom": "2020-01-15",
+              "tom": "2020-12-31"
             },
             "yrke": "SENIOR DESIGNER"
           },
@@ -148,7 +148,7 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2021-01-01",
+              "fom": "2021-01-04",
               "tom": "2021-03-01"
             },
             "yrke": "SENIOR DESIGNER"

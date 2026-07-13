@@ -426,8 +426,9 @@ function mapYrke(yrke: string) {
   }
 }
 
-// Sjekker om to perioder er sammenhengende (påfølgende dager, maks 1 dags gap).
-// Datoer er eksakte YYYY-MM-DD-datoer fra AAREG (ansettelsesperiode.startdato/sluttdato).
+// Sjekker om to perioder er sammenhengende.
+// Med eksakte YYYY-MM-DD-datoer fra AAREG betyr «sammenhengende» at neste periode
+// starter dagen etter forrige slutter (diffDays === 1).
 function erPerioderSammenhengende(
   sluttDato: string | null,
   startDato: string,
