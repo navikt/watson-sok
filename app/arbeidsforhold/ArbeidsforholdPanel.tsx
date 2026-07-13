@@ -260,12 +260,6 @@ const ArbeidsforholdPanelMedData = ({
                 ))}
               </TableBody>
             </Table>
-            {harOverflow && (
-              <div
-                aria-hidden="true"
-                className="pointer-events-none h-12 absolute bottom-0 left-0 right-0 bg-linear-to-b from-transparent to-ax-bg-default"
-              />
-            )}
           </div>
           {skalViseVisningsknapp && (
             <div className="mt-2 flex justify-end print:hidden">
@@ -383,6 +377,9 @@ function useArbeidsforholdOverflow() {
   const containerClassName = cn(
     "relative print:max-h-none print:overflow-y-auto",
     visAlleArbeidsforhold ? "max-h-none" : "max-h-[320px] overflow-y-hidden",
+    harOverflow &&
+      !visAlleArbeidsforhold &&
+      "after:content-[''] after:pointer-events-none after:h-12 after:absolute after:bottom-0 after:left-0 after:right-0 after:bg-linear-to-b after:from-transparent after:to-ax-bg-default",
   );
 
   const handleToggle = () => {
