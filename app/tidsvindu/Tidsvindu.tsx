@@ -6,7 +6,7 @@ import {
   useDatepicker,
 } from "@navikt/ds-react";
 import { ToggleGroupItem } from "@navikt/ds-react/ToggleGroup";
-import { createContext, use, useId, useMemo, useState } from "react";
+import { createContext, use, useId, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router";
 
 import { sporHendelse } from "~/analytics/analytics";
@@ -223,7 +223,13 @@ export const TidsvinduProvider = ({
         return null;
       },
     }),
-    [fraDato, tilDato, erTilpassetVisning, setSearchParams],
+    [
+      fraDato,
+      tilDato,
+      erTilpassetVisning,
+      setSearchParams,
+      erTrettenÅrAktivert,
+    ],
   );
   return (
     <TidsvinduContext.Provider value={context}>
@@ -271,6 +277,12 @@ export const TidsvinduVelger = () => {
   const erCustomDatoAktivert = useEnkeltFeatureFlagg(FeatureFlagg.CUSTOM_DATO);
   const erTrettenÅrAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
 
+  // Refs for å unngå stale closure i useDatepicker-callbacks
+  const fraDatoRef = useRef(fraDato);
+  fraDatoRef.current = fraDato;
+  const tilDatoRef = useRef(tilDato);
+  tilDatoRef.current = tilDato;
+
   const maksÅrTilbake = new Date();
   maksÅrTilbake.setFullYear(
     maksÅrTilbake.getFullYear() - (erTrettenÅrAktivert ? 13 : 10),
@@ -283,7 +295,7 @@ export const TidsvinduVelger = () => {
     toDate: iDag,
     onDateChange: (dato) => {
       if (dato) {
-        const feil = setCustomDatoer(dato, tilDato);
+        const feil = setCustomDatoer(dato, tilDatoRef.current);
         setFeilmelding(feilTilMelding(feil, erTrettenÅrAktivert ? 13 : 10));
       }
     },
@@ -295,7 +307,7 @@ export const TidsvinduVelger = () => {
     toDate: iDag,
     onDateChange: (dato) => {
       if (dato) {
-        const feil = setCustomDatoer(fraDato, dato);
+        const feil = setCustomDatoer(fraDatoRef.current, dato);
         setFeilmelding(feilTilMelding(feil, erTrettenÅrAktivert ? 13 : 10));
       }
     },
