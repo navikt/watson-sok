@@ -44,8 +44,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2020-01",
-              "tom": "2020-12"
+              "fom": "2020-01-15",
+              "tom": "2020-12-31"
             },
             "yrke": "UTVIKLER"
           },
@@ -54,8 +54,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2021-01",
-              "tom": "2021-12"
+              "fom": "2021-01-04",
+              "tom": "2021-12-31"
             },
             "yrke": "UTVIKLER"
           },
@@ -64,7 +64,7 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2022-01",
+              "fom": "2022-01-01",
               "tom": null
             },
             "yrke": "UTVIKLER"
@@ -81,8 +81,8 @@
             "stillingsprosent": 50,
             "antallTimerPrUke": 18.75,
             "periode": {
-              "fom": "2021-01",
-              "tom": "2021-06"
+              "fom": "2021-01-04",
+              "tom": "2021-06-30"
             },
             "yrke": "KONSULENT"
           },
@@ -91,8 +91,8 @@
             "stillingsprosent": 80,
             "antallTimerPrUke": 30,
             "periode": {
-              "fom": "2021-07",
-              "tom": "2021-12"
+              "fom": "2021-07-05",
+              "tom": "2021-12-31"
             },
             "yrke": "KONSULENT"
           },
@@ -101,8 +101,8 @@
             "stillingsprosent": 80,
             "antallTimerPrUke": 30,
             "periode": {
-              "fom": "2022-01",
-              "tom": "2022-12"
+              "fom": "2022-01-01",
+              "tom": "2022-12-31"
             },
             "yrke": "KONSULENT"
           },
@@ -111,8 +111,8 @@
             "stillingsprosent": 80,
             "antallTimerPrUke": 30,
             "periode": {
-              "fom": "2023-01",
-              "tom": "2023-06"
+              "fom": "2023-01-01",
+              "tom": "2023-06-15"
             },
             "yrke": "KONSULENT"
           }
@@ -128,8 +128,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2019-01",
-              "tom": "2019-12"
+              "fom": "2019-01-01",
+              "tom": "2019-12-31"
             },
             "yrke": "DESIGNER"
           },
@@ -138,8 +138,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2020-01",
-              "tom": "2020-12"
+              "fom": "2020-01-15",
+              "tom": "2020-12-31"
             },
             "yrke": "SENIOR DESIGNER"
           },
@@ -148,8 +148,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2021-01",
-              "tom": "2021-03"
+              "fom": "2021-01-04",
+              "tom": "2021-03-01"
             },
             "yrke": "SENIOR DESIGNER"
           }
@@ -165,8 +165,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2018-01",
-              "tom": "2018-06"
+              "fom": "2018-01-01",
+              "tom": "2018-06-01"
             },
             "yrke": "UTVIKLER"
           },
@@ -175,8 +175,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2018-08",
-              "tom": "2018-12"
+              "fom": "2018-08-01",
+              "tom": "2018-12-01"
             },
             "yrke": "UTVIKLER"
           }
@@ -192,8 +192,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2023-01",
-              "tom": "2023-12"
+              "fom": "2023-01-01",
+              "tom": "2023-12-01"
             },
             "yrke": "IT-KONSULENT"
           },
@@ -202,8 +202,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2024-01",
-              "tom": "2024-12"
+              "fom": "2024-01-01",
+              "tom": "2024-12-01"
             },
             "yrke": "IT-KONSULENT"
           }

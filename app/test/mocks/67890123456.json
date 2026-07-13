@@ -69,7 +69,7 @@
             "stillingsprosent": 27,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2023-02",
+              "fom": "2023-02-01",
               "tom": null
             },
             "yrke": "BUD"
@@ -88,7 +88,7 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2024-09",
+              "fom": "2024-09-01",
               "tom": null
             },
             "yrke": "BILRENSER"
@@ -98,8 +98,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2023-06",
-              "tom": "2024-08"
+              "fom": "2023-06-01",
+              "tom": "2024-08-01"
             },
             "yrke": "BILRENSER"
           },
@@ -108,8 +108,8 @@
             "stillingsprosent": 10,
             "antallTimerPrUke": 4,
             "periode": {
-              "fom": "2023-05",
-              "tom": "2023-05"
+              "fom": "2023-05-01",
+              "tom": "2023-05-01"
             },
             "yrke": "BILRENSER"
           },
@@ -118,8 +118,8 @@
             "stillingsprosent": 10,
             "antallTimerPrUke": 4,
             "periode": {
-              "fom": "2022-07",
-              "tom": "2023-04"
+              "fom": "2022-07-01",
+              "tom": "2023-04-01"
             },
             "yrke": "BILRENSER"
           }
@@ -135,7 +135,7 @@
             "stillingsprosent": null,
             "antallTimerPrUke": null,
             "periode": {
-              "fom": "2022-09",
+              "fom": "2022-09-01",
               "tom": null
             },
             "yrke": "ADMINISTRASJONSKONSULENT"
@@ -152,7 +152,7 @@
             "stillingsprosent": null,
             "antallTimerPrUke": null,
             "periode": {
-              "fom": "2023-02",
+              "fom": "2023-02-01",
               "tom": null
             },
             "yrke": "ADMINISTRASJONSKONSULENT"
@@ -169,7 +169,7 @@
             "stillingsprosent": 5,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2022-08",
+              "fom": "2022-08-01",
               "tom": null
             },
             "yrke": "ADMINISTRASJONSKONSULENT"
@@ -179,8 +179,8 @@
             "stillingsprosent": 5,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2022-07",
-              "tom": "2022-07"
+              "fom": "2022-07-01",
+              "tom": "2022-07-01"
             },
             "yrke": "ADMINISTRASJONSKONSULENT"
           },
@@ -189,8 +189,8 @@
             "stillingsprosent": 5,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2022-06",
-              "tom": "2022-06"
+              "fom": "2022-06-01",
+              "tom": "2022-06-01"
             },
             "yrke": "ADMINISTRASJONSKONSULENT"
           }
@@ -206,7 +206,7 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2025-01",
+              "fom": "2025-01-01",
               "tom": null
             },
             "yrke": "BUD"
@@ -216,8 +216,8 @@
             "stillingsprosent": 100,
             "antallTimerPrUke": 37.5,
             "periode": {
-              "fom": "2022-12",
-              "tom": "2024-12"
+              "fom": "2022-12-01",
+              "tom": "2024-12-01"
             },
             "yrke": "BUD"
           }

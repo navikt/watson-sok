@@ -33,7 +33,7 @@ import {
 } from "~/paneler/PanelContainer";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { cn } from "~/utils/class-utils";
-import { formaterÅrMåned } from "~/utils/date-utils";
+import { formaterDato } from "~/utils/date-utils";
 import { formaterProsent } from "~/utils/number-utils";
 import { formaterOrgnummer, storFørsteBokstav } from "~/utils/string-utils";
 
@@ -199,13 +199,13 @@ const ArbeidsforholdPanelMedData = ({
                       className="whitespace-nowrap"
                       textSize="small"
                     >
-                      {formaterÅrMåned(r.start)}
+                      {formaterDato(r.start)}
                     </TableDataCell>
                     <TableDataCell
                       className="whitespace-nowrap"
                       textSize="small"
                     >
-                      {r.slutt ? formaterÅrMåned(r.slutt) : "–"}
+                      {r.slutt ? formaterDato(r.slutt) : "–"}
                     </TableDataCell>
                     <TableDataCell align="right" textSize="small">
                       {formaterProsent(r.stillingsprosent ?? "-")}
@@ -260,9 +260,6 @@ const ArbeidsforholdPanelMedData = ({
                 ))}
               </TableBody>
             </Table>
-            {harOverflow && (
-              <div className="pointer-events-none h-12 absolute bottom-0 left-0 right-0 bg-linear-to-b from-transparent to-ax-bg-default" />
-            )}
           </div>
           {skalViseVisningsknapp && (
             <div className="mt-2 flex justify-end print:hidden">
@@ -380,6 +377,9 @@ function useArbeidsforholdOverflow() {
   const containerClassName = cn(
     "relative print:max-h-none print:overflow-y-auto",
     visAlleArbeidsforhold ? "max-h-none" : "max-h-[320px] overflow-y-hidden",
+    harOverflow &&
+      !visAlleArbeidsforhold &&
+      "after:content-[''] after:pointer-events-none after:h-12 after:absolute after:bottom-0 after:left-0 after:right-0 after:bg-linear-to-b after:from-transparent after:to-ax-bg-default",
   );
 
   const handleToggle = () => {
@@ -426,21 +426,22 @@ function mapYrke(yrke: string) {
   }
 }
 
-// Sjekker om to perioder er sammenhengende (32 dager eller mindre mellom dem)
+// Sjekker om to perioder er sammenhengende.
+// Med eksakte YYYY-MM-DD-datoer fra AAREG betyr «sammenhengende» at neste periode
+// starter dagen etter forrige slutter (diffDays === 1).
 function erPerioderSammenhengende(
   sluttDato: string | null,
   startDato: string,
 ): boolean {
   if (!sluttDato) return false; // Hvis første periode er pågående, er de ikke sammenhengende
 
-  // Parse datoer (format: YYYY-MM) og regn ut forskjellen i dager
-  const slutt = new Date(`${sluttDato}-01`);
-  const start = new Date(`${startDato}-01`);
+  const slutt = new Date(sluttDato);
+  const start = new Date(startDato);
 
   const diffMs = start.getTime() - slutt.getTime();
   const diffDays = diffMs / (1000 * 60 * 60 * 24);
 
-  return diffDays > 0 && diffDays <= 32;
+  return diffDays > 0 && diffDays <= 1;
 }
 
 // Slår sammen sammenhengende arbeidsforhold for samme arbeidsgiver
