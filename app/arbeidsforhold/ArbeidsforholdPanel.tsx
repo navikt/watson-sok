@@ -261,7 +261,10 @@ const ArbeidsforholdPanelMedData = ({
               </TableBody>
             </Table>
             {harOverflow && (
-              <div className="pointer-events-none h-12 absolute bottom-0 left-0 right-0 bg-linear-to-b from-transparent to-ax-bg-default" />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none h-12 absolute bottom-0 left-0 right-0 bg-linear-to-b from-transparent to-ax-bg-default"
+              />
             )}
           </div>
           {skalViseVisningsknapp && (
