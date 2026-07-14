@@ -5,6 +5,7 @@ import { type LoaderFunctionArgs, redirect } from "react-router";
 import { hentArbeidsforhold } from "~/arbeidsforhold/api.server";
 import { hentInntekter } from "~/inntekt-og-ytelse/inntekt/api.server";
 import { hentYtelser } from "~/inntekt-og-ytelse/ytelse/api.server";
+import { logger } from "~/logging/logging";
 import { hentPersonopplysninger } from "~/person/api.server";
 import { RouteConfig } from "~/routeConfig";
 import { hentSøkedataFraSession } from "~/søk/søkeinfoSession.server";
@@ -51,7 +52,12 @@ export async function oppslagLoader({ request }: LoaderFunctionArgs) {
       ].includes(søkedata.tilgang),
     personopplysninger: hentPersonopplysninger(params),
     arbeidsgiverInformasjon: hentArbeidsforhold(params),
-    inntektInformasjon: hentInntekter(params),
+    inntektInformasjon: hentInntekter(params).catch((error: unknown) => {
+      logger.warn("Inntekt utilgjengelig fra baksystem", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      return null;
+    }),
     ytelser: hentYtelser(params),
   };
 }
