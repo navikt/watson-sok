@@ -6,6 +6,8 @@ import { logger } from "~/logging/logging";
 import type { MockOppslagBrukerRespons } from "~/test/domene";
 import { getMockedResponseByFødselsnummer } from "~/test/mock.server";
 
+import { OppslagApiError } from "./errors";
+
 type ApiRequestConfig<T> = {
   /** Identifikatoren (fødselsnummer etc) man vil slå opp */
   ident: string;
@@ -109,13 +111,6 @@ export async function gjørOppslagApiRequest<T>({
     }
     logger.error("⛔ Nettverksfeil mot baksystem:", { error: err });
     throw err;
-  }
-}
-
-class OppslagApiError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "OppslagApiError";
   }
 }
 
