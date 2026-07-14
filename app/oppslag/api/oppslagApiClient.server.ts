@@ -6,7 +6,7 @@ import { logger } from "~/logging/logging";
 import type { MockOppslagBrukerRespons } from "~/test/domene";
 import { getMockedResponseByFødselsnummer } from "~/test/mock.server";
 
-import { OppslagApiError } from "./errors";
+import { BaksystemFeilError, OppslagApiError } from "./errors";
 
 type ApiRequestConfig<T> = {
   /** Identifikatoren (fødselsnummer etc) man vil slå opp */
@@ -86,9 +86,7 @@ export async function gjørOppslagApiRequest<T>({
           "Du har ikke tilgang til å se denne personen",
         );
       }
-      throw new OppslagApiError(
-        `Feil fra baksystem. Status: ${response.status} – ${await response.text()}`,
-      );
+      throw new BaksystemFeilError(response.status);
     }
 
     const rawData = await response.json();
