@@ -83,7 +83,11 @@ type MeldekortOppsummeringPanelInnholdProps = {
   tilDato?: string;
 };
 
-function MeldekortOppsummeringPanelInnhold({
+/**
+ * Innholdskomponent for AA-timer vs meldekort-sammenstilling.
+ * Eksportert for testbarhet — bruk `MeldekortOppsummeringPanel` i produksjonskode.
+ */
+export function MeldekortOppsummeringPanelInnhold({
   arbeidsgiverInformasjon,
   fraDato: fraDatoProp,
   tilDato: tilDatoProp,
