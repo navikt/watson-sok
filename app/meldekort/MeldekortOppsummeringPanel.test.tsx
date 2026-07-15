@@ -17,7 +17,6 @@ vi.mock("~/tidsvindu/Tidsvindu", () => ({
   }),
 }));
 
-
 function lagTimelønnetArbeidsgiverInformasjon(): ArbeidsgiverInformasjon {
   return {
     løpendeArbeidsforhold: [
@@ -66,9 +65,7 @@ describe("MeldekortOppsummeringPanelInnhold", () => {
     );
 
     expect(screen.queryByText(/Ingen timer fra AA-registeret/)).toBeNull();
-    expect(
-      screen.getByRole("region", { name: /Stolpediagram/ }),
-    ).toBeDefined();
+    expect(screen.getByRole("region", { name: /Stolpediagram/ })).toBeDefined();
   });
 
   it("viser 'Ingen timer'-melding for fastlønnet bruker (ingen timerMedTimeloenn)", () => {
