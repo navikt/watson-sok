@@ -17,9 +17,6 @@ vi.mock("~/tidsvindu/Tidsvindu", () => ({
   }),
 }));
 
-vi.mock("~/feature-toggling/useFeatureFlagg", () => ({
-  useEnkeltFeatureFlagg: () => true,
-}));
 
 function lagTimelønnetArbeidsgiverInformasjon(): ArbeidsgiverInformasjon {
   return {
@@ -59,7 +56,7 @@ function lagFastlønnetArbeidsgiverInformasjon(): ArbeidsgiverInformasjon {
 }
 
 describe("MeldekortOppsummeringPanelInnhold", () => {
-  it("viser ikke 'Ingen timer'-melding for timelønnet bruker", () => {
+  it("viser ikke 'Ingen timer'-melding og rendrer grafen for timelønnet bruker", () => {
     render(
       <MeldekortOppsummeringPanelInnhold
         arbeidsgiverInformasjon={lagTimelønnetArbeidsgiverInformasjon()}
@@ -69,6 +66,9 @@ describe("MeldekortOppsummeringPanelInnhold", () => {
     );
 
     expect(screen.queryByText(/Ingen timer fra AA-registeret/)).toBeNull();
+    expect(
+      screen.getByRole("region", { name: /Stolpediagram/ }),
+    ).toBeDefined();
   });
 
   it("viser 'Ingen timer'-melding for fastlønnet bruker (ingen timerMedTimeloenn)", () => {
