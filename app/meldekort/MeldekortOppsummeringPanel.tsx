@@ -83,7 +83,7 @@ type MeldekortOppsummeringPanelInnholdProps = {
   tilDato?: string;
 };
 
-function MeldekortOppsummeringPanelInnhold({
+export function MeldekortOppsummeringPanelInnhold({
   arbeidsgiverInformasjon,
   fraDato: fraDatoProp,
   tilDato: tilDatoProp,
