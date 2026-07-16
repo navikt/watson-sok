@@ -14,6 +14,7 @@ import {
   storFørsteBokstavPerOrd,
 } from "~/utils/string-utils";
 
+import { AdresseHistorikkModal } from "./AdresseHistorikkModal";
 import type { PersonInformasjon } from "./domene";
 import { FamiliemedlemmerModal } from "./FamiliemedlemmerModal";
 import { formaterAdresse } from "./utils/adresse-utils";
@@ -123,6 +124,23 @@ const PersonopplysningerPanelMedData = ({
               {folkeregistrertAdresse}&nbsp;
               <KopiKnapp copyText={folkeregistrertAdresse} />
             </dd>
+            <dt>Adressehistorikk</dt>
+            <dd>
+              <AdresseHistorikkModal
+                adresseHistorikk={personopplysninger.adresseHistorikk}
+              />
+            </dd>
+          </>
+        )}
+        {(personopplysninger.telefonnummer ?? []).length > 0 && (
+          <>
+            <dt>Telefon</dt>
+            {(personopplysninger.telefonnummer ?? []).map((tlf, idx) => (
+              <dd key={idx}>
+                {tlf.landskode} {tlf.nummer}
+                <KopiKnapp copyText={`${tlf.landskode} ${tlf.nummer}`} />
+              </dd>
+            ))}
           </>
         )}
         <dt>Statsborgerskap</dt>

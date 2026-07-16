@@ -81,10 +81,25 @@ const FamiliemedlemSchema = z.object({
 
 export type Familiemedlem = z.infer<typeof FamiliemedlemSchema>;
 
+const TelefonnummerSchema = z.object({
+  landskode: z.string(),
+  nummer: z.string(),
+  prioritet: z.number(),
+});
+
+const HistoriskAdresseSchema = z.object({
+  adresse: AdresseSchema,
+  gyldigFraOgMed: z.string().nullable(),
+  gyldigTilOgMed: z.string().nullable(),
+});
+export type HistoriskAdresse = z.infer<typeof HistoriskAdresseSchema>;
+
 export const PersonInformasjonSchema = z.object({
   navn: NavnSchema,
   aktørId: z.string().nullable(),
   adresse: AdresseSchema.nullable(),
+  adresseHistorikk: z.array(HistoriskAdresseSchema).nullish(),
+  telefonnummer: z.array(TelefonnummerSchema).nullish(),
   adressebeskyttelse: z.enum([
     "UGRADERT",
     "FORTROLIG",
