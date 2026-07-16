@@ -186,7 +186,7 @@ test.describe("Oppslag-flyt", () => {
     });
     await expect(ytelserOverskrift).toBeVisible();
 
-    const totalInntektLabel = page.getByText(/Total inntekt \(siste/i).first();
+    const totalInntektLabel = page.getByText(/Total lønnsinntekt \(siste/i).first();
     const totalInntektVerdi = totalInntektLabel.locator(
       "xpath=following-sibling::*[1]",
     );
@@ -199,11 +199,6 @@ test.describe("Oppslag-flyt", () => {
       return Number(tekst.replace(/\D/g, ""));
     };
 
-    await expect.poll(hentTotalInntekt).toBe(2134053);
-    await expect
-      .poll(async () => skjultTabell.locator("tbody tr").count())
-      .toBe(37);
-
     const tidsvinduVelger = page.locator('[aria-label="Velg tidsvindu"]');
     await expect(tidsvinduVelger).toBeVisible();
 
@@ -215,6 +210,14 @@ test.describe("Oppslag-flyt", () => {
       await expect(valg).toBeVisible();
       await valg.click();
     };
+
+    // Velg 3 år eksplisitt slik at TidsvinduProvider bruker den mockede
+    // nettleserklocken (ikke SSR-dato) for beregning av cutoff-dato
+    await velgTidsvindu("3 år");
+    await expect.poll(hentTotalInntekt).toBe(2134053);
+    await expect
+      .poll(async () => skjultTabell.locator("tbody tr").count())
+      .toBe(37);
 
     await velgTidsvindu("6 mnd");
     await expect(
