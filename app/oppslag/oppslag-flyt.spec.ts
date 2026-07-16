@@ -186,7 +186,9 @@ test.describe("Oppslag-flyt", () => {
     });
     await expect(ytelserOverskrift).toBeVisible();
 
-    const totalInntektLabel = page.getByText(/Total lønnsinntekt \(siste/i).first();
+    const totalInntektLabel = page
+      .getByText(/Total lønnsinntekt \(siste/i)
+      .first();
     const totalInntektVerdi = totalInntektLabel.locator(
       "xpath=following-sibling::*[1]",
     );
