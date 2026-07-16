@@ -104,6 +104,33 @@ describe("MeldekortOppsummeringPanelInnhold", () => {
     expect(screen.getByText(/Ingen timer fra AA-registeret/)).toBeDefined();
   });
 
+  it("viser grafen når timerMedTimeloenn kun finnes i historikk (avsluttet arbeidsforhold)", () => {
+    const info: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [],
+      historikk: [
+        {
+          arbeidsgiver: "Tidligere Arbeidsgiver AS",
+          organisasjonsnummer: "987654321",
+          ansettelsesDetaljer: [],
+          timerMedTimeloenn: [
+            { antall: 37.5, startdato: "2024-04-01", sluttdato: "2024-06-30" },
+          ],
+        },
+      ],
+    };
+
+    render(
+      <MeldekortOppsummeringPanelInnhold
+        arbeidsgiverInformasjon={info}
+        fraDato="2024-04-01"
+        tilDato="2024-06-30"
+      />,
+    );
+
+    expect(screen.queryByText(/Ingen timer fra AA-registeret/)).toBeNull();
+    expect(screen.getByRole("region", { name: /Stolpediagram/ })).toBeDefined();
+  });
+
   it("viser 'Ingen data'-melding når arbeidsgiverInformasjon er null", () => {
     render(
       <MeldekortOppsummeringPanelInnhold
