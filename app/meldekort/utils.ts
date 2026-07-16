@@ -39,8 +39,9 @@ function harTimeloennIForhold(
 export function erTimelønnet(
   arbeidsgiverInformasjon: ArbeidsgiverInformasjon,
 ): boolean {
-  return arbeidsgiverInformasjon.løpendeArbeidsforhold.some(
-    harTimeloennIForhold,
+  return (
+    arbeidsgiverInformasjon.løpendeArbeidsforhold.some(harTimeloennIForhold) ||
+    arbeidsgiverInformasjon.historikk.some(harTimeloennIForhold)
   );
 }
 
@@ -116,7 +117,10 @@ function beregnAaTimerForMåned(
 
   let totalTimer = 0;
 
-  for (const forhold of arbeidsgiverInformasjon.løpendeArbeidsforhold) {
+  for (const forhold of [
+    ...arbeidsgiverInformasjon.løpendeArbeidsforhold,
+    ...arbeidsgiverInformasjon.historikk,
+  ]) {
     // Hvis timerMedTimeloenn er definert og ikke-tom er personen timelønnet.
     // Da bruker vi aldri antallTimerPrUke som fallback — måneder uten data gir 0.
     if (harTimeloennIForhold(forhold)) {
