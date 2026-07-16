@@ -4,6 +4,7 @@ import { type LoaderFunctionArgs, redirect } from "react-router";
 
 import { hentArbeidsforhold } from "~/arbeidsforhold/api.server";
 import { hentInntekter } from "~/inntekt-og-ytelse/inntekt/api.server";
+import { hentPensjonsgivendeInntekt } from "~/inntekt-og-ytelse/pensjonsgivende-inntekt/api.server";
 import { hentYtelser } from "~/inntekt-og-ytelse/ytelse/api.server";
 import { logger } from "~/logging/logging";
 import { BaksystemFeilError } from "~/oppslag/api/errors";
@@ -61,5 +62,14 @@ export async function oppslagLoader({ request }: LoaderFunctionArgs) {
       return null;
     }),
     ytelser: hentYtelser(params),
+    pensjonsgivendeInntekt: hentPensjonsgivendeInntekt(params).catch(
+      (error: unknown) => {
+        if (!(error instanceof BaksystemFeilError)) throw error;
+        logger.warn("Pensjonsgivende inntekt utilgjengelig fra baksystem", {
+          navCallId: params.navCallId,
+        });
+        return null;
+      },
+    ),
   };
 }
