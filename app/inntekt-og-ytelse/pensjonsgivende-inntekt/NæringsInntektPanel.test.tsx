@@ -16,14 +16,14 @@ describe("NæringsInntektPanel", () => {
     expect(screen.getByText("2023")).toBeDefined();
   });
 
-  it("viser lønnsinntekt kun når den er over 0", () => {
+  it("viser næringsinntekt og sum-rad", () => {
     const data: PensjonsgivendeInntekt[] = [
       { inntektsår: "2024", næringsinntekt: 380000, lønnsinntekt: 0 },
+      { inntektsår: "2023", næringsinntekt: 420000, lønnsinntekt: 50000 },
     ];
     render(<NæringsInntektPanelInnhold data={data} />);
 
-    expect(screen.getByText("2024")).toBeDefined();
-    expect(screen.getByText("–")).toBeDefined();
+    expect(screen.getByText("Sum (siste 2 år)")).toBeDefined();
   });
 
   it("viser tom-melding når ingen næringsinntekt", () => {

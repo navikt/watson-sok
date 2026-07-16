@@ -81,6 +81,9 @@ export default function OppslagBrukerSide() {
 
             <InntektsoppsummeringPanel
               promise={data.inntektInformasjon}
+              pensjonsgivendeInntektPromise={
+                visNæringsInntekt ? data.pensjonsgivendeInntekt : undefined
+              }
               panelId={PanelId.INNTEKTSOPPSUMMERING}
               ariaKeyShortcuts={SNARVEIER["alt+6"].ariaKeyShortcuts}
             />
