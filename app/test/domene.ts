@@ -18,7 +18,7 @@ export const MockOppslagBrukerResponsSchema = z.object({
   inntektInformasjon: InntektInformasjonSchema.nullable(),
   meldekort: MeldekortResponsSchema.nullish(),
   stønader: YtelserInformasjonSchema.nullable(),
-  pensjonsgivendeInntekt: PensjonsgivendeInntektListeSchema.nullable(),
+  pensjonsgivendeInntekt: PensjonsgivendeInntektListeSchema.nullish(),
 });
 
 export type MockOppslagBrukerRespons = z.infer<

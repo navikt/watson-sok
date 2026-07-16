@@ -16,7 +16,7 @@ export async function hentPensjonsgivendeInntekt({
     navCallId,
     endepunkt: `/oppslag/pensjonsgivende-inntekt?utvidet=${utvidet}`,
     schema: PensjonsgivendeInntektListeSchema,
-    ekstraherFraMock: (mockData) => mockData.pensjonsgivendeInntekt,
+    ekstraherFraMock: (mockData) => mockData.pensjonsgivendeInntekt ?? [],
     traceLogging,
   });
 }

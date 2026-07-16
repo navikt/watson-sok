@@ -223,10 +223,11 @@ const InntektsoppsummeringPanelMedData = ({
 
   const sumNæringsinntekt = useMemo(
     () =>
-      (pensjonsgivendeInntekt ?? []).reduce(
-        (sum, rad) => sum + rad.næringsinntekt,
-        0,
-      ),
+      (pensjonsgivendeInntekt ?? [])
+        .slice()
+        .sort((a, b) => b.inntektsår.localeCompare(a.inntektsår))
+        .slice(0, 3)
+        .reduce((sum, rad) => sum + rad.næringsinntekt, 0),
     [pensjonsgivendeInntekt],
   );
 
@@ -261,7 +262,7 @@ const InntektsoppsummeringPanelMedData = ({
               }
               beskrivelse={`${aggregert.månederMedUtbetaling} mnd med utbetaling`}
             />
-            {sumNæringsinntekt > 0 && (
+            {sumNæringsinntekt > 0 && tidsvindu === "3 år" && (
               <StatistikkKort
                 label="Samlet inntekt (siste 3 år): lønnsinntekt + næringsinntekt"
                 verdi={formaterBeløp(
