@@ -10,6 +10,7 @@ import { use, useMemo } from "react";
 
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import type { InntektInformasjon } from "~/inntekt-og-ytelse/inntekt/domene";
+import type { PensjonsgivendeInntekt } from "~/inntekt-og-ytelse/pensjonsgivende-inntekt/domene";
 import {
   PanelContainer,
   PanelContainerSkeleton,
@@ -27,6 +28,7 @@ import { camelCaseTilNorsk } from "~/utils/string-utils";
 
 type InntektsoppsummeringPanelProps = {
   promise: Promise<InntektInformasjon | null>;
+  pensjonsgivendeInntektPromise?: Promise<PensjonsgivendeInntekt[] | null>;
   panelId?: string;
   ariaKeyShortcuts?: string;
 };
@@ -70,6 +72,7 @@ const TOPP_UTBETALERE_ANTALL = 3;
 
 export function InntektsoppsummeringPanel({
   promise,
+  pensjonsgivendeInntektPromise,
   panelId,
   ariaKeyShortcuts,
 }: InntektsoppsummeringPanelProps) {
@@ -77,6 +80,7 @@ export function InntektsoppsummeringPanel({
     <ResolvingComponent loadingFallback={<InntektsoppsummeringPanelSkeleton />}>
       <InntektsoppsummeringPanelMedData
         promise={promise}
+        pensjonsgivendeInntektPromise={pensjonsgivendeInntektPromise}
         panelId={panelId}
         ariaKeyShortcuts={ariaKeyShortcuts}
       />
@@ -86,15 +90,20 @@ export function InntektsoppsummeringPanel({
 
 type InntektsoppsummeringPanelMedDataProps = {
   promise: Promise<InntektInformasjon | null>;
+  pensjonsgivendeInntektPromise?: Promise<PensjonsgivendeInntekt[] | null>;
   panelId?: string;
   ariaKeyShortcuts?: string;
 };
 const InntektsoppsummeringPanelMedData = ({
   promise,
+  pensjonsgivendeInntektPromise,
   panelId,
   ariaKeyShortcuts,
 }: InntektsoppsummeringPanelMedDataProps) => {
   const inntektInformasjon = use(promise);
+  const pensjonsgivendeInntekt = pensjonsgivendeInntektPromise
+    ? use(pensjonsgivendeInntektPromise)
+    : null;
   const { tidsvinduIAntallMåneder, tidsvindu } = useTidsvindu();
 
   const aggregert = useMemo<AggregertResultat | null>(() => {
@@ -212,6 +221,16 @@ const InntektsoppsummeringPanelMedData = ({
     };
   }, [inntektInformasjon, tidsvinduIAntallMåneder]);
 
+  const sumNæringsinntekt = useMemo(
+    () =>
+      (pensjonsgivendeInntekt ?? [])
+        .slice()
+        .sort((a, b) => b.inntektsår.localeCompare(a.inntektsår))
+        .slice(0, 3)
+        .reduce((sum, rad) => sum + rad.næringsinntekt, 0),
+    [pensjonsgivendeInntekt],
+  );
+
   const harIngenInntekter = !aggregert;
 
   return (
@@ -230,7 +249,7 @@ const InntektsoppsummeringPanelMedData = ({
         <div className="flex flex-col gap-6">
           <div className="grid grid-cols-1 ax-md:grid-cols-2 gap-4">
             <StatistikkKort
-              label={`Total inntekt (siste ${tidsvindu})`}
+              label={`Total lønnsinntekt (siste ${tidsvindu})`}
               verdi={formaterBeløp(aggregert.totalBeløp, 0)}
               beskrivelse={aggregert.periodeTekst}
             />
@@ -243,6 +262,16 @@ const InntektsoppsummeringPanelMedData = ({
               }
               beskrivelse={`${aggregert.månederMedUtbetaling} mnd med utbetaling`}
             />
+            {sumNæringsinntekt > 0 && tidsvindu === "3 år" && (
+              <StatistikkKort
+                label="Samlet inntekt (siste 3 år): lønnsinntekt + næringsinntekt"
+                verdi={formaterBeløp(
+                  aggregert.totalBeløp + sumNæringsinntekt,
+                  0,
+                )}
+                beskrivelse={`Herav næringsinntekt: ${formaterBeløp(sumNæringsinntekt, 0)}`}
+              />
+            )}
           </div>
 
           <div>

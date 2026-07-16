@@ -3,9 +3,12 @@ import { Page, PageBlock } from "@navikt/ds-react/Page";
 import { useLoaderData } from "react-router";
 
 import { ArbeidsforholdPanel } from "~/arbeidsforhold/ArbeidsforholdPanel";
+import { FeatureFlagg } from "~/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { InntektOgYtelseOverlappPanel } from "~/inntekt-og-ytelse/inntekt-og-ytelse-overlapp-panel/InntektOgYtelseOverlappPanel";
 import { InntektPanel } from "~/inntekt-og-ytelse/inntekt/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/inntekt-og-ytelse/inntekt/InntektsoppsummeringPanel";
+import { NæringsInntektPanel } from "~/inntekt-og-ytelse/pensjonsgivende-inntekt/NæringsInntektPanel";
 import { YtelserPanel } from "~/inntekt-og-ytelse/ytelse/YtelserPanel";
 import { OverskriftPanel } from "~/person/OverskriftPanel";
 import { PersonopplysningerPanel } from "~/person/PersonopplysningerPanel";
@@ -21,6 +24,7 @@ export const meta = oppslagMeta;
 
 export default function OppslagBrukerSide() {
   const data = useLoaderData<typeof oppslagLoader>();
+  const visNæringsInntekt = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_3);
   return (
     <TidsvinduProvider>
       <Page>
@@ -77,10 +81,21 @@ export default function OppslagBrukerSide() {
 
             <InntektsoppsummeringPanel
               promise={data.inntektInformasjon}
+              pensjonsgivendeInntektPromise={
+                visNæringsInntekt ? data.pensjonsgivendeInntekt : undefined
+              }
               panelId={PanelId.INNTEKTSOPPSUMMERING}
               ariaKeyShortcuts={SNARVEIER["alt+6"].ariaKeyShortcuts}
             />
           </div>
+
+          {visNæringsInntekt && data.pensjonsgivendeInntekt && (
+            <NæringsInntektPanel
+              promise={data.pensjonsgivendeInntekt}
+              panelId={PanelId.NÆRINGSINNTEKT}
+              ariaKeyShortcuts={SNARVEIER["alt+7"].ariaKeyShortcuts}
+            />
+          )}
         </PageBlock>
       </Page>
       <Snarveier />

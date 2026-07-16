@@ -1,6 +1,8 @@
 import { useHotkeys } from "react-hotkeys-hook";
 
 import { sporHendelse } from "~/analytics/analytics";
+import { FeatureFlagg } from "~/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 
 import { PanelId } from "./snarveier";
 import { usePanelNavigering } from "./usePanelNavigering";
@@ -19,6 +21,7 @@ function spor(hotkey: string) {
  */
 export function Snarveier() {
   const { navigerTilPanel } = usePanelNavigering();
+  const visNæringsInntekt = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_3);
 
   // Panel-snarveier (Alt+1–6)
   useHotkeys("alt+1", (e) => {
@@ -51,6 +54,15 @@ export function Snarveier() {
     spor("alt+6");
     navigerTilPanel(PanelId.INNTEKTSOPPSUMMERING);
   });
+  useHotkeys(
+    "alt+7",
+    (e) => {
+      e.preventDefault();
+      spor("alt+7");
+      navigerTilPanel(PanelId.NÆRINGSINNTEKT);
+    },
+    { enabled: visNæringsInntekt },
+  );
 
   // Fokuser tidsvindu-velger (Alt+T)
   useHotkeys("alt+t", (e) => {

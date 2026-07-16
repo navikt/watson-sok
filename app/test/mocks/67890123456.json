@@ -2271,5 +2271,22 @@
       "registrertArbeidssoker": true,
       "meldedato": "2025-11-10"
     }
+  ],
+  "pensjonsgivendeInntekt": [
+    {
+      "inntektsår": "2024",
+      "næringsinntekt": 380000,
+      "lønnsinntekt": 0
+    },
+    {
+      "inntektsår": "2023",
+      "næringsinntekt": 420000,
+      "lønnsinntekt": 50000
+    },
+    {
+      "inntektsår": "2022",
+      "næringsinntekt": 310000,
+      "lønnsinntekt": 0
+    }
   ]
 }
