@@ -122,7 +122,7 @@ const NæringsInntektPanelSkeleton = () => (
       <Table.Header>
         <Table.Row>
           {["År", "Næringsinntekt"].map((col) => (
-          <Table.HeaderCell key={col} scope="col" aria-hidden={true}>
+            <Table.HeaderCell key={col} scope="col" aria-hidden={true}>
               <Skeleton variant="text" width="60%" />
             </Table.HeaderCell>
           ))}
@@ -132,7 +132,7 @@ const NæringsInntektPanelSkeleton = () => (
         {Array.from({ length: 3 }, (_, i) => (
           <Table.Row key={i}>
             {Array.from({ length: 2 }, (_, j) => (
-            <Table.DataCell key={j} aria-hidden={true}>
+              <Table.DataCell key={j} aria-hidden={true}>
                 <Skeleton variant="text" width="80%" />
               </Table.DataCell>
             ))}
