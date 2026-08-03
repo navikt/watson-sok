@@ -19,7 +19,7 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
-    "verify": "concurrently -n test,lint,format,types,unused -c green,yellow,magenta,cyan,blue \"npm run test\" \"npm run lint\" \"npm run format\" \"npm run typecheck\" \"npm run unused\""
+    "verify": "concurrently -n test,lint,format,types,unused -c green,yellow,magenta,cyan,blue \"pnpm run test\" \"pnpm run lint\" \"pnpm run format\" \"pnpm run typecheck\" \"pnpm run unused\""
   },
   "dependencies": {
     "@grafana/faro-react": "^2.1.0",
@@ -63,10 +63,13 @@
     "vite": "^8.0.16",
     "vitest": "^4.0.18"
   },
-  "overrides": {
-    "@react-router/dev": "^8.3.0",
-    "@react-router/node": "^8.3.0",
-    "@react-router/serve": "^8.3.0",
-    "react-router": "^8.3.0"
+  "packageManager": "pnpm@11.1.2",
+  "pnpm": {
+    "overrides": {
+      "@react-router/dev": "^8.3.0",
+      "@react-router/node": "^8.3.0",
+      "@react-router/serve": "^8.3.0",
+      "react-router": "^8.3.0"
+    }
   }
 }

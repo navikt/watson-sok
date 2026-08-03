@@ -151,4 +151,4 @@ Never:
 ## Test functions
 
 - Use `npx vitest run <filePath>` to run specific tests
-- Use `npm run test` to run all tests
+- Use `pnpm run test` to run all tests

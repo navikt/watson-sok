@@ -133,9 +133,10 @@ CMD ["server/dist/index.js"]
 ```dockerfile
 FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:22-dev AS builder
 WORKDIR /app
+COPY package.json pnpm-lock.yaml /app
+RUN corepack enable && pnpm install --frozen-lockfile
 COPY . /app
-RUN npm ci
-RUN npm run build
+RUN pnpm run build
 
 FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:22-slim
 WORKDIR /app
@@ -167,10 +168,10 @@ ENTRYPOINT ["python", "main.py"]
 FROM cgr.dev/chainguard/node:latest-dev AS build
 USER root
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci
+COPY package.json pnpm-lock.yaml ./
+RUN corepack enable && pnpm install --frozen-lockfile
 COPY . .
-RUN npm run build
+RUN pnpm run build
 
 FROM cgr.dev/chainguard/nginx AS production
 COPY --from=build /app/build /usr/share/nginx/html

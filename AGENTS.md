@@ -11,14 +11,14 @@ Kort veiledning for bidragsytere til Holmes oppslag-bruker. Hold koden enkel, do
 
 ## Bygg, test og utvikling
 
-- `npm run dev` / `npm run dev:local` – utviklingsserver (lokal backend med `dev:local`).
-- `npm run build` → prod-build, `npm run start` → kjør build.
-- `npm run typecheck` – React Router typegen + `tsc`.
-- `npm run lint` / `npm run lint:fix` – oxlint.
-- `npm run format` / `npm run format:fix` – formatering med oxfmt.
-- `npm run unused` – knip for ubrukte filer/imports.
-- `npm run verify` – samlet sjekk (lint + format + typecheck + unused).
-- `npm run test:e2e` (`:headed`/`:ui` for debugging) – Playwright e2e.
+- `pnpm run dev` / `pnpm run dev:local` – utviklingsserver (lokal backend med `dev:local`).
+- `pnpm run build` → prod-build, `pnpm run start` → kjør build.
+- `pnpm run typecheck` – React Router typegen + `tsc`.
+- `pnpm run lint` / `pnpm run lint:fix` – oxlint.
+- `pnpm run format` / `pnpm run format:fix` – formatering med oxfmt.
+- `pnpm run unused` – knip for ubrukte filer/imports.
+- `pnpm run verify` – samlet sjekk (lint + format + typecheck + unused).
+- `pnpm run test:e2e` (`:headed`/`:ui` for debugging) – Playwright e2e.
 
 ## Koding og navngiving
 
@@ -38,7 +38,7 @@ Kort veiledning for bidragsytere til Holmes oppslag-bruker. Hold koden enkel, do
 
 - Plasser både enhetstester (`*.test.tsx`) og ende-til-ende-tester (`*.spec.ts`) ved siden av koden de tester under `app`.
 - Navngiv e2e-filer etter brukerflyt (f.eks. `sok-oppslag.spec.ts`).
-- Kjør tester og øvrige kvalitetssjekker via `npm run verify` (samlet sjekk: enhetstester, lint, typecheck, unused, osv.) eller `npm run test:e2e` (for e2e); ikke kjør individuelle testkommandoer direkte.
+- Kjør tester og øvrige kvalitetssjekker via `pnpm run verify` (samlet sjekk: enhetstester, lint, typecheck, unused, osv.) eller `pnpm run test:e2e` (for e2e); ikke kjør individuelle testkommandoer direkte.
 
 ## Sikkerhet og konfig
 
@@ -48,7 +48,7 @@ Kort veiledning for bidragsytere til Holmes oppslag-bruker. Hold koden enkel, do
 
 ## Ferdig er ferdig (Definition of Done)
 
-- Kjør `npm run verify` før en oppgave anses som ferdig. Bruk alltid denne kommandoen for å validere endringer – ikke kjør individuelle steg (typecheck, lint osv.) separat.
+- Kjør `pnpm run verify` før en oppgave anses som ferdig. Bruk alltid denne kommandoen for å validere endringer – ikke kjør individuelle steg (typecheck, lint osv.) separat.
 - Skriv tester for ny funksjonalitet (enhetstester og/eller e2e etter behov).
 - Følg TDD der det gir mening: skriv en feilende test først (rød), implementer (grønn), refaktorer.
 
