@@ -24,12 +24,13 @@ En React Router-applikasjon for å søke opp brukere i Nav-systemet ved hjelp av
 
 ## Forutsetninger
 
-Du må ha nyeste LTS-versjonen av Node og NPM installert, i tillegg til browserne til `playwright` (for å kjøre tester).
+Du må ha nyeste LTS-versjonen av Node og pnpm installert, i tillegg til browserne til `playwright` (for å kjøre tester).
 
 ```bash
 brew install node # installerer node om du ikke har det allerede
 npm i -g n # installerer en node version manager for deg
-n lts # installerer nyeste LTS (long-term support)-versjon av Node og NPM
+n lts # installerer nyeste LTS (long-term support)-versjon av Node
+npm i -g pnpm # installerer pnpm
 npx playwright install # installerer headless browsers for Playwright
 ```
 
@@ -47,30 +48,30 @@ cd holmes-oppslag-bruker
 2. Installer avhengigheter:
 
 ```bash
-npm install
+pnpm install
 ```
 
 3. Start utviklingsserveren:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 4. Åpne [http://localhost:5173](http://localhost:5173) i nettleseren
 
 ## Tilgjengelige scripts
 
-- `npm run dev` - Starter utviklingsserveren
-- `npm run dev:local` - Starter utviklingsserveren, men kjører mot lokal backend
-- `npm run build` - Bygger applikasjonen for produksjon
-- `npm run start` - Starter produksjonsserveren
-- `npm run test:e2e` – Kjører ende-til-ende tester
-- `npm run lint` - Kjører oxlint
-- `npm run typecheck` - Kjører TypeScript typesjekk
-- `npm run format` - Sjekker oxfmt formatering
-- `npm run format:fix` - Fikser oxfmt formatering
-- `npm run unused` - Sjekker om du har ubrukt kode eller avhengigheter
-- `npm run verify` – Kjører lint, typecheck, format og unused
+- `pnpm run dev` - Starter utviklingsserveren
+- `pnpm run dev:local` - Starter utviklingsserveren, men kjører mot lokal backend
+- `pnpm run build` - Bygger applikasjonen for produksjon
+- `pnpm run start` - Starter produksjonsserveren
+- `pnpm run test:e2e` – Kjører ende-til-ende tester
+- `pnpm run lint` - Kjører oxlint
+- `pnpm run typecheck` - Kjører TypeScript typesjekk
+- `pnpm run format` - Sjekker oxfmt formatering
+- `pnpm run format:fix` - Fikser oxfmt formatering
+- `pnpm run unused` - Sjekker om du har ubrukt kode eller avhengigheter
+- `pnpm run verify` – Kjører lint, typecheck, format og unused
 
 </details>
 
@@ -94,7 +95,7 @@ For å kjøre mot lokal backend, må du gjøre et par ting:
 1. Gå til https://azure-token-generator.intern.dev.nav.no/api/obo?aud=dev-gcp.holmes.nav-persondata-api og logg inn med en Trygdeetaten bruker.
 2. Kopier "access_token"-tokenet og lim inn i .env-filen din. (Dette har en utløpsdato, så dette må du gjøre av og til)
 3. Start backenden (se [backendens README](https://github.com/navikt/nav-persondata-api/blob/main/README.md) fil for hvordan man gjør det)
-4. Start frontenden med `npm run dev:local`
+4. Start frontenden med `pnpm run dev:local`
 5. Sett opp port forwarding til 7164 via `k9s`
 6. Logg inn via `nais login` ([se her](https://doc.nais.io/operate/cli/how-to/install/) for hvordan du installerer nais-cli)
 7. Installer k9s med `brew install k9s`

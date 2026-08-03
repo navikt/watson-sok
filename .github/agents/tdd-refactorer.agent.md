@@ -74,5 +74,5 @@ If no changes:
 
 ## Test functions
 
-- Use `npm run test -- --testPathPatterns=<pattern>` to run specific tests
-- Use `npm run test` to run all tests
+- Use `pnpm run test -- --testPathPatterns=<pattern>` to run specific tests
+- Use `pnpm run test` to run all tests
