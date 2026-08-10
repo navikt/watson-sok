@@ -2,6 +2,8 @@ import { BodyShort, Link, Table } from "@navikt/ds-react";
 import { Modal, ModalBody } from "@navikt/ds-react/Modal";
 import { useRef } from "react";
 
+import { formaterDato } from "~/utils/date-utils";
+
 import type { HistoriskAdresse } from "./domene";
 import { formaterAdresse } from "./utils/adresse-utils";
 
@@ -69,13 +71,4 @@ export function AdresseHistorikkModal({
       </Modal>
     </>
   );
-}
-
-function formaterDato(isoDate: string): string {
-  const date = new Date(isoDate);
-  return date.toLocaleDateString("nb-NO", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
 }
