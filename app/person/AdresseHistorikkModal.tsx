@@ -1,6 +1,6 @@
 import { BodyShort, Link, Table } from "@navikt/ds-react";
 import { Modal, ModalBody } from "@navikt/ds-react/Modal";
-import { useRef } from "react";
+import { type ReactNode, useRef } from "react";
 
 import { formaterDato } from "~/utils/date-utils";
 
@@ -8,20 +8,24 @@ import type { HistoriskAdresse } from "./domene";
 import { formaterAdresse } from "./utils/adresse-utils";
 
 type AdresseHistorikkModalProps = {
+  /** Teksten som vises som klikkbar lenke (nåværende folkeregistrerte adresse) */
+  triggerInnhold: ReactNode;
   adresseHistorikk: HistoriskAdresse[] | null | undefined;
 };
 
 /**
- * En modal (med trigger-knapp) som viser folkeregistrerte adresser siste 5 år
+ * Viser folkeregistrert adresse som en klikkbar lenke. Klikk åpner en modal
+ * med adressehistorikk siste 5 år. Uten historikk vises kun adressen som tekst.
  */
 export function AdresseHistorikkModal({
+  triggerInnhold,
   adresseHistorikk,
 }: AdresseHistorikkModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const historikk = adresseHistorikk ?? [];
 
   if (historikk.length === 0) {
-    return <BodyShort>Ingen adressehistorikk registrert</BodyShort>;
+    return <BodyShort>{triggerInnhold}</BodyShort>;
   }
 
   return (
@@ -31,7 +35,7 @@ export function AdresseHistorikkModal({
         onClick={() => ref.current?.showModal()}
         className="text-left p-0"
       >
-        Se adressehistorikk ({historikk.length})
+        {triggerInnhold}
       </Link>
 
       <Modal ref={ref} header={{ heading: "Adressehistorikk" }} width="medium">

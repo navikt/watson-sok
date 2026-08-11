@@ -124,33 +124,19 @@ const PersonopplysningerPanelMedData = ({
           <>
             <dt>Folkeregistrert adresse</dt>
             <dd>
-              {folkeregistrertAdresse}&nbsp;
+              {visKontaktinformasjon ? (
+                <AdresseHistorikkModal
+                  triggerInnhold={folkeregistrertAdresse}
+                  adresseHistorikk={personopplysninger.adresseHistorikk}
+                />
+              ) : (
+                folkeregistrertAdresse
+              )}
+              &nbsp;
               <KopiKnapp copyText={folkeregistrertAdresse} />
             </dd>
-            {visKontaktinformasjon && (
-              <>
-                <dt>Adressehistorikk</dt>
-                <dd>
-                  <AdresseHistorikkModal
-                    adresseHistorikk={personopplysninger.adresseHistorikk}
-                  />
-                </dd>
-              </>
-            )}
           </>
         )}
-        {visKontaktinformasjon &&
-          (personopplysninger.telefonnummer ?? []).length > 0 && (
-            <>
-              <dt>Telefon</dt>
-              {(personopplysninger.telefonnummer ?? []).map((tlf, idx) => (
-                <dd key={idx}>
-                  {tlf.landskode} {tlf.nummer}
-                  <KopiKnapp copyText={`${tlf.landskode} ${tlf.nummer}`} />
-                </dd>
-              ))}
-            </>
-          )}
         <dt>Statsborgerskap</dt>
         <dd>
           {personopplysninger.statsborgerskap
@@ -165,6 +151,18 @@ const PersonopplysningerPanelMedData = ({
             familiemedlemmer={personopplysninger.familemedlemmer}
           />
         </dd>
+        {visKontaktinformasjon &&
+          (personopplysninger.telefonnummer ?? []).length > 0 && (
+            <>
+              <dt>Telefon</dt>
+              {(personopplysninger.telefonnummer ?? []).map((tlf, idx) => (
+                <dd key={idx}>
+                  {tlf.landskode} {tlf.nummer}
+                  <KopiKnapp copyText={`${tlf.landskode} ${tlf.nummer}`} />
+                </dd>
+              ))}
+            </>
+          )}
         <dt>Nav-kontor</dt>
         <dd>
           {storFørsteBokstavPerOrd(
