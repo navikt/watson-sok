@@ -3,6 +3,8 @@ import { Fragment, use } from "react";
 import { unstable_useRoute } from "react-router";
 
 import { ResolvingComponent } from "~/async/ResolvingComponent";
+import { FeatureFlagg } from "~/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import {
   PanelContainer,
   PanelContainerSkeleton,
@@ -56,6 +58,7 @@ const PersonopplysningerPanelMedData = ({
 }: PersonopplysningerPanelMedDataProps) => {
   const personopplysninger = use(promise);
   const { loaderData: rootData } = unstable_useRoute("root");
+  const visKontaktinformasjon = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_3);
 
   if (!personopplysninger || !rootData) {
     return (
@@ -124,25 +127,30 @@ const PersonopplysningerPanelMedData = ({
               {folkeregistrertAdresse}&nbsp;
               <KopiKnapp copyText={folkeregistrertAdresse} />
             </dd>
-            <dt>Adressehistorikk</dt>
-            <dd>
-              <AdresseHistorikkModal
-                adresseHistorikk={personopplysninger.adresseHistorikk}
-              />
-            </dd>
+            {visKontaktinformasjon && (
+              <>
+                <dt>Adressehistorikk</dt>
+                <dd>
+                  <AdresseHistorikkModal
+                    adresseHistorikk={personopplysninger.adresseHistorikk}
+                  />
+                </dd>
+              </>
+            )}
           </>
         )}
-        {(personopplysninger.telefonnummer ?? []).length > 0 && (
-          <>
-            <dt>Telefon</dt>
-            {(personopplysninger.telefonnummer ?? []).map((tlf, idx) => (
-              <dd key={idx}>
-                {tlf.landskode} {tlf.nummer}
-                <KopiKnapp copyText={`${tlf.landskode} ${tlf.nummer}`} />
-              </dd>
-            ))}
-          </>
-        )}
+        {visKontaktinformasjon &&
+          (personopplysninger.telefonnummer ?? []).length > 0 && (
+            <>
+              <dt>Telefon</dt>
+              {(personopplysninger.telefonnummer ?? []).map((tlf, idx) => (
+                <dd key={idx}>
+                  {tlf.landskode} {tlf.nummer}
+                  <KopiKnapp copyText={`${tlf.landskode} ${tlf.nummer}`} />
+                </dd>
+              ))}
+            </>
+          )}
         <dt>Statsborgerskap</dt>
         <dd>
           {personopplysninger.statsborgerskap
