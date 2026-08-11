@@ -3,6 +3,8 @@ import { Fragment, use } from "react";
 import { unstable_useRoute } from "react-router";
 
 import { ResolvingComponent } from "~/async/ResolvingComponent";
+import { FeatureFlagg } from "~/feature-toggling/featureflagg";
+import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import {
   PanelContainer,
   PanelContainerSkeleton,
@@ -14,6 +16,7 @@ import {
   storFørsteBokstavPerOrd,
 } from "~/utils/string-utils";
 
+import { AdresseHistorikkModal } from "./AdresseHistorikkModal";
 import type { PersonInformasjon } from "./domene";
 import { FamiliemedlemmerModal } from "./FamiliemedlemmerModal";
 import { formaterAdresse } from "./utils/adresse-utils";
@@ -55,6 +58,7 @@ const PersonopplysningerPanelMedData = ({
 }: PersonopplysningerPanelMedDataProps) => {
   const personopplysninger = use(promise);
   const { loaderData: rootData } = unstable_useRoute("root");
+  const visKontaktinformasjon = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_3);
 
   if (!personopplysninger || !rootData) {
     return (
@@ -120,7 +124,15 @@ const PersonopplysningerPanelMedData = ({
           <>
             <dt>Folkeregistrert adresse</dt>
             <dd>
-              {folkeregistrertAdresse}&nbsp;
+              {visKontaktinformasjon ? (
+                <AdresseHistorikkModal
+                  triggerInnhold={folkeregistrertAdresse}
+                  adresseHistorikk={personopplysninger.adresseHistorikk}
+                />
+              ) : (
+                folkeregistrertAdresse
+              )}
+              &nbsp;
               <KopiKnapp copyText={folkeregistrertAdresse} />
             </dd>
           </>
@@ -139,6 +151,18 @@ const PersonopplysningerPanelMedData = ({
             familiemedlemmer={personopplysninger.familemedlemmer}
           />
         </dd>
+        {visKontaktinformasjon &&
+          (personopplysninger.telefonnummer ?? []).length > 0 && (
+            <>
+              <dt>Telefon</dt>
+              {(personopplysninger.telefonnummer ?? []).map((tlf, idx) => (
+                <dd key={idx}>
+                  {tlf.landskode} {tlf.nummer}
+                  <KopiKnapp copyText={`${tlf.landskode} ${tlf.nummer}`} />
+                </dd>
+              ))}
+            </>
+          )}
         <dt>Nav-kontor</dt>
         <dd>
           {storFørsteBokstavPerOrd(

@@ -55,7 +55,46 @@
     "sivilstand": "SKILT",
     "alder": 35,
     "fødselsdato": "1990-08-09",
-    "dødsdato": null
+    "dødsdato": null,
+    "telefonnummer": [
+      {
+        "landskode": "+47",
+        "nummer": "90123456",
+        "prioritet": 1
+      }
+    ],
+    "adresseHistorikk": [
+      {
+        "adresse": {
+          "norskAdresse": {
+            "adressenavn": "Testgata",
+            "husnummer": "12",
+            "husbokstav": null,
+            "postnummer": "0123",
+            "kommunenummer": "0301",
+            "poststed": "0123"
+          },
+          "utenlandskAdresse": null
+        },
+        "gyldigFraOgMed": "2022-03-15",
+        "gyldigTilOgMed": null
+      },
+      {
+        "adresse": {
+          "norskAdresse": {
+            "adressenavn": "Gamlegata",
+            "husnummer": "5",
+            "husbokstav": null,
+            "postnummer": "0456",
+            "kommunenummer": "0301",
+            "poststed": "0456"
+          },
+          "utenlandskAdresse": null
+        },
+        "gyldigFraOgMed": "2018-06-01",
+        "gyldigTilOgMed": "2022-03-14"
+      }
+    ]
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [
