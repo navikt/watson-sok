@@ -30,7 +30,7 @@ export async function hentInnloggetBruker({
       name: "Saks Behandlersen",
       navIdent: "S133337",
       token: "test",
-      organisasjoner: "Ukjent",
+      organisasjoner: "ukjent",
     };
   }
   const token = await getValidToken(request);
@@ -50,6 +50,7 @@ export async function hentInnloggetBruker({
     name: parseResult.name,
     navIdent: parseResult.NAVident,
     token: oboToken,
-    organisasjoner: saksbehandlerInfo.organisasjoner?.join(", ") || "Ukjent",
+    organisasjoner:
+      saksbehandlerInfo.organisasjoner?.join(", ").toLowerCase() || "ukjent",
   };
 }
