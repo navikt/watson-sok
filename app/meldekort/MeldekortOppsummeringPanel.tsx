@@ -129,8 +129,6 @@ export function MeldekortOppsummeringPanelInnhold({
   const harFeil = meldekortState?.status === "error";
   const erTimelønnetBruker =
     arbeidsgiverInformasjon != null && erTimelønnet(arbeidsgiverInformasjon);
-  const harTimer =
-    timerData?.some((d) => d.mkTimer > 0 || d.aaTimer > 0) ?? false;
 
   const periodeText = fraDatoProp
     ? `fra ${formaterDato(fraDato)}`
@@ -176,20 +174,27 @@ export function MeldekortOppsummeringPanelInnhold({
               timelønnede.
             </Alert>
           )}
-        {!laster && !harFeil && erTimelønnetBruker && harTimer && (
-          <>
-            <BodyShort size="small">
-              Avvik mellom AA-registrerte timer og timer oppgitt i meldekort kan
-              indikere feilutbetaling.
-            </BodyShort>
-            <TimerSammenligningGraf data={timerData!} />
-          </>
-        )}
-        {!laster && !harFeil && erTimelønnetBruker && !harTimer && (
-          <Alert variant="info" size="small" inline>
-            Ingen data tilgjengelig for valgt periode.
-          </Alert>
-        )}
+        {!laster &&
+          !harFeil &&
+          erTimelønnetBruker &&
+          timerData &&
+          timerData.length > 0 && (
+            <>
+              <BodyShort size="small">
+                Avvik mellom AA-registrerte timer og timer oppgitt i meldekort
+                kan indikere feilutbetaling.
+              </BodyShort>
+              <TimerSammenligningGraf data={timerData} />
+            </>
+          )}
+        {!laster &&
+          !harFeil &&
+          erTimelønnetBruker &&
+          (!timerData || timerData.length === 0) && (
+            <Alert variant="info" size="small" inline>
+              Ingen data tilgjengelig for valgt periode.
+            </Alert>
+          )}
       </div>
     </PanelContainer>
   );

@@ -165,7 +165,7 @@ const PersonopplysningerPanelMedData = ({
           )}
         {personopplysninger.epost && (
           <>
-            <dt>E-post (KRR)</dt>
+            <dt>E-post</dt>
             <dd>
               {personopplysninger.epost}&nbsp;
               <KopiKnapp copyText={personopplysninger.epost} />
