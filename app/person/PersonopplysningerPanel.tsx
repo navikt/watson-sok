@@ -163,6 +163,15 @@ const PersonopplysningerPanelMedData = ({
               ))}
             </>
           )}
+        {visKontaktinformasjon && personopplysninger.epost && (
+          <>
+            <dt>E-post (KRR)</dt>
+            <dd>
+              {personopplysninger.epost}&nbsp;
+              <KopiKnapp copyText={personopplysninger.epost} />
+            </dd>
+          </>
+        )}
         <dt>Nav-kontor</dt>
         <dd>
           {storFørsteBokstavPerOrd(

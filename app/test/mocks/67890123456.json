@@ -94,7 +94,8 @@
         "gyldigFraOgMed": "2018-06-01",
         "gyldigTilOgMed": "2022-03-14"
       }
-    ]
+    ],
+    "epost": "test.bruker@example.com"
   },
   "arbeidsgiverInformasjon": {
     "løpendeArbeidsforhold": [
