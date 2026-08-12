@@ -155,15 +155,15 @@ const PersonopplysningerPanelMedData = ({
           (personopplysninger.telefonnummer ?? []).length > 0 && (
             <>
               <dt>Telefon</dt>
-              {(personopplysninger.telefonnummer ?? []).map((tlf, idx) => (
-                <dd key={idx}>
+              {(personopplysninger.telefonnummer ?? []).map((tlf) => (
+                <dd key={`${tlf.landskode}-${tlf.nummer}-${tlf.prioritet}`}>
                   {tlf.landskode} {tlf.nummer}
                   <KopiKnapp copyText={`${tlf.landskode} ${tlf.nummer}`} />
                 </dd>
               ))}
             </>
           )}
-        {visKontaktinformasjon && personopplysninger.epost && (
+        {personopplysninger.epost && (
           <>
             <dt>E-post (KRR)</dt>
             <dd>
