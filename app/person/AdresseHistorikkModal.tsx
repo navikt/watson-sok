@@ -32,6 +32,7 @@ export function AdresseHistorikkModal({
     <>
       <Link
         as="button"
+        type="button"
         onClick={() => ref.current?.showModal()}
         className="text-left p-0"
       >

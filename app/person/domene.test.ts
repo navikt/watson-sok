@@ -129,3 +129,33 @@ describe("PersonInformasjonSchema — familemedlemmer", () => {
     expect(record["11111111111"]).toBe("Ukjent");
   });
 });
+
+describe("PersonInformasjonSchema — epost", () => {
+  it("aksepterer streng", () => {
+    const data = {
+      ...basePerson,
+      familemedlemmer: [],
+      epost: "bruker@nav.no",
+    };
+    const result = PersonInformasjonSchema.safeParse(data);
+    expect(result.success).toBe(true);
+    if (!result.success) return;
+    expect(result.data.epost).toBe("bruker@nav.no");
+  });
+
+  it("aksepterer null", () => {
+    const data = { ...basePerson, familemedlemmer: [], epost: null };
+    const result = PersonInformasjonSchema.safeParse(data);
+    expect(result.success).toBe(true);
+    if (!result.success) return;
+    expect(result.data.epost).toBeNull();
+  });
+
+  it("aksepterer manglende felt (undefined)", () => {
+    const data = { ...basePerson, familemedlemmer: [] };
+    const result = PersonInformasjonSchema.safeParse(data);
+    expect(result.success).toBe(true);
+    if (!result.success) return;
+    expect(result.data.epost).toBeUndefined();
+  });
+});

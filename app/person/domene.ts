@@ -116,6 +116,7 @@ export const PersonInformasjonSchema = z.object({
   fødselsdato: z.string(),
   dødsdato: z.string().nullable(),
   navKontor: NavKontorSchema.nullish(),
+  epost: z.string().nullish(),
 });
 
 export type PersonInformasjon = z.infer<typeof PersonInformasjonSchema>;
