@@ -29,11 +29,21 @@
     "familemedlemmer": [
       {
         "ident": "05055014587",
-        "rolle": "FAR"
+        "rolle": "FAR",
+        "fornavn": "Erik",
+        "mellomnavn": "Johan",
+        "etternavn": "Berg",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "23065229845",
-        "rolle": "MOR"
+        "rolle": "MOR",
+        "fornavn": "Kari",
+        "mellomnavn": null,
+        "etternavn": "Hansen",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       }
     ],
     "statsborgerskap": ["STORBRITANNIA", "NORGE"],

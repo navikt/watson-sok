@@ -11,11 +11,21 @@
     "familemedlemmer": [
       {
         "ident": "14082400000",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": "Nora",
+        "mellomnavn": null,
+        "etternavn": "Iversen",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "08109600000",
-        "rolle": "GIFT"
+        "rolle": "GIFT",
+        "fornavn": "Kim",
+        "mellomnavn": null,
+        "etternavn": "Nilsen",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       }
     ],
     "statsborgerskap": ["PAKISTAN"],

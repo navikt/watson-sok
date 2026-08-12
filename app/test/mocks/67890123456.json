@@ -11,27 +11,57 @@
     "familemedlemmer": [
       {
         "ident": "15122300000",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": "Ella",
+        "mellomnavn": null,
+        "etternavn": "Iversen",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "01031400000",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": "Noah",
+        "mellomnavn": "Andreas",
+        "etternavn": "Berg",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "29021600000",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": "Jakob",
+        "mellomnavn": "Kristian",
+        "etternavn": "Berg",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "26051800000",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": "Nora",
+        "mellomnavn": null,
+        "etternavn": "Iversen",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "18021200000",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": "Aksel",
+        "mellomnavn": null,
+        "etternavn": "Solberg",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "20029100000",
-        "rolle": "SKILT"
+        "rolle": "SKILT",
+        "fornavn": "Kim",
+        "mellomnavn": null,
+        "etternavn": "Nilsen",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       }
     ],
     "adressebeskyttelse": "FORTROLIG",

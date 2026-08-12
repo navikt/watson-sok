@@ -39,18 +39,18 @@
       {
         "ident": "04052200000",
         "rolle": "BARN",
-        "fornavn": null,
-        "mellomnavn": null,
-        "etternavn": null,
+        "fornavn": "Oskar",
+        "mellomnavn": "Emil",
+        "etternavn": "Solberg",
         "fødselsdato": "2022-05-04",
         "adressebeskyttelse": null
       },
       {
         "ident": "20028700000",
         "rolle": "SEPARERT",
-        "fornavn": null,
-        "mellomnavn": null,
-        "etternavn": null,
+        "fornavn": "Robin",
+        "mellomnavn": "Andrea",
+        "etternavn": "Dahl",
         "fødselsdato": null,
         "adressebeskyttelse": null
       },

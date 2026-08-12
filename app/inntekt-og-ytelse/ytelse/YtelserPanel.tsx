@@ -227,10 +227,22 @@ function YtelserTimeline({
   const erMeldekortAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
   const meldekortState = useMeldekort();
 
-  const antallMeldekort =
-    erMeldekortAktivert && meldekortState?.status === "success"
-      ? meldekortState.meldekort.length
-      : null;
+  /** Antall meldekort som overlapper med en gitt periode (fom/tom), eller null om meldekort ikke er tilgjengelig. */
+  const antallMeldekortForPeriode = (
+    fom: string,
+    tom: string,
+  ): number | null => {
+    if (!erMeldekortAktivert || meldekortState?.status !== "success") {
+      return null;
+    }
+    const fra = new Date(fom);
+    const til = new Date(tom);
+    return meldekortState.meldekort.filter(
+      (m) =>
+        new Date(m.periode.tilOgMed) >= fra &&
+        new Date(m.periode.fraOgMed) <= til,
+    ).length;
+  };
 
   return (
     <Timeline
@@ -279,9 +291,6 @@ function YtelserTimeline({
 
       {ytelserMedGruppertePerioder.map((ytelse) => {
         const erDagpenger = harMeldekortYtelse(ytelse.stonadType);
-        const harMeldekortForYtelse =
-          erDagpenger && antallMeldekort !== null && antallMeldekort > 0;
-        const periodeFarge = harMeldekortForYtelse ? "info" : "success";
 
         const radEtikett = (
           <Tooltip content="Trykk for å se detaljer for alle perioder">
@@ -320,6 +329,15 @@ function YtelserTimeline({
                 gruppertPeriode.totalBeløp,
                 0,
               );
+              const antallMeldekort = erDagpenger
+                ? antallMeldekortForPeriode(
+                    gruppertPeriode.fom,
+                    gruppertPeriode.tom,
+                  )
+                : null;
+              const harMeldekortForPeriode =
+                erDagpenger && antallMeldekort !== null && antallMeldekort > 0;
+              const periodeFarge = harMeldekortForPeriode ? "info" : "success";
 
               return (
                 <TimelinePeriod
@@ -328,7 +346,7 @@ function YtelserTimeline({
                   end={tomDate}
                   status={periodeFarge}
                   icon={
-                    harMeldekortForYtelse ? (
+                    harMeldekortForPeriode ? (
                       <InformationSquareIcon aria-label="Meldekort registrert" />
                     ) : (
                       mapYtelsestypeTilIkon(ytelse.stonadType)
@@ -356,7 +374,6 @@ function YtelserTimeline({
                       <BodyShort className="flex items-center gap-1 mt-1">
                         <InformationSquareIcon aria-hidden />
                         {antallMeldekort} meldekort
-                        <ChevronRightIcon aria-hidden />
                       </BodyShort>
                     )}
                 </TimelinePeriod>

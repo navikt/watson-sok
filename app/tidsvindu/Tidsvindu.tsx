@@ -173,7 +173,7 @@ export const TidsvinduProvider = ({
 
   // Initialiser med preset basert på URL-param og feature flag
   const initialDatoer = beregnTidsvinduDatoer(
-    utvidet ? (erTrettenÅrAktivert ? 156 : 120) : 36,
+    utvidet ? (erTrettenÅrAktivert ? 156 : 120) : 12,
   );
   const [fraDato, setFraDato] = useState<Date>(initialDatoer.fraDato);
   const [tilDato, setTilDato] = useState<Date>(initialDatoer.tilDato);
