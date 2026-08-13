@@ -144,10 +144,23 @@ function beregnAaTimerForMåned(
 
         const effektivFom = fom > førsteDag ? fom : førsteDag;
         const effektivTom = tom !== null && tom < sisteDag ? tom : sisteDag;
-        const antallDager = effektivTom.getDate() - effektivFom.getDate() + 1;
-        const antallUker = antallDager / 7;
+        // overlappendeDager: getDate()-diff er trygt fordi effektivFom/Tom alltid er i samme måned
+        const overlappendeDager =
+          effektivTom.getDate() - effektivFom.getDate() + 1;
 
-        totalTimer += timerEntry.antall * antallUker;
+        if (tom !== null) {
+          // antall = totale timer for perioden fom→tom (a-ordningen rapporterer periodetotaler).
+          // Pro-rater på andelen av perioden som faller i denne måneden.
+          const totalDagerIPeriode =
+            Math.round(
+              (tom.getTime() - fom.getTime()) / (1000 * 60 * 60 * 24),
+            ) + 1;
+          totalTimer += timerEntry.antall * (overlappendeDager / totalDagerIPeriode);
+        } else {
+          // Åpen periode (sluttdato mangler) — semantikken er uklar, bruk ukentlig pro-ratering
+          // som fallback inntil Aareg-data avklarer konvensjonen.
+          totalTimer += timerEntry.antall * (overlappendeDager / 7);
+        }
       }
     } else {
       for (const detalj of forhold.ansettelsesDetaljer) {
