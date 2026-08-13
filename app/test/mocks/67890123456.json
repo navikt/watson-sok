@@ -148,21 +148,6 @@
         "timerMedTimeloenn": [
           {
             "antall": 37.5,
-            "startdato": "2024-04-01",
-            "sluttdato": "2024-04-30"
-          },
-          {
-            "antall": 37.5,
-            "startdato": "2024-05-01",
-            "sluttdato": "2024-05-31"
-          },
-          {
-            "antall": 37.5,
-            "startdato": "2024-06-01",
-            "sluttdato": "2024-06-30"
-          },
-          {
-            "antall": 37.5,
             "startdato": "2025-01-01",
             "sluttdato": null
           }
@@ -181,7 +166,7 @@
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2024-09-01",
-              "tom": null
+              "tom": "2025-08-31"
             },
             "yrke": "BILRENSER"
           },
@@ -262,7 +247,7 @@
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2022-08-01",
-              "tom": null
+              "tom": "2025-08-31"
             },
             "yrke": "ADMINISTRASJONSKONSULENT"
           },
@@ -299,7 +284,7 @@
             "antallTimerPrUke": 37.5,
             "periode": {
               "fom": "2025-01-01",
-              "tom": null
+              "tom": "2025-08-31"
             },
             "yrke": "BUD"
           },
@@ -1917,6 +1902,236 @@
           "bruttoBeløp": 8000,
           "kilde": "SOKOS",
           "info": "821365359"
+        },
+        {
+          "periode": {
+            "fom": "2025-09-16",
+            "tom": "2025-09-30"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000001"
+        },
+        {
+          "periode": {
+            "fom": "2025-10-01",
+            "tom": "2025-10-16"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000002"
+        },
+        {
+          "periode": {
+            "fom": "2025-10-17",
+            "tom": "2025-10-31"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000003"
+        },
+        {
+          "periode": {
+            "fom": "2025-11-01",
+            "tom": "2025-11-15"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000004"
+        },
+        {
+          "periode": {
+            "fom": "2025-11-16",
+            "tom": "2025-11-30"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000005"
+        },
+        {
+          "periode": {
+            "fom": "2025-12-01",
+            "tom": "2025-12-16"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000006"
+        },
+        {
+          "periode": {
+            "fom": "2025-12-17",
+            "tom": "2025-12-31"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000007"
+        },
+        {
+          "periode": {
+            "fom": "2026-01-01",
+            "tom": "2026-01-16"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000008"
+        },
+        {
+          "periode": {
+            "fom": "2026-01-17",
+            "tom": "2026-01-31"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000009"
+        },
+        {
+          "periode": {
+            "fom": "2026-02-01",
+            "tom": "2026-02-15"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000010"
+        },
+        {
+          "periode": {
+            "fom": "2026-02-16",
+            "tom": "2026-02-28"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000011"
+        },
+        {
+          "periode": {
+            "fom": "2026-03-01",
+            "tom": "2026-03-16"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000012"
+        },
+        {
+          "periode": {
+            "fom": "2026-03-17",
+            "tom": "2026-03-31"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000013"
+        },
+        {
+          "periode": {
+            "fom": "2026-04-01",
+            "tom": "2026-04-15"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000014"
+        },
+        {
+          "periode": {
+            "fom": "2026-04-16",
+            "tom": "2026-04-30"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000015"
+        },
+        {
+          "periode": {
+            "fom": "2026-05-01",
+            "tom": "2026-05-16"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000016"
+        },
+        {
+          "periode": {
+            "fom": "2026-05-17",
+            "tom": "2026-05-31"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000017"
+        },
+        {
+          "periode": {
+            "fom": "2026-06-01",
+            "tom": "2026-06-15"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000018"
+        },
+        {
+          "periode": {
+            "fom": "2026-06-16",
+            "tom": "2026-06-30"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000019"
+        },
+        {
+          "periode": {
+            "fom": "2026-07-01",
+            "tom": "2026-07-16"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000020"
+        },
+        {
+          "periode": {
+            "fom": "2026-07-17",
+            "tom": "2026-07-31"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000021"
+        },
+        {
+          "periode": {
+            "fom": "2026-08-01",
+            "tom": "2026-08-16"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000022"
+        },
+        {
+          "periode": {
+            "fom": "2026-08-17",
+            "tom": "2026-08-31"
+          },
+          "beløp": 10320,
+          "bruttoBeløp": 11400,
+          "kilde": "SOKOS",
+          "info": "900000023"
         }
       ]
     },
@@ -1950,150 +2165,162 @@
     {
       "dager": [
         {
-          "dato": "2024-04-01",
+          "dato": "2025-09-01",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-01",
+              "id": "demo-2025-09-01",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-01"
+              "timer": 7.31,
+              "dato": "2025-09-01"
             }
           ],
           "dagIndex": 0
         },
         {
-          "dato": "2024-04-02",
+          "dato": "2025-09-02",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-02",
+              "id": "demo-2025-09-02",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-02"
+              "timer": 7.31,
+              "dato": "2025-09-02"
             }
           ],
           "dagIndex": 1
         },
         {
-          "dato": "2024-04-03",
+          "dato": "2025-09-03",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-03",
+              "id": "demo-2025-09-03",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-03"
+              "timer": 7.31,
+              "dato": "2025-09-03"
             }
           ],
           "dagIndex": 2
         },
         {
-          "dato": "2024-04-04",
+          "dato": "2025-09-04",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-04",
+              "id": "demo-2025-09-04",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-04"
+              "timer": 7.31,
+              "dato": "2025-09-04"
             }
           ],
           "dagIndex": 3
         },
         {
-          "dato": "2024-04-05",
+          "dato": "2025-09-05",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-05",
+              "id": "demo-2025-09-05",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-05"
+              "timer": 7.31,
+              "dato": "2025-09-05"
             }
           ],
           "dagIndex": 4
         },
         {
-          "dato": "2024-04-06",
+          "dato": "2025-09-06",
           "aktiviteter": [],
           "dagIndex": 5
         },
         {
-          "dato": "2024-04-07",
+          "dato": "2025-09-07",
           "aktiviteter": [],
           "dagIndex": 6
         },
         {
-          "dato": "2024-04-08",
+          "dato": "2025-09-08",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-08",
+              "id": "demo-2025-09-08",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-08"
+              "timer": 7.31,
+              "dato": "2025-09-08"
             }
           ],
           "dagIndex": 7
         },
         {
-          "dato": "2024-04-09",
+          "dato": "2025-09-09",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-09",
+              "id": "demo-2025-09-09",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-09"
+              "timer": 7.31,
+              "dato": "2025-09-09"
             }
           ],
           "dagIndex": 8
         },
         {
-          "dato": "2024-04-10",
+          "dato": "2025-09-10",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-10",
+              "id": "demo-2025-09-10",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-10"
+              "timer": 7.31,
+              "dato": "2025-09-10"
             }
           ],
           "dagIndex": 9
         },
         {
-          "dato": "2024-04-11",
+          "dato": "2025-09-11",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-11",
+              "id": "demo-2025-09-11",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-11"
+              "timer": 7.31,
+              "dato": "2025-09-11"
             }
           ],
           "dagIndex": 10
         },
         {
-          "dato": "2024-04-12",
+          "dato": "2025-09-12",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-12",
+              "id": "demo-2025-09-12",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-12"
+              "timer": 7.31,
+              "dato": "2025-09-12"
             }
           ],
           "dagIndex": 11
         },
         {
-          "dato": "2024-04-13",
+          "dato": "2025-09-13",
           "aktiviteter": [],
           "dagIndex": 12
         },
         {
-          "dato": "2024-04-14",
+          "dato": "2025-09-14",
           "aktiviteter": [],
           "dagIndex": 13
+        },
+        {
+          "dato": "2025-09-15",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-09-15",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2025-09-15"
+            }
+          ],
+          "dagIndex": 14
         }
       ],
-      "id": "demo-mk-2024-04-a",
+      "id": "demo-mk-2025-09-1",
       "periode": {
-        "fraOgMed": "2024-04-01",
-        "tilOgMed": "2024-04-14"
+        "fraOgMed": "2025-09-01",
+        "tilOgMed": "2025-09-15"
       },
       "opprettetAv": "Dagpenger",
       "migrert": false,
@@ -2101,157 +2328,169 @@
         "rolle": "Bruker",
         "ident": "67890123456"
       },
-      "innsendtTidspunkt": "2024-04-15T09:00:00",
+      "innsendtTidspunkt": "2025-09-16T09:00:00",
       "registrertArbeidssoker": true,
-      "meldedato": "2024-04-15"
+      "meldedato": "2025-09-16"
     },
     {
       "dager": [
         {
-          "dato": "2024-04-15",
+          "dato": "2025-09-16",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-15",
+              "id": "demo-2025-09-16",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-15"
+              "timer": 7.31,
+              "dato": "2025-09-16"
             }
           ],
           "dagIndex": 0
         },
         {
-          "dato": "2024-04-16",
+          "dato": "2025-09-17",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-16",
+              "id": "demo-2025-09-17",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-16"
+              "timer": 7.31,
+              "dato": "2025-09-17"
             }
           ],
           "dagIndex": 1
         },
         {
-          "dato": "2024-04-17",
+          "dato": "2025-09-18",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-17",
+              "id": "demo-2025-09-18",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-17"
+              "timer": 7.31,
+              "dato": "2025-09-18"
             }
           ],
           "dagIndex": 2
         },
         {
-          "dato": "2024-04-18",
+          "dato": "2025-09-19",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-18",
+              "id": "demo-2025-09-19",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-18"
+              "timer": 7.31,
+              "dato": "2025-09-19"
             }
           ],
           "dagIndex": 3
         },
         {
-          "dato": "2024-04-19",
-          "aktiviteter": [
-            {
-              "id": "demo-2024-04-19",
-              "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-19"
-            }
-          ],
+          "dato": "2025-09-20",
+          "aktiviteter": [],
           "dagIndex": 4
         },
         {
-          "dato": "2024-04-20",
+          "dato": "2025-09-21",
           "aktiviteter": [],
           "dagIndex": 5
         },
         {
-          "dato": "2024-04-21",
-          "aktiviteter": [],
+          "dato": "2025-09-22",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-09-22",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2025-09-22"
+            }
+          ],
           "dagIndex": 6
         },
         {
-          "dato": "2024-04-22",
+          "dato": "2025-09-23",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-22",
+              "id": "demo-2025-09-23",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-22"
+              "timer": 7.31,
+              "dato": "2025-09-23"
             }
           ],
           "dagIndex": 7
         },
         {
-          "dato": "2024-04-23",
+          "dato": "2025-09-24",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-23",
+              "id": "demo-2025-09-24",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-23"
+              "timer": 7.31,
+              "dato": "2025-09-24"
             }
           ],
           "dagIndex": 8
         },
         {
-          "dato": "2024-04-24",
+          "dato": "2025-09-25",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-24",
+              "id": "demo-2025-09-25",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-24"
+              "timer": 7.31,
+              "dato": "2025-09-25"
             }
           ],
           "dagIndex": 9
         },
         {
-          "dato": "2024-04-25",
+          "dato": "2025-09-26",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-25",
+              "id": "demo-2025-09-26",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-25"
+              "timer": 7.31,
+              "dato": "2025-09-26"
             }
           ],
           "dagIndex": 10
         },
         {
-          "dato": "2024-04-26",
-          "aktiviteter": [
-            {
-              "id": "demo-2024-04-26",
-              "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-26"
-            }
-          ],
+          "dato": "2025-09-27",
+          "aktiviteter": [],
           "dagIndex": 11
         },
         {
-          "dato": "2024-04-27",
+          "dato": "2025-09-28",
           "aktiviteter": [],
           "dagIndex": 12
         },
         {
-          "dato": "2024-04-28",
-          "aktiviteter": [],
+          "dato": "2025-09-29",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-09-29",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2025-09-29"
+            }
+          ],
           "dagIndex": 13
+        },
+        {
+          "dato": "2025-09-30",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-09-30",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2025-09-30"
+            }
+          ],
+          "dagIndex": 14
         }
       ],
-      "id": "demo-mk-2024-04-b",
+      "id": "demo-mk-2025-09-2",
       "periode": {
-        "fraOgMed": "2024-04-15",
-        "tilOgMed": "2024-04-28"
+        "fraOgMed": "2025-09-16",
+        "tilOgMed": "2025-09-30"
       },
       "opprettetAv": "Dagpenger",
       "migrert": false,
@@ -2259,41 +2498,181 @@
         "rolle": "Bruker",
         "ident": "67890123456"
       },
-      "innsendtTidspunkt": "2024-04-29T09:00:00",
+      "innsendtTidspunkt": "2025-10-01T09:00:00",
       "registrertArbeidssoker": true,
-      "meldedato": "2024-04-29"
+      "meldedato": "2025-10-01"
     },
     {
       "dager": [
         {
-          "dato": "2024-04-29",
+          "dato": "2025-10-01",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-29",
+              "id": "demo-2025-10-01",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-29"
+              "timer": 7.22,
+              "dato": "2025-10-01"
             }
           ],
           "dagIndex": 0
         },
         {
-          "dato": "2024-04-30",
+          "dato": "2025-10-02",
           "aktiviteter": [
             {
-              "id": "demo-2024-04-30",
+              "id": "demo-2025-10-02",
               "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-04-30"
+              "timer": 7.22,
+              "dato": "2025-10-02"
             }
           ],
           "dagIndex": 1
+        },
+        {
+          "dato": "2025-10-03",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-03",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-03"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-10-04",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-10-05",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-10-06",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-06",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-06"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-10-07",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-07",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-07"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-10-08",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-08",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-08"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-10-09",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-09",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-09"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-10-10",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-10",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-10"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-10-11",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-10-12",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-10-13",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-13",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-13"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-10-14",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-14",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-14"
+            }
+          ],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2025-10-15",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-15",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-15"
+            }
+          ],
+          "dagIndex": 14
+        },
+        {
+          "dato": "2025-10-16",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-16",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-16"
+            }
+          ],
+          "dagIndex": 15
         }
       ],
-      "id": "demo-mk-2024-04-c",
+      "id": "demo-mk-2025-10-3",
       "periode": {
-        "fraOgMed": "2024-04-29",
-        "tilOgMed": "2024-04-30"
+        "fraOgMed": "2025-10-01",
+        "tilOgMed": "2025-10-16"
       },
       "opprettetAv": "Dagpenger",
       "migrert": false,
@@ -2301,403 +2680,3571 @@
         "rolle": "Bruker",
         "ident": "67890123456"
       },
-      "innsendtTidspunkt": "2024-05-01T09:00:00",
+      "innsendtTidspunkt": "2025-10-17T09:00:00",
       "registrertArbeidssoker": true,
-      "meldedato": "2024-05-01"
+      "meldedato": "2025-10-17"
     },
     {
       "dager": [
         {
-          "dato": "2025-05-24",
-          "aktiviteter": [],
-          "dagIndex": 0
-        },
-        {
-          "dato": "2025-05-25",
-          "aktiviteter": [],
-          "dagIndex": 1
-        },
-        {
-          "dato": "2025-05-26",
+          "dato": "2025-10-17",
           "aktiviteter": [
             {
-              "id": "019afd1c-e23a-74ff-a111-5c5c2fe92206",
+              "id": "demo-2025-10-17",
               "type": "Arbeid",
-              "timer": 10,
-              "dato": "2025-05-26"
+              "timer": 7.22,
+              "dato": "2025-10-17"
             }
           ],
-          "dagIndex": 2
-        },
-        {
-          "dato": "2025-05-27",
-          "aktiviteter": [],
-          "dagIndex": 3
-        },
-        {
-          "dato": "2025-05-28",
-          "aktiviteter": [],
-          "dagIndex": 4
-        },
-        {
-          "dato": "2025-05-29",
-          "aktiviteter": [],
-          "dagIndex": 5
-        },
-        {
-          "dato": "2025-05-30",
-          "aktiviteter": [],
-          "dagIndex": 6
-        },
-        {
-          "dato": "2025-05-31",
-          "aktiviteter": [],
-          "dagIndex": 7
-        },
-        {
-          "dato": "2025-06-01",
-          "aktiviteter": [],
-          "dagIndex": 8
-        },
-        {
-          "dato": "2025-06-02",
-          "aktiviteter": [],
-          "dagIndex": 9
-        },
-        {
-          "dato": "2025-06-03",
-          "aktiviteter": [],
-          "dagIndex": 10
-        },
-        {
-          "dato": "2025-06-04",
-          "aktiviteter": [],
-          "dagIndex": 11
-        },
-        {
-          "dato": "2025-06-05",
-          "aktiviteter": [],
-          "dagIndex": 12
-        },
-        {
-          "dato": "2025-06-06",
-          "aktiviteter": [],
-          "dagIndex": 13
-        }
-      ],
-      "id": "02877398113",
-      "periode": {
-        "fraOgMed": "2025-05-24",
-        "tilOgMed": "2025-06-06"
-      },
-      "opprettetAv": "Dagpenger",
-      "migrert": false,
-      "kilde": {
-        "rolle": "Bruker",
-        "ident": "02877398113"
-      },
-      "innsendtTidspunkt": "2025-06-08T09:38:52.960599",
-      "registrertArbeidssoker": true,
-      "meldedato": "2025-06-08"
-    },
-    {
-      "dager": [
-        {
-          "dato": "2025-11-24",
-          "aktiviteter": [],
           "dagIndex": 0
         },
         {
-          "dato": "2025-11-25",
+          "dato": "2025-10-18",
           "aktiviteter": [],
           "dagIndex": 1
         },
         {
-          "dato": "2025-11-26",
+          "dato": "2025-10-19",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-10-20",
           "aktiviteter": [
             {
-              "id": "019afd1c-e23a-74ff-a111-5c5c2fe92206",
+              "id": "demo-2025-10-20",
               "type": "Arbeid",
-              "timer": 10,
-              "dato": "2025-11-26"
+              "timer": 7.22,
+              "dato": "2025-10-20"
             }
           ],
-          "dagIndex": 2
-        },
-        {
-          "dato": "2025-11-27",
-          "aktiviteter": [],
           "dagIndex": 3
         },
         {
-          "dato": "2025-11-28",
-          "aktiviteter": [],
+          "dato": "2025-10-21",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-21",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-21"
+            }
+          ],
           "dagIndex": 4
         },
         {
-          "dato": "2025-11-29",
-          "aktiviteter": [],
+          "dato": "2025-10-22",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-22",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-22"
+            }
+          ],
           "dagIndex": 5
         },
         {
-          "dato": "2025-11-30",
-          "aktiviteter": [],
+          "dato": "2025-10-23",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-23",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-23"
+            }
+          ],
           "dagIndex": 6
         },
         {
-          "dato": "2025-12-01",
-          "aktiviteter": [],
+          "dato": "2025-10-24",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-24",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-24"
+            }
+          ],
           "dagIndex": 7
         },
         {
-          "dato": "2025-12-02",
+          "dato": "2025-10-25",
           "aktiviteter": [],
           "dagIndex": 8
         },
         {
-          "dato": "2025-12-03",
+          "dato": "2025-10-26",
           "aktiviteter": [],
           "dagIndex": 9
         },
-        {
-          "dato": "2025-12-04",
-          "aktiviteter": [],
-          "dagIndex": 10
-        },
-        {
-          "dato": "2025-12-05",
-          "aktiviteter": [],
-          "dagIndex": 11
-        },
-        {
-          "dato": "2025-12-06",
-          "aktiviteter": [],
-          "dagIndex": 12
-        },
-        {
-          "dato": "2025-12-07",
-          "aktiviteter": [],
-          "dagIndex": 13
-        }
-      ],
-      "id": "02877398113",
-      "periode": {
-        "fraOgMed": "2025-11-24",
-        "tilOgMed": "2025-12-07"
-      },
-      "opprettetAv": "Dagpenger",
-      "migrert": false,
-      "kilde": {
-        "rolle": "Bruker",
-        "ident": "02877398113"
-      },
-      "innsendtTidspunkt": "2025-12-08T09:38:52.960599",
-      "registrertArbeidssoker": true,
-      "meldedato": "2025-12-08"
-    },
-    {
-      "dager": [
-        {
-          "dato": "2025-11-10",
-          "aktiviteter": [],
-          "dagIndex": 0
-        },
-        {
-          "dato": "2025-11-11",
-          "aktiviteter": [],
-          "dagIndex": 1
-        },
-        {
-          "dato": "2025-11-12",
-          "aktiviteter": [],
-          "dagIndex": 2
-        },
-        {
-          "dato": "2025-11-13",
-          "aktiviteter": [],
-          "dagIndex": 3
-        },
-        {
-          "dato": "2025-11-14",
-          "aktiviteter": [],
-          "dagIndex": 4
-        },
-        {
-          "dato": "2025-11-15",
-          "aktiviteter": [],
-          "dagIndex": 5
-        },
-        {
-          "dato": "2025-11-16",
-          "aktiviteter": [],
-          "dagIndex": 6
-        },
-        {
-          "dato": "2025-11-17",
-          "aktiviteter": [],
-          "dagIndex": 7
-        },
-        {
-          "dato": "2025-11-18",
-          "aktiviteter": [],
-          "dagIndex": 8
-        },
-        {
-          "dato": "2025-11-19",
-          "aktiviteter": [],
-          "dagIndex": 9
-        },
-        {
-          "dato": "2025-11-20",
-          "aktiviteter": [],
-          "dagIndex": 10
-        },
-        {
-          "dato": "2025-11-21",
-          "aktiviteter": [],
-          "dagIndex": 11
-        },
-        {
-          "dato": "2025-11-22",
-          "aktiviteter": [],
-          "dagIndex": 12
-        },
-        {
-          "dato": "2025-11-23",
-          "aktiviteter": [],
-          "dagIndex": 13
-        }
-      ],
-      "id": "02877398114",
-      "periode": {
-        "fraOgMed": "2025-11-10",
-        "tilOgMed": "2025-11-23"
-      },
-      "opprettetAv": "Dagpenger",
-      "migrert": false,
-      "kilde": {
-        "rolle": "Bruker",
-        "ident": "02877398115"
-      },
-      "innsendtTidspunkt": "2025-11-25T13:09:45.724533",
-      "registrertArbeidssoker": true,
-      "meldedato": "2025-11-25"
-    },
-    {
-      "dager": [
         {
           "dato": "2025-10-27",
-          "aktiviteter": [],
-          "dagIndex": 0
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-27",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-27"
+            }
+          ],
+          "dagIndex": 10
         },
         {
           "dato": "2025-10-28",
-          "aktiviteter": [],
-          "dagIndex": 1
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-28",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-28"
+            }
+          ],
+          "dagIndex": 11
         },
         {
           "dato": "2025-10-29",
-          "aktiviteter": [],
-          "dagIndex": 2
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-29",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-29"
+            }
+          ],
+          "dagIndex": 12
         },
         {
           "dato": "2025-10-30",
-          "aktiviteter": [],
-          "dagIndex": 3
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-30",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-30"
+            }
+          ],
+          "dagIndex": 13
         },
         {
           "dato": "2025-10-31",
-          "aktiviteter": [],
-          "dagIndex": 4
-        },
+          "aktiviteter": [
+            {
+              "id": "demo-2025-10-31",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2025-10-31"
+            }
+          ],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2025-10-4",
+      "periode": {
+        "fraOgMed": "2025-10-17",
+        "tilOgMed": "2025-10-31"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2025-11-01T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-11-01"
+    },
+    {
+      "dager": [
         {
           "dato": "2025-11-01",
           "aktiviteter": [],
-          "dagIndex": 5
+          "dagIndex": 0
         },
         {
           "dato": "2025-11-02",
           "aktiviteter": [],
-          "dagIndex": 6
+          "dagIndex": 1
         },
         {
           "dato": "2025-11-03",
-          "aktiviteter": [],
-          "dagIndex": 7
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-03",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-03"
+            }
+          ],
+          "dagIndex": 2
         },
         {
           "dato": "2025-11-04",
-          "aktiviteter": [],
-          "dagIndex": 8
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-04",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-04"
+            }
+          ],
+          "dagIndex": 3
         },
         {
           "dato": "2025-11-05",
-          "aktiviteter": [],
-          "dagIndex": 9
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-05",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-05"
+            }
+          ],
+          "dagIndex": 4
         },
         {
           "dato": "2025-11-06",
           "aktiviteter": [
             {
-              "id": "019abaea-90a1-7830-8413-810903a1ce3e",
+              "id": "demo-2025-11-06",
               "type": "Arbeid",
-              "timer": 10,
+              "timer": 8.04,
               "dato": "2025-11-06"
             }
           ],
-          "dagIndex": 10
+          "dagIndex": 5
         },
         {
           "dato": "2025-11-07",
           "aktiviteter": [
             {
-              "id": "019abaea-a254-72f3-ab37-1eca93e93411",
-              "type": "Fravaer",
-              "timer": null,
+              "id": "demo-2025-11-07",
+              "type": "Arbeid",
+              "timer": 8.04,
               "dato": "2025-11-07"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-11-08",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-11-09",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-11-10",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-10",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-10"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-11-11",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-11",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-11"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-11-12",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-12",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-12"
             }
           ],
           "dagIndex": 11
         },
         {
-          "dato": "2025-11-08",
+          "dato": "2025-11-13",
           "aktiviteter": [
             {
-              "id": "019abaea-a254-72f3-ab37-1eca93e93412",
-              "type": "Utdanning",
-              "timer": null,
-              "dato": "2025-11-08"
+              "id": "demo-2025-11-13",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-13"
             }
           ],
           "dagIndex": 12
         },
         {
-          "dato": "2025-11-09",
+          "dato": "2025-11-14",
           "aktiviteter": [
             {
-              "id": "019abaea-a254-72f3-ab37-1eca93e93412",
-              "type": "Syk",
-              "timer": null,
-              "dato": "2025-11-09"
+              "id": "demo-2025-11-14",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-14"
             }
           ],
           "dagIndex": 13
+        },
+        {
+          "dato": "2025-11-15",
+          "aktiviteter": [],
+          "dagIndex": 14
         }
       ],
-      "id": "02877398115",
+      "id": "demo-mk-2025-11-5",
       "periode": {
-        "fraOgMed": "2025-10-27",
-        "tilOgMed": "2025-11-09"
+        "fraOgMed": "2025-11-01",
+        "tilOgMed": "2025-11-15"
       },
       "opprettetAv": "Dagpenger",
       "migrert": false,
       "kilde": {
         "rolle": "Bruker",
-        "ident": "02877398115"
+        "ident": "67890123456"
       },
-      "innsendtTidspunkt": "2025-11-10T13:09:22.219582",
+      "innsendtTidspunkt": "2025-11-16T09:00:00",
       "registrertArbeidssoker": true,
-      "meldedato": "2025-11-10"
+      "meldedato": "2025-11-16"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-11-16",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-11-17",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-17",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-17"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-11-18",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-18",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-18"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-11-19",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-19",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-19"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-11-20",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-20",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-20"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-11-21",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-21",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-21"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-11-22",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-11-23",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-11-24",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-24",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-24"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-11-25",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-25",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-25"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-11-26",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-26",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-26"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-11-27",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-27",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-27"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-11-28",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-11-28",
+              "type": "Arbeid",
+              "timer": 8.04,
+              "dato": "2025-11-28"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-11-29",
+          "aktiviteter": [],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2025-11-30",
+          "aktiviteter": [],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2025-11-6",
+      "periode": {
+        "fraOgMed": "2025-11-16",
+        "tilOgMed": "2025-11-30"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2025-12-01T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-12-01"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-12-01",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-01",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-01"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-12-02",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-02",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-02"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-12-03",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-03",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-03"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-12-04",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-04",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-04"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-12-05",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-05",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-05"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-12-06",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-12-07",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-12-08",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-08",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-08"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-12-09",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-09",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-09"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-12-10",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-10",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-10"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-12-11",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-11",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-11"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-12-12",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-12",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-12"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-12-13",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-12-14",
+          "aktiviteter": [],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2025-12-15",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-15",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-15"
+            }
+          ],
+          "dagIndex": 14
+        },
+        {
+          "dato": "2025-12-16",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-16",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-16"
+            }
+          ],
+          "dagIndex": 15
+        }
+      ],
+      "id": "demo-mk-2025-12-7",
+      "periode": {
+        "fraOgMed": "2025-12-01",
+        "tilOgMed": "2025-12-16"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2025-12-17T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-12-17"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-12-17",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-17",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-17"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-12-18",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-18",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-18"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-12-19",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-19",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-19"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-12-20",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-12-21",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-12-22",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-22",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-22"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-12-23",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-23",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-23"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-12-24",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-24",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-24"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-12-25",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-25",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-25"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-12-26",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-26",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-26"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-12-27",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-12-28",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-12-29",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-29",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-29"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-12-30",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-30",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-30"
+            }
+          ],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2025-12-31",
+          "aktiviteter": [
+            {
+              "id": "demo-2025-12-31",
+              "type": "Arbeid",
+              "timer": 3.61,
+              "dato": "2025-12-31"
+            }
+          ],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2025-12-8",
+      "periode": {
+        "fraOgMed": "2025-12-17",
+        "tilOgMed": "2025-12-31"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-01-01T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-01-01"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-01-01",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-01",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-01"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-01-02",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-02",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-02"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-01-03",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-01-04",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-01-05",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-05",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-05"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-01-06",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-06",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-06"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-01-07",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-07",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-07"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-01-08",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-08",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-08"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-01-09",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-09",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-09"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-01-10",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-01-11",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-01-12",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-12",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-12"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-01-13",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-13",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-13"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-01-14",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-14",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-14"
+            }
+          ],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-01-15",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-15",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-15"
+            }
+          ],
+          "dagIndex": 14
+        },
+        {
+          "dato": "2026-01-16",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-16",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-16"
+            }
+          ],
+          "dagIndex": 15
+        }
+      ],
+      "id": "demo-mk-2026-01-9",
+      "periode": {
+        "fraOgMed": "2026-01-01",
+        "tilOgMed": "2026-01-16"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-01-17T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-01-17"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-01-17",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-01-18",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-01-19",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-19",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-19"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-01-20",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-20",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-20"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-01-21",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-21",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-21"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-01-22",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-22",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-22"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-01-23",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-23",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-23"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-01-24",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-01-25",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-01-26",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-26",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-26"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-01-27",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-27",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-27"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-01-28",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-28",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-28"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-01-29",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-29",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-29"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-01-30",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-01-30",
+              "type": "Arbeid",
+              "timer": 7.55,
+              "dato": "2026-01-30"
+            }
+          ],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-01-31",
+          "aktiviteter": [],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2026-01-10",
+      "periode": {
+        "fraOgMed": "2026-01-17",
+        "tilOgMed": "2026-01-31"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-02-01T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-02-01"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-02-01",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-02-02",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-02",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-02"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-02-03",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-03",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-03"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-02-04",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-04",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-04"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-02-05",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-05",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-05"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-02-06",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-06",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-06"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-02-07",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-02-08",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-02-09",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-09",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-09"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-02-10",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-10",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-10"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-02-11",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-11",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-11"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-02-12",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-12",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-12"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-02-13",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-13",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-13"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-02-14",
+          "aktiviteter": [],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-02-15",
+          "aktiviteter": [],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2026-02-11",
+      "periode": {
+        "fraOgMed": "2026-02-01",
+        "tilOgMed": "2026-02-15"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-02-16T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-02-16"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-02-16",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-16",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-16"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-02-17",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-17",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-17"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-02-18",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-18",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-18"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-02-19",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-19",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-19"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-02-20",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-20",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-20"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-02-21",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-02-22",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-02-23",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-23",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-23"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-02-24",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-24",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-24"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-02-25",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-25",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-25"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-02-26",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-26",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-26"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-02-27",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-02-27",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-27"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-02-28",
+          "aktiviteter": [],
+          "dagIndex": 12
+        }
+      ],
+      "id": "demo-mk-2026-02-12",
+      "periode": {
+        "fraOgMed": "2026-02-16",
+        "tilOgMed": "2026-02-28"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-03-01T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-03-01"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-03-01",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-03-02",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-02",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-02"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-03-03",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-03",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-03"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-03-04",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-04",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-04"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-03-05",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-05",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-05"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-03-06",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-06",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-06"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-03-07",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-03-08",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-03-09",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-09",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-09"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-03-10",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-10",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-10"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-03-11",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-11",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-11"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-03-12",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-12",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-12"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-03-13",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-13",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-13"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-03-14",
+          "aktiviteter": [],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-03-15",
+          "aktiviteter": [],
+          "dagIndex": 14
+        },
+        {
+          "dato": "2026-03-16",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-16",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-16"
+            }
+          ],
+          "dagIndex": 15
+        }
+      ],
+      "id": "demo-mk-2026-03-13",
+      "periode": {
+        "fraOgMed": "2026-03-01",
+        "tilOgMed": "2026-03-16"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-03-17T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-03-17"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-03-17",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-17",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-17"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-03-18",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-18",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-18"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-03-19",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-19",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-19"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-03-20",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-20",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-20"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-03-21",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-03-22",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-03-23",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-23",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-23"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-03-24",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-24",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-24"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-03-25",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-25",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-25"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-03-26",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-26",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-26"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-03-27",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-27",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-27"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-03-28",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-03-29",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-03-30",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-30",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-30"
+            }
+          ],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-03-31",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-03-31",
+              "type": "Arbeid",
+              "timer": 3.77,
+              "dato": "2026-03-31"
+            }
+          ],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2026-03-14",
+      "periode": {
+        "fraOgMed": "2026-03-17",
+        "tilOgMed": "2026-03-31"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-04-01T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-04-01"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-04-01",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-01",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-01"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-04-02",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-02",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-02"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-04-03",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-03",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-03"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-04-04",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-04-05",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-04-06",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-06",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-06"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-04-07",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-07",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-07"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-04-08",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-08",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-08"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-04-09",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-09",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-09"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-04-10",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-10",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-10"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-04-11",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-04-12",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-04-13",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-13",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-13"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-04-14",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-14",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-14"
+            }
+          ],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-04-15",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-15",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-15"
+            }
+          ],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2026-04-15",
+      "periode": {
+        "fraOgMed": "2026-04-01",
+        "tilOgMed": "2026-04-15"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-04-16T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-04-16"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-04-16",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-16",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-16"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-04-17",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-17",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-17"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-04-18",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-04-19",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-04-20",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-20",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-20"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-04-21",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-21",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-21"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-04-22",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-22",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-22"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-04-23",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-23",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-23"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-04-24",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-24",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-24"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-04-25",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-04-26",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-04-27",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-27",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-27"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-04-28",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-28",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-28"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-04-29",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-29",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-29"
+            }
+          ],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-04-30",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-04-30",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-04-30"
+            }
+          ],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2026-04-16",
+      "periode": {
+        "fraOgMed": "2026-04-16",
+        "tilOgMed": "2026-04-30"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-05-01T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-05-01"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-05-01",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-01",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-01"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-05-02",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-05-03",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-05-04",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-04",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-04"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-05-05",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-05",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-05"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-05-06",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-06",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-06"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-05-07",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-07",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-07"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-05-08",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-08",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-08"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-05-09",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-05-10",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-05-11",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-11",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-11"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-05-12",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-12",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-12"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-05-13",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-13",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-13"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-05-14",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-14",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-14"
+            }
+          ],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-05-15",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-15",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-15"
+            }
+          ],
+          "dagIndex": 14
+        },
+        {
+          "dato": "2026-05-16",
+          "aktiviteter": [],
+          "dagIndex": 15
+        }
+      ],
+      "id": "demo-mk-2026-05-17",
+      "periode": {
+        "fraOgMed": "2026-05-01",
+        "tilOgMed": "2026-05-16"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-05-17T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-05-17"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-05-17",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-05-18",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-18",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-18"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-05-19",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-19",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-19"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-05-20",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-20",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-20"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-05-21",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-21",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-21"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-05-22",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-22",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-22"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-05-23",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-05-24",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-05-25",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-25",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-25"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-05-26",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-26",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-26"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-05-27",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-27",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-27"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-05-28",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-28",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-28"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-05-29",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-05-29",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-05-29"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-05-30",
+          "aktiviteter": [],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-05-31",
+          "aktiviteter": [],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2026-05-18",
+      "periode": {
+        "fraOgMed": "2026-05-17",
+        "tilOgMed": "2026-05-31"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-06-01T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-06-01"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-06-01",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-01",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-01"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-06-02",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-02",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-02"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-06-03",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-03",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-03"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-06-04",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-04",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-04"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-06-05",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-05",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-05"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-06-06",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-06-07",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-06-08",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-08",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-08"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-06-09",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-09",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-09"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-06-10",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-10",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-10"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-06-11",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-11",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-11"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-06-12",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-12",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-12"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-06-13",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-06-14",
+          "aktiviteter": [],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-06-15",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-15",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-15"
+            }
+          ],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2026-06-19",
+      "periode": {
+        "fraOgMed": "2026-06-01",
+        "tilOgMed": "2026-06-15"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-06-16T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-06-16"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-06-16",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-16",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-16"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-06-17",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-17",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-17"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-06-18",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-18",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-18"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-06-19",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-19",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-19"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-06-20",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-06-21",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-06-22",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-22",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-22"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-06-23",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-23",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-23"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-06-24",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-24",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-24"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-06-25",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-25",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-25"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-06-26",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-26",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-26"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-06-27",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-06-28",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-06-29",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-29",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-29"
+            }
+          ],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-06-30",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-06-30",
+              "type": "Arbeid",
+              "timer": 7.31,
+              "dato": "2026-06-30"
+            }
+          ],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2026-06-20",
+      "periode": {
+        "fraOgMed": "2026-06-16",
+        "tilOgMed": "2026-06-30"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-07-01T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-07-01"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-07-01",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-01",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-01"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-07-02",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-02",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-02"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-07-03",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-03",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-03"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-07-04",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-07-05",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-07-06",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-06",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-06"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-07-07",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-07",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-07"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-07-08",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-08",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-08"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-07-09",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-09",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-09"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-07-10",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-10",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-10"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-07-11",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-07-12",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-07-13",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-13",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-13"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-07-14",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-14",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-14"
+            }
+          ],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-07-15",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-15",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-15"
+            }
+          ],
+          "dagIndex": 14
+        },
+        {
+          "dato": "2026-07-16",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-16",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-16"
+            }
+          ],
+          "dagIndex": 15
+        }
+      ],
+      "id": "demo-mk-2026-07-21",
+      "periode": {
+        "fraOgMed": "2026-07-01",
+        "tilOgMed": "2026-07-16"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-07-17T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-07-17"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-07-17",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-17",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-17"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-07-18",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-07-19",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-07-20",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-20",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-20"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-07-21",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-21",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-21"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-07-22",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-22",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-22"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-07-23",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-23",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-23"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-07-24",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-24",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-24"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-07-25",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-07-26",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-07-27",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-27",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-27"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-07-28",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-28",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-28"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-07-29",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-29",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-29"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-07-30",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-30",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-30"
+            }
+          ],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-07-31",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-07-31",
+              "type": "Arbeid",
+              "timer": 7.22,
+              "dato": "2026-07-31"
+            }
+          ],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2026-07-22",
+      "periode": {
+        "fraOgMed": "2026-07-17",
+        "tilOgMed": "2026-07-31"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-08-01T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-08-01"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-08-01",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-08-02",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-08-03",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-03",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-03"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-08-04",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-04",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-04"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-08-05",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-05",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-05"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-08-06",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-06",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-06"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-08-07",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-07",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-07"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-08-08",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-08-09",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-08-10",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-10",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-10"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-08-11",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-11",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-11"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-08-12",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-12",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-12"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-08-13",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-13",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-13"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-08-14",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-14",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-14"
+            }
+          ],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-08-15",
+          "aktiviteter": [],
+          "dagIndex": 14
+        },
+        {
+          "dato": "2026-08-16",
+          "aktiviteter": [],
+          "dagIndex": 15
+        }
+      ],
+      "id": "demo-mk-2026-08-23",
+      "periode": {
+        "fraOgMed": "2026-08-01",
+        "tilOgMed": "2026-08-16"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-08-17T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-08-17"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-08-17",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-17",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-17"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-08-18",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-18",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-18"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-08-19",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-19",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-19"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-08-20",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-20",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-20"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-08-21",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-21",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-21"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-08-22",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-08-23",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-08-24",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-24",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-24"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-08-25",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-25",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-25"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-08-26",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-26",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-26"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-08-27",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-27",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-27"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-08-28",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-28",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-28"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-08-29",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-08-30",
+          "aktiviteter": [],
+          "dagIndex": 13
+        },
+        {
+          "dato": "2026-08-31",
+          "aktiviteter": [
+            {
+              "id": "demo-2026-08-31",
+              "type": "Arbeid",
+              "timer": 7.91,
+              "dato": "2026-08-31"
+            }
+          ],
+          "dagIndex": 14
+        }
+      ],
+      "id": "demo-mk-2026-08-24",
+      "periode": {
+        "fraOgMed": "2026-08-17",
+        "tilOgMed": "2026-08-31"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2026-09-01T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-09-01"
     }
   ],
   "pensjonsgivendeInntekt": [
