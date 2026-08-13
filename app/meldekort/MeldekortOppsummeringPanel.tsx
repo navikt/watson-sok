@@ -8,7 +8,11 @@ import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { MeldekortProvider, useMeldekort } from "~/meldekort/MeldekortContext";
 import { TimerSammenligningGraf } from "~/meldekort/TimerSammenligningGraf";
-import { aggregerTimerPerMåned, erTimelønnet } from "~/meldekort/utils";
+import {
+  aggregerTimerPerMåned,
+  erTimelønnet,
+  filtrerMeldekortSomOverlapperPeriode,
+} from "~/meldekort/utils";
 import {
   PanelContainer,
   PanelContainerSkeleton,
@@ -107,8 +111,12 @@ export function MeldekortOppsummeringPanelInnhold({
 
   const antallMeldekort = useMemo(() => {
     if (!meldekortState || meldekortState.status !== "success") return null;
-    return meldekortState.meldekort.length;
-  }, [meldekortState]);
+    return filtrerMeldekortSomOverlapperPeriode(
+      meldekortState.meldekort,
+      fraDato,
+      tilDato,
+    ).length;
+  }, [meldekortState, fraDato, tilDato]);
 
   const timerData = useMemo(() => {
     if (

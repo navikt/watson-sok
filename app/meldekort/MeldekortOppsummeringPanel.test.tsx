@@ -2,11 +2,13 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
+import { useMeldekort } from "~/meldekort/MeldekortContext";
 
+import type { MeldekortRespons } from "./domene";
 import { MeldekortOppsummeringPanelInnhold } from "./MeldekortOppsummeringPanel";
 
 vi.mock("~/meldekort/MeldekortContext", () => ({
-  useMeldekort: () => ({ status: "success", meldekort: [] }),
+  useMeldekort: vi.fn(() => ({ status: "success", meldekort: [] })),
 }));
 
 vi.mock("~/tidsvindu/Tidsvindu", () => ({
@@ -16,6 +18,20 @@ vi.mock("~/tidsvindu/Tidsvindu", () => ({
     tilDato: new Date("2024-06-30"),
   }),
 }));
+
+function lagMeldekort(
+  fraOgMed: string,
+  tilOgMed: string,
+): MeldekortRespons[number] {
+  return {
+    id: `${fraOgMed}-${tilOgMed}`,
+    periode: { fraOgMed, tilOgMed },
+    opprettetAv: "Dagpenger",
+    migrert: false,
+    kilde: { rolle: "Bruker", ident: "12345678901" },
+    dager: [],
+  };
+}
 
 function lagTimelønnetArbeidsgiverInformasjon(): ArbeidsgiverInformasjon {
   return {
@@ -141,5 +157,28 @@ describe("MeldekortOppsummeringPanelInnhold", () => {
     );
 
     expect(screen.getByText(/Ingen data tilgjengelig/)).toBeDefined();
+  });
+
+  it("teller kun meldekort som overlapper valgt periode, ikke totalt antall", () => {
+    vi.mocked(useMeldekort).mockReturnValue({
+      status: "success",
+      meldekort: [
+        lagMeldekort("2024-04-01", "2024-04-14"),
+        lagMeldekort("2024-05-01", "2024-05-14"),
+        // Utenfor perioden 2024-04-01–2024-06-30 — skal ikke telles med
+        lagMeldekort("2024-09-01", "2024-09-14"),
+        lagMeldekort("2024-10-01", "2024-10-14"),
+      ],
+    });
+
+    render(
+      <MeldekortOppsummeringPanelInnhold
+        arbeidsgiverInformasjon={lagTimelønnetArbeidsgiverInformasjon()}
+        fraDato="2024-04-01"
+        tilDato="2024-06-30"
+      />,
+    );
+
+    expect(screen.getByText(/2 meldekort levert/)).toBeDefined();
   });
 });
