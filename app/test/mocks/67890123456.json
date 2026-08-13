@@ -2288,128 +2288,12 @@
             }
           ],
           "dagIndex": 1
-        },
-        {
-          "dato": "2024-05-01",
-          "aktiviteter": [
-            {
-              "id": "demo-2024-05-01",
-              "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-05-01"
-            }
-          ],
-          "dagIndex": 2
-        },
-        {
-          "dato": "2024-05-02",
-          "aktiviteter": [
-            {
-              "id": "demo-2024-05-02",
-              "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-05-02"
-            }
-          ],
-          "dagIndex": 3
-        },
-        {
-          "dato": "2024-05-03",
-          "aktiviteter": [
-            {
-              "id": "demo-2024-05-03",
-              "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-05-03"
-            }
-          ],
-          "dagIndex": 4
-        },
-        {
-          "dato": "2024-05-04",
-          "aktiviteter": [],
-          "dagIndex": 5
-        },
-        {
-          "dato": "2024-05-05",
-          "aktiviteter": [],
-          "dagIndex": 6
-        },
-        {
-          "dato": "2024-05-06",
-          "aktiviteter": [
-            {
-              "id": "demo-2024-05-06",
-              "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-05-06"
-            }
-          ],
-          "dagIndex": 7
-        },
-        {
-          "dato": "2024-05-07",
-          "aktiviteter": [
-            {
-              "id": "demo-2024-05-07",
-              "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-05-07"
-            }
-          ],
-          "dagIndex": 8
-        },
-        {
-          "dato": "2024-05-08",
-          "aktiviteter": [
-            {
-              "id": "demo-2024-05-08",
-              "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-05-08"
-            }
-          ],
-          "dagIndex": 9
-        },
-        {
-          "dato": "2024-05-09",
-          "aktiviteter": [
-            {
-              "id": "demo-2024-05-09",
-              "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-05-09"
-            }
-          ],
-          "dagIndex": 10
-        },
-        {
-          "dato": "2024-05-10",
-          "aktiviteter": [
-            {
-              "id": "demo-2024-05-10",
-              "type": "Arbeid",
-              "timer": 7.5,
-              "dato": "2024-05-10"
-            }
-          ],
-          "dagIndex": 11
-        },
-        {
-          "dato": "2024-05-11",
-          "aktiviteter": [],
-          "dagIndex": 12
-        },
-        {
-          "dato": "2024-05-12",
-          "aktiviteter": [],
-          "dagIndex": 13
         }
       ],
       "id": "demo-mk-2024-04-c",
       "periode": {
         "fraOgMed": "2024-04-29",
-        "tilOgMed": "2024-05-12"
+        "tilOgMed": "2024-04-30"
       },
       "opprettetAv": "Dagpenger",
       "migrert": false,
@@ -2417,9 +2301,9 @@
         "rolle": "Bruker",
         "ident": "67890123456"
       },
-      "innsendtTidspunkt": "2024-05-13T09:00:00",
+      "innsendtTidspunkt": "2024-05-01T09:00:00",
       "registrertArbeidssoker": true,
-      "meldedato": "2024-05-13"
+      "meldedato": "2024-05-01"
     },
     {
       "dager": [
