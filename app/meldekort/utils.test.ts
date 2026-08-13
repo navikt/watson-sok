@@ -779,7 +779,7 @@ describe("aggregerTimerPerMåned", () => {
       ]),
     ];
     const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
-      { antall: 700, startdato: "2025-01-01", sluttdato: "2025-01-01" },
+      { antall: 100, startdato: "2025-01-25", sluttdato: null },
     ]);
 
     const resultat = aggregerTimerPerMåned(
@@ -789,7 +789,7 @@ describe("aggregerTimerPerMåned", () => {
       "2025-01-31",
     );
 
-    // 700 t/uke i 1 dag (1/7 uke) = 100t AA-timer nøyaktig
+    // Åpen periode: 100 t/uke i 7 dager (25.–31., 1 uke) = 100t AA-timer nøyaktig
     expect(resultat[0].aaTimer).toBeCloseTo(100, 5);
     expect(resultat[0].harAvvik).toBe(true);
   });
@@ -862,7 +862,8 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
       "2025-01-31",
     );
 
-    expect(resultat[0].aaTimer).toBeCloseTo((31 / 7) * 20, 1);
+    // Full kalendermåned: pro-rat = 1,0 → antall (20) uendret
+    expect(resultat[0].aaTimer).toBeCloseTo(20, 1);
   });
 
   it("viser 0 timer for timelønnet person uten data for måneden (ingen fallback)", () => {
@@ -916,6 +917,67 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
     );
 
     expect(resultat[0].aaTimer).toBeCloseTo((31 / 7) * 37.5, 1);
+  });
+
+  it("pro-rater periodetotale timer — hel måned gir antall direkte", () => {
+    // Aareg rapporterer antall som totale timer for perioden, ikke timer per uke.
+    // En full kalendermåned skal gi antall uendret (pro-raten = 1,0).
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
+      { antall: 132.08, startdato: "2026-03-01", sluttdato: "2026-03-31" },
+    ]);
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2026-03-01",
+      "2026-03-31",
+    );
+
+    expect(resultat[0].aaTimer).toBeCloseTo(132.08, 2);
+  });
+
+  it("periodetotale timer der hele perioden er innenfor måneden gir antall uendret", () => {
+    // Entry dekker 22 dager av mai (7.–28.), totalperiode = 22 dager.
+    // Hele perioden faller i måneden → pro-rat = 22/22 = 1,0 → 16.25 t.
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
+      { antall: 16.25, startdato: "2026-05-07", sluttdato: "2026-05-28" },
+    ]);
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2026-05-01",
+      "2026-05-31",
+    );
+
+    expect(resultat[0].aaTimer).toBeCloseTo(16.25, 2);
+  });
+
+  it("pro-rater periodetotale timer som strekker seg over to måneder", () => {
+    // Entry: 15. mai–14. juni = 31 dager, antall = 62 timer totalt.
+    // Mai (17 dager): 62 × 17/31 ≈ 34 t
+    // Juni (14 dager): 62 × 14/31 ≈ 28 t
+    // Sum konserveres: 34 + 28 = 62 t
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
+      { antall: 62, startdato: "2026-05-15", sluttdato: "2026-06-14" },
+    ]);
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2026-05-01",
+      "2026-06-30",
+    );
+
+    const mai = resultat.find((r) => r.måned === "2026-05")!;
+    const juni = resultat.find((r) => r.måned === "2026-06")!;
+
+    expect(mai.aaTimer).toBeCloseTo(62 * (17 / 31), 2);
+    expect(juni.aaTimer).toBeCloseTo(62 * (14 / 31), 2);
+    expect(mai.aaTimer + juni.aaTimer).toBeCloseTo(62, 1);
   });
 
   it("faller tilbake til antallTimerPrUke når timerMedTimeloenn er tom liste", () => {
