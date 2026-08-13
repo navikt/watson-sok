@@ -1,4 +1,3 @@
-import { InformationSquareIcon } from "@navikt/aksel-icons";
 import { Alert, BodyShort, Skeleton } from "@navikt/ds-react";
 import { use, useMemo } from "react";
 
@@ -6,19 +5,18 @@ import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
-import { MeldekortProvider, useMeldekort } from "~/meldekort/MeldekortContext";
+import { useMeldekort } from "~/meldekort/MeldekortContext";
 import { TimerSammenligningGraf } from "~/meldekort/TimerSammenligningGraf";
-import {
-  aggregerTimerPerMåned,
-  erTimelønnet,
-  filtrerMeldekortSomOverlapperPeriode,
-} from "~/meldekort/utils";
+import { aggregerTimerPerMåned, erTimelønnet } from "~/meldekort/utils";
 import {
   PanelContainer,
   PanelContainerSkeleton,
 } from "~/paneler/PanelContainer";
 import { useTidsvindu } from "~/tidsvindu/Tidsvindu";
-import { formaterDato, formaterTilIsoDato } from "~/utils/date-utils";
+import { formaterTilIsoDato } from "~/utils/date-utils";
+
+/** Maks antall måneder som vises i grafen uten scroll/utvidelse. */
+const MAKS_MÅNEDER_I_GRAF = 12;
 
 type Props = {
   arbeidsgiverInformasjonPromise: Promise<ArbeidsgiverInformasjon | null>;
@@ -71,13 +69,11 @@ function MeldekortOppsummeringPanelMedData({
   const arbeidsgiverInformasjon = use(arbeidsgiverInformasjonPromise);
 
   return (
-    <MeldekortProvider ytelse="dagpenger">
-      <MeldekortOppsummeringPanelInnhold
-        arbeidsgiverInformasjon={arbeidsgiverInformasjon}
-        fraDato={fraDato}
-        tilDato={tilDato}
-      />
-    </MeldekortProvider>
+    <MeldekortOppsummeringPanelInnhold
+      arbeidsgiverInformasjon={arbeidsgiverInformasjon}
+      fraDato={fraDato}
+      tilDato={tilDato}
+    />
   );
 }
 
@@ -90,6 +86,9 @@ type MeldekortOppsummeringPanelInnholdProps = {
 /**
  * Innholdskomponent for AA-timer vs meldekort-sammenstilling.
  * Eksportert for testbarhet — bruk `MeldekortOppsummeringPanel` i produksjonskode.
+ *
+ * Merk: forventer å bli rendret innenfor en `MeldekortProvider` satt opp av
+ * kallende kode (f.eks. `YtelsedetaljerModal`) — oppretter ikke sin egen.
  */
 export function MeldekortOppsummeringPanelInnhold({
   arbeidsgiverInformasjon,
@@ -97,26 +96,17 @@ export function MeldekortOppsummeringPanelInnhold({
   tilDato: tilDatoProp,
 }: MeldekortOppsummeringPanelInnholdProps) {
   const meldekortState = useMeldekort();
-  const {
-    tidsvindu,
-    fraDato: fraDatoTidsvindu,
-    tilDato: tilDatoTidsvindu,
-  } = useTidsvindu();
+  const { fraDato: fraDatoTidsvindu, tilDato: tilDatoTidsvindu } =
+    useTidsvindu();
 
   const fraDatoDate = fraDatoProp ? new Date(fraDatoProp) : fraDatoTidsvindu;
   const tilDatoDate = tilDatoProp ? new Date(tilDatoProp) : tilDatoTidsvindu;
 
   const fraDato = formaterTilIsoDato(fraDatoDate);
-  const tilDato = formaterTilIsoDato(tilDatoDate);
-
-  const antallMeldekort = useMemo(() => {
-    if (!meldekortState || meldekortState.status !== "success") return null;
-    return filtrerMeldekortSomOverlapperPeriode(
-      meldekortState.meldekort,
-      fraDato,
-      tilDato,
-    ).length;
-  }, [meldekortState, fraDato, tilDato]);
+  // Grafen skal aldri vise fremtidige måneder — klipp til inneværende måned.
+  const tilDato = formaterTilIsoDato(
+    tilDatoDate > new Date() ? new Date() : tilDatoDate,
+  );
 
   const timerData = useMemo(() => {
     if (
@@ -125,44 +115,43 @@ export function MeldekortOppsummeringPanelInnhold({
       meldekortState.status !== "success"
     )
       return null;
-    return aggregerTimerPerMåned(
+    const alleMåneder = aggregerTimerPerMåned(
       meldekortState.meldekort,
       arbeidsgiverInformasjon,
       fraDato,
       tilDato,
     );
+    // Vis maks de siste MAKS_MÅNEDER_I_GRAF månedene — kortere perioder
+    // vises i sin helhet siden slice(-N) på et kortere array er en no-op.
+    return alleMåneder.slice(-MAKS_MÅNEDER_I_GRAF);
   }, [arbeidsgiverInformasjon, meldekortState, fraDato, tilDato]);
+
+  const antallMånederMedAvvik = useMemo(
+    () => timerData?.filter((d) => d.harAvvik).length ?? 0,
+    [timerData],
+  );
 
   const laster = !meldekortState || meldekortState.status === "loading";
   const harFeil = meldekortState?.status === "error";
   const erTimelønnetBruker =
     arbeidsgiverInformasjon != null && erTimelønnet(arbeidsgiverInformasjon);
 
-  const periodeText = fraDatoProp
-    ? `fra ${formaterDato(fraDato)}`
-    : `siste ${tidsvindu}`;
-
   return (
     <PanelContainer title="AA-timer vs meldekort-timer per måned">
       <div className="flex flex-col gap-4">
-        {/* Blå infopølse med antall meldekort */}
-        <div className="flex items-center gap-2 rounded-full px-4 py-2 w-fit bg-[var(--ax-bg-brand-blue-moderate)]">
-          <InformationSquareIcon
-            aria-hidden
-            className="text-[var(--ax-text-brand-blue-strong)] shrink-0"
-          />
-          {laster ? (
-            <Skeleton width={200} height={20} />
-          ) : harFeil ? (
-            <BodyShort className="text-[var(--ax-text-brand-blue-strong)] font-medium">
-              Kunne ikke hente meldekort
-            </BodyShort>
-          ) : (
-            <BodyShort className="text-[var(--ax-text-brand-blue-strong)] font-medium">
-              {antallMeldekort ?? 0} meldekort levert {periodeText}
-            </BodyShort>
-          )}
-        </div>
+        {!laster && !harFeil && antallMånederMedAvvik > 0 && (
+          <Alert variant="warning" size="small">
+            {antallMånederMedAvvik === 1
+              ? "1 periode med avvik mellom meldekort og AA-registreringen"
+              : `${antallMånederMedAvvik} perioder med avvik mellom meldekort og AA-registreringen`}
+          </Alert>
+        )}
+
+        {harFeil && (
+          <Alert variant="error" size="small" inline>
+            Kunne ikke hente meldekort
+          </Alert>
+        )}
 
         {/* Timer-sammenstilling graf */}
         {laster && (

@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import { sporHendelse } from "~/analytics/analytics";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
+import { IndividuelleMeldekortAccordion } from "~/meldekort/IndividuelleMeldekortAccordion";
 import { MeldekortProvider } from "~/meldekort/MeldekortContext";
 import { MeldekortOppsummeringPanel } from "~/meldekort/MeldekortOppsummeringPanel";
 import { MeldekortPanel } from "~/meldekort/MeldekortPanel";
@@ -166,6 +167,10 @@ export function YtelsedetaljerModal({
                   tilDato={tilDato}
                 />
               )}
+              <IndividuelleMeldekortAccordion
+                fraDato={fraDato}
+                tilDato={tilDato}
+              />
             </Tabs.Panel>
           )}
         </Tabs>

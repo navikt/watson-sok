@@ -19,9 +19,10 @@ vi.mock("~/tidsvindu/Tidsvindu", () => ({
   }),
 }));
 
-function lagMeldekort(
+function lagMeldekortMedArbeid(
   fraOgMed: string,
   tilOgMed: string,
+  arbeidstimerPåFørsteDag: number,
 ): MeldekortRespons[number] {
   return {
     id: `${fraOgMed}-${tilOgMed}`,
@@ -29,7 +30,15 @@ function lagMeldekort(
     opprettetAv: "Dagpenger",
     migrert: false,
     kilde: { rolle: "Bruker", ident: "12345678901" },
-    dager: [],
+    dager: [
+      {
+        dato: fraOgMed,
+        dagIndex: 0,
+        aktiviteter: [
+          { id: "a1", type: "Arbeid", timer: arbeidstimerPåFørsteDag },
+        ],
+      },
+    ],
   };
 }
 
@@ -159,15 +168,15 @@ describe("MeldekortOppsummeringPanelInnhold", () => {
     expect(screen.getByText(/Ingen data tilgjengelig/)).toBeDefined();
   });
 
-  it("teller kun meldekort som overlapper valgt periode, ikke totalt antall", () => {
+  it("viser avvik-banner med korrekt antall når noen måneder har avvik", () => {
     vi.mocked(useMeldekort).mockReturnValue({
       status: "success",
       meldekort: [
-        lagMeldekort("2024-04-01", "2024-04-14"),
-        lagMeldekort("2024-05-01", "2024-05-14"),
-        // Utenfor perioden 2024-04-01–2024-06-30 — skal ikke telles med
-        lagMeldekort("2024-09-01", "2024-09-14"),
-        lagMeldekort("2024-10-01", "2024-10-14"),
+        // April: ingen meldekort-timer registrert i det hele tatt -> ikke avvik (mkTimer=0)
+        // Mai: kraftig avvik (kun 5t rapportert mot ~166t AA-timer)
+        lagMeldekortMedArbeid("2024-05-01", "2024-05-14", 5),
+        // Juni: kraftig avvik (kun 10t rapportert mot ~160t AA-timer)
+        lagMeldekortMedArbeid("2024-06-01", "2024-06-14", 10),
       ],
     });
 
@@ -179,6 +188,106 @@ describe("MeldekortOppsummeringPanelInnhold", () => {
       />,
     );
 
-    expect(screen.getByText(/2 meldekort levert/)).toBeDefined();
+    expect(
+      screen.getByText(/2 perioder med avvik mellom meldekort/),
+    ).toBeDefined();
+  });
+
+  it("viser entallsform i avvik-banner når kun én måned har avvik", () => {
+    vi.mocked(useMeldekort).mockReturnValue({
+      status: "success",
+      meldekort: [lagMeldekortMedArbeid("2024-06-01", "2024-06-14", 10)],
+    });
+
+    render(
+      <MeldekortOppsummeringPanelInnhold
+        arbeidsgiverInformasjon={lagTimelønnetArbeidsgiverInformasjon()}
+        fraDato="2024-06-01"
+        tilDato="2024-06-30"
+      />,
+    );
+
+    expect(
+      screen.getByText(
+        "1 periode med avvik mellom meldekort og AA-registreringen",
+      ),
+    ).toBeDefined();
+  });
+
+  it("viser ikke avvik-banner når ingen måneder har avvik", () => {
+    vi.mocked(useMeldekort).mockReturnValue({
+      status: "success",
+      meldekort: [],
+    });
+
+    render(
+      <MeldekortOppsummeringPanelInnhold
+        arbeidsgiverInformasjon={lagTimelønnetArbeidsgiverInformasjon()}
+        fraDato="2024-04-01"
+        tilDato="2024-06-30"
+      />,
+    );
+
+    expect(
+      screen.queryByText(/perioder med avvik|periode med avvik/),
+    ).toBeNull();
+  });
+
+  it("viser ikke lenger blå informasjonspille med antall meldekort (fjernet, matcher Figma)", () => {
+    vi.mocked(useMeldekort).mockReturnValue({
+      status: "success",
+      meldekort: [lagMeldekortMedArbeid("2024-05-01", "2024-05-14", 5)],
+    });
+
+    render(
+      <MeldekortOppsummeringPanelInnhold
+        arbeidsgiverInformasjon={lagTimelønnetArbeidsgiverInformasjon()}
+        fraDato="2024-04-01"
+        tilDato="2024-06-30"
+      />,
+    );
+
+    expect(screen.queryByText(/meldekort levert/)).toBeNull();
+  });
+
+  it("begrenser grafen til de siste 12 månedene for en lengre periode", () => {
+    vi.mocked(useMeldekort).mockReturnValue({
+      status: "success",
+      meldekort: [],
+    });
+
+    render(
+      <MeldekortOppsummeringPanelInnhold
+        arbeidsgiverInformasjon={lagTimelønnetArbeidsgiverInformasjon()}
+        // 20 måneder (2024-01 til 2025-08) — skal trimmes til siste 12
+        fraDato="2024-01-01"
+        tilDato="2025-08-31"
+      />,
+    );
+
+    // 12 måneder * 2 søyler (AA + MK) = 24 <rect>-elementer med søyle-fyll,
+    // enklest å verifisere via aria-label-count på hver måneds <g>-gruppe.
+    const grafRegion = screen.getByRole("region", { name: /Stolpediagram/ });
+    const månedGrupper = grafRegion.querySelectorAll('g[role="img"]');
+    expect(månedGrupper).toHaveLength(12);
+  });
+
+  it("viser alle måneder uten trimming når perioden er kortere enn 12 måneder", () => {
+    vi.mocked(useMeldekort).mockReturnValue({
+      status: "success",
+      meldekort: [],
+    });
+
+    render(
+      <MeldekortOppsummeringPanelInnhold
+        arbeidsgiverInformasjon={lagTimelønnetArbeidsgiverInformasjon()}
+        fraDato="2024-04-01"
+        tilDato="2024-06-30"
+      />,
+    );
+
+    const grafRegion = screen.getByRole("region", { name: /Stolpediagram/ });
+    const månedGrupper = grafRegion.querySelectorAll('g[role="img"]');
+    expect(månedGrupper).toHaveLength(3);
   });
 });
