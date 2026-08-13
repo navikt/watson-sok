@@ -7,6 +7,7 @@ import {
   aggregerTimerPerMåned,
   beregnAktivitetStatistikk,
   erTimelønnet,
+  filtrerMeldekortSomOverlapperPeriode,
 } from "./utils";
 
 function lagDag(dagIndex: number, aktiviteter: Dag["aktiviteter"] = []): Dag {
@@ -138,6 +139,122 @@ function lagMeldekort(
   };
 }
 
+describe("filtrerMeldekortSomOverlapperPeriode", () => {
+  it("inkluderer meldekort som er helt innenfor perioden", () => {
+    const meldekort = [lagMeldekort("2025-01-05", "2025-01-18", [])];
+
+    const resultat = filtrerMeldekortSomOverlapperPeriode(
+      meldekort,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat).toHaveLength(1);
+  });
+
+  it("ekskluderer meldekort som slutter dagen før perioden starter", () => {
+    const meldekort = [lagMeldekort("2024-12-01", "2024-12-31", [])];
+
+    const resultat = filtrerMeldekortSomOverlapperPeriode(
+      meldekort,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat).toHaveLength(0);
+  });
+
+  it("ekskluderer meldekort som starter dagen etter perioden slutter", () => {
+    const meldekort = [lagMeldekort("2025-02-01", "2025-02-14", [])];
+
+    const resultat = filtrerMeldekortSomOverlapperPeriode(
+      meldekort,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat).toHaveLength(0);
+  });
+
+  it("inkluderer meldekort som slutter nøyaktig på periodens startdato", () => {
+    const meldekort = [lagMeldekort("2024-12-18", "2025-01-01", [])];
+
+    const resultat = filtrerMeldekortSomOverlapperPeriode(
+      meldekort,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat).toHaveLength(1);
+  });
+
+  it("inkluderer meldekort som starter nøyaktig på periodens sluttdato", () => {
+    const meldekort = [lagMeldekort("2025-01-31", "2025-02-13", [])];
+
+    const resultat = filtrerMeldekortSomOverlapperPeriode(
+      meldekort,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat).toHaveLength(1);
+  });
+
+  it("inkluderer meldekort som strekker seg over hele perioden (starter før, slutter etter)", () => {
+    const meldekort = [lagMeldekort("2024-11-01", "2025-03-01", [])];
+
+    const resultat = filtrerMeldekortSomOverlapperPeriode(
+      meldekort,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat).toHaveLength(1);
+  });
+
+  it("filtrerer korrekt blant flere meldekort — beholder kun de som overlapper", () => {
+    const meldekort = [
+      lagMeldekort("2024-10-01", "2024-10-14", []), // før perioden
+      lagMeldekort("2025-01-01", "2025-01-14", []), // innenfor
+      lagMeldekort("2025-01-15", "2025-01-28", []), // innenfor
+      lagMeldekort("2025-06-01", "2025-06-14", []), // etter perioden
+    ];
+
+    const resultat = filtrerMeldekortSomOverlapperPeriode(
+      meldekort,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat).toHaveLength(2);
+  });
+
+  it("returnerer tom liste når ingen meldekort overlapper", () => {
+    const meldekort = [
+      lagMeldekort("2024-01-01", "2024-01-14", []),
+      lagMeldekort("2024-02-01", "2024-02-14", []),
+    ];
+
+    const resultat = filtrerMeldekortSomOverlapperPeriode(
+      meldekort,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat).toHaveLength(0);
+  });
+
+  it("returnerer tom liste for tom meldekort-input", () => {
+    const resultat = filtrerMeldekortSomOverlapperPeriode(
+      [],
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat).toHaveLength(0);
+  });
+});
+
 function lagArbeidsgiverInformasjon(
   antallTimerPrUke: number,
   fom: string,
@@ -210,6 +327,62 @@ describe("aggregerTimerPerMåned", () => {
     ]);
   });
 
+  it("håndterer perioder som krysser årsskifte", () => {
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(
+      37.5,
+      "2024-01-01",
+    );
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2024-11-01",
+      "2025-02-28",
+    );
+
+    expect(resultat.map((r) => r.måned)).toEqual([
+      "2024-11",
+      "2024-12",
+      "2025-01",
+      "2025-02",
+    ]);
+  });
+
+  it("returnerer én måned når fra- og tildato er i samme kalendermåned", () => {
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(
+      37.5,
+      "2025-01-01",
+    );
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-05",
+      "2025-01-20",
+    );
+
+    expect(resultat.map((r) => r.måned)).toEqual(["2025-01"]);
+  });
+
+  it("returnerer tom liste når fradato er etter tildato", () => {
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(
+      37.5,
+      "2025-01-01",
+    );
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-03-01",
+      "2025-01-01",
+    );
+
+    expect(resultat).toHaveLength(0);
+  });
+
   it("summerer MK-timer korrekt per måned", () => {
     const meldekort: MeldekortRespons = [
       lagMeldekort("2025-01-01", "2025-01-14", [
@@ -227,6 +400,77 @@ describe("aggregerTimerPerMåned", () => {
     );
 
     expect(resultat[0].mkTimer).toBe(15);
+  });
+
+  it("ekskluderer ikke-Arbeid-aktiviteter (Fravaer/Utdanning/Syk) fra MK-timer-summen", () => {
+    const meldekort: MeldekortRespons = [
+      {
+        id: "mk-blandet",
+        periode: { fraOgMed: "2025-01-01", tilOgMed: "2025-01-14" },
+        opprettetAv: "NAV",
+        migrert: false,
+        kilde: { rolle: "Bruker", ident: "12345678901" },
+        dager: [
+          {
+            dato: "2025-01-06",
+            dagIndex: 0,
+            aktiviteter: [{ id: "a1", type: "Arbeid", timer: 7.5 }],
+          },
+          {
+            dato: "2025-01-07",
+            dagIndex: 1,
+            aktiviteter: [{ id: "a2", type: "Fravaer", timer: null }],
+          },
+          {
+            dato: "2025-01-08",
+            dagIndex: 2,
+            aktiviteter: [{ id: "a3", type: "Syk", timer: null }],
+          },
+          {
+            dato: "2025-01-09",
+            dagIndex: 3,
+            aktiviteter: [{ id: "a4", type: "Utdanning", timer: null }],
+          },
+        ],
+      },
+    ];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(0, "2025-01-01");
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat[0].mkTimer).toBe(7.5);
+  });
+
+  it("regner kun med aktiviteter i riktig måned når meldekort strekker seg over månedsskifte", () => {
+    const meldekort: MeldekortRespons = [
+      lagMeldekort("2025-01-28", "2025-02-10", [
+        { dato: "2025-01-29", timer: 5 },
+        { dato: "2025-01-30", timer: 5 },
+        { dato: "2025-02-03", timer: 8 },
+      ]),
+    ];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(0, "2025-01-01");
+
+    const resultatJan = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+    const resultatFeb = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-02-01",
+      "2025-02-28",
+    );
+
+    expect(resultatJan[0].mkTimer).toBe(10);
+    expect(resultatFeb[0].mkTimer).toBe(8);
   });
 
   it("beregner AA-timer basert på antallTimerPrUke og dager i måneden", () => {
@@ -260,6 +504,149 @@ describe("aggregerTimerPerMåned", () => {
       arbeidsgiverInformasjon,
       "2025-02-01",
       "2025-02-28",
+    );
+
+    expect(resultat[0].aaTimer).toBe(0);
+  });
+
+  it("pro-rerer AA-timer korrekt når ansettelsen starter midt i måneden", () => {
+    const meldekort: MeldekortRespons = [];
+    // Ansettelsen starter 16. januar — kun 16 av 31 dager skal telles
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(
+      37.5,
+      "2025-01-16",
+    );
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat[0].aaTimer).toBeCloseTo((16 / 7) * 37.5, 1);
+  });
+
+  it("pro-rerer AA-timer korrekt når ansettelsen avsluttes midt i måneden", () => {
+    const meldekort: MeldekortRespons = [];
+    // Ansettelsen avsluttes 10. januar — kun 10 av 31 dager skal telles
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(
+      37.5,
+      "2024-06-01",
+      "2025-01-10",
+    );
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat[0].aaTimer).toBeCloseTo((10 / 7) * 37.5, 1);
+  });
+
+  it("summerer AA-timer fra flere samtidige arbeidsforhold", () => {
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [
+        {
+          arbeidsgiver: "Jobb Én AS",
+          organisasjonsnummer: "111111111",
+          ansettelsesDetaljer: [
+            {
+              type: "Ordinær",
+              stillingsprosent: 50,
+              antallTimerPrUke: 20,
+              periode: { fom: "2025-01-01", tom: null },
+              yrke: null,
+            },
+          ],
+        },
+        {
+          arbeidsgiver: "Jobb To AS",
+          organisasjonsnummer: "222222222",
+          ansettelsesDetaljer: [
+            {
+              type: "Ordinær",
+              stillingsprosent: 50,
+              antallTimerPrUke: 15,
+              periode: { fom: "2025-01-01", tom: null },
+              yrke: null,
+            },
+          ],
+        },
+      ],
+      historikk: [],
+    };
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat[0].aaTimer).toBeCloseTo((31 / 7) * (20 + 15), 1);
+  });
+
+  it("inkluderer AA-timer fra historikk-arbeidsforhold, ikke bare løpende", () => {
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [],
+      historikk: [
+        {
+          arbeidsgiver: "Tidligere Arbeidsgiver AS",
+          organisasjonsnummer: "333333333",
+          ansettelsesDetaljer: [
+            {
+              type: "Ordinær",
+              stillingsprosent: 100,
+              antallTimerPrUke: 37.5,
+              periode: { fom: "2024-06-01", tom: "2025-01-31" },
+              yrke: null,
+            },
+          ],
+        },
+      ],
+    };
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat[0].aaTimer).toBeCloseTo((31 / 7) * 37.5, 1);
+  });
+
+  it("hopper over ansettelsesdetalj med antallTimerPrUke lik 0", () => {
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [
+        {
+          arbeidsgiver: "Testbedriften AS",
+          organisasjonsnummer: "123456789",
+          ansettelsesDetaljer: [
+            {
+              type: "Ordinær",
+              stillingsprosent: 0,
+              antallTimerPrUke: 0,
+              periode: { fom: "2025-01-01", tom: null },
+              yrke: null,
+            },
+          ],
+        },
+      ],
+      historikk: [],
+    };
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
     );
 
     expect(resultat[0].aaTimer).toBe(0);
@@ -322,6 +709,91 @@ describe("aggregerTimerPerMåned", () => {
     expect(resultat[0].harAvvik).toBe(false);
   });
 
+  it("markerer ikke avvik når begge er positive og differansen er godt under 5 %", () => {
+    const meldekort: MeldekortRespons = [
+      lagMeldekort("2025-01-01", "2025-01-14", [
+        { dato: "2025-01-06", timer: 165 },
+      ]),
+    ];
+    // ~166t AA-timer (31 dager/7 × 37.5t), 165t MK-timer → ca. 0.6 % avvik
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(
+      37.5,
+      "2025-01-01",
+    );
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat[0].harAvvik).toBe(false);
+  });
+
+  it("markerer ikke avvik når AA-timer er 0 selv om MK-timer er positiv", () => {
+    const meldekort: MeldekortRespons = [
+      lagMeldekort("2025-01-01", "2025-01-14", [
+        { dato: "2025-01-06", timer: 20 },
+      ]),
+    ];
+    // antallTimerPrUke=0 gir aaTimer=0
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(0, "2025-01-01");
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat[0].harAvvik).toBe(false);
+  });
+
+  it("markerer avvik når MK-timer er høyere enn AA-timer (motsatt retning)", () => {
+    const meldekort: MeldekortRespons = [
+      lagMeldekort("2025-01-01", "2025-01-14", [
+        { dato: "2025-01-06", timer: 100 },
+        { dato: "2025-01-07", timer: 100 },
+      ]),
+    ];
+    // MK-timer (200t) er langt høyere enn AA-timer (~20t)
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjon(5, "2025-01-01");
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat[0].harAvvik).toBe(true);
+  });
+
+  it("markerer avvik nøyaktig på 5 %-grensen (inklusiv terskel)", () => {
+    // aaTimer=100, mkTimer=95 → nøyaktig 5 % avvik. Terskelen bruker >=,
+    // så dette skal markeres som avvik.
+    const meldekort: MeldekortRespons = [
+      lagMeldekort("2025-01-01", "2025-01-14", [
+        { dato: "2025-01-06", timer: 95 },
+      ]),
+    ];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
+      { antall: 700, startdato: "2025-01-01", sluttdato: "2025-01-01" },
+    ]);
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    // 700 t/uke i 1 dag (1/7 uke) = 100t AA-timer nøyaktig
+    expect(resultat[0].aaTimer).toBeCloseTo(100, 5);
+    expect(resultat[0].harAvvik).toBe(true);
+  });
+
   it("håndterer tom arbeidsgiverInformasjon uten å kaste feil", () => {
     const meldekort: MeldekortRespons = [];
     const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
@@ -373,6 +845,24 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
     );
 
     expect(resultat[0].aaTimer).toBe(0);
+  });
+
+  it("summerer kun de timerMedTimeloenn-oppføringene som overlapper måneden, blant flere", () => {
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon = lagArbeidsgiverInformasjonMedTimeloenn([
+      { antall: 10, startdato: "2024-11-01", sluttdato: "2024-11-30" }, // før
+      { antall: 20, startdato: "2025-01-01", sluttdato: "2025-01-31" }, // overlapper
+      { antall: 30, startdato: "2025-03-01", sluttdato: "2025-03-31" }, // etter
+    ]);
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat[0].aaTimer).toBeCloseTo((31 / 7) * 20, 1);
   });
 
   it("viser 0 timer for timelønnet person uten data for måneden (ingen fallback)", () => {

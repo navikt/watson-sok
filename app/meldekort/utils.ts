@@ -93,12 +93,6 @@ function parseDatoLokal(datoStreng: string): Date {
   return new Date(år, mnd - 1, dag);
 }
 
-/** Parser "YYYY-MM" som siste dag i måneden (brukes for tom-dato). */
-function parseMånedSlutt(datoStreng: string): Date {
-  const [år, mnd] = datoStreng.split("-").map(Number);
-  return new Date(år, mnd, 0); // dag 0 = siste dag i forrige måned
-}
-
 function genererMåneder(fraDato: string, tilDato: string): string[] {
   const måneder: string[] = [];
   const fra = parseDatoLokal(fraDato);
@@ -172,9 +166,11 @@ function beregnAaTimerForMåned(
       for (const detalj of forhold.ansettelsesDetaljer) {
         if (!detalj.antallTimerPrUke) continue;
 
+        // periode.fom/tom har dag-presisjon (LocalDate fra backend) —
+        // bruk parseDatoLokal for begge, ikke rund tom ned til månedsslutt.
         const fom = parseDatoLokal(detalj.periode.fom);
         const tom = detalj.periode.tom
-          ? parseMånedSlutt(detalj.periode.tom)
+          ? parseDatoLokal(detalj.periode.tom)
           : null;
 
         const erAktivIMåned =
