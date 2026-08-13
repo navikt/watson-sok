@@ -21,6 +21,7 @@ import { useEffect, useMemo, useState } from "react";
 import { StatistikkKort } from "~/paneler/StatistikkKort";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import { formaterDato, formaterTilIsoDato } from "~/utils/date-utils";
+import { formaterDesimaltall } from "~/utils/number-utils";
 
 import type { AktivitetType, Dag, MeldekortRespons } from "./domene";
 import { useMeldekort } from "./MeldekortContext";
@@ -252,7 +253,7 @@ const MeldekortVisning = ({
               <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
                 <StatistikkKort
                   label="Jobb"
-                  verdi={`${aktivtMeldekortStatistikk?.arbeidTimer ?? 0} t`}
+                  verdi={`${formaterDesimaltall(aktivtMeldekortStatistikk?.arbeidTimer ?? 0, 0, 1)} t`}
                 />
                 <StatistikkKort
                   label="Ferie"
@@ -341,7 +342,7 @@ const MeldekortDager = ({ dager }: MeldekortDagerProps) => {
               : "Ingen aktivitet";
             const timerTekst = erArbeid
               ? aktivitet?.timer != null
-                ? `${aktivitet.timer} t`
+                ? `${formaterDesimaltall(aktivitet.timer, 0, 1)} t`
                 : "Mangler"
               : null;
             const ariaLabel = `${formaterDato(dag.dato)}: ${aktivitetNavn}${

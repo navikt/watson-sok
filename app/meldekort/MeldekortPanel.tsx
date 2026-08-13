@@ -3,6 +3,7 @@ import { useMemo } from "react";
 
 import { StatistikkKort } from "~/paneler/StatistikkKort";
 import { formaterDato } from "~/utils/date-utils";
+import { formaterDesimaltall } from "~/utils/number-utils";
 
 import { useMeldekort } from "./MeldekortContext";
 import { beregnAktivitetStatistikk } from "./utils";
@@ -113,7 +114,7 @@ const MeldekortTotalStatistikk = ({
         <div className="grid grid-cols-2 ax-md:grid-cols-4 gap-4">
           <StatistikkKort
             label="Jobb"
-            verdi={`${totalStatistikk.arbeidTimer} t`}
+            verdi={`${formaterDesimaltall(totalStatistikk.arbeidTimer, 0, 1)} t`}
           />
           <StatistikkKort
             label="Ferie"
