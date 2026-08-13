@@ -1950,6 +1950,480 @@
     {
       "dager": [
         {
+          "dato": "2024-04-01",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-01",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-01"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2024-04-02",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-02",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-02"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2024-04-03",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-03",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-03"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2024-04-04",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-04",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-04"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2024-04-05",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-05",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-05"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2024-04-06",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2024-04-07",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2024-04-08",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-08",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-08"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2024-04-09",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-09",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-09"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2024-04-10",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-10",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-10"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2024-04-11",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-11",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-11"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2024-04-12",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-12",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-12"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2024-04-13",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2024-04-14",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "demo-mk-2024-04-a",
+      "periode": {
+        "fraOgMed": "2024-04-01",
+        "tilOgMed": "2024-04-14"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2024-04-15T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2024-04-15"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2024-04-15",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-15",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-15"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2024-04-16",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-16",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-16"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2024-04-17",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-17",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-17"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2024-04-18",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-18",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-18"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2024-04-19",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-19",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-19"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2024-04-20",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2024-04-21",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2024-04-22",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-22",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-22"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2024-04-23",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-23",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-23"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2024-04-24",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-24",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-24"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2024-04-25",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-25",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-25"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2024-04-26",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-26",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-26"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2024-04-27",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2024-04-28",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "demo-mk-2024-04-b",
+      "periode": {
+        "fraOgMed": "2024-04-15",
+        "tilOgMed": "2024-04-28"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2024-04-29T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2024-04-29"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2024-04-29",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-29",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-29"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2024-04-30",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-04-30",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-04-30"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2024-05-01",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-05-01",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-05-01"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2024-05-02",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-05-02",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-05-02"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2024-05-03",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-05-03",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-05-03"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2024-05-04",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2024-05-05",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2024-05-06",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-05-06",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-05-06"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2024-05-07",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-05-07",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-05-07"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2024-05-08",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-05-08",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-05-08"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2024-05-09",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-05-09",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-05-09"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2024-05-10",
+          "aktiviteter": [
+            {
+              "id": "demo-2024-05-10",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2024-05-10"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2024-05-11",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2024-05-12",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "demo-mk-2024-04-c",
+      "periode": {
+        "fraOgMed": "2024-04-29",
+        "tilOgMed": "2024-05-12"
+      },
+      "opprettetAv": "Dagpenger",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "67890123456"
+      },
+      "innsendtTidspunkt": "2024-05-13T09:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2024-05-13"
+    },
+    {
+      "dager": [
+        {
           "dato": "2025-05-24",
           "aktiviteter": [],
           "dagIndex": 0
