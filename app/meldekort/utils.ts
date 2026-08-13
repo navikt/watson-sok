@@ -155,6 +155,7 @@ function beregnAaTimerForMåned(
             Math.round(
               (tom.getTime() - fom.getTime()) / (1000 * 60 * 60 * 24),
             ) + 1;
+          if (totalDagerIPeriode <= 0) continue;
           totalTimer +=
             timerEntry.antall * (overlappendeDager / totalDagerIPeriode);
         } else {

@@ -446,7 +446,7 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
     expect(resultat[0].aaTimer).toBeCloseTo(132.08, 2);
   });
 
-  it("pro-rater periodetotale timer — delvis overlapp i måneden", () => {
+  it("periodetotale timer der hele perioden er innenfor måneden gir antall uendret", () => {
     // Entry dekker 22 dager av mai (7.–28.), totalperiode = 22 dager.
     // Hele perioden faller i måneden → pro-rat = 22/22 = 1,0 → 16.25 t.
     const meldekort: MeldekortRespons = [];
