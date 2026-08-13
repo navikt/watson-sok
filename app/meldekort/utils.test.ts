@@ -1014,6 +1014,80 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
     // 30 dager / 7 × 37.5 t/uke
     expect(resultat[0].aaTimer).toBeCloseTo((30 / 7) * 37.5, 1);
   });
+
+  it("faller tilbake til antallTimerPrUke når alle timerMedTimeloenn-oppføringer mangler startdato", () => {
+    // Reell Aareg-bug: timerMedTimeloenn er ikke-tom, men alle oppføringene
+    // mangler startdato/sluttdato (ubrukelige datapunkter). Uten fiksen ble
+    // forholdet feilaktig klassifisert som timelønnet og AA-timer viste 0,
+    // selv om personen har en reell, fast ansettelse i samme periode.
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [],
+      historikk: [
+        {
+          arbeidsgiver: "Bilverksted AS",
+          organisasjonsnummer: "666666666",
+          ansettelsesDetaljer: [
+            {
+              type: "Ordinaer",
+              stillingsprosent: 100,
+              antallTimerPrUke: 37.5,
+              yrke: "MEKANIKER (BIL)",
+              periode: { fom: "2023-03-01", tom: "2024-11-08" },
+            },
+          ],
+          timerMedTimeloenn: [
+            { antall: 156, startdato: null, sluttdato: null },
+            { antall: 145, startdato: null, sluttdato: null },
+          ],
+        },
+      ],
+    };
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2024-04-01",
+      "2024-04-30",
+    );
+
+    // 30 dager / 7 × 37.5 t/uke — IKKE 0
+    expect(resultat[0].aaTimer).toBeCloseTo((30 / 7) * 37.5, 1);
+  });
+
+  it("teller ikke AA-timer flere ganger ved duplikate ansettelsesDetaljer-oppføringer", () => {
+    // Reell Aareg-bug: samme ansettelsesDetalj-objekt returnert 3 ganger for
+    // samme arbeidsforhold. Uten deduplisering telles antallTimerPrUke 3x.
+    const identiskDetalj = {
+      type: "Ordinaer",
+      stillingsprosent: 100,
+      antallTimerPrUke: 37.5,
+      yrke: "MEKANIKER (BIL)",
+      periode: { fom: "2023-03-01", tom: "2024-11-08" },
+    };
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [],
+      historikk: [
+        {
+          arbeidsgiver: "Bilverksted AS",
+          organisasjonsnummer: "666666666",
+          ansettelsesDetaljer: [identiskDetalj, identiskDetalj, identiskDetalj],
+          timerMedTimeloenn: [],
+        },
+      ],
+    };
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2024-04-01",
+      "2024-04-30",
+    );
+
+    // Skal telles kun én gang: 30 dager / 7 × 37.5 t/uke
+    expect(resultat[0].aaTimer).toBeCloseTo((30 / 7) * 37.5, 1);
+  });
 });
 
 describe("erTimelønnet", () => {
@@ -1055,5 +1129,23 @@ describe("erTimelønnet", () => {
       historikk: [],
     };
     expect(erTimelønnet(info)).toBe(true);
+  });
+
+  it("returnerer false når alle timerMedTimeloenn-oppføringer mangler startdato", () => {
+    const info: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [
+        {
+          arbeidsgiver: "Bilverksted AS",
+          organisasjonsnummer: "666666666",
+          ansettelsesDetaljer: [],
+          timerMedTimeloenn: [
+            { antall: 156, startdato: null, sluttdato: null },
+            { antall: 145, startdato: null, sluttdato: null },
+          ],
+        },
+      ],
+      historikk: [],
+    };
+    expect(erTimelønnet(info)).toBe(false);
   });
 });

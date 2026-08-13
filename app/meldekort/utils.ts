@@ -26,9 +26,35 @@ function harTimeloennIForhold(
 ): forhold is Arbeidsforhold & {
   timerMedTimeloenn: NonNullable<Arbeidsforhold["timerMedTimeloenn"]>;
 } {
+  // Krever minst én oppføring med startdato — Aareg kan returnere en
+  // ikke-tom liste der alle oppføringene mangler startdato (ubrukelige
+  // datapunkter). Uten denne sjekken ville forholdet feilaktig blitt
+  // klassifisert som timelønnet, men aktiveTimeloennEntries ville alltid
+  // blitt tom, og AA-timer ville stille vist 0 selv om personen har en
+  // reell, fast ansettelse (se ansettelsesDetaljer/antallTimerPrUke).
   return (
-    forhold.timerMedTimeloenn != null && forhold.timerMedTimeloenn.length > 0
+    forhold.timerMedTimeloenn != null &&
+    forhold.timerMedTimeloenn.some((entry) => entry.startdato != null)
   );
+}
+
+/**
+ * Fjerner duplikate ansettelsesDetaljer-oppføringer (identisk innhold).
+ * Aareg kan i sjeldne tilfeller returnere samme detalj flere ganger for
+ * samme arbeidsforhold — uten deduplisering ville AA-timer blitt telt
+ * dobbelt/tredobbelt for den overlappende perioden.
+ */
+function dedupliserAnsettelsesDetaljer<T>(detaljer: T[]): T[] {
+  const sett = new Set<string>();
+  const unike: T[] = [];
+  for (const detalj of detaljer) {
+    const nøkkel = JSON.stringify(detalj);
+    if (!sett.has(nøkkel)) {
+      sett.add(nøkkel);
+      unike.push(detalj);
+    }
+  }
+  return unike;
 }
 
 /**
@@ -180,7 +206,9 @@ function beregnAaTimerForMåned(
         }
       }
     } else {
-      for (const detalj of forhold.ansettelsesDetaljer) {
+      for (const detalj of dedupliserAnsettelsesDetaljer(
+        forhold.ansettelsesDetaljer,
+      )) {
         if (!detalj.antallTimerPrUke) continue;
 
         // periode.fom/tom har dag-presisjon (LocalDate fra backend) —
