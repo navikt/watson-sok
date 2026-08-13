@@ -46,6 +46,25 @@ export function erTimelønnet(
 }
 
 /**
+ * Filtrerer meldekort som overlapper med en gitt periode (fom/tom).
+ * Et meldekort regnes som overlappende dersom det ikke er avsluttet før
+ * periodens start, og ikke starter etter periodens slutt.
+ */
+export function filtrerMeldekortSomOverlapperPeriode(
+  meldekort: MeldekortRespons,
+  fom: string,
+  tom: string,
+): MeldekortRespons {
+  const fra = new Date(fom);
+  const til = new Date(tom);
+  return meldekort.filter(
+    (m) =>
+      new Date(m.periode.tilOgMed) >= fra &&
+      new Date(m.periode.fraOgMed) <= til,
+  );
+}
+
+/**
  * Sammenstiller meldekort-timer og AA-register-timer per kalendermåned.
  * Avvik markeres der differansen overstiger terskelen.
  */

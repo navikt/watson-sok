@@ -27,6 +27,7 @@ import { ResolvingComponent } from "~/async/ResolvingComponent";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { MeldekortProvider, useMeldekort } from "~/meldekort/MeldekortContext";
+import { filtrerMeldekortSomOverlapperPeriode } from "~/meldekort/utils";
 import {
   PanelContainer,
   PanelContainerSkeleton,
@@ -235,12 +236,10 @@ function YtelserTimeline({
     if (!erMeldekortAktivert || meldekortState?.status !== "success") {
       return null;
     }
-    const fra = new Date(fom);
-    const til = new Date(tom);
-    return meldekortState.meldekort.filter(
-      (m) =>
-        new Date(m.periode.tilOgMed) >= fra &&
-        new Date(m.periode.fraOgMed) <= til,
+    return filtrerMeldekortSomOverlapperPeriode(
+      meldekortState.meldekort,
+      fom,
+      tom,
     ).length;
   };
 
