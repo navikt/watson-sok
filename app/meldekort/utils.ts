@@ -155,7 +155,8 @@ function beregnAaTimerForMåned(
             Math.round(
               (tom.getTime() - fom.getTime()) / (1000 * 60 * 60 * 24),
             ) + 1;
-          totalTimer += timerEntry.antall * (overlappendeDager / totalDagerIPeriode);
+          totalTimer +=
+            timerEntry.antall * (overlappendeDager / totalDagerIPeriode);
         } else {
           // Åpen periode (sluttdato mangler) — semantikken er uklar, bruk ukentlig pro-ratering
           // som fallback inntil Aareg-data avklarer konvensjonen.
