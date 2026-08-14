@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { useMeldekort } from "~/meldekort/MeldekortContext";
+import { filtrerMeldekortSomOverlapperPeriode } from "~/meldekort/utils";
 import { StatistikkKort } from "~/paneler/StatistikkKort";
 import { formaterBeløp } from "~/utils/number-utils";
 
@@ -33,13 +34,10 @@ export function OppsummeringPanel({
       return null;
     }
 
-    const fra = new Date(fraDato);
-    const til = new Date(tilDato);
-
-    const filtrerteMeldekort = meldekortState.meldekort.filter(
-      (m) =>
-        new Date(m.periode.tilOgMed) >= fra &&
-        new Date(m.periode.fraOgMed) <= til,
+    const filtrerteMeldekort = filtrerMeldekortSomOverlapperPeriode(
+      meldekortState.meldekort,
+      fraDato,
+      tilDato,
     );
 
     const totalArbeidstimer = filtrerteMeldekort

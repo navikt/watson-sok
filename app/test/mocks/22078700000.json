@@ -11,23 +11,48 @@
     "familemedlemmer": [
       {
         "ident": "12345678903",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": "Ella",
+        "mellomnavn": null,
+        "etternavn": "Iversen",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "12345678904",
-        "rolle": "FAR"
+        "rolle": "FAR",
+        "fornavn": "Lars",
+        "mellomnavn": null,
+        "etternavn": "Iversen",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "12345678905",
-        "rolle": "MOR"
+        "rolle": "MOR",
+        "fornavn": "Marte",
+        "mellomnavn": "Sofie",
+        "etternavn": "Solberg",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "12345678906",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": "Sofie",
+        "mellomnavn": null,
+        "etternavn": "Hansen",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "12345678907",
-        "rolle": "GIFT"
+        "rolle": "GIFT",
+        "fornavn": "Robin",
+        "mellomnavn": "Andrea",
+        "etternavn": "Dahl",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       }
     ],
     "statsborgerskap": ["NORGE"],

@@ -26,9 +26,35 @@ function harTimeloennIForhold(
 ): forhold is Arbeidsforhold & {
   timerMedTimeloenn: NonNullable<Arbeidsforhold["timerMedTimeloenn"]>;
 } {
+  // Krever minst én oppføring med startdato — Aareg kan returnere en
+  // ikke-tom liste der alle oppføringene mangler startdato (ubrukelige
+  // datapunkter). Uten denne sjekken ville forholdet feilaktig blitt
+  // klassifisert som timelønnet, men aktiveTimeloennEntries ville alltid
+  // blitt tom, og AA-timer ville stille vist 0 selv om personen har en
+  // reell, fast ansettelse (se ansettelsesDetaljer/antallTimerPrUke).
   return (
-    forhold.timerMedTimeloenn != null && forhold.timerMedTimeloenn.length > 0
+    forhold.timerMedTimeloenn != null &&
+    forhold.timerMedTimeloenn.some((entry) => entry.startdato != null)
   );
+}
+
+/**
+ * Fjerner duplikate ansettelsesDetaljer-oppføringer (identisk innhold).
+ * Aareg kan i sjeldne tilfeller returnere samme detalj flere ganger for
+ * samme arbeidsforhold — uten deduplisering ville AA-timer blitt telt
+ * dobbelt/tredobbelt for den overlappende perioden.
+ */
+function dedupliserAnsettelsesDetaljer<T>(detaljer: T[]): T[] {
+  const sett = new Set<string>();
+  const unike: T[] = [];
+  for (const detalj of detaljer) {
+    const nøkkel = JSON.stringify(detalj);
+    if (!sett.has(nøkkel)) {
+      sett.add(nøkkel);
+      unike.push(detalj);
+    }
+  }
+  return unike;
 }
 
 /**
@@ -42,6 +68,25 @@ export function erTimelønnet(
   return (
     arbeidsgiverInformasjon.løpendeArbeidsforhold.some(harTimeloennIForhold) ||
     arbeidsgiverInformasjon.historikk.some(harTimeloennIForhold)
+  );
+}
+
+/**
+ * Filtrerer meldekort som overlapper med en gitt periode (fom/tom).
+ * Et meldekort regnes som overlappende dersom det ikke er avsluttet før
+ * periodens start, og ikke starter etter periodens slutt.
+ */
+export function filtrerMeldekortSomOverlapperPeriode(
+  meldekort: MeldekortRespons,
+  fom: string,
+  tom: string,
+): MeldekortRespons {
+  const fra = new Date(fom);
+  const til = new Date(tom);
+  return meldekort.filter(
+    (m) =>
+      new Date(m.periode.tilOgMed) >= fra &&
+      new Date(m.periode.fraOgMed) <= til,
   );
 }
 
@@ -72,12 +117,6 @@ function parseDatoLokal(datoStreng: string): Date {
   const deler = datoStreng.split("-").map(Number);
   const [år, mnd, dag = 1] = deler;
   return new Date(år, mnd - 1, dag);
-}
-
-/** Parser "YYYY-MM" som siste dag i måneden (brukes for tom-dato). */
-function parseMånedSlutt(datoStreng: string): Date {
-  const [år, mnd] = datoStreng.split("-").map(Number);
-  return new Date(år, mnd, 0); // dag 0 = siste dag i forrige måned
 }
 
 function genererMåneder(fraDato: string, tilDato: string): string[] {
@@ -144,18 +183,39 @@ function beregnAaTimerForMåned(
 
         const effektivFom = fom > førsteDag ? fom : førsteDag;
         const effektivTom = tom !== null && tom < sisteDag ? tom : sisteDag;
-        const antallDager = effektivTom.getDate() - effektivFom.getDate() + 1;
-        const antallUker = antallDager / 7;
+        // getDate()-diff er trygt fordi effektivFom/Tom alltid er i samme måned
+        const overlappendeDager =
+          effektivTom.getDate() - effektivFom.getDate() + 1;
 
-        totalTimer += timerEntry.antall * antallUker;
+        if (tom !== null) {
+          // antall = totale timer for perioden fom→tom (a-ordningen
+          // rapporterer periodetotaler, ikke uketimer). Pro-rater på
+          // andelen av perioden som faller i denne måneden.
+          const totalDagerIPeriode =
+            Math.round(
+              (tom.getTime() - fom.getTime()) / (1000 * 60 * 60 * 24),
+            ) + 1;
+          if (totalDagerIPeriode <= 0) continue;
+          totalTimer +=
+            timerEntry.antall * (overlappendeDager / totalDagerIPeriode);
+        } else {
+          // Åpen periode (sluttdato mangler) — semantikken er uklar, bruk
+          // ukentlig pro-ratering som fallback inntil Aareg-konvensjonen
+          // for slike innslag er avklart.
+          totalTimer += timerEntry.antall * (overlappendeDager / 7);
+        }
       }
     } else {
-      for (const detalj of forhold.ansettelsesDetaljer) {
+      for (const detalj of dedupliserAnsettelsesDetaljer(
+        forhold.ansettelsesDetaljer,
+      )) {
         if (!detalj.antallTimerPrUke) continue;
 
+        // periode.fom/tom har dag-presisjon (LocalDate fra backend) —
+        // bruk parseDatoLokal for begge, ikke rund tom ned til månedsslutt.
         const fom = parseDatoLokal(detalj.periode.fom);
         const tom = detalj.periode.tom
-          ? parseMånedSlutt(detalj.periode.tom)
+          ? parseDatoLokal(detalj.periode.tom)
           : null;
 
         const erAktivIMåned =
