@@ -28,15 +28,30 @@
     "familemedlemmer": [
       {
         "ident": "10057012345",
-        "rolle": "FAR"
+        "rolle": "FAR",
+        "fornavn": "Thomas",
+        "mellomnavn": "Andre",
+        "etternavn": "Solberg",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "15068012345",
-        "rolle": "MOR"
+        "rolle": "MOR",
+        "fornavn": "Marte",
+        "mellomnavn": "Sofie",
+        "etternavn": "Solberg",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "22122412345",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": "Jakob",
+        "mellomnavn": "Kristian",
+        "etternavn": "Berg",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       }
     ],
     "statsborgerskap": ["NORGE"],

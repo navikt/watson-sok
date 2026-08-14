@@ -1,10 +1,15 @@
+import { useEffect, useRef, useState } from "react";
+
 import type { TimerPerMåned } from "./utils";
 
 const AA_FARGE = "var(--ax-brand-blue-800)";
 const MK_FARGE = "var(--ax-warning-500)";
 const AVVIK_HIGHLIGHT = "var(--ax-warning-200)";
 const ANTALL_GRID_LINJER = 5;
-const SLOT_BREDDE = 64;
+const MAKS_SLOT_BREDDE = 64;
+const MIN_SLOT_BREDDE = 40;
+/** Minimum antall måneder som skal være synlig uten horisontal scroll. */
+const MIN_MÅNEDER_SYNLIG = 12;
 const BAR_MELLOMROM = 4;
 const BAR_RADIUS = 2;
 const PADDING = { top: 44, right: 16, bottom: 56, left: 52 };
@@ -13,6 +18,22 @@ const GRAF_HØYDE = 320;
 type Props = {
   data: TimerPerMåned[];
 };
+
+/**
+ * Beregner søylebredde slik at minst MIN_MÅNEDER_SYNLIG måneder er synlige
+ * uten horisontal scroll, gitt tilgjengelig containerbredde. Faller tilbake
+ * til maks bredde før containeren er målt (f.eks. under SSR/første render).
+ */
+function beregnSlotBredde(
+  containerBredde: number | null,
+  antallMåneder: number,
+): number {
+  if (!containerBredde || antallMåneder === 0) return MAKS_SLOT_BREDDE;
+  const tilgjengeligBredde = containerBredde - PADDING.left - PADDING.right;
+  const månederIViewport = Math.min(antallMåneder, MIN_MÅNEDER_SYNLIG);
+  const beregnet = tilgjengeligBredde / månederIViewport;
+  return Math.min(MAKS_SLOT_BREDDE, Math.max(MIN_SLOT_BREDDE, beregnet));
+}
 
 function topprundetRektangel(
   x: number,
@@ -55,11 +76,26 @@ function formaterMånedEtikett(måned: string, forrige?: string): string {
  * avvik-verdi og gul kolonnebakgrunn.
  */
 export function TimerSammenligningGraf({ data }: Props) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [containerBredde, setContainerBredde] = useState<number | null>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver((entries) => {
+      const bredde = entries[0]?.contentRect.width;
+      if (bredde) setContainerBredde(bredde);
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   if (data.length === 0) return null;
 
+  const slotBredde = beregnSlotBredde(containerBredde, data.length);
   const grafHøyde = GRAF_HØYDE - PADDING.top - PADDING.bottom;
-  const barBredde = (SLOT_BREDDE - BAR_MELLOMROM * 3) / 2;
-  const totalBredde = data.length * SLOT_BREDDE + PADDING.left + PADDING.right;
+  const barBredde = (slotBredde - BAR_MELLOMROM * 3) / 2;
+  const totalBredde = data.length * slotBredde + PADDING.left + PADDING.right;
   const baseY = PADDING.top + grafHøyde;
 
   const maksTimer = Math.max(
@@ -79,6 +115,7 @@ export function TimerSammenligningGraf({ data }: Props) {
   return (
     <div className="flex flex-col gap-3">
       <div
+        ref={scrollRef}
         className="overflow-x-auto"
         tabIndex={0}
         role="region"
@@ -94,13 +131,13 @@ export function TimerSammenligningGraf({ data }: Props) {
           {/* Gul bakgrunn for avvik-kolonner */}
           {data.map((d, i) => {
             if (!d.harAvvik) return null;
-            const slotX = PADDING.left + i * SLOT_BREDDE;
+            const slotX = PADDING.left + i * slotBredde;
             return (
               <rect
                 key={`avvik-bg-${d.måned}`}
                 x={slotX}
                 y={PADDING.top}
-                width={SLOT_BREDDE}
+                width={slotBredde}
                 height={grafHøyde}
                 fill={AVVIK_HIGHLIGHT}
                 aria-hidden="true"
@@ -149,12 +186,12 @@ export function TimerSammenligningGraf({ data }: Props) {
 
           {/* Søyler + etiketter */}
           {data.map((d, i) => {
-            const slotX = PADDING.left + i * SLOT_BREDDE;
+            const slotX = PADDING.left + i * slotBredde;
             const aaBarX = slotX + BAR_MELLOMROM;
             const mkBarX = aaBarX + barBredde + BAR_MELLOMROM;
             const aaHøyde = Math.max(0, (d.aaTimer / gridTopp) * grafHøyde);
             const mkHøyde = Math.max(0, (d.mkTimer / gridTopp) * grafHøyde);
-            const labelX = slotX + SLOT_BREDDE / 2;
+            const labelX = slotX + slotBredde / 2;
             const etikett = formaterMånedEtikett(d.måned, data[i - 1]?.måned);
             const avvikVerdi = Math.round(d.aaTimer - d.mkTimer);
 

@@ -11,23 +11,48 @@
     "familemedlemmer": [
       {
         "ident": "22116500000",
-        "rolle": "MOR"
+        "rolle": "MOR",
+        "fornavn": "Kari",
+        "mellomnavn": null,
+        "etternavn": "Hansen",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "10076300000",
-        "rolle": "FAR"
+        "rolle": "FAR",
+        "fornavn": "Thomas",
+        "mellomnavn": "Andre",
+        "etternavn": "Solberg",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "09021300000",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": "Emma",
+        "mellomnavn": null,
+        "etternavn": "Hansen",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "20091400000",
-        "rolle": "BARN"
+        "rolle": "BARN",
+        "fornavn": "Ella",
+        "mellomnavn": null,
+        "etternavn": "Iversen",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       },
       {
         "ident": "06048200000",
-        "rolle": "SKILT"
+        "rolle": "SKILT",
+        "fornavn": "Robin",
+        "mellomnavn": "Andrea",
+        "etternavn": "Dahl",
+        "fødselsdato": null,
+        "adressebeskyttelse": null
       }
     ],
     "statsborgerskap": ["NORGE"],
