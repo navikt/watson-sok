@@ -101,6 +101,49 @@ describe("AapOppsummeringPanelInnhold", () => {
     expect(screen.getByText(/Ingen data tilgjengelig/)).toBeDefined();
   });
 
+  it("viser 'Ingen data'-melding (ikke grafen) når vedtaket finnes men ligger utenfor den viste perioden", () => {
+    // Regresjonstest: en person kan ha ET vedtak (f.eks. et løpende AAP-vedtak
+    // fra sep 2025), men bli vist i en eldre, historisk ytelsesperiode (f.eks.
+    // jul-sep 2024) som ligger helt før vedtaket startet. Det er ikke nok å
+    // sjekke om personen har NOE vedtak i det hele tatt — vi må sjekke om
+    // vedtaket faktisk overlapper akkurat DENNE periodens datoer.
+    vi.mocked(useAapMeldekort).mockReturnValue({
+      status: "success",
+      vedtak: [
+        {
+          vedtakId: "v1",
+          status: "LØPENDE",
+          saksnummer: "SAK1",
+          vedtakPeriode: { fraOgMed: "2025-09-01", tilOgMed: null },
+          rettighetsType: "BISTANDSBEHOV",
+          kide: "KELVIN",
+          tema: "AAP",
+          vedtaktypeNavn: null,
+          perioder: [
+            {
+              fraOgMed: "2025-09-01",
+              tilOgMed: "2025-09-14",
+              arbeidetTimer: 10,
+              annenReduksjon: null,
+              utbetalingsgrad: 100,
+            },
+          ],
+        },
+      ],
+    });
+
+    render(
+      <AapOppsummeringPanelInnhold
+        arbeidsgiverInformasjon={lagTimelønnetArbeidsgiverInformasjon()}
+        fraDato="2024-07-01"
+        tilDato="2024-09-30"
+      />,
+    );
+
+    expect(screen.queryByRole("region", { name: /Stolpediagram/ })).toBeNull();
+    expect(screen.getByText(/Ingen data tilgjengelig/)).toBeDefined();
+  });
+
   it("viser 'Ingen data'-melding når arbeidsgiverInformasjon er null", () => {
     render(
       <AapOppsummeringPanelInnhold
