@@ -125,6 +125,12 @@ export function AapOppsummeringPanelInnhold({
   const harFeil = aapState?.status === "error";
   const erTimelønnetBruker =
     arbeidsgiverInformasjon != null && erTimelønnet(arbeidsgiverInformasjon);
+  // Uten vedtak/meldekortperioder blir mkTimer alltid 0, som gjør at grafen
+  // ville vist "0t meldekort-timer" hver måned — ser ut som 100% avvik, men
+  // er egentlig bare fravær av data. Vis grafen kun når det faktisk finnes
+  // AAP-vedtak å sammenligne mot.
+  const harAapVedtak =
+    aapState?.status === "success" && aapState.vedtak.length > 0;
 
   return (
     <PanelContainer title="AA-timer vs AAP-meldekort-timer per måned">
@@ -163,6 +169,7 @@ export function AapOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           erTimelønnetBruker &&
+          harAapVedtak &&
           timerData &&
           timerData.length > 0 && (
             <>
@@ -176,7 +183,7 @@ export function AapOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           erTimelønnetBruker &&
-          (!timerData || timerData.length === 0) && (
+          (!harAapVedtak || !timerData || timerData.length === 0) && (
             <Alert variant="info" size="small" inline>
               Ingen data tilgjengelig for valgt periode.
             </Alert>

@@ -52,7 +52,22 @@ function lagTimelønnetArbeidsgiverInformasjon(): ArbeidsgiverInformasjon {
 }
 
 describe("AapOppsummeringPanelInnhold", () => {
-  it("viser ikke 'Ingen timer'-melding og rendrer grafen for timelønnet bruker", () => {
+  it("viser ikke 'Ingen timer'-melding og rendrer grafen når det finnes AAP-vedtak for timelønnet bruker", () => {
+    vi.mocked(useAapMeldekort).mockReturnValue({
+      status: "success",
+      vedtak: [
+        lagVedtakMedPerioder([
+          {
+            fraOgMed: "2024-05-01",
+            tilOgMed: "2024-05-14",
+            arbeidetTimer: 5,
+            annenReduksjon: null,
+            utbetalingsgrad: 100,
+          },
+        ]),
+      ],
+    });
+
     render(
       <AapOppsummeringPanelInnhold
         arbeidsgiverInformasjon={lagTimelønnetArbeidsgiverInformasjon()}
@@ -63,6 +78,27 @@ describe("AapOppsummeringPanelInnhold", () => {
 
     expect(screen.queryByText(/Ingen timer fra AA-registeret/)).toBeNull();
     expect(screen.getByRole("region", { name: /Stolpediagram/ })).toBeDefined();
+  });
+
+  it("viser 'Ingen data'-melding (ikke grafen) når det ikke finnes AAP-vedtak i det hele tatt", () => {
+    // Regresjonstest: uten vedtak blir meldekort-timer alltid 0, som ville
+    // fått grafen til å se ut som 100% avvik hver måned — feilaktig,
+    // siden det bare er fravær av data, ikke et reelt avvik.
+    vi.mocked(useAapMeldekort).mockReturnValue({
+      status: "success",
+      vedtak: [],
+    });
+
+    render(
+      <AapOppsummeringPanelInnhold
+        arbeidsgiverInformasjon={lagTimelønnetArbeidsgiverInformasjon()}
+        fraDato="2024-04-01"
+        tilDato="2024-06-30"
+      />,
+    );
+
+    expect(screen.queryByRole("region", { name: /Stolpediagram/ })).toBeNull();
+    expect(screen.getByText(/Ingen data tilgjengelig/)).toBeDefined();
   });
 
   it("viser 'Ingen data'-melding når arbeidsgiverInformasjon er null", () => {
