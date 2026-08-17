@@ -1849,5 +1849,547 @@
         }
       ]
     }
+  ],
+  "aapMeldekort": [
+    {
+      "vedtakId": "DEMO-AAP-1",
+      "status": "LØPENDE",
+      "saksnummer": "DEMOAAP001",
+      "vedtakPeriode": {
+        "fraOgMed": "2023-09-01",
+        "tilOgMed": null
+      },
+      "rettighetsType": "BISTANDSBEHOV",
+      "kide": "KELVIN",
+      "tema": "AAP",
+      "vedtaktypeNavn": null,
+      "perioder": [
+        {
+          "fraOgMed": "2023-09-01",
+          "tilOgMed": "2023-09-22",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2023-09-25",
+          "tilOgMed": "2023-09-29",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2023-10-02",
+          "tilOgMed": "2023-10-06",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2023-10-09",
+          "tilOgMed": "2023-10-20",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2023-10-23",
+          "tilOgMed": "2023-10-31",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2023-11-01",
+          "tilOgMed": "2023-11-03",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2023-11-06",
+          "tilOgMed": "2023-11-17",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2023-11-20",
+          "tilOgMed": "2023-11-30",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2023-12-01",
+          "tilOgMed": "2023-12-01",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2023-12-04",
+          "tilOgMed": "2023-12-15",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2023-12-26",
+          "tilOgMed": "2023-12-29",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-01-01",
+          "tilOgMed": "2024-01-12",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-01-15",
+          "tilOgMed": "2024-01-26",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-01-29",
+          "tilOgMed": "2024-01-31",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-02-01",
+          "tilOgMed": "2024-02-09",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-02-12",
+          "tilOgMed": "2024-02-23",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-02-26",
+          "tilOgMed": "2024-02-29",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-03-01",
+          "tilOgMed": "2024-03-08",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-03-11",
+          "tilOgMed": "2024-03-22",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-03-25",
+          "tilOgMed": "2024-03-29",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-04-01",
+          "tilOgMed": "2024-04-05",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-04-08",
+          "tilOgMed": "2024-04-19",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-04-22",
+          "tilOgMed": "2024-04-30",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-05-01",
+          "tilOgMed": "2024-05-03",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-05-06",
+          "tilOgMed": "2024-05-17",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-05-01",
+          "tilOgMed": "2024-05-17",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-05-20",
+          "tilOgMed": "2024-05-31",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-06-03",
+          "tilOgMed": "2024-06-14",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-06-17",
+          "tilOgMed": "2024-06-28",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-07-01",
+          "tilOgMed": "2024-07-12",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-07-15",
+          "tilOgMed": "2024-07-26",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-07-29",
+          "tilOgMed": "2024-07-31",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-08-01",
+          "tilOgMed": "2024-08-09",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-08-12",
+          "tilOgMed": "2024-08-25",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-08-26",
+          "tilOgMed": "2024-08-31",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-09-01",
+          "tilOgMed": "2024-09-08",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-09-09",
+          "tilOgMed": "2024-09-22",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-09-23",
+          "tilOgMed": "2024-09-30",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-10-01",
+          "tilOgMed": "2024-10-06",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-10-07",
+          "tilOgMed": "2024-10-20",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-10-21",
+          "tilOgMed": "2024-10-31",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-11-01",
+          "tilOgMed": "2024-11-03",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-11-04",
+          "tilOgMed": "2024-11-17",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-11-18",
+          "tilOgMed": "2024-11-30",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-12-01",
+          "tilOgMed": "2024-12-01",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-12-02",
+          "tilOgMed": "2024-12-15",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-12-16",
+          "tilOgMed": "2024-12-29",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2024-12-30",
+          "tilOgMed": "2024-12-31",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-01-01",
+          "tilOgMed": "2025-01-12",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-01-13",
+          "tilOgMed": "2025-01-26",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-01-27",
+          "tilOgMed": "2025-01-31",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-02-01",
+          "tilOgMed": "2025-02-09",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-02-10",
+          "tilOgMed": "2025-02-23",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-02-24",
+          "tilOgMed": "2025-02-28",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-03-01",
+          "tilOgMed": "2025-03-09",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-03-10",
+          "tilOgMed": "2025-03-23",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-03-24",
+          "tilOgMed": "2025-03-31",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-04-01",
+          "tilOgMed": "2025-04-06",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-04-07",
+          "tilOgMed": "2025-04-20",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-04-21",
+          "tilOgMed": "2025-04-30",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-05-01",
+          "tilOgMed": "2025-05-04",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-05-05",
+          "tilOgMed": "2025-05-18",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-05-01",
+          "tilOgMed": "2025-05-31",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-06-01",
+          "tilOgMed": "2025-06-01",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-06-02",
+          "tilOgMed": "2025-06-15",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-06-16",
+          "tilOgMed": "2025-06-29",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-06-30",
+          "tilOgMed": "2025-06-30",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-07-01",
+          "tilOgMed": "2025-07-13",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-07-14",
+          "tilOgMed": "2025-07-27",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-07-28",
+          "tilOgMed": "2025-07-31",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-08-01",
+          "tilOgMed": "2025-08-10",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-08-11",
+          "tilOgMed": "2025-08-24",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-08-25",
+          "tilOgMed": "2025-08-31",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-09-01",
+          "tilOgMed": "2025-09-07",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-09-08",
+          "tilOgMed": "2025-09-21",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        }
+      ]
+    }
   ]
 }
