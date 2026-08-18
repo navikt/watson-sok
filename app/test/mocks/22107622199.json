@@ -236,5 +236,29 @@
         }
       ]
     }
+  ],
+  "aapMeldekort": [
+    {
+      "vedtakId": "DEMO-AAP-2",
+      "status": "AVSLUTTET",
+      "saksnummer": "DEMOAAP002",
+      "vedtakPeriode": {
+        "fraOgMed": "2016-06-01",
+        "tilOgMed": "2016-11-30"
+      },
+      "rettighetsType": "SYKEPENGEERSTATNING",
+      "kide": "KELVIN",
+      "tema": "AAP",
+      "vedtaktypeNavn": "Rehabilitering etter opphold i Sveits",
+      "perioder": [
+        {
+          "fraOgMed": "2016-06-01",
+          "tilOgMed": "2016-11-30",
+          "arbeidetTimer": 0.0,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        }
+      ]
+    }
   ]
 }

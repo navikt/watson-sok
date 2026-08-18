@@ -14,6 +14,7 @@ export const RouteConfig = {
 
   API: {
     MELDEKORT: "/api/meldekort",
+    AAP_MELDEKORT: "/api/aap-meldekort",
     EKSTERNT_SØK: "/api/eksternt-søk",
 
     HEALTH: "/api/health",

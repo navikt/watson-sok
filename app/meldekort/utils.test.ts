@@ -1,9 +1,11 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
+import type { AapMeldekortRespons } from "~/aap-meldekort/domene";
 import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
 
 import type { Dag, MeldekortRespons } from "./domene";
 import {
+  aggregerAapTimerPerMåned,
   aggregerTimerPerMåned,
   beregnAktivitetStatistikk,
   erTimelønnet,
@@ -1147,5 +1149,253 @@ describe("erTimelønnet", () => {
       historikk: [],
     };
     expect(erTimelønnet(info)).toBe(false);
+  });
+});
+
+function lagAapVedtak(
+  overrides: Partial<AapMeldekortRespons[number]> & {
+    perioder: AapMeldekortRespons[number]["perioder"];
+  },
+): AapMeldekortRespons[number] {
+  return {
+    vedtakId: "v1",
+    status: "LØPENDE",
+    saksnummer: "SAK1",
+    vedtakPeriode: { fraOgMed: "2025-01-01", tilOgMed: null },
+    rettighetsType: "BISTANDSBEHOV",
+    kide: "KELVIN",
+    tema: "AAP",
+    vedtaktypeNavn: null,
+    ...overrides,
+  };
+}
+
+describe("aggregerAapTimerPerMåned", () => {
+  it("summerer arbeidetTimer for en periode helt innenfor én måned", () => {
+    const vedtak: AapMeldekortRespons = [
+      lagAapVedtak({
+        perioder: [
+          {
+            fraOgMed: "2025-03-01",
+            tilOgMed: "2025-03-14",
+            arbeidetTimer: 20,
+            annenReduksjon: null,
+            utbetalingsgrad: 80,
+          },
+        ],
+      }),
+    ];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [],
+      historikk: [],
+    };
+
+    const resultat = aggregerAapTimerPerMåned(
+      vedtak,
+      arbeidsgiverInformasjon,
+      "2025-03-01",
+      "2025-03-31",
+    );
+
+    expect(resultat[0].mkTimer).toBeCloseTo(20, 5);
+  });
+
+  it("pro-rater arbeidetTimer for en periode som krysser månedsskifte", () => {
+    // Periode 25. mars - 7. april = 14 dager, arbeidetTimer = 28 totalt.
+    // Mars (7 dager): 28 × 7/14 = 14 t
+    // April (7 dager): 28 × 7/14 = 14 t
+    const vedtak: AapMeldekortRespons = [
+      lagAapVedtak({
+        perioder: [
+          {
+            fraOgMed: "2025-03-25",
+            tilOgMed: "2025-04-07",
+            arbeidetTimer: 28,
+            annenReduksjon: null,
+            utbetalingsgrad: 80,
+          },
+        ],
+      }),
+    ];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [],
+      historikk: [],
+    };
+
+    const resultat = aggregerAapTimerPerMåned(
+      vedtak,
+      arbeidsgiverInformasjon,
+      "2025-03-01",
+      "2025-04-30",
+    );
+
+    const mars = resultat.find((r) => r.måned === "2025-03")!;
+    const april = resultat.find((r) => r.måned === "2025-04")!;
+
+    expect(mars.mkTimer).toBeCloseTo(14, 1);
+    expect(april.mkTimer).toBeCloseTo(14, 1);
+    expect(mars.mkTimer + april.mkTimer).toBeCloseTo(28, 1);
+  });
+
+  it("summerer arbeidetTimer på tvers av flere overlappende vedtak i samme måned", () => {
+    // To vedtak (f.eks. rettighetsType-bytte midt i måneden) som begge har
+    // en periode i mars — skal summeres, ikke overskrive hverandre.
+    const vedtak: AapMeldekortRespons = [
+      lagAapVedtak({
+        vedtakId: "v1",
+        rettighetsType: "SYKEPENGEERSTATNING",
+        perioder: [
+          {
+            fraOgMed: "2025-03-01",
+            tilOgMed: "2025-03-15",
+            arbeidetTimer: 10,
+            annenReduksjon: null,
+            utbetalingsgrad: 100,
+          },
+        ],
+      }),
+      lagAapVedtak({
+        vedtakId: "v2",
+        rettighetsType: "BISTANDSBEHOV",
+        perioder: [
+          {
+            fraOgMed: "2025-03-16",
+            tilOgMed: "2025-03-31",
+            arbeidetTimer: 15,
+            annenReduksjon: null,
+            utbetalingsgrad: 100,
+          },
+        ],
+      }),
+    ];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [],
+      historikk: [],
+    };
+
+    const resultat = aggregerAapTimerPerMåned(
+      vedtak,
+      arbeidsgiverInformasjon,
+      "2025-03-01",
+      "2025-03-31",
+    );
+
+    expect(resultat[0].mkTimer).toBeCloseTo(25, 5);
+  });
+
+  it("hopper over perioder med arbeidetTimer=null uten å kaste feil", () => {
+    const vedtak: AapMeldekortRespons = [
+      lagAapVedtak({
+        perioder: [
+          {
+            fraOgMed: "2025-03-01",
+            tilOgMed: "2025-03-15",
+            arbeidetTimer: null,
+            annenReduksjon: null,
+            utbetalingsgrad: 100,
+          },
+          {
+            fraOgMed: "2025-03-16",
+            tilOgMed: "2025-03-31",
+            arbeidetTimer: 12,
+            annenReduksjon: null,
+            utbetalingsgrad: 100,
+          },
+        ],
+      }),
+    ];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [],
+      historikk: [],
+    };
+
+    const resultat = aggregerAapTimerPerMåned(
+      vedtak,
+      arbeidsgiverInformasjon,
+      "2025-03-01",
+      "2025-03-31",
+    );
+
+    expect(resultat[0].mkTimer).toBeCloseTo(12, 5);
+  });
+
+  it("bruker felles AA-timer-beregning (samme som dagpenger) for sammenligningen", () => {
+    const vedtak: AapMeldekortRespons = [
+      lagAapVedtak({
+        perioder: [
+          {
+            fraOgMed: "2025-03-01",
+            tilOgMed: "2025-03-31",
+            arbeidetTimer: 160,
+            annenReduksjon: null,
+            utbetalingsgrad: 100,
+          },
+        ],
+      }),
+    ];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [
+        {
+          arbeidsgiver: "Testbedriften AS",
+          organisasjonsnummer: "123456789",
+          ansettelsesDetaljer: [],
+          timerMedTimeloenn: [
+            { antall: 37.5, startdato: "2025-01-01", sluttdato: null },
+          ],
+        },
+      ],
+      historikk: [],
+    };
+
+    const resultat = aggregerAapTimerPerMåned(
+      vedtak,
+      arbeidsgiverInformasjon,
+      "2025-03-01",
+      "2025-03-31",
+    );
+
+    // 31 dager / 7 × 37.5 t/uke — samme formel som for dagpenger
+    expect(resultat[0].aaTimer).toBeCloseTo((31 / 7) * 37.5, 1);
+    expect(resultat[0].mkTimer).toBeCloseTo(160, 1);
+  });
+
+  it("tilOgMed==null er en ÅPEN periode (løper til i dag), ikke en éndags-periode", () => {
+    // Kelvin sin konvensjon: tilOgMed==null betyr perioden fortsatt løper
+    // uten kjent sluttdato — IKKE at perioden bare varer fraOgMed-dagen.
+    // Klipp til "i dag" som foreløpig grense for pro-rateringen.
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2025, 2, 20)); // 20. mars 2025
+
+    const vedtak: AapMeldekortRespons = [
+      lagAapVedtak({
+        perioder: [
+          {
+            // Åpen periode fra 1. mars, fortsatt pågående "i dag" (20. mars).
+            // 20 dager totalt, arbeidetTimer=40 → hele beløpet gjelder mars
+            // siden hele perioden (så langt) er i mars.
+            fraOgMed: "2025-03-01",
+            tilOgMed: null,
+            arbeidetTimer: 40,
+            annenReduksjon: null,
+            utbetalingsgrad: 100,
+          },
+        ],
+      }),
+    ];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [],
+      historikk: [],
+    };
+
+    const resultat = aggregerAapTimerPerMåned(
+      vedtak,
+      arbeidsgiverInformasjon,
+      "2025-03-01",
+      "2025-03-31",
+    );
+
+    expect(resultat[0].mkTimer).toBeCloseTo(40, 1);
+
+    vi.useRealTimers();
   });
 });

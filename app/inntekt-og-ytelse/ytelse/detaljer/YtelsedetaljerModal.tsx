@@ -2,6 +2,9 @@ import { Button, Tabs } from "@navikt/ds-react";
 import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useMemo } from "react";
 
+import { AapMeldekortProvider } from "~/aap-meldekort/AapMeldekortContext";
+import { AapOppsummeringPanel } from "~/aap-meldekort/AapOppsummeringPanel";
+import { AapVedtakListe } from "~/aap-meldekort/AapVedtakListe";
 import { sporHendelse } from "~/analytics/analytics";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
@@ -12,18 +15,9 @@ import { MeldekortPanel } from "~/meldekort/MeldekortPanel";
 import { formaterDato } from "~/utils/date-utils";
 
 import type { Ytelse } from "../domene";
+import { finnMeldekortYtelseType } from "../meldekortYtelseKonfig";
 import { OppsummeringPanel } from "./OppsummeringPanel";
 import { UtbetalingerPanel } from "./UtbetalingerPanel";
-
-const YTELSER_MED_MELDEKORT = ["Dagpenger"] as const;
-
-function harMeldekort(
-  stonadType: string,
-): stonadType is (typeof YTELSER_MED_MELDEKORT)[number] {
-  return YTELSER_MED_MELDEKORT.some(
-    (ytelse) => stonadType.toLowerCase() === ytelse.toLowerCase(),
-  );
-}
 
 type YtelsedetaljerModalProps = {
   arbeidsgiverInformasjonPromise?: Promise<
@@ -79,8 +73,8 @@ export function YtelsedetaljerModal({
     return null;
   }
 
-  const visMeldekortTab =
-    erMeldekortPanelAktivert && harMeldekort(ytelse.stonadType);
+  const meldekortType = finnMeldekortYtelseType(ytelse.stonadType);
+  const visMeldekortTab = erMeldekortPanelAktivert && meldekortType !== null;
 
   const innhold = (
     <Modal
@@ -155,7 +149,7 @@ export function YtelsedetaljerModal({
               ytelsenavn={ytelse.stonadType}
             />
           </Tabs.Panel>
-          {visMeldekortTab && (
+          {visMeldekortTab && meldekortType === "dagpenger" && (
             <Tabs.Panel value="meldekort" className="pt-4 flex flex-col gap-6">
               <MeldekortPanel fraDato={fraDato} tilDato={tilDato} />
               {arbeidsgiverInformasjonPromise && (
@@ -173,6 +167,20 @@ export function YtelsedetaljerModal({
               />
             </Tabs.Panel>
           )}
+          {visMeldekortTab && meldekortType === "aap" && (
+            <Tabs.Panel value="meldekort" className="pt-4 flex flex-col gap-6">
+              <AapVedtakListe />
+              {arbeidsgiverInformasjonPromise && (
+                <AapOppsummeringPanel
+                  arbeidsgiverInformasjonPromise={
+                    arbeidsgiverInformasjonPromise
+                  }
+                  fraDato={fraDato}
+                  tilDato={tilDato}
+                />
+              )}
+            </Tabs.Panel>
+          )}
         </Tabs>
       </ModalBody>
       <ModalFooter>
@@ -183,8 +191,12 @@ export function YtelsedetaljerModal({
     </Modal>
   );
 
-  if (visMeldekortTab) {
+  if (visMeldekortTab && meldekortType === "dagpenger") {
     return <MeldekortProvider ytelse="dagpenger">{innhold}</MeldekortProvider>;
+  }
+
+  if (visMeldekortTab && meldekortType === "aap") {
+    return <AapMeldekortProvider>{innhold}</AapMeldekortProvider>;
   }
 
   return innhold;

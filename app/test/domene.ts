@@ -1,5 +1,6 @@
 import z from "zod";
 
+import { AapMeldekortResponsSchema } from "~/aap-meldekort/domene";
 import { ArbeidsgiverInformasjonSchema } from "~/arbeidsforhold/domene";
 import { InntektInformasjonSchema } from "~/inntekt-og-ytelse/inntekt/domene";
 import { PensjonsgivendeInntektListeSchema } from "~/inntekt-og-ytelse/pensjonsgivende-inntekt/domene";
@@ -17,6 +18,7 @@ export const MockOppslagBrukerResponsSchema = z.object({
   arbeidsgiverInformasjon: ArbeidsgiverInformasjonSchema.nullable(),
   inntektInformasjon: InntektInformasjonSchema.nullable(),
   meldekort: MeldekortResponsSchema.nullish(),
+  aapMeldekort: AapMeldekortResponsSchema.nullish(),
   stønader: YtelserInformasjonSchema.nullable(),
   pensjonsgivendeInntekt: PensjonsgivendeInntektListeSchema.nullish(),
 });

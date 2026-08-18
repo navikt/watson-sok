@@ -1,3 +1,4 @@
+import type { AapMeldekortRespons } from "~/aap-meldekort/domene";
 import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
 
 import type { Dag, MeldekortRespons } from "./domene";
@@ -110,6 +111,89 @@ export function aggregerTimerPerMåned(
       harAvvik: harTimerAvvik(mkTimer, aaTimer),
     };
   });
+}
+
+/**
+ * Sammenstiller AAP-meldekort-timer (arbeidetTimer på tvers av alle vedtak)
+ * og AA-register-timer per kalendermåned.
+ *
+ * Merk: aggregeringen skjer på PERSON-/månedsnivå, ikke per vedtak — en
+ * person kan ha flere overlappende AAP-vedtak (f.eks. ved rettighetsType-
+ * bytte), og AA-timer-grunnlaget (arbeidsgiverInformasjon) er uansett
+ * felles for hele personen. Å vise én sammenligningsgraf per vedtak ville
+ * gitt samme AA-timer-tall gjentatt i flere grafer og et misvisende
+ * inntrykk av separate avvik.
+ */
+export function aggregerAapTimerPerMåned(
+  aapVedtak: AapMeldekortRespons,
+  arbeidsgiverInformasjon: ArbeidsgiverInformasjon,
+  fraDato: string,
+  tilDato: string,
+): TimerPerMåned[] {
+  return genererMåneder(fraDato, tilDato).map((måned) => {
+    const mkTimer = beregnAapTimerForMåned(aapVedtak, måned);
+    const aaTimer = beregnAaTimerForMåned(arbeidsgiverInformasjon, måned);
+    return {
+      måned,
+      mkTimer,
+      aaTimer,
+      harAvvik: harTimerAvvik(mkTimer, aaTimer),
+    };
+  });
+}
+
+/**
+ * Summerer arbeidetTimer fra AAP-meldekortperioder (allerede aggregert per
+ * ~14 dager av backend) som overlapper en gitt måned, på tvers av alle
+ * vedtak. Perioder som strekker seg over månedsskifte pro-rateres på
+ * andelen dager som faller i måneden — samme periodetotal-prinsipp som
+ * brukes for timerMedTimeloenn (se beregnAaTimerForMåned).
+ */
+function beregnAapTimerForMåned(
+  aapVedtak: AapMeldekortRespons,
+  måned: string,
+): number {
+  const [år, mnd] = måned.split("-").map(Number);
+  const førsteDag = new Date(år, mnd - 1, 1);
+  const sisteDag = new Date(år, mnd, 0);
+
+  let totalTimer = 0;
+
+  for (const vedtak of aapVedtak) {
+    for (const periode of vedtak.perioder) {
+      if (!periode.arbeidetTimer) continue;
+
+      const fom = parseDatoLokal(periode.fraOgMed);
+      // tilOgMed==null betyr en ÅPEN periode (løper fra fraOgMed og videre
+      // uten kjent sluttdato per Kelvin sin konvensjon) — IKKE en éndags-
+      // periode. Klipp til i dag som foreløpig grense for pro-rateringen,
+      // samme prinsipp som brukes andre steder for åpne perioder/vinduer.
+      const tom = periode.tilOgMed
+        ? parseDatoLokal(periode.tilOgMed)
+        : new Date();
+
+      const erAktivIMåned = fom <= sisteDag && tom >= førsteDag;
+      if (!erAktivIMåned) continue;
+
+      const effektivFom = fom > førsteDag ? fom : førsteDag;
+      const effektivTom = tom < sisteDag ? tom : sisteDag;
+
+      const totalDagerIPeriode =
+        Math.round((tom.getTime() - fom.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+      if (totalDagerIPeriode <= 0) continue;
+
+      const overlappendeDager =
+        Math.round(
+          (effektivTom.getTime() - effektivFom.getTime()) /
+            (1000 * 60 * 60 * 24),
+        ) + 1;
+
+      totalTimer +=
+        periode.arbeidetTimer * (overlappendeDager / totalDagerIPeriode);
+    }
+  }
+
+  return totalTimer;
 }
 
 /** Parser en "YYYY-MM-DD"- eller "YYYY-MM"-streng som lokal dato, unngår UTC-forskyvning. */

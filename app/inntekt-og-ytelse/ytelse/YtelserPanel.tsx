@@ -22,6 +22,11 @@ import {
 import { use, useMemo, useState } from "react";
 import { useSearchParams } from "react-router";
 
+import {
+  AapMeldekortProvider,
+  useAapMeldekort,
+} from "~/aap-meldekort/AapMeldekortContext";
+import { filtrerAapVedtakSomOverlapperPeriode } from "~/aap-meldekort/utils";
 import { sporHendelse } from "~/analytics/analytics";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
@@ -39,19 +44,12 @@ import { formaterBeløp } from "~/utils/number-utils";
 import { YtelsedetaljerModal } from "./detaljer/YtelsedetaljerModal";
 import type { Ytelse } from "./domene";
 import { mapYtelsestypeTilIkon } from "./mapYtelsestypeTilIkon";
+import { finnMeldekortYtelseType } from "./meldekortYtelseKonfig";
 import {
   type GruppertTilbakekreving,
   grupperSammenhengendePerioder,
   grupperTilbakekrevinger,
 } from "./utils";
-
-const YTELSER_MED_MELDEKORT = ["dagpenger"];
-
-function harMeldekortYtelse(stonadType: string): boolean {
-  return YTELSER_MED_MELDEKORT.some(
-    (y) => stonadType.toLowerCase() === y.toLowerCase(),
-  );
-}
 
 type YtelserOversiktProps = {
   arbeidsgiverInformasjonPromise?: Promise<
@@ -171,12 +169,14 @@ const YtelserPanelMedData = ({
           >
             {erMeldekortAktivert ? (
               <MeldekortProvider ytelse="dagpenger">
-                <YtelserTimeline
-                  tilbakekrevinger={tilbakekrevinger}
-                  ytelserMedGruppertePerioder={ytelserMedGruppertePerioder}
-                  nåværendeVindu={nåværendeVindu}
-                  setValgtYtelsePeriode={setValgtYtelsePeriode}
-                />
+                <AapMeldekortProvider>
+                  <YtelserTimeline
+                    tilbakekrevinger={tilbakekrevinger}
+                    ytelserMedGruppertePerioder={ytelserMedGruppertePerioder}
+                    nåværendeVindu={nåværendeVindu}
+                    setValgtYtelsePeriode={setValgtYtelsePeriode}
+                  />
+                </AapMeldekortProvider>
               </MeldekortProvider>
             ) : (
               <YtelserTimeline
@@ -227,6 +227,7 @@ function YtelserTimeline({
 }: YtelserTimelineProps) {
   const erMeldekortAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
   const meldekortState = useMeldekort();
+  const aapState = useAapMeldekort();
 
   /** Antall meldekort som overlapper med en gitt periode (fom/tom), eller null om meldekort ikke er tilgjengelig. */
   const antallMeldekortForPeriode = (
@@ -241,6 +242,18 @@ function YtelserTimeline({
       fom,
       tom,
     ).length;
+  };
+
+  /** Antall AAP-vedtak som overlapper med en gitt periode (fom/tom), eller null om data ikke er tilgjengelig. */
+  const antallAapVedtakForPeriode = (
+    fom: string,
+    tom: string,
+  ): number | null => {
+    if (!erMeldekortAktivert || aapState?.status !== "success") {
+      return null;
+    }
+    return filtrerAapVedtakSomOverlapperPeriode(aapState.vedtak, fom, tom)
+      .length;
   };
 
   return (
@@ -289,7 +302,7 @@ function YtelserTimeline({
       ))}
 
       {ytelserMedGruppertePerioder.map((ytelse) => {
-        const erDagpenger = harMeldekortYtelse(ytelse.stonadType);
+        const meldekortType = finnMeldekortYtelseType(ytelse.stonadType);
 
         const radEtikett = (
           <Tooltip content="Trykk for å se detaljer for alle perioder">
@@ -328,14 +341,24 @@ function YtelserTimeline({
                 gruppertPeriode.totalBeløp,
                 0,
               );
-              const antallMeldekort = erDagpenger
-                ? antallMeldekortForPeriode(
-                    gruppertPeriode.fom,
-                    gruppertPeriode.tom,
-                  )
-                : null;
+              const antallMeldekort =
+                meldekortType === "dagpenger"
+                  ? antallMeldekortForPeriode(
+                      gruppertPeriode.fom,
+                      gruppertPeriode.tom,
+                    )
+                  : meldekortType === "aap"
+                    ? antallAapVedtakForPeriode(
+                        gruppertPeriode.fom,
+                        gruppertPeriode.tom,
+                      )
+                    : null;
+              const meldekortEtikett =
+                meldekortType === "aap" ? "AAP-vedtak" : "meldekort";
               const harMeldekortForPeriode =
-                erDagpenger && antallMeldekort !== null && antallMeldekort > 0;
+                meldekortType !== null &&
+                antallMeldekort !== null &&
+                antallMeldekort > 0;
               const periodeFarge = harMeldekortForPeriode ? "info" : "success";
 
               return (
@@ -367,12 +390,12 @@ function YtelserTimeline({
                     {fomFormatert} – {tomFormatert}
                   </BodyShort>
                   <BodyShort>Sum: {beløpFormatert}</BodyShort>
-                  {erDagpenger &&
+                  {meldekortType !== null &&
                     antallMeldekort !== null &&
                     antallMeldekort > 0 && (
                       <BodyShort className="flex items-center gap-1 mt-1">
                         <InformationSquareIcon aria-hidden />
-                        {antallMeldekort} meldekort
+                        {antallMeldekort} {meldekortEtikett}
                       </BodyShort>
                     )}
                 </TimelinePeriod>

@@ -2159,6 +2159,251 @@
           "info": "808578858"
         }
       ]
+    },
+    {
+      "stonadType": "Arbeidsavklaringspenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2025-09-01",
+            "tom": "2025-09-15"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000001"
+        },
+        {
+          "periode": {
+            "fom": "2025-09-16",
+            "tom": "2025-09-30"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000002"
+        },
+        {
+          "periode": {
+            "fom": "2025-10-01",
+            "tom": "2025-10-16"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000003"
+        },
+        {
+          "periode": {
+            "fom": "2025-10-17",
+            "tom": "2025-10-31"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000004"
+        },
+        {
+          "periode": {
+            "fom": "2025-11-01",
+            "tom": "2025-11-15"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000005"
+        },
+        {
+          "periode": {
+            "fom": "2025-11-16",
+            "tom": "2025-11-30"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000006"
+        },
+        {
+          "periode": {
+            "fom": "2025-12-01",
+            "tom": "2025-12-16"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000007"
+        },
+        {
+          "periode": {
+            "fom": "2025-12-17",
+            "tom": "2025-12-31"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000008"
+        },
+        {
+          "periode": {
+            "fom": "2026-01-01",
+            "tom": "2026-01-16"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000009"
+        },
+        {
+          "periode": {
+            "fom": "2026-01-17",
+            "tom": "2026-01-31"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000010"
+        },
+        {
+          "periode": {
+            "fom": "2026-02-01",
+            "tom": "2026-02-15"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000011"
+        },
+        {
+          "periode": {
+            "fom": "2026-02-16",
+            "tom": "2026-02-28"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000012"
+        },
+        {
+          "periode": {
+            "fom": "2026-03-01",
+            "tom": "2026-03-16"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000013"
+        },
+        {
+          "periode": {
+            "fom": "2026-03-17",
+            "tom": "2026-03-31"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000014"
+        },
+        {
+          "periode": {
+            "fom": "2026-04-01",
+            "tom": "2026-04-15"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000015"
+        },
+        {
+          "periode": {
+            "fom": "2026-04-16",
+            "tom": "2026-04-30"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000016"
+        },
+        {
+          "periode": {
+            "fom": "2026-05-01",
+            "tom": "2026-05-16"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000017"
+        },
+        {
+          "periode": {
+            "fom": "2026-05-17",
+            "tom": "2026-05-31"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000018"
+        },
+        {
+          "periode": {
+            "fom": "2026-06-01",
+            "tom": "2026-06-15"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000019"
+        },
+        {
+          "periode": {
+            "fom": "2026-06-16",
+            "tom": "2026-06-30"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000020"
+        },
+        {
+          "periode": {
+            "fom": "2026-07-01",
+            "tom": "2026-07-16"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000021"
+        },
+        {
+          "periode": {
+            "fom": "2026-07-17",
+            "tom": "2026-07-31"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000022"
+        },
+        {
+          "periode": {
+            "fom": "2026-08-01",
+            "tom": "2026-08-16"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000023"
+        },
+        {
+          "periode": {
+            "fom": "2026-08-17",
+            "tom": "2026-08-31"
+          },
+          "beløp": 7225,
+          "bruttoBeløp": 8500,
+          "kilde": "SOKOS",
+          "info": "990000024"
+        }
+      ]
     }
   ],
   "meldekort": [
@@ -6262,6 +6507,191 @@
       "inntektsår": "2022",
       "næringsinntekt": 310000,
       "lønnsinntekt": 0
+    }
+  ],
+  "aapMeldekort": [
+    {
+      "vedtakId": "DEMO-AAP-TESTBRUKER-1",
+      "status": "LØPENDE",
+      "saksnummer": "DEMOAAP-TB",
+      "vedtakPeriode": {
+        "fraOgMed": "2025-09-01",
+        "tilOgMed": null
+      },
+      "rettighetsType": "BISTANDSBEHOV",
+      "kide": "KELVIN",
+      "tema": "AAP",
+      "vedtaktypeNavn": null,
+      "perioder": [
+        {
+          "fraOgMed": "2025-09-01",
+          "tilOgMed": "2025-09-15",
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-09-16",
+          "tilOgMed": "2025-09-30",
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-10-01",
+          "tilOgMed": "2025-10-16",
+          "arbeidetTimer": 85.71,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-10-17",
+          "tilOgMed": "2025-10-31",
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-11-01",
+          "tilOgMed": "2025-11-15",
+          "arbeidetTimer": 40.18,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-11-16",
+          "tilOgMed": "2025-11-30",
+          "arbeidetTimer": 40.18,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-12-01",
+          "tilOgMed": "2025-12-16",
+          "arbeidetTimer": 85.71,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2025-12-17",
+          "tilOgMed": "2025-12-31",
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-01-01",
+          "tilOgMed": "2026-01-16",
+          "arbeidetTimer": 85.71,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-01-17",
+          "tilOgMed": "2026-01-31",
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-02-01",
+          "tilOgMed": "2026-02-15",
+          "arbeidetTimer": 40.18,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-02-16",
+          "tilOgMed": "2026-02-28",
+          "arbeidetTimer": 34.82,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-03-01",
+          "tilOgMed": "2026-03-16",
+          "arbeidetTimer": 85.71,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-03-17",
+          "tilOgMed": "2026-03-31",
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-04-01",
+          "tilOgMed": "2026-04-15",
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-04-16",
+          "tilOgMed": "2026-04-30",
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-05-01",
+          "tilOgMed": "2026-05-16",
+          "arbeidetTimer": 85.71,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-05-17",
+          "tilOgMed": "2026-05-31",
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-06-01",
+          "tilOgMed": "2026-06-15",
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-06-16",
+          "tilOgMed": "2026-06-30",
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-07-01",
+          "tilOgMed": "2026-07-16",
+          "arbeidetTimer": 85.71,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-07-17",
+          "tilOgMed": "2026-07-31",
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-08-01",
+          "tilOgMed": "2026-08-16",
+          "arbeidetTimer": 85.71,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        },
+        {
+          "fraOgMed": "2026-08-17",
+          "tilOgMed": null,
+          "arbeidetTimer": 80.36,
+          "annenReduksjon": null,
+          "utbetalingsgrad": 100
+        }
+      ]
     }
   ]
 }
