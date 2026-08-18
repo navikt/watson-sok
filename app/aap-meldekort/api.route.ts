@@ -43,8 +43,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
     traceLogging,
   });
 
-  if (aapMeldekort) {
-    logger.info("Hentet AAP-meldekort", { antall: aapMeldekort?.length });
+  if (aapMeldekort.length > 0) {
+    logger.info("Hentet AAP-meldekort", { antall: aapMeldekort.length });
   } else {
     logger.info("Ingen AAP-meldekort funnet");
   }
