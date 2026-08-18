@@ -6686,7 +6686,7 @@
         },
         {
           "fraOgMed": "2026-08-17",
-          "tilOgMed": "2026-08-31",
+          "tilOgMed": null,
           "arbeidetTimer": 80.36,
           "annenReduksjon": null,
           "utbetalingsgrad": 100
