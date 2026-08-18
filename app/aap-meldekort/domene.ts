@@ -7,7 +7,10 @@ const ÅpenPeriodeSchema = z.object({
 
 const AapMeldekortPeriodeSchema = z.object({
   fraOgMed: z.string(),
-  tilOgMed: z.string(),
+  // Nullish: Kelvin returnerer null for å indikere en ÅPEN periode (løper
+  // fra fraOgMed og videre uten kjent sluttdato) — samme konvensjon som
+  // vedtakPeriode/ÅpenPeriodeSchema. Skal IKKE tolkes som en éndags-periode.
+  tilOgMed: z.string().nullish(),
   arbeidetTimer: z.number().nullish(),
   annenReduksjon: z.number().nullish(),
   utbetalingsgrad: z.number().nullish(),

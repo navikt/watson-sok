@@ -164,7 +164,13 @@ function beregnAapTimerForMåned(
       if (!periode.arbeidetTimer) continue;
 
       const fom = parseDatoLokal(periode.fraOgMed);
-      const tom = parseDatoLokal(periode.tilOgMed);
+      // tilOgMed==null betyr en ÅPEN periode (løper fra fraOgMed og videre
+      // uten kjent sluttdato per Kelvin sin konvensjon) — IKKE en éndags-
+      // periode. Klipp til i dag som foreløpig grense for pro-rateringen,
+      // samme prinsipp som brukes andre steder for åpne perioder/vinduer.
+      const tom = periode.tilOgMed
+        ? parseDatoLokal(periode.tilOgMed)
+        : new Date();
 
       const erAktivIMåned = fom <= sisteDag && tom >= førsteDag;
       if (!erAktivIMåned) continue;

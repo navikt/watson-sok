@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import type { AapMeldekortRespons } from "~/aap-meldekort/domene";
 import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
@@ -1357,5 +1357,45 @@ describe("aggregerAapTimerPerMåned", () => {
     // 31 dager / 7 × 37.5 t/uke — samme formel som for dagpenger
     expect(resultat[0].aaTimer).toBeCloseTo((31 / 7) * 37.5, 1);
     expect(resultat[0].mkTimer).toBeCloseTo(160, 1);
+  });
+
+  it("tilOgMed==null er en ÅPEN periode (løper til i dag), ikke en éndags-periode", () => {
+    // Kelvin sin konvensjon: tilOgMed==null betyr perioden fortsatt løper
+    // uten kjent sluttdato — IKKE at perioden bare varer fraOgMed-dagen.
+    // Klipp til "i dag" som foreløpig grense for pro-rateringen.
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2025, 2, 20)); // 20. mars 2025
+
+    const vedtak: AapMeldekortRespons = [
+      lagAapVedtak({
+        perioder: [
+          {
+            // Åpen periode fra 1. mars, fortsatt pågående "i dag" (20. mars).
+            // 20 dager totalt, arbeidetTimer=40 → hele beløpet gjelder mars
+            // siden hele perioden (så langt) er i mars.
+            fraOgMed: "2025-03-01",
+            tilOgMed: null,
+            arbeidetTimer: 40,
+            annenReduksjon: null,
+            utbetalingsgrad: 100,
+          },
+        ],
+      }),
+    ];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [],
+      historikk: [],
+    };
+
+    const resultat = aggregerAapTimerPerMåned(
+      vedtak,
+      arbeidsgiverInformasjon,
+      "2025-03-01",
+      "2025-03-31",
+    );
+
+    expect(resultat[0].mkTimer).toBeCloseTo(40, 1);
+
+    vi.useRealTimers();
   });
 });
