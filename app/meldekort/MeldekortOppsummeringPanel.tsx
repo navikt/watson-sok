@@ -133,7 +133,8 @@ export function MeldekortOppsummeringPanelInnhold({
 
   const laster = !meldekortState || meldekortState.status === "loading";
   const harFeil = meldekortState?.status === "error";
-  const harTimer = timerData?.some((d) => d.mkTimer > 0 || d.aaTimer > 0) ?? false;
+  const harTimer =
+    timerData?.some((d) => d.mkTimer > 0 || d.aaTimer > 0) ?? false;
 
   return (
     <PanelContainer title="AA-timer vs meldekort-timer per måned">
@@ -164,8 +165,8 @@ export function MeldekortOppsummeringPanelInnhold({
         {!laster && !harFeil && arbeidsgiverInformasjon && harTimer && (
           <>
             <BodyShort size="small">
-              Avvik mellom AA-registrerte timer og timer oppgitt i meldekort
-              kan indikere feilutbetaling.
+              Avvik mellom AA-registrerte timer og timer oppgitt i meldekort kan
+              indikere feilutbetaling.
             </BodyShort>
             <TimerSammenligningGraf data={timerData!} />
           </>

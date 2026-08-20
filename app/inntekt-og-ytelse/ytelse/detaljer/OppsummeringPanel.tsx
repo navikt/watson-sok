@@ -73,7 +73,7 @@ export function OppsummeringPanel({
       {visMeldekort && meldekortState && (
         <StatistikkKort
           label="Timer ført på arbeid"
-          verdi={`${meldekortStatistikk?.totalArbeidstimer ?? 0} t`}
+          verdi={`${Math.round(meldekortStatistikk?.totalArbeidstimer ?? 0)} t`}
           isLoading={meldekortLaster}
         />
       )}

@@ -125,9 +125,12 @@ export function AapOppsummeringPanelInnhold({
   const harFeil = aapState?.status === "error";
   // Uten meldekortdata i DENNE spesifikke perioden blir mkTimer alltid 0,
   // som gjør at grafen ville vist "0t meldekort-timer" hver måned — ser ut
-  // som 100 % avvik, men er egentlig bare fravær av data.
+  // som 100 % avvik, men er egentlig bare fravær av data. Det er ikke nok å
+  // sjekke om personen har ET vedtak i det hele tatt (aapState.vedtak.length
+  // > 0) — vedtaket kan ligge helt utenfor den viste perioden (f.eks. en
+  // eldre, historisk ytelsesperiode før vedtaket startet). Sjekk i stedet om
+  // minst én måned i det beregnede tidsvinduet faktisk har meldekort-timer.
   const harRelevantAapData = timerData?.some((d) => d.mkTimer > 0) ?? false;
-  const harAaTimer = timerData?.some((d) => d.aaTimer > 0) ?? false;
 
   return (
     <PanelContainer title="AA-timer vs AAP-meldekort-timer per måned">
@@ -157,7 +160,7 @@ export function AapOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           arbeidsgiverInformasjon != null &&
-          (harRelevantAapData || harAaTimer) &&
+          harRelevantAapData &&
           timerData &&
           timerData.length > 0 && (
             <>
@@ -171,8 +174,7 @@ export function AapOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           arbeidsgiverInformasjon != null &&
-          !harRelevantAapData &&
-          !harAaTimer && (
+          !harRelevantAapData && (
             <Alert variant="info" size="small" inline>
               Ingen data tilgjengelig for valgt periode.
             </Alert>
