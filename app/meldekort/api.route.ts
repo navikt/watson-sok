@@ -1,4 +1,5 @@
 import { type LoaderFunctionArgs, data } from "react-router";
+import z from "zod";
 
 import { logger } from "~/logging/logging";
 import { gjørOppslagApiRequest } from "~/oppslag/api/oppslagApiClient.server";
@@ -52,22 +53,24 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   logger.info(`Henter meldekort for ${ytelse}`);
 
-  const meldekort = await gjørOppslagApiRequest({
-    ident: søkedata.ident,
-    request,
-    navCallId: crypto.randomUUID(),
-    endepunkt: `/oppslag/meldekort?utvidet=${utvidet}`,
-    schema: MeldekortResponsSchema,
-    ekstraherFraMock: (mockData) => mockData.meldekort || [],
-    traceLogging,
-  });
-
-  if (meldekort) {
-    logger.info(`Hentet meldekort for ${ytelse}`, {
-      antall: meldekort?.length,
+  let meldekort: z.infer<typeof MeldekortResponsSchema> = [];
+  try {
+    meldekort = await gjørOppslagApiRequest({
+      ident: søkedata.ident,
+      request,
+      navCallId: crypto.randomUUID(),
+      endepunkt: `/oppslag/meldekort?utvidet=${utvidet}`,
+      schema: MeldekortResponsSchema,
+      ekstraherFraMock: (mockData) => mockData.meldekort || [],
+      traceLogging,
     });
-  } else {
-    logger.info(`Ingen meldekort funnet for ${ytelse}`);
+    logger.info(`Hentet meldekort for ${ytelse}`, { antall: meldekort.length });
+  } catch (err) {
+    // Personen har ingen dagpenger-meldekort, eller dp-datadeling er utilgjengelig.
+    // Returnerer tom liste slik at AA-timer-grafen fortsatt kan vises (jf. fag-beslutning SEARCH-28).
+    logger.info(`Ingen meldekort for ${ytelse} — returnerer tom liste`, {
+      error: String(err),
+    });
   }
 
   return data(meldekort, {
