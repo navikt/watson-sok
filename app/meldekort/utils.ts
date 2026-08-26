@@ -1,5 +1,8 @@
 import type { AapMeldekortRespons } from "~/aap-meldekort/domene";
-import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
+import type {
+  ArbeidsgiverInformasjon,
+  TimerMedTimeloenn,
+} from "~/arbeidsforhold/domene";
 
 import type { Dag, MeldekortRespons } from "./domene";
 
@@ -27,15 +30,23 @@ function harTimeloennIForhold(
 ): forhold is Arbeidsforhold & {
   timerMedTimeloenn: NonNullable<Arbeidsforhold["timerMedTimeloenn"]>;
 } {
-  // Krever minst én oppføring med startdato — Aareg kan returnere en
-  // ikke-tom liste der alle oppføringene mangler startdato (ubrukelige
-  // datapunkter). Uten denne sjekken ville forholdet feilaktig blitt
-  // klassifisert som timelønnet, men aktiveTimeloennEntries ville alltid
-  // blitt tom, og AA-timer ville stille vist 0 selv om personen har en
-  // reell, fast ansettelse (se ansettelsesDetaljer/antallTimerPrUke).
+  // Krever minst én oppføring med enten startdato ELLER rapporteringsmaaneder
+  // — Aareg kan returnere en ikke-tom liste der alle oppføringene mangler
+  // begge deler (ubrukelige datapunkter). Uten denne sjekken ville forholdet
+  // feilaktig blitt klassifisert som timelønnet, men aktiveTimeloennEntries
+  // ville alltid blitt tom, og AA-timer ville stille vist 0 selv om personen
+  // har en reell, fast ansettelse (se ansettelsesDetaljer/antallTimerPrUke).
+  //
+  // Motsatt: hvis MINST ÉN oppføring har rapporteringsmaaneder (selv uten
+  // startdato), skal forholdet regnes som timelønnet — ellers faller HELE
+  // forholdet feilaktig tilbake til antallTimerPrUke (full stillingsprosent)
+  // for alle måneder, som kan gi mange ganger for høye AA-timer sammenlignet
+  // med de faktisk rapporterte timelønnet-timene (se regresjonstest).
   return (
     forhold.timerMedTimeloenn != null &&
-    forhold.timerMedTimeloenn.some((entry) => entry.startdato != null)
+    forhold.timerMedTimeloenn.some(
+      (entry) => entry.startdato != null || entry.rapporteringsmaaneder != null,
+    )
   );
 }
 
@@ -203,6 +214,43 @@ function parseDatoLokal(datoStreng: string): Date {
   return new Date(år, mnd - 1, dag);
 }
 
+/** Returnerer siste dag i en gitt "YYYY-MM"-måned. */
+function sisteDagIÅrMåned(årMåned: string): Date {
+  const [år, mnd] = årMåned.split("-").map(Number);
+  return new Date(år, mnd, 0);
+}
+
+/**
+ * Bestemmer effektiv fom/tom for en timerMedTimeloenn-oppføring, med
+ * rapporteringsmaaneder som fallback når startdato/sluttdato mangler.
+ *
+ * - Har oppføringen startdato: bruk eksakte dager (uendret oppførsel).
+ *   tom=null betyr en genuint ÅPEN periode (ukjent sluttdato).
+ * - Mangler startdato, men har rapporteringsmaaneder: bruk hele
+ *   kalendermåned(e) fra `fom`-måneden til og med `tom`-måneden (eller kun
+ *   `fom`-måneden hvis `tom` er null) — ALDRI en åpen periode, siden
+ *   rapporteringsmaaneder alltid representerer avgrensede måneder.
+ * - Har verken deler: `null` (ubrukelig datapunkt, skal ikke telles).
+ */
+function hentEffektivPeriodeForTimerEntry(
+  timerEntry: TimerMedTimeloenn,
+): { fom: Date; tom: Date | null } | null {
+  if (timerEntry.startdato) {
+    return {
+      fom: parseDatoLokal(timerEntry.startdato),
+      tom: timerEntry.sluttdato ? parseDatoLokal(timerEntry.sluttdato) : null,
+    };
+  }
+  if (timerEntry.rapporteringsmaaneder) {
+    const { fom: fraMåned, tom: tilMåned } = timerEntry.rapporteringsmaaneder;
+    return {
+      fom: parseDatoLokal(fraMåned),
+      tom: sisteDagIÅrMåned(tilMåned ?? fraMåned),
+    };
+  }
+  return null;
+}
+
 function genererMåneder(fraDato: string, tilDato: string): string[] {
   const måneder: string[] = [];
   const fra = parseDatoLokal(fraDato);
@@ -247,23 +295,12 @@ function beregnAaTimerForMåned(
     // Hvis timerMedTimeloenn er definert og ikke-tom er personen timelønnet.
     // Da bruker vi aldri antallTimerPrUke som fallback — måneder uten data gir 0.
     if (harTimeloennIForhold(forhold)) {
-      const aktiveTimeloennEntries = forhold.timerMedTimeloenn.filter(
-        (timerEntry) => {
-          if (!timerEntry.startdato) return false;
-          const fom = parseDatoLokal(timerEntry.startdato);
-          const tom = timerEntry.sluttdato
-            ? parseDatoLokal(timerEntry.sluttdato)
-            : null;
-          return fom <= sisteDag && (tom === null || tom >= førsteDag);
-        },
-      );
+      for (const timerEntry of forhold.timerMedTimeloenn) {
+        const periode = hentEffektivPeriodeForTimerEntry(timerEntry);
+        if (!periode) continue; // Verken startdato eller rapporteringsmaaneder — ubrukelig datapunkt
+        const { fom, tom } = periode;
 
-      for (const timerEntry of aktiveTimeloennEntries) {
-        if (!timerEntry.startdato) continue;
-        const fom = parseDatoLokal(timerEntry.startdato);
-        const tom = timerEntry.sluttdato
-          ? parseDatoLokal(timerEntry.sluttdato)
-          : null;
+        if (fom > sisteDag || (tom !== null && tom < førsteDag)) continue;
 
         const effektivFom = fom > førsteDag ? fom : førsteDag;
         const effektivTom = tom !== null && tom < sisteDag ? tom : sisteDag;
@@ -273,8 +310,10 @@ function beregnAaTimerForMåned(
 
         if (tom !== null) {
           // antall = totale timer for perioden fom→tom (a-ordningen
-          // rapporterer periodetotaler, ikke uketimer). Pro-rater på
-          // andelen av perioden som faller i denne måneden.
+          // rapporterer periodetotaler, ikke uketimer — det samme gjelder
+          // rapporteringsmaaneder-fallback, som alltid representerer hele
+          // kalendermåneder). Pro-rater på andelen av perioden som faller
+          // i denne måneden.
           const totalDagerIPeriode =
             Math.round(
               (tom.getTime() - fom.getTime()) / (1000 * 60 * 60 * 24),
