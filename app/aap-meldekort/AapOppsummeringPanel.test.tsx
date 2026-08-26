@@ -51,6 +51,35 @@ function lagTimelønnetArbeidsgiverInformasjon(): ArbeidsgiverInformasjon {
   };
 }
 
+/**
+ * Arbeidsforhold UTEN timerMedTimeloenn — kun fastlønnet/full stilling
+ * (antallTimerPrUke). erTimelønnet() skal returnere false for denne, men
+ * beregnAaTimerForMåned faller likevel tilbake til antallTimerPrUke internt
+ * for AA-timer-beregningen (samme design som for fastlønnede DP-brukere) —
+ * se regresjonstesten under for hvorfor dette IKKE skal utløse avvik-banner.
+ */
+function lagIkkeTimelønnetArbeidsgiverInformasjon(): ArbeidsgiverInformasjon {
+  return {
+    løpendeArbeidsforhold: [
+      {
+        arbeidsgiver: "Testbedriften AS",
+        organisasjonsnummer: "123456789",
+        ansettelsesDetaljer: [
+          {
+            type: "Ordinær",
+            stillingsprosent: 100,
+            antallTimerPrUke: 37.5,
+            periode: { fom: "2020-01-01", tom: null },
+            yrke: null,
+          },
+        ],
+        timerMedTimeloenn: [],
+      },
+    ],
+    historikk: [],
+  };
+}
+
 describe("AapOppsummeringPanelInnhold", () => {
   it("viser ikke 'Ingen timer'-melding og rendrer grafen når det finnes AAP-vedtak for timelønnet bruker", () => {
     vi.mocked(useAapMeldekort).mockReturnValue({
@@ -206,6 +235,40 @@ describe("AapOppsummeringPanelInnhold", () => {
       />,
     );
 
+    expect(
+      screen.queryByText(/perioder med avvik|periode med avvik/),
+    ).toBeNull();
+  });
+
+  it("viser ikke avvik-banner for ikke-timelønnet bruker, selv om intern antallTimerPrUke-beregning ville gitt avvik", () => {
+    // Regresjonstest: for en ikke-timelønnet bruker viser panelet
+    // 'Ingen timer fra AA-registeret å vise' — det ville vært selvmotsigende
+    // å SAMTIDIG vise et avvik-varsel basert på en AA-timer-verdi
+    // (antallTimerPrUke-fallback) vi eksplisitt har valgt å ikke vise fram.
+    vi.mocked(useAapMeldekort).mockReturnValue({
+      status: "success",
+      vedtak: [
+        lagVedtakMedPerioder([
+          {
+            fraOgMed: "2024-05-01",
+            tilOgMed: "2024-05-14",
+            arbeidetTimer: 2, // Langt unna antallTimerPrUke-baserte ~75t/mnd — ville gitt stort avvik
+            annenReduksjon: null,
+            utbetalingsgrad: 100,
+          },
+        ]),
+      ],
+    });
+
+    render(
+      <AapOppsummeringPanelInnhold
+        arbeidsgiverInformasjon={lagIkkeTimelønnetArbeidsgiverInformasjon()}
+        fraDato="2024-04-01"
+        tilDato="2024-06-30"
+      />,
+    );
+
+    expect(screen.getByText(/Ingen timer fra AA-registeret/)).toBeDefined();
     expect(
       screen.queryByText(/perioder med avvik|periode med avvik/),
     ).toBeNull();
