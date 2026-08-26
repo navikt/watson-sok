@@ -20,8 +20,11 @@ const AnsettelsesDetaljSchema = z.object({
  * ikke eksakte dager) — se beregnAaTimerForMåned i meldekort/utils.ts.
  */
 const RapporteringsperiodeSchema = z.object({
-  fom: z.string(),
-  tom: z.string().nullable(),
+  fom: z.string().regex(/^\d{4}-\d{2}$/),
+  tom: z
+    .string()
+    .regex(/^\d{4}-\d{2}$/)
+    .nullable(),
 });
 
 /**
