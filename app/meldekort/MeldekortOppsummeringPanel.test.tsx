@@ -291,4 +291,30 @@ describe("MeldekortOppsummeringPanelInnhold", () => {
     const månedGrupper = grafRegion.querySelectorAll('g[role="img"]');
     expect(månedGrupper).toHaveLength(3);
   });
+
+  it("viser ikke avvik-banner for fastlønnet bruker, selv om intern antallTimerPrUke-beregning ville gitt avvik", () => {
+    // Regresjonstest: for en ikke-timelønnet (fastlønnet) bruker viser
+    // panelet 'Ingen timer fra AA-registeret å vise' — det ville vært
+    // selvmotsigende å SAMTIDIG vise et avvik-varsel basert på en AA-timer-
+    // verdi (antallTimerPrUke-fallback) vi eksplisitt har valgt å ikke vise.
+    vi.mocked(useMeldekort).mockReturnValue({
+      status: "success",
+      meldekort: [
+        lagMeldekortMedArbeid("2024-05-01", "2024-05-14", 2), // Langt unna antallTimerPrUke-baserte ~75t/mnd
+      ],
+    });
+
+    render(
+      <MeldekortOppsummeringPanelInnhold
+        arbeidsgiverInformasjon={lagFastlønnetArbeidsgiverInformasjon()}
+        fraDato="2024-04-01"
+        tilDato="2024-06-30"
+      />,
+    );
+
+    expect(screen.getByText(/Ingen timer fra AA-registeret/)).toBeDefined();
+    expect(
+      screen.queryByText(/perioder med avvik|periode med avvik/),
+    ).toBeNull();
+  });
 });

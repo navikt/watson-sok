@@ -306,6 +306,46 @@ function lagArbeidsgiverInformasjonMedTimeloenn(
   };
 }
 
+/**
+ * Bygger et arbeidsforhold der timerMedTimeloenn-oppføringer KUN har
+ * rapporteringsmaaneder (ingen startdato/sluttdato) — reproduserer
+ * scenarioet rapportert av Nora Helgheim Holte: Aareg rapporterer noen
+ * ganger timelønnet-timer uten opptjeningsdatoer, kun rapporteringsmåned.
+ */
+function lagArbeidsgiverInformasjonMedRapporteringsmaaned(
+  timeroppføringer: Array<{
+    antall: number;
+    fom: string; // "YYYY-MM"
+    tom?: string | null;
+  }>,
+  antallTimerPrUke = 37.5,
+): ArbeidsgiverInformasjon {
+  return {
+    løpendeArbeidsforhold: [
+      {
+        arbeidsgiver: "Testbedriften AS",
+        organisasjonsnummer: "123456789",
+        ansettelsesDetaljer: [
+          {
+            type: "Ordinær",
+            stillingsprosent: 100,
+            antallTimerPrUke,
+            periode: { fom: "2020-01-01", tom: null },
+            yrke: null,
+          },
+        ],
+        timerMedTimeloenn: timeroppføringer.map((t) => ({
+          antall: t.antall,
+          startdato: null,
+          sluttdato: null,
+          rapporteringsmaaneder: { fom: t.fom, tom: t.tom ?? null },
+        })),
+      },
+    ],
+    historikk: [],
+  };
+}
+
 describe("aggregerTimerPerMåned", () => {
   it("returnerer riktig antall måneder i perioden", () => {
     const meldekort: MeldekortRespons = [];
@@ -1089,6 +1129,130 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
 
     // Skal telles kun én gang: 30 dager / 7 × 37.5 t/uke
     expect(resultat[0].aaTimer).toBeCloseTo((30 / 7) * 37.5, 1);
+  });
+
+  it("bruker rapporteringsmaaneder som fallback-periode når startdato mangler (Nora Helgheim Holte sitt funn)", () => {
+    // Reelt scenario: Aareg rapporterer timelønnet-timer uten
+    // opptjeningsdatoer (startdato/sluttdato), kun rapporteringsperiode
+    // på månedsnivå (f.eks. "februar" 2026). Før fiksen falt HELE
+    // arbeidsforholdet tilbake til antallTimerPrUke (full stillingsprosent)
+    // for alle måneder, og ga AA-timer mange ganger høyere enn de faktisk
+    // rapporterte timelønnet-timene (207t/293t/119t vist i Watson, mot
+    // 18.5t/7t/15t faktisk rapportert per måned).
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon =
+      lagArbeidsgiverInformasjonMedRapporteringsmaaned([
+        { antall: 18.5, fom: "2026-02" },
+      ]);
+
+    const resultatFebruar = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2026-02-01",
+      "2026-02-28",
+    );
+    expect(resultatFebruar[0].aaTimer).toBeCloseTo(18.5, 1);
+
+    // Måneder UTEN rapporteringsmaaneder-treff skal IKKE falle tilbake til
+    // antallTimerPrUke — de skal gi 0, siden vi nå vet at forholdet er
+    // timelønnet (ikke fastlønnet).
+    const resultatMars = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2026-03-01",
+      "2026-03-31",
+    );
+    expect(resultatMars[0].aaTimer).toBe(0);
+  });
+
+  it("håndterer flere rapporteringsmaaneder-oppføringer i ulike måneder uten kryssforurensning", () => {
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon =
+      lagArbeidsgiverInformasjonMedRapporteringsmaaned([
+        { antall: 7, fom: "2026-04" },
+        { antall: 15, fom: "2026-07" },
+      ]);
+
+    const april = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2026-04-01",
+      "2026-04-30",
+    );
+    const juli = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2026-07-01",
+      "2026-07-31",
+    );
+
+    expect(april[0].aaTimer).toBeCloseTo(7, 1);
+    expect(juli[0].aaTimer).toBeCloseTo(15, 1);
+  });
+
+  it("pro-raterer rapporteringsmaaneder som spenner over flere måneder", () => {
+    // rapporteringsmaaneder.tom !== fom betyr at timene gjelder for HELE
+    // spennet fra-til-måned — pro-rater på andel dager i hver måned,
+    // samme prinsipp som periode-baserte oppføringer med startdato/sluttdato.
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon =
+      lagArbeidsgiverInformasjonMedRapporteringsmaaned([
+        { antall: 60, fom: "2026-01", tom: "2026-02" },
+      ]);
+
+    // Januar: 31 dager, februar: 28 dager (2026 er ikke skuddår) → 59 dager totalt
+    const januar = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2026-01-01",
+      "2026-01-31",
+    );
+    const februar = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2026-02-01",
+      "2026-02-28",
+    );
+
+    expect(januar[0].aaTimer).toBeCloseTo(60 * (31 / 59), 1);
+    expect(februar[0].aaTimer).toBeCloseTo(60 * (28 / 59), 1);
+    expect(januar[0].aaTimer + februar[0].aaTimer).toBeCloseTo(60, 1);
+  });
+
+  it("ignorerer oppføringer som mangler BÅDE startdato og rapporteringsmaaneder", () => {
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [
+        {
+          arbeidsgiver: "Testbedriften AS",
+          organisasjonsnummer: "123456789",
+          ansettelsesDetaljer: [
+            {
+              type: "Ordinær",
+              stillingsprosent: 100,
+              antallTimerPrUke: 37.5,
+              periode: { fom: "2020-01-01", tom: null },
+              yrke: null,
+            },
+          ],
+          timerMedTimeloenn: [
+            { antall: 999, startdato: null, sluttdato: null },
+          ],
+        },
+      ],
+      historikk: [],
+    };
+
+    // Ingen oppføring har verken startdato eller rapporteringsmaaneder →
+    // harTimeloennIForhold skal returnere false → fall tilbake til
+    // antallTimerPrUke (fastlønnet-logikk), IKKE 999.
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2026-02-01",
+      "2026-02-28",
+    );
+    expect(resultat[0].aaTimer).toBeCloseTo((28 / 7) * 37.5, 1);
   });
 });
 

@@ -139,13 +139,16 @@ export function MeldekortOppsummeringPanelInnhold({
   return (
     <PanelContainer title="AA-timer vs meldekort-timer per måned">
       <div className="flex flex-col gap-4">
-        {!laster && !harFeil && antallMånederMedAvvik > 0 && (
-          <Alert variant="warning" size="small">
-            {antallMånederMedAvvik === 1
-              ? "1 periode med avvik mellom meldekort og AA-registreringen"
-              : `${antallMånederMedAvvik} perioder med avvik mellom meldekort og AA-registreringen`}
-          </Alert>
-        )}
+        {!laster &&
+          !harFeil &&
+          erTimelønnetBruker &&
+          antallMånederMedAvvik > 0 && (
+            <Alert variant="warning" size="small">
+              {antallMånederMedAvvik === 1
+                ? "1 periode med avvik mellom meldekort og AA-registreringen"
+                : `${antallMånederMedAvvik} perioder med avvik mellom meldekort og AA-registreringen`}
+            </Alert>
+          )}
 
         {harFeil && (
           <Alert variant="error" size="small" inline>

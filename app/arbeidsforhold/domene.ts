@@ -14,6 +14,20 @@ const AnsettelsesDetaljSchema = z.object({
 });
 
 /**
+ * Rapporteringsperiode på månedsnivå ("YYYY-MM") for en timerMedTimeloenn-
+ * oppføring. Brukes som fallback-periode når startdato/sluttdato mangler
+ * (Aareg rapporterer i så fall kun hvilken(e) måned(er) timene gjelder for,
+ * ikke eksakte dager) — se beregnAaTimerForMåned i meldekort/utils.ts.
+ */
+const RapporteringsperiodeSchema = z.object({
+  fom: z.string().regex(/^\d{4}-\d{2}$/),
+  tom: z
+    .string()
+    .regex(/^\d{4}-\d{2}$/)
+    .nullable(),
+});
+
+/**
  * Timer rapportert for timelønnet-arbeid per opptjeningsperiode.
  * Eksponeres av nav-persondata-api fra AAREG.
  * Format for startdato/sluttdato: "YYYY-MM-DD"
@@ -22,9 +36,10 @@ const TimerMedTimeloennSchema = z.object({
   antall: z.number(),
   startdato: z.string().nullable(),
   sluttdato: z.string().nullish(),
+  rapporteringsmaaneder: RapporteringsperiodeSchema.nullish(),
 });
 
-type TimerMedTimeloenn = z.infer<typeof TimerMedTimeloennSchema>;
+export type TimerMedTimeloenn = z.infer<typeof TimerMedTimeloennSchema>;
 
 const ArbeidsforholdSchema = z.object({
   id: z.string().optional(),
