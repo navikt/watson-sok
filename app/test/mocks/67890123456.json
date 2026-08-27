@@ -6514,36 +6514,6 @@
       "innsendtTidspunkt": "2026-08-31T09:00:00",
       "registrertArbeidssoker": true,
       "meldedato": "2026-08-31"
-    },
-    {
-      "dager": [
-        {
-          "dato": "2026-08-31",
-          "aktiviteter": [
-            {
-              "id": "demo-2026-08-31",
-              "type": "Arbeid",
-              "timer": 7.91,
-              "dato": "2026-08-31"
-            }
-          ],
-          "dagIndex": 0
-        }
-      ],
-      "id": "demo-mk-2026-08-31",
-      "periode": {
-        "fraOgMed": "2026-08-31",
-        "tilOgMed": "2026-08-31"
-      },
-      "opprettetAv": "Dagpenger",
-      "migrert": false,
-      "kilde": {
-        "rolle": "Bruker",
-        "ident": "67890123456"
-      },
-      "innsendtTidspunkt": "2026-09-01T09:00:00",
-      "registrertArbeidssoker": true,
-      "meldedato": "2026-09-01"
     }
   ],
   "pensjonsgivendeInntekt": [
