@@ -5,7 +5,7 @@ import { useAapMeldekort } from "~/aap-meldekort/AapMeldekortContext";
 import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import { TimerSammenligningGraf } from "~/meldekort/TimerSammenligningGraf";
-import { aggregerAapTimerPerMåned, erTimelønnet } from "~/meldekort/utils";
+import { aggregerAapTimerPerMåned } from "~/meldekort/utils";
 import {
   PanelContainer,
   PanelContainerSkeleton,
@@ -123,8 +123,6 @@ export function AapOppsummeringPanelInnhold({
 
   const laster = !aapState || aapState.status === "loading";
   const harFeil = aapState?.status === "error";
-  const erTimelønnetBruker =
-    arbeidsgiverInformasjon != null && erTimelønnet(arbeidsgiverInformasjon);
   // Uten meldekortdata i DENNE spesifikke perioden blir mkTimer alltid 0,
   // som gjør at grafen ville vist "0t meldekort-timer" hver måned — ser ut
   // som 100 % avvik, men er egentlig bare fravær av data. Det er ikke nok å
@@ -165,15 +163,6 @@ export function AapOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           arbeidsgiverInformasjon != null &&
-          !erTimelønnetBruker && (
-            <Alert variant="info" size="small" inline>
-              Ingen timer fra AA-registeret å vise. Timer vises kun for
-              timelønnede.
-            </Alert>
-          )}
-        {!laster &&
-          !harFeil &&
-          erTimelønnetBruker &&
           harRelevantAapData &&
           timerData &&
           timerData.length > 0 && (
@@ -187,8 +176,8 @@ export function AapOppsummeringPanelInnhold({
           )}
         {!laster &&
           !harFeil &&
-          erTimelønnetBruker &&
-          (!harRelevantAapData || !timerData || timerData.length === 0) && (
+          arbeidsgiverInformasjon != null &&
+          !harRelevantAapData && (
             <Alert variant="info" size="small" inline>
               Ingen data tilgjengelig for valgt periode.
             </Alert>

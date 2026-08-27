@@ -93,7 +93,7 @@ describe("MeldekortOppsummeringPanelInnhold", () => {
     expect(screen.getByRole("region", { name: /Stolpediagram/ })).toBeDefined();
   });
 
-  it("viser 'Ingen timer'-melding for fastlønnet bruker (ingen timerMedTimeloenn)", () => {
+  it("viser grafen for fastlønnet bruker (ingen timerMedTimeloenn) basert på antallTimerPrUke", () => {
     render(
       <MeldekortOppsummeringPanelInnhold
         arbeidsgiverInformasjon={lagFastlønnetArbeidsgiverInformasjon()}
@@ -102,10 +102,11 @@ describe("MeldekortOppsummeringPanelInnhold", () => {
       />,
     );
 
-    expect(screen.getByText(/Ingen timer fra AA-registeret/)).toBeDefined();
+    expect(screen.queryByText(/Ingen timer fra AA-registeret/)).toBeNull();
+    expect(screen.getByRole("region", { name: /Stolpediagram/ })).toBeDefined();
   });
 
-  it("viser 'Ingen timer'-melding når timerMedTimeloenn er tom liste", () => {
+  it("viser 'Ingen data'-melding når timerMedTimeloenn er tom liste og ingen antallTimerPrUke", () => {
     const info: ArbeidsgiverInformasjon = {
       løpendeArbeidsforhold: [
         {
@@ -126,7 +127,7 @@ describe("MeldekortOppsummeringPanelInnhold", () => {
       />,
     );
 
-    expect(screen.getByText(/Ingen timer fra AA-registeret/)).toBeDefined();
+    expect(screen.getByText(/Ingen data tilgjengelig/)).toBeDefined();
   });
 
   it("viser grafen når timerMedTimeloenn kun finnes i historikk (avsluttet arbeidsforhold)", () => {

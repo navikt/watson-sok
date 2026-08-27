@@ -20,7 +20,11 @@ import { useEffect, useMemo, useState } from "react";
 
 import { StatistikkKort } from "~/paneler/StatistikkKort";
 import { useDisclosure } from "~/use-disclosure/useDisclosure";
-import { formaterDato, formaterTilIsoDato } from "~/utils/date-utils";
+import {
+  formaterDato,
+  formaterMeldekortperiodeMedUke,
+  formaterTilIsoDato,
+} from "~/utils/date-utils";
 import { formaterDesimaltall } from "~/utils/number-utils";
 
 import type { AktivitetType, Dag, MeldekortRespons } from "./domene";
@@ -157,8 +161,11 @@ const MeldekortVisning = ({
             <div className="flex flex-wrap items-start justify-between gap-2">
               <div className="flex flex-col gap-1">
                 <Heading level="3" size="small">
-                  Periode {formaterDato(aktivtMeldekort.periode.fraOgMed)} –{" "}
-                  {formaterDato(aktivtMeldekort.periode.tilOgMed)}
+                  Periode{" "}
+                  {formaterMeldekortperiodeMedUke(
+                    aktivtMeldekort.periode.fraOgMed,
+                    aktivtMeldekort.periode.tilOgMed,
+                  )}
                 </Heading>
                 <BodyShort size="small">
                   Meldekort-ID: {aktivtMeldekort.id} – Meldedato:{" "}

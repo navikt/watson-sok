@@ -7,7 +7,7 @@ import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { useMeldekort } from "~/meldekort/MeldekortContext";
 import { TimerSammenligningGraf } from "~/meldekort/TimerSammenligningGraf";
-import { aggregerTimerPerMåned, erTimelønnet } from "~/meldekort/utils";
+import { aggregerTimerPerMåned } from "~/meldekort/utils";
 import {
   PanelContainer,
   PanelContainerSkeleton,
@@ -133,8 +133,8 @@ export function MeldekortOppsummeringPanelInnhold({
 
   const laster = !meldekortState || meldekortState.status === "loading";
   const harFeil = meldekortState?.status === "error";
-  const erTimelønnetBruker =
-    arbeidsgiverInformasjon != null && erTimelønnet(arbeidsgiverInformasjon);
+  const harTimer =
+    timerData?.some((d) => d.mkTimer > 0 || d.aaTimer > 0) ?? false;
 
   return (
     <PanelContainer title="AA-timer vs meldekort-timer per måned">
@@ -160,41 +160,25 @@ export function MeldekortOppsummeringPanelInnhold({
         {laster && (
           <Skeleton variant="rounded" height={240} className="w-full" />
         )}
-        {!laster && !harFeil && arbeidsgiverInformasjon == null && (
+        {!laster && !harFeil && !arbeidsgiverInformasjon && (
           <Alert variant="info" size="small" inline>
             Ingen data tilgjengelig for valgt periode.
           </Alert>
         )}
-        {!laster &&
-          !harFeil &&
-          arbeidsgiverInformasjon != null &&
-          !erTimelønnetBruker && (
-            <Alert variant="info" size="small" inline>
-              Ingen timer fra AA-registeret å vise. Timer vises kun for
-              timelønnede.
-            </Alert>
-          )}
-        {!laster &&
-          !harFeil &&
-          erTimelønnetBruker &&
-          timerData &&
-          timerData.length > 0 && (
-            <>
-              <BodyShort size="small">
-                Avvik mellom AA-registrerte timer og timer oppgitt i meldekort
-                kan indikere feilutbetaling.
-              </BodyShort>
-              <TimerSammenligningGraf data={timerData} />
-            </>
-          )}
-        {!laster &&
-          !harFeil &&
-          erTimelønnetBruker &&
-          (!timerData || timerData.length === 0) && (
-            <Alert variant="info" size="small" inline>
-              Ingen data tilgjengelig for valgt periode.
-            </Alert>
-          )}
+        {!laster && !harFeil && arbeidsgiverInformasjon && harTimer && (
+          <>
+            <BodyShort size="small">
+              Avvik mellom AA-registrerte timer og timer oppgitt i meldekort kan
+              indikere feilutbetaling.
+            </BodyShort>
+            <TimerSammenligningGraf data={timerData!} />
+          </>
+        )}
+        {!laster && !harFeil && arbeidsgiverInformasjon && !harTimer && (
+          <Alert variant="info" size="small" inline>
+            Ingen data tilgjengelig for valgt periode.
+          </Alert>
+        )}
       </div>
     </PanelContainer>
   );
