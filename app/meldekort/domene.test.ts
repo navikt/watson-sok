@@ -2,7 +2,8 @@ import { describe, expect, it } from "vitest";
 
 import { MeldekortResponsSchema, parsePTDuration } from "./domene";
 
-// Representativt utdrag fra faktisk prod-trace (dp-datadeling Q1-2023 til 2026-08).
+// Syntetisk testdata som gjenspeiler formatet fra faktisk prod-trace (dp-datadeling).
+// Ident "99999999999" er et fiktivt/anonymisert testnummer — ikke ekte persondata.
 // Brukes til å reprodusere buggen der meldekort ble ignorert fordi:
 //   1. `migrert`-feltet mangler i produksjonsdata
 //   2. `timer`-feltet er ISO 8601-varighetsstreng, ikke desimaltall
@@ -327,12 +328,12 @@ describe("parsePTDuration", () => {
     expect(parsePTDuration("PT7H30M")).toBe(7.5);
   });
 
-  it("returnerer 0 for ugyldig strengformat", () => {
-    expect(parsePTDuration("ugyldig")).toBe(0);
+  it("returnerer null for ugyldig strengformat (bevarer 'manglende timer'-semantikk)", () => {
+    expect(parsePTDuration("ugyldig")).toBeNull();
   });
 
-  it("returnerer 0 for tom varighet", () => {
-    expect(parsePTDuration("PT")).toBe(0);
+  it("returnerer null for tom varighet (bevarer 'manglende timer'-semantikk)", () => {
+    expect(parsePTDuration("PT")).toBeNull();
   });
 
   it("inkluderer sekunder i beregningen", () => {
