@@ -51,19 +51,19 @@ function harTimeloennIForhold(
 }
 
 /**
- * Fjerner duplikate ansettelsesDetaljer-oppføringer (identisk innhold).
- * Aareg kan i sjeldne tilfeller returnere samme detalj flere ganger for
- * samme arbeidsforhold — uten deduplisering ville AA-timer blitt telt
- * dobbelt/tredobbelt for den overlappende perioden.
+ * Fjerner duplikate oppføringer med identisk innhold.
+ * Aareg kan i sjeldne tilfeller returnere samme oppføring flere ganger for
+ * samme arbeidsforhold — gjelder både ansettelsesDetaljer og timerMedTimeloenn.
+ * Uten deduplisering vil AA-timer telles dobbelt/tredobbelt for perioden.
  */
-function dedupliserAnsettelsesDetaljer<T>(detaljer: T[]): T[] {
+function dedupliser<T>(oppføringer: T[]): T[] {
   const sett = new Set<string>();
   const unike: T[] = [];
-  for (const detalj of detaljer) {
-    const nøkkel = JSON.stringify(detalj);
+  for (const oppføring of oppføringer) {
+    const nøkkel = JSON.stringify(oppføring);
     if (!sett.has(nøkkel)) {
       sett.add(nøkkel);
-      unike.push(detalj);
+      unike.push(oppføring);
     }
   }
   return unike;
@@ -295,7 +295,7 @@ function beregnAaTimerForMåned(
     // Hvis timerMedTimeloenn er definert og ikke-tom er personen timelønnet.
     // Da bruker vi aldri antallTimerPrUke som fallback — måneder uten data gir 0.
     if (harTimeloennIForhold(forhold)) {
-      for (const timerEntry of forhold.timerMedTimeloenn) {
+      for (const timerEntry of dedupliser(forhold.timerMedTimeloenn)) {
         const periode = hentEffektivPeriodeForTimerEntry(timerEntry);
         if (!periode) continue; // Verken startdato eller rapporteringsmaaneder — ubrukelig datapunkt
         const { fom, tom } = periode;
@@ -329,9 +329,7 @@ function beregnAaTimerForMåned(
         }
       }
     } else {
-      for (const detalj of dedupliserAnsettelsesDetaljer(
-        forhold.ansettelsesDetaljer,
-      )) {
+      for (const detalj of dedupliser(forhold.ansettelsesDetaljer)) {
         if (!detalj.antallTimerPrUke) continue;
 
         // periode.fom/tom har dag-presisjon (LocalDate fra backend) —
