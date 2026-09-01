@@ -1131,6 +1131,38 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
     expect(resultat[0].aaTimer).toBeCloseTo((30 / 7) * 37.5, 1);
   });
 
+  it("teller ikke AA-timer flere ganger ved duplikate timerMedTimeloenn-oppføringer (regresjonstest: Aareg-bug)", () => {
+    // Reell Aareg-bug: samme timerMedTimeloenn-oppføring returnert 3 ganger.
+    // Uten deduplisering telles timene 3x → «alt for mange timer fra AA-registeret».
+    const identiskEntry = {
+      antall: 162,
+      startdato: "2026-08-01",
+      sluttdato: "2026-08-31",
+    };
+    const meldekort: MeldekortRespons = [];
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [
+        {
+          arbeidsgiver: "Arbeidsgiver AS",
+          organisasjonsnummer: "123456789",
+          ansettelsesDetaljer: [],
+          timerMedTimeloenn: [identiskEntry, identiskEntry, identiskEntry],
+        },
+      ],
+      historikk: [],
+    };
+
+    const resultat = aggregerTimerPerMåned(
+      meldekort,
+      arbeidsgiverInformasjon,
+      "2026-08-01",
+      "2026-08-31",
+    );
+
+    // Skal telles kun én gang: 162 timer (ikke 486)
+    expect(resultat[0].aaTimer).toBeCloseTo(162, 1);
+  });
+
   it("bruker rapporteringsmaaneder som fallback-periode når startdato mangler (Nora Helgheim Holte sitt funn)", () => {
     // Reelt scenario: Aareg rapporterer timelønnet-timer uten
     // opptjeningsdatoer (startdato/sluttdato), kun rapporteringsperiode
