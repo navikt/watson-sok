@@ -1,0 +1,7849 @@
+{
+  "utrekkstidspunkt": "2026-09-02T08:10:29.632000000",
+  "saksbehandlerIdent": "test-user",
+  "fødselsnummer": "99999999999",
+  "tilgang": {
+    "tilgang": "OK",
+    "harUtvidetTilgang": true
+  },
+  "personInformasjon": {
+    "navn": {
+      "fornavn": "Mr.",
+      "mellomnavn": null,
+      "etternavn": "Pink"
+    },
+    "aktørId": "99999999999",
+    "adresse": {
+      "norskAdresse": {
+        "adressenavn": "Silkeveien",
+        "husnummer": "6",
+        "husbokstav": "C",
+        "postnummer": "1711",
+        "kommunenummer": "3105",
+        "poststed": "1711"
+      },
+      "utenlandskAdresse": null
+    },
+    "adresseHistorikk": [
+      {
+        "adresse": {
+          "norskAdresse": {
+            "adressenavn": "Pollygata",
+            "husnummer": "46",
+            "husbokstav": null,
+            "postnummer": "1706",
+            "kommunenummer": "3105",
+            "poststed": "1706"
+          },
+          "utenlandskAdresse": null
+        },
+        "gyldigFraOgMed": "2021-09-22T00:00",
+        "gyldigTilOgMed": "2025-03-31"
+      },
+      {
+        "adresse": {
+          "norskAdresse": {
+            "adressenavn": "Silkeveien",
+            "husnummer": "6",
+            "husbokstav": "C",
+            "postnummer": "1711",
+            "kommunenummer": "3105",
+            "poststed": "1711"
+          },
+          "utenlandskAdresse": null
+        },
+        "gyldigFraOgMed": "2025-04-01T00:00",
+        "gyldigTilOgMed": null
+      }
+    ],
+    "telefonnummer": [
+      {
+        "landskode": "+47",
+        "nummer": "46527499",
+        "prioritet": 1
+      }
+    ],
+    "adressebeskyttelse": "UGRADERT",
+    "familemedlemmer": [
+      {
+        "ident": "99999999991",
+        "rolle": "BARN",
+        "fornavn": null,
+        "mellomnavn": null,
+        "etternavn": null,
+        "fødselsdato": null,
+        "adressebeskyttelse": "UGRADERT"
+      },
+      {
+        "ident": "99999999992",
+        "rolle": "BARN",
+        "fornavn": null,
+        "mellomnavn": null,
+        "etternavn": null,
+        "fødselsdato": null,
+        "adressebeskyttelse": "UGRADERT"
+      },
+      {
+        "ident": "23079126951",
+        "rolle": "GIFT",
+        "fornavn": null,
+        "mellomnavn": null,
+        "etternavn": null,
+        "fødselsdato": null,
+        "adressebeskyttelse": "UGRADERT"
+      }
+    ],
+    "statsborgerskap": [
+      "AFGHANISTAN"
+    ],
+    "sivilstand": "GIFT",
+    "alder": 34,
+    "fødselsdato": "1992-06-29",
+    "dødsdato": null,
+    "navKontor": {
+      "enhetId": 100000001,
+      "navn": "Nav Oslo",
+      "enhetNr": "0102",
+      "type": "LOKAL"
+    }
+  },
+  "arbeidsgiverInformasjon": {
+    "løpendeArbeidsforhold": [
+      {
+        "arbeidsgiver": "444444445 - Ukjent organisasjon",
+        "organisasjonsnummer": "444444445",
+        "id": "1377363509245",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2026-03-09",
+              "tom": null
+            },
+            "yrke": "ASSISTENT (BARNEHAGE)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2026-03-09",
+              "tom": null
+            },
+            "yrke": "ASSISTENT (BARNEHAGE)"
+          }
+        ],
+        "timerMedTimeloenn": [
+          {
+            "antall": 7,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 15,
+            "startdato": null,
+            "sluttdato": null
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "organisasjonsnummer": "333333333",
+        "id": "524920499245",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 5,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2026-05-17",
+              "tom": null
+            },
+            "yrke": "RESTAURANTMEDARBEIDER (SERVITØR)"
+          }
+        ],
+        "timerMedTimeloenn": []
+      }
+    ],
+    "historikk": [
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "organisasjonsnummer": "333333333",
+        "id": "524920499245",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2026-01-11",
+              "tom": "2026-03-01"
+            },
+            "yrke": "KJØKKENMEDHJELPER"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 16,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2026-01-11",
+              "tom": "2026-03-01"
+            },
+            "yrke": "KJØKKENMEDHJELPER"
+          }
+        ],
+        "timerMedTimeloenn": [
+          {
+            "antall": 18.5,
+            "startdato": null,
+            "sluttdato": null
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "organisasjonsnummer": "333333333",
+        "id": "524920499245",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-04-20",
+              "tom": "2025-03-31"
+            },
+            "yrke": "KJØKKENMEDHJELPER"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 70,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-04-20",
+              "tom": "2025-03-31"
+            },
+            "yrke": "SERVITØR"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 90,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-04-20",
+              "tom": "2025-03-31"
+            },
+            "yrke": "SERVITØR"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 90,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-04-20",
+              "tom": "2025-03-31"
+            },
+            "yrke": "SERVITØR"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-04-20",
+              "tom": "2025-03-31"
+            },
+            "yrke": "KJØKKENMEDHJELPER"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 100,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2023-04-20",
+              "tom": "2025-03-31"
+            },
+            "yrke": "KJØKKENMEDHJELPER"
+          }
+        ],
+        "timerMedTimeloenn": [
+          {
+            "antall": 29.99,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 168.65,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 118.7,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 132.77,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 140.27,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 152.45,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 144.15,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 157.52,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 125.78,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 83.27,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 176.8,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 164.68,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 171.33,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 188.22,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 122.4,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 108,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 182.53,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 151.98,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 160.73,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 173.23,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 141.6,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 194.57,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 153.27,
+            "startdato": null,
+            "sluttdato": null
+          },
+          {
+            "antall": 142.08,
+            "startdato": null,
+            "sluttdato": null
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "444444447 - Ukjent organisasjon",
+        "organisasjonsnummer": "444444447",
+        "id": "1377363511245",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 90,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2022-03-10",
+              "tom": "2022-12-31"
+            },
+            "yrke": "ASSISTENT (BARNEHAGE)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 60,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2022-03-10",
+              "tom": "2022-12-31"
+            },
+            "yrke": "ASSISTENT (BARNEHAGE)"
+          }
+        ],
+        "timerMedTimeloenn": [
+          {
+            "antall": 97.5,
+            "startdato": "2022-03-10",
+            "sluttdato": "2022-03-31"
+          },
+          {
+            "antall": 112.5,
+            "startdato": "2022-04-01",
+            "sluttdato": "2022-04-30"
+          },
+          {
+            "antall": 142.5,
+            "startdato": "2022-05-01",
+            "sluttdato": "2022-05-31"
+          },
+          {
+            "antall": 150,
+            "startdato": "2022-06-01",
+            "sluttdato": "2022-06-30"
+          },
+          {
+            "antall": 67.5,
+            "startdato": "2022-08-01",
+            "sluttdato": "2022-08-31"
+          }
+        ]
+      },
+      {
+        "arbeidsgiver": "444444445 - Ukjent organisasjon",
+        "organisasjonsnummer": "444444445",
+        "id": "1377363509245",
+        "ansettelsesDetaljer": [
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2025-03-14",
+              "tom": "2025-03-14"
+            },
+            "yrke": "ASSISTENT (BARNEHAGE)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2025-03-14",
+              "tom": "2025-03-14"
+            },
+            "yrke": "ASSISTENT (BARNEHAGE)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2025-03-14",
+              "tom": "2025-03-14"
+            },
+            "yrke": "ASSISTENT (BARNEHAGE)"
+          },
+          {
+            "type": "Ordinaer",
+            "stillingsprosent": 0,
+            "antallTimerPrUke": 37.5,
+            "periode": {
+              "fom": "2025-03-14",
+              "tom": "2025-03-14"
+            },
+            "yrke": "ASSISTENT (BARNEHAGE)"
+          }
+        ],
+        "timerMedTimeloenn": []
+      }
+    ]
+  },
+  "inntektInformasjon": {
+    "lønnsinntekt": [
+      {
+        "arbeidsgiver": "222222222 - Ukjent organisasjon",
+        "periode": "2022-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 97.5,
+        "beløp": 16290.3,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "222222222 - Ukjent organisasjon",
+        "periode": "2022-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 112.5,
+        "beløp": 18796.5,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "222222222 - Ukjent organisasjon",
+        "periode": "2022-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 142.5,
+        "beløp": 23808.9,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "222222222 - Ukjent organisasjon",
+        "periode": "2022-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 150,
+        "beløp": 25062,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "222222222 - Ukjent organisasjon",
+        "periode": "2022-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 67.5,
+        "beløp": 11277.9,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "222222222 - Ukjent organisasjon",
+        "periode": "2022-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "annet",
+        "antall": null,
+        "beløp": 2880,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 29.99,
+        "beløp": 5336.35,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "222222222 - Ukjent organisasjon",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 11773.87,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastTillegg",
+        "antall": null,
+        "beløp": 1599.42,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 35.03,
+        "beløp": 5694.91,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 168.65,
+        "beløp": 30355.32,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 2711.7,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastTillegg",
+        "antall": null,
+        "beløp": 1599.87,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 6.65,
+        "beløp": -1708.11,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 118.7,
+        "beløp": 29363.04,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 2326,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastTillegg",
+        "antall": null,
+        "beløp": 1314.29,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 132.77,
+        "beløp": 27217.85,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 2140.71,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastTillegg",
+        "antall": null,
+        "beløp": 1647.81,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 140.27,
+        "beløp": 28755.35,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 1897.87,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastTillegg",
+        "antall": null,
+        "beløp": 1859.29,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 152.45,
+        "beløp": 31252.25,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 2306.1,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "fastTillegg",
+        "antall": null,
+        "beløp": 1925.99,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 2.2,
+        "beløp": 180.4,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 144.15,
+        "beløp": 29550.75,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 3070.55,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 157.52,
+        "beløp": 34654.4,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2023-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 2300,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 125.78,
+        "beløp": 27671.6,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 83.27,
+        "beløp": 17486.7,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 7.16,
+        "beløp": 615.76,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 176.8,
+        "beløp": 38012,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 2500,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 0.85,
+        "beløp": 73.1,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 164.68,
+        "beløp": 35406.2,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 2000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 2.44,
+        "beløp": 209.84,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 171.33,
+        "beløp": 36835.95,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-05",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 2500,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 23521.13,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 31.59,
+        "beløp": 2843.1,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 188.22,
+        "beløp": 42349.3,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 1500,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 4.39,
+        "beløp": 395.1,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 122.4,
+        "beløp": 27540,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 1000,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-08",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 108,
+        "beløp": 24300,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 2.57,
+        "beløp": 231.3,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-09",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 182.53,
+        "beløp": 41069.25,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 0.4,
+        "beløp": 36,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-10",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 151.98,
+        "beløp": 34195.5,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 1.15,
+        "beløp": 103.5,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-11",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 160.73,
+        "beløp": 36164.25,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2024-12",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 173.23,
+        "beløp": 38976.75,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2025-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 141.6,
+        "beløp": 34447.5,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2025-01",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 1000,
+        "harFlereVersjoner": true
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2025-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 4.72,
+        "beløp": 424.8,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2025-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 194.57,
+        "beløp": 43778.25,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2025-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 1.88,
+        "beløp": 169.2,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2025-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 153.27,
+        "beløp": 34485.75,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2025-03",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 600,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2025-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 2.23,
+        "beløp": 200.7,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2025-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 142.08,
+        "beløp": 31968,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2025-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 600,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2025-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "feriepenger",
+        "antall": null,
+        "beløp": 56323.3,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2026-02",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 18.5,
+        "beløp": 4162.5,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "666666666 - Ukjent organisasjon",
+        "periode": "2026-04",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 7,
+        "beløp": 1425.13,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2026-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "overtidsgodtgjoerelse",
+        "antall": 9,
+        "beløp": 3037.5,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "333333333 - Ukjent organisasjon",
+        "periode": "2026-06",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "tips",
+        "antall": null,
+        "beløp": 150,
+        "harFlereVersjoner": false
+      },
+      {
+        "arbeidsgiver": "666666666 - Ukjent organisasjon",
+        "periode": "2026-07",
+        "arbeidsforhold": "",
+        "stillingsprosent": "",
+        "lønnstype": "timeloenn",
+        "antall": 15,
+        "beløp": 3136.96,
+        "harFlereVersjoner": false
+      }
+    ],
+    "næringsinntekt": [],
+    "pensjonEllerTrygd": [],
+    "ytelseFraOffentlige": []
+  },
+  "meldekort": [
+    {
+      "dager": [
+        {
+          "dato": "2023-09-04",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdd6",
+              "type": "Arbeid",
+              "timer": 5.5,
+              "dato": "2023-09-04"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2023-09-05",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2023-09-06",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2023-09-07",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdd7",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-09-07"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2023-09-08",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdd8",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-09-08"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2023-09-09",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdd9",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-09-09"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2023-09-10",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdda",
+              "type": "Arbeid",
+              "timer": 5.5,
+              "dato": "2023-09-10"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2023-09-11",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fddb",
+              "type": "Arbeid",
+              "timer": 5.5,
+              "dato": "2023-09-11"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2023-09-12",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fddc",
+              "type": "Arbeid",
+              "timer": 5.5,
+              "dato": "2023-09-12"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2023-09-13",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2023-09-14",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2023-09-15",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fddd",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-09-15"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2023-09-16",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdde",
+              "type": "Arbeid",
+              "timer": 10.5,
+              "dato": "2023-09-16"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2023-09-17",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fddf",
+              "type": "Arbeid",
+              "timer": 5.5,
+              "dato": "2023-09-17"
+            }
+          ],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1111111111",
+      "periode": {
+        "fraOgMed": "2023-09-04",
+        "tilOgMed": "2023-09-17"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2023-09-22T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2023-09-22"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2023-09-18",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a5-733a-aa54-9b116cde3001",
+              "type": "Arbeid",
+              "timer": 5.5,
+              "dato": "2023-09-18"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2023-09-19",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a5-733a-aa54-9b116cde3002",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-09-19"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2023-09-20",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2023-09-21",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a5-733a-aa54-9b116cde3003",
+              "type": "Arbeid",
+              "timer": 6,
+              "dato": "2023-09-21"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2023-09-22",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a5-733a-aa54-9b116cde3004",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2023-09-22"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2023-09-23",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a5-733a-aa54-9b116cde3005",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-09-23"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2023-09-24",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2023-09-25",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a5-733a-aa54-9b116cde3006",
+              "type": "Arbeid",
+              "timer": 5,
+              "dato": "2023-09-25"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2023-09-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a5-733a-aa54-9b116cde3007",
+              "type": "Arbeid",
+              "timer": 5.5,
+              "dato": "2023-09-26"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2023-09-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a5-733a-aa54-9b116cde3008",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-09-27"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2023-09-28",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a5-733a-aa54-9b116cde3009",
+              "type": "Arbeid",
+              "timer": 6,
+              "dato": "2023-09-28"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2023-09-29",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a5-733a-aa54-9b116cde300a",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-09-29"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2023-09-30",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a5-733a-aa54-9b116cde300b",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-09-30"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2023-10-01",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1745307411",
+      "periode": {
+        "fraOgMed": "2023-09-18",
+        "tilOgMed": "2023-10-01"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2023-10-09T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2023-10-09"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2023-10-02",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf4b",
+              "type": "Arbeid",
+              "timer": 6,
+              "dato": "2023-10-02"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2023-10-03",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf4c",
+              "type": "Arbeid",
+              "timer": 5,
+              "dato": "2023-10-03"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2023-10-04",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2023-10-05",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2023-10-06",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf4d",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-10-06"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2023-10-07",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf4e",
+              "type": "Arbeid",
+              "timer": 10.5,
+              "dato": "2023-10-07"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2023-10-08",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf4f",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-10-08"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2023-10-09",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf50",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-10-09"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2023-10-10",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf51",
+              "type": "Arbeid",
+              "timer": 5.5,
+              "dato": "2023-10-10"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2023-10-11",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2023-10-12",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2023-10-13",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf52",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-10-13"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2023-10-14",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf53",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-10-14"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2023-10-15",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf54",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-10-15"
+            }
+          ],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1751225598",
+      "periode": {
+        "fraOgMed": "2023-10-02",
+        "tilOgMed": "2023-10-15"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2023-10-23T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2023-10-23"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2023-10-16",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f398-73f8-8dd9-d6ec918765a4",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-10-16"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2023-10-17",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2023-10-18",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2023-10-19",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f398-73f8-8dd9-d6ec918765a5",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-10-19"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2023-10-20",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f398-73f8-8dd9-d6ec918765a6",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2023-10-20"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2023-10-21",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f398-73f8-8dd9-d6ec918765a7",
+              "type": "Arbeid",
+              "timer": 9,
+              "dato": "2023-10-21"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2023-10-22",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f398-73f8-8dd9-d6ec918765a8",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-10-22"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2023-10-23",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f398-73f8-8dd9-d6ec918765a9",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-10-23"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2023-10-24",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2023-10-25",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2023-10-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f398-73f8-8dd9-d6ec918765aa",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-10-26"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2023-10-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f398-73f8-8dd9-d6ec918765ab",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-10-27"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2023-10-28",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f398-73f8-8dd9-d6ec918765ac",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2023-10-28"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2023-10-29",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f398-73f8-8dd9-d6ec918765ad",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-10-29"
+            }
+          ],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1751225606",
+      "periode": {
+        "fraOgMed": "2023-10-16",
+        "tilOgMed": "2023-10-29"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2023-11-08T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2023-11-08"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2023-10-30",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdcc",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-10-30"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2023-10-31",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdcd",
+              "type": "Arbeid",
+              "timer": 5.5,
+              "dato": "2023-10-31"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2023-11-01",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2023-11-02",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2023-11-03",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdce",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-11-03"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2023-11-04",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdcf",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2023-11-04"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2023-11-05",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdd0",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-11-05"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2023-11-06",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdd1",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-11-06"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2023-11-07",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2023-11-08",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2023-11-09",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdd2",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-11-09"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2023-11-10",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdd3",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-11-10"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2023-11-11",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdd4",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2023-11-11"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2023-11-12",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f36f-713e-8952-5d7b68a0fdd5",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-11-12"
+            }
+          ],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1757145485",
+      "periode": {
+        "fraOgMed": "2023-10-30",
+        "tilOgMed": "2023-11-12"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2023-11-24T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2023-11-24"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2023-11-13",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f376-7158-85b6-e757ddebc532",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-11-13"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2023-11-14",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f376-7158-85b6-e757ddebc533",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-11-14"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2023-11-15",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2023-11-16",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2023-11-17",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f376-7158-85b6-e757ddebc534",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-11-17"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2023-11-18",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f376-7158-85b6-e757ddebc535",
+              "type": "Arbeid",
+              "timer": 8.5,
+              "dato": "2023-11-18"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2023-11-19",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f376-7158-85b6-e757ddebc536",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-11-19"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2023-11-20",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f376-7158-85b6-e757ddebc537",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-11-20"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2023-11-21",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f376-7158-85b6-e757ddebc538",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-11-21"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2023-11-22",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2023-11-23",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f376-7158-85b6-e757ddebc539",
+              "type": "Arbeid",
+              "timer": 5.5,
+              "dato": "2023-11-23"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2023-11-24",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f376-7158-85b6-e757ddebc53a",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2023-11-24"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2023-11-25",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f376-7158-85b6-e757ddebc53b",
+              "type": "Arbeid",
+              "timer": 9.5,
+              "dato": "2023-11-25"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2023-11-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f376-7158-85b6-e757ddebc53c",
+              "type": "Arbeid",
+              "timer": 9,
+              "dato": "2023-11-26"
+            }
+          ],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1757145493",
+      "periode": {
+        "fraOgMed": "2023-11-13",
+        "tilOgMed": "2023-11-26"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2023-12-10T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2023-12-10"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2023-11-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c82",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-11-27"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2023-11-28",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c83",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-11-28"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2023-11-29",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2023-11-30",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2023-12-01",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c84",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-12-01"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2023-12-02",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c85",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-12-02"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2023-12-03",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c86",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-12-03"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2023-12-04",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c87",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-12-04"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2023-12-05",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c88",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-12-05"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2023-12-06",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2023-12-07",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2023-12-08",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c89",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-12-08"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2023-12-09",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c8a",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-12-09"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2023-12-10",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c8b",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-12-10"
+            }
+          ],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1763159389",
+      "periode": {
+        "fraOgMed": "2023-11-27",
+        "tilOgMed": "2023-12-10"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2023-12-11T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2023-12-11"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2023-12-11",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8c8",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2023-12-11"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2023-12-12",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2023-12-13",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8c9",
+              "type": "Arbeid",
+              "timer": 6,
+              "dato": "2023-12-13"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2023-12-14",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2023-12-15",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8ca",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-12-15"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2023-12-16",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8cb",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-12-16"
+            }
+          ],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2023-12-17",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8cc",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2023-12-17"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2023-12-18",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8cd",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-12-18"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2023-12-19",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8ce",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-12-19"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2023-12-20",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8cf",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-12-20"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2023-12-21",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2023-12-22",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8d0",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2023-12-22"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2023-12-23",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2023-12-24",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1763159397",
+      "periode": {
+        "fraOgMed": "2023-12-11",
+        "tilOgMed": "2023-12-24"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2024-01-09T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2024-01-09"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2023-12-25",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2023-12-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe23",
+              "type": "Arbeid",
+              "timer": 6.5,
+              "dato": "2023-12-26"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2023-12-27",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2023-12-28",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2023-12-29",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2023-12-30",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2023-12-31",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2024-01-01",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2024-01-02",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2024-01-03",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2024-01-04",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe24",
+              "type": "Arbeid",
+              "timer": 4.5,
+              "dato": "2024-01-04"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2024-01-05",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2024-01-06",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2024-01-07",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1769279751",
+      "periode": {
+        "fraOgMed": "2023-12-25",
+        "tilOgMed": "2024-01-07"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2024-01-09T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2024-01-09"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-03-17",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-03-18",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-03-19",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-03-20",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-03-21",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-03-22",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-03-23",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a8-7343-9fba-fdb5750832f8",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2025-03-23"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-03-24",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a8-7343-9fba-fdb5750832f9",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2025-03-24"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-03-25",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-03-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a8-7343-9fba-fdb5750832fa",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2025-03-26"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-03-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a8-7343-9fba-fdb5750832fb",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2025-03-27"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-03-28",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-03-29",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a8-7343-9fba-fdb5750832fc",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2025-03-29"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-03-30",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a8-7343-9fba-fdb5750832fd",
+              "type": "Arbeid",
+              "timer": 9,
+              "dato": "2025-03-30"
+            }
+          ],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1875765412",
+      "periode": {
+        "fraOgMed": "2025-03-17",
+        "tilOgMed": "2025-03-30"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-04-05T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-04-05"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-03-31",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-04-01",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-04-02",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-04-03",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-04-04",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-04-05",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-04-06",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-04-07",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-04-08",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-04-09",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-04-10",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-04-11",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-04-12",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-04-13",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1875765420",
+      "periode": {
+        "fraOgMed": "2025-03-31",
+        "tilOgMed": "2025-04-13"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-04-18T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-04-18"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-04-14",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-04-15",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-04-16",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-04-17",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-04-18",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-04-19",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-04-20",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-04-21",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-04-22",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-04-23",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-04-24",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-04-25",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-04-26",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-04-27",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1879750642",
+      "periode": {
+        "fraOgMed": "2025-04-14",
+        "tilOgMed": "2025-04-27"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-05-02T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-05-02"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-04-28",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-04-29",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-04-30",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-05-01",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-05-02",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-05-03",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-05-04",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-05-05",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-05-06",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-05-07",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-05-08",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-05-09",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-05-10",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-05-11",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1879750659",
+      "periode": {
+        "fraOgMed": "2025-04-28",
+        "tilOgMed": "2025-05-11"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-05-17T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-05-17"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-05-12",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-05-13",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-05-14",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-05-15",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-05-16",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-05-17",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-05-18",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-05-19",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-05-20",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-05-21",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-05-22",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-05-23",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-05-24",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-05-25",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1885150001",
+      "periode": {
+        "fraOgMed": "2025-05-12",
+        "tilOgMed": "2025-05-25"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-05-31T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-05-31"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-05-26",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-05-27",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-05-28",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-05-29",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-05-30",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-05-31",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-06-01",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-06-02",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-06-03",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-06-04",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-06-05",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-06-06",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-06-07",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-06-08",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1885150019",
+      "periode": {
+        "fraOgMed": "2025-05-26",
+        "tilOgMed": "2025-06-08"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-06-13T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-06-13"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-06-09",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-06-10",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-06-11",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-06-12",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-06-13",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-06-14",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-06-15",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-06-16",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-06-17",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-06-18",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-06-19",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-06-20",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-06-21",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-06-22",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1890380932",
+      "periode": {
+        "fraOgMed": "2025-06-09",
+        "tilOgMed": "2025-06-22"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-06-26T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-06-26"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-06-23",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-06-24",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-06-25",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-06-26",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-06-27",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-06-28",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-06-29",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-06-30",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-07-01",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-07-02",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-07-03",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-07-04",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-07-05",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-07-06",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1890380940",
+      "periode": {
+        "fraOgMed": "2025-06-23",
+        "tilOgMed": "2025-07-06"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-07-09T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-07-09"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-07-07",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-07-08",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-07-09",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-07-10",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-07-11",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-07-12",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-07-13",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-07-14",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-07-15",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-07-16",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-07-17",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-07-18",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-07-19",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-07-20",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1895523817",
+      "periode": {
+        "fraOgMed": "2025-07-07",
+        "tilOgMed": "2025-07-20"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-07-25T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-07-25"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-07-21",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-07-22",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-07-23",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-07-24",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-07-25",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-07-26",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-07-27",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-07-28",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-07-29",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-07-30",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-07-31",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-08-01",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-08-02",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-08-03",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1895523825",
+      "periode": {
+        "fraOgMed": "2025-07-21",
+        "tilOgMed": "2025-08-03"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-08-04T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-08-04"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-08-04",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-08-05",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-08-06",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-08-07",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-08-08",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-08-09",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-08-10",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-08-11",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-08-12",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-08-13",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-08-14",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-08-15",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-08-16",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-08-17",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1900582535",
+      "periode": {
+        "fraOgMed": "2025-08-04",
+        "tilOgMed": "2025-08-17"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-08-16T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-08-16"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-08-18",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-08-19",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-08-20",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-08-21",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-08-22",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-08-23",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-08-24",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-08-25",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-08-26",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-08-27",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-08-28",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-08-29",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-08-30",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-08-31",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1900582543",
+      "periode": {
+        "fraOgMed": "2025-08-18",
+        "tilOgMed": "2025-08-31"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-08-30T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-08-30"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-08-18",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a9-712c-9382-45d5f0d8b6c0",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-08-18"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-08-19",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a9-712c-9382-45d5f0d8b6c1",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-08-19"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-08-20",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a9-712c-9382-45d5f0d8b6c2",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-08-20"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-08-21",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a9-712c-9382-45d5f0d8b6c3",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-08-21"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-08-22",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a9-712c-9382-45d5f0d8b6c4",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-08-22"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-08-23",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-08-24",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-08-25",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a9-712c-9382-45d5f0d8b6c5",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-08-25"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-08-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a9-712c-9382-45d5f0d8b6c6",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-08-26"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-08-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a9-712c-9382-45d5f0d8b6c7",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-08-27"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-08-28",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a9-712c-9382-45d5f0d8b6c8",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-08-28"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-08-29",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a9-712c-9382-45d5f0d8b6c9",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-08-29"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-08-30",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-08-31",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1907768962",
+      "periode": {
+        "fraOgMed": "2025-08-18",
+        "tilOgMed": "2025-08-31"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-08-30T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-08-30"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-09-01",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a3-7783-a69a-f35a5b13f745",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-01"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-09-02",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe10",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-02"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-09-03",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe12",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-03"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-09-04",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe14",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-04"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-09-05",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe15",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-05"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-09-06",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-09-07",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-09-08",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe16",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-08"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-09-09",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe17",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-09"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-09-10",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe18",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-10"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-09-11",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe19",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-11"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-09-12",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe1a",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-12"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-09-13",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-09-14",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1905135107",
+      "periode": {
+        "fraOgMed": "2025-09-01",
+        "tilOgMed": "2025-09-14"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-09-13T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-09-13"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-09-15",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee78",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-15"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-09-16",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee79",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-16"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-09-17",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee7a",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-17"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-09-18",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee7b",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-18"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-09-19",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee7c",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-19"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-09-20",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-09-21",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-09-22",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee7d",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-22"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-09-23",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee7e",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-23"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-09-24",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee7f",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-24"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-09-25",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee80",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-25"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-09-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee81",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-09-26"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-09-27",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-09-28",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1905135115",
+      "periode": {
+        "fraOgMed": "2025-09-15",
+        "tilOgMed": "2025-09-28"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-09-27T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-09-27"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-09-29",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-09-30",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-10-01",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-10-02",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-10-03",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-10-04",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-10-05",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-10-06",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f397-7548-bd72-7cc0578789de",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-06"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-10-07",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f397-7548-bd72-7cc0578789df",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-07"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-10-08",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f397-7548-bd72-7cc0578789e0",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-08"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-10-09",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f397-7548-bd72-7cc0578789e1",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-09"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-10-10",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f397-7548-bd72-7cc0578789e2",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-10"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-10-11",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-10-12",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1910939832",
+      "periode": {
+        "fraOgMed": "2025-09-29",
+        "tilOgMed": "2025-10-12"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-10-12T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-10-12"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-10-13",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f391-72ad-9618-51b4e597e6d8",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-13"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-10-14",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f391-72ad-9618-51b4e597e6d9",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-14"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-10-15",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f391-72ad-9618-51b4e597e6da",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-15"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-10-16",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f391-72ad-9618-51b4e597e6db",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-16"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-10-17",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f391-72ad-9618-51b4e597e6dc",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-17"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-10-18",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-10-19",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-10-20",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f391-72ad-9618-51b4e597e6dd",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-20"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-10-21",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f391-72ad-9618-51b4e597e6de",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-21"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-10-22",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f391-72ad-9618-51b4e597e6df",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-22"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-10-23",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f391-72ad-9618-51b4e597e6e0",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-23"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-10-24",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f391-72ad-9618-51b4e597e6e1",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-24"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-10-25",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-10-26",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1910939840",
+      "periode": {
+        "fraOgMed": "2025-10-13",
+        "tilOgMed": "2025-10-26"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-10-25T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-10-25"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-10-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3ae-7508-810d-3e2650b9e709",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-27"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-10-28",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3ae-7508-810d-3e2650b9e70a",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-28"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-10-29",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3ae-7508-810d-3e2650b9e70b",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-29"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-10-30",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3ae-7508-810d-3e2650b9e70c",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-30"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-10-31",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3ae-7508-810d-3e2650b9e70d",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-10-31"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-11-01",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-11-02",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-11-03",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3ae-7508-810d-3e2650b9e70e",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-03"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-11-04",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3ae-7508-810d-3e2650b9e70f",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-04"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-11-05",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3ae-7508-810d-3e2650b9e710",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-05"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-11-06",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3ae-7508-810d-3e2650b9e711",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-06"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-11-07",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3ae-7508-810d-3e2650b9e712",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-07"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-11-08",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-11-09",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1916150939",
+      "periode": {
+        "fraOgMed": "2025-10-27",
+        "tilOgMed": "2025-11-09"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-11-08T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-11-08"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-11-10",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39a-7428-af77-261e832109df",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-10"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-11-11",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39a-7428-af77-261e832109e0",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-11"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-11-12",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39a-7428-af77-261e832109e1",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-12"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-11-13",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39a-7428-af77-261e832109e2",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-13"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-11-14",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39a-7428-af77-261e832109e3",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-14"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-11-15",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-11-16",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-11-17",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39a-7428-af77-261e832109e4",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-17"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-11-18",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39a-7428-af77-261e832109e5",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-18"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-11-19",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39a-7428-af77-261e832109e6",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-19"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-11-20",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39a-7428-af77-261e832109e7",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-20"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-11-21",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39a-7428-af77-261e832109e8",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-21"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-11-22",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-11-23",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1916150947",
+      "periode": {
+        "fraOgMed": "2025-11-10",
+        "tilOgMed": "2025-11-23"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-11-22T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-11-22"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-11-24",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c8c",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-24"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-11-25",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c8d",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-25"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-11-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c8e",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-26"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-11-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c8f",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-27"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-11-28",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c90",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-11-28"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-11-29",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-11-30",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-12-01",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c91",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-01"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-12-02",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c92",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-02"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-12-03",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c93",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-03"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-12-04",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c94",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-04"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-12-05",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c95",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-05"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-12-06",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-12-07",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1921389225",
+      "periode": {
+        "fraOgMed": "2025-11-24",
+        "tilOgMed": "2025-12-07"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-12-06T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-12-06"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-12-08",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee82",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-08"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-12-09",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee83",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-09"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-12-10",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee84",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-10"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-12-11",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee85",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-11"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-12-12",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee86",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-12"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-12-13",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-12-14",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-12-15",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee87",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-15"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-12-16",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee88",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-16"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-12-17",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee89",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-17"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2025-12-18",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee8a",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-18"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2025-12-19",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f387-739f-a9c2-139d2201ee8b",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2025-12-19"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2025-12-20",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2025-12-21",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1921389233",
+      "periode": {
+        "fraOgMed": "2025-12-08",
+        "tilOgMed": "2025-12-21"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2025-12-20T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2025-12-20"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2025-12-22",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2025-12-23",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2025-12-24",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2025-12-25",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2025-12-26",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2025-12-27",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2025-12-28",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2025-12-29",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2025-12-30",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2025-12-31",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-01-01",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-01-02",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-01-03",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-01-04",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1926664994",
+      "periode": {
+        "fraOgMed": "2025-12-22",
+        "tilOgMed": "2026-01-04"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-01-03T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-01-03"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-01-05",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a1-7300-b37c-5dfe260ffdc5",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-05"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-01-06",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a1-7300-b37c-5dfe260ffdc6",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-06"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-01-07",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a1-7300-b37c-5dfe260ffdc7",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-07"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-01-08",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a1-7300-b37c-5dfe260ffdc8",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-08"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-01-09",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a1-7300-b37c-5dfe260ffdc9",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-09"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-01-10",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-01-11",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a1-7300-b37c-5dfe260ffdca",
+              "type": "Arbeid",
+              "timer": 8,
+              "dato": "2026-01-11"
+            }
+          ],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-01-12",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a1-7300-b37c-5dfe260ffdcb",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-12"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-01-13",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a1-7300-b37c-5dfe260ffdcc",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-13"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-01-14",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a1-7300-b37c-5dfe260ffdcd",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-14"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-01-15",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a1-7300-b37c-5dfe260ffdce",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-15"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-01-16",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a1-7300-b37c-5dfe260ffdcf",
+              "type": "Arbeid",
+              "timer": 5,
+              "dato": "2026-01-16"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-01-17",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a1-7300-b37c-5dfe260ffdd0",
+              "type": "Arbeid",
+              "timer": 5,
+              "dato": "2026-01-17"
+            }
+          ],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-01-18",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1926665009",
+      "periode": {
+        "fraOgMed": "2026-01-05",
+        "tilOgMed": "2026-01-18"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-01-18T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-01-18"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-01-19",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f37b-758c-b23c-1297cb32b196",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-19"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-01-20",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f37b-758c-b23c-1297cb32b197",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-20"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-01-21",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f37b-758c-b23c-1297cb32b198",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-21"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-01-22",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f37b-758c-b23c-1297cb32b199",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-22"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-01-23",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f37b-758c-b23c-1297cb32b19a",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-23"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-01-24",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-01-25",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-01-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f37b-758c-b23c-1297cb32b19b",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-26"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-01-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f37b-758c-b23c-1297cb32b19c",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-27"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-01-28",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f37b-758c-b23c-1297cb32b19d",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-28"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-01-29",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f37b-758c-b23c-1297cb32b19e",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-29"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-01-30",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f37b-758c-b23c-1297cb32b19f",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-01-30"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-01-31",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-02-01",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1931958944",
+      "periode": {
+        "fraOgMed": "2026-01-19",
+        "tilOgMed": "2026-02-01"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-01-31T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-01-31"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-02-02",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf55",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-02"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-02-03",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf56",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-03"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-02-04",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf57",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-04"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-02-05",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf58",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-05"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-02-06",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f382-771c-881b-b93d459dcf59",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-06"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-02-07",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-02-08",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-02-09",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8d1",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-09"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-02-10",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8d2",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-10"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-02-11",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8d3",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-11"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-02-12",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8d4",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-12"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-02-13",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f383-71c1-9008-75ce9d5ec8d5",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-13"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-02-14",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-02-15",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1931958951",
+      "periode": {
+        "fraOgMed": "2026-02-02",
+        "tilOgMed": "2026-02-15"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-02-14T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-02-14"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-02-16",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-02-17",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-02-18",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-02-19",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-02-20",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-02-21",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-02-22",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-02-23",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39d-7147-ba98-06c732894eb0",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-23"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-02-24",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39d-7147-ba98-06c732894eb1",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-24"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-02-25",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39d-7147-ba98-06c732894eb2",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-25"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-02-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39d-7147-ba98-06c732894eb3",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-02-26"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-02-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39d-7147-ba98-06c732894eb4",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-02-27"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-02-28",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-03-01",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1937828281",
+      "periode": {
+        "fraOgMed": "2026-02-16",
+        "tilOgMed": "2026-03-01"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-02-28T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-02-28"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-03-02",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f375-74f2-8909-61aaa0988847",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-02"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-03-03",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f375-74f2-8909-61aaa0988848",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-03"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-03-04",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f375-74f2-8909-61aaa0988849",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-04"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-03-05",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f375-74f2-8909-61aaa098884a",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-05"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-03-06",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f375-74f2-8909-61aaa098884b",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-06"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-03-07",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-03-08",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-03-09",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f375-74f2-8909-61aaa098884c",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-09"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-03-10",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f375-74f2-8909-61aaa098884d",
+              "type": "Arbeid",
+              "timer": 7.5,
+              "dato": "2026-03-10"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-03-11",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f375-74f2-8909-61aaa098884e",
+              "type": "Arbeid",
+              "timer": 7,
+              "dato": "2026-03-11"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-03-12",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f375-74f2-8909-61aaa098884f",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-12"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-03-13",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f375-74f2-8909-61aaa0988850",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-13"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-03-14",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-03-15",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1937828299",
+      "periode": {
+        "fraOgMed": "2026-03-02",
+        "tilOgMed": "2026-03-15"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-03-14T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-03-14"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-03-16",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f38f-7365-9de9-b48b0960b8b4",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-16"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-03-17",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f38f-7365-9de9-b48b0960b8b5",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-17"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-03-18",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f38f-7365-9de9-b48b0960b8b6",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-18"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-03-19",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f38f-7365-9de9-b48b0960b8b7",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-19"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-03-20",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f38f-7365-9de9-b48b0960b8b8",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-20"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-03-21",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-03-22",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-03-23",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f38f-7365-9de9-b48b0960b8b9",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-23"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-03-24",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f38f-7365-9de9-b48b0960b8ba",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-24"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-03-25",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f38f-7365-9de9-b48b0960b8bb",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-25"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-03-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f38f-7365-9de9-b48b0960b8bc",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-26"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-03-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f38f-7365-9de9-b48b0960b8bd",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-03-27"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-03-28",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-03-29",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1943199057",
+      "periode": {
+        "fraOgMed": "2026-03-16",
+        "tilOgMed": "2026-03-29"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-03-28T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-03-28"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-03-30",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-03-31",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-04-01",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-04-02",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-04-03",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-04-04",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-04-05",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-04-06",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-04-07",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f358-760e-9142-9b253162608c",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-07"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-04-08",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f358-760e-9142-9b253162608d",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-08"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-04-09",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f358-760e-9142-9b253162608e",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-09"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-04-10",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f358-760e-9142-9b253162608f",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-10"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-04-11",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-04-12",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1943199065",
+      "periode": {
+        "fraOgMed": "2026-03-30",
+        "tilOgMed": "2026-04-12"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-04-12T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-04-12"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-04-13",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39f-7236-a02b-d35f250f3ab8",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-13"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-04-14",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39f-7236-a02b-d35f250f3ab9",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-14"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-04-15",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39f-7236-a02b-d35f250f3aba",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-15"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-04-16",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39f-7236-a02b-d35f250f3abb",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-16"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-04-17",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39f-7236-a02b-d35f250f3abc",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-17"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-04-18",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-04-19",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-04-20",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39f-7236-a02b-d35f250f3abd",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-20"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-04-21",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39f-7236-a02b-d35f250f3abe",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-21"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-04-22",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39f-7236-a02b-d35f250f3abf",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-22"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-04-23",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39f-7236-a02b-d35f250f3ac0",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-23"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-04-24",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f39f-7236-a02b-d35f250f3ac1",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-24"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-04-25",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-04-26",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1948313695",
+      "periode": {
+        "fraOgMed": "2026-04-13",
+        "tilOgMed": "2026-04-26"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-04-25T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-04-25"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-04-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a3-764a-a3fd-31141437ba9d",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-27"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-04-28",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe1b",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-28"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-04-29",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe1c",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-29"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-04-30",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe1d",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-04-30"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-05-01",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-05-02",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-05-03",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-05-04",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe1e",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-04"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-05-05",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe1f",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-05"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-05-06",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe20",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-06"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-05-07",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe21",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-07"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-05-08",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe22",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-08"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-05-09",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-05-10",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1948313703",
+      "periode": {
+        "fraOgMed": "2026-04-27",
+        "tilOgMed": "2026-05-10"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-05-09T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-05-09"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-05-11",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c79",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-11"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-05-12",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c7a",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-12"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-05-13",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c7b",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-13"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-05-14",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-05-15",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c7c",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-15"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-05-16",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-05-17",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-05-18",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c7d",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-18"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-05-19",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c7e",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-19"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-05-20",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c7f",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-20"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-05-21",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c80",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-21"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-05-22",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a2-7634-afb7-57cd2e704c81",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-22"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-05-23",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-05-24",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1953239595",
+      "periode": {
+        "fraOgMed": "2026-05-11",
+        "tilOgMed": "2026-05-24"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-05-23T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-05-23"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-05-25",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-05-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a3-764a-a3fd-31141437ba9e",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-26"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-05-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-737b-ab60-c49850333a02",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-27"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-05-28",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-737b-ab60-c49850333a03",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-28"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-05-29",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-737b-ab60-c49850333a04",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-05-29"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-05-30",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-05-31",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-06-01",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-737b-ab60-c49850333a05",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-06-01"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-06-02",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-737b-ab60-c49850333a06",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-06-02"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-06-03",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe0f",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-06-03"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-06-04",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe11",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-06-04"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-06-05",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a4-73e5-a28a-7f21fb9cbe13",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-06-05"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-06-06",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-06-07",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1953239603",
+      "periode": {
+        "fraOgMed": "2026-05-25",
+        "tilOgMed": "2026-06-07"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-06-06T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-06-06"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-06-08",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-06-09",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-06-10",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-06-11",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-06-12",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-06-13",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-06-14",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-06-15",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-06-16",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-06-17",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-06-18",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-06-19",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-06-20",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-06-21",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1958094433",
+      "periode": {
+        "fraOgMed": "2026-06-08",
+        "tilOgMed": "2026-06-21"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-06-20T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-06-20"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-06-22",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-06-23",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-06-24",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-06-25",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-06-26",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-06-27",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-06-28",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-06-29",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-06-30",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-07-01",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-07-02",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-07-03",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-07-04",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-07-05",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1958094441",
+      "periode": {
+        "fraOgMed": "2026-06-22",
+        "tilOgMed": "2026-07-05"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-07-04T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-07-04"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-07-06",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-07-07",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-07-08",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-07-09",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-07-10",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-07-11",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-07-12",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-07-13",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-07-14",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-07-15",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-07-16",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-07-17",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-07-18",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-07-19",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1962903249",
+      "periode": {
+        "fraOgMed": "2026-07-06",
+        "tilOgMed": "2026-07-19"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-07-19T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-07-19"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-07-20",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-07-21",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-07-22",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-07-23",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-07-24",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-07-25",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-07-26",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-07-27",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-07-28",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-07-29",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-07-30",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-07-31",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-08-01",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-08-02",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1962903256",
+      "periode": {
+        "fraOgMed": "2026-07-20",
+        "tilOgMed": "2026-08-02"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-08-02T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-08-02"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-08-03",
+          "aktiviteter": [],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-08-04",
+          "aktiviteter": [],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-08-05",
+          "aktiviteter": [],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-08-06",
+          "aktiviteter": [],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-08-07",
+          "aktiviteter": [],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-08-08",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-08-09",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-08-10",
+          "aktiviteter": [],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-08-11",
+          "aktiviteter": [],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-08-12",
+          "aktiviteter": [],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-08-13",
+          "aktiviteter": [],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-08-14",
+          "aktiviteter": [],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-08-15",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-08-16",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1967555408",
+      "periode": {
+        "fraOgMed": "2026-08-03",
+        "tilOgMed": "2026-08-16"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-08-15T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-08-15"
+    },
+    {
+      "dager": [
+        {
+          "dato": "2026-08-17",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a6-76c3-b45f-a73a28a8b4e8",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-08-17"
+            }
+          ],
+          "dagIndex": 0
+        },
+        {
+          "dato": "2026-08-18",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a6-76c3-b45f-a73a28a8b4e9",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-08-18"
+            }
+          ],
+          "dagIndex": 1
+        },
+        {
+          "dato": "2026-08-19",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a6-76c3-b45f-a73a28a8b4ea",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-08-19"
+            }
+          ],
+          "dagIndex": 2
+        },
+        {
+          "dato": "2026-08-20",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a6-76c3-b45f-a73a28a8b4eb",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-08-20"
+            }
+          ],
+          "dagIndex": 3
+        },
+        {
+          "dato": "2026-08-21",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a6-76c3-b45f-a73a28a8b4ec",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-08-21"
+            }
+          ],
+          "dagIndex": 4
+        },
+        {
+          "dato": "2026-08-22",
+          "aktiviteter": [],
+          "dagIndex": 5
+        },
+        {
+          "dato": "2026-08-23",
+          "aktiviteter": [],
+          "dagIndex": 6
+        },
+        {
+          "dato": "2026-08-24",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a6-76c3-b45f-a73a28a8b4ed",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-08-24"
+            }
+          ],
+          "dagIndex": 7
+        },
+        {
+          "dato": "2026-08-25",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a6-76c3-b45f-a73a28a8b4ee",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-08-25"
+            }
+          ],
+          "dagIndex": 8
+        },
+        {
+          "dato": "2026-08-26",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a6-76c3-b45f-a73a28a8b4ef",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-08-26"
+            }
+          ],
+          "dagIndex": 9
+        },
+        {
+          "dato": "2026-08-27",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a6-76c3-b45f-a73a28a8b4f0",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-08-27"
+            }
+          ],
+          "dagIndex": 10
+        },
+        {
+          "dato": "2026-08-28",
+          "aktiviteter": [
+            {
+              "id": "01a060bc-f3a6-76c3-b45f-a73a28a8b4f1",
+              "type": "Utdanning",
+              "timer": null,
+              "dato": "2026-08-28"
+            }
+          ],
+          "dagIndex": 11
+        },
+        {
+          "dato": "2026-08-29",
+          "aktiviteter": [],
+          "dagIndex": 12
+        },
+        {
+          "dato": "2026-08-30",
+          "aktiviteter": [],
+          "dagIndex": 13
+        }
+      ],
+      "id": "1967555416",
+      "periode": {
+        "fraOgMed": "2026-08-17",
+        "tilOgMed": "2026-08-30"
+      },
+      "opprettetAv": "Arena",
+      "migrert": false,
+      "kilde": {
+        "rolle": "Bruker",
+        "ident": "99999999999"
+      },
+      "innsendtTidspunkt": "2026-08-30T00:00:00",
+      "registrertArbeidssoker": true,
+      "meldedato": "2026-08-30"
+    }
+  ],
+  "stønader": [
+    {
+      "stonadType": "Dagpenger",
+      "perioder": [
+        {
+          "periode": {
+            "fom": "2025-08-05",
+            "tom": "2025-08-17"
+          },
+          "beløp": 6601,
+          "bruttoBeløp": 7290,
+          "kilde": "SOKOS",
+          "info": "818236931"
+        },
+        {
+          "periode": {
+            "fom": "2025-08-18",
+            "tom": "2025-08-31"
+          },
+          "beløp": 9745,
+          "bruttoBeløp": 12150,
+          "kilde": "SOKOS",
+          "info": "819325057"
+        },
+        {
+          "periode": {
+            "fom": "2025-09-01",
+            "tom": "2025-09-14"
+          },
+          "beløp": 9745,
+          "bruttoBeløp": 12150,
+          "kilde": "SOKOS",
+          "info": "821315182"
+        },
+        {
+          "periode": {
+            "fom": "2025-09-15",
+            "tom": "2025-09-28"
+          },
+          "beløp": 9745,
+          "bruttoBeløp": 12150,
+          "kilde": "SOKOS",
+          "info": "822333951"
+        },
+        {
+          "periode": {
+            "fom": "2025-09-29",
+            "tom": "2025-09-30"
+          },
+          "beløp": 1949,
+          "bruttoBeløp": 2430,
+          "kilde": "SOKOS",
+          "info": "824411316"
+        },
+        {
+          "periode": {
+            "fom": "2025-10-01",
+            "tom": "2025-10-12"
+          },
+          "beløp": 7796,
+          "bruttoBeløp": 9720,
+          "kilde": "SOKOS",
+          "info": "824411316"
+        },
+        {
+          "periode": {
+            "fom": "2025-10-13",
+            "tom": "2025-10-26"
+          },
+          "beløp": 9745,
+          "bruttoBeløp": 12150,
+          "kilde": "SOKOS",
+          "info": "825459701"
+        },
+        {
+          "periode": {
+            "fom": "2025-10-27",
+            "tom": "2025-10-31"
+          },
+          "beløp": 4873,
+          "bruttoBeløp": 6075,
+          "kilde": "SOKOS",
+          "info": "825821174"
+        },
+        {
+          "periode": {
+            "fom": "2025-11-01",
+            "tom": "2025-11-09"
+          },
+          "beløp": 4873,
+          "bruttoBeløp": 6075,
+          "kilde": "SOKOS",
+          "info": "825821114"
+        },
+        {
+          "periode": {
+            "fom": "2025-11-10",
+            "tom": "2025-11-23"
+          },
+          "beløp": 9745,
+          "bruttoBeløp": 12150,
+          "kilde": "SOKOS",
+          "info": "828584356"
+        },
+        {
+          "periode": {
+            "fom": "2025-11-24",
+            "tom": "2025-11-30"
+          },
+          "beløp": 6075,
+          "bruttoBeløp": 6075,
+          "kilde": "SOKOS",
+          "info": "830676852"
+        },
+        {
+          "periode": {
+            "fom": "2025-12-01",
+            "tom": "2025-12-07"
+          },
+          "beløp": 6075,
+          "bruttoBeløp": 6075,
+          "kilde": "SOKOS",
+          "info": "830616872"
+        },
+        {
+          "periode": {
+            "fom": "2025-12-08",
+            "tom": "2025-12-21"
+          },
+          "beløp": 9745,
+          "bruttoBeløp": 12150,
+          "kilde": "SOKOS",
+          "info": "831731338"
+        },
+        {
+          "periode": {
+            "fom": "2025-12-22",
+            "tom": "2025-12-31"
+          },
+          "beløp": 7679,
+          "bruttoBeløp": 9720,
+          "kilde": "SOKOS",
+          "info": "832045038"
+        },
+        {
+          "periode": {
+            "fom": "2026-01-01",
+            "tom": "2026-01-04"
+          },
+          "beløp": 1923,
+          "bruttoBeløp": 2434,
+          "kilde": "SOKOS",
+          "info": "832045038"
+        },
+        {
+          "periode": {
+            "fom": "2026-01-05",
+            "tom": "2026-01-18"
+          },
+          "beløp": 7424,
+          "bruttoBeløp": 9397,
+          "kilde": "SOKOS",
+          "info": "834087054"
+        },
+        {
+          "periode": {
+            "fom": "2026-01-19",
+            "tom": "2026-01-31"
+          },
+          "beløp": 9615,
+          "bruttoBeløp": 12170,
+          "kilde": "SOKOS",
+          "info": "835152021"
+        },
+        {
+          "periode": {
+            "fom": "2026-02-01",
+            "tom": "2026-02-01"
+          },
+          "beløp": 0,
+          "bruttoBeløp": 0,
+          "kilde": "SOKOS",
+          "info": "835152021"
+        },
+        {
+          "periode": {
+            "fom": "2026-02-02",
+            "tom": "2026-02-15"
+          },
+          "beløp": 9615,
+          "bruttoBeløp": 12170,
+          "kilde": "SOKOS",
+          "info": "837232564"
+        },
+        {
+          "periode": {
+            "fom": "2026-02-16",
+            "tom": "2026-02-28"
+          },
+          "beløp": 8702,
+          "bruttoBeløp": 11015,
+          "kilde": "SOKOS",
+          "info": "838315161"
+        },
+        {
+          "periode": {
+            "fom": "2026-03-01",
+            "tom": "2026-03-01"
+          },
+          "beløp": 0,
+          "bruttoBeløp": 0,
+          "kilde": "SOKOS",
+          "info": "838315161"
+        },
+        {
+          "periode": {
+            "fom": "2026-03-02",
+            "tom": "2026-03-15"
+          },
+          "beløp": 7850,
+          "bruttoBeløp": 9936,
+          "kilde": "SOKOS",
+          "info": "840406306"
+        },
+        {
+          "periode": {
+            "fom": "2026-03-16",
+            "tom": "2026-03-29"
+          },
+          "beløp": 9615,
+          "bruttoBeløp": 12170,
+          "kilde": "SOKOS",
+          "info": "841458424"
+        },
+        {
+          "periode": {
+            "fom": "2026-03-30",
+            "tom": "2026-03-31"
+          },
+          "beløp": 1923,
+          "bruttoBeløp": 2434,
+          "kilde": "SOKOS",
+          "info": "843555869"
+        },
+        {
+          "periode": {
+            "fom": "2026-04-01",
+            "tom": "2026-04-12"
+          },
+          "beløp": 7692,
+          "bruttoBeløp": 9736,
+          "kilde": "SOKOS",
+          "info": "843555869"
+        },
+        {
+          "periode": {
+            "fom": "2026-04-13",
+            "tom": "2026-04-26"
+          },
+          "beløp": 9615,
+          "bruttoBeløp": 12170,
+          "kilde": "SOKOS",
+          "info": "844614333"
+        },
+        {
+          "periode": {
+            "fom": "2026-04-27",
+            "tom": "2026-04-30"
+          },
+          "beløp": 3846,
+          "bruttoBeløp": 4868,
+          "kilde": "SOKOS",
+          "info": "846732262"
+        },
+        {
+          "periode": {
+            "fom": "2026-05-01",
+            "tom": "2026-05-10"
+          },
+          "beløp": 5769,
+          "bruttoBeløp": 7302,
+          "kilde": "SOKOS",
+          "info": "846732262"
+        },
+        {
+          "periode": {
+            "fom": "2026-05-11",
+            "tom": "2026-05-24"
+          },
+          "beløp": 9615,
+          "bruttoBeløp": 12170,
+          "kilde": "SOKOS",
+          "info": "848004601"
+        },
+        {
+          "periode": {
+            "fom": "2026-05-25",
+            "tom": "2026-05-31"
+          },
+          "beløp": 4808,
+          "bruttoBeløp": 6085,
+          "kilde": "SOKOS",
+          "info": "848487710"
+        },
+        {
+          "periode": {
+            "fom": "2026-06-01",
+            "tom": "2026-06-07"
+          },
+          "beløp": 4808,
+          "bruttoBeløp": 6085,
+          "kilde": "SOKOS",
+          "info": "848487710"
+        },
+        {
+          "periode": {
+            "fom": "2026-06-15",
+            "tom": "2026-06-15"
+          },
+          "beløp": 11081,
+          "bruttoBeløp": 11081,
+          "kilde": "SOKOS",
+          "info": "850465128"
+        },
+        {
+          "periode": {
+            "fom": "2026-06-08",
+            "tom": "2026-06-19"
+          },
+          "beløp": 9615,
+          "bruttoBeløp": 12170,
+          "kilde": "SOKOS",
+          "info": "850653433"
+        },
+        {
+          "periode": {
+            "fom": "2026-06-22",
+            "tom": "2026-06-30"
+          },
+          "beløp": 6731,
+          "bruttoBeløp": 8519,
+          "kilde": "SOKOS",
+          "info": "851761990"
+        },
+        {
+          "periode": {
+            "fom": "2026-07-01",
+            "tom": "2026-07-05"
+          },
+          "beløp": 2885,
+          "bruttoBeløp": 3651,
+          "kilde": "SOKOS",
+          "info": "851761990"
+        },
+        {
+          "periode": {
+            "fom": "2026-07-06",
+            "tom": "2026-07-19"
+          },
+          "beløp": 9615,
+          "bruttoBeløp": 12170,
+          "kilde": "SOKOS",
+          "info": "853823799"
+        },
+        {
+          "periode": {
+            "fom": "2026-07-20",
+            "tom": "2026-07-31"
+          },
+          "beløp": 9615,
+          "bruttoBeløp": 12170,
+          "kilde": "SOKOS",
+          "info": "854884303"
+        },
+        {
+          "periode": {
+            "fom": "2026-08-01",
+            "tom": "2026-08-02"
+          },
+          "beløp": 0,
+          "bruttoBeløp": 0,
+          "kilde": "SOKOS",
+          "info": "854884303"
+        },
+        {
+          "periode": {
+            "fom": "2026-08-03",
+            "tom": "2026-08-16"
+          },
+          "beløp": 9615,
+          "bruttoBeløp": 12170,
+          "kilde": "SOKOS",
+          "info": "856930430"
+        }
+      ]
+    }
+  ],
+  "pensjonsgivendeInntekt": [
+    {
+      "inntektsår": "2025",
+      "lønnsinntekt": 0,
+      "næringsinntekt": 0
+    },
+    {
+      "inntektsår": "2024",
+      "lønnsinntekt": 0,
+      "næringsinntekt": 0
+    },
+    {
+      "inntektsår": "2023",
+      "lønnsinntekt": 0,
+      "næringsinntekt": 0
+    }
+  ]
+}
