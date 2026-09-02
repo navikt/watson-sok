@@ -5,7 +5,11 @@ import { useAapMeldekort } from "~/aap-meldekort/AapMeldekortContext";
 import type { ArbeidsgiverInformasjon } from "~/arbeidsforhold/domene";
 import { ResolvingComponent } from "~/async/ResolvingComponent";
 import { TimerSammenligningGraf } from "~/meldekort/TimerSammenligningGraf";
-import { aggregerAapTimerPerMåned, erTimelønnet } from "~/meldekort/utils";
+import {
+  aggregerAapTimerPerMåned,
+  erTimelønnet,
+  harUperiodiserteTimelønnstimer,
+} from "~/meldekort/utils";
 import {
   PanelContainer,
   PanelContainerSkeleton,
@@ -125,6 +129,9 @@ export function AapOppsummeringPanelInnhold({
   const harFeil = aapState?.status === "error";
   const erTimelønnetBruker =
     arbeidsgiverInformasjon != null && erTimelønnet(arbeidsgiverInformasjon);
+  const harUperiodiserteTimer =
+    arbeidsgiverInformasjon != null &&
+    harUperiodiserteTimelønnstimer(arbeidsgiverInformasjon, fraDato, tilDato);
   // Uten meldekortdata i DENNE spesifikke perioden blir mkTimer alltid 0,
   // som gjør at grafen ville vist "0t meldekort-timer" hver måned — ser ut
   // som 100 % avvik, men er egentlig bare fravær av data. Det er ikke nok å
@@ -140,6 +147,7 @@ export function AapOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           erTimelønnetBruker &&
+          !harUperiodiserteTimer &&
           antallMånederMedAvvik > 0 && (
             <Alert variant="warning" size="small">
               {antallMånederMedAvvik === 1
@@ -165,6 +173,15 @@ export function AapOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           arbeidsgiverInformasjon != null &&
+          harUperiodiserteTimer && (
+            <Alert variant="info" size="small" inline>
+              AA-timer kan ikke sammenlignes for valgt periode fordi
+              periodeinformasjon mangler i AA-registeret.
+            </Alert>
+          )}
+        {!laster &&
+          !harFeil &&
+          arbeidsgiverInformasjon != null &&
           !erTimelønnetBruker && (
             <Alert variant="info" size="small" inline>
               Ingen timer fra AA-registeret å vise. Timer vises kun for
@@ -174,6 +191,7 @@ export function AapOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           erTimelønnetBruker &&
+          !harUperiodiserteTimer &&
           harRelevantAapData &&
           timerData &&
           timerData.length > 0 && (
@@ -188,6 +206,7 @@ export function AapOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           erTimelønnetBruker &&
+          !harUperiodiserteTimer &&
           (!harRelevantAapData || !timerData || timerData.length === 0) && (
             <Alert variant="info" size="small" inline>
               Ingen data tilgjengelig for valgt periode.

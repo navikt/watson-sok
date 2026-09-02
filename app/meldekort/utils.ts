@@ -30,23 +30,8 @@ function harTimeloennIForhold(
 ): forhold is Arbeidsforhold & {
   timerMedTimeloenn: NonNullable<Arbeidsforhold["timerMedTimeloenn"]>;
 } {
-  // Krever minst én oppføring med enten startdato ELLER rapporteringsmaaneder
-  // — Aareg kan returnere en ikke-tom liste der alle oppføringene mangler
-  // begge deler (ubrukelige datapunkter). Uten denne sjekken ville forholdet
-  // feilaktig blitt klassifisert som timelønnet, men aktiveTimeloennEntries
-  // ville alltid blitt tom, og AA-timer ville stille vist 0 selv om personen
-  // har en reell, fast ansettelse (se ansettelsesDetaljer/antallTimerPrUke).
-  //
-  // Motsatt: hvis MINST ÉN oppføring har rapporteringsmaaneder (selv uten
-  // startdato), skal forholdet regnes som timelønnet — ellers faller HELE
-  // forholdet feilaktig tilbake til antallTimerPrUke (full stillingsprosent)
-  // for alle måneder, som kan gi mange ganger for høye AA-timer sammenlignet
-  // med de faktisk rapporterte timelønnet-timene (se regresjonstest).
   return (
-    forhold.timerMedTimeloenn != null &&
-    forhold.timerMedTimeloenn.some(
-      (entry) => entry.startdato != null || entry.rapporteringsmaaneder != null,
-    )
+    forhold.timerMedTimeloenn != null && forhold.timerMedTimeloenn.length > 0
   );
 }
 
@@ -80,6 +65,49 @@ export function erTimelønnet(
   return (
     arbeidsgiverInformasjon.løpendeArbeidsforhold.some(harTimeloennIForhold) ||
     arbeidsgiverInformasjon.historikk.some(harTimeloennIForhold)
+  );
+}
+
+function harUperiodisertTimeloenn(forhold: Arbeidsforhold): boolean {
+  return (
+    forhold.timerMedTimeloenn?.some(
+      (entry) => entry.startdato == null && entry.rapporteringsmaaneder == null,
+    ) ?? false
+  );
+}
+
+function overlapperValgtPeriode(
+  forhold: Arbeidsforhold,
+  fraDato: string,
+  tilDato: string,
+): boolean {
+  if (forhold.ansettelsesDetaljer.length === 0) return true;
+
+  const fra = parseDatoLokal(fraDato);
+  const til = parseDatoLokal(tilDato);
+  return forhold.ansettelsesDetaljer.some((detalj) => {
+    const fom = parseDatoLokal(detalj.periode.fom);
+    const tom = detalj.periode.tom ? parseDatoLokal(detalj.periode.tom) : null;
+    return fom <= til && (tom === null || tom >= fra);
+  });
+}
+
+/**
+ * Angir om Aareg har timelønnstimer uten nok periodeinformasjon til at de
+ * kan sammenlignes per måned. Avtalt uketid er ikke en gyldig erstatning.
+ */
+export function harUperiodiserteTimelønnstimer(
+  arbeidsgiverInformasjon: ArbeidsgiverInformasjon,
+  fraDato: string,
+  tilDato: string,
+): boolean {
+  return [
+    ...arbeidsgiverInformasjon.løpendeArbeidsforhold,
+    ...arbeidsgiverInformasjon.historikk,
+  ].some(
+    (forhold) =>
+      harUperiodisertTimeloenn(forhold) &&
+      overlapperValgtPeriode(forhold, fraDato, tilDato),
   );
 }
 
@@ -292,8 +320,9 @@ function beregnAaTimerForMåned(
     ...arbeidsgiverInformasjon.løpendeArbeidsforhold,
     ...arbeidsgiverInformasjon.historikk,
   ]) {
-    // Hvis timerMedTimeloenn er definert og ikke-tom er personen timelønnet.
-    // Da bruker vi aldri antallTimerPrUke som fallback — måneder uten data gir 0.
+    // Når Aareg har oppgitt timelønn, er avtalt uketid ikke et gyldig
+    // sammenligningsgrunnlag. Oppføringer uten periode gir derfor 0 her og
+    // håndteres som "ikke sammenlignbar" av panelet.
     if (harTimeloennIForhold(forhold)) {
       for (const timerEntry of dedupliser(forhold.timerMedTimeloenn)) {
         const periode = hentEffektivPeriodeForTimerEntry(timerEntry);
