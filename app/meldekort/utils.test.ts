@@ -10,6 +10,7 @@ import {
   beregnAktivitetStatistikk,
   erTimelønnet,
   filtrerMeldekortSomOverlapperPeriode,
+  harUperiodiserteTimelønnstimer,
 } from "./utils";
 
 function lagDag(dagIndex: number, aktiviteter: Dag["aktiviteter"] = []): Dag {
@@ -1057,11 +1058,9 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
     expect(resultat[0].aaTimer).toBeCloseTo((30 / 7) * 37.5, 1);
   });
 
-  it("faller tilbake til antallTimerPrUke når alle timerMedTimeloenn-oppføringer mangler startdato", () => {
-    // Reell Aareg-bug: timerMedTimeloenn er ikke-tom, men alle oppføringene
-    // mangler startdato/sluttdato (ubrukelige datapunkter). Uten fiksen ble
-    // forholdet feilaktig klassifisert som timelønnet og AA-timer viste 0,
-    // selv om personen har en reell, fast ansettelse i samme periode.
+  it("faller ikke tilbake til antallTimerPrUke når timelønn mangler periode", () => {
+    // Aareg har oppgitt timelønn, men ingen periode. Avtalt uketid er ikke
+    // faktisk innrapportert arbeidstid og må ikke gi et falskt avvik.
     const meldekort: MeldekortRespons = [];
     const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
       løpendeArbeidsforhold: [],
@@ -1093,8 +1092,15 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
       "2024-04-30",
     );
 
-    // 30 dager / 7 × 37.5 t/uke — IKKE 0
-    expect(resultat[0].aaTimer).toBeCloseTo((30 / 7) * 37.5, 1);
+    expect(resultat[0].aaTimer).toBe(0);
+
+    expect(
+      harUperiodiserteTimelønnstimer(
+        arbeidsgiverInformasjon,
+        "2024-04-01",
+        "2024-04-30",
+      ),
+    ).toBe(true);
   });
 
   it("teller ikke AA-timer flere ganger ved duplikate ansettelsesDetaljer-oppføringer", () => {
@@ -1251,7 +1257,7 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
     expect(januar[0].aaTimer + februar[0].aaTimer).toBeCloseTo(60, 1);
   });
 
-  it("ignorerer oppføringer som mangler BÅDE startdato og rapporteringsmaaneder", () => {
+  it("bruker ikke avtalt uketid når timelønn mangler periodeinformasjon", () => {
     const meldekort: MeldekortRespons = [];
     const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
       løpendeArbeidsforhold: [
@@ -1275,16 +1281,45 @@ describe("aggregerTimerPerMåned — timerMedTimeloenn", () => {
       historikk: [],
     };
 
-    // Ingen oppføring har verken startdato eller rapporteringsmaaneder →
-    // harTimeloennIForhold skal returnere false → fall tilbake til
-    // antallTimerPrUke (fastlønnet-logikk), IKKE 999.
     const resultat = aggregerTimerPerMåned(
       meldekort,
       arbeidsgiverInformasjon,
       "2026-02-01",
       "2026-02-28",
     );
-    expect(resultat[0].aaTimer).toBeCloseTo((28 / 7) * 37.5, 1);
+    expect(resultat[0].aaTimer).toBe(0);
+  });
+
+  it("blokkerer ikke sammenligning utenfor arbeidsforholdets periode", () => {
+    const arbeidsgiverInformasjon: ArbeidsgiverInformasjon = {
+      løpendeArbeidsforhold: [],
+      historikk: [
+        {
+          arbeidsgiver: "Tidligere arbeidsgiver AS",
+          organisasjonsnummer: "123456789",
+          ansettelsesDetaljer: [
+            {
+              type: "Ordinær",
+              stillingsprosent: 100,
+              antallTimerPrUke: 37.5,
+              periode: { fom: "2024-01-01", tom: "2024-03-31" },
+              yrke: null,
+            },
+          ],
+          timerMedTimeloenn: [
+            { antall: 37.5, startdato: null, sluttdato: null },
+          ],
+        },
+      ],
+    };
+
+    expect(
+      harUperiodiserteTimelønnstimer(
+        arbeidsgiverInformasjon,
+        "2024-04-01",
+        "2024-04-30",
+      ),
+    ).toBe(false);
   });
 });
 
@@ -1329,7 +1364,7 @@ describe("erTimelønnet", () => {
     expect(erTimelønnet(info)).toBe(true);
   });
 
-  it("returnerer false når alle timerMedTimeloenn-oppføringer mangler startdato", () => {
+  it("returnerer true når timelønn finnes uten periodeinformasjon", () => {
     const info: ArbeidsgiverInformasjon = {
       løpendeArbeidsforhold: [
         {
@@ -1344,7 +1379,7 @@ describe("erTimelønnet", () => {
       ],
       historikk: [],
     };
-    expect(erTimelønnet(info)).toBe(false);
+    expect(erTimelønnet(info)).toBe(true);
   });
 });
 

@@ -79,6 +79,28 @@ function lagFastlønnetArbeidsgiverInformasjon(): ArbeidsgiverInformasjon {
   };
 }
 
+function lagTimelønnetArbeidsgiverInformasjonUtenPeriode(): ArbeidsgiverInformasjon {
+  return {
+    løpendeArbeidsforhold: [
+      {
+        arbeidsgiver: "Testbedriften AS",
+        organisasjonsnummer: "123456789",
+        ansettelsesDetaljer: [
+          {
+            type: "Ordinær",
+            stillingsprosent: 100,
+            antallTimerPrUke: 37.5,
+            periode: { fom: "2024-01-01", tom: null },
+            yrke: null,
+          },
+        ],
+        timerMedTimeloenn: [{ antall: 37.5, startdato: null, sluttdato: null }],
+      },
+    ],
+    historikk: [],
+  };
+}
+
 describe("MeldekortOppsummeringPanelInnhold", () => {
   it("viser ikke 'Ingen timer'-melding og rendrer grafen for timelønnet bruker", () => {
     render(
@@ -127,6 +149,29 @@ describe("MeldekortOppsummeringPanelInnhold", () => {
     );
 
     expect(screen.getByText(/Ingen timer fra AA-registeret/)).toBeDefined();
+  });
+
+  it("viser ikke grafen eller avvik når AA-timene mangler periodeinformasjon", () => {
+    vi.mocked(useMeldekort).mockReturnValue({
+      status: "success",
+      meldekort: [lagMeldekortMedArbeid("2024-05-01", "2024-05-14", 5)],
+    });
+
+    render(
+      <MeldekortOppsummeringPanelInnhold
+        arbeidsgiverInformasjon={lagTimelønnetArbeidsgiverInformasjonUtenPeriode()}
+        fraDato="2024-04-01"
+        tilDato="2024-06-30"
+      />,
+    );
+
+    expect(
+      screen.getByText(/AA-timer kan ikke sammenlignes for valgt periode/),
+    ).toBeDefined();
+    expect(screen.queryByRole("region", { name: /Stolpediagram/ })).toBeNull();
+    expect(
+      screen.queryByText(/perioder med avvik|periode med avvik/),
+    ).toBeNull();
   });
 
   it("viser grafen når timerMedTimeloenn kun finnes i historikk (avsluttet arbeidsforhold)", () => {

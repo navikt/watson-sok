@@ -7,7 +7,11 @@ import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { useMeldekort } from "~/meldekort/MeldekortContext";
 import { TimerSammenligningGraf } from "~/meldekort/TimerSammenligningGraf";
-import { aggregerTimerPerMåned, erTimelønnet } from "~/meldekort/utils";
+import {
+  aggregerTimerPerMåned,
+  erTimelønnet,
+  harUperiodiserteTimelønnstimer,
+} from "~/meldekort/utils";
 import {
   PanelContainer,
   PanelContainerSkeleton,
@@ -135,6 +139,9 @@ export function MeldekortOppsummeringPanelInnhold({
   const harFeil = meldekortState?.status === "error";
   const erTimelønnetBruker =
     arbeidsgiverInformasjon != null && erTimelønnet(arbeidsgiverInformasjon);
+  const harUperiodiserteTimer =
+    arbeidsgiverInformasjon != null &&
+    harUperiodiserteTimelønnstimer(arbeidsgiverInformasjon, fraDato, tilDato);
 
   return (
     <PanelContainer title="AA-timer vs meldekort-timer per måned">
@@ -142,6 +149,7 @@ export function MeldekortOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           erTimelønnetBruker &&
+          !harUperiodiserteTimer &&
           antallMånederMedAvvik > 0 && (
             <Alert variant="warning" size="small">
               {antallMånederMedAvvik === 1
@@ -168,6 +176,15 @@ export function MeldekortOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           arbeidsgiverInformasjon != null &&
+          harUperiodiserteTimer && (
+            <Alert variant="info" size="small" inline>
+              AA-timer kan ikke sammenlignes for valgt periode fordi
+              periodeinformasjon mangler i AA-registeret.
+            </Alert>
+          )}
+        {!laster &&
+          !harFeil &&
+          arbeidsgiverInformasjon != null &&
           !erTimelønnetBruker && (
             <Alert variant="info" size="small" inline>
               Ingen timer fra AA-registeret å vise. Timer vises kun for
@@ -177,6 +194,7 @@ export function MeldekortOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           erTimelønnetBruker &&
+          !harUperiodiserteTimer &&
           timerData &&
           timerData.length > 0 && (
             <>
@@ -190,6 +208,7 @@ export function MeldekortOppsummeringPanelInnhold({
         {!laster &&
           !harFeil &&
           erTimelønnetBruker &&
+          !harUperiodiserteTimer &&
           (!timerData || timerData.length === 0) && (
             <Alert variant="info" size="small" inline>
               Ingen data tilgjengelig for valgt periode.
