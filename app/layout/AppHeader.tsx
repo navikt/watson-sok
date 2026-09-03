@@ -26,6 +26,7 @@ import {
 
 import { sporHendelse } from "~/analytics/analytics";
 import { useInnloggetBruker } from "~/auth/innlogget-bruker";
+import { hentWatsonSakUrl } from "~/config/backend-config";
 import { useMiljø } from "~/miljø/useMiljø";
 import { usePreferanser } from "~/preferanser/PreferanserContext";
 import { RouteConfig } from "~/routeConfig";
@@ -55,6 +56,7 @@ export function AppHeader() {
   }, [navigation.state]);
 
   const miljø = useMiljø();
+  const watsonSakUrl = hentWatsonSakUrl(miljø);
   const visMiljøtag = miljø !== "prod";
   const miljøtagVariant =
     miljø === "demo" ? "alt2" : miljø === "dev" ? "alt1" : "alt3";
@@ -118,6 +120,11 @@ export function AppHeader() {
             >
               Watson Søk
             </ActionMenu.Item>
+            {watsonSakUrl && (
+              <ActionMenu.Item as="a" href={watsonSakUrl} icon={<PersonIcon />}>
+                Watson Sak
+              </ActionMenu.Item>
+            )}
           </ActionMenu.Group>
 
           <ActionMenu.Divider />
