@@ -306,19 +306,17 @@ function byggArbeidsgiverInformasjon() {
         },
         yrke: ad.yrke?.beskrivelse ?? null,
       })),
-      timerMedTimeloenn: (arbeidsforhold.timerMedTimeloenn ?? []).map(
-        (t) => ({
-          antall: t.antall,
-          startdato: t.startdato,
-          sluttdato: t.sluttdato,
-          rapporteringsmaaneder: t.rapporteringsmaaneder
-            ? {
-                fom: t.rapporteringsmaaneder.fra,
-                tom: t.rapporteringsmaaneder.til,
-              }
-            : undefined,
-        }),
-      ),
+      timerMedTimeloenn: (arbeidsforhold.timerMedTimeloenn ?? []).map((t) => ({
+        antall: t.antall,
+        startdato: t.startdato,
+        sluttdato: t.sluttdato,
+        rapporteringsmaaneder: t.rapporteringsmaaneder
+          ? {
+              fom: t.rapporteringsmaaneder.fra,
+              tom: t.rapporteringsmaaneder.til,
+            }
+          : undefined,
+      })),
     };
   }
 
@@ -421,8 +419,7 @@ function byggStønader() {
   const grupper = new Map();
   for (const utbetaling of utbetalinger) {
     for (const ytelse of utbetaling.ytelseListe) {
-      if (!ytelse.ytelsestype || ytelse.ytelsestype === "Feriepenger")
-        continue;
+      if (!ytelse.ytelsestype || ytelse.ytelsestype === "Feriepenger") continue;
       if (!grupper.has(ytelse.ytelsestype)) grupper.set(ytelse.ytelsestype, []);
       grupper.get(ytelse.ytelsestype).push({
         periode: {
@@ -528,9 +525,5 @@ const mockPerson = {
   pensjonsgivendeInntekt: byggPensjonsgivendeInntekt(),
 };
 
-fs.writeFileSync(
-  OUT_FILE,
-  JSON.stringify(mockPerson, null, 2) + "\n",
-  "utf-8",
-);
+fs.writeFileSync(OUT_FILE, JSON.stringify(mockPerson, null, 2) + "\n", "utf-8");
 console.log(`Skrev mock-person til ${path.relative(ROOT, OUT_FILE)}`);

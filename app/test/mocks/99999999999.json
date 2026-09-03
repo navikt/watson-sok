@@ -93,9 +93,7 @@
         "adressebeskyttelse": "UGRADERT"
       }
     ],
-    "statsborgerskap": [
-      "AFGHANISTAN"
-    ],
+    "statsborgerskap": ["AFGHANISTAN"],
     "sivilstand": "GIFT",
     "alder": 34,
     "fødselsdato": "1992-06-29",

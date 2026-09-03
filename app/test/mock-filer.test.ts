@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { describe, expect, it } from "vitest";
+import { describe, it } from "vitest";
 
 import { MockOppslagBrukerResponsSchema } from "./domene";
 
@@ -20,9 +20,7 @@ describe("Alle mock-personer validerer mot MockOppslagBrukerResponsSchema", () =
     const result = MockOppslagBrukerResponsSchema.safeParse(rawData);
 
     if (!result.success) {
-      throw new Error(
-        `${filnavn} er ugyldig: ${result.error.message}`,
-      );
+      throw new Error(`${filnavn} er ugyldig: ${result.error.message}`);
     }
   });
 });
