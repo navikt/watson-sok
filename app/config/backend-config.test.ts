@@ -9,14 +9,17 @@ describe("hentWatsonSakUrl", () => {
     expect(hentWatsonSakUrl("local-mock")).toBe("http://localhost:5174");
   });
 
-  it("bruker Sak i tilsvarende deploymiljø", () => {
+  it("bruker Sak i tilsvarende ikke-produksjonsmiljø", () => {
     expect(hentWatsonSakUrl("demo")).toBe(
       "https://watson-sak-demo.ekstern.dev.nav.no",
     );
     expect(hentWatsonSakUrl("dev")).toBe(
       "https://watson-sak.intern.dev.nav.no",
     );
-    expect(hentWatsonSakUrl("prod")).toBe("https://watson-sak.intern.nav.no");
+  });
+
+  it("returnerer ingen Sak-lenke i produksjon", () => {
+    expect(hentWatsonSakUrl("prod")).toBeUndefined();
   });
 
   it("returnerer ingen URL når miljøet mangler", () => {
