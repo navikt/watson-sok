@@ -11,13 +11,9 @@ type Miljø = (typeof miljøVerdier)[number];
 
 const WATSON_SAK_LOKAL_URL = "http://localhost:5174";
 
-const WATSON_SAK_URLER: Record<
-  Exclude<Miljø, "local-backend" | "local-dev" | "local-mock">,
-  string
-> = {
+const WATSON_SAK_URLER: Partial<Record<Miljø, string>> = {
   demo: "https://watson-sak-demo.ekstern.dev.nav.no",
   dev: "https://watson-sak.intern.dev.nav.no",
-  prod: "https://watson-sak.intern.nav.no",
 };
 
 export function hentWatsonSakUrl(miljø?: Miljø) {
