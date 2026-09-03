@@ -71,7 +71,7 @@ export function erTimelønnet(
 function harUperiodisertTimeloenn(forhold: Arbeidsforhold): boolean {
   return (
     forhold.timerMedTimeloenn?.some(
-      (entry) => entry.startdato == null && entry.rapporteringsmaaneder == null,
+      (entry) => hentEffektivPeriodeForTimerEntry(entry) === null,
     ) ?? false
   );
 }
