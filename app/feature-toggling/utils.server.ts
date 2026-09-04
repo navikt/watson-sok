@@ -5,6 +5,29 @@ import { logger } from "~/logging/logging";
 
 import { FeatureFlagg } from "./featureflagg";
 
+// startUnleash() venter på synkroniseringseventet fra unleash-client uten egen
+// timeout. Hvis Unleash-serveren ikke er nåbar av noen grunn, henger kallet for
+// alltid — og siden dette kalles fra rootLoader på hver sidevisning, henger da
+// hele responsen mens podden fortsatt rapporteres som frisk (health-sjekken
+// bruker en annen kodesti). Denne timeouten sikrer at vi i stedet feiler synlig.
+const UNLEASH_TIMEOUT_MS = 5000;
+
+function medTimeout<T>(promise: Promise<T>, timeoutMs: number, feilmelding: string): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const tidsavbrudd = setTimeout(() => reject(new Error(feilmelding)), timeoutMs);
+    promise.then(
+      (verdi) => {
+        clearTimeout(tidsavbrudd);
+        resolve(verdi);
+      },
+      (feil) => {
+        clearTimeout(tidsavbrudd);
+        reject(feil);
+      },
+    );
+  });
+}
+
 let unleash: Unleash;
 /** Initialiserer Unleash-singletonen */
 async function initialiserUnleash() {
@@ -14,16 +37,21 @@ async function initialiserUnleash() {
   if (!env.UNLEASH_SERVER_API_TOKEN) {
     throw new Error("UNLEASH_SERVER_API_TOKEN er ikke satt som miljøvariabel.");
   }
-  unleash = await startUnleash({
-    url: `${env.UNLEASH_SERVER_API_URL}/api`,
-    appName: "oppslag-bruker-frontend",
-    environment: env.ENVIRONMENT === "prod" ? "production" : "development",
-    projectName: env.UNLEASH_SERVER_API_PROJECTS,
-    customHeaders: {
-      Authorization: env.UNLEASH_SERVER_API_TOKEN,
-    },
-  });
+  unleash = await medTimeout(
+    startUnleash({
+      url: `${env.UNLEASH_SERVER_API_URL}/api`,
+      appName: "oppslag-bruker-frontend",
+      environment: env.ENVIRONMENT === "prod" ? "production" : "development",
+      projectName: env.UNLEASH_SERVER_API_PROJECTS,
+      customHeaders: {
+        Authorization: env.UNLEASH_SERVER_API_TOKEN,
+      },
+    }),
+    UNLEASH_TIMEOUT_MS,
+    `Unleash synkroniserte ikke innen ${UNLEASH_TIMEOUT_MS}ms`,
+  );
 }
+
 
 /** Henter alle påskrudde feature-flaggene */
 export async function hentAlleFeatureFlagg(
