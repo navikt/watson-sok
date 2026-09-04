@@ -12,9 +12,16 @@ import { FeatureFlagg } from "./featureflagg";
 // bruker en annen kodesti). Denne timeouten sikrer at vi i stedet feiler synlig.
 const UNLEASH_TIMEOUT_MS = 5000;
 
-function medTimeout<T>(promise: Promise<T>, timeoutMs: number, feilmelding: string): Promise<T> {
+function medTimeout<T>(
+  promise: Promise<T>,
+  timeoutMs: number,
+  feilmelding: string,
+): Promise<T> {
   return new Promise((resolve, reject) => {
-    const tidsavbrudd = setTimeout(() => reject(new Error(feilmelding)), timeoutMs);
+    const tidsavbrudd = setTimeout(
+      () => reject(new Error(feilmelding)),
+      timeoutMs,
+    );
     promise.then(
       (verdi) => {
         clearTimeout(tidsavbrudd);
@@ -51,7 +58,6 @@ async function initialiserUnleash() {
     `Unleash synkroniserte ikke innen ${UNLEASH_TIMEOUT_MS}ms`,
   );
 }
-
 
 /** Henter alle påskrudde feature-flaggene */
 export async function hentAlleFeatureFlagg(
