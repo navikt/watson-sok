@@ -20,6 +20,7 @@ import {
   TimelineRow,
 } from "@navikt/ds-react/Timeline";
 import { use, useMemo, useState } from "react";
+import type { ReactNode } from "react";
 import { useSearchParams } from "react-router";
 
 import {
@@ -103,6 +104,11 @@ const YtelserPanelMedData = ({
   } | null>(null);
   const { tidsvindu } = useTidsvindu();
   const erMeldekortAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
+  // SEARCH-30 (AAP-meldekort) er ikke klart ennå — egen bryter, frikoblet fra
+  // RELEASE_1_2, slik at resten av 1.2 kan slippes uten AAP-meldekort.
+  const erAapMeldekortAktivert = useEnkeltFeatureFlagg(
+    FeatureFlagg.AAP_MELDEKORT,
+  );
 
   const ytelserMedGruppertePerioder = useMemo(() => {
     if (!ytelser) return [];
@@ -167,17 +173,18 @@ const YtelserPanelMedData = ({
               }
             }}
           >
-            {erMeldekortAktivert ? (
-              <MeldekortProvider ytelse="dagpenger">
-                <AapMeldekortProvider>
-                  <YtelserTimeline
-                    tilbakekrevinger={tilbakekrevinger}
-                    ytelserMedGruppertePerioder={ytelserMedGruppertePerioder}
-                    nåværendeVindu={nåværendeVindu}
-                    setValgtYtelsePeriode={setValgtYtelsePeriode}
-                  />
-                </AapMeldekortProvider>
-              </MeldekortProvider>
+            {erMeldekortAktivert || erAapMeldekortAktivert ? (
+              <MedMeldekortProviders
+                dagpengerAktivert={erMeldekortAktivert}
+                aapAktivert={erAapMeldekortAktivert}
+              >
+                <YtelserTimeline
+                  tilbakekrevinger={tilbakekrevinger}
+                  ytelserMedGruppertePerioder={ytelserMedGruppertePerioder}
+                  nåværendeVindu={nåværendeVindu}
+                  setValgtYtelsePeriode={setValgtYtelsePeriode}
+                />
+              </MedMeldekortProviders>
             ) : (
               <YtelserTimeline
                 tilbakekrevinger={tilbakekrevinger}
@@ -214,8 +221,38 @@ type YtelserTimelineProps = {
   ) => void;
 };
 
+type MedMeldekortProvidersProps = {
+  dagpengerAktivert: boolean;
+  aapAktivert: boolean;
+  children: ReactNode;
+};
+
 /**
- * Rendres inni MeldekortProvider når feature-flagget er aktivt, ellers uten provider.
+ * Wrapper barna i MeldekortProvider og/eller AapMeldekortProvider basert på
+ * hvilke feature-flagg som er aktive. Flaggene er frikoblet (SEARCH-30
+ * AAP-meldekort er ikke klart ennå og styres av en egen bryter), så hver
+ * provider legges kun til når sitt respektive flagg er påskrudd.
+ */
+function MedMeldekortProviders({
+  dagpengerAktivert,
+  aapAktivert,
+  children,
+}: MedMeldekortProvidersProps) {
+  let innhold = children;
+  if (aapAktivert) {
+    innhold = <AapMeldekortProvider>{innhold}</AapMeldekortProvider>;
+  }
+  if (dagpengerAktivert) {
+    innhold = (
+      <MeldekortProvider ytelse="dagpenger">{innhold}</MeldekortProvider>
+    );
+  }
+  return <>{innhold}</>;
+}
+
+/**
+ * Rendres inni MeldekortProvider/AapMeldekortProvider når respektive
+ * feature-flagg er aktive, ellers uten provider.
  * Alle TimelineRow-er er direkte barn av Timeline — nødvendig fordi Timeline
  * bruker React.Children og filtrerer på componentType === "row".
  */
@@ -226,6 +263,11 @@ function YtelserTimeline({
   setValgtYtelsePeriode,
 }: YtelserTimelineProps) {
   const erMeldekortAktivert = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
+  // SEARCH-30 (AAP-meldekort) er ikke klart ennå — egen bryter, frikoblet fra
+  // RELEASE_1_2.
+  const erAapMeldekortAktivert = useEnkeltFeatureFlagg(
+    FeatureFlagg.AAP_MELDEKORT,
+  );
   const meldekortState = useMeldekort();
   const aapState = useAapMeldekort();
 
@@ -249,7 +291,7 @@ function YtelserTimeline({
     fom: string,
     tom: string,
   ): number | null => {
-    if (!erMeldekortAktivert || aapState?.status !== "success") {
+    if (!erAapMeldekortAktivert || aapState?.status !== "success") {
       return null;
     }
     return filtrerAapVedtakSomOverlapperPeriode(aapState.vedtak, fom, tom)

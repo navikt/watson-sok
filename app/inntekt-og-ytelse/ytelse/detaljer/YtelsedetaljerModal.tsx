@@ -55,6 +55,11 @@ export function YtelsedetaljerModal({
   const erMeldekortPanelAktivert = useEnkeltFeatureFlagg(
     FeatureFlagg.RELEASE_1_2,
   );
+  // SEARCH-30 (AAP-meldekort) er ikke klart ennå — egen bryter, frikoblet fra
+  // RELEASE_1_2, slik at resten av 1.2 kan slippes uten AAP-meldekort-fanen.
+  const erAapMeldekortAktivert = useEnkeltFeatureFlagg(
+    FeatureFlagg.AAP_MELDEKORT,
+  );
 
   const filtrertePerioder = useMemo(() => {
     if (!ytelse) return [];
@@ -74,7 +79,9 @@ export function YtelsedetaljerModal({
   }
 
   const meldekortType = finnMeldekortYtelseType(ytelse.stonadType);
-  const visMeldekortTab = erMeldekortPanelAktivert && meldekortType !== null;
+  const visMeldekortTab =
+    (meldekortType === "dagpenger" && erMeldekortPanelAktivert) ||
+    (meldekortType === "aap" && erAapMeldekortAktivert);
 
   const innhold = (
     <Modal
@@ -198,6 +205,5 @@ export function YtelsedetaljerModal({
   if (visMeldekortTab && meldekortType === "aap") {
     return <AapMeldekortProvider>{innhold}</AapMeldekortProvider>;
   }
-
   return innhold;
 }
