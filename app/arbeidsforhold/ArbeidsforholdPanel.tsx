@@ -86,7 +86,7 @@ const ArbeidsforholdPanelMedData = ({
     handleToggle,
   } = useArbeidsforholdOverflow();
 
-  const visEksakteDatoer = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_3);
+  const visEksakteDatoer = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
 
   const løpende = arbeidsgiverInformasjon?.løpendeArbeidsforhold ?? [];
   const historikk = arbeidsgiverInformasjon?.historikk ?? [];
