@@ -32,10 +32,13 @@ describe("NæringsInntektPanel", () => {
     expect(screen.getByText("Ingen næringsinntekt registrert.")).toBeDefined();
   });
 
-  it("viser tom-melding når data er null", () => {
+  it("viser feilmelding når data er null (baksystem-feil, IKKE bekreftet tomt)", () => {
     render(<NæringsInntektPanelInnhold data={null} />);
 
-    expect(screen.getByText("Ingen næringsinntekt registrert.")).toBeDefined();
+    expect(
+      screen.getByText("Kunne ikke hente næringsinntekt. Prøv igjen senere."),
+    ).toBeDefined();
+    expect(screen.queryByText("Ingen næringsinntekt registrert.")).toBeNull();
   });
 
   it("filtrerer ut rader uten næringsinntekt", () => {

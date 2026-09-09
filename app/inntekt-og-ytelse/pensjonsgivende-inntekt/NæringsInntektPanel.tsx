@@ -57,6 +57,13 @@ export const NæringsInntektPanelInnhold = ({
   panelId,
   ariaKeyShortcuts,
 }: NæringsInntektPanelInnholdProps) => {
+  // gjørOppslagApiRequest kaster alltid ved feil og returnerer aldri `null`
+  // ved suksess — `null` her betyr derfor alltid at baksystem-kallet feilet
+  // (se loader.server.ts sin catch(BaksystemFeilError)), ALDRI at personen
+  // faktisk mangler næringsinntekt. Må skilles fra ekte tomt resultat under,
+  // ellers fremstår en feil som en bekreftet "ingen inntekt".
+  const feilVedHenting = data === null;
+
   const rader = (data ?? [])
     .filter((rad) => rad.næringsinntekt > 0)
     .sort((a, b) => b.inntektsår.localeCompare(a.inntektsår));
@@ -70,7 +77,11 @@ export const NæringsInntektPanelInnhold = ({
       id={panelId}
       aria-keyshortcuts={ariaKeyShortcuts}
     >
-      {harIngenData ? (
+      {feilVedHenting ? (
+        <Alert variant="warning">
+          Kunne ikke hente næringsinntekt. Prøv igjen senere.
+        </Alert>
+      ) : harIngenData ? (
         <Alert variant="info">Ingen næringsinntekt registrert.</Alert>
       ) : (
         <div className="flex flex-col gap-3">

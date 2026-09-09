@@ -231,7 +231,17 @@ const InntektsoppsummeringPanelMedData = ({
     [pensjonsgivendeInntekt],
   );
 
-  const harIngenInntekter = !aggregert;
+  // gjørOppslagApiRequest kaster alltid ved feil og returnerer aldri `null`
+  // ved suksess — `null` betyr derfor at baksystem-kallet feilet (se
+  // loader.server.ts sin catch(BaksystemFeilError)), IKKE at personen
+  // mangler inntekt. Kun relevant når promise faktisk ble sendt inn
+  // (næringsinntekt er bak feature-flagg og kan bevisst være fraværende).
+  const feilVedHentingAvInntekt = inntektInformasjon === null;
+  const feilVedHentingAvNæringsinntekt =
+    pensjonsgivendeInntektPromise !== undefined &&
+    pensjonsgivendeInntekt === null;
+
+  const harIngenInntekter = !feilVedHentingAvInntekt && !aggregert;
 
   return (
     <PanelContainer
@@ -239,105 +249,121 @@ const InntektsoppsummeringPanelMedData = ({
       id={panelId}
       aria-keyshortcuts={ariaKeyShortcuts}
     >
-      {harIngenInntekter ? (
+      {feilVedHentingAvInntekt ? (
+        <Alert variant="warning">
+          Kunne ikke hente inntektsdata. Prøv igjen senere.
+        </Alert>
+      ) : harIngenInntekter ? (
         <Alert variant="info">
           Ingen utbetalinger registrert{" "}
           {tidsvindu === "1 år" ? "det siste året" : `de siste ${tidsvindu}ene`}
           .
         </Alert>
       ) : (
-        <div className="flex flex-col gap-6">
-          <div className="grid grid-cols-1 ax-md:grid-cols-2 gap-4">
-            <StatistikkKort
-              label={`Total lønnsinntekt (siste ${tidsvindu})`}
-              verdi={formaterBeløp(aggregert.totalBeløp, 0)}
-              beskrivelse={aggregert.periodeTekst}
-            />
-            <StatistikkKort
-              label="Snitt per måned"
-              verdi={
-                aggregert.gjennomsnittPerMåned !== null
-                  ? formaterBeløp(aggregert.gjennomsnittPerMåned, 0)
-                  : "–"
-              }
-              beskrivelse={`${aggregert.månederMedUtbetaling} mnd med utbetaling`}
-            />
-            {sumNæringsinntekt > 0 && tidsvindu === "3 år" && (
-              <StatistikkKort
-                label="Samlet inntekt (siste 3 år): lønnsinntekt + næringsinntekt"
-                verdi={formaterBeløp(
-                  aggregert.totalBeløp + sumNæringsinntekt,
-                  0,
-                )}
-                beskrivelse={`Herav næringsinntekt: ${formaterBeløp(sumNæringsinntekt, 0)}`}
-              />
+        aggregert && (
+          <div className="flex flex-col gap-6">
+            {feilVedHentingAvNæringsinntekt && (
+              <Alert variant="warning" size="small">
+                Kunne ikke hente næringsinntekt — Samlet inntekt under viser kun
+                lønnsinntekt.
+              </Alert>
             )}
-          </div>
+            <div className="grid grid-cols-1 ax-md:grid-cols-2 gap-4">
+              <StatistikkKort
+                label={`Total lønnsinntekt (siste ${tidsvindu})`}
+                verdi={formaterBeløp(aggregert.totalBeløp, 0)}
+                beskrivelse={aggregert.periodeTekst}
+              />
+              <StatistikkKort
+                label="Snitt per måned"
+                verdi={
+                  aggregert.gjennomsnittPerMåned !== null
+                    ? formaterBeløp(aggregert.gjennomsnittPerMåned, 0)
+                    : "–"
+                }
+                beskrivelse={`${aggregert.månederMedUtbetaling} mnd med utbetaling`}
+              />
+              {sumNæringsinntekt > 0 && tidsvindu === "3 år" && (
+                <StatistikkKort
+                  label="Samlet inntekt (siste 3 år): lønnsinntekt + næringsinntekt"
+                  verdi={formaterBeløp(
+                    aggregert.totalBeløp + sumNæringsinntekt,
+                    0,
+                  )}
+                  beskrivelse={`Herav næringsinntekt: ${formaterBeløp(sumNæringsinntekt, 0)}`}
+                />
+              )}
+            </div>
 
-          <div>
-            <Heading level="3" size="small" spacing>
-              Fordeling per lønnstype
-            </Heading>
-            <Table size="small">
-              <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell scope="col">Lønnstype</Table.HeaderCell>
-                  <Table.HeaderCell scope="col" align="right">
-                    Sum
-                  </Table.HeaderCell>
-                  <Table.HeaderCell scope="col" align="right">
-                    Andel
-                  </Table.HeaderCell>
-                  <Table.HeaderCell scope="col" align="right">
-                    Antall utbetalinger
-                  </Table.HeaderCell>
-                </Table.Row>
-              </Table.Header>
-              <Table.Body>
-                {aggregert.lønnstyper.map((lønnstype) => (
-                  <Table.Row key={lønnstype.label}>
-                    <Table.HeaderCell scope="row">
-                      {camelCaseTilNorsk(lønnstype.label)}
-                    </Table.HeaderCell>
-                    <Table.DataCell align="right">
-                      {formaterBeløp(lønnstype.sum, 0)}
-                    </Table.DataCell>
-                    <Table.DataCell align="right">
-                      {formaterProsent(lønnstype.andel)}
-                    </Table.DataCell>
-                    <Table.DataCell align="right">
-                      {formaterDesimaltall(lønnstype.antallUtbetalinger, 0, 0)}
-                    </Table.DataCell>
-                  </Table.Row>
-                ))}
-              </Table.Body>
-            </Table>
-          </div>
-
-          {aggregert.toppUtbetalere.length > 0 && (
             <div>
               <Heading level="3" size="small" spacing>
-                Største utbetalere
+                Fordeling per lønnstype
               </Heading>
-              <ol className="flex flex-col gap-2">
-                {aggregert.toppUtbetalere.map((utbetaler, indeks) => (
-                  <li
-                    key={utbetaler.navn}
-                    className="flex items-baseline justify-between gap-4 rounded-md border border-ax-neutral-200 px-3 py-2"
-                  >
-                    <span className="flex items-baseline gap-3">
-                      <Label size="small">{indeks + 1}.</Label>
-                      <BodyShort size="small">{utbetaler.navn}</BodyShort>
-                    </span>
-                    <BodyShort size="small">
-                      {formaterBeløp(utbetaler.sum, 0)}
-                    </BodyShort>
-                  </li>
-                ))}
-              </ol>
+              <Table size="small">
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell scope="col">Lønnstype</Table.HeaderCell>
+                    <Table.HeaderCell scope="col" align="right">
+                      Sum
+                    </Table.HeaderCell>
+                    <Table.HeaderCell scope="col" align="right">
+                      Andel
+                    </Table.HeaderCell>
+                    <Table.HeaderCell scope="col" align="right">
+                      Antall utbetalinger
+                    </Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                  {aggregert.lønnstyper.map((lønnstype) => (
+                    <Table.Row key={lønnstype.label}>
+                      <Table.HeaderCell scope="row">
+                        {camelCaseTilNorsk(lønnstype.label)}
+                      </Table.HeaderCell>
+                      <Table.DataCell align="right">
+                        {formaterBeløp(lønnstype.sum, 0)}
+                      </Table.DataCell>
+                      <Table.DataCell align="right">
+                        {formaterProsent(lønnstype.andel)}
+                      </Table.DataCell>
+                      <Table.DataCell align="right">
+                        {formaterDesimaltall(
+                          lønnstype.antallUtbetalinger,
+                          0,
+                          0,
+                        )}
+                      </Table.DataCell>
+                    </Table.Row>
+                  ))}
+                </Table.Body>
+              </Table>
             </div>
-          )}
-        </div>
+
+            {aggregert.toppUtbetalere.length > 0 && (
+              <div>
+                <Heading level="3" size="small" spacing>
+                  Største utbetalere
+                </Heading>
+                <ol className="flex flex-col gap-2">
+                  {aggregert.toppUtbetalere.map((utbetaler, indeks) => (
+                    <li
+                      key={utbetaler.navn}
+                      className="flex items-baseline justify-between gap-4 rounded-md border border-ax-neutral-200 px-3 py-2"
+                    >
+                      <span className="flex items-baseline gap-3">
+                        <Label size="small">{indeks + 1}.</Label>
+                        <BodyShort size="small">{utbetaler.navn}</BodyShort>
+                      </span>
+                      <BodyShort size="small">
+                        {formaterBeløp(utbetaler.sum, 0)}
+                      </BodyShort>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+          </div>
+        )
       )}
     </PanelContainer>
   );
