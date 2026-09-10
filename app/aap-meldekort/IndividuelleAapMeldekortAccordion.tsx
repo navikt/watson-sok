@@ -147,7 +147,11 @@ function AapPeriodeVisning({
             <div className="grid grid-cols-1 ax-md:grid-cols-3 gap-4">
               <StatistikkKort
                 label="Arbeidet timer"
-                verdi={`${formaterDesimaltall(aktivPeriode.arbeidetTimer ?? 0, 0, 1)} t`}
+                verdi={
+                  aktivPeriode.arbeidetTimer != null
+                    ? `${formaterDesimaltall(aktivPeriode.arbeidetTimer, 0, 1)} t`
+                    : "–"
+                }
               />
               <StatistikkKort
                 label="Annen reduksjon"

@@ -168,4 +168,31 @@ describe("IndividuelleAapMeldekortAccordion", () => {
 
     expect(screen.getByText(/pågår/)).toBeDefined();
   });
+
+  it("viser '–' for arbeidetTimer når verdien er null (ikke '0 t')", () => {
+    // Regresjonstest: arbeidetTimer er number|null i domenet, og null
+    // betyr fravær av data, ikke 0 timer arbeidet. Samme prinsipp som
+    // annenReduksjon/utbetalingsgrad under.
+    mockUseAapMeldekort.mockReturnValue({
+      status: "success",
+      vedtak: [
+        lagVedtak("v1", "SAK1", [
+          lagPeriode("2025-01-01", "2025-01-14", { arbeidetTimer: null }),
+        ]),
+      ],
+    });
+
+    render(
+      <IndividuelleAapMeldekortAccordion
+        fraDato="2025-01-01"
+        tilDato="2025-01-31"
+      />,
+    );
+
+    fireEvent.click(screen.getByText("Vis individuelle AAP-meldekort (1)"));
+
+    expect(screen.queryByText("0 t")).toBeNull();
+    expect(screen.getByText("Arbeidet timer").closest("div")).toBeDefined();
+    expect(screen.getAllByText("–").length).toBeGreaterThan(0);
+  });
 });
