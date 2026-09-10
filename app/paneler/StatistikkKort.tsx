@@ -1,13 +1,13 @@
 import { BodyShort, Label, Skeleton } from "@navikt/ds-react";
-import { useId } from "react";
+import { useId, type ReactNode } from "react";
 
 type StatistikkKortProps = {
   /** Ledetekst som vises over verdien */
   label: string;
   /** Hovedverdien som vises fremhevet */
   verdi: string;
-  /** Valgfri tilleggstekst som vises under verdien */
-  beskrivelse?: string;
+  /** Valgfri tilleggstekst (eller -innhold, f.eks. en fargekodet legend) som vises under verdien */
+  beskrivelse?: ReactNode;
   /** Om kortet er i lastetilstand */
   isLoading?: boolean;
 };

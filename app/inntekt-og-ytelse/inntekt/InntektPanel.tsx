@@ -115,6 +115,12 @@ const InntektPanelMedData = ({
   ]);
 
   const erTom = rader.length === 0;
+  // gjørOppslagApiRequest kaster alltid ved feil og returnerer aldri `null`
+  // ved suksess — `null` her betyr derfor alltid at baksystem-kallet feilet
+  // (se oppslagLoader i app/oppslag/loader.server.ts sin
+  // catch(BaksystemFeilError)), ALDRI at personen
+  // faktisk mangler lønnsinntekt. Må skilles fra ekte tomt resultat under.
+  const feilVedHenting = inntektInformasjon === null;
 
   return (
     <PanelContainer
@@ -123,7 +129,11 @@ const InntektPanelMedData = ({
       id={panelId}
       aria-keyshortcuts={ariaKeyShortcuts}
     >
-      {erTom ? (
+      {feilVedHenting ? (
+        <Alert variant="warning">
+          Kunne ikke hente inntektsdata. Prøv igjen senere.
+        </Alert>
+      ) : erTom ? (
         <Alert variant="info">
           Ingen lønnsutbetalinger funnet for de siste 3 årene.
         </Alert>
