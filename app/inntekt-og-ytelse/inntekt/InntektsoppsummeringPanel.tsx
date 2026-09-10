@@ -233,7 +233,8 @@ const InntektsoppsummeringPanelMedData = ({
 
   // gjørOppslagApiRequest kaster alltid ved feil og returnerer aldri `null`
   // ved suksess — `null` betyr derfor at baksystem-kallet feilet (se
-  // loader.server.ts sin catch(BaksystemFeilError)), IKKE at personen
+  // oppslagLoader i app/oppslag/loader.server.ts sin
+  // catch(BaksystemFeilError)), IKKE at personen
   // mangler inntekt. Kun relevant når promise faktisk ble sendt inn
   // (næringsinntekt er bak feature-flagg og kan bevisst være fraværende).
   const feilVedHentingAvInntekt = inntektInformasjon === null;
