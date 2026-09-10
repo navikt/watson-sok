@@ -3,6 +3,7 @@ import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useMemo } from "react";
 
 import { AapMeldekortProvider } from "~/aap-meldekort/AapMeldekortContext";
+import { AapMeldekortPanel } from "~/aap-meldekort/AapMeldekortPanel";
 import { AapOppsummeringPanel } from "~/aap-meldekort/AapOppsummeringPanel";
 import { AapVedtakListe } from "~/aap-meldekort/AapVedtakListe";
 import { IndividuelleAapMeldekortAccordion } from "~/aap-meldekort/IndividuelleAapMeldekortAccordion";
@@ -178,6 +179,7 @@ export function YtelsedetaljerModal({
           {visMeldekortTab && meldekortType === "aap" && (
             <Tabs.Panel value="meldekort" className="pt-4 flex flex-col gap-6">
               <AapVedtakListe />
+              <AapMeldekortPanel fraDato={fraDato} tilDato={tilDato} />
               {arbeidsgiverInformasjonPromise && (
                 <AapOppsummeringPanel
                   arbeidsgiverInformasjonPromise={
