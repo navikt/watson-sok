@@ -8,7 +8,6 @@ import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
 import { InntektOgYtelseOverlappPanel } from "~/inntekt-og-ytelse/inntekt-og-ytelse-overlapp-panel/InntektOgYtelseOverlappPanel";
 import { InntektPanel } from "~/inntekt-og-ytelse/inntekt/InntektPanel";
 import { InntektsoppsummeringPanel } from "~/inntekt-og-ytelse/inntekt/InntektsoppsummeringPanel";
-import { NæringsInntektPanel } from "~/inntekt-og-ytelse/pensjonsgivende-inntekt/NæringsInntektPanel";
 import { YtelserPanel } from "~/inntekt-og-ytelse/ytelse/YtelserPanel";
 import { OverskriftPanel } from "~/person/OverskriftPanel";
 import { PersonopplysningerPanel } from "~/person/PersonopplysningerPanel";
@@ -88,14 +87,6 @@ export default function OppslagBrukerSide() {
               ariaKeyShortcuts={SNARVEIER["alt+6"].ariaKeyShortcuts}
             />
           </div>
-
-          {visNæringsInntekt && data.pensjonsgivendeInntekt && (
-            <NæringsInntektPanel
-              promise={data.pensjonsgivendeInntekt}
-              panelId={PanelId.NÆRINGSINNTEKT}
-              ariaKeyShortcuts={SNARVEIER["alt+7"].ariaKeyShortcuts}
-            />
-          )}
         </PageBlock>
       </Page>
       <Snarveier />

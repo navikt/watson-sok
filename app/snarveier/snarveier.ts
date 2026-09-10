@@ -21,7 +21,6 @@ export const PanelId = {
   INNTEKT: "panel-inntekt",
   INNTEKT_OG_YTELSE_OVERLAPP: "panel-inntekt-og-ytelse-overlapp",
   INNTEKTSOPPSUMMERING: "panel-inntektsoppsummering",
-  NÆRINGSINNTEKT: "panel-næringsinntekt",
   TIDSVINDU: "tidsvindu-velger",
 } as const;
 
@@ -67,13 +66,6 @@ export const SNARVEIER: Record<string, SnarveierKonfigurasjon> = {
     beskrivelse: "Gå til Inntektsoppsummering",
     kategori: "paneler",
     ariaKeyShortcuts: "Alt+6",
-  },
-  "alt+7": {
-    tast: "alt+7",
-    tastLabel: "Alt + 7",
-    beskrivelse: "Gå til Næringsinntekt",
-    kategori: "paneler",
-    ariaKeyShortcuts: "Alt+7",
   },
   "alt+k": {
     tast: "alt+k",
