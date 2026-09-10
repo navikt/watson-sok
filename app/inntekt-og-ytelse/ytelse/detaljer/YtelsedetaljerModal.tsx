@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import { AapMeldekortProvider } from "~/aap-meldekort/AapMeldekortContext";
 import { AapOppsummeringPanel } from "~/aap-meldekort/AapOppsummeringPanel";
 import { AapVedtakListe } from "~/aap-meldekort/AapVedtakListe";
+import { IndividuelleAapMeldekortAccordion } from "~/aap-meldekort/IndividuelleAapMeldekortAccordion";
 import { sporHendelse } from "~/analytics/analytics";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
@@ -186,6 +187,10 @@ export function YtelsedetaljerModal({
                   tilDato={tilDato}
                 />
               )}
+              <IndividuelleAapMeldekortAccordion
+                fraDato={fraDato}
+                tilDato={tilDato}
+              />
             </Tabs.Panel>
           )}
         </Tabs>

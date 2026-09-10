@@ -1,4 +1,4 @@
-import type { AapMeldekortRespons } from "./domene";
+import type { AapMeldekortPeriode, AapMeldekortRespons } from "./domene";
 
 /** Parser en "YYYY-MM-DD"-streng som lokal dato, unngår UTC-forskyvning
  * (new Date("YYYY-MM-DD") parses som UTC i JS, som kan gi off-by-one-dager
@@ -29,4 +29,45 @@ export function filtrerAapVedtakSomOverlapperPeriode(
       : null;
     return (vedtakTom === null || vedtakTom >= fra) && vedtakFom <= til;
   });
+}
+
+/** En enkelt AAP-meldekortperiode (~14 dager) med vedtaket den tilhører
+ * bevart for sporbarhet (visning av saksnummer, gruppering osv.). */
+export type FlatAapPeriode = AapMeldekortPeriode & {
+  vedtakId: string;
+  saksnummer: string;
+};
+
+/**
+ * Flater ut periodene fra alle AAP-vedtak til én liste (perioder kan komme
+ * fra flere vedtak, f.eks. ved rettighetsType-bytte), filtrerer til periodene
+ * som overlapper med [fraDato, tilDato], og sorterer nyeste periode først.
+ *
+ * Perioder uten sluttdato (tilOgMed er null) behandles som fortsatt løpende,
+ * samme konvensjon som `filtrerAapVedtakSomOverlapperPeriode`.
+ */
+export function flatterOgFiltrerAapPerioder(
+  vedtak: AapMeldekortRespons,
+  fraDato: string,
+  tilDato: string,
+): FlatAapPeriode[] {
+  const fra = parseDatoLokal(fraDato);
+  const til = parseDatoLokal(tilDato);
+
+  return vedtak
+    .flatMap((v) =>
+      v.perioder.map((periode) => ({
+        ...periode,
+        vedtakId: v.vedtakId,
+        saksnummer: v.saksnummer,
+      })),
+    )
+    .filter((periode) => {
+      const periodeFra = parseDatoLokal(periode.fraOgMed);
+      const periodeTil = periode.tilOgMed
+        ? parseDatoLokal(periode.tilOgMed)
+        : null;
+      return (periodeTil === null || periodeTil >= fra) && periodeFra <= til;
+    })
+    .sort((a, b) => b.fraOgMed.localeCompare(a.fraOgMed));
 }
