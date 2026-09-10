@@ -334,31 +334,34 @@ export const InntektsoppsummeringPanelInnhold = ({
                   beskrivelse={`${aggregert.månederMedUtbetaling} mnd med utbetaling`}
                 />
                 {sumNæringsinntekt > 0 && tidsvindu === "3 år" && (
-                  <StatistikkKort
-                    label="Samlet inntekt (siste 3 år): lønnsinntekt + næringsinntekt"
-                    verdi={formaterBeløp(
-                      aggregert.totalBeløp + sumNæringsinntekt,
-                      0,
-                    )}
-                    beskrivelse={
-                      <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                        <span className="flex items-center gap-1.5">
-                          <span
-                            aria-hidden
-                            className="inline-block size-2 rounded-full bg-ax-bg-accent-strong"
-                          />
-                          Lønnsinntekt {formaterBeløp(aggregert.totalBeløp, 0)}
+                  <div className="ax-md:col-span-2">
+                    <StatistikkKort
+                      label="Samlet inntekt (siste 3 år): lønnsinntekt + næringsinntekt"
+                      verdi={formaterBeløp(
+                        aggregert.totalBeløp + sumNæringsinntekt,
+                        0,
+                      )}
+                      beskrivelse={
+                        <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                          <span className="flex items-center gap-1.5">
+                            <span
+                              aria-hidden
+                              className="inline-block size-2 rounded-full bg-ax-bg-accent-strong"
+                            />
+                            Lønnsinntekt{" "}
+                            {formaterBeløp(aggregert.totalBeløp, 0)}
+                          </span>
+                          <span className="flex items-center gap-1.5">
+                            <span
+                              aria-hidden
+                              className="inline-block size-2 rounded-full bg-ax-bg-success-strong"
+                            />
+                            Næringsinntekt {formaterBeløp(sumNæringsinntekt, 0)}
+                          </span>
                         </span>
-                        <span className="flex items-center gap-1.5">
-                          <span
-                            aria-hidden
-                            className="inline-block size-2 rounded-full bg-ax-bg-success-strong"
-                          />
-                          Næringsinntekt {formaterBeløp(sumNæringsinntekt, 0)}
-                        </span>
-                      </span>
-                    }
-                  />
+                      }
+                    />
+                  </div>
                 )}
               </div>
 
