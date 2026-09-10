@@ -58,7 +58,7 @@ const PersonopplysningerPanelMedData = ({
 }: PersonopplysningerPanelMedDataProps) => {
   const personopplysninger = use(promise);
   const { loaderData: rootData } = unstable_useRoute("root");
-  const visKontaktinformasjon = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_3);
+  const visKontaktinformasjon = useEnkeltFeatureFlagg(FeatureFlagg.RELEASE_1_2);
 
   if (!personopplysninger || !rootData) {
     return (
