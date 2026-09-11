@@ -38,6 +38,7 @@ function lagPeriode(
     arbeidetTimer: null,
     annenReduksjon: null,
     utbetalingsgrad: 100,
+    arbeidPerDag: [],
     ...overrides,
   };
 }
@@ -194,5 +195,57 @@ describe("IndividuelleAapMeldekortAccordion", () => {
     expect(screen.queryByText("0 t")).toBeNull();
     expect(screen.getByText("Arbeidet timer").closest("div")).toBeDefined();
     expect(screen.getAllByText("–").length).toBeGreaterThan(0);
+  });
+
+  it("viser dag-for-dag-grid med timer arbeidet per dag når arbeidPerDag finnes", () => {
+    mockUseAapMeldekort.mockReturnValue({
+      status: "success",
+      vedtak: [
+        lagVedtak("v1", "SAK1", [
+          lagPeriode("2025-01-06", "2025-01-10", {
+            arbeidPerDag: [
+              { dag: "2025-01-06", timerArbeidet: 7.5 },
+              { dag: "2025-01-07", timerArbeidet: 7.5 },
+            ],
+          }),
+        ]),
+      ],
+    });
+
+    render(
+      <IndividuelleAapMeldekortAccordion
+        fraDato="2025-01-01"
+        tilDato="2025-01-31"
+      />,
+    );
+
+    fireEvent.click(screen.getByText("Vis individuelle AAP-meldekort (1)"));
+
+    expect(screen.getByText("Arbeidet per dag")).toBeDefined();
+    // To dager med data (7,5t hver) og tre dager i perioden uten data ("–")
+    expect(screen.getAllByText("7,5 t")).toHaveLength(2);
+    expect(screen.getAllByText("–").length).toBeGreaterThanOrEqual(3);
+  });
+
+  it("viser ikke dag-for-dag-seksjonen når arbeidPerDag er tom", () => {
+    mockUseAapMeldekort.mockReturnValue({
+      status: "success",
+      vedtak: [
+        lagVedtak("v1", "SAK1", [
+          lagPeriode("2025-01-01", "2025-01-14", { arbeidPerDag: [] }),
+        ]),
+      ],
+    });
+
+    render(
+      <IndividuelleAapMeldekortAccordion
+        fraDato="2025-01-01"
+        tilDato="2025-01-31"
+      />,
+    );
+
+    fireEvent.click(screen.getByText("Vis individuelle AAP-meldekort (1)"));
+
+    expect(screen.queryByText("Arbeidet per dag")).toBeNull();
   });
 });

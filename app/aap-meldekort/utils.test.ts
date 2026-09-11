@@ -36,6 +36,7 @@ function lagPeriode(
     arbeidetTimer: null,
     annenReduksjon: null,
     utbetalingsgrad: 100,
+    arbeidPerDag: [],
     ...overrides,
   };
 }

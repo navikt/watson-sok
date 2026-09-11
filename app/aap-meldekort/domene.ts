@@ -5,6 +5,12 @@ const ÅpenPeriodeSchema = z.object({
   tilOgMed: z.string().nullish(),
 });
 
+const AapArbeidPerDagSchema = z.object({
+  dag: z.string(),
+  timerArbeidet: z.number(),
+});
+export type AapArbeidPerDag = z.infer<typeof AapArbeidPerDagSchema>;
+
 const AapMeldekortPeriodeSchema = z.object({
   fraOgMed: z.string(),
   // Nullish: Kelvin returnerer null for å indikere en ÅPEN periode (løper
@@ -14,6 +20,11 @@ const AapMeldekortPeriodeSchema = z.object({
   arbeidetTimer: z.number().nullish(),
   annenReduksjon: z.number().nullish(),
   utbetalingsgrad: z.number().nullish(),
+  // Dag-for-dag-nedbryting av arbeidetTimer, utledet av backend fra et eget
+  // Holmes/AA-register-arbeidstimer-endepunkt (IKKE fra Kelvin direkte -
+  // Kelvins /maksimum-endepunkt sender alltid null for dette). Kan være tom
+  // hvis Holmes-endepunktet ikke har overlappende data for perioden.
+  arbeidPerDag: z.array(AapArbeidPerDagSchema).default([]),
 });
 export type AapMeldekortPeriode = z.infer<typeof AapMeldekortPeriodeSchema>;
 
