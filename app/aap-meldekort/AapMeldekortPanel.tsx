@@ -7,7 +7,10 @@ import { formaterDesimaltall, formaterProsent } from "~/utils/number-utils";
 
 import { useAapMeldekort } from "./AapMeldekortContext";
 import type { AapMeldekortRespons } from "./domene";
-import { flatterOgFiltrerAapPerioder } from "./utils";
+import {
+  beregnProrertArbeidetTimer,
+  flatterOgFiltrerAapPerioder,
+} from "./utils";
 
 type AapMeldekortPanelProps = {
   fraDato: string;
@@ -86,8 +89,25 @@ const AapMeldekortTotalStatistikk = ({
     [vedtak, fraDato, tilDato],
   );
 
+  // Perioder som bare DELVIS overlapper valgt vindu skal ikke bidra med sin
+  // fulle arbeidetTimer til "Totalt fra {fraDato} til {tilDato}" — prorer
+  // per periode etter andel dager som faktisk faller innenfor vinduet
+  // (samme prinsipp som beregnAapTimerForMåned i ~/meldekort/utils.ts).
   const totalArbeidetTimer = useMemo(
-    () => perioder.reduce((sum, p) => sum + (p.arbeidetTimer ?? 0), 0),
+    () =>
+      perioder.reduce(
+        (sum, p) => sum + beregnProrertArbeidetTimer(p, fraDato, tilDato),
+        0,
+      ),
+    [perioder, fraDato, tilDato],
+  );
+
+  // Skiller "ingen periode har arbeidetTimer-data" (vis "–") fra "summen er
+  // reelt 0" (vis "0 t") — null skal IKKE stille konverteres til en
+  // tilsynelatende pålitelig 0-verdi, samme prinsipp som brukt for
+  // annenReduksjon/utbetalingsgrad og i IndividuelleAapMeldekortAccordion.
+  const harArbeidetTimerData = useMemo(
+    () => perioder.some((p) => p.arbeidetTimer != null),
     [perioder],
   );
 
@@ -121,7 +141,11 @@ const AapMeldekortTotalStatistikk = ({
         <div className="grid grid-cols-1 ax-md:grid-cols-3 gap-4">
           <StatistikkKort
             label="Arbeidet timer totalt"
-            verdi={`${formaterDesimaltall(totalArbeidetTimer, 0, 1)} t`}
+            verdi={
+              harArbeidetTimerData
+                ? `${formaterDesimaltall(totalArbeidetTimer, 0, 1)} t`
+                : "–"
+            }
           />
           <StatistikkKort
             label="Snitt utbetalingsgrad"

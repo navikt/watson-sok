@@ -105,7 +105,32 @@ describe("AapMeldekortPanel", () => {
     expect(screen.getByText("2")).toBeDefined();
   });
 
-  it("behandler arbeidetTimer=null som 0 i summen, men viser '–' for snitt utbetalingsgrad når alle er null", () => {
+  it("prorerer arbeidetTimer når en periode bare delvis overlapper valgt vindu", () => {
+    // Regresjonstest for Copilot-kommentar: en periode som strekker seg
+    // UTENFOR valgt vindu skal ikke bidra med sin fulle arbeidetTimer til
+    // "Totalt fra {fraDato} til {tilDato}" - kun den prorerte andelen som
+    // faktisk faller innenfor vinduet.
+    mockUseAapMeldekort.mockReturnValue({
+      status: "success",
+      vedtak: [
+        lagVedtak("v1", [
+          // 14-dagers periode (1.-14. jan), men vinduet vi spør om er kun
+          // 10.-14. jan (5 av 14 dager, altså 5/14 av periodens 14t).
+          lagPeriode("2025-01-01", "2025-01-14", {
+            arbeidetTimer: 14,
+            utbetalingsgrad: 100,
+          }),
+        ]),
+      ],
+    });
+
+    render(<AapMeldekortPanel fraDato="2025-01-10" tilDato="2025-01-14" />);
+
+    // 14t * (5/14 overlappende dager) = 5t
+    expect(screen.getByText("5 t")).toBeDefined();
+  });
+
+  it("viser '–' for arbeidetTimer totalt (ikke '0 t') når ingen perioder har data", () => {
     mockUseAapMeldekort.mockReturnValue({
       status: "success",
       vedtak: [
@@ -120,7 +145,7 @@ describe("AapMeldekortPanel", () => {
 
     render(<AapMeldekortPanel fraDato="2025-01-01" tilDato="2025-01-31" />);
 
-    expect(screen.getByText("0 t")).toBeDefined();
-    expect(screen.getByText("–")).toBeDefined();
+    expect(screen.queryByText("0 t")).toBeNull();
+    expect(screen.getAllByText("–").length).toBeGreaterThanOrEqual(2);
   });
 });

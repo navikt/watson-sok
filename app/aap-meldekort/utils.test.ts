@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import type { AapMeldekortPeriode, AapMeldekortRespons } from "./domene";
 import {
+  beregnProrertArbeidetTimer,
   filtrerAapVedtakSomOverlapperPeriode,
   flatterOgFiltrerAapPerioder,
 } from "./utils";
@@ -187,5 +188,81 @@ describe("flatterOgFiltrerAapPerioder", () => {
     );
 
     expect(resultat).toHaveLength(0);
+  });
+});
+
+describe("beregnProrertArbeidetTimer", () => {
+  it("returnerer full arbeidetTimer når perioden er helt innenfor vinduet", () => {
+    const periode = lagPeriode("2025-01-01", "2025-01-14", {
+      arbeidetTimer: 14,
+    });
+
+    const resultat = beregnProrertArbeidetTimer(
+      periode,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat).toBe(14);
+  });
+
+  it("prorerer når perioden bare delvis overlapper vinduet", () => {
+    const periode = lagPeriode("2025-01-01", "2025-01-14", {
+      arbeidetTimer: 14,
+    });
+
+    // Kun 5 av periodens 14 dager (10.-14. jan) faller innenfor vinduet
+    const resultat = beregnProrertArbeidetTimer(
+      periode,
+      "2025-01-10",
+      "2025-01-14",
+    );
+
+    expect(resultat).toBe(5);
+  });
+
+  it("returnerer 0 når arbeidetTimer er null", () => {
+    const periode = lagPeriode("2025-01-01", "2025-01-14", {
+      arbeidetTimer: null,
+    });
+
+    const resultat = beregnProrertArbeidetTimer(
+      periode,
+      "2025-01-01",
+      "2025-01-31",
+    );
+
+    expect(resultat).toBe(0);
+  });
+
+  it("returnerer 0 når perioden ikke overlapper vinduet i det hele tatt", () => {
+    const periode = lagPeriode("2025-01-01", "2025-01-14", {
+      arbeidetTimer: 14,
+    });
+
+    const resultat = beregnProrertArbeidetTimer(
+      periode,
+      "2025-02-01",
+      "2025-02-28",
+    );
+
+    expect(resultat).toBe(0);
+  });
+
+  it("klipper åpen periode (tilOgMed null) til vinduets sluttdato", () => {
+    const periode = lagPeriode("2025-01-01", null, {
+      arbeidetTimer: 28,
+    });
+
+    // Åpen periode klippes til "i dag" internt for total-dager-beregningen,
+    // men her tester vi kun at et vindu som ligger helt i fortiden
+    // fortsatt prorerer korrekt basert på faktisk overlapp.
+    const resultat = beregnProrertArbeidetTimer(
+      periode,
+      "2025-01-01",
+      "2025-01-14",
+    );
+
+    expect(resultat).toBeGreaterThan(0);
   });
 });

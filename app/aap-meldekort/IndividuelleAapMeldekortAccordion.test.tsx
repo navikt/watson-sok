@@ -272,4 +272,71 @@ describe("IndividuelleAapMeldekortAccordion", () => {
 
     expect(screen.queryByText("Arbeidet per dag")).toBeNull();
   });
+
+  it("viser ikke dag-for-dag-seksjonen for uvanlig lange aggregatperioder (regresjonstest)", () => {
+    // Regresjonstest for Copilot-kommentar: fixture 22107622199.json har en
+    // periode fra 2016-06-01 til 2016-11-30 (~183 dager). Uten en øvre
+    // grense ville dette rendret én DOM-node per kalenderdag.
+    mockUseAapMeldekort.mockReturnValue({
+      status: "success",
+      vedtak: [
+        lagVedtak("v1", "SAK1", [
+          lagPeriode("2016-06-01", "2016-11-30", {
+            arbeidPerDag: [{ dag: "2016-06-01", timerArbeidet: 5 }],
+          }),
+        ]),
+      ],
+    });
+
+    render(
+      <IndividuelleAapMeldekortAccordion
+        fraDato="2016-01-01"
+        tilDato="2016-12-31"
+      />,
+    );
+
+    fireEvent.click(screen.getByText("Vis individuelle AAP-meldekort (1)"));
+
+    expect(screen.queryByText("Arbeidet per dag")).toBeNull();
+  });
+
+  it("nullstiller aktivIndex når fraDato/tilDato endres, selv med samme antall perioder", () => {
+    const vedtakA = [
+      lagVedtak("v1", "SAK1", [
+        lagPeriode("2025-01-01", "2025-01-14", { arbeidetTimer: 1 }),
+        lagPeriode("2025-01-15", "2025-01-28", { arbeidetTimer: 2 }),
+      ]),
+    ];
+    mockUseAapMeldekort.mockReturnValue({ status: "success", vedtak: vedtakA });
+
+    const { rerender } = render(
+      <IndividuelleAapMeldekortAccordion
+        fraDato="2025-01-01"
+        tilDato="2025-01-31"
+      />,
+    );
+
+    fireEvent.click(screen.getByText("Vis individuelle AAP-meldekort (2)"));
+    // Naviger til eldste periode (indeks 1)
+    fireEvent.click(screen.getByRole("button", { name: "Forrige periode" }));
+    expect(screen.getByText(/1. jan\. 2025/)).toBeDefined();
+
+    // Bytt til et annet utvalg med samme ANTALL perioder (2), men andre data
+    const vedtakB = [
+      lagVedtak("v2", "SAK2", [
+        lagPeriode("2025-02-01", "2025-02-14", { arbeidetTimer: 3 }),
+        lagPeriode("2025-02-15", "2025-02-28", { arbeidetTimer: 4 }),
+      ]),
+    ];
+    mockUseAapMeldekort.mockReturnValue({ status: "success", vedtak: vedtakB });
+    rerender(
+      <IndividuelleAapMeldekortAccordion
+        fraDato="2025-02-01"
+        tilDato="2025-02-28"
+      />,
+    );
+
+    // Skal vise NYESTE periode (15.-28. feb), ikke stå igjen på indeks 1
+    expect(screen.getByText(/15\. feb\. 2025/)).toBeDefined();
+  });
 });

@@ -29,7 +29,11 @@ import { formaterDesimaltall, formaterProsent } from "~/utils/number-utils";
 
 import { useAapMeldekort } from "./AapMeldekortContext";
 import type { AapArbeidPerDag, AapMeldekortRespons } from "./domene";
-import { flatterOgFiltrerAapPerioder, type FlatAapPeriode } from "./utils";
+import {
+  flatterOgFiltrerAapPerioder,
+  parseDatoLokal,
+  type FlatAapPeriode,
+} from "./utils";
 
 type IndividuelleAapMeldekortAccordionProps = {
   fraDato: string;
@@ -93,21 +97,16 @@ function AapPeriodeVisning({
   const { erÅpen: erDatepickerÅpen, onToggle: onToggleDatepicker } =
     useDisclosure(false);
 
+  // Nullstiller ved endring i selve utvalget (vedtak/fraDato/tilDato) — IKKE
+  // bare ved lengdeendring. Hvis brukeren bytter til en annen valgt
+  // ytelsesperiode som tilfeldigvis har samme ANTALL AAP-perioder, ville en
+  // lengde-basert avhengighet latt aktivIndex stå urørt, og visningen kunne
+  // åpne på en periode som ikke lenger er den nyeste for det nye utvalget.
   useEffect(() => {
     setAktivIndex(0);
-  }, [sortertePerioder.length]);
+  }, [vedtak, fraDato, tilDato]);
 
   const aktivPeriode = sortertePerioder[aktivIndex] ?? null;
-
-  // Alle dager på tvers av perioder (kun de som faktisk har Holmes-data),
-  // brukt til å begrense datovelgeren til reelle dager i "Arbeidet per dag".
-  const tilgjengeligeDager = useMemo(
-    () =>
-      sortertePerioder.flatMap((p) =>
-        p.arbeidPerDag.map((d) => new Date(d.dag)),
-      ),
-    [sortertePerioder],
-  );
 
   if (sortertePerioder.length === 0 || !aktivPeriode) {
     return null;
@@ -116,22 +115,48 @@ function AapPeriodeVisning({
   const kanGåTilForrige = aktivIndex < sortertePerioder.length - 1;
   const kanGåTilNeste = aktivIndex > 0;
 
+  // Datovelgeren skal kunne velge EN HVILKEN SOM HELST dag som faller
+  // innenfor en periodes fra/til-grenser — ikke bare dager som har et
+  // konkret arbeidPerDag-datapunkt. arbeidPerDag er en gyldig (og vanlig)
+  // tom liste per schema, og en kalender som krever et datapunkt ville da
+  // avvise ALLE datoer og bli ubrukelig. Manglende dagsdata vises uansett
+  // som "–" inni AapDager, uavhengig av om datoen kunne velges her.
+  const datoErIPeriode = (dato: Date, periode: FlatAapPeriode): boolean => {
+    const periodeFra = parseDatoLokal(periode.fraOgMed);
+    const periodeTil = periode.tilOgMed
+      ? parseDatoLokal(periode.tilOgMed)
+      : new Date();
+    return dato >= periodeFra && dato <= periodeTil;
+  };
+
   const velgRelevantPeriode = (dato: Date | undefined) => {
     if (!dato) {
       return;
     }
-    const iso = formaterTilIsoDato(dato);
-    const periode = sortertePerioder.find((p) =>
-      p.arbeidPerDag.some((d) => d.dag === iso),
-    );
+    const periode = sortertePerioder.find((p) => datoErIPeriode(dato, p));
     if (periode) {
       setAktivIndex(sortertePerioder.indexOf(periode));
     }
   };
 
-  const eldsteDato = sortertePerioder[sortertePerioder.length - 1].fraOgMed;
-  const nyesteDato =
-    sortertePerioder[0].tilOgMed ?? sortertePerioder[0].fraOgMed;
+  const eldsteDato = parseDatoLokal(
+    sortertePerioder[sortertePerioder.length - 1].fraOgMed,
+  );
+  // Øvre grense for datovelgeren: bruk siste kjente arbeidPerDag-dato på
+  // tvers av alle perioder hvis den finnes (kan strekke seg forbi en åpen
+  // periodes fraOgMed), ellers periodens egen tilOgMed/fraOgMed. Uten dette
+  // ville en åpen siste periode med daglige data etter periodens fraOgMed
+  // (f.eks. periode åpnet 17. aug., men med data til 1. sep.) fått ALLE
+  // datoer etter 17. aug. avvist av datovelgeren.
+  const nyesteKjenteArbeidPerDagDato = sortertePerioder
+    .flatMap((p) => p.arbeidPerDag.map((d) => d.dag))
+    .sort()
+    .at(-1);
+  const nyesteDato = parseDatoLokal(
+    sortertePerioder[0].tilOgMed ??
+      nyesteKjenteArbeidPerDagDato ??
+      sortertePerioder[0].fraOgMed,
+  );
 
   return (
     <Accordion>
@@ -180,20 +205,9 @@ function AapPeriodeVisning({
                     onToggleDatepicker();
                   }}
                   dropdownCaption={true}
-                  fromDate={new Date(eldsteDato)}
-                  toDate={new Date(nyesteDato)}
-                  disabled={[
-                    {
-                      before: new Date(eldsteDato),
-                      after: new Date(nyesteDato),
-                    },
-                    (date) =>
-                      !tilgjengeligeDager.some(
-                        (tilgjengeligDag) =>
-                          formaterTilIsoDato(tilgjengeligDag) ===
-                          formaterTilIsoDato(date),
-                      ),
-                  ]}
+                  fromDate={eldsteDato}
+                  toDate={nyesteDato}
+                  disabled={[{ before: eldsteDato, after: nyesteDato }]}
                 >
                   <Button
                     data-color="neutral"
@@ -290,6 +304,15 @@ type AapDagerProps = {
   arbeidPerDag: AapArbeidPerDag[];
 };
 
+/** Øvre grense for antall dager som rendres i "Arbeidet per dag"-gridet.
+ * De aller fleste AAP-perioder er ~14-16 dager, men enkelte
+ * aggregatperioder i testdata (og potensielt i produksjon) kan strekke seg
+ * over flere måneder — å rendre én DOM-node per kalenderdag for en slik
+ * periode ville laget hundrevis av celler i én accordion. Skjuler
+ * dagvisningen (viser kun periodeaggregatene over) i stedet for å risikere
+ * en ubegrenset/ytelseskrevende rendering. */
+const MAKS_DAGER_I_GRID = 31;
+
 /**
  * Viser arbeidede timer per dag i perioden. Bygger dagrekken selv fra
  * periodens fra/til-dato (ikke fra `arbeidPerDag` sin lengde), slik at dager
@@ -315,7 +338,7 @@ function AapDager({
     const timerPerDato = new Map(
       arbeidPerDag.map((d) => [d.dag, d.timerArbeidet]),
     );
-    const fra = new Date(periodeFraOgMed);
+    const fra = parseDatoLokal(periodeFraOgMed);
     // Åpen periode (tilOgMed null): bruk siste dato vi faktisk har
     // Holmes-data for i stedet for å telle helt til i dag.
     const sisteDatoMedData = arbeidPerDag
@@ -323,15 +346,15 @@ function AapDager({
       .sort()
       .at(-1);
     const til = periodeTilOgMed
-      ? new Date(periodeTilOgMed)
+      ? parseDatoLokal(periodeTilOgMed)
       : sisteDatoMedData
-        ? new Date(sisteDatoMedData)
+        ? parseDatoLokal(sisteDatoMedData)
         : fra;
 
     const resultat: Dag[] = [];
     for (
       let dato = new Date(fra);
-      dato <= til;
+      dato <= til && resultat.length <= MAKS_DAGER_I_GRID;
       dato.setDate(dato.getDate() + 1)
     ) {
       const iso = formaterTilIsoDato(dato);
@@ -340,7 +363,11 @@ function AapDager({
     return resultat;
   }, [periodeFraOgMed, periodeTilOgMed, arbeidPerDag]);
 
-  if (dager.length === 0) {
+  // Perioden er for lang til å vises dag-for-dag (se MAKS_DAGER_I_GRID) —
+  // vis ingenting her i stedet for en potensielt uendelig/uhåndterlig liste.
+  // Periodeaggregatene (Arbeidet timer/Annen reduksjon/Utbetalingsgrad)
+  // vises uansett over, uavhengig av dette.
+  if (dager.length === 0 || dager.length > MAKS_DAGER_I_GRID) {
     return null;
   }
 
@@ -400,6 +427,7 @@ function AapDager({
                     backgroundColor: farger.fill,
                     borderColor: farger.stroke,
                   }}
+                  role="img"
                   aria-label={`${formaterDato(dato)}: ${timer != null ? timerTekst : "ingen data"}`}
                 >
                   {harArbeidet && (
@@ -428,7 +456,7 @@ const KORT_DATO_FORMAT = new Intl.DateTimeFormat("nb-NO", {
 
 function formaterKortDato(isoDato: string): string {
   try {
-    return KORT_DATO_FORMAT.format(new Date(isoDato));
+    return KORT_DATO_FORMAT.format(parseDatoLokal(isoDato));
   } catch {
     return isoDato;
   }
@@ -436,7 +464,7 @@ function formaterKortDato(isoDato: string): string {
 
 /** ISO-ukedag (mandag = 1 ... søndag = 7) for en "YYYY-MM-DD"-streng. */
 function getIsoUkedag(isoDato: string): number {
-  const dag = new Date(isoDato).getDay();
+  const dag = parseDatoLokal(isoDato).getDay();
   return dag === 0 ? 7 : dag;
 }
 
