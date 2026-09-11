@@ -229,9 +229,10 @@ type MedMeldekortProvidersProps = {
 
 /**
  * Wrapper barna i MeldekortProvider og/eller AapMeldekortProvider basert på
- * hvilke feature-flagg som er aktive. Flaggene er frikoblet (SEARCH-30
- * AAP-meldekort er ikke klart ennå og styres av en egen bryter), så hver
- * provider legges kun til når sitt respektive flagg er påskrudd.
+ * hvilke feature-flagg som er aktive. Dagpenger styres av RELEASE_1_2,
+ * AAP-meldekort av RELEASE_1_3 (samme bryter som næringsinntekt) — de to
+ * flaggene er uavhengige av hverandre, så hver provider legges kun til når
+ * sitt respektive flagg er påskrudd.
  */
 function MedMeldekortProviders({
   dagpengerAktivert,
