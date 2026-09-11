@@ -113,6 +113,30 @@ describe("IndividuelleAapMeldekortAccordion", () => {
     ).toBeDefined();
   });
 
+  it("viser 'Dette meldekortet'-overskrift og vedtak/saksnummer-info (mal fra dagpenger)", () => {
+    mockUseAapMeldekort.mockReturnValue({
+      status: "success",
+      vedtak: [
+        lagVedtak("v1", "SAK1", [
+          lagPeriode("2025-01-01", "2025-01-14", { arbeidetTimer: 12 }),
+        ]),
+      ],
+    });
+
+    render(
+      <IndividuelleAapMeldekortAccordion
+        fraDato="2025-01-01"
+        tilDato="2025-01-31"
+      />,
+    );
+
+    fireEvent.click(screen.getByText("Vis individuelle AAP-meldekort (1)"));
+
+    expect(screen.getByText("Dette meldekortet")).toBeDefined();
+    expect(screen.getByText(/Vedtak: v1/)).toBeDefined();
+    expect(screen.getByText(/Saksnummer: SAK1/)).toBeDefined();
+  });
+
   it("viser nyeste periode først med arbeidetTimer, annenReduksjon og utbetalingsgrad", () => {
     mockUseAapMeldekort.mockReturnValue({
       status: "success",

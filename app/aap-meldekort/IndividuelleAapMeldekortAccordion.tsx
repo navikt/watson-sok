@@ -107,7 +107,8 @@ function AapPeriodeVisning({
                   Periode {formaterPeriode(aktivPeriode)}
                 </Heading>
                 <BodyShort size="small" textColor="subtle">
-                  Saksnummer: {aktivPeriode.saksnummer}
+                  Vedtak: {aktivPeriode.vedtakId} – Saksnummer:{" "}
+                  {aktivPeriode.saksnummer}
                 </BodyShort>
               </div>
               <div className="flex items-center gap-0.5">
@@ -151,31 +152,36 @@ function AapPeriodeVisning({
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 ax-md:grid-cols-3 gap-4">
-              <StatistikkKort
-                label="Arbeidet timer"
-                verdi={
-                  aktivPeriode.arbeidetTimer != null
-                    ? `${formaterDesimaltall(aktivPeriode.arbeidetTimer, 0, 1)} t`
-                    : "–"
-                }
-              />
-              <StatistikkKort
-                label="Annen reduksjon"
-                verdi={
-                  aktivPeriode.annenReduksjon != null
-                    ? formaterProsent(aktivPeriode.annenReduksjon)
-                    : "–"
-                }
-              />
-              <StatistikkKort
-                label="Utbetalingsgrad"
-                verdi={
-                  aktivPeriode.utbetalingsgrad != null
-                    ? formaterProsent(aktivPeriode.utbetalingsgrad)
-                    : "–"
-                }
-              />
+            <div>
+              <Heading level="4" size="xsmall" className="mb-2">
+                Dette meldekortet
+              </Heading>
+              <div className="grid grid-cols-1 ax-md:grid-cols-3 gap-4">
+                <StatistikkKort
+                  label="Arbeidet timer"
+                  verdi={
+                    aktivPeriode.arbeidetTimer != null
+                      ? `${formaterDesimaltall(aktivPeriode.arbeidetTimer, 0, 1)} t`
+                      : "–"
+                  }
+                />
+                <StatistikkKort
+                  label="Annen reduksjon"
+                  verdi={
+                    aktivPeriode.annenReduksjon != null
+                      ? formaterProsent(aktivPeriode.annenReduksjon)
+                      : "–"
+                  }
+                />
+                <StatistikkKort
+                  label="Utbetalingsgrad"
+                  verdi={
+                    aktivPeriode.utbetalingsgrad != null
+                      ? formaterProsent(aktivPeriode.utbetalingsgrad)
+                      : "–"
+                  }
+                />
+              </div>
             </div>
             <AapDager
               periodeFraOgMed={aktivPeriode.fraOgMed}
