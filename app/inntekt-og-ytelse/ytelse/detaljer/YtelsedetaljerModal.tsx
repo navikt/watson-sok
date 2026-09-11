@@ -57,10 +57,10 @@ export function YtelsedetaljerModal({
   const erMeldekortPanelAktivert = useEnkeltFeatureFlagg(
     FeatureFlagg.RELEASE_1_2,
   );
-  // SEARCH-30 (AAP-meldekort) er ikke klart ennå — egen bryter, frikoblet fra
-  // RELEASE_1_2, slik at resten av 1.2 kan slippes uten AAP-meldekort-fanen.
+  // SEARCH-30 (AAP-meldekort) styres nå av samme bryter som SEARCH-31
+  // (næringsinntekt) — se RELEASE_1_3.
   const erAapMeldekortAktivert = useEnkeltFeatureFlagg(
-    FeatureFlagg.AAP_MELDEKORT,
+    FeatureFlagg.RELEASE_1_3,
   );
 
   const filtrertePerioder = useMemo(() => {
