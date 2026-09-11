@@ -1,5 +1,15 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@navikt/aksel-icons";
-import { BodyShort, Button, Heading, Tooltip } from "@navikt/ds-react";
+import {
+  CalendarIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@navikt/aksel-icons";
+import {
+  BodyShort,
+  Button,
+  DatePicker,
+  Heading,
+  Tooltip,
+} from "@navikt/ds-react";
 import {
   Accordion,
   AccordionContent,
@@ -9,6 +19,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 
 import { StatistikkKort } from "~/paneler/StatistikkKort";
+import { useDisclosure } from "~/use-disclosure/useDisclosure";
 import {
   formaterDato,
   formaterMeldekortperiodeMedUke,
@@ -79,6 +90,8 @@ function AapPeriodeVisning({
     [vedtak, fraDato, tilDato],
   );
   const [aktivIndex, setAktivIndex] = useState(0);
+  const { erÅpen: erDatepickerÅpen, onToggle: onToggleDatepicker } =
+    useDisclosure(false);
 
   useEffect(() => {
     setAktivIndex(0);
@@ -86,12 +99,39 @@ function AapPeriodeVisning({
 
   const aktivPeriode = sortertePerioder[aktivIndex] ?? null;
 
+  // Alle dager på tvers av perioder (kun de som faktisk har Holmes-data),
+  // brukt til å begrense datovelgeren til reelle dager i "Arbeidet per dag".
+  const tilgjengeligeDager = useMemo(
+    () =>
+      sortertePerioder.flatMap((p) =>
+        p.arbeidPerDag.map((d) => new Date(d.dag)),
+      ),
+    [sortertePerioder],
+  );
+
   if (sortertePerioder.length === 0 || !aktivPeriode) {
     return null;
   }
 
   const kanGåTilForrige = aktivIndex < sortertePerioder.length - 1;
   const kanGåTilNeste = aktivIndex > 0;
+
+  const velgRelevantPeriode = (dato: Date | undefined) => {
+    if (!dato) {
+      return;
+    }
+    const iso = formaterTilIsoDato(dato);
+    const periode = sortertePerioder.find((p) =>
+      p.arbeidPerDag.some((d) => d.dag === iso),
+    );
+    if (periode) {
+      setAktivIndex(sortertePerioder.indexOf(periode));
+    }
+  };
+
+  const eldsteDato = sortertePerioder[sortertePerioder.length - 1].fraOgMed;
+  const nyesteDato =
+    sortertePerioder[0].tilOgMed ?? sortertePerioder[0].fraOgMed;
 
   return (
     <Accordion>
@@ -132,6 +172,43 @@ function AapPeriodeVisning({
                   aria-label="Forrige periode"
                   onClick={() => setAktivIndex((index) => index + 1)}
                 />
+                <DatePicker
+                  open={erDatepickerÅpen}
+                  onClose={onToggleDatepicker}
+                  onSelect={(dato) => {
+                    velgRelevantPeriode(dato);
+                    onToggleDatepicker();
+                  }}
+                  dropdownCaption={true}
+                  fromDate={new Date(eldsteDato)}
+                  toDate={new Date(nyesteDato)}
+                  disabled={[
+                    {
+                      before: new Date(eldsteDato),
+                      after: new Date(nyesteDato),
+                    },
+                    (date) =>
+                      !tilgjengeligeDager.some(
+                        (tilgjengeligDag) =>
+                          formaterTilIsoDato(tilgjengeligDag) ===
+                          formaterTilIsoDato(date),
+                      ),
+                  ]}
+                >
+                  <Button
+                    data-color="neutral"
+                    aria-label="Velg dato"
+                    icon={
+                      <Tooltip content="Velg dato">
+                        <CalendarIcon aria-hidden="true" />
+                      </Tooltip>
+                    }
+                    type="button"
+                    variant="secondary"
+                    size="small"
+                    onClick={onToggleDatepicker}
+                  />
+                </DatePicker>
                 <Button
                   data-color="neutral"
                   icon={
@@ -219,8 +296,11 @@ type AapDagerProps = {
  * UTEN Holmes-data også vises (som "–"), i stedet for å bare hoppe over dem.
  *
  * Merk: perioder er IKKE nødvendigvis mandag-justert (i motsetning til
- * dagpenger sine 14-dagers meldekortperioder), så det vises ukedag+dato per
- * dag i stedet for en fast Mandag–Søndag-header-rad.
+ * dagpenger sine 14-dagers meldekortperioder). For å likevel kunne bruke
+ * samme faste Mandag–Søndag-header-rad som dagpenger, fylles gridet ut med
+ * tomme celler foran første dag (se `getIsoUkedag`/`antallTommeCellerFør`),
+ * slik at hver dag alltid havner i riktig ukedag-kolonne uansett hvilken
+ * ukedag perioden faktisk starter på.
  */
 function AapDager({
   periodeFraOgMed,
@@ -264,64 +344,103 @@ function AapDager({
     return null;
   }
 
+  // Perioder starter ikke nødvendigvis på mandag (i motsetning til dagpenger
+  // sine 14-dagers meldekortperioder), så vi må fylle ut med tomme celler
+  // foran første dag for at ukedag-headeren (Mandag–Søndag) skal stemme med
+  // riktig kolonne uansett hvilken ukedag perioden starter på.
+  const isoUkedagFørsteDag = getIsoUkedag(dager[0].dato);
+  const antallTommeCellerFør = isoUkedagFørsteDag - 1;
+
   return (
     <div className="flex flex-col gap-3">
       <Heading level="4" size="xsmall">
         Arbeidet per dag
       </Heading>
-      <ul className="flex flex-wrap gap-3" aria-label="Arbeidede timer per dag">
-        {dager.map(({ dato, timer }) => {
-          const harArbeidet = timer != null && timer > 0;
-          const timerTekst =
-            timer != null ? `${formaterDesimaltall(timer, 0, 1)} t` : "–";
-          const farger = harArbeidet
-            ? {
-                fill: "var(--ax-success-200)",
-                stroke: "var(--ax-success-600)",
-              }
-            : {
-                fill: "var(--ax-neutral-200)",
-                stroke: "var(--ax-neutral-600)",
-              };
-
-          return (
-            <li
-              key={dato}
-              className="flex flex-col items-center gap-2 list-none"
+      <div className="overflow-x-auto">
+        <div className="grid grid-cols-7 gap-3 mb-2">
+          {UKEDAGER.map((ukedag) => (
+            <span
+              key={ukedag}
+              className="text-lg font-semibold text-center truncate"
             >
-              <div
-                className="relative flex flex-col items-center justify-center rounded-full border-2 text-center px-2 w-16 h-16"
-                style={{
-                  backgroundColor: farger.fill,
-                  borderColor: farger.stroke,
-                }}
-                aria-label={`${formaterUkedagOgDato(dato)}: ${timer != null ? timerTekst : "ingen data"}`}
+              {ukedag}
+            </span>
+          ))}
+        </div>
+        <ul
+          className="grid grid-cols-7 gap-3"
+          aria-label="Arbeidede timer per dag"
+        >
+          {Array.from({ length: antallTommeCellerFør }).map((_, index) => (
+            // eslint-disable-next-line react/no-array-index-key -- rene fyllceller uten identitet
+            <li key={`tom-${index}`} aria-hidden="true" />
+          ))}
+          {dager.map(({ dato, timer }) => {
+            const harArbeidet = timer != null && timer > 0;
+            const timerTekst =
+              timer != null ? `${formaterDesimaltall(timer, 0, 1)} t` : "–";
+            const farger = harArbeidet
+              ? {
+                  fill: "var(--ax-success-200)",
+                  stroke: "var(--ax-success-600)",
+                }
+              : {
+                  fill: "var(--ax-neutral-200)",
+                  stroke: "var(--ax-neutral-600)",
+                };
+
+            return (
+              <li
+                key={dato}
+                className="flex flex-col items-center gap-2 list-none"
               >
-                <span className="text-sm leading-tight">{timerTekst}</span>
-              </div>
-              <span className="text-sm text-ax-text-subtle">
-                {formaterUkedagOgDato(dato)}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
+                <div
+                  className="relative flex flex-col items-center justify-center rounded-full border-2 text-center px-2 w-16 h-16"
+                  style={{
+                    backgroundColor: farger.fill,
+                    borderColor: farger.stroke,
+                  }}
+                  aria-label={`${formaterDato(dato)}: ${timer != null ? timerTekst : "ingen data"}`}
+                >
+                  <span className="text-sm leading-tight">{timerTekst}</span>
+                </div>
+                <span className="text-sm text-ax-text-subtle">
+                  {formaterKortDato(dato)}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
 
-const UKEDAG_FORMAT = new Intl.DateTimeFormat("nb-NO", { weekday: "short" });
 const KORT_DATO_FORMAT = new Intl.DateTimeFormat("nb-NO", {
   day: "numeric",
   month: "short",
 });
 
-function formaterUkedagOgDato(isoDato: string): string {
+function formaterKortDato(isoDato: string): string {
   try {
-    const dato = new Date(isoDato);
-    const ukedag = UKEDAG_FORMAT.format(dato).replace(/\.$/, "");
-    return `${ukedag} ${KORT_DATO_FORMAT.format(dato)}`;
+    return KORT_DATO_FORMAT.format(new Date(isoDato));
   } catch {
     return isoDato;
   }
 }
+
+/** ISO-ukedag (mandag = 1 ... søndag = 7) for en "YYYY-MM-DD"-streng. */
+function getIsoUkedag(isoDato: string): number {
+  const dag = new Date(isoDato).getDay();
+  return dag === 0 ? 7 : dag;
+}
+
+const UKEDAGER = [
+  "Mandag",
+  "Tirsdag",
+  "Onsdag",
+  "Torsdag",
+  "Fredag",
+  "Lørdag",
+  "Søndag",
+] as const;
