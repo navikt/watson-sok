@@ -3,8 +3,10 @@ import { Modal, ModalBody, ModalFooter } from "@navikt/ds-react/Modal";
 import { useMemo } from "react";
 
 import { AapMeldekortProvider } from "~/aap-meldekort/AapMeldekortContext";
+import { AapMeldekortPanel } from "~/aap-meldekort/AapMeldekortPanel";
 import { AapOppsummeringPanel } from "~/aap-meldekort/AapOppsummeringPanel";
 import { AapVedtakListe } from "~/aap-meldekort/AapVedtakListe";
+import { IndividuelleAapMeldekortAccordion } from "~/aap-meldekort/IndividuelleAapMeldekortAccordion";
 import { sporHendelse } from "~/analytics/analytics";
 import { FeatureFlagg } from "~/feature-toggling/featureflagg";
 import { useEnkeltFeatureFlagg } from "~/feature-toggling/useFeatureFlagg";
@@ -55,10 +57,10 @@ export function YtelsedetaljerModal({
   const erMeldekortPanelAktivert = useEnkeltFeatureFlagg(
     FeatureFlagg.RELEASE_1_2,
   );
-  // SEARCH-30 (AAP-meldekort) er ikke klart ennå — egen bryter, frikoblet fra
-  // RELEASE_1_2, slik at resten av 1.2 kan slippes uten AAP-meldekort-fanen.
+  // SEARCH-30 (AAP-meldekort) styres nå av samme bryter som SEARCH-31
+  // (næringsinntekt) — se RELEASE_1_3.
   const erAapMeldekortAktivert = useEnkeltFeatureFlagg(
-    FeatureFlagg.AAP_MELDEKORT,
+    FeatureFlagg.RELEASE_1_3,
   );
 
   const filtrertePerioder = useMemo(() => {
@@ -177,6 +179,7 @@ export function YtelsedetaljerModal({
           {visMeldekortTab && meldekortType === "aap" && (
             <Tabs.Panel value="meldekort" className="pt-4 flex flex-col gap-6">
               <AapVedtakListe />
+              <AapMeldekortPanel fraDato={fraDato} tilDato={tilDato} />
               {arbeidsgiverInformasjonPromise && (
                 <AapOppsummeringPanel
                   arbeidsgiverInformasjonPromise={
@@ -186,6 +189,10 @@ export function YtelsedetaljerModal({
                   tilDato={tilDato}
                 />
               )}
+              <IndividuelleAapMeldekortAccordion
+                fraDato={fraDato}
+                tilDato={tilDato}
+              />
             </Tabs.Panel>
           )}
         </Tabs>

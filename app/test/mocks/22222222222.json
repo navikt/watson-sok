@@ -1870,525 +1870,2893 @@
           "tilOgMed": "2023-09-22",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2023-09-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-22",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2023-09-25",
           "tilOgMed": "2023-09-29",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2023-09-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-09-29",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2023-10-02",
           "tilOgMed": "2023-10-06",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2023-10-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-06",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2023-10-09",
           "tilOgMed": "2023-10-20",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2023-10-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-20",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2023-10-23",
           "tilOgMed": "2023-10-31",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2023-10-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-30",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-10-31",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2023-11-01",
           "tilOgMed": "2023-11-03",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2023-11-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-03",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2023-11-06",
           "tilOgMed": "2023-11-17",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2023-11-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-17",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2023-11-20",
           "tilOgMed": "2023-11-30",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2023-11-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-29",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-11-30",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2023-12-01",
           "tilOgMed": "2023-12-01",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2023-12-01",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2023-12-04",
           "tilOgMed": "2023-12-15",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2023-12-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-12-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-12-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-12-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-12-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-12-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-12-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-12-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-12-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-12-15",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2023-12-26",
           "tilOgMed": "2023-12-29",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2023-12-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-12-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-12-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2023-12-29",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-01-01",
           "tilOgMed": "2024-01-12",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-01-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-12",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-01-15",
           "tilOgMed": "2024-01-26",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-01-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-26",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-01-29",
           "tilOgMed": "2024-01-31",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-01-29",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-30",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-01-31",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-02-01",
           "tilOgMed": "2024-02-09",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-02-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-09",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-02-12",
           "tilOgMed": "2024-02-23",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-02-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-23",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-02-26",
           "tilOgMed": "2024-02-29",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-02-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-02-29",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-03-01",
           "tilOgMed": "2024-03-08",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-03-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-08",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-03-11",
           "tilOgMed": "2024-03-22",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-03-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-22",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-03-25",
           "tilOgMed": "2024-03-29",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-03-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-03-29",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-04-01",
           "tilOgMed": "2024-04-05",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-04-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-05",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-04-08",
           "tilOgMed": "2024-04-19",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-04-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-19",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-04-22",
           "tilOgMed": "2024-04-30",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-04-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-29",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-04-30",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-05-01",
           "tilOgMed": "2024-05-03",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-05-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-03",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-05-06",
           "tilOgMed": "2024-05-17",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-05-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-17",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-05-01",
           "tilOgMed": "2024-05-17",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-05-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-17",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-05-20",
           "tilOgMed": "2024-05-31",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-05-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-29",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-30",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-05-31",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-06-03",
           "tilOgMed": "2024-06-14",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-06-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-14",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-06-17",
           "tilOgMed": "2024-06-28",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-06-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-06-28",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-07-01",
           "tilOgMed": "2024-07-12",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-07-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-12",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-07-15",
           "tilOgMed": "2024-07-26",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-07-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-26",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-07-29",
           "tilOgMed": "2024-07-31",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-07-29",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-30",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-07-31",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-08-01",
           "tilOgMed": "2024-08-09",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-08-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-09",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-08-12",
           "tilOgMed": "2024-08-25",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-08-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-23",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-08-26",
           "tilOgMed": "2024-08-31",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-08-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-29",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-08-30",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-09-01",
           "tilOgMed": "2024-09-08",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-09-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-06",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-09-09",
           "tilOgMed": "2024-09-22",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-09-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-20",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-09-23",
           "tilOgMed": "2024-09-30",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-09-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-09-30",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-10-01",
           "tilOgMed": "2024-10-06",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-10-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-04",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-10-07",
           "tilOgMed": "2024-10-20",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-10-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-18",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-10-21",
           "tilOgMed": "2024-10-31",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-10-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-29",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-30",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-10-31",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-11-01",
           "tilOgMed": "2024-11-03",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-11-01",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-11-04",
           "tilOgMed": "2024-11-17",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-11-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-15",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-11-18",
           "tilOgMed": "2024-11-30",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-11-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-11-29",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-12-01",
           "tilOgMed": "2024-12-01",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": []
         },
         {
           "fraOgMed": "2024-12-02",
           "tilOgMed": "2024-12-15",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-12-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-13",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-12-16",
           "tilOgMed": "2024-12-29",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-12-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-27",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2024-12-30",
           "tilOgMed": "2024-12-31",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2024-12-30",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2024-12-31",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-01-01",
           "tilOgMed": "2025-01-12",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-01-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-10",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-01-13",
           "tilOgMed": "2025-01-26",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-01-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-24",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-01-27",
           "tilOgMed": "2025-01-31",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-01-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-29",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-30",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-01-31",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-02-01",
           "tilOgMed": "2025-02-09",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-02-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-07",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-02-10",
           "tilOgMed": "2025-02-23",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-02-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-21",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-02-24",
           "tilOgMed": "2025-02-28",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-02-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-02-28",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-03-01",
           "tilOgMed": "2025-03-09",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-03-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-07",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-03-10",
           "tilOgMed": "2025-03-23",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-03-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-21",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-03-24",
           "tilOgMed": "2025-03-31",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-03-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-03-31",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-04-01",
           "tilOgMed": "2025-04-06",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-04-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-04",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-04-07",
           "tilOgMed": "2025-04-20",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-04-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-18",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-04-21",
           "tilOgMed": "2025-04-30",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-04-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-29",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-04-30",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-05-01",
           "tilOgMed": "2025-05-04",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-05-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-02",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-05-05",
           "tilOgMed": "2025-05-18",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-05-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-16",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-05-01",
           "tilOgMed": "2025-05-31",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-05-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-29",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-05-30",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-06-01",
           "tilOgMed": "2025-06-01",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": []
         },
         {
           "fraOgMed": "2025-06-02",
           "tilOgMed": "2025-06-15",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-06-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-13",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-06-16",
           "tilOgMed": "2025-06-29",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-06-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-06-27",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-06-30",
           "tilOgMed": "2025-06-30",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-06-30",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-07-01",
           "tilOgMed": "2025-07-13",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-07-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-11",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-07-14",
           "tilOgMed": "2025-07-27",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-07-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-22",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-23",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-24",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-25",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-07-28",
           "tilOgMed": "2025-07-31",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-07-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-29",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-30",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-07-31",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-08-01",
           "tilOgMed": "2025-08-10",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-08-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-05",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-06",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-07",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-08",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-08-11",
           "tilOgMed": "2025-08-24",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-08-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-13",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-14",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-19",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-20",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-21",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-22",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-08-25",
           "tilOgMed": "2025-08-31",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-08-25",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-26",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-27",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-28",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-08-29",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-09-01",
           "tilOgMed": "2025-09-07",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-09-01",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-02",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-03",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-04",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-05",
+              "timerArbeidet": 0.0
+            }
+          ]
         },
         {
           "fraOgMed": "2025-09-08",
           "tilOgMed": "2025-09-21",
           "arbeidetTimer": 0.0,
           "annenReduksjon": null,
-          "utbetalingsgrad": 100
+          "utbetalingsgrad": 100,
+          "arbeidPerDag": [
+            {
+              "dag": "2025-09-08",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-09",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-10",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-11",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-12",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-15",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-16",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-17",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-18",
+              "timerArbeidet": 0.0
+            },
+            {
+              "dag": "2025-09-19",
+              "timerArbeidet": 0.0
+            }
+          ]
         }
       ]
     }
