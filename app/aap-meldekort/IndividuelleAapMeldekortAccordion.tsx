@@ -402,6 +402,11 @@ function AapDager({
                   }}
                   aria-label={`${formaterDato(dato)}: ${timer != null ? timerTekst : "ingen data"}`}
                 >
+                  {harArbeidet && (
+                    <span className="text-sm font-semibold leading-tight">
+                      Arbeidet
+                    </span>
+                  )}
                   <span className="text-sm leading-tight">{timerTekst}</span>
                 </div>
                 <span className="text-sm text-ax-text-subtle">
