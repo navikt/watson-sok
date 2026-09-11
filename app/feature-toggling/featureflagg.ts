@@ -5,14 +5,12 @@ export enum FeatureFlagg {
   // SEARCH-48 eksakte datoer i arbeidsforhold)
   RELEASE_1_2 = "watson-sok-v-1-2",
 
-  // Søk 1.3 — master-bryter for releasen (SEARCH-31 næringsinntekt)
+  // Søk 1.3 — master-bryter for releasen (SEARCH-31 næringsinntekt,
+  // SEARCH-30 AAP-meldekort + AA-timer-sammenligning). Begge slås av/på
+  // samlet under denne ene bryteren — den tidligere egne
+  // AAP_MELDEKORT-bryteren er fjernet som opprydning når begge features
+  // ble klare til samtidig rollout.
   RELEASE_1_3 = "watson-sok-v-1-3",
-
-  // SEARCH-30 — AAP-meldekort + AA-timer-sammenligning. Egen bryter,
-  // frikoblet fra RELEASE_1_2, fordi funksjonaliteten ikke er klar ennå
-  // (viser ikke 14-dagers perioder slik dagpenger-meldekort gjør). Skal stå
-  // av inntil funksjonaliteten er ferdigstilt, selv om resten av 1.2 slippes.
-  AAP_MELDEKORT = "watson-sok-aap-meldekort",
 
   STATUSMELDING = "statusmelding",
   CUSTOM_DATO = "custom-dato",
