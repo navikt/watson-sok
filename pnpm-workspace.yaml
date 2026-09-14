@@ -1,0 +1,13 @@
+packages:
+  - .
+
+# NB: pnpm 11+ leser ikke lenger "pnpm"-feltet i package.json — overrides,
+# patchedDependencies o.l. må ligge her.
+overrides:
+  "@react-router/dev": ^8.3.0
+  "@react-router/node": ^8.3.0
+  "@react-router/serve": ^8.3.0
+  react-router: ^8.3.0
+  # CVE-2026-73089 / CVE-2026-73088: tving alle transitive brukere
+  # (bl.a. autoprefixer) til fikset browserslist-versjon.
+  "browserslist@<4.28.7": ">=4.28.7"
