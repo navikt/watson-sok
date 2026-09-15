@@ -3,7 +3,7 @@ FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-dev AS dep
 # /usr/bin. Kun i denne (kasserte) byggefasen — sluttimaget forblir nonroot.
 USER root
 WORKDIR /app
-COPY package.json pnpm-lock.yaml .npmrc ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 
 RUN corepack enable && corepack prepare --activate
 RUN --mount=type=secret,id=NODE_AUTH_TOKEN sh -c \
