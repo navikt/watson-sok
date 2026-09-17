@@ -32,7 +32,10 @@ export function useMånedligData(
   }, [inntektInformasjon, ytelser, tidsvinduIAntallMåneder]);
 }
 
-function transformTilMånedligData(
+/**
+ * Summerer inntekter og ytelser per måned for grafen.
+ */
+export function transformTilMånedligData(
   inntektInformasjon: Awaited<
     InntektOgYtelseOverlappPanelProps["inntektPromise"]
   >,
@@ -79,25 +82,29 @@ function transformTilMånedligData(
   }
 
   if (ytelser) {
-    ytelser.forEach((ytelse) => {
-      ytelse.perioder.forEach((periode) => {
-        const beløp = konverterTilTall(periode.bruttoBeløp);
-        if (beløp === null) {
-          return;
-        }
+    ytelser
+      .filter(
+        (ytelse) => ytelse.stonadType !== "Sykepenger refusjon arbeidsgiver",
+      )
+      .forEach((ytelse) => {
+        ytelse.perioder.forEach((periode) => {
+          const beløp = konverterTilTall(periode.bruttoBeløp);
+          if (beløp === null) {
+            return;
+          }
 
-        const fomDato = new Date(periode.periode.fom);
-        if (Number.isNaN(fomDato.getTime()) || fomDato < cutoff) {
-          return;
-        }
+          const fomDato = new Date(periode.periode.fom);
+          if (Number.isNaN(fomDato.getTime()) || fomDato < cutoff) {
+            return;
+          }
 
-        const periodeKey = `${fomDato.getFullYear()}-${String(fomDato.getMonth() + 1).padStart(2, "0")}`;
-        const eksisterende = månedligData.get(periodeKey);
-        if (eksisterende) {
-          eksisterende.ytelse += beløp;
-        }
+          const periodeKey = `${fomDato.getFullYear()}-${String(fomDato.getMonth() + 1).padStart(2, "0")}`;
+          const eksisterende = månedligData.get(periodeKey);
+          if (eksisterende) {
+            eksisterende.ytelse += beløp;
+          }
+        });
       });
-    });
   }
 
   return Array.from(månedligData.entries())
