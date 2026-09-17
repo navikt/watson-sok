@@ -3,7 +3,7 @@ FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-dev AS dep
 # /usr/bin. Kun i denne (kasserte) byggefasen — sluttimaget forblir nonroot.
 USER root
 WORKDIR /app
-COPY package.json pnpm-lock.yaml .npmrc ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 
 RUN corepack enable && corepack prepare --activate
 RUN --mount=type=secret,id=NODE_AUTH_TOKEN sh -c \
@@ -11,9 +11,8 @@ RUN --mount=type=secret,id=NODE_AUTH_TOKEN sh -c \
     pnpm install --frozen-lockfile && \
     sed -i "/npm.pkg.github.com\/:_authToken/d" .npmrc'
 
-# Sluttimaget skal bare ha runtime-avhengigheter. devDependencies drar med seg
-# native binærfiler (esbuild er skrevet i Go), og de dukker opp som golang/stdlib-
-# sårbarheter i imagescanningen selv om de aldri kjøres i produksjon.
+# Sluttimaget skal bare ha runtime-avhengigheter — devDependencies (bl.a.
+# byggverktøy) skal ikke følge med i produksjon.
 # Bygger videre på dependencies-steget slik at pnpm-storen er intakt — da trenger
 # prune verken nettverk eller token.
 FROM dependencies AS prod-dependencies

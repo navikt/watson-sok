@@ -63,13 +63,5 @@
     "vite": "^8.0.16",
     "vitest": "^4.1.11"
   },
-  "packageManager": "pnpm@11.1.2",
-  "pnpm": {
-    "overrides": {
-      "@react-router/dev": "^8.3.0",
-      "@react-router/node": "^8.3.0",
-      "@react-router/serve": "^8.3.0",
-      "react-router": "^8.3.0"
-    }
-  }
+  "packageManager": "pnpm@11.1.2"
 }
