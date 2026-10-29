@@ -224,6 +224,7 @@ Create a test file `{component-name}.test.tsx`:
 
 ```tsx
 import { render, screen } from "@testing-library/react";
+
 import { ComponentName } from "./component-name";
 
 describe("ComponentName", () => {

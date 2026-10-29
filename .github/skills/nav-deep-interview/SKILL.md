@@ -69,7 +69,7 @@ Se [data-classification.md](./references/data-classification.md) for Navs datakl
 | O2  | Hva skal trigge varsling?                                | Definerer alerting-regler       |
 | O3  | Hvordan vet dere at en deploy gikk bra?                  | Smoke test-strategi             |
 | O4  | Hvem er on-call? Finnes det en vaktordning?              | Påvirker varslings-setup        |
-| O5  | Forventet trafikkmønster? (Jevnt, kontor­tid, sesong?)   | Påvirker skalering og ressurser |
+| O5  | Forventet trafikkmønster? (Jevnt, kontor­tid, sesong?)    | Påvirker skalering og ressurser |
 
 ### Team og prosess
 
