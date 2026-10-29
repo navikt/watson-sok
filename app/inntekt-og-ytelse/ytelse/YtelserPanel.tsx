@@ -348,7 +348,10 @@ function YtelserTimeline({
         const meldekortType = finnMeldekortYtelseType(ytelse.stonadType);
 
         const radEtikett = (
-          <Tooltip content="Trykk for å se detaljer for alle perioder">
+          <Tooltip
+            content="Trykk for å se detaljer for alle perioder"
+            describesChild
+          >
             <Button
               variant="tertiary"
               size="small"
