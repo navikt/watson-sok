@@ -206,9 +206,9 @@ test.describe("Responsive", () => {
 ## 5. Accessibility Testing med axe
 
 ```typescript
+import AxeBuilder from "@axe-core/playwright";
 // e2e/tests/accessibility.spec.ts
 import { test, expect } from "@playwright/test";
-import AxeBuilder from "@axe-core/playwright";
 
 test.describe("Accessibility", () => {
   const pages = ["/", "/oversikt", "/usage"];
