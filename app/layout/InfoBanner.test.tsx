@@ -135,7 +135,7 @@ describe("InfoBanner", () => {
     expect(headers.length).toBeGreaterThan(0);
   });
 
-  it("viser GlobalAlert med status announcement", () => {
+  it("viser GlobalAlert med status warning", () => {
     mockRoute({
       loaderData: {
         statusmelding: { tittel: "Test melding" },
