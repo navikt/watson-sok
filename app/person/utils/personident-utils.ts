@@ -20,6 +20,12 @@ export function beregnAlderFraFødselsEllerDnummer(
   if (erDnummer) {
     dag -= 40;
   }
+  // Syntetiske identer: T-nummer (Tenor) har måned + 80, H-nummer/Dolly måned + 40
+  if (måned > 80) {
+    måned -= 80;
+  } else if (måned > 40) {
+    måned -= 40;
+  }
   const nåværendeÅr = Number(new Date().getFullYear().toString().slice(2));
 
   if (år <= nåværendeÅr && erBarn) {
