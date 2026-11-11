@@ -274,7 +274,7 @@ describe("IndividuelleAapMeldekortAccordion", () => {
   });
 
   it("viser ikke dag-for-dag-seksjonen for uvanlig lange aggregatperioder (regresjonstest)", () => {
-    // Regresjonstest for Copilot-kommentar: fixture 22107622199.json har en
+    // Regresjonstest for Copilot-kommentar: fixture 22907622154.json har en
     // periode fra 2016-06-01 til 2016-11-30 (~183 dager). Uten en øvre
     // grense ville dette rendret én DOM-node per kalenderdag.
     mockUseAapMeldekort.mockReturnValue({
