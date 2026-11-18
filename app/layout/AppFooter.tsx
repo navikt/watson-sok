@@ -1,4 +1,4 @@
-import { BooksIcon, LightBulbIcon, PersonIcon } from "@navikt/aksel-icons";
+import { BooksIcon, PersonIcon } from "@navikt/aksel-icons";
 import { Detail, Link as NavLink, Theme } from "@navikt/ds-react";
 import { Link, unstable_useRoute } from "react-router";
 
@@ -15,21 +15,11 @@ export function AppFooter() {
             <li className="flex items-center gap-2">
               <BooksIcon aria-hidden="true" />
               <NavLink
-                href="https://navno.sharepoint.com/sites/45/SitePages/Holmes.aspx"
+                href="https://watson-guide.ansatt.nav.no/hjelp"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Hjelp
-              </NavLink>
-            </li>
-            <li className="flex items-center gap-2">
-              <LightBulbIcon aria-hidden="true" />
-              <NavLink
-                href="https://watson-sok.ideas.aha.io"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Idéportal
+                Hjelp og tilbakemelding
               </NavLink>
             </li>
             <li className="flex items-center gap-2">
